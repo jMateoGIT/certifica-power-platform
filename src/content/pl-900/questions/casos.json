@@ -1,0 +1,1487 @@
+[
+  {
+    "id": "pl900-caso-1-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "caseId": "caso-1",
+    "difficulty": 2,
+    "prompt": "Según el requisito 1, ¿qué solución debes proponer para que las camareras de piso registren las incidencias?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Una aplicación de lienzo (*canvas app*) para móvil, con un control de cámara o de imagen, que guarde cada incidencia en Dataverse",
+        "correct": true,
+        "explanation": "Las aplicaciones de lienzo se diseñan para tareas concretas, funcionan en la aplicación móvil de Power Apps y pueden usar la cámara del dispositivo; la incidencia y su foto se guardan en la tabla de Dataverse que fija la restricción técnica."
+      },
+      {
+        "id": "b",
+        "text": "Un sitio de Power Pages en el que las camareras se registren como usuarias externas",
+        "correct": false,
+        "explanation": "Power Pages está pensado para sitios web orientados a usuarios externos (clientes, proveedores, ciudadanos). Las camareras son empleadas con cuenta de Microsoft 365, así que una aplicación interna es la opción adecuada."
+      },
+      {
+        "id": "c",
+        "text": "Un flujo de escritorio (*desktop flow*) que rellene automáticamente el Excel compartido",
+        "correct": false,
+        "explanation": "Un flujo de escritorio automatiza tareas repetitivas en un equipo Windows; no ofrece a la camarera una pantalla en el móvil para describir la avería y hacer la foto, y seguiría dependiendo del Excel que se quiere abandonar."
+      },
+      {
+        "id": "d",
+        "text": "Un informe de Power BI incrustado en un canal de Teams del hotel",
+        "correct": false,
+        "explanation": "Power BI sirve para analizar y visualizar datos ya existentes; no es una herramienta para capturar registros nuevos con fotos desde el móvil."
+      }
+    ],
+    "keyPoint": "Captura de datos en movilidad con cámara y diseño a medida = aplicación de lienzo.",
+    "references": [
+      {
+        "title": "¿Qué son las aplicaciones de lienzo?",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/getting-started"
+      },
+      {
+        "title": "Control Agregar imagen en Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/controls/control-add-picture"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-1-002",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "caseId": "caso-1",
+    "difficulty": 2,
+    "prompt": "Completa la descripción de la solución para el requisito 2.",
+    "template": "Creas un {{b1}} que se inicia con el desencadenador de Dataverse {{b2}} sobre la tabla Incidencias; una condición comprueba la prioridad y, si es alta, una acción del conector {{b3}} envía el aviso al jefe de mantenimiento.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "flujo de nube automatizado" },
+          { "id": "o2", "text": "flujo de nube programado" },
+          { "id": "o3", "text": "flujo de escritorio" }
+        ],
+        "correctId": "o1",
+        "explanation": "El aviso debe ser inmediato al registrarse la incidencia, es decir, en respuesta a un evento: eso es un flujo de nube automatizado. Uno programado se ejecutaría a horas fijas y uno de escritorio automatiza aplicaciones en un equipo Windows."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "Periodicidad" },
+          { "id": "o2", "text": "Cuando se agrega, modifica o elimina una fila" },
+          { "id": "o3", "text": "Cuando se envía una nueva respuesta" }
+        ],
+        "correctId": "o2",
+        "explanation": "El desencadenador «Cuando se agrega, modifica o elimina una fila» de Dataverse inicia el flujo al crearse una fila en la tabla elegida. «Periodicidad» es el desencadenador de los flujos programados y «Cuando se envía una nueva respuesta» pertenece a Microsoft Forms."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "Aprobaciones" },
+          { "id": "o2", "text": "Office 365 Outlook" },
+          { "id": "o3", "text": "Microsoft Teams" }
+        ],
+        "correctId": "o3",
+        "explanation": "El requisito 2 pide el aviso en Microsoft Teams, así que usas una acción del conector de Teams para publicar el mensaje. Outlook enviaría un correo y Aprobaciones pediría una decisión, algo que el requisito no exige."
+      }
+    ],
+    "keyPoint": "Evento en los datos → flujo automatizado con un desencadenador del conector; las acciones de otros conectores (Teams) hacen el trabajo.",
+    "references": [
+      {
+        "title": "Desencadenar flujos cuando se agrega, modifica o elimina una fila",
+        "url": "https://learn.microsoft.com/es-es/power-automate/dataverse/create-update-delete-trigger"
+      },
+      {
+        "title": "Power Automate y Microsoft Teams",
+        "url": "https://learn.microsoft.com/es-es/power-automate/teams/overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-1-003",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-conocimiento",
+    "caseId": "caso-1",
+    "difficulty": 2,
+    "prompt": "Vas a crear un agente con Copilot Studio para cumplir el requisito 3. ¿Qué dos acciones debes realizar? Elige 2.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agregar las páginas públicas del sitio web de la cadena como origen de conocimiento de tipo sitio web público",
+        "correct": true,
+        "explanation": "Un origen de conocimiento de sitio web público permite que el agente genere respuestas a partir del contenido ya publicado, sin redactar de nuevo cada respuesta, y no requiere autenticación."
+      },
+      {
+        "id": "b",
+        "text": "Publicar el agente e insertarlo en el sitio web en vivo de la cadena",
+        "correct": true,
+        "explanation": "El requisito pide que los huéspedes consulten desde el sitio web. Tras publicar el agente, lo insertas en el sitio web activo; el sitio de demostración solo sirve para pruebas internas."
+      },
+      {
+        "id": "c",
+        "text": "Conectar el agente al canal de Teams y compartir el vínculo de instalación con los huéspedes",
+        "correct": false,
+        "explanation": "Teams es un canal para usuarios de la organización. Los huéspedes no tienen cuenta en el inquilino de la cadena, así que no es la vía para atenderlos."
+      },
+      {
+        "id": "d",
+        "text": "Mantener la opción «Autenticar con Microsoft» para que los huéspedes inicien sesión con Microsoft Entra ID",
+        "correct": false,
+        "explanation": "Esa opción usa la identidad de Microsoft Entra ID en Teams, Power Apps y Microsoft Copilot. El requisito pide atender a huéspedes sin iniciar sesión, por lo que no encaja."
+      },
+      {
+        "id": "e",
+        "text": "Crear un flujo de escritorio que copie cada noche las páginas web en un Excel para que el agente lo lea",
+        "correct": false,
+        "explanation": "Es una complicación innecesaria: el agente puede usar directamente el sitio web público como conocimiento, y copiar el contenido crearía una segunda versión que habría que mantener."
+      }
+    ],
+    "keyPoint": "Contenido ya publicado en la web → origen de conocimiento de sitio web público; clientes anónimos → canal de sitio web.",
+    "references": [
+      {
+        "title": "Agregar un sitio web público como origen de conocimiento",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/knowledge-add-public-website"
+      },
+      {
+        "title": "Publicar un agente en un sitio web activo o de demostración",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/publication-connect-bot-to-web-channels"
+      },
+      {
+        "title": "Conceptos clave: publicar e implementar el agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/publication-fundamentals-publish-channels"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-1-004",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "caseId": "caso-1",
+    "difficulty": 3,
+    "prompt": "Para cumplir el requisito 4, indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puedes crear una unidad de negocio por hotel para separar sus usuarios y sus incidencias.",
+        "answer": true,
+        "explanation": "Las unidades de negocio de Dataverse definen límites de seguridad: cada usuario pertenece a una y, combinadas con los roles, determinan a qué registros accede. Una unidad por hotel encaja con el requisito."
+      },
+      {
+        "id": "s2",
+        "text": "A la dirección de operaciones le basta un rol de seguridad con acceso de nivel de organización a la tabla Incidencias para ver las de toda la cadena.",
+        "answer": true,
+        "explanation": "El nivel de acceso del privilegio (usuario, unidad de negocio, unidad de negocio y sus subordinadas, u organización) define el alcance; el nivel de organización da acceso a todos los registros de la tabla."
+      },
+      {
+        "id": "s3",
+        "text": "Si un recepcionista tiene un rol con lectura de nivel de organización, puedes asignarle otro rol más restrictivo para ocultarle las incidencias de otros hoteles.",
+        "answer": false,
+        "explanation": "Los privilegios son acumulativos: el usuario obtiene el acceso más amplio de todos sus roles. Un segundo rol no puede quitar lo que el primero concede, así que debes revisar el rol original."
+      },
+      {
+        "id": "s4",
+        "text": "Debes repetir la configuración de seguridad en cada aplicación de lienzo que use la tabla Incidencias.",
+        "answer": false,
+        "explanation": "La seguridad de Dataverse (roles, unidades de negocio) se aplica a los datos, sea cual sea la aplicación o el flujo que acceda a ellos; no se configura aplicación por aplicación."
+      }
+    ],
+    "keyPoint": "Unidades de negocio + roles definen quién ve qué en Dataverse; los privilegios se suman, nunca se restan.",
+    "references": [
+      {
+        "title": "Seguridad basada en propiedad en Microsoft Dataverse",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/wp-security-cds"
+      },
+      {
+        "title": "Roles de seguridad y privilegios",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/security-roles-privileges"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-1-005",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-apps-automate",
+    "caseId": "caso-1",
+    "difficulty": 1,
+    "prompt": "¿Qué característica de Power Platform responde mejor al requisito 5?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Es una plataforma de poco código (*low-code*) que permite a los usuarios de negocio crear aplicaciones y automatizaciones conectadas con Microsoft 365 mediante conectores",
+        "correct": true,
+        "explanation": "El valor central de Power Apps y Power Automate es que los creadores de negocio (*citizen developers*), sin ser programadores, construyen y mejoran soluciones rápidamente y las integran con Teams, Outlook o SharePoint a través de conectores."
+      },
+      {
+        "id": "b",
+        "text": "Elimina la necesidad de gobernanza, porque cada empleado puede crear lo que quiera sin intervención de TI",
+        "correct": false,
+        "explanation": "Power Platform sí requiere gobernanza: entornos, directivas de datos y roles de seguridad. El poco código facilita crear, pero los administradores siguen poniendo límites de protección."
+      },
+      {
+        "id": "c",
+        "text": "Exige migrar antes todos los datos a un ERP de Microsoft para poder crear aplicaciones",
+        "correct": false,
+        "explanation": "Power Platform se conecta a muchos orígenes de datos mediante conectores (Dataverse, SharePoint, Excel, servicios externos); no obliga a migrar a un ERP concreto."
+      },
+      {
+        "id": "d",
+        "text": "Sustituye a Teams y Outlook como herramientas de comunicación del personal",
+        "correct": false,
+        "explanation": "Power Platform complementa Microsoft 365, no lo sustituye: precisamente aprovecha Teams y Outlook para notificar y colaborar, como pide el requisito 2."
+      }
+    ],
+    "keyPoint": "Valor de negocio: soluciones de poco código creadas por el propio negocio e integradas con Microsoft 365.",
+    "references": [
+      {
+        "title": "Describir el valor de negocio de Microsoft Power Platform",
+        "url": "https://learn.microsoft.com/es-es/training/paths/describe-business-value-microsoft-power-platform/"
+      },
+      {
+        "title": "¿Qué es Power Apps?",
+        "url": "https://learn.microsoft.com/es-es/power-apps/powerapps-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-2-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-ia",
+    "caseId": "caso-2",
+    "difficulty": 2,
+    "prompt": "¿Qué componente de Power Platform debes usar para el portal del requisito 1?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Power Pages",
+        "correct": true,
+        "explanation": "Power Pages crea sitios web orientados al exterior en los que usuarios ajenos a la organización pueden registrarse, enviar datos a Dataverse y ver solo sus propios registros gracias a los roles web y los permisos de tabla."
+      },
+      {
+        "id": "b",
+        "text": "Una aplicación de lienzo compartida con todos los vecinos",
+        "correct": false,
+        "explanation": "Las aplicaciones de Power Apps se comparten con usuarios de la organización que tienen cuenta y licencia; no son la vía para un portal público con autorregistro de ciudadanos."
+      },
+      {
+        "id": "c",
+        "text": "Una aplicación basada en modelos (*model-driven app*)",
+        "correct": false,
+        "explanation": "Es la opción adecuada para los funcionarios (requisito 3), pero está pensada para usuarios internos con cuenta de la organización, no para vecinos que se registran en un portal."
+      },
+      {
+        "id": "d",
+        "text": "Un sitio de comunicación de SharePoint",
+        "correct": false,
+        "explanation": "SharePoint está orientado a la colaboración y la intranet; no ofrece el autorregistro de ciudadanos ni formularios sobre Dataverse con permisos de tabla por usuario."
+      }
+    ],
+    "keyPoint": "Usuarios externos que se registran y trabajan con datos de Dataverse → Power Pages.",
+    "references": [
+      {
+        "title": "¿Qué es Power Pages?",
+        "url": "https://learn.microsoft.com/es-es/power-pages/introduction"
+      },
+      {
+        "title": "Configurar los permisos de tabla en Power Pages",
+        "url": "https://learn.microsoft.com/es-es/power-pages/security/table-permissions"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-2-002",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escenarios",
+    "caseId": "caso-2",
+    "difficulty": 2,
+    "prompt": "Vas a automatizar la revisión del requisito 2 con aprobaciones de Power Automate. Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puedes usar la acción «Iniciar y esperar una aprobación» con el tipo «Aprobación secuencial»: primero el técnico y después la concejala.",
+        "answer": true,
+        "explanation": "En la aprobación secuencial las solicitudes se piden de una en una y en orden; cada aprobador responde antes de pasar al siguiente, que es la aprobación previa que describe el requisito 2."
+      },
+      {
+        "id": "s2",
+        "text": "El tipo «Aprobar/Rechazar: el primero en responder», con el técnico y la concejala como aprobadores, cumple el requisito.",
+        "answer": false,
+        "explanation": "Con ese tipo ambos reciben la solicitud a la vez y la respuesta de cualquiera la completa, de modo que la concejala podría resolver sin la revisión previa del técnico."
+      },
+      {
+        "id": "s3",
+        "text": "Los aprobadores pueden responder desde el correo de Outlook o desde una tarjeta adaptable de Microsoft Teams.",
+        "answer": true,
+        "explanation": "Las solicitudes de aprobación se pueden responder desde Outlook, desde una tarjeta adaptable en Teams o desde el centro de acciones de Power Automate, como pide el requisito 2."
+      },
+      {
+        "id": "s4",
+        "text": "Para usar aprobaciones, el ayuntamiento debe adquirir un conector prémium específico.",
+        "answer": false,
+        "explanation": "El conector de Aprobaciones es estándar: basta una licencia que permita usar Power Automate con conectores estándar, como las de Microsoft 365."
+      }
+    ],
+    "keyPoint": "Aprobación previa y luego definitiva → aprobación secuencial; se responde desde Outlook, Teams o el centro de acciones.",
+    "references": [
+      {
+        "title": "Comenzar con las aprobaciones",
+        "url": "https://learn.microsoft.com/es-es/power-automate/get-started-approvals"
+      },
+      {
+        "title": "Configurar aprobaciones secuenciales",
+        "url": "https://learn.microsoft.com/es-es/power-automate/set-up-sequential-approvals"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-2-003",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-modelos",
+    "caseId": "caso-2",
+    "difficulty": 2,
+    "prompt": "¿Qué dos elementos debes incluir en la solución para cumplir el requisito 3? Elige 2.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Una aplicación basada en modelos (*model-driven app*) sobre las tablas de Dataverse del expediente",
+        "correct": true,
+        "explanation": "Las aplicaciones basadas en modelos son ideales para procesos con muchos datos relacionados (vecino, solicitud, ubicación, tasas): la interfaz se genera a partir de formularios y vistas y facilita moverse entre registros relacionados."
+      },
+      {
+        "id": "b",
+        "text": "Un flujo de proceso de negocio (*business process flow*) con las fases Registro, Revisión técnica y Resolución",
+        "correct": true,
+        "explanation": "Los flujos de proceso de negocio guían a los usuarios por las fases que define la organización para que todos tramiten igual, justo lo que piden las fases fijas del requisito 3."
+      },
+      {
+        "id": "c",
+        "text": "Una aplicación de lienzo conectada al Excel actual, con cada control colocado a mano",
+        "correct": false,
+        "explanation": "Seguir con Excel no aporta seguridad por roles ni relaciones entre tablas, y diseñar cada pantalla a mano no ofrece la guía por fases que se pide."
+      },
+      {
+        "id": "d",
+        "text": "El portal de Power Pages del requisito 1, para que los funcionarios tramiten desde él",
+        "correct": false,
+        "explanation": "Power Pages está pensado para usuarios externos; los funcionarios necesitan una aplicación interna de gestión de expedientes."
+      },
+      {
+        "id": "e",
+        "text": "Un flujo de escritorio que mueva cada expediente entre carpetas según su fase",
+        "correct": false,
+        "explanation": "Un flujo de escritorio automatiza tareas en un equipo Windows; no es una interfaz de trabajo para los funcionarios ni guía por fases."
+      }
+    ],
+    "keyPoint": "Procesos con muchos datos relacionados y fases fijas → aplicación basada en modelos + flujo de proceso de negocio.",
+    "references": [
+      {
+        "title": "¿Qué son las aplicaciones basadas en modelos?",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/model-driven-app-overview"
+      },
+      {
+        "title": "Información general sobre los flujos de proceso de negocio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/business-process-flows-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-2-004",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "caseId": "caso-2",
+    "difficulty": 2,
+    "prompt": "Completa la estrategia de Informática para cumplir el requisito 5.",
+    "template": "Los técnicos crean y modifican los componentes en un entorno de {{b1}}, los agrupan en una {{b2}} y la llevan a los entornos de prueba y producción con {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "producción" },
+          { "id": "o2", "text": "desarrollo" },
+          { "id": "o3", "text": "prueba (trial)" }
+        ],
+        "correctId": "o2",
+        "explanation": "Separar los entornos permite trabajar sin afectar a los vecinos: se desarrolla en un entorno de desarrollo y solo lo validado llega a producción. Un entorno de prueba (*trial*) es temporal y no está pensado para el ciclo de vida de una solución."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "solución" },
+          { "id": "o2", "text": "copia de seguridad del entorno" },
+          { "id": "o3", "text": "directiva de datos" }
+        ],
+        "correctId": "o1",
+        "explanation": "Las soluciones son el contenedor que transporta aplicaciones, tablas, flujos y agentes entre entornos. Una copia de seguridad restaura un entorno entero y una directiva de datos controla los conectores."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "una exportación a Excel" },
+          { "id": "o2", "text": "un flujo de escritorio" },
+          { "id": "o3", "text": "canalizaciones de Power Platform" }
+        ],
+        "correctId": "o3",
+        "explanation": "Las canalizaciones (*pipelines*) automatizan la implementación de soluciones entre entornos, validan dependencias y permiten implementaciones con aprobación. No trasladan los datos de las tablas, solo la solución y su configuración."
+      }
+    ],
+    "keyPoint": "ALM en Power Platform: desarrollo → prueba → producción, con soluciones y canalizaciones.",
+    "references": [
+      {
+        "title": "Información general de las canalizaciones de Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-platform/alm/pipelines"
+      },
+      {
+        "title": "Conceptos de soluciones",
+        "url": "https://learn.microsoft.com/es-es/power-platform/alm/solution-concepts-alm"
+      },
+      {
+        "title": "Información general sobre entornos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/environments-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-2-005",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-temas",
+    "caseId": "caso-2",
+    "difficulty": 2,
+    "prompt": "Empareja cada necesidad del requisito 4 con el elemento de Copilot Studio que la resuelve.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Responder dudas a partir de los PDF de las ordenanzas",
+        "answerId": "c1",
+        "explanation": "Cargar los PDF como origen de conocimiento permite al agente generar respuestas con IA basadas en su contenido, sin crear un tema para cada pregunta posible."
+      },
+      {
+        "id": "m2",
+        "text": "Pasar la conversación a un funcionario cuando el vecino lo pida",
+        "answerId": "c2",
+        "explanation": "El tema del sistema Escalar se activa cuando el usuario pide hablar con una persona; puedes editarlo para indicar cómo contactar o transferir la conversación."
+      },
+      {
+        "id": "m3",
+        "text": "Pedir al vecino, paso a paso, la oficina y la fecha de la cita previa",
+        "answerId": "c3",
+        "explanation": "Un tema personalizado define una ruta de conversación concreta; sus nodos de pregunta recogen cada dato en orden."
+      },
+      {
+        "id": "m4",
+        "text": "Mostrar el agente dentro del portal del requisito 1",
+        "answerId": "c4",
+        "explanation": "Tras publicar el agente, puedes agregarlo a un sitio de Power Pages para que los visitantes conversen con él en la propia página."
+      }
+    ],
+    "choices": [
+      { "id": "c1", "text": "Archivos cargados como origen de conocimiento" },
+      { "id": "c2", "text": "Tema del sistema Escalar" },
+      { "id": "c3", "text": "Tema personalizado con nodos de pregunta" },
+      { "id": "c4", "text": "Publicación en un sitio de Power Pages" },
+      { "id": "c5", "text": "Servidor MCP" },
+      { "id": "c6", "text": "Evaluación del agente" }
+    ],
+    "keyPoint": "Conocimiento para responder, temas para guiar, Escalar para pasar a una persona y canales para llegar al usuario.",
+    "references": [
+      {
+        "title": "Cargar archivos como origen de conocimiento",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/knowledge-add-file-upload"
+      },
+      {
+        "title": "Usar temas del sistema",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-system-topics"
+      },
+      {
+        "title": "Creación y edición de temas",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-create-edit-topics"
+      },
+      {
+        "title": "Publicar un agente en Power Pages",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/publication-add-bot-to-power-pages"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-3-001",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-casos",
+    "caseId": "caso-3",
+    "difficulty": 3,
+    "prompt": "Sobre la automatización del requisito 1, indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Como el ERP no tiene API, necesitas un flujo de escritorio que interactúe con su interfaz.",
+        "answer": true,
+        "explanation": "Los flujos de escritorio automatizan aplicaciones de escritorio y web imitando las acciones de una persona (automatización robótica de procesos, RPA), la solución habitual cuando no hay API ni conector."
+      },
+      {
+        "id": "s2",
+        "text": "Un flujo de nube programado puede iniciar cada noche el flujo de escritorio en una máquina registrada.",
+        "answer": true,
+        "explanation": "Los flujos de nube pueden desencadenar flujos de escritorio en máquinas o grupos de máquinas registrados mediante una conexión de flujo de escritorio; uno programado lo hace a la hora fijada."
+      },
+      {
+        "id": "s3",
+        "text": "Para ejecutarse sin nadie delante del equipo, el flujo de escritorio debe usar el modo asistido.",
+        "answer": false,
+        "explanation": "El modo asistido se ejecuta en la sesión de un usuario presente. Sin supervisión humana se usa el modo desatendido, en el que Power Automate inicia sesión en la máquina, ejecuta el flujo y la cierra."
+      },
+      {
+        "id": "s4",
+        "text": "En modo desatendido, conviene dejar una sesión de Windows iniciada y bloqueada en el equipo con Windows 11.",
+        "answer": false,
+        "explanation": "Es al revés: en Windows 10 y 11 no se puede ejecutar un flujo desatendido si hay alguna sesión de usuario activa, aunque esté bloqueada."
+      }
+    ],
+    "keyPoint": "Sin API → flujo de escritorio; sin supervisión → modo desatendido iniciado desde un flujo de nube.",
+    "references": [
+      {
+        "title": "Ejecutar flujos de escritorio desatendidos",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/run-unattended-desktop-flows"
+      },
+      {
+        "title": "Desencadenar flujos de escritorio desde flujos de nube",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/trigger-desktop-flows"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-3-002",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "caseId": "caso-3",
+    "difficulty": 2,
+    "prompt": "¿Qué solución cumple el requisito 2?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Una aplicación de lienzo basada en Dataverse con la funcionalidad sin conexión (*offline*) para móviles habilitada",
+        "correct": true,
+        "explanation": "Las aplicaciones de lienzo basadas en Dataverse pueden trabajar «sin conexión primero»: copian los datos al dispositivo y sincronizan automáticamente los cambios al detectar conexión."
+      },
+      {
+        "id": "b",
+        "text": "Una aplicación de lienzo que guarde las entregas en un Excel de OneDrive",
+        "correct": false,
+        "explanation": "La funcionalidad sin conexión de las aplicaciones de lienzo se basa en Dataverse; con un Excel en la nube el repartidor sin cobertura no podría guardar ni sincronizar las entregas de forma fiable."
+      },
+      {
+        "id": "c",
+        "text": "Un sitio de Power Pages optimizado para el navegador del móvil",
+        "correct": false,
+        "explanation": "Power Pages es para usuarios externos y necesita conexión para cargar el sitio; no resuelve el trabajo en zonas sin cobertura."
+      },
+      {
+        "id": "d",
+        "text": "Un flujo de nube instantáneo que el repartidor ejecute desde un botón al llegar al cliente",
+        "correct": false,
+        "explanation": "Los flujos de nube se ejecutan en la nube y necesitan conexión para iniciarse; además, no ofrecen una pantalla para registrar la entrega y la foto."
+      }
+    ],
+    "keyPoint": "Sin cobertura → aplicación de lienzo sobre Dataverse con modo sin conexión, que sincroniza al recuperar la red.",
+    "references": [
+      {
+        "title": "Información general de Mobile Offline para aplicaciones de lienzo",
+        "url": "https://learn.microsoft.com/es-es/power-apps/mobile/canvas-mobile-offline-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-3-003",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse",
+    "caseId": "caso-3",
+    "difficulty": 2,
+    "prompt": "Completa el diseño de datos en Dataverse para el requisito 3.",
+    "template": "Creas una relación {{b1}} entre Cliente y Entrega; como resultado, la tabla {{b2}} incluye una columna de tipo {{b3}} que apunta a su cliente.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "de uno a varios (1:N)" },
+          { "id": "o2", "text": "de varios a varios (N:N)" }
+        ],
+        "correctId": "o1",
+        "explanation": "Un cliente tiene muchas entregas, pero cada entrega pertenece a un solo cliente: eso es una relación de uno a varios. Varios a varios serviría si una entrega pudiera ser de varios clientes."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "Cliente" },
+          { "id": "o2", "text": "Entrega" }
+        ],
+        "correctId": "o2",
+        "explanation": "En una relación 1:N la referencia se guarda en la tabla del lado «varios»: cada fila de Entrega indica a qué cliente pertenece."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "búsqueda" },
+          { "id": "o2", "text": "elección" },
+          { "id": "o3", "text": "texto" }
+        ],
+        "correctId": "o1",
+        "explanation": "Las relaciones 1:N se materializan con una columna de búsqueda (*lookup*), que vincula la fila con una fila de otra tabla. Una columna de elección solo ofrece una lista fija de valores y el texto no mantiene el vínculo."
+      }
+    ],
+    "keyPoint": "Relación 1:N = columna de búsqueda en la tabla del lado «varios».",
+    "references": [
+      {
+        "title": "Crear y editar relaciones de uno a varios o varios a uno",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/create-edit-1n-relationships-portal"
+      },
+      {
+        "title": "Usar la columna de búsqueda en una fila",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/data-platform-entity-lookup"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-3-004",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "caseId": "caso-3",
+    "difficulty": 2,
+    "prompt": "¿Qué dos acciones debe realizar el administrador para cumplir el requisito 4? Elige 2.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crear en el centro de administración de Power Platform una directiva de datos (antes directiva de prevención de pérdida de datos, *DLP*) que se aplique al entorno de producción",
+        "correct": true,
+        "explanation": "Las directivas de datos son límites de protección sobre los conectores que pueden usar aplicaciones, flujos y agentes, para reducir el riesgo de exponer datos de la organización."
+      },
+      {
+        "id": "b",
+        "text": "Clasificar Dataverse y SharePoint como conectores empresariales, y los servicios de consumo como no empresariales o bloqueados",
+        "correct": true,
+        "explanation": "Los conectores se agrupan en Empresarial, No empresarial y Bloqueado; un recurso no puede combinar conectores de los grupos Empresarial y No empresarial, y los bloqueados no pueden usarse."
+      },
+      {
+        "id": "c",
+        "text": "Habilitar la seguridad de nivel de columna en la tabla Cliente",
+        "correct": false,
+        "explanation": "La seguridad de columna limita quién ve o modifica columnas concretas, pero no impide que un flujo envíe los datos que sí puede leer a un servicio externo."
+      },
+      {
+        "id": "d",
+        "text": "Activar la auditoría de Dataverse en la tabla Entrega",
+        "correct": false,
+        "explanation": "La auditoría registra los cambios y accesos para revisarlos después; no evita que los datos salgan hacia servicios de consumo."
+      },
+      {
+        "id": "e",
+        "text": "Quitar a los repartidores el rol de seguridad que les da acceso a la tabla Cliente",
+        "correct": false,
+        "explanation": "Rompería la aplicación de entregas, que necesita leer los clientes, y tampoco controla qué conectores pueden combinarse en flujos y aplicaciones."
+      }
+    ],
+    "keyPoint": "Evitar que se mezclen datos de empresa con servicios de consumo = directiva de datos con conectores empresariales y no empresariales.",
+    "references": [
+      {
+        "title": "Directivas de datos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/wp-data-loss-prevention"
+      },
+      {
+        "title": "Clasificación de conectores",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/dlp-connector-classification"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-3-005",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-conocimiento",
+    "caseId": "caso-3",
+    "difficulty": 3,
+    "prompt": "¿Cómo debes dar al agente acceso a los procedimientos para cumplir el requisito 5?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agregar la biblioteca de SharePoint como origen de conocimiento, con autenticación de Microsoft Entra ID",
+        "correct": true,
+        "explanation": "El conocimiento de SharePoint usa la identidad del usuario: el agente solo muestra el contenido al que puede acceder la persona que pregunta, de modo que se respetan los permisos por departamento."
+      },
+      {
+        "id": "b",
+        "text": "Descargar los procedimientos y cargarlos como archivos en el agente",
+        "correct": false,
+        "explanation": "Los archivos cargados quedan disponibles para el agente y se pierden los permisos de SharePoint de cada departamento; además, habría que volver a cargarlos cada vez que cambien."
+      },
+      {
+        "id": "c",
+        "text": "Agregar el sitio de SharePoint como origen de conocimiento de tipo sitio web público",
+        "correct": false,
+        "explanation": "El origen de sitio web público busca contenido público mediante Bing; una biblioteca interna de SharePoint no es pública y no se indexaría así."
+      },
+      {
+        "id": "d",
+        "text": "Crear un tema con frases desencadenadoras para cada procedimiento y copiar su texto en un nodo de mensaje",
+        "correct": false,
+        "explanation": "Sería costoso de mantener, duplicaría el contenido y mostraría el mismo texto a cualquier empleado, sin respetar sus permisos."
+      }
+    ],
+    "keyPoint": "Conocimiento de SharePoint con autenticación: cada usuario solo obtiene respuestas de lo que ya puede ver.",
+    "references": [
+      {
+        "title": "Resumen de fuentes de conocimiento",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/knowledge-copilot-studio"
+      },
+      {
+        "title": "Agregar SharePoint como origen de conocimiento",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/knowledge-add-sharepoint"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-4-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-plan-codigo",
+    "caseId": "caso-4",
+    "difficulty": 2,
+    "prompt": "¿Qué debe usar Lucía para cumplir el requisito 1?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Los planes de Power Apps (diseñador de planes, *plan designer*)",
+        "correct": true,
+        "explanation": "Los planes parten de una descripción en lenguaje natural (y, si quieres, imágenes del proceso) y generan una propuesta de solución completa: tablas de Dataverse, aplicaciones de lienzo y basadas en modelos, sitios de Power Pages, flujos y agentes."
+      },
+      {
+        "id": "b",
+        "text": "Copilot en los flujos de nube de Power Automate",
+        "correct": false,
+        "explanation": "Copilot en los flujos de nube crea y modifica flujos a partir de una descripción, pero no propone tablas, aplicaciones ni agentes."
+      },
+      {
+        "id": "c",
+        "text": "Las aplicaciones de código (*code apps*) de Power Apps",
+        "correct": false,
+        "explanation": "Las aplicaciones de código están pensadas para desarrolladores que programan con un IDE como Visual Studio Code; no encajan con una gerente sin perfil técnico."
+      },
+      {
+        "id": "d",
+        "text": "Una aplicación de lienzo en blanco diseñada pantalla a pantalla",
+        "correct": false,
+        "explanation": "Empezar en blanco obliga a definir a mano datos y pantallas, y solo produce una aplicación, no una solución completa con flujos y un agente."
+      }
+    ],
+    "keyPoint": "Describir el proceso y obtener una solución completa de Power Platform → planes de Power Apps.",
+    "references": [
+      {
+        "title": "Información general sobre los planes",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/plan-designer/plan-designer"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-4-002",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-modelos",
+    "caseId": "caso-4",
+    "difficulty": 2,
+    "prompt": "Para el requisito 2 eliges una aplicación basada en modelos. ¿Qué dos características justifican esa elección? Elige 2.",
+    "options": [
+      {
+        "id": "a",
+        "text": "La interfaz se genera a partir de los componentes que agregas a las tablas: formularios, vistas, gráficos y paneles",
+        "correct": true,
+        "explanation": "En las aplicaciones basadas en modelos gran parte de la interfaz está predefinida, así que los veterinarios no tienen que dedicar tiempo a diseñar pantallas."
+      },
+      {
+        "id": "b",
+        "text": "Las relaciones entre tablas permiten navegar fácilmente de un dueño a sus mascotas, consultas y tratamientos",
+        "correct": true,
+        "explanation": "Son especialmente adecuadas para procesos con muchos datos relacionados, porque facilitan moverse entre registros vinculados."
+      },
+      {
+        "id": "c",
+        "text": "Permiten colocar cada control en la posición exacta del píxel que elijas",
+        "correct": false,
+        "explanation": "El control total del diseño es propio de las aplicaciones de lienzo; en las basadas en modelos el diseño lo determinan los componentes."
+      },
+      {
+        "id": "d",
+        "text": "Pueden usar las hojas de Excel actuales como origen de datos principal, sin Dataverse",
+        "correct": false,
+        "explanation": "Sin un modelo de datos en Dataverse no se puede crear una aplicación basada en modelos."
+      },
+      {
+        "id": "e",
+        "text": "Exigen escribir código JavaScript para cada formulario",
+        "correct": false,
+        "explanation": "Se crean con el diseñador de aplicaciones con poco o ningún código; JavaScript es una extensión opcional, no un requisito."
+      }
+    ],
+    "keyPoint": "Aplicación basada en modelos = interfaz generada desde Dataverse, ideal para datos relacionados y procesos densos.",
+    "references": [
+      {
+        "title": "¿Qué son las aplicaciones basadas en modelos?",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/model-driven-app-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-4-003",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse-logica",
+    "caseId": "caso-4",
+    "difficulty": 3,
+    "prompt": "Sobre la lógica de negocio del requisito 3, indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Una columna de fórmula (*formula column*) definida con Power Fx puede calcular la próxima vacuna a partir de la fecha de la última.",
+        "answer": true,
+        "explanation": "Las columnas de fórmula muestran un valor calculado con Power Fx, igual que una fórmula de Excel, y admiten funciones de fecha como DateAdd."
+      },
+      {
+        "id": "s2",
+        "text": "Una regla de negocio puede validar el peso y mostrar un mensaje de error sin escribir código.",
+        "answer": true,
+        "explanation": "Las reglas de negocio combinan condiciones y acciones para establecer o borrar valores, poner valores predeterminados y validar datos mostrando mensajes de error, con una interfaz sin código."
+      },
+      {
+        "id": "s3",
+        "text": "Una regla de negocio que muestra u oculta columnas funciona igual en una aplicación de lienzo que en un formulario de una aplicación basada en modelos.",
+        "answer": false,
+        "explanation": "Mostrar u ocultar columnas y habilitarlas o deshabilitarlas solo está disponible en las reglas de ámbito de formulario de las aplicaciones basadas en modelos, no en las de lienzo."
+      },
+      {
+        "id": "s4",
+        "text": "Para aplicar estas reglas es imprescindible desarrollar un complemento (*plug-in*) en C#.",
+        "answer": false,
+        "explanation": "Las columnas de fórmula y las reglas de negocio existen precisamente para aplicar esta lógica sin escribir código ni crear complementos."
+      }
+    ],
+    "keyPoint": "Cálculos → columnas de fórmula (Power Fx); validaciones sencillas → reglas de negocio, sin código.",
+    "references": [
+      {
+        "title": "Trabajar con columnas de fórmula",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/formula-columns"
+      },
+      {
+        "title": "Crear una regla de negocio para una tabla",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/data-platform-create-business-rule"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-4-004",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "caseId": "caso-4",
+    "difficulty": 2,
+    "prompt": "Ordena los pasos del flujo de nube que cumple el requisito 4.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Desencadenador «Periodicidad» configurado para los lunes por la mañana",
+        "explanation": "Va primero porque es lo que inicia el flujo: un flujo programado se ejecuta según una periodicidad, sin esperar a ningún evento."
+      },
+      {
+        "id": "p2",
+        "text": "Acción de Dataverse «Enumerar filas» filtrada por las vacunas de los siete días siguientes",
+        "explanation": "Una vez iniciado, el flujo debe obtener las mascotas afectadas; «Enumerar filas» recupera de una tabla las filas que cumplen un filtro."
+      },
+      {
+        "id": "p3",
+        "text": "Bucle «Aplicar a cada uno» sobre las filas obtenidas",
+        "explanation": "La consulta devuelve varias filas, así que el flujo las recorre una a una para procesar cada mascota."
+      },
+      {
+        "id": "p4",
+        "text": "Acción de Office 365 Outlook para enviar el correo de recordatorio al dueño",
+        "explanation": "Va al final y dentro del bucle: para cada mascota se envía un correo personalizado a su dueño con los datos obtenidos."
+      }
+    ],
+    "keyPoint": "Flujo programado: periodicidad → obtener datos → recorrerlos → actuar sobre cada elemento.",
+    "references": [
+      {
+        "title": "Enumerar filas de una tabla con Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/dataverse/list-rows"
+      },
+      {
+        "title": "Introducción a los desencadenadores",
+        "url": "https://learn.microsoft.com/es-es/power-automate/triggers-introduction"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-4-005",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-herramientas",
+    "caseId": "caso-4",
+    "difficulty": 3,
+    "prompt": "Para el requisito 5 vas a añadir un flujo de agente (*agent flow*) como herramienta del agente. ¿Qué debe cumplir ese flujo?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Tener el desencadenador «Cuando un agente llama al flujo» y la acción «Responder al agente», y estar publicado",
+        "correct": true,
+        "explanation": "Solo los flujos con ese desencadenador y esa acción, configurados para responder en tiempo real y publicados, se pueden agregar como herramienta, ya sea a nivel de agente o de tema."
+      },
+      {
+        "id": "b",
+        "text": "Usar el desencadenador «Periodicidad» para revisar la agenda cada pocos minutos",
+        "correct": false,
+        "explanation": "Un flujo programado se ejecuta por su cuenta y no puede devolver resultados al agente durante la conversación, que es lo que pide el requisito."
+      },
+      {
+        "id": "c",
+        "text": "Ser un flujo de escritorio desatendido que abra la agenda en el equipo de recepción",
+        "correct": false,
+        "explanation": "Los datos de la agenda ya están en Dataverse y se consultan con su conector; un flujo de escritorio sería innecesario y no es la herramienta que el agente llama directamente."
+      },
+      {
+        "id": "d",
+        "text": "Usar el desencadenador de Microsoft Forms «Cuando se envía una nueva respuesta»",
+        "correct": false,
+        "explanation": "Ese desencadenador reacciona a formularios de Forms; el agente no podría invocarlo ni recibir su respuesta."
+      }
+    ],
+    "keyPoint": "Flujo de agente como herramienta: desencadenador «Cuando un agente llama al flujo» + «Responder al agente».",
+    "references": [
+      {
+        "title": "Añadir un flujo de agente como herramienta a un agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/flow-agent"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-5-001",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escenarios",
+    "caseId": "caso-5",
+    "difficulty": 2,
+    "prompt": "Ordena los pasos del flujo de nube automatizado que cumple el requisito 1.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Desencadenador de Microsoft Forms «Cuando se envía una nueva respuesta»",
+        "explanation": "Es el único desencadenador del conector de Forms e inicia el flujo cada vez que un estudiante envía el formulario."
+      },
+      {
+        "id": "p2",
+        "text": "Acción de Forms «Obtener detalles de la respuesta»",
+        "explanation": "El desencadenador solo aporta el identificador de la respuesta; esta acción extrae las respuestas como contenido dinámico para los pasos siguientes."
+      },
+      {
+        "id": "p3",
+        "text": "Acción de SharePoint «Crear elemento» en la lista Solicitudes de beca",
+        "explanation": "Con los datos ya disponibles, se crea el elemento en la lista, que sustituye a la copia manual que hace hoy la oficina."
+      },
+      {
+        "id": "p4",
+        "text": "Acción de Office 365 Outlook para enviar el correo de confirmación al estudiante",
+        "explanation": "Va al final para confirmar al estudiante que su solicitud ya está registrada en la lista."
+      }
+    ],
+    "keyPoint": "Forms + Power Automate: «Cuando se envía una nueva respuesta» → «Obtener detalles de la respuesta» → acciones.",
+    "references": [
+      {
+        "title": "Descripción general de los flujos de Microsoft Forms",
+        "url": "https://learn.microsoft.com/es-es/power-automate/forms/overview"
+      },
+      {
+        "title": "Power Automate y SharePoint",
+        "url": "https://learn.microsoft.com/es-es/power-automate/sharepoint-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-5-002",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-ia",
+    "caseId": "caso-5",
+    "difficulty": 2,
+    "prompt": "Sobre el uso de Copilot en los flujos de nube para cumplir el requisito 2, indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "El personal puede describir el flujo en lenguaje natural y Copilot propone el desencadenador y las acciones.",
+        "answer": true,
+        "explanation": "Copilot entiende la intención de la descripción y crea el flujo a lo largo de varios pasos de conversación."
+      },
+      {
+        "id": "s2",
+        "text": "Copilot puede modificar un flujo existente cuando se le pide, por ejemplo, actualizar o reemplazar una acción.",
+        "answer": true,
+        "explanation": "Además de crear flujos, Copilot responde a solicitudes de cambio sobre el flujo, como actualizar o reemplazar acciones."
+      },
+      {
+        "id": "s3",
+        "text": "Copilot no puede explicar qué hace un flujo que ya existe.",
+        "answer": false,
+        "explanation": "Puedes preguntarle «¿Qué hace mi flujo?» y obtener un resumen; también responde preguntas sobre el producto."
+      },
+      {
+        "id": "s4",
+        "text": "Copilot está optimizado para el español, por lo que nunca mostrará partes de la experiencia en inglés.",
+        "answer": false,
+        "explanation": "Copilot está optimizado para el inglés y tiene compatibilidad limitada con otros idiomas, así que algunas partes pueden aparecer en inglés."
+      }
+    ],
+    "keyPoint": "Copilot en flujos de nube crea, modifica y explica flujos a partir de lenguaje natural (optimizado para inglés).",
+    "references": [
+      {
+        "title": "Crear un flujo de nube con Copilot",
+        "url": "https://learn.microsoft.com/es-es/power-automate/create-cloud-flow-using-copilot"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-5-003",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-ia",
+    "caseId": "caso-5",
+    "difficulty": 2,
+    "prompt": "¿Cómo debe empezar la oficina para cumplir el requisito 3?",
+    "options": [
+      {
+        "id": "a",
+        "text": "En la página principal de Power Apps, elegir empezar con datos, crear datos nuevos y describir a Copilot la información de las entrevistas",
+        "correct": true,
+        "explanation": "Copilot en Power Apps genera a partir de la descripción una o varias tablas de Dataverse y, tras revisarlas, crea con ellas la aplicación de lienzo, sin diseñar tablas ni pantallas desde cero."
+      },
+      {
+        "id": "b",
+        "text": "Pedir a Copilot en Power Automate que genere la aplicación",
+        "correct": false,
+        "explanation": "Copilot en Power Automate crea y modifica flujos, no aplicaciones de lienzo."
+      },
+      {
+        "id": "c",
+        "text": "Crear una aplicación de código (*code app*) en Visual Studio Code",
+        "correct": false,
+        "explanation": "Las aplicaciones de código requieren programar con un IDE, Node.js y la CLI; no encajan con un equipo sin experiencia en programación."
+      },
+      {
+        "id": "d",
+        "text": "Grabar con un flujo de escritorio cómo se rellena hoy el registro en papel",
+        "correct": false,
+        "explanation": "Un flujo de escritorio automatiza tareas en un equipo Windows; no genera tablas ni una aplicación de lienzo."
+      }
+    ],
+    "keyPoint": "Describir los datos a Copilot en Power Apps → tablas de Dataverse + aplicación de lienzo generadas.",
+    "references": [
+      {
+        "title": "Creación de aplicaciones a través de una conversación con Copilot",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/ai-conversations-create-app"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-5-004",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-supervision",
+    "caseId": "caso-5",
+    "difficulty": 2,
+    "prompt": "¿Qué debe usar el Servicio de Informática para cumplir el requisito 4?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Los análisis de Power Apps del centro de administración de Power Platform",
+        "correct": true,
+        "explanation": "Estos informes de administración muestran el uso del entorno, los errores y el rendimiento de las aplicaciones de lienzo, ya preparados para los administradores."
+      },
+      {
+        "id": "b",
+        "text": "Monitor en directo (*Live Monitor*) de Power Apps",
+        "correct": false,
+        "explanation": "Monitor en directo muestra los eventos de una sesión para diagnosticar y corregir problemas de una aplicación concreta; no ofrece informes de uso del entorno."
+      },
+      {
+        "id": "c",
+        "text": "La auditoría de Dataverse",
+        "correct": false,
+        "explanation": "La auditoría registra los cambios en los registros y los accesos para cumplimiento; no da informes listos de usuarios activos, errores y rendimiento de las aplicaciones."
+      },
+      {
+        "id": "d",
+        "text": "La página de supervisión del agente en Copilot Studio",
+        "correct": false,
+        "explanation": "Muestra métricas de un agente, como sesiones o usuarios activos del agente, pero no de las aplicaciones de lienzo."
+      }
+    ],
+    "keyPoint": "Uso, errores y rendimiento de las aplicaciones de lienzo → análisis del centro de administración de Power Platform.",
+    "references": [
+      {
+        "title": "Análisis de administración para Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/analytics-powerapps"
+      },
+      {
+        "title": "Información general sobre Monitor en directo",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/monitor-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-5-005",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-publicar",
+    "caseId": "caso-5",
+    "difficulty": 2,
+    "prompt": "Completa los pasos para cumplir el requisito 5.",
+    "template": "Publicas el agente y lo conectas al canal {{b1}}; mantienes la opción de autenticación {{b2}} y, para que todos los estudiantes lo encuentren en la sección «Creado por su organización» de la tienda de Teams, {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "Teams y Microsoft 365" },
+          { "id": "o2", "text": "sitio web de demostración" },
+          { "id": "o3", "text": "Power Pages" }
+        ],
+        "correctId": "o1",
+        "explanation": "El canal de Teams y Microsoft 365 pone el agente a disposición de los usuarios en Teams y en Microsoft 365 Copilot. El sitio de demostración es solo para pruebas y Power Pages está orientado a usuarios externos."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "Sin autenticación" },
+          { "id": "o2", "text": "Autenticar con Microsoft" }
+        ],
+        "correctId": "o2",
+        "explanation": "«Autenticar con Microsoft» está activada de forma predeterminada y usa Microsoft Entra ID en Teams, Power Apps y Microsoft Copilot sin configuración manual, justo con la cuenta de la universidad. «Sin autenticación» dejaría chatear a cualquiera que tenga el vínculo."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "lo envías para que lo apruebe el administrador" },
+          { "id": "o2", "text": "compartes la URL del sitio de demostración" },
+          { "id": "o3", "text": "lo vuelves a crear en cada equipo de Teams" }
+        ],
+        "correctId": "o1",
+        "explanation": "Para que aparezca en la sección «Creado por su organización» de la tienda de Teams, el agente se envía para aprobación del administrador. La URL de demostración no es para producción y no hace falta recrear el agente."
+      }
+    ],
+    "keyPoint": "Usuarios internos → canal Teams y Microsoft 365 con «Autenticar con Microsoft»; para toda la organización, aprobación del administrador.",
+    "references": [
+      {
+        "title": "Conectar y configurar un agente para Teams y Microsoft 365",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/publication-add-bot-to-microsoft-teams"
+      },
+      {
+        "title": "Conceptos clave: publicar e implementar el agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/publication-fundamentals-publish-channels"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-6-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escenarios",
+    "caseId": "caso-6",
+    "difficulty": 2,
+    "prompt": "¿Qué solución cumple mejor el requisito 1?",
+    "options": [
+      {
+        "id": "a",
+        "text": "El kit de herramientas de automatización de documentos, que combina AI Builder, Power Automate, Power Apps y Dataverse",
+        "correct": true,
+        "explanation": "Power Automate orquesta el proceso, AI Builder extrae la información de los documentos, una aplicación de Power Apps permite revisar y aprobar manualmente los dudosos y Dataverse guarda los datos y la cola de documentos."
+      },
+      {
+        "id": "b",
+        "text": "Un flujo de escritorio que abra cada PDF y copie los valores haciendo clic en posiciones fijas de la pantalla",
+        "correct": false,
+        "explanation": "Cada proveedor usa un formato distinto, así que unos clics en posiciones fijas fallarían; además, no incluye la revisión de los casos dudosos."
+      },
+      {
+        "id": "c",
+        "text": "Un agente de Copilot Studio con los certificados cargados como conocimiento",
+        "correct": false,
+        "explanation": "Un agente con conocimiento responde preguntas sobre los documentos, pero no extrae sus campos de forma estructurada a tablas de Dataverse."
+      },
+      {
+        "id": "d",
+        "text": "Una regla de Outlook que mueva los correos de los proveedores a una carpeta de Calidad",
+        "correct": false,
+        "explanation": "Solo organiza el buzón: la técnica seguiría copiando los datos a mano."
+      }
+    ],
+    "keyPoint": "Extraer datos de documentos con revisión humana → automatización de documentos con AI Builder y Power Automate.",
+    "references": [
+      {
+        "title": "Kit de herramientas de automatización de documentos",
+        "url": "https://learn.microsoft.com/es-es/ai-builder/doc-automation"
+      },
+      {
+        "title": "Crear un modelo personalizado de procesamiento de documentos",
+        "url": "https://learn.microsoft.com/es-es/ai-builder/create-form-processing-model"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-6-002",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-herramientas",
+    "caseId": "caso-6",
+    "difficulty": 3,
+    "prompt": "Completa la configuración del agente para cumplir el requisito 2.",
+    "template": "Conectas el agente al servidor MCP del MES con {{b1}}; para que el agente use sus herramientas, debe tener activada la {{b2}}; y cuando el MES publique una herramienta nueva, {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "el asistente de incorporación de MCP" },
+          { "id": "o2", "text": "un origen de conocimiento de sitio web público" },
+          { "id": "o3", "text": "un flujo de escritorio" }
+        ],
+        "correctId": "o1",
+        "explanation": "El asistente de incorporación de MCP conecta el agente a un servidor MCP existente y agrega sus herramientas y recursos. Un sitio web público solo aporta contenido para responder y un flujo de escritorio no habla con servidores MCP."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "orquestación clásica" },
+          { "id": "o2", "text": "orquestación generativa" },
+          { "id": "o3", "text": "opción Sin autenticación" }
+        ],
+        "correctId": "o2",
+        "explanation": "Para usar MCP hay que activar la orquestación generativa, con la que el agente elige qué herramientas, temas y conocimiento usar en cada consulta."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "Copilot Studio la refleja automáticamente" },
+          { "id": "o2", "text": "debes volver a crear el agente" },
+          { "id": "o3", "text": "debes crear un tema para cada herramienta" }
+        ],
+        "correctId": "o1",
+        "explanation": "Las herramientas que publica un servidor MCP conectado están disponibles automáticamente, y Copilot Studio refleja de forma dinámica las altas, cambios y bajas en el servidor."
+      }
+    ],
+    "keyPoint": "MCP: conexión con el asistente, orquestación generativa obligatoria y herramientas que se actualizan solas.",
+    "references": [
+      {
+        "title": "Extender el agente con el protocolo de contexto de modelo (MCP)",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/agent-extend-action-mcp"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-6-003",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-gestion",
+    "caseId": "caso-6",
+    "difficulty": 2,
+    "prompt": "Empareja cada necesidad del requisito 3 con la capacidad que la cubre.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Antes del despliegue, ejecutar conjuntos de pruebas automatizadas que midan la precisión y la relevancia de las respuestas",
+        "answerId": "c1",
+        "explanation": "La evaluación de agentes genera casos de prueba que simulan escenarios reales y mide la precisión, la relevancia y la calidad de las respuestas, más rápido que probar a mano."
+      },
+      {
+        "id": "m2",
+        "text": "Tras el despliegue, revisar sesiones, usuarios activos y otras métricas de uso del Asistente de planta",
+        "answerId": "c2",
+        "explanation": "La página de supervisión (*Monitor*) del agente en Copilot Studio muestra sus análisis: métricas clave, usuarios activos y uso de sus componentes."
+      },
+      {
+        "id": "m3",
+        "text": "Tener un registro centralizado de todos los agentes de la organización para observarlos, gobernarlos y protegerlos",
+        "answerId": "c3",
+        "explanation": "Microsoft Agent 365 ofrece un registro único de agentes y capacidades para observar, gobernar y proteger los agentes de toda la organización."
+      }
+    ],
+    "choices": [
+      { "id": "c1", "text": "Evaluación de agentes de Copilot Studio" },
+      { "id": "c2", "text": "Página de supervisión (Monitor) del agente" },
+      { "id": "c3", "text": "Microsoft Agent 365" },
+      { "id": "c4", "text": "Panel de prueba del agente" },
+      { "id": "c5", "text": "Directiva de datos del centro de administración" }
+    ],
+    "keyPoint": "Evaluaciones para probar, supervisión para medir el uso y Agent 365 para gobernar todos los agentes.",
+    "references": [
+      {
+        "title": "Acerca de la evaluación del agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/analytics-agent-evaluation-intro"
+      },
+      {
+        "title": "Información general de supervisión",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/analytics-overview"
+      },
+      {
+        "title": "Información general sobre Microsoft Agent 365",
+        "url": "https://learn.microsoft.com/es-es/microsoft-agent-365/overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-6-004",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-plan-codigo",
+    "caseId": "caso-6",
+    "difficulty": 2,
+    "prompt": "¿Qué tipo de aplicación cumple el requisito 4?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Una aplicación de código (*code app*) de Power Apps",
+        "correct": true,
+        "explanation": "Las aplicaciones de código permiten desarrollar con marcos como React en un IDE como Visual Studio Code, con control total de la interfaz, y ejecutarlas en Power Platform respetando sus directivas, como las de datos o el acceso condicional."
+      },
+      {
+        "id": "b",
+        "text": "Una aplicación de lienzo creada en Power Apps Studio",
+        "correct": false,
+        "explanation": "Las aplicaciones de lienzo se crean con un diseñador de poco código y fórmulas de Power Fx, no con React desde Visual Studio Code."
+      },
+      {
+        "id": "c",
+        "text": "Una aplicación basada en modelos",
+        "correct": false,
+        "explanation": "Su interfaz la generan los formularios y las vistas de Dataverse, así que no da el control total de la interfaz que quieren los desarrolladores."
+      },
+      {
+        "id": "d",
+        "text": "Un sitio de Power Pages",
+        "correct": false,
+        "explanation": "Power Pages está orientado a sitios web para usuarios externos; el requisito pide un panel interno para empleados."
+      }
+    ],
+    "keyPoint": "Desarrolladores con React y un IDE que quieren alojar y gobernar su aplicación en Power Platform → aplicaciones de código.",
+    "references": [
+      {
+        "title": "Descripción general de las aplicaciones de código de Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/developer/code-apps/overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-6-005",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse",
+    "caseId": "caso-6",
+    "difficulty": 2,
+    "prompt": "Para resolver la duda del requisito 5, indica si cada afirmación sobre Dataverse es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Dataverse incluye seguridad basada en roles, reglas de negocio y auditoría sin tener que construirlas.",
+        "answer": true,
+        "explanation": "Dataverse ofrece de serie diseñadores visuales para tablas, relaciones y reglas de negocio, un modelo de seguridad basado en roles y auditoría de cambios, que con una base de datos tradicional habría que desarrollar."
+      },
+      {
+        "id": "s2",
+        "text": "Con Dataverse, el equipo de TI tiene que instalar el servidor de base de datos y aplicarle las actualizaciones.",
+        "answer": false,
+        "explanation": "Dataverse es un servicio de datos SaaS basado en Azure: Microsoft gestiona la infraestructura, la disponibilidad y la escalabilidad."
+      },
+      {
+        "id": "s3",
+        "text": "Dataverse solo almacena datos relacionales, así que los PDF de los certificados tendrían que guardarse fuera.",
+        "answer": false,
+        "explanation": "Dataverse trabaja con datos relacionales y no relacionales, archivos e imágenes, de modo que puede guardar también los certificados."
+      },
+      {
+        "id": "s4",
+        "text": "Las tablas virtuales permiten ver en Dataverse datos de un origen externo sin copiarlos.",
+        "answer": true,
+        "explanation": "Las tablas virtuales asignan datos de un origen externo para que parezcan tablas de Dataverse y operan sobre ellos en tiempo real."
+      }
+    ],
+    "keyPoint": "Dataverse = base de datos SaaS con seguridad, lógica y auditoría integradas, para datos de cualquier tipo.",
+    "references": [
+      {
+        "title": "¿Por qué elegir Microsoft Dataverse?",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/why-dataverse-overview"
+      },
+      {
+        "title": "Administrar auditorías de Dataverse",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/manage-dataverse-auditing"
+      }
+    ]
+  }
+]

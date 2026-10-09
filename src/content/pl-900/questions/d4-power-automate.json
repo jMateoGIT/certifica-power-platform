@@ -503,6 +503,222 @@
     ]
   },
   {
+    "id": "pl900-d4-casos-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-casos",
+    "difficulty": 2,
+    "scenario": "Distribuciones Turia quiere que, cada vez que se apruebe un pedido en una tabla de Dataverse, se cree una tarea para el almacén en Microsoft Planner y se avise al equipo en un canal de Teams. Un consultor propone un flujo de escritorio que abra el navegador y haga los clics en cada aplicación.",
+    "prompt": "¿Qué solución es la más adecuada?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un flujo de nube automatizado que use los conectores de Dataverse, Planner y Microsoft Teams",
+        "correct": true,
+        "explanation": "Los tres servicios tienen conector, así que un flujo de nube puede reaccionar al cambio en Dataverse y crear la tarea y el aviso mediante API, sin depender de la interfaz ni de una máquina."
+      },
+      {
+        "id": "b",
+        "text": "Un flujo de escritorio desatendido que abra las tres aplicaciones en el navegador",
+        "correct": false,
+        "explanation": "La automatización de interfaz (RPA) está pensada para aplicaciones sin API ni conector. Aquí sería más frágil (cualquier cambio de pantalla la rompe) y necesitaría una máquina registrada sin aportar nada."
+      },
+      {
+        "id": "c",
+        "text": "Un flujo de escritorio atendido que el responsable de almacén lance cada mañana",
+        "correct": false,
+        "explanation": "Además de usar RPA donde no hace falta, depende de que una persona lo inicie y no reacciona en el momento en que se aprueba cada pedido."
+      },
+      {
+        "id": "d",
+        "text": "Un flujo de proceso de negocio con una fase por cada aplicación",
+        "correct": false,
+        "explanation": "Un flujo de proceso de negocio guía a los usuarios por fases dentro de una aplicación basada en modelos; no crea tareas en Planner ni publica en Teams."
+      }
+    ],
+    "keyPoint": "Si todos los servicios tienen conector, usa un flujo de nube; reserva los flujos de escritorio para interfaces sin API.",
+    "references": [
+      {
+        "title": "Introducción a los flujos de nube",
+        "url": "https://learn.microsoft.com/es-es/power-automate/overview-cloud"
+      },
+      {
+        "title": "Introducción a los flujos de escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/introduction"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-casos-002",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-casos",
+    "difficulty": 1,
+    "prompt": "¿Qué dos tareas son casos de uso típicos de un flujo de escritorio (*desktop flow*)? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Introducir datos en una aplicación heredada que funciona en un emulador de terminal",
+        "correct": true,
+        "explanation": "Los flujos de escritorio automatizan aplicaciones heredadas, incluidos los emuladores de terminal, interactuando con su interfaz como lo haría una persona."
+      },
+      {
+        "id": "b",
+        "text": "Extraer datos de un sitio web que no ofrece API y guardarlos en un archivo de Excel",
+        "correct": true,
+        "explanation": "La automatización web y las acciones de Excel de Power Automate para escritorio permiten leer datos de páginas web y almacenarlos en libros de Excel."
+      },
+      {
+        "id": "c",
+        "text": "Enviar un aviso a Teams cuando se crea un elemento en una lista de SharePoint",
+        "correct": false,
+        "explanation": "SharePoint y Teams tienen conector: basta un flujo de nube automatizado con el desencadenador de SharePoint y una acción de Teams."
+      },
+      {
+        "id": "d",
+        "text": "Iniciar una aprobación cada vez que alguien responde a un formulario de Microsoft Forms",
+        "correct": false,
+        "explanation": "Es un escenario clásico de flujo de nube: desencadenador de Forms y acción del conector Aprobaciones, sin interfaz de usuario que automatizar."
+      },
+      {
+        "id": "e",
+        "text": "Enviar cada viernes un resumen de las filas nuevas de una tabla de Dataverse",
+        "correct": false,
+        "explanation": "Una tarea periódica sobre un servicio con conector se resuelve con un flujo de nube programado (desencadenador Periodicidad)."
+      }
+    ],
+    "keyPoint": "Flujo de escritorio = RPA sobre interfaces: aplicaciones heredadas, emuladores de terminal o webs sin API.",
+    "references": [
+      {
+        "title": "Introducción a los flujos de escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/introduction"
+      },
+      {
+        "title": "Tipos de flujos en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/flow-types"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-casos-003",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-casos",
+    "difficulty": 2,
+    "scenario": "En Laboratorios Duna, los responsables piden el alta de cada empleado nuevo con un formulario de Microsoft Forms. El alta debe hacerse en una aplicación de Recursos Humanos de escritorio sin API, que asigna un número de empleado. Después, ese número se guarda en una lista de SharePoint y se envía al responsable el enlace al nuevo elemento.",
+    "prompt": "Ordena los elementos del flujo de nube en el orden en que se ejecutan.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Desencadenador «Cuando se envía una nueva respuesta» del formulario de altas",
+        "explanation": "El desencadenador siempre es lo primero: la respuesta al formulario es el evento que inicia el flujo."
+      },
+      {
+        "id": "p2",
+        "text": "Acción «Obtener detalles de la respuesta» para leer el nombre y el puesto",
+        "explanation": "El desencadenador de Forms solo aporta el identificador de la respuesta; hay que obtener los detalles antes de poder usar el nombre y el puesto."
+      },
+      {
+        "id": "p3",
+        "text": "Acción «Ejecutar un flujo creado con Power Automate para escritorio», que recibe el nombre y el puesto como variables de entrada y devuelve el número de empleado como variable de salida",
+        "explanation": "Necesita los datos del paso anterior como variables de entrada, y su variable de salida (el número de empleado) es lo que usarán los pasos siguientes."
+      },
+      {
+        "id": "p4",
+        "text": "Acción «Crear elemento» de SharePoint con el número de empleado",
+        "explanation": "Solo puede ejecutarse cuando el flujo de escritorio ha devuelto el número de empleado que hay que guardar."
+      },
+      {
+        "id": "p5",
+        "text": "Acción «Enviar un correo electrónico (V2)» al responsable con el enlace al elemento creado",
+        "explanation": "El enlace solo existe después de crear el elemento en SharePoint, por eso el correo va al final."
+      }
+    ],
+    "keyPoint": "Flujo híbrido: el flujo de nube pasa datos al flujo de escritorio con variables de entrada y recibe sus resultados con variables de salida para seguir con otros conectores.",
+    "references": [
+      {
+        "title": "Desencadenar flujos de escritorio desde flujos de nube",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/trigger-desktop-flows"
+      },
+      {
+        "title": "Microsoft Forms y Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/forms/overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-casos-004",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-casos",
+    "difficulty": 2,
+    "scenario": "Química Ebro automatiza la gestión de pedidos: llegan por correo, se registran en un ERP antiguo de Windows sin API, se consulta el stock en un sistema central al que solo se accede con un emulador de terminal y, al final, se avisa al equipo comercial en Teams.",
+    "prompt": "Empareja cada paso con el tipo de flujo que debe realizarlo. Puedes usar una opción más de una vez y una de ellas no se usa.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Detectar la llegada de cada correo de pedido",
+        "answerId": "c1",
+        "explanation": "Un flujo de nube automatizado con el desencadenador de Office 365 Outlook reacciona a cada correo nuevo sin intervención de nadie."
+      },
+      {
+        "id": "m2",
+        "text": "Escribir el pedido en las pantallas del ERP de Windows",
+        "answerId": "c2",
+        "explanation": "El ERP no tiene API ni conector, así que hay que automatizar su interfaz con un flujo de escritorio (RPA)."
+      },
+      {
+        "id": "m3",
+        "text": "Consultar el stock en el emulador de terminal",
+        "answerId": "c2",
+        "explanation": "Power Automate para escritorio puede automatizar aplicaciones heredadas como los emuladores de terminal."
+      },
+      {
+        "id": "m4",
+        "text": "Publicar el resultado en el canal comercial de Teams",
+        "answerId": "c1",
+        "explanation": "Teams tiene conector, de modo que el flujo de nube publica el aviso con una acción, usando los datos que devuelve el flujo de escritorio."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Flujo de nube"
+      },
+      {
+        "id": "c2",
+        "text": "Flujo de escritorio"
+      },
+      {
+        "id": "c3",
+        "text": "Flujo de proceso de negocio"
+      }
+    ],
+    "keyPoint": "Eventos y servicios con conector → flujo de nube; interfaces sin API → flujo de escritorio, lanzado desde el flujo de nube.",
+    "references": [
+      {
+        "title": "Tipos de flujos en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/flow-types"
+      },
+      {
+        "title": "Introducción a los flujos de escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/introduction"
+      },
+      {
+        "title": "Desencadenar flujos de escritorio desde flujos de nube",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/trigger-desktop-flows"
+      }
+    ]
+  },
+  {
     "id": "pl900-d4-nube-003",
     "type": "single",
     "exam": "PL-900",
@@ -1175,6 +1391,272 @@
     ]
   },
   {
+    "id": "pl900-d4-documentos-003",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escenarios",
+    "difficulty": 3,
+    "scenario": "Mutua Cierzo usa en un flujo de nube la acción de AI Builder «Ejecutar una solicitud» (*Run a prompt*) para redactar un borrador de respuesta a cada reclamación que llega por correo. Antes de enviar ninguna respuesta, una persona del equipo de atención debe poder revisar el borrador y modificar el texto si hace falta.",
+    "prompt": "¿Qué acción debes agregar después de «Ejecutar una solicitud»?",
+    "options": [
+      {
+        "id": "a",
+        "text": "«Iniciar y esperar una aprobación del texto» (*Start and wait for an approval of text*), con el texto generado como texto sugerido",
+        "correct": true,
+        "explanation": "Esta acción del conector Aprobaciones presenta el texto sugerido para que el revisor lo apruebe o lo modifique, y devuelve el texto aceptado para usarlo en los pasos siguientes."
+      },
+      {
+        "id": "b",
+        "text": "«Iniciar y esperar una aprobación» con el tipo «Aprobar/Rechazar: el primero en responder»",
+        "correct": false,
+        "explanation": "Recoge una decisión de aprobar o rechazar, pero no ofrece el borrador como texto editable ni devuelve una versión corregida."
+      },
+      {
+        "id": "c",
+        "text": "«Enviar correo electrónico con opciones» de Office 365 Outlook",
+        "correct": false,
+        "explanation": "Solo permite elegir entre opciones predefinidas desde el correo; el revisor no puede editar el borrador generado."
+      },
+      {
+        "id": "d",
+        "text": "«Publicar un mensaje en un chat o canal» de Microsoft Teams",
+        "correct": false,
+        "explanation": "Publica el borrador para informar, pero el flujo no espera ninguna revisión ni recibe un texto modificado."
+      }
+    ],
+    "keyPoint": "IA generativa en un flujo con revisión humana = «Ejecutar una solicitud» seguida de «Iniciar y esperar una aprobación del texto».",
+    "references": [
+      {
+        "title": "Usar una solicitud en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/ai-builder/use-a-custom-prompt-in-flow"
+      },
+      {
+        "title": "Conector Aprobaciones",
+        "url": "https://learn.microsoft.com/es-es/connectors/approvals/"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-documentos-004",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escenarios",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre el uso de AI Builder en flujos de nube es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puedes usar el modelo precompilado de análisis de sentimiento para saber si un comentario es positivo o negativo sin entrenar antes un modelo propio.",
+        "answer": true,
+        "explanation": "El análisis de sentimiento es uno de los modelos precompilados de AI Builder que se pueden usar en Power Automate de inmediato, con la acción «Analizar la opinión positiva o negativa en el texto»."
+      },
+      {
+        "id": "s2",
+        "text": "Para extraer datos de un documento con un diseño propio de tu empresa, como un parte de trabajo, puedes entrenar un modelo personalizado de procesamiento de documentos y usarlo con la acción «Extraer información de documentos».",
+        "answer": true,
+        "explanation": "El procesamiento de documentos es un modelo personalizado: lo entrenas con tus documentos y el flujo lo usa mediante la acción «Extraer información de documentos»."
+      },
+      {
+        "id": "s3",
+        "text": "La acción «Ejecutar una solicitud» solo puede usarse en flujos de escritorio.",
+        "answer": false,
+        "explanation": "«Ejecutar una solicitud» (antes «Crear texto con GPT mediante una solicitud») es una acción de los flujos de nube; Learn la muestra, por ejemplo, en un flujo de nube instantáneo."
+      },
+      {
+        "id": "s4",
+        "text": "Las salidas de una acción de AI Builder no pueden usarse como contenido dinámico en las acciones siguientes del flujo.",
+        "answer": false,
+        "explanation": "Sí pueden: por ejemplo, el texto que genera «Ejecutar una solicitud» o los campos extraídos de una factura se insertan como contenido dinámico en un mensaje de Teams o en una fila de Dataverse."
+      }
+    ],
+    "keyPoint": "AI Builder en flujos: modelos precompilados listos para usar, modelos personalizados para tus documentos y salidas reutilizables como contenido dinámico.",
+    "references": [
+      {
+        "title": "AI Builder en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/ai-builder/use-in-flow-overview"
+      },
+      {
+        "title": "Usar una solicitud en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/ai-builder/use-a-custom-prompt-in-flow"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-documentos-005",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escenarios",
+    "difficulty": 3,
+    "scenario": "El departamento comercial de Editorial Albor quiere generar automáticamente cada contrato a partir de un modelo de Word con los datos del cliente, guardarlo en SharePoint y enviarlo al cliente en PDF.",
+    "prompt": "Ordena los pasos para montar la solución.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Crear en Word la plantilla del contrato y agregar un control de contenido con nombre para cada dato variable",
+        "explanation": "La plantilla es la base de todo: la acción del flujo rellena precisamente los controles de contenido que definas en ella."
+      },
+      {
+        "id": "p2",
+        "text": "Guardar la plantilla en una biblioteca de SharePoint o en OneDrive para la Empresa",
+        "explanation": "El conector Word Online (Empresa) trabaja con archivos de esas bibliotecas; la plantilla tiene que estar allí para poder seleccionarla en el flujo."
+      },
+      {
+        "id": "p3",
+        "text": "En el flujo de nube, agregar la acción «Rellenar una plantilla de Microsoft Word» (*Populate a Microsoft Word template*) y asignar a cada control los datos del cliente",
+        "explanation": "Al seleccionar el archivo de plantilla, la acción muestra sus controles para que los rellenes con contenido dinámico; por eso necesita los dos pasos anteriores."
+      },
+      {
+        "id": "p4",
+        "text": "Guardar el documento generado en la biblioteca de contratos con la acción «Crear archivo» de SharePoint",
+        "explanation": "La acción anterior devuelve el contenido del documento; hay que guardarlo como archivo antes de poder trabajar con él."
+      },
+      {
+        "id": "p5",
+        "text": "Aplicar «Convertir documento de Word en PDF» al archivo creado y adjuntar el PDF a un correo para el cliente",
+        "explanation": "La conversión obtiene la versión PDF de un archivo seleccionado, así que solo puede hacerse cuando el contrato ya está guardado."
+      }
+    ],
+    "keyPoint": "Generar documentos: plantilla con controles → guardarla en OneDrive o SharePoint → «Rellenar una plantilla de Microsoft Word» → guardar el resultado → convertir a PDF y enviar.",
+    "references": [
+      {
+        "title": "Conector Word Online (Empresa)",
+        "url": "https://learn.microsoft.com/es-es/connectors/wordonlinebusiness/"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-teams-003",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escenarios",
+    "difficulty": 2,
+    "scenario": "En Hostelería Cantábrica, cuando un cliente pide un cambio de reserva, un flujo de nube debe preguntar al responsable de turno en un chat de Teams si acepta el cambio. La pregunta debe llegar como una tarjeta con los datos de la reserva y los botones Aceptar y Rechazar, y el flujo debe continuar según lo que conteste.",
+    "prompt": "¿Qué acción del conector de Microsoft Teams debes usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "«Publicar tarjeta adaptable y esperar una respuesta» (*Post adaptive card and wait for a response*)",
+        "correct": true,
+        "explanation": "Publica la tarjeta adaptable y detiene el flujo hasta que el responsable responde; la respuesta queda disponible como contenido dinámico para las acciones siguientes."
+      },
+      {
+        "id": "b",
+        "text": "«Publicar un mensaje en un chat o canal»",
+        "correct": false,
+        "explanation": "Publica un mensaje informativo, pero no recoge ninguna respuesta ni hace esperar al flujo."
+      },
+      {
+        "id": "c",
+        "text": "«Publicar tarjeta adaptable en un chat o canal»",
+        "correct": false,
+        "explanation": "Muestra la tarjeta, pero el flujo no espera: según Learn, solo se pueden recopilar datos de una tarjeta adaptable si se publica con una de las acciones que esperan una respuesta."
+      },
+      {
+        "id": "d",
+        "text": "«Cuando alguien responde a una tarjeta adaptable»",
+        "correct": false,
+        "explanation": "Es un desencadenador, no una acción: iniciaría otro flujo distinto en lugar de hacer que este continúe con la respuesta."
+      }
+    ],
+    "keyPoint": "Preguntar en Teams y continuar según la respuesta = «Publicar tarjeta adaptable y esperar una respuesta».",
+    "references": [
+      {
+        "title": "Información general sobre tarjetas adaptables en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/overview-adaptive-cards"
+      },
+      {
+        "title": "Conector de Microsoft Teams",
+        "url": "https://learn.microsoft.com/es-es/connectors/teams/"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-outlook-003",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escenarios",
+    "difficulty": 2,
+    "scenario": "Eventos Bahía quiere confirmar con cada ponente si asistirá a la cena de la jornada. Basta con que el ponente elija «Sí» o «No» desde el propio correo, sin abrir ninguna aplicación ni registrar una aprobación formal.",
+    "prompt": "Completa la frase.",
+    "template": "En el flujo de nube agregas la acción {{b1}} del conector {{b2}}; al ejecutarse, el flujo {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Enviar correo electrónico con opciones"
+          },
+          {
+            "id": "o2",
+            "text": "Enviar un correo electrónico (V2)"
+          },
+          {
+            "id": "o3",
+            "text": "Cuando llega un nuevo correo electrónico (V3)"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "«Enviar correo electrónico con opciones» envía un mensaje con botones de respuesta. «Enviar un correo electrónico (V2)» no recoge respuestas y «Cuando llega un nuevo correo electrónico (V3)» es un desencadenador, no una acción."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Office 365 Outlook"
+          },
+          {
+            "id": "o2",
+            "text": "Usuarios de Office 365"
+          },
+          {
+            "id": "o3",
+            "text": "Microsoft Forms"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "La acción pertenece al conector Office 365 Outlook. Usuarios de Office 365 consulta perfiles y Microsoft Forms trabaja con formularios, no con correos de respuesta rápida."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "espera a que el ponente elija una opción y después continúa"
+          },
+          {
+            "id": "o2",
+            "text": "termina, y la respuesta del ponente inicia otro flujo distinto"
+          },
+          {
+            "id": "o3",
+            "text": "crea una solicitud en el centro de aprobaciones"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Learn indica que la acción envía el correo con varias opciones y espera a que el destinatario responda con una de ellas; la opción elegida queda disponible para los pasos siguientes. No genera una aprobación formal."
+      }
+    ],
+    "keyPoint": "Pregunta rápida con opciones en el correo = «Enviar correo electrónico con opciones» (Outlook); para decisiones formales con historial, usa el conector Aprobaciones.",
+    "references": [
+      {
+        "title": "Conector Office 365 Outlook",
+        "url": "https://learn.microsoft.com/es-es/connectors/office365/"
+      }
+    ]
+  },
+  {
     "id": "pl900-d4-tipos-005",
     "type": "multiple",
     "exam": "PL-900",
@@ -1656,6 +2138,394 @@
     ]
   },
   {
+    "id": "pl900-d4-dataverse-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "difficulty": 3,
+    "scenario": "Ingeniería Ansó registra sus proyectos en una tabla de Dataverse. Un flujo de nube con el desencadenador «Cuando se agrega, modifica o elimina una fila» (*When a row is added, modified or deleted*), configurado para las modificaciones, avisa al jefe de proyecto. El flujo se ejecuta cada vez que alguien edita cualquier columna, pero solo interesa cuando la actualización afecta a la columna Estado.",
+    "prompt": "¿Qué debes configurar para que el flujo solo se ejecute cuando la actualización incluya la columna Estado?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Indicar la columna Estado en la propiedad «Seleccionar columnas» (*Select columns*) del desencadenador",
+        "correct": true,
+        "explanation": "«Seleccionar columnas» define qué columnas, al incluirse en una actualización, hacen que se ejecute el flujo; los cambios en otras columnas ya no lo inician."
+      },
+      {
+        "id": "b",
+        "text": "Cambiar el ámbito (*scope*) del desencadenador a Usuario",
+        "correct": false,
+        "explanation": "El ámbito limita las filas vigiladas según su propietario (usuario, unidad de negocio u organización), no según la columna que cambia."
+      },
+      {
+        "id": "c",
+        "text": "Agregar una condición justo después del desencadenador que compruebe el valor de Estado",
+        "correct": false,
+        "explanation": "El flujo seguiría ejecutándose con cada modificación; la condición solo decide qué hacer después, y además comprueba un valor, no si la columna cambió."
+      },
+      {
+        "id": "d",
+        "text": "Sustituirlo por un flujo programado que revise todos los proyectos cada hora",
+        "correct": false,
+        "explanation": "Perdería la inmediatez del aviso y procesaría filas que no han cambiado; el desencadenador de Dataverse ya ofrece el filtro necesario."
+      }
+    ],
+    "keyPoint": "Desencadenador de Dataverse: tipo de cambio, tabla y ámbito deciden qué filas se vigilan; «Seleccionar columnas» limita qué actualizaciones lo ejecutan.",
+    "references": [
+      {
+        "title": "Desencadenar flujos cuando se crea, modifica o elimina una fila",
+        "url": "https://learn.microsoft.com/es-es/power-automate/dataverse/create-update-delete-trigger"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-teams-002",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "difficulty": 2,
+    "scenario": "Cada vez que se sube un plano nuevo a la biblioteca de SharePoint de Construcciones Duero, un flujo de nube debe publicar un aviso en el canal Obras del equipo Producción de Teams. El aviso no debe aparecer como escrito por ninguna persona concreta.",
+    "prompt": "Completa la frase.",
+    "template": "En la acción «Publicar un mensaje en un chat o canal» del conector de Microsoft Teams, eliges {{b1}} en «Publicar como» y {{b2}} en «Publicar en». Si otro aviso tuviera que ir a un chat de grupo que todavía no existe, antes agregarías la acción {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Bot de flujo"
+          },
+          {
+            "id": "o2",
+            "text": "Usuario"
+          },
+          {
+            "id": "o3",
+            "text": "Propietario del equipo"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Con «Bot de flujo» el mensaje sale de un remitente genérico. Con «Usuario» aparecería como enviado por quien creó la conexión de Teams (normalmente el propietario del flujo); «Propietario del equipo» no es una opción de la acción."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Canal"
+          },
+          {
+            "id": "o2",
+            "text": "Chat de grupo"
+          },
+          {
+            "id": "o3",
+            "text": "Chat con el bot de flujo"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "El destino es un canal de un equipo, así que eliges «Canal» y después el equipo y el canal. Las otras opciones envían el mensaje a un chat, no al canal Obras."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Crear un chat"
+          },
+          {
+            "id": "o2",
+            "text": "Cuando se agrega un nuevo miembro del equipo"
+          },
+          {
+            "id": "o3",
+            "text": "Publicar tarjeta adaptable y esperar una respuesta"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Learn explica que «Publicar un mensaje en un chat o canal» se combina con «Crear un chat» cuando el chat de grupo aún no existe. La segunda opción es un desencadenador y la tercera sirve para recoger respuestas."
+      }
+    ],
+    "keyPoint": "«Publicar un mensaje en un chat o canal»: «Publicar como» decide el remitente (bot de flujo o usuario) y «Publicar en» el destino; para un chat nuevo, combínala con «Crear un chat».",
+    "references": [
+      {
+        "title": "Enviar un mensaje en Teams con Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/teams/send-a-message-in-teams"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-outlook-002",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "difficulty": 3,
+    "prompt": "Estás creando flujos de nube con el conector Office 365 Outlook. Empareja cada necesidad con el desencadenador que debes usar. Una de las opciones no se usa.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Procesar los correos que llegan al buzón compartido de facturas que gestiona todo el departamento",
+        "answerId": "c1",
+        "explanation": "Para un buzón compartido existe un desencadenador específico; el de correo nuevo (V3) vigila el buzón de la cuenta de la conexión."
+      },
+      {
+        "id": "m2",
+        "text": "Crear una tarea de seguimiento cada vez que marcas un correo para seguimiento",
+        "answerId": "c2",
+        "explanation": "«Cuando se marca un correo electrónico (V3)» se dispara al poner la marca de seguimiento en un mensaje."
+      },
+      {
+        "id": "m3",
+        "text": "Enviar a tu equipo un recordatorio en Teams poco antes de que empiece una reunión de tu calendario",
+        "answerId": "c3",
+        "explanation": "Este desencadenador de calendario se dispara cuando un evento próximo está a punto de comenzar."
+      },
+      {
+        "id": "m4",
+        "text": "Reaccionar solo a los correos en los que te mencionan con @",
+        "answerId": "c4",
+        "explanation": "Hay un desencadenador específico para los correos nuevos que te mencionan, sin tener que filtrar todos los mensajes."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Cuando llega un nuevo correo electrónico a un buzón compartido (V2)"
+      },
+      {
+        "id": "c2",
+        "text": "Cuando se marca un correo electrónico (V3)"
+      },
+      {
+        "id": "c3",
+        "text": "Cuando se inicie pronto un evento próximo (V3)"
+      },
+      {
+        "id": "c4",
+        "text": "Cuando llega un nuevo correo electrónico que me menciona (V3)"
+      },
+      {
+        "id": "c5",
+        "text": "Enviar correo electrónico con opciones"
+      }
+    ],
+    "keyPoint": "Outlook ofrece desencadenadores para buzones compartidos, correos marcados, menciones y eventos de calendario; «Enviar correo electrónico con opciones» es una acción, no un desencadenador.",
+    "references": [
+      {
+        "title": "Conector Office 365 Outlook",
+        "url": "https://learn.microsoft.com/es-es/connectors/office365/"
+      },
+      {
+        "title": "Introducción a los desencadenadores",
+        "url": "https://learn.microsoft.com/es-es/power-automate/triggers-introduction"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-excel-001",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "difficulty": 2,
+    "scenario": "Academia Delta quiere que cada respuesta a su formulario de inscripción de Microsoft Forms se registre automáticamente como una fila nueva en un libro de Excel, con una columna para cada pregunta.",
+    "prompt": "Además del desencadenador «Cuando se envía una nueva respuesta» y de la acción «Obtener detalles de la respuesta», ¿qué dos elementos necesitas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un libro guardado en OneDrive para la Empresa o en SharePoint con una tabla que tenga una columna por pregunta",
+        "correct": true,
+        "explanation": "El conector Excel Online (Empresa) trabaja con libros de esas bibliotecas y escribe en tablas; Learn indica crear el libro con una tabla que tenga una columna por pregunta."
+      },
+      {
+        "id": "b",
+        "text": "La acción «Agregar una fila a una tabla» del conector Excel Online (Empresa)",
+        "correct": true,
+        "explanation": "Es la acción que inserta cada respuesta como fila nueva, asignando a cada columna el contenido dinámico de la respuesta."
+      },
+      {
+        "id": "c",
+        "text": "Power Automate para escritorio instalado para abrir Excel en el equipo",
+        "correct": false,
+        "explanation": "No hace falta automatizar la interfaz de Excel: el conector trabaja con el libro en la nube desde el propio flujo de nube."
+      },
+      {
+        "id": "d",
+        "text": "El libro guardado en el disco local del equipo del coordinador",
+        "correct": false,
+        "explanation": "Excel Online (Empresa) solo accede a libros guardados en OneDrive para la Empresa, sitios de SharePoint o grupos de Office 365, no en un disco local."
+      },
+      {
+        "id": "e",
+        "text": "Un segundo desencadenador «Periodicidad» para copiar las respuestas cada noche",
+        "correct": false,
+        "explanation": "Un flujo empieza con un único desencadenador, y aquí ya es la respuesta al formulario la que lo inicia en el momento."
+      }
+    ],
+    "keyPoint": "Excel Online (Empresa) escribe en tablas de libros guardados en OneDrive para la Empresa o SharePoint: «Agregar una fila a una tabla» registra cada respuesta.",
+    "references": [
+      {
+        "title": "Escenarios populares con Microsoft Forms",
+        "url": "https://learn.microsoft.com/es-es/power-automate/forms/popular-scenarios"
+      },
+      {
+        "title": "Conector Excel Online (Empresa)",
+        "url": "https://learn.microsoft.com/es-es/connectors/excelonlinebusiness/"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-conectores-002",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "difficulty": 2,
+    "scenario": "En Seguros Atlántico los empleados piden material de oficina con un formulario. Cada solicitud debe aprobarla el responsable directo de quien la pide, que cambia según el empleado, y nadie quiere mantener a mano una lista de responsables.",
+    "prompt": "¿Qué debes agregar al flujo antes de la acción «Iniciar y esperar una aprobación»?",
+    "options": [
+      {
+        "id": "a",
+        "text": "La acción «Obtener administrador (V2)» (*Get manager (V2)*) del conector Usuarios de Office 365, con el correo del solicitante, para usar el correo del responsable en «Asignado a»",
+        "correct": true,
+        "explanation": "La acción recupera el perfil del responsable configurado en Microsoft Entra ID, así que el flujo asigna la aprobación a la persona correcta sin listas manuales. Si un usuario no tiene responsable configurado, la acción falla."
+      },
+      {
+        "id": "b",
+        "text": "La acción «Obtener mi perfil (V2)» del conector Usuarios de Office 365",
+        "correct": false,
+        "explanation": "Devuelve el perfil del usuario actual de la conexión (normalmente el creador del flujo), no el del responsable de quien envía la solicitud."
+      },
+      {
+        "id": "c",
+        "text": "Una variable con la tabla de empleados y responsables escrita dentro del propio flujo",
+        "correct": false,
+        "explanation": "Es justo la lista manual que quieren evitar: habría que editar el flujo con cada alta, baja o cambio de responsable."
+      },
+      {
+        "id": "d",
+        "text": "Un flujo de escritorio que busque al responsable en el organigrama de la intranet",
+        "correct": false,
+        "explanation": "La información ya está disponible mediante un conector; automatizar la interfaz de la intranet sería más lento y frágil."
+      }
+    ],
+    "keyPoint": "Usuarios de Office 365 + Aprobaciones: «Obtener administrador (V2)» lee el responsable en Microsoft Entra ID para asignar la aprobación de forma dinámica.",
+    "references": [
+      {
+        "title": "Conector Usuarios de Office 365",
+        "url": "https://learn.microsoft.com/es-es/connectors/office365users/"
+      },
+      {
+        "title": "Introducción a las aprobaciones",
+        "url": "https://learn.microsoft.com/es-es/power-automate/get-started-approvals"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-conectores-003",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre los desencadenadores y las acciones de los flujos de nube es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Para poder guardar un flujo de nube necesitas, como mínimo, un desencadenador y una acción.",
+        "answer": true,
+        "explanation": "Learn indica que un flujo de nube debe tener al menos un desencadenador y una acción para poder guardarse."
+      },
+      {
+        "id": "s2",
+        "text": "Si eliges un desencadenador equivocado, tienes que eliminar el flujo y crearlo de nuevo.",
+        "answer": false,
+        "explanation": "En el diseñador puedes eliminar el desencadenador y agregar otro en su lugar; las acciones del flujo se conservan."
+      },
+      {
+        "id": "s3",
+        "text": "El conector Aprobaciones solo aporta acciones, así que un flujo de aprobación se inicia con otro desencadenador, como el de SharePoint o el de Forms.",
+        "answer": true,
+        "explanation": "El conector Aprobaciones ofrece acciones como «Iniciar y esperar una aprobación», pero ningún desencadenador; el evento que inicia el flujo viene de otro conector o de un desencadenador manual o programado."
+      },
+      {
+        "id": "s4",
+        "text": "Un flujo que empieza con un desencadenador de Outlook solo puede usar acciones del conector de Outlook.",
+        "answer": false,
+        "explanation": "Un flujo combina libremente conectores: por ejemplo, un correo de Outlook puede iniciar un flujo que publique en Teams y guarde archivos en SharePoint."
+      }
+    ],
+    "keyPoint": "Un flujo de nube = un desencadenador (reemplazable) + al menos una acción, que pueden venir de conectores distintos; algunos conectores solo ofrecen acciones.",
+    "references": [
+      {
+        "title": "Trabajar con desencadenadores y acciones",
+        "url": "https://learn.microsoft.com/es-es/power-automate/work-with-triggers-actions"
+      },
+      {
+        "title": "Conector Aprobaciones",
+        "url": "https://learn.microsoft.com/es-es/connectors/approvals/"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-planner-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "difficulty": 2,
+    "scenario": "El equipo de proyectos de Viajes Meridiano organiza su trabajo en un plan de Microsoft Planner. La responsable quiere que, en cuanto alguien termine una tarea del plan, se publique un aviso en el canal del proyecto en Teams.",
+    "prompt": "¿Qué desencadenador debe usar el flujo de nube?",
+    "options": [
+      {
+        "id": "a",
+        "text": "«Cuando se agrega un nuevo mensaje de canal», de Microsoft Teams",
+        "correct": false,
+        "explanation": "Se dispara con los mensajes que se publican en Teams; el evento que interesa ocurre en Planner, y Teams solo es el destino del aviso."
+      },
+      {
+        "id": "b",
+        "text": "«Cuando se completa una tarea», de Planner",
+        "correct": true,
+        "explanation": "El desencadenador del conector donde ocurre el evento inicia el flujo en cuanto se completa una tarea; después, una acción de Teams publica el aviso."
+      },
+      {
+        "id": "c",
+        "text": "«Periodicidad», con una revisión de todas las tareas del plan cada hora",
+        "correct": false,
+        "explanation": "El aviso no sería inmediato y el flujo se ejecutaría aunque no hubiera cambios, además de tener que averiguar qué tareas ya se avisaron."
+      },
+      {
+        "id": "d",
+        "text": "«Para un mensaje seleccionado», de Microsoft Teams",
+        "correct": false,
+        "explanation": "Lo lanza una persona a demanda sobre un mensaje de Teams; no reacciona sola a lo que pasa en Planner."
+      }
+    ],
+    "keyPoint": "Elige el desencadenador del conector donde ocurre el evento (Planner: «Cuando se completa una tarea») y las acciones del servicio donde quieres el resultado (Teams).",
+    "references": [
+      {
+        "title": "Conector de Planner",
+        "url": "https://learn.microsoft.com/es-es/connectors/planner/"
+      },
+      {
+        "title": "Introducción a los desencadenadores",
+        "url": "https://learn.microsoft.com/es-es/power-automate/triggers-introduction"
+      }
+    ]
+  },
+  {
     "id": "pl900-d4-nube-002",
     "type": "single",
     "exam": "PL-900",
@@ -1856,6 +2726,9 @@
     "domain": "d4",
     "skill": "d4-ia",
     "difficulty": 2,
+    "tags": [
+      "preview"
+    ],
     "scenario": "Raúl usa Power Automate para escritorio y quiere añadir a un flujo de escritorio existente los pasos para comprimir una carpeta de facturas y enviarla por correo con Outlook. Prefiere describirlo con sus palabras en lugar de buscar cada acción.",
     "prompt": "¿Qué debe usar?",
     "options": [
@@ -1900,6 +2773,9 @@
     "domain": "d4",
     "skill": "d4-ia",
     "difficulty": 2,
+    "tags": [
+      "preview"
+    ],
     "scenario": "Un flujo de escritorio de Química Ebro debe ejecutar un script de PowerShell que borre los archivos temporales de una carpeta, pero nadie del equipo sabe programar en PowerShell.",
     "prompt": "Completa la frase.",
     "template": "Agregas al flujo la acción {{b1}}, seleccionas {{b2}} y describes en lenguaje natural lo que debe hacer el script; antes de usar el código generado, {{b3}}.",
@@ -1982,6 +2858,9 @@
     "domain": "d4",
     "skill": "d4-ia",
     "difficulty": 3,
+    "tags": [
+      "preview"
+    ],
     "prompt": "Indica si cada afirmación sobre Copilot en Power Automate para escritorio es verdadera.",
     "statements": [
       {
@@ -2025,6 +2904,9 @@
     "domain": "d4",
     "skill": "d4-ia",
     "difficulty": 3,
+    "tags": [
+      "preview"
+    ],
     "prompt": "Empareja cada necesidad con la capacidad de IA de Power Automate más adecuada. Una de las opciones no se usa.",
     "prompts": [
       {
@@ -2087,6 +2969,356 @@
       {
         "title": "Acciones de scripting",
         "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/actions-reference/scripting"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-ianube-003",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-ia",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre la creación y edición de flujos de nube con Copilot es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Si creas el flujo describiéndolo a Copilot, tu descripción determina el tipo de flujo de nube y el desencadenador, así que no tienes que elegirlos tú.",
+        "answer": true,
+        "explanation": "Learn indica que, con Copilot, la indicación determina el tipo de flujo de nube y Copilot elige el desencadenador adecuado; sin Copilot, eres tú quien elige el tipo de flujo y el desencadenador."
+      },
+      {
+        "id": "s2",
+        "text": "En el diseñador, Copilot puede escribir expresiones sencillas, como una que dé formato a la fecha actual con formatDateTime().",
+        "answer": true,
+        "explanation": "Copilot ayuda con expresiones básicas (formatDateTime(), concat(), manipulación de cadenas). Las expresiones complejas anidadas, en cambio, a menudo salen incompletas o incorrectas."
+      },
+      {
+        "id": "s3",
+        "text": "Copilot admite todos los conectores de Power Platform, así que cualquier flujo puede generarse por completo con una sola indicación.",
+        "answer": false,
+        "explanation": "Según las preguntas frecuentes de Learn, Copilot solo admite un subconjunto de los conectores; a menudo tendrás que completar o ajustar pasos en el diseñador."
+      },
+      {
+        "id": "s4",
+        "text": "Los cambios que Copilot aplica a un flujo existente no se pueden deshacer, así que no conviene usarlo para editar flujos.",
+        "answer": false,
+        "explanation": "Los cambios de Copilot se revisan en el diseñador y se pueden deshacer; además, Learn recomienda guardar el flujo antes de ediciones importantes para tener un punto al que volver."
+      }
+    ],
+    "keyPoint": "Copilot elige tipo de flujo y desencadenador, edita y escribe expresiones sencillas, pero solo admite parte de los conectores y sus cambios se revisan y se pueden deshacer.",
+    "references": [
+      {
+        "title": "Introducción a los flujos de nube",
+        "url": "https://learn.microsoft.com/es-es/power-automate/overview-cloud"
+      },
+      {
+        "title": "Saca el máximo partido de Copilot en el diseñador",
+        "url": "https://learn.microsoft.com/es-es/power-automate/copilot-cloud-flows-tips"
+      },
+      {
+        "title": "Preguntas frecuentes sobre Copilot en flujos de nube",
+        "url": "https://learn.microsoft.com/es-es/power-automate/faqs-copilot"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-ianube-004",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-ia",
+    "difficulty": 1,
+    "scenario": "Irene, técnica de compras de Hierros del Bierzo, va a crear su primer flujo de nube con Copilot desde la página Inicio de Power Automate y quiere que la primera propuesta se acerque lo más posible a lo que necesita.",
+    "prompt": "Completa la frase.",
+    "template": "Para obtener mejores resultados, Irene escribe la indicación con el formato {{b1}}, menciona en ella {{b2}} y, si la estructura propuesta no le convence, {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "«Cuando suceda X, haz Y»"
+          },
+          {
+            "id": "o2",
+            "text": "una lista de nombres de acciones separados por comas"
+          },
+          {
+            "id": "o3",
+            "text": "una fórmula de Power Fx"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Learn recomienda el formato «Cuando suceda X, haz Y»: X orienta el desencadenador e Y las acciones. Una lista de acciones no describe el evento que inicia el flujo, y Power Fx no es el lenguaje de las indicaciones."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "los conectores que quiere usar, como Outlook o Teams"
+          },
+          {
+            "id": "o2",
+            "text": "el nombre del entorno de Power Platform"
+          },
+          {
+            "id": "o3",
+            "text": "el tipo de licencia que tiene asignada"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Nombrar los conectores ayuda a Copilot a elegir el desencadenador y las acciones correctos. El entorno y la licencia no describen lo que debe hacer el flujo."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "añade más detalles para que Copilot regenere la propuesta"
+          },
+          {
+            "id": "o2",
+            "text": "debe empezar desde una plantilla, porque Copilot no admite cambios"
+          },
+          {
+            "id": "o3",
+            "text": "tiene que pasar al diseñador clásico para corregirla"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Antes de crear el flujo puede añadir más detalles y Copilot regenera la estructura sugerida. Copilot sí admite cambios, y solo está disponible en el diseñador nuevo, no en el clásico."
+      }
+    ],
+    "keyPoint": "Indicación eficaz para Copilot: «Cuando suceda X, haz Y», concreta y con los conectores; si no encaja, añade detalles y Copilot regenera la propuesta.",
+    "references": [
+      {
+        "title": "Crear un flujo de nube con Copilot",
+        "url": "https://learn.microsoft.com/es-es/power-automate/create-cloud-flow-using-copilot"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-ianube-005",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-ia",
+    "difficulty": 3,
+    "scenario": "Pablo mantiene en Distribuciones Turia un flujo de nube que lee pedidos de una lista de SharePoint. Abre el flujo en el diseñador nuevo y quiere aprovechar el panel de Copilot para hacer varios cambios.",
+    "prompt": "¿Qué dos peticiones puede resolver Copilot en el diseñador? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "«Cambia el desencadenador para que el flujo se ejecute cada lunes a las 9:00»",
+        "correct": true,
+        "explanation": "Copilot puede modificar los pasos existentes, incluida la programación de un desencadenador, a partir de una instrucción concreta."
+      },
+      {
+        "id": "b",
+        "text": "«Agrupa las acciones de SharePoint en un ámbito y añade otro ámbito que avise en Teams si fallan»",
+        "correct": true,
+        "explanation": "Copilot puede generar bloques de ámbito (*scope*) con la configuración «Ejecutar después» para crear un patrón de control de errores."
+      },
+      {
+        "id": "c",
+        "text": "«Renueva la conexión de SharePoint, cuyo token ha caducado»",
+        "correct": false,
+        "explanation": "Los tokens caducados y los errores de permisos quedan fuera del alcance de Copilot: requieren volver a autenticarse o la intervención de un administrador."
+      },
+      {
+        "id": "d",
+        "text": "«Dime qué columnas tiene la lista Pedidos de SharePoint»",
+        "correct": false,
+        "explanation": "Copilot no consulta tus orígenes de datos; tienes que comprobar tú los nombres de las columnas y dárselos en la indicación."
+      },
+      {
+        "id": "e",
+        "text": "«Explica por qué falló la ejecución de ayer a las 15:00»",
+        "correct": false,
+        "explanation": "Copilot en el diseñador no tiene acceso al historial de ejecuciones; para analizar una ejecución con errores se usa Solucionar problemas en Copilot desde la ejecución."
+      }
+    ],
+    "keyPoint": "Copilot en el diseñador añade y modifica pasos (incluido el desencadenador) y estructuras como los ámbitos; no lee tus datos, no repara conexiones ni consulta el historial de ejecuciones.",
+    "references": [
+      {
+        "title": "Saca el máximo partido de Copilot en el diseñador",
+        "url": "https://learn.microsoft.com/es-es/power-automate/copilot-cloud-flows-tips"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-ianube-006",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-ia",
+    "difficulty": 2,
+    "scenario": "En Clínica Levante, Sara escribió «Corrige mi flujo» en el panel de Copilot del diseñador, pero no obtuvo el cambio que esperaba: quería que, tras la acción «Obtener elementos», el flujo solo continuara con los elementos cuya columna Estado es «Aprobado».",
+    "prompt": "¿Qué indicación tiene más probabilidades de dar el resultado correcto?",
+    "options": [
+      {
+        "id": "a",
+        "text": "«Agrega una condición después de Obtener elementos que compruebe si la columna Estado es igual a Aprobado»",
+        "correct": true,
+        "explanation": "Es una petición de un solo propósito, empieza con un verbo de acción y nombra la acción, la columna y el valor exactos, que es lo que mejor funciona con Copilot."
+      },
+      {
+        "id": "b",
+        "text": "«Revisa todo el flujo, corrige los errores y mejóralo»",
+        "correct": false,
+        "explanation": "Es tan imprecisa como la original: Copilot no sabe qué está mal ni qué significa «mejorar» en este flujo."
+      },
+      {
+        "id": "c",
+        "text": "«¿Qué valores tiene la columna Estado en mi lista?»",
+        "correct": false,
+        "explanation": "Copilot no consulta los datos de SharePoint, así que no puede responder; además, no pide ningún cambio en el flujo."
+      },
+      {
+        "id": "d",
+        "text": "«Crea un desencadenador de SharePoint, obtén los elementos, comprueba el estado, pide una aprobación, actualiza el elemento y avisa en Teams»",
+        "correct": false,
+        "explanation": "Encadenar muchos pasos en un solo mensaje hace perder precisión a Copilot, y además rehace partes que el flujo ya tiene."
+      }
+    ],
+    "keyPoint": "Con Copilot: una petición concreta por mensaje, con verbo de acción y los nombres exactos de la acción, la columna y el valor.",
+    "references": [
+      {
+        "title": "Saca el máximo partido de Copilot en el diseñador",
+        "url": "https://learn.microsoft.com/es-es/power-automate/copilot-cloud-flows-tips"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-ia-002",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-ia",
+    "difficulty": 3,
+    "tags": [
+      "preview"
+    ],
+    "prompt": "Empareja cada necesidad con la experiencia de Copilot en Power Automate que la cubre. Una de las opciones no se usa.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Que te explique paso a paso un flujo de nube que heredaste de un compañero",
+        "answerId": "c1",
+        "explanation": "Copilot en el diseñador de flujos de nube responde preguntas como «¿Qué hace mi flujo?» y recorre su lógica, algo especialmente útil con flujos heredados."
+      },
+      {
+        "id": "m2",
+        "text": "Obtener un resumen de lo que hace un subflujo de un flujo de escritorio",
+        "answerId": "c2",
+        "explanation": "El panel de Copilot del diseñador de Power Automate para escritorio puede resumir acciones concretas o subflujos completos (documentación en versión preliminar)."
+      },
+      {
+        "id": "m3",
+        "text": "Preguntar en lenguaje natural qué máquinas acumularon más errores de flujos de escritorio el último mes",
+        "answerId": "c3",
+        "explanation": "Esta experiencia, en versión preliminar, convierte la pregunta en una consulta sobre las ejecuciones, errores y máquinas de los flujos de escritorio y muestra el resultado en una tabla o un gráfico."
+      },
+      {
+        "id": "m4",
+        "text": "Obtener un resumen comprensible del error de una ejecución fallida de un flujo de nube y una propuesta para corregirlo",
+        "answerId": "c4",
+        "explanation": "Solucionar problemas en Copilot actúa al probar el flujo o al revisar el historial de ejecuciones: resume el error y, cuando puede, propone cómo corregirlo."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Copilot en el diseñador de flujos de nube"
+      },
+      {
+        "id": "c2",
+        "text": "Copilot en el diseñador de Power Automate para escritorio"
+      },
+      {
+        "id": "c3",
+        "text": "Copilot para analizar la actividad de los flujos de escritorio"
+      },
+      {
+        "id": "c4",
+        "text": "Solucionar problemas en Copilot"
+      },
+      {
+        "id": "c5",
+        "text": "Generar script con Copilot"
+      }
+    ],
+    "keyPoint": "Cada experiencia de Copilot tiene su sitio: diseñador de nube (crear, editar, explicar), diseñador de escritorio (generar y resumir), análisis de actividad (preguntas sobre ejecuciones) y Solucionar problemas (errores de ejecución).",
+    "references": [
+      {
+        "title": "Copilot en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/copilot-overview"
+      },
+      {
+        "title": "Solución de problemas de un flujo de nube",
+        "url": "https://learn.microsoft.com/es-es/power-automate/fix-flow-failures"
+      },
+      {
+        "title": "Usar Copilot para analizar la actividad de los flujos de escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/use-copilot-to-analyze-desktopflow-activity"
+      },
+      {
+        "title": "Copilot en Power Automate para escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/copilot-in-power-automate-for-desktop"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-iaescritorio-004",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-ia",
+    "difficulty": 2,
+    "tags": [
+      "preview"
+    ],
+    "scenario": "Un flujo de nube de Transportes Meseta ejecuta cada noche un flujo de escritorio que entra en el portal web de un proveedor. Tras un rediseño del portal, el flujo de escritorio falla porque ya no encuentra el botón «Descargar»: el selector de ese elemento de la interfaz ha cambiado.",
+    "prompt": "¿Qué capacidad de Copilot está pensada para este problema?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Reparar con Copilot (*Repair with Copilot*), que localiza el elemento en pantalla y propone un selector nuevo para que una persona lo apruebe",
+        "correct": true,
+        "explanation": "Esta capacidad, en versión preliminar, actúa cuando un flujo de escritorio lanzado desde un flujo de nube no encuentra un elemento de la interfaz: Copilot busca el elemento y propone un selector que se revisa y aprueba."
+      },
+      {
+        "id": "b",
+        "text": "Generar script con Copilot en una acción «Ejecutar script de PowerShell»",
+        "correct": false,
+        "explanation": "Genera el código de las acciones de scripting a partir de una descripción; no localiza elementos de la interfaz ni corrige selectores."
+      },
+      {
+        "id": "c",
+        "text": "Copilot para analizar la actividad de los flujos de escritorio",
+        "correct": false,
+        "explanation": "Responde preguntas sobre ejecuciones, errores y máquinas; puede mostrarte que el flujo falla, pero no lo repara."
+      },
+      {
+        "id": "d",
+        "text": "Copilot en el diseñador de flujos de nube",
+        "correct": false,
+        "explanation": "Edita la definición del flujo de nube; no ve la interfaz del portal ni los selectores que usa el flujo de escritorio."
+      }
+    ],
+    "keyPoint": "Selector roto en un flujo de escritorio = Reparar con Copilot (versión preliminar): Copilot propone el elemento correcto y una persona aprueba la corrección.",
+    "references": [
+      {
+        "title": "Reparar errores de automatización de flujos",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/repair-at-runtime"
       }
     ]
   }
