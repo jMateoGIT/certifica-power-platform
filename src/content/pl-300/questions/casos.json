@@ -1,0 +1,1110 @@
+[
+  {
+    "id": "pl300-caso-1-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "caseId": "caso-1",
+    "difficulty": 2,
+    "table": {
+      "caption": "Libro Objetivos (extracto)",
+      "headers": ["Tienda", "Ene", "Feb", "Mar", "Abr", "May", "…", "Dic"],
+      "rows": [
+        ["T001 Alcázar", "85.000", "82.000", "90.000", "88.500", "91.000", "…", "120.000"],
+        ["T002 Ribera", "64.000", "61.500", "66.000", "65.000", "70.000", "…", "95.000"],
+        ["T003 Puerto", "102.000", "98.000", "105.000", "104.000", "110.000", "…", "150.000"]
+      ]
+    },
+    "prompt": "Debes cargar los objetivos de forma que puedan relacionarse con la tabla de fechas y compararse con las ventas por mes. ¿Qué transformación aplicas en Power Query?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Seleccionar la columna Tienda y aplicar «Anular dinamización de otras columnas»",
+        "correct": true,
+        "explanation": "Convierte las doce columnas de meses en dos columnas (Atributo con el mes y Valor con el objetivo), es decir, una fila por tienda y mes. Con esa forma puedes derivar una fecha o un mes y relacionar los objetivos con la tabla de fechas. Además, si el departamento comercial añade columnas, se anulan también sin cambiar la consulta."
+      },
+      {
+        "id": "b",
+        "text": "Seleccionar la columna Tienda y aplicar «Dinamizar columna»",
+        "correct": false,
+        "explanation": "Dinamizar hace lo contrario de lo que necesitas: convierte valores de filas en columnas. El libro ya tiene los meses como columnas, que es precisamente el problema."
+      },
+      {
+        "id": "c",
+        "text": "Aplicar «Transponer» a toda la tabla",
+        "correct": false,
+        "explanation": "Transponer intercambia filas y columnas: las tiendas pasarían a ser columnas y seguirías sin tener una columna de mes y otra de objetivo con las que relacionar los datos con la tabla de fechas."
+      },
+      {
+        "id": "d",
+        "text": "Agrupar por Tienda y sumar las columnas de los meses",
+        "correct": false,
+        "explanation": "Agrupar por tienda daría un único total anual por tienda y perderías el detalle mensual que pide la comparación con las ventas por mes."
+      }
+    ],
+    "keyPoint": "Una columna por periodo en el origen → anular la dinamización para obtener una fila por entidad y periodo.",
+    "references": [
+      { "title": "Anulación de dinamización de columnas", "url": "https://learn.microsoft.com/es-es/power-query/unpivot-column" },
+      { "title": "Dar forma a los datos iniciales (Power BI)", "url": "https://learn.microsoft.com/es-es/training/modules/clean-data-power-bi/2-shape-data" }
+    ]
+  },
+  {
+    "id": "pl300-caso-1-002",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "caseId": "caso-1",
+    "difficulty": 2,
+    "prompt": "Debes resolver los dos problemas actuales en la consulta del catálogo de productos. ¿Qué dos acciones realizas? Elige 2.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Aplicar Recortar (Trim) a la columna CódigoProducto",
+        "correct": true,
+        "explanation": "Recortar quita los espacios en blanco iniciales y finales. Así « 004512» pasa a «004512», el código coincide con el de las ventas y desaparece la fila «(En blanco)» del problema 1."
+      },
+      {
+        "id": "b",
+        "text": "Después de cambiar PrecioTarifa a número decimal, usar Reemplazar errores con el valor null",
+        "correct": true,
+        "explanation": "El texto «Consultar» provoca un error en cada celda al cambiar el tipo. Reemplazar errores por null conserva esas filas con el precio vacío, como exige el problema 2."
+      },
+      {
+        "id": "c",
+        "text": "Aplicar Limpiar (Clean) a la columna CódigoProducto",
+        "correct": false,
+        "explanation": "Limpiar quita caracteres de control, como saltos de línea, pero no los espacios. Los códigos con espacios seguirían sin coincidir."
+      },
+      {
+        "id": "d",
+        "text": "Usar Quitar errores en la columna PrecioTarifa",
+        "correct": false,
+        "explanation": "Quitar errores elimina las filas completas que tienen un error. Perderías esos productos del catálogo, y el problema 2 exige conservarlos."
+      },
+      {
+        "id": "e",
+        "text": "Cambiar la cardinalidad de la relación entre el catálogo y Ventas a varios a varios",
+        "correct": false,
+        "explanation": "El problema está en los valores de la clave, no en la cardinalidad. Una relación de varios a varios seguiría sin encontrar los códigos con espacios y, además, complicaría el modelo sin necesidad."
+      }
+    ],
+    "keyPoint": "Espacios sobrantes → Recortar; errores de conversión que deben conservarse → Reemplazar errores (Quitar errores elimina la fila).",
+    "references": [
+      { "title": "Text.Trim", "url": "https://learn.microsoft.com/es-es/powerquery-m/text-trim" },
+      { "title": "Text.Clean", "url": "https://learn.microsoft.com/es-es/powerquery-m/text-clean" },
+      { "title": "Control de errores en Power Query", "url": "https://learn.microsoft.com/es-es/power-query/dealing-with-errors" }
+    ]
+  },
+  {
+    "id": "pl300-caso-1-003",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "caseId": "caso-1",
+    "difficulty": 2,
+    "prompt": "Completa el diseño de la tabla de fechas para cumplir el requisito de informes 2.",
+    "template": "Creas una tabla calculada Fecha con {{b1}}, la configuras con {{b2}} y la relacionas con Ventas mediante {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "CALENDAR, desde el 1 de enero del primer año de ventas hasta el 31 de diciembre del último" },
+          { "id": "o2", "text": "VALUES(Ventas[FechaVenta])" },
+          { "id": "o3", "text": "SAMEPERIODLASTYEAR(Ventas[FechaVenta])" }
+        ],
+        "correctId": "o1",
+        "explanation": "CALENDAR genera un rango continuo de fechas, sin huecos y con años completos, como exige una tabla de fechas. VALUES solo devolvería los días con ventas, con huecos en los días de cierre, y SAMEPERIODLASTYEAR desplaza fechas un año, pero no construye un calendario."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "la opción Marcar como tabla de fechas, eligiendo su columna Fecha" },
+          { "id": "o2", "text": "la opción Fecha y hora automáticas activada" },
+          { "id": "o3", "text": "una jerarquía Año > Mes > Día, sin más cambios" }
+        ],
+        "correctId": "o1",
+        "explanation": "El caso indica que el equipo usa las funciones clásicas de inteligencia de tiempo, y con ellas la tabla de fechas debe marcarse como tabla de fechas. Fecha y hora automáticas crea tablas ocultas por cada columna de fecha y no es compatible con una tabla de fechas común; una jerarquía sola no cambia el comportamiento de las funciones de tiempo."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "una relación de uno a varios de Fecha[Fecha] a Ventas[FechaVenta], con filtro cruzado único" },
+          { "id": "o2", "text": "una relación de varios a varios con filtro cruzado bidireccional" },
+          { "id": "o3", "text": "una relación de uno a uno entre Fecha[Fecha] y Ventas[FechaVenta]" }
+        ],
+        "correctId": "o1",
+        "explanation": "Cada fecha aparece una vez en Fecha y muchas veces en Ventas, así que la relación correcta es de uno a varios, con la dimensión filtrando los hechos en una sola dirección. FechaVenta no tiene hora, de modo que los valores coinciden. Varios a varios o bidireccional añaden ambigüedad y coste sin motivo, y uno a uno es imposible porque hay muchos tiques por día."
+      }
+    ],
+    "keyPoint": "Tabla de fechas común: rango continuo de años completos, marcada como tabla de fechas (funciones clásicas) y relación 1:* de filtro único con los hechos.",
+    "references": [
+      { "title": "Guía de tablas de fechas", "url": "https://learn.microsoft.com/es-es/power-bi/guidance/model-date-tables" },
+      { "title": "Establecer y usar tablas de fechas en Power BI Desktop", "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-date-tables" }
+    ]
+  },
+  {
+    "id": "pl300-caso-1-004",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "caseId": "caso-1",
+    "difficulty": 2,
+    "prompt": "Vas a configurar la actualización del modelo semántico para cumplir el requisito de informes 1. Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Para actualizar las ventas desde el servicio Power BI necesitas una puerta de enlace de datos local.",
+        "answer": true,
+        "explanation": "La base de datos de ventas está en un SQL Server de la red local de la sede. Power BI no puede acceder a ella mediante una conexión directa desde la nube, así que la actualización tiene que pasar por una puerta de enlace de datos local."
+      },
+      {
+        "id": "s2",
+        "text": "Los libros de Excel de SharePoint Online requieren que instales una segunda puerta de enlace.",
+        "answer": false,
+        "explanation": "SharePoint Online es un origen en la nube al que Power BI llega directamente. Además, un modelo semántico solo puede usar una conexión de puerta de enlace, así que nunca instalarías una segunda para el mismo modelo."
+      },
+      {
+        "id": "s3",
+        "text": "Como tres analistas administran el modelo, lo adecuado es instalar la puerta de enlace en modo personal.",
+        "answer": false,
+        "explanation": "El modo personal solo sirve a un usuario y no se puede compartir. Para orígenes compartidos y administrados de forma centralizada se usa la puerta de enlace en modo estándar, donde los administradores definen la conexión al SQL Server."
+      },
+      {
+        "id": "s4",
+        "text": "En la capacidad compartida puedes programar una actualización diaria a las 5:00.",
+        "answer": true,
+        "explanation": "La capacidad compartida admite hasta ocho actualizaciones programadas al día. Una diaria a las 5:00 empieza cuando el TPV ya ha terminado la carga (antes de las 4:00) y deja margen para tener los datos antes de las 7:00."
+      }
+    ],
+    "keyPoint": "Origen local → puerta de enlace en modo estándar si el modelo es compartido; los orígenes en la nube, como SharePoint Online, no la necesitan.",
+    "references": [
+      { "title": "Actualización de datos en Power BI", "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/refresh-data" },
+      { "title": "¿Qué es una puerta de enlace de datos local?", "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-gateway-onprem" }
+    ]
+  },
+  {
+    "id": "pl300-caso-1-005",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-informes",
+    "caseId": "caso-1",
+    "difficulty": 3,
+    "prompt": "La medida Cumplimiento devuelve un decimal (0,95 equivale al 95 %) y se muestra con formato de porcentaje. ¿Cómo configuras la tabla para cumplir el requisito de informes 3?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Formato condicional del color de fondo con el estilo Reglas, con límites de tipo Número: menor que 0,9 rojo; de 0,9 a menos de 1 ámbar; 1 o más verde",
+        "correct": true,
+        "explanation": "El estilo Reglas asigna un color fijo a cada intervalo de valores. Como la medida devuelve decimales, los límites de tipo Número 0,9 y 1 coinciden exactamente con el 90 % y el 100 % del requisito."
+      },
+      {
+        "id": "b",
+        "text": "Formato condicional del color de fondo con el estilo Reglas, con límites de tipo Porcentaje: 90 y 100",
+        "correct": false,
+        "explanation": "En las reglas, el tipo Porcentaje se calcula sobre el intervalo entre el valor mínimo y el máximo de la columna, no sobre el valor de la medida. Los cortes cambiarían según las tiendas que se muestren y no corresponderían al 90 % y al 100 % de cumplimiento."
+      },
+      {
+        "id": "c",
+        "text": "Formato condicional del color de fondo con el estilo Degradado, de rojo a verde",
+        "correct": false,
+        "explanation": "Un degradado produce una escala continua de tonos. No da tres colores fijos con cortes exactos en el 90 % y el 100 %."
+      },
+      {
+        "id": "d",
+        "text": "Un tema de informe cuyos colores de datos sean rojo, ámbar y verde",
+        "correct": false,
+        "explanation": "Un tema define la paleta y el formato por defecto del informe, pero no colorea cada celda según su valor. Para eso necesitas formato condicional."
+      }
+    ],
+    "keyPoint": "Colores fijos por umbrales → formato condicional por Reglas; el tipo Porcentaje de una regla se refiere al rango mínimo–máximo, no al valor.",
+    "references": [
+      { "title": "Aplicar formato condicional en tablas y matrices", "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-conditional-table-formatting" }
+    ]
+  },
+  {
+    "id": "pl300-caso-2-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "caseId": "caso-2",
+    "difficulty": 2,
+    "prompt": "¿Qué modo de almacenamiento debes usar para la tabla Siniestros para cumplir el requisito de informes 1?",
+    "options": [
+      {
+        "id": "a",
+        "text": "DirectQuery",
+        "correct": true,
+        "explanation": "Con DirectQuery cada objeto visual consulta Azure SQL Database en el momento, así que refleja los cambios continuos de la tramitación. Además, la actualización automática de páginas solo está disponible con orígenes DirectQuery (y algunos escenarios de conexión dinámica). Al ser un origen en la nube, no necesitas puerta de enlace."
+      },
+      {
+        "id": "b",
+        "text": "Importación, con el máximo de actualizaciones programadas que permite la capacidad",
+        "correct": false,
+        "explanation": "Incluso en una capacidad de Fabric el máximo es de 48 actualizaciones programadas al día, una cada 30 minutos, lejos de los cinco minutos del requisito. Además, con importación no puedes configurar la actualización automática de páginas."
+      },
+      {
+        "id": "c",
+        "text": "Direct Lake",
+        "correct": false,
+        "explanation": "Direct Lake lee tablas Delta de OneLake (almacenes de lago, almacenes de Fabric…). Los siniestros están en Azure SQL Database, no en tablas Delta de Fabric."
+      },
+      {
+        "id": "d",
+        "text": "Conexión dinámica (Live connection)",
+        "correct": false,
+        "explanation": "La conexión dinámica se usa para conectarse a un modelo semántico de Power BI o a Analysis Services ya existentes, no a una base de datos relacional como Azure SQL Database."
+      }
+    ],
+    "keyPoint": "Datos que cambian cada pocos minutos en un origen relacional + actualización automática de páginas → DirectQuery.",
+    "references": [
+      { "title": "DirectQuery en Power BI", "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/desktop-directquery-about" },
+      { "title": "Actualización automática de páginas en Power BI", "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-automatic-page-refresh" }
+    ]
+  },
+  {
+    "id": "pl300-caso-2-002",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "caseId": "caso-2",
+    "difficulty": 3,
+    "prompt": "Debes cumplir el requisito de informes 2. ¿Qué dos acciones realizas? Elige 2.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crear una relación activa de Fecha[Fecha] a Siniestros[FechaApertura] y otra inactiva de Fecha[Fecha] a Siniestros[FechaCierre]",
+        "correct": true,
+        "explanation": "Entre dos tablas solo puede haber una relación activa. La de FechaApertura filtra por defecto, y la de FechaCierre queda inactiva, lista para activarla desde una medida. Es la forma de implementar una dimensión de rol (*role-playing*) con una única tabla Fecha."
+      },
+      {
+        "id": "b",
+        "text": "Crear la medida Siniestros cerrados = CALCULATE ( COUNTROWS ( Siniestros ), USERELATIONSHIP ( Siniestros[FechaCierre], 'Fecha'[Fecha] ) )",
+        "correct": true,
+        "explanation": "USERELATIONSHIP activa la relación inactiva solo durante el cálculo. La medida cuenta los siniestros por fecha de cierre, mientras la de abiertos usa la relación activa; ambas responden al mismo segmentador de Fecha en el mismo objeto visual."
+      },
+      {
+        "id": "c",
+        "text": "Crear dos relaciones activas entre Fecha y Siniestros, una por cada columna de fecha",
+        "correct": false,
+        "explanation": "Power BI no permite dos relaciones activas entre las mismas tablas, porque la ruta de filtrado sería ambigua. La segunda relación queda siempre inactiva."
+      },
+      {
+        "id": "d",
+        "text": "Duplicar la tabla Fecha como FechaCierre y relacionarla con Siniestros[FechaCierre]",
+        "correct": false,
+        "explanation": "Es una técnica válida para dimensiones de rol, pero cada tabla de fechas necesita su propio segmentador. El requisito pide un único segmentador de la tabla Fecha para ambas métricas."
+      },
+      {
+        "id": "e",
+        "text": "Cambiar la dirección de filtro cruzado de la relación a Ambas",
+        "correct": false,
+        "explanation": "La dirección del filtro no cambia qué columna de fecha se usa. El filtrado bidireccional puede crear ambigüedad y empeorar el rendimiento sin resolver el requisito."
+      }
+    ],
+    "keyPoint": "Varias fechas en una tabla de hechos con una sola tabla Fecha → una relación activa, las demás inactivas y USERELATIONSHIP dentro de CALCULATE.",
+    "references": [
+      { "title": "Guía de relaciones activas e inactivas", "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-active-inactive" },
+      { "title": "USERELATIONSHIP", "url": "https://learn.microsoft.com/es-es/dax/userelationship-function-dax" }
+    ]
+  },
+  {
+    "id": "pl300-caso-2-003",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "caseId": "caso-2",
+    "difficulty": 3,
+    "code": {
+      "language": "dax",
+      "content": "Variación primas % =\nVAR PrimasActual =\n    SUM ( Polizas[PrimaEmitida] )\nVAR PrimasAA =\n    CALCULATE (\n        SUM ( Polizas[PrimaEmitida] ),\n        SAMEPERIODLASTYEAR ( 'Fecha'[Fecha] )\n    )\nRETURN\n    DIVIDE ( PrimasActual - PrimasAA, PrimasAA )"
+    },
+    "prompt": "Para el requisito de informes 3 creas la medida del anexo. Polizas se relaciona con la tabla Fecha, marcada como tabla de fechas. Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "En un objeto visual por mes, en la fila de marzo de 2026, PrimasAA devuelve las primas de marzo de 2025.",
+        "answer": true,
+        "explanation": "SAMEPERIODLASTYEAR desplaza un año las fechas del contexto de filtro. Si el filtro es marzo de 2026, CALCULATE evalúa la suma con las fechas de marzo de 2025."
+      },
+      {
+        "id": "s2",
+        "text": "Si no hubo primas en el mismo periodo del año anterior, la medida devuelve un error de división entre cero.",
+        "answer": false,
+        "explanation": "DIVIDE controla la división entre cero o entre un valor en blanco y, si no indicas un resultado alternativo, devuelve BLANK. Por eso se recomienda en lugar del operador /."
+      },
+      {
+        "id": "s3",
+        "text": "PrimasAA se calcula dos veces porque aparece dos veces en la expresión RETURN.",
+        "answer": false,
+        "explanation": "Una variable se evalúa una sola vez y su resultado se reutiliza en cada referencia. Esa es una de las ventajas de rendimiento de usar VAR."
+      },
+      {
+        "id": "s4",
+        "text": "Si en el eje del objeto visual usas Polizas[FechaEmision] en lugar de las columnas de la tabla Fecha, la variación sigue siendo correcta.",
+        "answer": false,
+        "explanation": "SAMEPERIODLASTYEAR trabaja sobre 'Fecha'[Fecha]. Si el visual filtra por una columna de la tabla de hechos, la tabla Fecha no recibe el filtro del periodo y el cálculo del año anterior deja de ser correcto. Las funciones de inteligencia de tiempo necesitan que el periodo se filtre desde la tabla de fechas."
+      }
+    ],
+    "keyPoint": "SAMEPERIODLASTYEAR desplaza el filtro de la tabla de fechas un año; DIVIDE evita errores; cada VAR se evalúa una sola vez.",
+    "references": [
+      { "title": "SAMEPERIODLASTYEAR", "url": "https://learn.microsoft.com/es-es/dax/sameperiodlastyear-function-dax" },
+      { "title": "DIVIDE", "url": "https://learn.microsoft.com/es-es/dax/divide-function-dax" },
+      { "title": "Uso de variables para mejorar las fórmulas DAX", "url": "https://learn.microsoft.com/es-es/dax/best-practices/dax-variables" }
+    ]
+  },
+  {
+    "id": "pl300-caso-2-004",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "caseId": "caso-2",
+    "difficulty": 3,
+    "prompt": "Completa la configuración de la seguridad de nivel de fila (RLS) para cumplir los requisitos de seguridad.",
+    "template": "En Power BI Desktop creas el rol Agentes con el filtro {{b1}} en la tabla Agentes. Para la dirección, {{b2}}. Después de publicar, en el servicio Power BI agregas {{b3}} como miembros de los roles.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "[Correo] = USERPRINCIPALNAME()" },
+          { "id": "o2", "text": "[Correo] = USEROBJECTID()" },
+          { "id": "o3", "text": "[Correo] = USERCULTURE()" }
+        ],
+        "correctId": "o1",
+        "explanation": "USERPRINCIPALNAME devuelve el nombre principal de usuario de quien consulta el informe, que coincide con la columna Correo. El filtro sobre Agentes se propaga por las relaciones de uno a varios a Pólizas y Siniestros. USEROBJECTID devuelve un identificador, no un correo, y USERCULTURE devuelve la configuración regional."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "creas un rol Dirección sin filtro (o con la expresión TRUE())" },
+          { "id": "o2", "text": "no necesitas ningún rol, porque quien no pertenece a ningún rol ve todos los datos" },
+          { "id": "o3", "text": "les asignas el rol Colaborador en el área de trabajo" }
+        ],
+        "correctId": "o1",
+        "explanation": "Cuando un modelo tiene roles RLS, quien consume el contenido como lector y no pertenece a ningún rol no ve datos. Un rol sin filtro da a la dirección acceso a todo. El rol Colaborador también vería todos los datos, pero podría editar contenido, algo que prohíbe el requisito de seguridad 4."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "los grupos de seguridad SG-Agentes y SG-Direccion" },
+          { "id": "o2", "text": "cada usuario de forma individual desde Power BI Desktop" },
+          { "id": "o3", "text": "todos los usuarios del área de trabajo con el rol Administrador" }
+        ],
+        "correctId": "o1",
+        "explanation": "Los miembros de los roles se asignan en el servicio Power BI (no en Desktop), y la recomendación es usar grupos de seguridad, como pide el requisito de seguridad 3. Los administradores del área de trabajo no quedan restringidos por RLS, así que asignarlos no protege nada."
+      }
+    ],
+    "keyPoint": "RLS dinámica: filtro con USERPRINCIPALNAME() en la dimensión de usuarios; rol sin filtro para quien ve todo; miembros (mejor grupos) asignados en el servicio.",
+    "references": [
+      { "title": "Seguridad de nivel de fila (RLS) con Power BI", "url": "https://learn.microsoft.com/es-es/fabric/security/service-admin-row-level-security" },
+      { "title": "Guía de seguridad de nivel de fila en Power BI Desktop", "url": "https://learn.microsoft.com/es-es/power-bi/guidance/rls-guidance" }
+    ]
+  },
+  {
+    "id": "pl300-caso-2-005",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-usabilidad",
+    "caseId": "caso-2",
+    "difficulty": 2,
+    "prompt": "La tabla Siniestros ya usa DirectQuery. ¿Qué configuras para completar el requisito de informes 1?",
+    "options": [
+      {
+        "id": "a",
+        "text": "La actualización automática de páginas en la página «Siniestros abiertos», de tipo intervalo fijo, cada 5 minutos",
+        "correct": true,
+        "explanation": "La actualización automática de páginas hace que los visuales de la página vuelvan a consultar el origen DirectQuery con la frecuencia indicada, sin intervención del usuario. En una capacidad de Fabric, el intervalo mínimo predeterminado que fija el administrador es de cinco minutos, así que el requisito se cumple con la configuración predeterminada."
+      },
+      {
+        "id": "b",
+        "text": "Una actualización programada del modelo semántico cada 5 minutos",
+        "correct": false,
+        "explanation": "La actualización programada vuelve a importar datos y no admite intervalos de cinco minutos (el máximo es 48 al día). Además, una tabla DirectQuery no guarda datos importados, y los visuales abiertos no se volverían a consultar solos."
+      },
+      {
+        "id": "c",
+        "text": "Una alerta de datos en un icono de panel con el número de siniestros abiertos",
+        "correct": false,
+        "explanation": "Una alerta de datos avisa cuando un valor supera un umbral, pero no actualiza los visuales de la página del informe."
+      },
+      {
+        "id": "d",
+        "text": "Una suscripción por correo electrónico a la página cada 5 minutos",
+        "correct": false,
+        "explanation": "Una suscripción envía por correo una instantánea del informe, pero no actualiza la página que el usuario tiene abierta."
+      }
+    ],
+    "keyPoint": "Visuales que se actualizan solos con datos DirectQuery → actualización automática de páginas (en capacidad dedicada, con el mínimo que fije el administrador).",
+    "references": [
+      { "title": "Actualización automática de páginas en Power BI", "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-automatic-page-refresh" }
+    ]
+  },
+  {
+    "id": "pl300-caso-3-001",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "caseId": "caso-3",
+    "difficulty": 2,
+    "prompt": "Debes cargar en una sola tabla todos los CSV de donaciones. Ordena los pasos en Power BI Desktop.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Obtener datos con el conector Carpeta de SharePoint e indicar la URL del sitio de la fundación",
+        "explanation": "El conector Carpeta de SharePoint pide la URL del sitio, no la de la carpeta, y devuelve la lista de todos los archivos de sus bibliotecas, incluidas las subcarpetas."
+      },
+      {
+        "id": "p2",
+        "text": "Seleccionar Transformar datos para abrir la lista de archivos en el Editor de Power Query",
+        "explanation": "Como la biblioteca contiene otras carpetas con PDF y fotografías, no conviene combinar directamente: primero hay que abrir la lista de archivos para acotarla."
+      },
+      {
+        "id": "p3",
+        "text": "Filtrar la columna Folder Path por la carpeta Donaciones y la columna Extension por .csv",
+        "explanation": "Filtrar la vista del sistema de archivos deja solo los archivos con el mismo esquema. Si combinaras también PDF o fotos, la combinación fallaría."
+      },
+      {
+        "id": "p4",
+        "text": "Usar Combinar archivos en la columna Content y revisar el archivo de ejemplo",
+        "explanation": "Combinar archivos analiza el archivo de ejemplo, crea una función que se aplica a cada archivo y anexa todos los resultados en una sola tabla."
+      }
+    ],
+    "keyPoint": "Carpeta de SharePoint: URL del sitio → Transformar datos → filtrar ruta y extensión → Combinar archivos.",
+    "references": [
+      { "title": "Carpeta de SharePoint (conector)", "url": "https://learn.microsoft.com/es-es/power-query/connectors/sharepoint-folder" },
+      { "title": "Información general sobre la combinación de archivos", "url": "https://learn.microsoft.com/es-es/power-query/combine-files-overview" }
+    ]
+  },
+  {
+    "id": "pl300-caso-3-002",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "caseId": "caso-3",
+    "difficulty": 3,
+    "table": {
+      "caption": "FechaDonacion antes y después de cambiar el tipo a Fecha",
+      "headers": ["Texto en el CSV", "Resultado del tipo Fecha"],
+      "rows": [
+        ["03/04/2026", "03/04/2026 (3 de abril)"],
+        ["03/14/2026", "Error"],
+        ["12/01/2026", "12/01/2026 (12 de enero)"],
+        ["11/25/2026", "Error"]
+      ]
+    },
+    "prompt": "Debes resolver el problema actual 1 sin afectar a la consulta de gastos de proyectos. ¿Qué haces?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Quitar el paso de cambio de tipo y usar Cambiar tipo > Usar configuración regional, con el tipo Fecha y la configuración Inglés (Estados Unidos)",
+        "correct": true,
+        "explanation": "La configuración regional determina cómo se interpreta el texto al convertirlo. Indicar Inglés (Estados Unidos) solo en esta columna hace que 03/14/2026 sea el 14 de marzo y 03/04/2026 el 4 de marzo, sin tocar las demás consultas."
+      },
+      {
+        "id": "b",
+        "text": "Cambiar la configuración regional del archivo actual a Inglés (Estados Unidos) en Opciones",
+        "correct": false,
+        "explanation": "Corregiría las donaciones, pero afectaría a todas las consultas del archivo. El CSV de gastos usa fechas dd/mm/aaaa y coma decimal, y se interpretaría mal. El requisito pide no afectarlo."
+      },
+      {
+        "id": "c",
+        "text": "Usar Reemplazar errores con el valor null en FechaDonacion",
+        "correct": false,
+        "explanation": "Ocultaría los errores, pero perderías esas fechas y seguirían mal las que se convierten sin error, como 03/04/2026, que se lee como 3 de abril en lugar de 4 de marzo."
+      },
+      {
+        "id": "d",
+        "text": "Activar la generación de perfiles de columna a partir de todo el conjunto de datos",
+        "correct": false,
+        "explanation": "Ver el perfil de todas las filas, en lugar de las primeras 1000, te ayuda a medir el problema, pero no cambia cómo se convierten los valores."
+      }
+    ],
+    "keyPoint": "Texto con formato de otra región → Cambiar tipo usando configuración regional en esa columna; la configuración regional del archivo afecta a todas las consultas.",
+    "references": [
+      { "title": "Tipos de datos en Power Query (configuración regional)", "url": "https://learn.microsoft.com/es-es/power-query/data-types" },
+      { "title": "Herramientas de generación de perfiles de datos", "url": "https://learn.microsoft.com/es-es/power-query/data-profiling-tools" }
+    ]
+  },
+  {
+    "id": "pl300-caso-3-003",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "caseId": "caso-3",
+    "difficulty": 2,
+    "prompt": "Para investigar el problema actual 2, quieres saber cuánto tarda cada objeto visual de la página «Resumen» y qué parte del tiempo corresponde a su consulta DAX. ¿Qué herramienta usas primero?",
+    "options": [
+      {
+        "id": "a",
+        "text": "El Analizador de rendimiento de Power BI Desktop",
+        "correct": true,
+        "explanation": "Registra el tiempo de cada objeto visual y lo desglosa en consulta DAX, representación visual y otros. También te deja copiar la consulta DAX del visual lento o ejecutarla en la vista de consulta DAX para analizarla."
+      },
+      {
+        "id": "b",
+        "text": "La vista de linaje del área de trabajo",
+        "correct": false,
+        "explanation": "La vista de linaje muestra las dependencias entre orígenes, modelos semánticos e informes, pero no mide el tiempo de carga de los objetos visuales."
+      },
+      {
+        "id": "c",
+        "text": "La generación de perfiles de columna del Editor de Power Query",
+        "correct": false,
+        "explanation": "El perfil de columnas analiza la calidad y la distribución de los datos durante la preparación, no el rendimiento de los objetos visuales del informe."
+      },
+      {
+        "id": "d",
+        "text": "El panel Análisis del objeto visual",
+        "correct": false,
+        "explanation": "El panel Análisis agrega líneas de referencia, previsiones o detección de anomalías a un visual; no mide tiempos."
+      }
+    ],
+    "keyPoint": "¿Qué visual es lento y por qué? → Analizador de rendimiento (consulta DAX, representación visual, otros), y luego la vista de consulta DAX.",
+    "references": [
+      { "title": "Uso del Analizador de rendimiento", "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/performance-analyzer" }
+    ]
+  },
+  {
+    "id": "pl300-caso-3-004",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-patrones",
+    "caseId": "caso-3",
+    "difficulty": 2,
+    "prompt": "Además de los requisitos de informes, el patronato plantea otras dos necesidades. Empareja cada necesidad con la característica de Power BI que la resuelve.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Analizar las donaciones por tramos de importe de 50 € (requisito 1)",
+        "answerId": "c1",
+        "explanation": "La discretización agrupa una columna numérica en intervalos del tamaño que indiques (50 €), lo que permite ver un histograma de importes. Se crea con Nuevo grupo sobre la columna Importe."
+      },
+      {
+        "id": "m2",
+        "text": "Señalar en el gráfico de líneas diario los días con un importe inusual y sus posibles causas (requisito 2)",
+        "answerId": "c2",
+        "explanation": "La detección de anomalías marca automáticamente los puntos inesperados de una serie temporal en un gráfico de líneas y ofrece explicaciones de los factores que pueden haber influido."
+      },
+      {
+        "id": "m3",
+        "text": "Saber qué categorías explican la fuerte subida de las donaciones de mayo respecto a abril",
+        "answerId": "c3",
+        "explanation": "Con clic derecho en el punto de mayo, Analizar > Explicar el aumento ejecuta un análisis automático y muestra qué categorías contribuyeron más al cambio."
+      },
+      {
+        "id": "m4",
+        "text": "Proyectar en el gráfico de líneas mensual las donaciones de los próximos tres meses",
+        "answerId": "c4",
+        "explanation": "La previsión del panel Análisis amplía una serie temporal de un gráfico de líneas con valores estimados y su intervalo de confianza."
+      }
+    ],
+    "choices": [
+      { "id": "c1", "text": "Discretización (grupo de tipo intervalo)" },
+      { "id": "c2", "text": "Detección de anomalías" },
+      { "id": "c3", "text": "Analizar > Explicar el aumento" },
+      { "id": "c4", "text": "Previsión del panel Análisis" },
+      { "id": "c5", "text": "Línea constante del panel Análisis" },
+      { "id": "c6", "text": "Grupo de tipo lista" }
+    ],
+    "keyPoint": "Tramos → discretización; puntos inusuales en series temporales → anomalías; ¿por qué cambió? → Explicar el aumento; futuro → previsión.",
+    "references": [
+      { "title": "Usar la agrupación y la discretización", "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-grouping-and-binning" },
+      { "title": "Detección de anomalías", "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-anomaly-detection" },
+      { "title": "Aplicar conclusiones para explicar las fluctuaciones", "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-insights" },
+      { "title": "Uso del panel Análisis", "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-analytics-pane" }
+    ]
+  },
+  {
+    "id": "pl300-caso-3-005",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-usabilidad",
+    "caseId": "caso-3",
+    "difficulty": 2,
+    "prompt": "Estás revisando el informe para cumplir el requisito de informes 3. Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Debes añadir texto alternativo a los objetos visuales que transmiten información; el lector de pantalla ya anuncia su título y su tipo.",
+        "answer": true,
+        "explanation": "El lector de pantalla lee el título, el tipo de objeto visual y el texto alternativo. El texto alternativo debe describir la conclusión que quieres transmitir, sin repetir el título."
+      },
+      {
+        "id": "s2",
+        "text": "Para que la navegación con el teclado siga el orden de lectura, configuras el orden de tabulación en el panel Selección y quitas de él las formas decorativas.",
+        "answer": true,
+        "explanation": "En el panel Selección, la vista Orden de tabulación permite reordenar los objetos y quitar del recorrido las formas e imágenes decorativas."
+      },
+      {
+        "id": "s3",
+        "text": "En el gráfico de líneas de donaciones por canal, basta con distinguir cada línea por su color, por ejemplo rojo y verde.",
+        "answer": false,
+        "explanation": "El color no debe ser la única forma de transmitir información, y el rojo con el verde es una combinación difícil para personas con daltonismo. Activa marcadores con formas distintas para cada línea."
+      },
+      {
+        "id": "s4",
+        "text": "El texto alternativo solo admite texto estático, así que no puede incluir el total de donaciones del periodo filtrado.",
+        "answer": false,
+        "explanation": "El texto alternativo admite formato condicional basado en una medida, así que puede ser dinámico y reflejar el valor según los filtros aplicados."
+      }
+    ],
+    "keyPoint": "Accesibilidad: texto alternativo (puede ser dinámico), orden de tabulación en el panel Selección y nunca solo el color para transmitir información.",
+    "references": [
+      { "title": "Diseñar informes de Power BI para accesibilidad", "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-accessibility-creating-reports" }
+    ]
+  },
+  {
+    "id": "pl300-caso-4-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "caseId": "caso-4",
+    "difficulty": 2,
+    "prompt": "¿Qué modo de almacenamiento debes usar para las tablas de telemetría para cumplir el requisito de informes 1?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Direct Lake",
+        "correct": true,
+        "explanation": "Direct Lake carga en memoria, cuando se necesitan, las tablas Delta de OneLake sin crear una copia completa en el modelo. Las consultas las procesa el motor VertiPaq, con un rendimiento similar al de importación, y los datos nuevos están disponibles sin largas actualizaciones de importación."
+      },
+      {
+        "id": "b",
+        "text": "Importación",
+        "correct": false,
+        "explanation": "Importación copia todo el volumen de datos en el modelo en cada actualización. Con miles de millones de filas que cambian cada 15 minutos, sería costoso y lento, y el requisito pide expresamente no copiar todo el volumen."
+      },
+      {
+        "id": "c",
+        "text": "DirectQuery al punto de conexión de análisis SQL del almacén de lago",
+        "correct": false,
+        "explanation": "DirectQuery no copia los datos, pero traduce cada consulta a SQL y la ejecuta en el origen. Suele ser más lento que importación o Direct Lake, así que no cumple la parte del requisito sobre el rendimiento."
+      },
+      {
+        "id": "d",
+        "text": "Conexión dinámica a un modelo semántico existente",
+        "correct": false,
+        "explanation": "La conexión dinámica reutiliza un modelo semántico ya publicado. Aquí todavía no hay modelo: hay que crearlo sobre las tablas Delta del almacén de lago."
+      }
+    ],
+    "keyPoint": "Tablas Delta grandes en OneLake + rendimiento de importación sin copiar los datos → Direct Lake.",
+    "references": [
+      { "title": "Información general de Direct Lake", "url": "https://learn.microsoft.com/es-es/fabric/fundamentals/direct-lake-overview" }
+    ]
+  },
+  {
+    "id": "pl300-caso-4-002",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "caseId": "caso-4",
+    "difficulty": 2,
+    "code": {
+      "language": "dax",
+      "content": "Existencias = SUM ( Inventario[Unidades] )"
+    },
+    "prompt": "La medida del anexo devuelve en el total de cada mes un valor unas 30 veces mayor que las existencias reales. Completa la explicación y la corrección para cumplir el requisito de informes 2.",
+    "template": "Unidades es una columna {{b1}}: puede sumarse por almacén y por pieza, pero no a lo largo del tiempo. Por eso defines la medida como CALCULATE ( SUM ( Inventario[Unidades] ), {{b2}} ).",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "semiaditiva" },
+          { "id": "o2", "text": "aditiva" },
+          { "id": "o3", "text": "no aditiva" }
+        ],
+        "correctId": "o1",
+        "explanation": "Un valor de instantánea, como las existencias, se puede sumar en cualquier dimensión excepto la fecha: es semiaditivo. Una columna aditiva se suma en todas las dimensiones, incluida la fecha, y una no aditiva, como un precio unitario, no se puede sumar en ninguna."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "LASTDATE ( 'Fecha'[Fecha] )" },
+          { "id": "o2", "text": "DATESYTD ( 'Fecha'[Fecha] )" },
+          { "id": "o3", "text": "ALL ( 'Fecha' )" }
+        ],
+        "correctId": "o1",
+        "explanation": "LASTDATE devuelve la última fecha del contexto de filtro, así que en un mes o un año suma solo la instantánea del último día. Como el requisito se refiere a meses ya cerrados, ese día tiene datos. DATESYTD acumularía todas las instantáneas del año, y ALL quitaría el filtro de fecha y sumaría todas las instantáneas."
+      }
+    ],
+    "keyPoint": "Instantáneas (existencias, saldos) → medida semiaditiva que evalúa solo la última fecha del periodo, por ejemplo con LASTDATE.",
+    "references": [
+      { "title": "Cálculos de inteligencia de tiempo adicionales (semiaditivos)", "url": "https://learn.microsoft.com/es-es/training/modules/dax-power-bi-time-intelligence/3-calculations" },
+      { "title": "LASTDATE", "url": "https://learn.microsoft.com/es-es/dax/lastdate-function-dax" }
+    ]
+  },
+  {
+    "id": "pl300-caso-4-003",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "caseId": "caso-4",
+    "difficulty": 3,
+    "prompt": "Debes cumplir el requisito de informes 3. ¿Qué dos acciones realizas? Elige 2.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crear un grupo de cálculo con un elemento de cálculo por variante: Periodo, Acumulado del año y Año anterior",
+        "correct": true,
+        "explanation": "Un grupo de cálculo aplica la misma lógica a cualquier medida explícita, así que evitas crear 45 medidas. Su columna se puede usar en un segmentador para elegir la variante."
+      },
+      {
+        "id": "b",
+        "text": "Escribir cada elemento de cálculo con SELECTEDMEASURE(), por ejemplo CALCULATE ( SELECTEDMEASURE (), DATESYTD ( 'Fecha'[Fecha] ) )",
+        "correct": true,
+        "explanation": "SELECTEDMEASURE actúa como marcador de posición de la medida que esté en el visual. Así, un único elemento sirve para las 15 medidas de producción."
+      },
+      {
+        "id": "c",
+        "text": "Activar Fecha y hora automáticas para que cada medida muestre las variantes de tiempo",
+        "correct": false,
+        "explanation": "Fecha y hora automáticas solo crea jerarquías de fecha ocultas para filtrar y agrupar; no calcula acumulados ni comparaciones con el año anterior."
+      },
+      {
+        "id": "d",
+        "text": "Permitir medidas implícitas para que los usuarios arrastren las columnas directamente a los visuales",
+        "correct": false,
+        "explanation": "Es al contrario: los elementos de cálculo solo se aplican a medidas explícitas, y al crear un grupo de cálculo Power BI te pide activar la propiedad Desaconsejar medidas implícitas."
+      },
+      {
+        "id": "e",
+        "text": "Crear una columna calculada en la tabla Fecha con el nombre de cada variante",
+        "correct": false,
+        "explanation": "Una columna con etiquetas permitiría segmentar por texto, pero no cambia el cálculo de las medidas. Seguirías necesitando 45 medidas o un grupo de cálculo."
+      }
+    ],
+    "keyPoint": "Misma lógica de tiempo para muchas medidas → grupo de cálculo con elementos basados en SELECTEDMEASURE().",
+    "references": [
+      { "title": "Crear grupos de cálculo", "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/calculation-groups" },
+      { "title": "SELECTEDMEASURE", "url": "https://learn.microsoft.com/es-es/dax/selectedmeasure-function-dax" }
+    ]
+  },
+  {
+    "id": "pl300-caso-4-004",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-usabilidad",
+    "caseId": "caso-4",
+    "difficulty": 2,
+    "prompt": "Vas a cumplir el requisito de informes 4 con la vista de diseño móvil. Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Cuando una página tiene diseño móvil, la aplicación móvil lo muestra automáticamente al sostener el teléfono en vertical.",
+        "answer": true,
+        "explanation": "La vista optimizada para móviles se muestra automáticamente en orientación vertical. Si el técnico gira el teléfono, ve el diseño normal de la página."
+      },
+      {
+        "id": "s2",
+        "text": "Para crear el diseño móvil arrastras al lienzo los objetos visuales que ya existen en la página del informe.",
+        "answer": true,
+        "explanation": "El panel Objetos visuales de página lista los visuales de la página original; los arrastras al lienzo móvil o usas la creación automática del diseño móvil."
+      },
+      {
+        "id": "s3",
+        "text": "Si reduces el tamaño de fuente de un objeto visual en el diseño móvil, el cambio también se aplica al diseño web.",
+        "answer": false,
+        "explanation": "Al cambiar una opción de formato en el diseño móvil, esa opción pasa a ser independiente: no afecta al diseño web, y los cambios del diseño web tampoco afectan a ese ajuste en el móvil."
+      },
+      {
+        "id": "s4",
+        "text": "Para ofrecer la versión móvil debes publicar un segundo informe solo para los técnicos.",
+        "answer": false,
+        "explanation": "El diseño móvil es una vista adicional de las páginas del mismo informe. Además, el caso pide mantener una sola copia de cada informe."
+      }
+    ],
+    "keyPoint": "El diseño móvil es una vista del mismo informe (vertical), creada con sus visuales y con formato independiente del diseño web.",
+    "references": [
+      { "title": "Crear informes optimizados para móviles", "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/power-bi-create-mobile-optimized-report-about" },
+      { "title": "Vista de diseño móvil", "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/power-bi-create-mobile-optimized-report-mobile-layout-view" },
+      { "title": "Optimizar el formato de los objetos visuales para móviles", "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/power-bi-create-mobile-optimized-report-format-visuals" }
+    ]
+  },
+  {
+    "id": "pl300-caso-4-005",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "caseId": "caso-4",
+    "difficulty": 2,
+    "prompt": "¿Cómo distribuyes el contenido para cumplir los requisitos de distribución?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Publicar una aplicación del área de trabajo con dos audiencias, Técnicos y Dirección, y mostrar a cada una solo sus informes",
+        "correct": true,
+        "explanation": "Una aplicación da acceso al contenido sin dar acceso al área de trabajo, y las audiencias permiten mostrar u ocultar elementos para cada grupo a partir de una sola copia de los informes. Como el área de trabajo está en una capacidad F64, los técnicos con licencia gratuita pueden ver la aplicación."
+      },
+      {
+        "id": "b",
+        "text": "Asignar a técnicos y directivos el rol Visor en el área de trabajo",
+        "correct": false,
+        "explanation": "El rol Visor da acceso al área de trabajo y a todo su contenido, lo que incumple los requisitos 1 y 2."
+      },
+      {
+        "id": "c",
+        "text": "Crear un área de trabajo por colectivo con una copia de los informes que le corresponden",
+        "correct": false,
+        "explanation": "Duplicar informes incumple el requisito 3 y obliga a mantener cada cambio por partida doble."
+      },
+      {
+        "id": "d",
+        "text": "Compartir cada informe por separado con los técnicos y con la dirección",
+        "correct": false,
+        "explanation": "Compartir elemento a elemento no ofrece una navegación organizada por colectivo y es difícil de administrar para 300 técnicos. Una aplicación con audiencias resuelve los tres requisitos a la vez."
+      }
+    ],
+    "keyPoint": "Distribuir a consumidores sin acceso al área de trabajo y con contenido distinto por grupo → aplicación con varias audiencias.",
+    "references": [
+      { "title": "Publicar una aplicación en Power BI", "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-create-distribute-apps" },
+      { "title": "Roles en áreas de trabajo en Power BI", "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-roles-new-workspaces" }
+    ]
+  },
+  {
+    "id": "pl300-caso-5-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "caseId": "caso-5",
+    "difficulty": 2,
+    "prompt": "Para cumplir el requisito de informes 1 combinas en Power Query la consulta Ventas (izquierda) con Títulos (derecha) por la columna ISBN. ¿Qué tipo de combinación eliges?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Anticombinación izquierda (Left anti)",
+        "correct": true,
+        "explanation": "La anticombinación izquierda solo devuelve las filas de la tabla izquierda que no tienen coincidencia en la derecha: las ventas cuyo ISBN no está en el catálogo."
+      },
+      {
+        "id": "b",
+        "text": "Combinación interna (Inner)",
+        "correct": false,
+        "explanation": "La combinación interna devuelve solo las filas que coinciden en ambas tablas, es decir, justo las ventas que sí existen en el catálogo."
+      },
+      {
+        "id": "c",
+        "text": "Combinación externa izquierda (Left outer)",
+        "correct": false,
+        "explanation": "Devuelve todas las ventas, coincidan o no. Tendrías que filtrar después las que tienen nulos en las columnas de Títulos, así que no te da directamente la lista."
+      },
+      {
+        "id": "d",
+        "text": "Anticombinación derecha (Right anti)",
+        "correct": false,
+        "explanation": "Devolvería los títulos del catálogo que no tienen ventas, que es la pregunta inversa a la del requisito."
+      }
+    ],
+    "keyPoint": "Filas de la tabla izquierda sin correspondencia en la derecha → anticombinación izquierda.",
+    "references": [
+      { "title": "Anticombinación izquierda", "url": "https://learn.microsoft.com/es-es/power-query/merge-queries-left-anti" },
+      { "title": "Información general sobre la combinación de consultas", "url": "https://learn.microsoft.com/es-es/power-query/merge-queries-overview" }
+    ]
+  },
+  {
+    "id": "pl300-caso-5-002",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "caseId": "caso-5",
+    "difficulty": 2,
+    "prompt": "Completa la solución para el requisito de informes 2.",
+    "template": "En la tabla Títulos creas {{b1}} que clasifica cada título según su FechaPublicacion, porque {{b2}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "una columna calculada" },
+          { "id": "o2", "text": "una medida" },
+          { "id": "o3", "text": "una tabla calculada" }
+        ],
+        "correctId": "o1",
+        "explanation": "Necesitas un valor por fila (la categoría de cada título) que sirva para filtrar, y eso es una columna. Una medida devuelve un resultado agregado según el contexto de filtro, y una tabla calculada crearía otra tabla sin añadir la categoría a cada título."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "un segmentador necesita valores almacenados en una columna y no admite medidas como campo" },
+          { "id": "o2", "text": "las columnas calculadas se recalculan cada vez que el usuario interactúa con el informe" },
+          { "id": "o3", "text": "las medidas no pueden hacer referencia a columnas de fecha" }
+        ],
+        "correctId": "o1",
+        "explanation": "Las columnas calculadas sirven para crear nuevos campos de segmentación o de relación, porque guardan un valor por fila. No se recalculan en cada interacción, sino al actualizar los datos (cada día en este caso), y las medidas sí pueden usar columnas de fecha dentro de funciones de agregación."
+      }
+    ],
+    "keyPoint": "Campo para segmentar, agrupar o relacionar → columna (calculada o de Power Query); resumen dinámico → medida.",
+    "references": [
+      { "title": "Crear columnas calculadas en Power BI Desktop", "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-calculated-columns" },
+      { "title": "Medidas explícitas y comparación con columnas calculadas", "url": "https://learn.microsoft.com/es-es/training/modules/dax-power-bi-create-calculations/5-explicit-measures" }
+    ]
+  },
+  {
+    "id": "pl300-caso-5-003",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-informes",
+    "caseId": "caso-5",
+    "difficulty": 2,
+    "prompt": "¿Qué tipo de elemento debes crear para el requisito de informes 3?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un informe paginado creado con Power BI Report Builder",
+        "correct": true,
+        "explanation": "Los informes paginados están optimizados para imprimir y generar PDF. Sus regiones de datos se expanden en tantas páginas como haga falta para mostrar todas las líneas, con encabezado y pie de página en cada hoja."
+      },
+      {
+        "id": "b",
+        "text": "Un informe de Power BI con una tabla de líneas de venta, exportado a PDF",
+        "correct": false,
+        "explanation": "Una tabla de un informe de Power BI no se amplía para mostrar todas las filas: añade barras de desplazamiento. Al exportar a PDF solo aparecería lo visible, no los cientos de líneas."
+      },
+      {
+        "id": "c",
+        "text": "Un panel con iconos anclados de cada autor",
+        "correct": false,
+        "explanation": "Un panel resume indicadores en iconos para supervisar; no genera un documento detallado de varias páginas con encabezado y pie."
+      },
+      {
+        "id": "d",
+        "text": "Un objeto visual narrativo de Copilot que resuma las ventas de cada autor",
+        "correct": false,
+        "explanation": "El objeto visual narrativo genera un resumen en texto del informe, pero no lista todas las líneas de venta ni produce un documento con formato de impresión."
+      }
+    ],
+    "keyPoint": "Documento para imprimir o PDF con todas las filas, encabezado y pie → informe paginado.",
+    "references": [
+      { "title": "¿Cuándo usar informes paginados en Power BI?", "url": "https://learn.microsoft.com/es-es/power-bi/guidance/report-paginated-or-power-bi" },
+      { "title": "Power BI Report Builder", "url": "https://learn.microsoft.com/es-es/power-bi/paginated-reports/paginated-reports-report-builder-power-bi" }
+    ]
+  },
+  {
+    "id": "pl300-caso-5-004",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-usabilidad",
+    "caseId": "caso-5",
+    "difficulty": 2,
+    "prompt": "Ordena los pasos para cumplir el requisito de informes 4 en Power BI Desktop.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Crear la página «Detalle del título» con los objetos visuales de detalle",
+        "explanation": "Primero necesitas la página de destino, que mostrará la información de un solo título."
+      },
+      {
+        "id": "p2",
+        "text": "Agregar el campo Títulos[Título] al área de obtención de detalles de esa página",
+        "explanation": "El campo de obtención de detalles convierte la página en destino y define el filtro que se aplicará. Power BI añade además un botón Atrás para volver."
+      },
+      {
+        "id": "p3",
+        "text": "En «Ventas por colección», insertar el botón «Ver detalle» y establecer su acción en Obtener detalles con destino «Detalle del título»",
+        "explanation": "El destino de un botón de obtención de detalles solo puede ser una página ya configurada para obtener detalles por un campo que esté en el visual seleccionado; por eso este paso va después."
+      },
+      {
+        "id": "p4",
+        "text": "Probar: seleccionar un título en el gráfico y pulsar el botón con Ctrl+clic",
+        "explanation": "En Power BI Desktop los botones se prueban con Ctrl+clic. El botón lleva a la página filtrada por el título que hayas seleccionado en el gráfico, así que primero seleccionas uno."
+      }
+    ],
+    "keyPoint": "Obtención de detalles con botón: página de destino → campo de obtención de detalles → botón con acción Obtener detalles → probar.",
+    "references": [
+      { "title": "Configurar la obtención de detalles en informes de Power BI", "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-drillthrough" },
+      { "title": "Crear botones en informes de Power BI", "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-buttons" }
+    ]
+  },
+  {
+    "id": "pl300-caso-5-005",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "caseId": "caso-5",
+    "difficulty": 2,
+    "prompt": "Asigna a cada persona o equipo el rol de área de trabajo con menos privilegios que cumpla los requisitos de seguridad.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Equipo de plataforma BI (requisito 1)",
+        "answerId": "c1",
+        "explanation": "Solo el Administrador puede actualizar y eliminar el área de trabajo y agregar o quitar a cualquier usuario, incluidos otros administradores."
+      },
+      {
+        "id": "m2",
+        "text": "Coordinadora editorial (requisito 2)",
+        "answerId": "c2",
+        "explanation": "El Miembro puede publicar, anular la publicación y cambiar los permisos de la aplicación, y agregar personas con permisos inferiores, pero no puede eliminar el área de trabajo ni quitar usuarios."
+      },
+      {
+        "id": "m3",
+        "text": "Analistas de colección (requisito 3)",
+        "answerId": "c3",
+        "explanation": "El Colaborador crea, edita y elimina contenido en el área de trabajo, pero no puede publicar una aplicación nueva ni agregar personas al área de trabajo."
+      },
+      {
+        "id": "m4",
+        "text": "Auditora interna (requisito 4)",
+        "answerId": "c4",
+        "explanation": "El Visor puede ver los elementos del área de trabajo e interactuar con ellos, pero no modificarlos. Es el rol de solo lectura."
+      }
+    ],
+    "choices": [
+      { "id": "c1", "text": "Administrador" },
+      { "id": "c2", "text": "Miembro" },
+      { "id": "c3", "text": "Colaborador" },
+      { "id": "c4", "text": "Visor" }
+    ],
+    "keyPoint": "Administrador: todo; Miembro: además publica la aplicación y añade personas; Colaborador: crea y edita contenido; Visor: solo ve.",
+    "references": [
+      { "title": "Roles en áreas de trabajo en Power BI", "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-roles-new-workspaces" }
+    ]
+  }
+]

@@ -1,0 +1,965 @@
+[
+  {
+    "id": "pl300-d1-conectar-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "scenario": "El equipo de BI de Lumen Seguros ha publicado y certificado un modelo semántico de Siniestros en un área de trabajo. Tienes permiso de compilación sobre él y debes crear un informe nuevo para la dirección sin duplicar el modelo ni su lógica.",
+    "prompt": "¿Cómo debes conectarte desde Power BI Desktop?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Con Obtener datos > Modelos semánticos de Power BI, eligiendo el modelo en el catálogo de OneLake",
+        "correct": true,
+        "explanation": "Crea una conexión dinámica (*live connection*) al modelo publicado: el informe reutiliza sus tablas, relaciones y medidas sin copiar datos ni lógica, y todos los informes comparten una única versión del modelo."
+      },
+      {
+        "id": "b",
+        "text": "Con el conector de SQL Server contra la base de datos de origen del modelo, importando las mismas tablas",
+        "correct": false,
+        "explanation": "Así vuelves a construir el modelo desde cero: duplicas transformaciones, relaciones y medidas, y tendrías otro modelo que actualizar y mantener."
+      },
+      {
+        "id": "c",
+        "text": "Exportando a Excel los datos de los objetos visuales de un informe existente e importando ese archivo",
+        "correct": false,
+        "explanation": "Obtendrías una copia estática y parcial de los datos, sin las relaciones ni las medidas del modelo certificado, y sin actualización automática."
+      },
+      {
+        "id": "d",
+        "text": "Descargando el archivo .pbix del modelo y publicando una copia con otro nombre",
+        "correct": false,
+        "explanation": "Publicar una copia crea un segundo modelo semántico con su propia actualización: es justo la proliferación de modelos que la conexión dinámica pretende evitar."
+      }
+    ],
+    "keyPoint": "Para reutilizar un modelo semántico publicado, conéctate en directo con Obtener datos > Modelos semánticos de Power BI; necesitas permiso de compilación.",
+    "references": [
+      {
+        "title": "Conexión con modelos semánticos en el servicio Power BI desde Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/desktop-report-lifecycle-datasets"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-002",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "scenario": "Marta crea en Power BI Desktop un informe con conexión dinámica (*live connection*) a un modelo semántico compartido de Ventas que mantiene otro equipo.",
+    "prompt": "¿Qué dos afirmaciones sobre su trabajo son correctas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Necesita permiso de compilación (*Build*) sobre el modelo semántico",
+        "correct": true,
+        "explanation": "Solo los usuarios con permiso de compilación pueden conectarse a un modelo semántico publicado mediante conexión dinámica."
+      },
+      {
+        "id": "b",
+        "text": "Puede crear medidas de informe, que se guardan en su propio informe",
+        "correct": true,
+        "explanation": "Con una conexión dinámica no hay modelo local, pero las medidas que crea el autor del informe se almacenan en el informe, sin modificar el modelo compartido."
+      },
+      {
+        "id": "c",
+        "text": "Puede abrir el Editor de Power Query y añadir pasos a las consultas del modelo",
+        "correct": false,
+        "explanation": "En una conexión dinámica no se puede modificar el modelo de datos: el informe no tiene consultas de Power Query propias y las del modelo solo puede cambiarlas su propietario."
+      },
+      {
+        "id": "d",
+        "text": "Los datos del modelo se copian dentro de su archivo .pbix",
+        "correct": false,
+        "explanation": "La conexión dinámica no importa datos: las consultas se resuelven contra el modelo publicado en el servicio."
+      },
+      {
+        "id": "e",
+        "text": "Puede cambiar el tipo de datos de las columnas del modelo de origen",
+        "correct": false,
+        "explanation": "Los tipos de datos de un modelo semántico remoto no se pueden cambiar desde el informe; habría que cambiarlos en el origen o usar una columna calculada en un modelo compuesto."
+      }
+    ],
+    "keyPoint": "Conexión dinámica: requiere permiso de compilación, no copia datos y solo permite añadir medidas de informe, no cambiar el modelo.",
+    "references": [
+      {
+        "title": "Conexión con modelos semánticos en el servicio Power BI desde Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/desktop-report-lifecycle-datasets"
+      },
+      {
+        "title": "Modo de almacenamiento en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-storage-mode"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-003",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 3,
+    "scenario": "En Andes Logística, Pablo tiene un informe con conexión dinámica al modelo semántico corporativo de Envíos. Ahora necesita añadir una tabla de objetivos que tiene en un libro de Excel y relacionarla con el modelo, sin modificar el modelo corporativo.",
+    "prompt": "¿Qué debe hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Seleccionar Realizar cambios en este modelo (*Make changes to this model*) para agregar un modelo local y después importar la tabla de Excel",
+        "correct": true,
+        "explanation": "Esta opción convierte la conexión dinámica en una conexión DirectQuery al modelo semántico y crea un modelo local (modelo compuesto) donde puede añadir tablas importadas y relacionarlas, sin tocar el modelo de origen."
+      },
+      {
+        "id": "b",
+        "text": "Pedir al equipo corporativo que cambie el modelo de Envíos a modo DirectQuery",
+        "correct": false,
+        "explanation": "El modo de almacenamiento del modelo remoto no es el problema: lo que Pablo necesita es un modelo local en su informe para poder añadir otras tablas."
+      },
+      {
+        "id": "c",
+        "text": "Importar el Excel manteniendo la conexión dinámica pura, porque admite tablas adicionales sin modelo local",
+        "correct": false,
+        "explanation": "Una conexión dinámica pura no tiene modelo local; para combinar el modelo con otros datos hay que agregar un modelo local y pasar a un modelo compuesto."
+      },
+      {
+        "id": "d",
+        "text": "Crear con DAX una tabla calculada con los objetivos dentro del modelo corporativo",
+        "correct": false,
+        "explanation": "Desde una conexión dinámica no se puede modificar el modelo corporativo y, además, el requisito es no cambiarlo."
+      }
+    ],
+    "keyPoint": "Para enriquecer un modelo semántico compartido con datos propios, usa Realizar cambios en este modelo: se crea un modelo compuesto con DirectQuery al modelo remoto.",
+    "references": [
+      {
+        "title": "Uso de modelos compuestos en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-composite-models"
+      },
+      {
+        "title": "Modo de almacenamiento en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-storage-mode"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-004",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "scenario": "Aurora Retail quiere reunir en un mismo modelo de Power BI datos de varias procedencias.",
+    "prompt": "Empareja cada origen con la opción de Obtener datos más adecuada.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Doce archivos CSV mensuales con el mismo esquema, guardados en una carpeta de red",
+        "answerId": "c1",
+        "explanation": "El conector Carpeta (*Folder*) lista todos los archivos y permite Combinar archivos (*Combine files*) en una sola tabla; el conector Texto o CSV solo abriría un archivo cada vez."
+      },
+      {
+        "id": "m2",
+        "text": "Una tabla HTML publicada en una página web pública de estadísticas",
+        "answerId": "c2",
+        "explanation": "El conector Web lee una dirección URL y detecta las tablas HTML de la página para mostrarlas en el Navegador."
+      },
+      {
+        "id": "m3",
+        "text": "La base de datos de pedidos de un servidor SQL Server de la oficina",
+        "answerId": "c3",
+        "explanation": "El conector de base de datos de SQL Server pide servidor y base de datos y permite elegir Importar o DirectQuery."
+      },
+      {
+        "id": "m4",
+        "text": "Las tablas Delta de un lakehouse de Microsoft Fabric",
+        "answerId": "c4",
+        "explanation": "Desde el catálogo de OneLake eliges elementos de Fabric, como un lakehouse o un almacén, y sus tablas."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Carpeta"
+      },
+      {
+        "id": "c2",
+        "text": "Web"
+      },
+      {
+        "id": "c3",
+        "text": "Base de datos de SQL Server"
+      },
+      {
+        "id": "c4",
+        "text": "Catálogo de OneLake"
+      },
+      {
+        "id": "c5",
+        "text": "Texto o CSV"
+      },
+      {
+        "id": "c6",
+        "text": "Modelos semánticos de Power BI"
+      }
+    ],
+    "keyPoint": "Elige el conector según el origen: Carpeta para varios archivos, Web para páginas, el de la base de datos para SQL y el catálogo de OneLake para Fabric.",
+    "references": [
+      {
+        "title": "Orígenes de datos en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/desktop-data-sources"
+      },
+      {
+        "title": "Introducción a la combinación de archivos",
+        "url": "https://learn.microsoft.com/es-es/power-query/combine-files-overview"
+      },
+      {
+        "title": "Direct Lake en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/fabric/fundamentals/direct-lake-power-bi-desktop"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-005",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "scenario": "Recursos humanos de Iberfruta mantiene la plantilla en un libro de Excel que cambia cada semana. El informe publicado debe reflejar los cambios con la actualización programada, y la empresa no quiere instalar una puerta de enlace de datos local.",
+    "prompt": "¿Dónde deberías guardar el libro antes de conectarte a él?",
+    "options": [
+      {
+        "id": "a",
+        "text": "En OneDrive para el trabajo o la escuela o en SharePoint, conectándote mediante su vínculo en línea",
+        "correct": true,
+        "explanation": "El servicio Power BI accede directamente a archivos en la nube, así que el modelo puede actualizarse sin puerta de enlace y mantenerse sincronizado con el libro."
+      },
+      {
+        "id": "b",
+        "text": "En el escritorio del analista, porque Power BI copia el archivo al publicar",
+        "correct": false,
+        "explanation": "Al importar un archivo local los datos se cargan en el modelo, pero el archivo no queda vinculado: para actualizar desde una ruta local el servicio necesita una puerta de enlace."
+      },
+      {
+        "id": "c",
+        "text": "En una carpeta compartida de la red de la oficina",
+        "correct": false,
+        "explanation": "Una carpeta de red es un origen local para el servicio Power BI: no puede alcanzarla por Internet sin una puerta de enlace de datos local."
+      },
+      {
+        "id": "d",
+        "text": "Dentro del propio archivo .pbix, como recurso incrustado",
+        "correct": false,
+        "explanation": "Los datos importados son una instantánea del momento de la carga; incrustar el archivo no permite que la actualización programada lea sus cambios."
+      }
+    ],
+    "keyPoint": "Los archivos en OneDrive o SharePoint se actualizan desde el servicio sin puerta de enlace; los archivos locales o de red la necesitan.",
+    "references": [
+      {
+        "title": "Obtención de datos de archivos",
+        "url": "https://learn.microsoft.com/es-es/training/modules/get-data/2-data-files"
+      },
+      {
+        "title": "Usar vínculos de OneDrive para el trabajo o escuela en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/desktop-use-onedrive-business-links"
+      },
+      {
+        "title": "Puertas de enlace de datos locales en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-gateway-onprem"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-006",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 1,
+    "scenario": "La directiva de seguridad de Termalia obliga a cambiar cada trimestre la contraseña de la cuenta de base de datos con la que tu archivo de Power BI Desktop se conecta a SQL Server.",
+    "prompt": "¿Cómo actualizas la contraseña guardada en Power BI Desktop?",
+    "options": [
+      {
+        "id": "a",
+        "text": "En Transformar datos > Configuración del origen de datos (*Data source settings*), seleccionas el origen, Editar permisos y, en Credenciales, Editar",
+        "correct": true,
+        "explanation": "Las credenciales se guardan por origen de datos y se cambian desde Configuración del origen de datos > Editar permisos, sin tocar las consultas."
+      },
+      {
+        "id": "b",
+        "text": "Escribes la nueva contraseña en el paso Origen desde el Editor avanzado",
+        "correct": false,
+        "explanation": "Las credenciales no forman parte del código M de la consulta; se almacenan aparte, asociadas al origen de datos."
+      },
+      {
+        "id": "c",
+        "text": "Eliminas la consulta y la vuelves a crear desde Obtener datos",
+        "correct": false,
+        "explanation": "Funcionaría, pero perderías los pasos aplicados; basta con editar las credenciales del origen existente."
+      },
+      {
+        "id": "d",
+        "text": "Cambias el nivel de privacidad del origen a Público para que deje de pedir credenciales",
+        "correct": false,
+        "explanation": "El nivel de privacidad controla cómo se combinan los datos entre orígenes; no tiene nada que ver con la autenticación."
+      }
+    ],
+    "keyPoint": "Credenciales y niveles de privacidad se cambian en Configuración del origen de datos > Editar permisos.",
+    "references": [
+      {
+        "title": "Obtención de datos de bases de datos relacionales",
+        "url": "https://learn.microsoft.com/es-es/training/modules/get-data/3-relational-data"
+      },
+      {
+        "title": "Autenticación con un origen de datos",
+        "url": "https://learn.microsoft.com/es-es/power-query/connector-authentication"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-007",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre los niveles de privacidad de Power Query es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Los datos de un origen marcado como Privado no se pueden plegar a otros orígenes, ni siquiera a otro origen Privado.",
+        "answer": true,
+        "explanation": "Privado es el nivel más restrictivo: sus datos no se envían a ningún otro origen, incluidos otros privados."
+      },
+      {
+        "id": "s2",
+        "text": "Un origen marcado como Organizativo puede enviar sus datos a un origen marcado como Público al combinarlos.",
+        "answer": false,
+        "explanation": "Los orígenes organizativos pueden combinarse con orígenes privados y organizativos, pero sus datos no pueden plegarse a orígenes públicos."
+      },
+      {
+        "id": "s3",
+        "text": "Omitir los niveles de privacidad (combinación rápida o *Fast Combine*) puede mejorar el rendimiento, pero puede exponer datos confidenciales.",
+        "answer": true,
+        "explanation": "Al omitirlos, Power Query combina sin aislar los orígenes; por eso Microsoft recomienda activarlo solo si los orígenes no contienen datos sensibles."
+      },
+      {
+        "id": "s4",
+        "text": "La opción global predeterminada de Power BI Desktop omite siempre la configuración de nivel de privacidad.",
+        "answer": false,
+        "explanation": "El valor predeterminado global es combinar los datos según la configuración de nivel de privacidad de cada archivo; omitirla nunca está activado por defecto."
+      }
+    ],
+    "keyPoint": "Privado no comparte con nadie, Organizativo comparte con orígenes de confianza pero no con Públicos, y omitir la privacidad es un riesgo consciente.",
+    "references": [
+      {
+        "title": "Niveles de privacidad",
+        "url": "https://learn.microsoft.com/es-es/power-query/privacy-levels"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-008",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 3,
+    "scenario": "En Vinoteca Duero, una consulta combina la tabla de comisiones de un libro de Excel con una tabla de SQL Server de la empresa. El libro está en el SharePoint de la intranet, accesible para el equipo comercial, pero alguien lo marcó como Privado; el origen SQL Server está marcado como Organizativo. Al actualizar aparece un error Formula.Firewall que indica que los orígenes tienen niveles de privacidad que no se pueden usar juntos.",
+    "prompt": "¿Qué debes hacer para resolver el error sin desactivar la protección de privacidad?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cambiar el nivel de privacidad del libro a Organizativo en Configuración del origen de datos > Editar permisos",
+        "correct": true,
+        "explanation": "El libro es información interna para un grupo de confianza, que es la definición de Organizativo; con ambos orígenes en Organizativo pueden combinarse sin riesgo."
+      },
+      {
+        "id": "b",
+        "text": "Activar Omitir siempre la configuración del nivel de privacidad",
+        "correct": false,
+        "explanation": "Resolvería el error, pero desactivando la protección, que es justo lo que pide evitar el enunciado."
+      },
+      {
+        "id": "c",
+        "text": "Marcar también el origen SQL Server como Privado",
+        "correct": false,
+        "explanation": "Los datos de un origen privado no pueden plegarse a ningún otro origen, ni siquiera a otro privado, así que el error persistiría."
+      },
+      {
+        "id": "d",
+        "text": "Cambiar las credenciales de SQL Server a una cuenta de Windows",
+        "correct": false,
+        "explanation": "El error lo provoca el firewall de privacidad por los niveles asignados, no el método de autenticación."
+      }
+    ],
+    "keyPoint": "Los errores Formula.Firewall por niveles de privacidad se resuelven clasificando bien cada origen, no omitiendo la privacidad.",
+    "references": [
+      {
+        "title": "Niveles de privacidad",
+        "url": "https://learn.microsoft.com/es-es/power-query/privacy-levels"
+      },
+      {
+        "title": "Firewall de privacidad de datos de Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/data-privacy-firewall"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-009",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 1,
+    "scenario": "El archivo CSV de inventario que usa tu informe se ha movido de C:\\Datos a la carpeta compartida \\\\srv-almacen\\informes, con el mismo nombre y la misma estructura.",
+    "prompt": "Completa la frase.",
+    "template": "En Power BI Desktop abres {{b1}} y, tras seleccionar el origen, usas {{b2}} para indicar la nueva ruta.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Transformar datos > Configuración del origen de datos"
+          },
+          {
+            "id": "o2",
+            "text": "Archivo > Opciones > Características en versión preliminar"
+          },
+          {
+            "id": "o3",
+            "text": "Modelado > Administrar relaciones"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Configuración del origen de datos (*Data source settings*) lista los orígenes del archivo y permite cambiarlos; las otras opciones no gestionan orígenes."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Cambiar origen"
+          },
+          {
+            "id": "o2",
+            "text": "Borrar permisos"
+          },
+          {
+            "id": "o3",
+            "text": "Editar permisos"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Cambiar origen (*Change source*) actualiza la ruta del archivo en las consultas; Editar y Borrar permisos solo afectan a credenciales y niveles de privacidad."
+      }
+    ],
+    "keyPoint": "Si un archivo de origen cambia de ubicación, usa Configuración del origen de datos > Cambiar origen; la estructura del archivo debe ser la misma.",
+    "references": [
+      {
+        "title": "Obtención de datos de archivos",
+        "url": "https://learn.microsoft.com/es-es/training/modules/get-data/2-data-files"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-010",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "prompt": "Empareja cada origen de datos con el nivel de privacidad más adecuado.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Libro con las evaluaciones de desempeño de los empleados",
+        "answerId": "c2",
+        "explanation": "Contiene información confidencial que solo deben ver usuarios autorizados: es el ejemplo típico de origen Privado."
+      },
+      {
+        "id": "m2",
+        "text": "Documento en un sitio de SharePoint de la intranet con permisos para un grupo de confianza",
+        "answerId": "c3",
+        "explanation": "Organizativo se usa para datos visibles para un grupo de confianza dentro de la organización."
+      },
+      {
+        "id": "m3",
+        "text": "Tabla de población de una página pública de Wikipedia",
+        "answerId": "c4",
+        "explanation": "Los datos disponibles para cualquiera en Internet pueden marcarse como Públicos y plegarse a otros orígenes."
+      },
+      {
+        "id": "m4",
+        "text": "Base de datos de un entorno de desarrollo controlado, usada para pruebas de rendimiento",
+        "answerId": "c1",
+        "explanation": "Ninguno desactiva la clasificación de privacidad; Microsoft lo sugiere solo para entornos de desarrollo controlados, con cuidado."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Ninguno"
+      },
+      {
+        "id": "c2",
+        "text": "Privado"
+      },
+      {
+        "id": "c3",
+        "text": "Organizativo"
+      },
+      {
+        "id": "c4",
+        "text": "Público"
+      }
+    ],
+    "keyPoint": "Privado = confidencial, Organizativo = grupo de confianza, Público = datos abiertos, Ninguno = solo entornos controlados.",
+    "references": [
+      {
+        "title": "Niveles de privacidad",
+        "url": "https://learn.microsoft.com/es-es/power-query/privacy-levels"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-011",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "scenario": "Mercaluz, una cadena de supermercados, registra las ventas de sus terminales punto de venta en una base de datos de Azure SQL con miles de millones de filas que crece cada minuto. La directiva de seguridad prohíbe guardar copias de esos datos fuera de la base de datos, y los responsables de tienda necesitan ver las ventas más recientes al abrir el informe.",
+    "prompt": "¿Qué modo de almacenamiento debes usar para la tabla de ventas?",
+    "options": [
+      {
+        "id": "a",
+        "text": "DirectQuery",
+        "correct": true,
+        "explanation": "DirectQuery no importa datos: cada objeto visual consulta el origen, así que se respetan la prohibición de copias y la necesidad de datos actuales con grandes volúmenes."
+      },
+      {
+        "id": "b",
+        "text": "Importar",
+        "correct": false,
+        "explanation": "Importar guarda una copia de los datos en el modelo, lo que incumple la directiva, y solo muestra lo cargado en la última actualización."
+      },
+      {
+        "id": "c",
+        "text": "Direct Lake",
+        "correct": false,
+        "explanation": "Direct Lake lee tablas Delta de OneLake en Microsoft Fabric; el origen aquí es una base de datos de Azure SQL."
+      },
+      {
+        "id": "d",
+        "text": "Dual",
+        "correct": false,
+        "explanation": "Una tabla Dual también guarda una copia importada para responder desde memoria cuando conviene, así que no cumple la restricción de no copiar datos."
+      }
+    ],
+    "keyPoint": "Usa DirectQuery cuando los datos no pueden copiarse al modelo o deben verse casi en tiempo real desde un origen relacional grande.",
+    "references": [
+      {
+        "title": "Uso de DirectQuery en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/desktop-directquery-about"
+      },
+      {
+        "title": "Modo de almacenamiento en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-storage-mode"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-012",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 3,
+    "scenario": "Los ingenieros de datos de Nórdica Energía cargan cada hora las lecturas de contadores en tablas Delta de un lakehouse de Microsoft Fabric. El área de trabajo está en una capacidad de Fabric. Quieren un modelo semántico con un rendimiento de consulta similar al de Importar, sin copiar todo el volumen de datos en cada actualización programada.",
+    "prompt": "¿Qué modo de almacenamiento recomiendas?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Direct Lake",
+        "correct": true,
+        "explanation": "Direct Lake carga en memoria las columnas de las tablas Delta de OneLake y las consulta con el motor VertiPaq; su actualización solo renueva metadatos, sin copiar los datos."
+      },
+      {
+        "id": "b",
+        "text": "Importar",
+        "correct": false,
+        "explanation": "Importar ofrece buen rendimiento, pero cada actualización vuelve a copiar los datos en el modelo, lo que es justo lo que se quiere evitar."
+      },
+      {
+        "id": "c",
+        "text": "DirectQuery",
+        "correct": false,
+        "explanation": "DirectQuery envía cada consulta al origen; suele ser más lento que Importar o Direct Lake al interactuar con los objetos visuales."
+      },
+      {
+        "id": "d",
+        "text": "Conexión dinámica",
+        "correct": false,
+        "explanation": "Una conexión dinámica conecta un informe a un modelo semántico existente; no es un modo para construir el modelo sobre las tablas del lakehouse."
+      }
+    ],
+    "keyPoint": "Direct Lake combina datos Delta en OneLake con rendimiento tipo Importar y actualizaciones ligeras; requiere capacidad de Fabric.",
+    "references": [
+      {
+        "title": "Introducción a Direct Lake",
+        "url": "https://learn.microsoft.com/es-es/fabric/fundamentals/direct-lake-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-013",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 3,
+    "prompt": "Empareja cada requisito con el modo de almacenamiento de tabla más adecuado.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Combinar un Excel, una lista de SharePoint y una API con todas las funciones de Power Query y DAX; basta con actualizar una vez al día",
+        "answerId": "c1",
+        "explanation": "Importar admite cualquier conector y el conjunto completo de transformaciones M y de DAX; es el modo predeterminado cuando la latencia de una actualización diaria es aceptable."
+      },
+      {
+        "id": "m2",
+        "text": "Consultar tablas Delta de OneLake con el motor VertiPaq sin copiar los datos en cada actualización",
+        "answerId": "c3",
+        "explanation": "Direct Lake lee directamente las tablas Delta de OneLake y su actualización (reencuadre) solo cambia metadatos."
+      },
+      {
+        "id": "m3",
+        "text": "Mostrar en cada interacción los datos actuales de una base de datos relacional muy grande",
+        "answerId": "c2",
+        "explanation": "DirectQuery traduce cada consulta al lenguaje del origen, así que siempre devuelve los datos actuales."
+      },
+      {
+        "id": "m4",
+        "text": "Una dimensión de fechas que filtra a la vez una tabla de hechos importada y otra en DirectQuery",
+        "answerId": "c4",
+        "explanation": "Una tabla Dual puede actuar como importada o como DirectQuery según la consulta, lo que evita relaciones limitadas en modelos compuestos."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Importar"
+      },
+      {
+        "id": "c2",
+        "text": "DirectQuery"
+      },
+      {
+        "id": "c3",
+        "text": "Direct Lake"
+      },
+      {
+        "id": "c4",
+        "text": "Dual"
+      },
+      {
+        "id": "c5",
+        "text": "Conexión dinámica"
+      }
+    ],
+    "keyPoint": "Importar = flexibilidad total, DirectQuery = datos actuales del origen, Direct Lake = Delta en OneLake, Dual = dimensiones compartidas en modelos compuestos.",
+    "references": [
+      {
+        "title": "Modo de almacenamiento en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-storage-mode"
+      },
+      {
+        "title": "Introducción a Direct Lake",
+        "url": "https://learn.microsoft.com/es-es/fabric/fundamentals/direct-lake-overview"
+      },
+      {
+        "title": "Modos de modelo semántico en el servicio Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-dataset-modes-understand"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-014",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre los modos de almacenamiento en Power BI Desktop es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puedes cambiar una tabla en DirectQuery al modo Importar o Dual.",
+        "answer": true,
+        "explanation": "Las tablas creadas en DirectQuery pueden pasar a Importar o Dual desde la propiedad Modo de almacenamiento, siempre que sus transformaciones se sigan plegando."
+      },
+      {
+        "id": "s2",
+        "text": "Después de pasar una tabla de DirectQuery a Importar en Power BI Desktop, puedes devolverla a DirectQuery desde el panel Propiedades.",
+        "answer": false,
+        "explanation": "El cambio a Importar no tiene vuelta atrás en un modelo local de Power BI Desktop; solo el modelado web y la edición en vivo permiten revertirlo con el historial de versiones."
+      },
+      {
+        "id": "s3",
+        "text": "Los modelos semánticos con tablas Direct Lake requieren una capacidad de Microsoft Fabric.",
+        "answer": true,
+        "explanation": "Direct Lake solo está disponible con una suscripción de capacidad de Fabric, a diferencia de Importar y DirectQuery."
+      },
+      {
+        "id": "s4",
+        "text": "En DirectQuery puedes aplicar cualquier transformación de Power Query aunque no se pueda plegar al origen.",
+        "answer": false,
+        "explanation": "En DirectQuery las transformaciones deben poder traducirse a una única consulta nativa; los pasos que no se pliegan provocan errores o obligan a cambiar a Importar."
+      }
+    ],
+    "keyPoint": "DirectQuery → Importar es un cambio de un solo sentido en Desktop; DirectQuery exige pasos plegables y Direct Lake exige capacidad de Fabric.",
+    "references": [
+      {
+        "title": "Modo de almacenamiento en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-storage-mode"
+      },
+      {
+        "title": "Uso de DirectQuery en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/desktop-directquery-about"
+      },
+      {
+        "title": "Introducción a Direct Lake",
+        "url": "https://learn.microsoft.com/es-es/fabric/fundamentals/direct-lake-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-015",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "prompt": "Completa la frase sobre Direct Lake.",
+    "template": "Una tabla en modo Direct Lake lee los datos de {{b1}}, y su actualización {{b2}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "tablas Delta almacenadas en OneLake"
+          },
+          {
+            "id": "o2",
+            "text": "una copia comprimida dentro del archivo .pbix"
+          },
+          {
+            "id": "o3",
+            "text": "consultas SQL enviadas a cualquier base de datos local"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Direct Lake está optimizado para cargar en memoria datos de tablas Delta de OneLake; no guarda una copia importada ni consulta bases de datos locales."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "solo renueva los metadatos para apuntar a la versión más reciente de las tablas Delta"
+          },
+          {
+            "id": "o2",
+            "text": "vuelve a copiar todos los datos en el modelo"
+          },
+          {
+            "id": "o3",
+            "text": "requiere una puerta de enlace de datos local"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "La actualización de Direct Lake (reencuadre, *framing*) es una operación ligera de metadatos, a diferencia de la actualización de Importar, que copia todos los datos."
+      }
+    ],
+    "keyPoint": "Direct Lake = datos Delta en OneLake + actualización de solo metadatos (reencuadre).",
+    "references": [
+      {
+        "title": "Introducción a Direct Lake",
+        "url": "https://learn.microsoft.com/es-es/fabric/fundamentals/direct-lake-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-016",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "scenario": "Tu informe de Clínicas Sanavida se conecta al servidor SQL de desarrollo. Antes de publicarlo has creado un parámetro y lo usas en el paso Origen de la consulta Citas:",
+    "code": {
+      "language": "m",
+      "content": "// Consulta ServidorSQL (parámetro)\n\"sql-dev.sanavida.local\" meta [IsParameterQuery = true, Type = \"Text\", IsParameterQueryRequired = true]\n\n// Consulta Citas\nlet\n    Origen = Sql.Database(ServidorSQL, \"Clinica\"),\n    Citas = Origen{[Schema = \"dbo\", Item = \"Citas\"]}[Data]\nin\n    Citas"
+    },
+    "prompt": "Una vez publicado, el modelo semántico debe apuntar al servidor de producción. ¿Qué es lo más sencillo?",
+    "options": [
+      {
+        "id": "a",
+        "text": "En el servicio Power BI, abrir la configuración del modelo semántico, expandir Parámetros y cambiar el valor de ServidorSQL",
+        "correct": true,
+        "explanation": "Los parámetros definidos en Desktop se publican con el modelo y su valor puede editarse en la configuración del modelo semántico, sin volver a publicar."
+      },
+      {
+        "id": "b",
+        "text": "Crear en el servicio un parámetro nuevo con el nombre del servidor de producción",
+        "correct": false,
+        "explanation": "En el servicio Power BI puedes revisar y editar parámetros existentes, pero no crearlos."
+      },
+      {
+        "id": "c",
+        "text": "Cambiar el nivel de privacidad del origen a Organizativo",
+        "correct": false,
+        "explanation": "El nivel de privacidad no determina a qué servidor se conecta la consulta."
+      },
+      {
+        "id": "d",
+        "text": "Volver a crear la consulta Citas desde Obtener datos apuntando a producción y publicar de nuevo",
+        "correct": false,
+        "explanation": "Funcionaría, pero obliga a rehacer los pasos y republicar; el parámetro existe precisamente para cambiar el servidor sin editar consultas."
+      }
+    ],
+    "keyPoint": "Parametriza servidores y bases de datos para cambiar de entorno editando el parámetro en la configuración del modelo semántico.",
+    "references": [
+      {
+        "title": "Edición de la configuración de los parámetros en el servicio Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-parameters"
+      },
+      {
+        "title": "Uso de parámetros",
+        "url": "https://learn.microsoft.com/es-es/power-query/power-query-query-parameters"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-017",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "scenario": "Quieres que el informe de Fábricas Ebro pueda cambiar de base de datos (pruebas o producción) sin editar las consultas, también después de publicarlo.",
+    "prompt": "Ordena los pasos.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "En el Editor de Power Query, selecciona Administrar parámetros (*Manage parameters*) > Nuevo parámetro",
+        "explanation": "Primero hay que abrir la ventana donde se crean los parámetros."
+      },
+      {
+        "id": "p2",
+        "text": "Define el nombre BaseDatos, el tipo Texto y el valor actual con la base de datos de pruebas",
+        "explanation": "El parámetro debe existir, con su tipo y valor, antes de poder usarlo en una consulta."
+      },
+      {
+        "id": "p3",
+        "text": "Modifica el paso Origen de la consulta para usar BaseDatos en lugar del nombre escrito a mano",
+        "explanation": "Solo puedes referenciar el parámetro una vez creado; a partir de aquí la consulta depende de su valor."
+      },
+      {
+        "id": "p4",
+        "text": "Cierra y aplica, y publica el informe en el área de trabajo",
+        "explanation": "El modelo semántico, con sus parámetros, debe estar publicado para poder configurarlo en el servicio."
+      },
+      {
+        "id": "p5",
+        "text": "En la configuración del modelo semántico del servicio, cambia el valor del parámetro a la base de datos de producción y actualiza",
+        "explanation": "El último paso solo es posible cuando el modelo ya está en el servicio con el parámetro en uso."
+      }
+    ],
+    "keyPoint": "Crear parámetro → usarlo en la consulta → publicar → cambiar su valor en el servicio.",
+    "references": [
+      {
+        "title": "Uso de parámetros",
+        "url": "https://learn.microsoft.com/es-es/power-query/power-query-query-parameters"
+      },
+      {
+        "title": "Edición de la configuración de los parámetros en el servicio Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-parameters"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-018",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "prompt": "¿Qué dos afirmaciones sobre los parámetros de consulta en Power BI Desktop son correctas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Puedes convertir en parámetro una consulta cuyo resultado es un valor constante, como un texto o una fecha, con Convertir en parámetro",
+        "correct": true,
+        "explanation": "Power Query permite crear parámetros desde una consulta con un valor constante simple, además de desde Administrar parámetros."
+      },
+      {
+        "id": "b",
+        "text": "En Valores sugeridos puedes elegir Lista de valores o una consulta que devuelva una lista",
+        "correct": true,
+        "explanation": "Valores sugeridos admite Cualquier valor, Lista de valores o Consulta (una consulta de lista) para proponer los valores del parámetro."
+      },
+      {
+        "id": "c",
+        "text": "En el servicio Power BI puedes crear parámetros nuevos para un modelo semántico publicado",
+        "correct": false,
+        "explanation": "En el servicio solo puedes revisar y editar los parámetros creados en Desktop, no crearlos."
+      },
+      {
+        "id": "d",
+        "text": "El servicio Power BI permite editar parámetros de tipo Any o Binary",
+        "correct": false,
+        "explanation": "Los parámetros Any y Binary funcionan en Desktop, pero el servicio no los admite por motivos de seguridad."
+      },
+      {
+        "id": "e",
+        "text": "Un parámetro solo puede usarse en el paso Origen de una consulta",
+        "correct": false,
+        "explanation": "Los parámetros sirven como argumento de muchas transformaciones (por ejemplo, un filtro de filas) y de funciones personalizadas, no solo en el origen."
+      }
+    ],
+    "keyPoint": "Los parámetros se crean en Desktop (Administrar parámetros o Convertir en parámetro), se usan en cualquier paso y en el servicio solo se editan.",
+    "references": [
+      {
+        "title": "Uso de parámetros",
+        "url": "https://learn.microsoft.com/es-es/power-query/power-query-query-parameters"
+      },
+      {
+        "title": "Edición de la configuración de los parámetros en el servicio Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-parameters"
+      }
+    ]
+  }
+]

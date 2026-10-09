@@ -1,1 +1,132 @@
-[]
+[
+  {
+    "id": "caso-1",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "title": "Ventas y objetivos de tienda",
+    "company": "Supermercados Valdelagua",
+    "summary": "Una cadena regional de supermercados quiere un informe diario de ventas frente a objetivos, con datos de un servidor local y de archivos de Excel en SharePoint Online.",
+    "sections": [
+      {
+        "title": "Contexto",
+        "body": "**Supermercados Valdelagua** tiene 120 tiendas repartidas en cuatro regiones. Un equipo de BI de tres analistas crea y mantiene en Power BI Desktop el modelo semántico de ventas, que se publica en un área de trabajo de capacidad compartida; todos los analistas tienen licencia Power BI Pro."
+      },
+      {
+        "title": "Orígenes de datos",
+        "body": "- **Ventas**: base de datos SQL Server instalada en el CPD de la sede (red local). Contiene varios años de tiques, decenas de millones de filas, con la columna FechaVenta (fecha, sin hora). El TPV la carga cada noche y termina antes de las 4:00.\n- **Objetivos**: libro de Excel en SharePoint Online que mantiene el departamento comercial, con una fila por tienda y una columna por mes (Ene, Feb… Dic).\n- **Catálogo de productos**: libro de Excel en SharePoint Online que mantiene el departamento de compras."
+      },
+      {
+        "title": "Requisitos de informes",
+        "body": "1. Los informes deben mostrar los datos del día anterior antes de las 7:00.\n2. Las ventas deben compararse con el mismo periodo del año anterior. El equipo usa las funciones clásicas de inteligencia de tiempo de DAX, como SAMEPERIODLASTYEAR.\n3. Una tabla debe mostrar el cumplimiento de objetivo de cada tienda: rojo por debajo del 90 %, ámbar entre el 90 % y el 100 % y verde a partir del 100 %."
+      },
+      {
+        "title": "Problemas actuales",
+        "body": "1. Muchas ventas aparecen asociadas a un producto «(En blanco)» porque algunos códigos del catálogo tienen espacios delante, por ejemplo « 004512».\n2. La columna PrecioTarifa del catálogo contiene el texto «Consultar» en algunos productos y produce errores al convertirla en número. Esos productos deben conservarse, con el precio vacío."
+      }
+    ]
+  },
+  {
+    "id": "caso-2",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "title": "Siniestros en tiempo casi real",
+    "company": "Seguros Atalaya",
+    "summary": "Una aseguradora quiere seguir los siniestros abiertos casi en tiempo real y que cada agente vea solo su cartera de pólizas.",
+    "sections": [
+      {
+        "title": "Contexto",
+        "body": "**Seguros Atalaya** vende seguros de hogar y de automóvil a través de 250 agentes. El equipo de BI publica sus informes en un área de trabajo asignada a una capacidad de Microsoft Fabric F64, con la configuración de capacidad predeterminada. Los agentes y la dirección consumen los informes mediante una aplicación de Power BI."
+      },
+      {
+        "title": "Orígenes de datos",
+        "body": "- **Pólizas y Siniestros**: Azure SQL Database. La tabla Siniestros recibe cambios continuamente desde el sistema de tramitación y tiene las columnas IdPoliza, FechaApertura y FechaCierre.\n- **Agentes**: tabla de la misma base de datos con una fila por agente y la columna Correo, que coincide con su nombre principal de usuario de Microsoft Entra ID.\n- El modelo tiene una única tabla Fecha. Las relaciones son Agentes → Pólizas → Siniestros, de uno a varios."
+      },
+      {
+        "title": "Requisitos de informes",
+        "body": "1. La página «Siniestros abiertos» debe actualizarse sola cada cinco minutos, sin que el usuario pulse ningún botón.\n2. Un mismo objeto visual debe mostrar, por mes, los siniestros abiertos y los cerrados, filtrados con un único segmentador de la tabla Fecha.\n3. Las primas emitidas deben compararse con el mismo periodo del año anterior."
+      },
+      {
+        "title": "Requisitos de seguridad",
+        "body": "1. Cada agente solo debe ver las pólizas y siniestros de su cartera.\n2. Los miembros de la dirección deben ver todos los datos.\n3. La pertenencia se gestiona con los grupos de seguridad de Microsoft Entra SG-Agentes y SG-Direccion.\n4. Fuera del equipo de BI, nadie debe poder editar contenido del área de trabajo."
+      }
+    ]
+  },
+  {
+    "id": "caso-3",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "title": "Donaciones y campañas solidarias",
+    "company": "Fundación Raíces Comunes",
+    "summary": "Una ONG quiere consolidar los archivos diarios de su plataforma de donaciones y presentar a su patronato un informe rápido, accesible y que ayude a descubrir patrones.",
+    "sections": [
+      {
+        "title": "Contexto",
+        "body": "**Fundación Raíces Comunes** financia proyectos de agua potable y educación en doce países. Su analista de datos trabaja con Power BI Desktop configurado con la región Español (España). El patronato revisa el informe cada mes, y uno de sus miembros usa un lector de pantalla."
+      },
+      {
+        "title": "Orígenes de datos",
+        "body": "- **Donaciones**: la plataforma internacional de donaciones deja cada día un archivo CSV con la misma estructura en la carpeta Donaciones de la biblioteca Documentos del sitio de SharePoint Online de la fundación. La biblioteca contiene otras carpetas con PDF y fotografías. La columna FechaDonacion viene en formato de Estados Unidos (mes/día/año).\n- **Gastos de proyectos**: CSV que genera la contabilidad, con fechas dd/mm/aaaa e importes con coma decimal."
+      },
+      {
+        "title": "Requisitos de informes",
+        "body": "1. Las donaciones deben analizarse por tramos de importe de 50 €.\n2. El informe debe señalar los días con un importe donado inusual y explicar posibles causas.\n3. El informe debe poder usarse con lector de pantalla y teclado."
+      },
+      {
+        "title": "Problemas actuales",
+        "body": "1. Al cambiar FechaDonacion al tipo Fecha, aparecen errores y algunas fechas se interpretan mal.\n2. La página «Resumen» tarda más de 15 segundos en cargar y no se sabe qué objeto visual es el responsable."
+      }
+    ]
+  },
+  {
+    "id": "caso-4",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "title": "Producción y repuestos de parques eólicos",
+    "company": "Parques Altozano Energía",
+    "summary": "Una empresa de energía renovable quiere analizar la telemetría de sus aerogeneradores en Microsoft Fabric y distribuir los informes a técnicos de campo y a la dirección.",
+    "sections": [
+      {
+        "title": "Contexto",
+        "body": "**Parques Altozano Energía** opera 18 parques eólicos. Unos 300 técnicos de campo, con licencia gratuita de Fabric, consultan los informes desde el teléfono; la dirección los consulta en el portátil. El contenido se publica en un área de trabajo asignada a una capacidad de Fabric F64."
+      },
+      {
+        "title": "Orígenes de datos",
+        "body": "- **Telemetría**: tablas Delta de un almacén de lago (*lakehouse*) de Fabric que los ingenieros de datos cargan cada 15 minutos con cuadernos de Spark. Contiene miles de millones de filas.\n- **Inventario de repuestos**: instantánea diaria en el mismo almacén de lago, con una fila por fecha, almacén y pieza, y la columna Unidades (existencias de ese día)."
+      },
+      {
+        "title": "Requisitos de informes",
+        "body": "1. Los datos nuevos deben estar disponibles sin copiar todo el volumen de telemetría al modelo, con un rendimiento de consulta similar al del modo de importación.\n2. Los informes deben mostrar las existencias de repuestos al cierre de cada mes ya cerrado y de cada año.\n3. Las 15 medidas de producción deben poder verse como valor del periodo, acumulado del año y mismo periodo del año anterior, eligiendo la variante en un segmentador y sin crear 45 medidas.\n4. Los técnicos deben ver una versión adaptada al teléfono en vertical."
+      },
+      {
+        "title": "Requisitos de distribución",
+        "body": "1. Técnicos y dirección deben acceder al contenido sin tener acceso al área de trabajo.\n2. Cada colectivo debe ver en su navegación solo los informes que le corresponden.\n3. Debe existir una sola copia de cada informe."
+      }
+    ]
+  },
+  {
+    "id": "caso-5",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "title": "Ventas editoriales y derechos de autor",
+    "company": "Ediciones Faro de Papel",
+    "summary": "Una editorial quiere controlar sus ventas por título, liquidar derechos de autor en documentos imprimibles y ordenar los permisos de su área de trabajo.",
+    "sections": [
+      {
+        "title": "Contexto",
+        "body": "**Ediciones Faro de Papel** publica unos 900 títulos en cinco colecciones y vende a librerías y plataformas digitales. El área de trabajo «Ventas editoriales» contiene el modelo semántico, los informes y una aplicación para la dirección."
+      },
+      {
+        "title": "Orígenes de datos",
+        "body": "- **Ventas**: exportación mensual del distribuidor, con una fila por ISBN, canal y mes.\n- **Títulos**: catálogo editorial con ISBN, Título, Colección y FechaPublicacion.\n- Ambos se cargan en modo de importación y se actualizan cada día."
+      },
+      {
+        "title": "Requisitos de informes",
+        "body": "1. Antes de cargar los datos, hay que obtener una lista de las ventas cuyo ISBN no existe en el catálogo.\n2. Los editores deben poder filtrar con un segmentador por «Antigüedad del título»: Novedad, Fondo o Catálogo histórico.\n3. Cada trimestre se envía a cada autor una liquidación de derechos en PDF con todas las líneas de venta de sus títulos (a veces cientos), con encabezado y pie de página en cada hoja.\n4. Desde la página «Ventas por colección», el usuario debe seleccionar un título en un gráfico y pulsar un botón «Ver detalle» para abrir una página filtrada por ese título."
+      },
+      {
+        "title": "Requisitos de seguridad",
+        "body": "1. El equipo de plataforma BI administra el área de trabajo, incluso para eliminarla o quitar a cualquier usuario.\n2. La coordinadora editorial publica y actualiza la aplicación y puede añadir personas con permisos inferiores al suyo.\n3. Los analistas de colección crean y modifican informes, pero no pueden publicar la aplicación ni añadir personas.\n4. La auditora interna revisa el contenido del área de trabajo sin poder modificarlo."
+      }
+    ]
+  }
+]
