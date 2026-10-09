@@ -1,7 +1,7 @@
 # Certifica Power Platform
 
-Plataforma **gratuita y en español** para preparar las certificaciones de Microsoft Power Platform.
-Empieza por **PL-900** (temario vigente desde el 24/07/2026) y está diseñada para crecer hacia PL-300, AB-410, AB-400 y DP-600.
+Plataforma **gratuita y en español** para preparar las certificaciones de Microsoft Power Platform:
+**PL-900** (temario del 24/07/2026) y **PL-300** (temario del 20/04/2026), con AB-410, AB-400 y DP-600 en el horizonte.
 
 **Web:** https://jmateogit.github.io/certifica-power-platform/
 
@@ -86,11 +86,14 @@ desactivarla desde *Acerca de* o *Mi progreso*.
 
 1. Crea una cuenta en Umami Cloud (plan gratuito) y añade el sitio `jmateogit.github.io`.
 2. En GitHub: *Settings → Secrets and variables → Actions → Variables*, crea `UMAMI_WEBSITE_ID` con el id del sitio.
-3. El siguiente despliegue la activa. Para el informe de calidad, crea una clave de API en Umami y ejecuta
-   `UMAMI_API_KEY=… UMAMI_WEBSITE_ID=… npm run question-quality`.
+3. El siguiente despliegue la activa.
+4. Para el **informe mensual automático**, crea una clave de API en Umami y guárdala como secreto
+   `UMAMI_API_KEY` (*Secrets and variables → Actions → Secrets*). El día 1 de cada mes se abre una incidencia con
+   las preguntas a revisar (también a mano: `npm run question-quality`).
 
-Eventos: `respuesta-acierto`, `respuesta-parcial` y `respuesta-fallo` (propiedades `pregunta`, `dominio`, `tipo`, `modo`)
-y `simulacro` (`examen`, `modo`, `nota` redondeada a decenas, `aprobado`).
+Eventos: `respuesta-acierto`, `respuesta-parcial` y `respuesta-fallo` (propiedades `pregunta`, `dominio`, `tipo`, `modo`),
+`pregunta-confusa` (botón «¿Te ha resultado confusa?» tras corregir) y `simulacro` (`examen`, `modo`, `nota`
+redondeada a decenas, `aprobado`).
 
 ## Despliegue
 

@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import type { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from 'react'
 import { Link, type LinkProps } from 'react-router'
-import { AppWindow, Bot, Briefcase, Database, Workflow, type LucideIcon } from 'lucide-react'
+import { AppWindow, Bot, Briefcase, ChartColumn, Database, Filter, Network, ShieldCheck, Workflow, type LucideIcon } from 'lucide-react'
 
 type Variant = 'primary' | 'secondary' | 'ghost' | 'danger'
 type Size = 'sm' | 'md' | 'lg'
@@ -120,7 +120,7 @@ export function ProgressRing({
   )
 }
 
-const domainIcons: Record<string, LucideIcon> = { Briefcase, Database, AppWindow, Workflow, Bot }
+const domainIcons: Record<string, LucideIcon> = { Briefcase, Database, AppWindow, Workflow, Bot, Filter, Network, ChartColumn, ShieldCheck }
 
 export function DomainIcon({ icon, color, size = 'md' }: { icon: string; color: string; size?: 'sm' | 'md' | 'lg' }) {
   const Icon = domainIcons[icon] ?? Briefcase

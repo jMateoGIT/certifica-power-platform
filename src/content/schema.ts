@@ -35,6 +35,24 @@ const baseQuestion = z.object({
   difficulty: z.union([z.literal(1), z.literal(2), z.literal(3)]),
   /** Escenario de negocio opcional que contextualiza la pregunta. */
   scenario: text.optional(),
+  /** Anexo de código (DAX, Power Query M, Power Fx…) que la pregunta analiza. */
+  code: z
+    .object({
+      language: z.enum(['dax', 'm', 'powerfx', 'sql', 'json']),
+      content: z.string().min(1),
+    })
+    .optional(),
+  /** Anexo con datos de ejemplo en forma de tabla. */
+  table: z
+    .object({
+      caption: text.optional(),
+      headers: z.array(text).min(1).max(8),
+      rows: z.array(z.array(z.string())).min(1).max(12),
+    })
+    .refine((t) => t.rows.every((r) => r.length === t.headers.length), {
+      message: 'cada fila de la tabla debe tener tantas celdas como cabeceras',
+    })
+    .optional(),
   prompt: text,
   /** Idea clave para recordar tras responder. */
   keyPoint: text,
