@@ -13,7 +13,7 @@
       },
       {
         "title": "Orígenes de datos",
-        "body": "- **Ventas**: base de datos SQL Server instalada en el CPD de la sede (red local). Contiene varios años de tiques, decenas de millones de filas, con la columna FechaVenta (fecha, sin hora). El TPV la carga cada noche y termina antes de las 4:00.\n- **Objetivos**: libro de Excel en SharePoint Online que mantiene el departamento comercial, con una fila por tienda y una columna por mes (Ene, Feb… Dic).\n- **Catálogo de productos**: libro de Excel en SharePoint Online que mantiene el departamento de compras."
+        "body": "- **Ventas**: base de datos SQL Server instalada en el CPD de la sede (red local). Contiene decenas de millones de tiques y la columna FechaVenta (fecha, sin hora). El TPV la carga cada noche y termina antes de las 4:00.\n- **Objetivos**: libro de Excel en SharePoint Online del departamento comercial, con una fila por tienda y una columna por mes (Ene… Dic).\n- **Catálogo de productos**: libro de Excel en SharePoint Online del departamento de compras."
       },
       {
         "title": "Requisitos de informes",
@@ -113,7 +113,7 @@
     "sections": [
       {
         "title": "Contexto",
-        "body": "**Ediciones Faro de Papel** publica unos 900 títulos en cinco colecciones y vende a librerías y plataformas digitales. El área de trabajo «Ventas editoriales» contiene el modelo semántico, los informes y una aplicación para la dirección."
+        "body": "**Ediciones Faro de Papel** publica unos 900 títulos en cinco colecciones. El área de trabajo «Ventas editoriales» contiene el modelo semántico, los informes y una aplicación para la dirección."
       },
       {
         "title": "Orígenes de datos",
@@ -125,7 +125,7 @@
       },
       {
         "title": "Requisitos de seguridad",
-        "body": "1. El equipo de plataforma BI administra el área de trabajo, incluso para eliminarla o quitar a cualquier usuario.\n2. La coordinadora editorial publica y actualiza la aplicación y puede añadir personas con permisos inferiores al suyo.\n3. Los analistas de colección crean y modifican informes, pero no pueden publicar la aplicación ni añadir personas.\n4. La auditora interna revisa el contenido del área de trabajo sin poder modificarlo."
+        "body": "1. El equipo de plataforma BI administra el área de trabajo, incluso para eliminarla o quitar usuarios.\n2. La coordinadora editorial publica y actualiza la aplicación y puede añadir personas con permisos inferiores al suyo.\n3. Los analistas de colección crean y modifican informes, pero no pueden publicar la aplicación ni añadir personas.\n4. La auditora interna revisa el contenido del área de trabajo sin poder modificarlo."
       }
     ]
   }
