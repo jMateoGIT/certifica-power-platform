@@ -1,785 +1,5 @@
 [
   {
-    "id": "pl900-d2-entornos-001",
-    "type": "single",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d2",
-    "skill": "d2-entornos",
-    "difficulty": 1,
-    "prompt": "¿Cuál es la finalidad principal de un entorno (*environment*) en Microsoft Power Platform?",
-    "options": [
-      {
-        "id": "a",
-        "text": "Almacenar los informes y paneles de Power BI de la organización",
-        "correct": false,
-        "explanation": "Los informes de Power BI se organizan en áreas de trabajo de Power BI, no en entornos de Power Platform."
-      },
-      {
-        "id": "b",
-        "text": "Servir de contenedor para guardar, administrar y compartir aplicaciones, flujos y datos de forma aislada",
-        "correct": true,
-        "explanation": "Un entorno agrupa recursos de negocio (aplicaciones, flujos, conexiones, agentes y datos) y permite separarlos por finalidad, equipo o región."
-      },
-      {
-        "id": "c",
-        "text": "Definir qué conectores pueden combinarse dentro de una misma aplicación o flujo",
-        "correct": false,
-        "explanation": "Eso es lo que hacen las directivas de prevención de pérdida de datos (DLP), que se aplican a entornos pero no son entornos."
-      },
-      {
-        "id": "d",
-        "text": "Asignar licencias de Power Apps y Power Automate a los usuarios",
-        "correct": false,
-        "explanation": "Las licencias de usuario se asignan desde el centro de administración de Microsoft 365 (o con Microsoft Entra ID); aunque a un entorno se le puede asignar capacidad, gestionar licencias no es la finalidad de un entorno."
-      }
-    ],
-    "keyPoint": "Un entorno es un contenedor que aísla aplicaciones, flujos y datos; puede tener como máximo una base de datos de Dataverse.",
-    "references": [
-      {
-        "title": "Información general sobre los entornos",
-        "url": "https://learn.microsoft.com/es-es/power-platform/admin/environments-overview"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d2-entornos-002",
-    "type": "single",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d2",
-    "skill": "d2-entornos",
-    "difficulty": 2,
-    "scenario": "Contoso Seguros tiene una aplicación basada en modelos en producción. El equipo de TI quiere probar una actualización importante con una copia de los datos y poder restablecer el entorno de pruebas al terminar, sin afectar a los usuarios.",
-    "prompt": "¿Qué tipo de entorno debes crear para las pruebas?",
-    "options": [
-      {
-        "id": "a",
-        "text": "Producción",
-        "correct": false,
-        "explanation": "Un entorno de producción está pensado para el trabajo diario de los usuarios finales; usarlo para pruebas mezclaría cambios a medio terminar con el uso real."
-      },
-      {
-        "id": "b",
-        "text": "Prueba (*trial*)",
-        "correct": false,
-        "explanation": "Un entorno de prueba sirve para evaluar funciones durante un tiempo limitado y caduca; no está pensado para el ciclo de pruebas de una aplicación existente."
-      },
-      {
-        "id": "c",
-        "text": "Espacio aislado (*sandbox*)",
-        "correct": true,
-        "explanation": "Los entornos de espacio aislado son de no producción y admiten operaciones como copiar desde otro entorno y restablecer, por lo que son ideales para desarrollar y probar."
-      },
-      {
-        "id": "d",
-        "text": "Predeterminado (*default*)",
-        "correct": false,
-        "explanation": "El entorno predeterminado lo comparten todos los usuarios del inquilino, así que no sirve para aislar unas pruebas."
-      }
-    ],
-    "keyPoint": "Espacio aislado = entorno de no producción para desarrollar y probar, con opciones de copia y restablecimiento.",
-    "references": [
-      {
-        "title": "Información general sobre los entornos",
-        "url": "https://learn.microsoft.com/es-es/power-platform/admin/environments-overview"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d2-entornos-003",
-    "type": "single",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d2",
-    "skill": "d2-entornos",
-    "difficulty": 3,
-    "scenario": "Fabrikam ha creado una aplicación de lienzo, varios flujos de nube y tablas personalizadas en un entorno de desarrollo. Quiere implementarlos en producción de modo que los componentes queden protegidos frente a ediciones directas y que, si se desinstala el paquete, sus componentes se eliminen.",
-    "prompt": "¿Cómo debes llevar los componentes al entorno de producción?",
-    "options": [
-      {
-        "id": "a",
-        "text": "Exportar una solución no administrada e importarla en producción",
-        "correct": false,
-        "explanation": "Las soluciones no administradas se usan en desarrollo: sus componentes se pueden editar y, al eliminar la solución, los componentes permanecen en el entorno."
-      },
-      {
-        "id": "b",
-        "text": "Volver a crear manualmente cada componente en producción",
-        "correct": false,
-        "explanation": "Recrear los componentes a mano es propenso a errores y no permite actualizar ni desinstalar el conjunto como una unidad."
-      },
-      {
-        "id": "c",
-        "text": "Copiar el entorno de desarrollo completo sobre el de producción",
-        "correct": false,
-        "explanation": "Copiar un entorno sobrescribe el destino con los datos y la configuración del origen; no es la forma de distribuir componentes de una aplicación."
-      },
-      {
-        "id": "d",
-        "text": "Exportar la solución como administrada e importarla en producción",
-        "correct": true,
-        "explanation": "Las soluciones administradas son las que se implementan en prueba y producción: sus componentes no se editan directamente (salvo lo que permitan sus propiedades administradas) y se quitan al eliminar la solución."
-      }
-    ],
-    "keyPoint": "Solución no administrada en desarrollo; solución administrada en prueba y producción.",
-    "references": [
-      {
-        "title": "Conceptos de soluciones",
-        "url": "https://learn.microsoft.com/es-es/power-platform/alm/solution-concepts-alm"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d2-entornos-004",
-    "type": "multiple",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d2",
-    "skill": "d2-entornos",
-    "difficulty": 2,
-    "prompt": "¿Qué dos afirmaciones sobre el entorno predeterminado (*default*) de un inquilino son correctas? Selecciona dos.",
-    "options": [
-      {
-        "id": "a",
-        "text": "Se crea automáticamente para cada inquilino",
-        "correct": true,
-        "explanation": "Microsoft crea un entorno predeterminado por inquilino, que se comparte con todos los usuarios de ese inquilino."
-      },
-      {
-        "id": "b",
-        "text": "Un inquilino puede tener varios entornos predeterminados, uno por región",
-        "correct": false,
-        "explanation": "Solo existe un entorno predeterminado por inquilino; los demás entornos que se creen serán de producción, espacio aislado, desarrollador, etc."
-      },
-      {
-        "id": "c",
-        "text": "Caduca al cabo de un tiempo, igual que un entorno de prueba",
-        "correct": false,
-        "explanation": "La caducidad es propia de los entornos de prueba (*trial*); el entorno predeterminado es permanente."
-      },
-      {
-        "id": "d",
-        "text": "No se puede eliminar",
-        "correct": true,
-        "explanation": "El entorno predeterminado no se puede eliminar, aunque los administradores sí pueden gestionar su configuración y su seguridad."
-      },
-      {
-        "id": "e",
-        "text": "Solo los administradores de Power Platform pueden crear aplicaciones en él",
-        "correct": false,
-        "explanation": "Por defecto, los usuarios del inquilino pueden crear aplicaciones y flujos en el entorno predeterminado; por eso conviene gobernarlo, por ejemplo con directivas DLP."
-      }
-    ],
-    "keyPoint": "Hay un único entorno predeterminado por inquilino: se crea solo, lo comparten todos y no se puede eliminar.",
-    "references": [
-      {
-        "title": "Información general sobre los entornos",
-        "url": "https://learn.microsoft.com/es-es/power-platform/admin/environments-overview"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d2-entornos-005",
-    "type": "yesno",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d2",
-    "skill": "d2-entornos",
-    "difficulty": 2,
-    "prompt": "Indica si cada afirmación sobre los entornos de Power Platform es verdadera.",
-    "statements": [
-      {
-        "id": "s1",
-        "text": "Un entorno puede contener como máximo una base de datos de Dataverse.",
-        "answer": true,
-        "explanation": "Cada entorno tiene cero o una base de datos de Dataverse; si necesitas otra base de datos aislada, necesitas otro entorno."
-      },
-      {
-        "id": "s2",
-        "text": "Cada entorno se crea en una región geográfica, que determina dónde se almacenan sus datos.",
-        "answer": true,
-        "explanation": "Al crear el entorno eliges su región, y los datos de Dataverse de ese entorno se hospedan en ella."
-      },
-      {
-        "id": "s3",
-        "text": "Un entorno de prueba (*trial*) es la opción recomendada para alojar indefinidamente aplicaciones de producción.",
-        "answer": false,
-        "explanation": "Los entornos de prueba son temporales y caducan; las cargas de trabajo permanentes deben ir en entornos de producción."
-      },
-      {
-        "id": "s4",
-        "text": "Entornos administrados (*Managed Environments*) es un conjunto de capacidades de gobierno que los administradores activan en entornos concretos.",
-        "answer": true,
-        "explanation": "Managed Environments se habilita por entorno y aporta funciones como límites de uso compartido, información de uso y aplicación de directivas con menos esfuerzo administrativo."
-      }
-    ],
-    "keyPoint": "Entorno = región + como máximo una base de Dataverse; Managed Environments añade gobierno por entorno.",
-    "references": [
-      {
-        "title": "Información general sobre los entornos",
-        "url": "https://learn.microsoft.com/es-es/power-platform/admin/environments-overview"
-      },
-      {
-        "title": "Información general sobre Managed Environments",
-        "url": "https://learn.microsoft.com/es-es/power-platform/admin/managed-environment-overview"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d2-entornos-006",
-    "type": "order",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d2",
-    "skill": "d2-entornos",
-    "difficulty": 2,
-    "prompt": "Ordena los pasos para mover una aplicación y sus flujos de un entorno de desarrollo a uno de producción siguiendo las buenas prácticas de administración del ciclo de vida (ALM).",
-    "items": [
-      {
-        "id": "p1",
-        "text": "Crear una solución no administrada en el entorno de desarrollo",
-        "explanation": "La solución es el contenedor que agrupa los componentes; se crea primero en desarrollo, como no administrada, para poder editarla."
-      },
-      {
-        "id": "p2",
-        "text": "Agregar la aplicación, los flujos y las tablas a la solución",
-        "explanation": "Solo se trasladan los componentes incluidos en la solución, así que hay que añadirlos antes de exportar."
-      },
-      {
-        "id": "p3",
-        "text": "Exportar la solución como administrada",
-        "explanation": "Al exportar se elige el tipo administrada cuando el destino es producción, para que los componentes queden protegidos allí."
-      },
-      {
-        "id": "p4",
-        "text": "Importar la solución en el entorno de producción",
-        "explanation": "El último paso es importar el archivo de la solución en el entorno de destino, donde se instalan sus componentes."
-      }
-    ],
-    "keyPoint": "Crear solución → agregar componentes → exportar como administrada → importar en el destino.",
-    "references": [
-      {
-        "title": "Conceptos de soluciones",
-        "url": "https://learn.microsoft.com/es-es/power-platform/alm/solution-concepts-alm"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d2-entornos-007",
-    "type": "match",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d2",
-    "skill": "d2-entornos",
-    "difficulty": 3,
-    "prompt": "Empareja cada necesidad con el tipo de entorno más adecuado. Cada opción puede usarse una vez o ninguna.",
-    "prompts": [
-      {
-        "id": "m1",
-        "text": "Un creador quiere un entorno personal, sin un periodo de evaluación que caduque, para aprender y crear por su cuenta",
-        "answerId": "c4",
-        "explanation": "Los entornos de desarrollador están pensados para el uso individual de su propietario y, a diferencia de los de prueba (*trial*), no están ligados a un periodo de evaluación."
-      },
-      {
-        "id": "m2",
-        "text": "Evaluar funciones de Power Platform durante un tiempo limitado",
-        "answerId": "c2",
-        "explanation": "El entorno de prueba (*trial*) es temporal y caduca tras un periodo determinado."
-      },
-      {
-        "id": "m3",
-        "text": "Ejecutar las aplicaciones que usa toda la plantilla en su trabajo diario",
-        "answerId": "c1",
-        "explanation": "Producción es el tipo de entorno pensado para cargas de trabajo permanentes y de uso real."
-      },
-      {
-        "id": "m4",
-        "text": "Probar cambios con la posibilidad de copiar y restablecer el entorno",
-        "answerId": "c3",
-        "explanation": "El espacio aislado (*sandbox*) es un entorno de no producción que admite copia y restablecimiento."
-      },
-      {
-        "id": "m5",
-        "text": "Crear aplicaciones ligeras para los miembros de un equipo de Microsoft Teams",
-        "answerId": "c5",
-        "explanation": "Un entorno de Dataverse for Teams se aprovisiona para un equipo cuando se crea en él la primera aplicación o el primer agente; el entorno predeterminado, en cambio, es compartido por todo el inquilino."
-      }
-    ],
-    "choices": [
-      {
-        "id": "c1",
-        "text": "Producción"
-      },
-      {
-        "id": "c2",
-        "text": "Prueba (*trial*)"
-      },
-      {
-        "id": "c3",
-        "text": "Espacio aislado (*sandbox*)"
-      },
-      {
-        "id": "c4",
-        "text": "Desarrollador (*developer*)"
-      },
-      {
-        "id": "c5",
-        "text": "Dataverse for Teams"
-      },
-      {
-        "id": "c6",
-        "text": "Predeterminado (*default*)"
-      }
-    ],
-    "keyPoint": "Cada tipo de entorno responde a un propósito: producción, pruebas, uso personal, evaluación temporal o Teams.",
-    "references": [
-      {
-        "title": "Información general sobre los entornos",
-        "url": "https://learn.microsoft.com/es-es/power-platform/admin/environments-overview"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d2-entornos-008",
-    "type": "dropdown",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d2",
-    "skill": "d2-entornos",
-    "difficulty": 1,
-    "prompt": "Completa la frase.",
-    "template": "Para crear entornos y configurar sus directivas usas {{b1}}; para trasladar componentes como aplicaciones, flujos y tablas personalizadas entre entornos los empaquetas en {{b2}}.",
-    "blanks": [
-      {
-        "id": "b1",
-        "options": [
-          {
-            "id": "o1",
-            "text": "Power Apps Studio"
-          },
-          {
-            "id": "o2",
-            "text": "el centro de administración de Power Platform"
-          },
-          {
-            "id": "o3",
-            "text": "el centro de administración de Microsoft Teams"
-          }
-        ],
-        "correctId": "o2",
-        "explanation": "El centro de administración de Power Platform es el portal para gestionar entornos, directivas de datos, capacidad y análisis; Power Apps Studio sirve para diseñar aplicaciones."
-      },
-      {
-        "id": "b2",
-        "options": [
-          {
-            "id": "o1",
-            "text": "una vista"
-          },
-          {
-            "id": "o2",
-            "text": "una directiva DLP"
-          },
-          {
-            "id": "o3",
-            "text": "una solución"
-          }
-        ],
-        "correctId": "o3",
-        "explanation": "Las soluciones son el mecanismo de ALM para empaquetar y mover componentes; las vistas muestran filas y las directivas DLP controlan conectores."
-      }
-    ],
-    "keyPoint": "Centro de administración = gestionar entornos; soluciones = mover componentes entre entornos.",
-    "references": [
-      {
-        "title": "Administrar Microsoft Power Platform",
-        "url": "https://learn.microsoft.com/es-es/power-platform/admin/admin-documentation"
-      },
-      {
-        "title": "Conceptos de soluciones",
-        "url": "https://learn.microsoft.com/es-es/power-platform/alm/solution-concepts-alm"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d2-gobierno-001",
-    "type": "multiple",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d2",
-    "skill": "d2-gobierno",
-    "difficulty": 1,
-    "prompt": "¿Qué dos acciones permite una directiva de prevención de pérdida de datos (DLP, *data loss prevention*) de Power Platform? Selecciona dos.",
-    "options": [
-      {
-        "id": "a",
-        "text": "Clasificar los conectores en grupos para que solo compartan datos los del mismo grupo",
-        "correct": true,
-        "explanation": "Las DLP (que en el centro de administración aparecen como «directivas de datos») clasifican los conectores en grupos (Empresarial y No empresarial); una aplicación o flujo no puede combinar conectores de ambos grupos."
-      },
-      {
-        "id": "b",
-        "text": "Cifrar las tablas de Dataverse con una clave propia de la organización",
-        "correct": false,
-        "explanation": "El cifrado con claves administradas por el cliente es una función distinta; las DLP actúan sobre conectores, no sobre el cifrado."
-      },
-      {
-        "id": "c",
-        "text": "Limitar qué filas de una tabla puede leer cada usuario",
-        "correct": false,
-        "explanation": "El acceso a filas se controla con roles de seguridad y unidades de negocio de Dataverse, no con directivas DLP."
-      },
-      {
-        "id": "d",
-        "text": "Bloquear un conector para que no se pueda usar en aplicaciones ni flujos",
-        "correct": true,
-        "explanation": "Además de los grupos Empresarial y No empresarial, una DLP puede colocar un conector en el grupo Bloqueado para impedir su uso."
-      },
-      {
-        "id": "e",
-        "text": "Asignar licencias premium a los creadores de aplicaciones",
-        "correct": false,
-        "explanation": "Las licencias se asignan en el centro de administración de Microsoft 365; una DLP no concede ni quita licencias."
-      }
-    ],
-    "keyPoint": "Las DLP gobiernan conectores: los agrupan (Empresarial / No empresarial) y pueden bloquearlos.",
-    "references": [
-      {
-        "title": "Directivas de prevención de pérdida de datos",
-        "url": "https://learn.microsoft.com/es-es/power-platform/admin/wp-data-loss-prevention"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d2-gobierno-002",
-    "type": "single",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d2",
-    "skill": "d2-gobierno",
-    "difficulty": 2,
-    "scenario": "En Northwind Traders, una directiva DLP clasifica SharePoint y Office 365 Outlook en el grupo Empresarial (*Business*) y el conector de una red social en el grupo No empresarial (*Non-business*). Un empleado intenta crear un flujo que publique en la red social cada elemento nuevo de una lista de SharePoint.",
-    "prompt": "¿Qué ocurre?",
-    "options": [
-      {
-        "id": "a",
-        "text": "El flujo funciona, porque ninguno de los dos conectores está bloqueado",
-        "correct": false,
-        "explanation": "No estar bloqueado no basta: los conectores de grupos distintos no pueden combinarse en el mismo flujo o aplicación."
-      },
-      {
-        "id": "b",
-        "text": "El flujo funciona, pero solo cuando lo ejecuta su propietario",
-        "correct": false,
-        "explanation": "La DLP no hace excepciones según quién ejecute el flujo; la restricción se aplica al recurso que combina los conectores."
-      },
-      {
-        "id": "c",
-        "text": "La directiva impide usar el flujo porque combina conectores de los grupos Empresarial y No empresarial",
-        "correct": true,
-        "explanation": "Una DLP impide que un mismo flujo o aplicación use a la vez conectores del grupo Empresarial y del No empresarial, de modo que el flujo no se puede guardar o queda suspendido."
-      },
-      {
-        "id": "d",
-        "text": "El conector de la red social pasa automáticamente al grupo Empresarial",
-        "correct": false,
-        "explanation": "Los conectores nunca cambian de grupo solos; solo un administrador puede reclasificarlos editando la directiva."
-      }
-    ],
-    "keyPoint": "Una app o flujo no puede mezclar conectores del grupo Empresarial con los del No empresarial.",
-    "references": [
-      {
-        "title": "Directivas de prevención de pérdida de datos",
-        "url": "https://learn.microsoft.com/es-es/power-platform/admin/wp-data-loss-prevention"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d2-gobierno-003",
-    "type": "match",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d2",
-    "skill": "d2-gobierno",
-    "difficulty": 2,
-    "prompt": "Empareja cada descripción con el grupo de conectores de una directiva DLP al que corresponde. Cada opción puede usarse una vez, más de una vez o ninguna.",
-    "prompts": [
-      {
-        "id": "m1",
-        "text": "Grupo donde se colocan los conectores que manejan datos corporativos, como SharePoint o Dataverse",
-        "answerId": "c1",
-        "explanation": "El grupo Empresarial (*Business*) reúne los conectores autorizados para datos de la organización, que solo pueden combinarse entre sí."
-      },
-      {
-        "id": "m2",
-        "text": "Grupo al que se asignan por defecto los conectores nuevos, salvo que el administrador cambie esa configuración",
-        "answerId": "c2",
-        "explanation": "Cada directiva tiene un grupo predeterminado que recibe los conectores nuevos o sin clasificar. Si el administrador no lo cambia, ese grupo es No empresarial."
-      },
-      {
-        "id": "m3",
-        "text": "Sus conectores no pueden usarse en ninguna aplicación ni flujo dentro del ámbito de la directiva",
-        "answerId": "c3",
-        "explanation": "El grupo Bloqueado (*Blocked*) impide por completo el uso de los conectores que contiene."
-      },
-      {
-        "id": "m4",
-        "text": "Grupo adecuado para conectores de uso personal o de redes sociales que no deben mezclarse con datos corporativos",
-        "answerId": "c2",
-        "explanation": "Los conectores No empresariales pueden usarse entre sí, pero no junto a los Empresariales, lo que separa los datos personales de los corporativos."
-      }
-    ],
-    "choices": [
-      {
-        "id": "c1",
-        "text": "Empresarial (*Business*)"
-      },
-      {
-        "id": "c2",
-        "text": "No empresarial (*Non-business*)"
-      },
-      {
-        "id": "c3",
-        "text": "Bloqueado (*Blocked*)"
-      }
-    ],
-    "keyPoint": "Empresarial y No empresarial no se mezclan; Bloqueado no se usa en ningún caso.",
-    "references": [
-      {
-        "title": "Directivas de prevención de pérdida de datos",
-        "url": "https://learn.microsoft.com/es-es/power-platform/admin/wp-data-loss-prevention"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d2-gobierno-004",
-    "type": "multiple",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d2",
-    "skill": "d2-gobierno",
-    "difficulty": 2,
-    "prompt": "¿En qué dos ámbitos puede aplicarse una directiva DLP de Power Platform? Selecciona dos.",
-    "options": [
-      {
-        "id": "a",
-        "text": "Una aplicación de lienzo concreta",
-        "correct": false,
-        "explanation": "Las directivas DLP no se asignan a aplicaciones individuales; afectan a todas las aplicaciones y flujos de los entornos incluidos."
-      },
-      {
-        "id": "b",
-        "text": "Un usuario concreto",
-        "correct": false,
-        "explanation": "Las DLP no se dirigen a usuarios; restringen los conectores de los recursos que hay en los entornos del ámbito."
-      },
-      {
-        "id": "c",
-        "text": "Todo el inquilino, con la opción de incluir o excluir entornos",
-        "correct": true,
-        "explanation": "Una directiva de nivel de inquilino puede aplicarse a todos los entornos, solo a algunos o a todos excepto los indicados."
-      },
-      {
-        "id": "d",
-        "text": "Una tabla de Dataverse",
-        "correct": false,
-        "explanation": "El acceso a tablas se controla con roles de seguridad; las DLP trabajan sobre conectores, no sobre tablas."
-      },
-      {
-        "id": "e",
-        "text": "Uno o varios entornos concretos",
-        "correct": true,
-        "explanation": "Una directiva de nivel de entorno se aplica únicamente a los entornos seleccionados."
-      }
-    ],
-    "keyPoint": "Las DLP se aplican a nivel de inquilino o de entorno, nunca a una app o usuario concreto.",
-    "references": [
-      {
-        "title": "Directivas de prevención de pérdida de datos",
-        "url": "https://learn.microsoft.com/es-es/power-platform/admin/wp-data-loss-prevention"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d2-gobierno-005",
-    "type": "single",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d2",
-    "skill": "d2-gobierno",
-    "difficulty": 2,
-    "scenario": "Una empresa de distribución usa una aplicación basada en modelos sobre una tabla Pedido de Dataverse. Cada comercial debe ver y editar solo los pedidos de los que es propietario, mientras que los jefes de ventas deben ver todos los pedidos de su unidad de negocio.",
-    "prompt": "¿Qué debes configurar en Dataverse?",
-    "options": [
-      {
-        "id": "a",
-        "text": "Una directiva DLP para cada equipo de ventas",
-        "correct": false,
-        "explanation": "Las directivas DLP controlan qué conectores se pueden combinar; no limitan qué filas ve cada usuario."
-      },
-      {
-        "id": "b",
-        "text": "Roles de seguridad con niveles de acceso Usuario y Unidad de negocio",
-        "correct": true,
-        "explanation": "Los roles de seguridad asignan privilegios (crear, leer, escribir…) con un nivel de acceso: Usuario limita a las filas propias y Unidad de negocio amplía a las de toda la unidad."
-      },
-      {
-        "id": "c",
-        "text": "Una vista personal para cada comercial",
-        "correct": false,
-        "explanation": "Una vista solo filtra lo que se muestra en una lista; no impide acceder a otras filas, así que no es un mecanismo de seguridad."
-      },
-      {
-        "id": "d",
-        "text": "Una puerta de enlace de datos local",
-        "correct": false,
-        "explanation": "La puerta de enlace conecta con datos de la red local; no tiene relación con los permisos sobre filas de Dataverse."
-      }
-    ],
-    "keyPoint": "Roles de seguridad + niveles de acceso (Usuario, Unidad de negocio, Organización…) controlan qué filas ve cada usuario.",
-    "references": [
-      {
-        "title": "Roles de seguridad y privilegios",
-        "url": "https://learn.microsoft.com/es-es/power-platform/admin/security-roles-privileges"
-      },
-      {
-        "title": "Seguridad en Microsoft Dataverse",
-        "url": "https://learn.microsoft.com/es-es/power-platform/admin/wp-security-cds"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d2-gobierno-006",
-    "type": "yesno",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d2",
-    "skill": "d2-gobierno",
-    "difficulty": 2,
-    "prompt": "Indica si cada afirmación sobre la seguridad en Power Platform es verdadera.",
-    "statements": [
-      {
-        "id": "s1",
-        "text": "Microsoft Entra ID (antes Azure Active Directory) es el servicio de identidad que autentica a los usuarios de Power Platform.",
-        "answer": true,
-        "explanation": "Power Platform usa Microsoft Entra ID para la identidad y la autenticación de los usuarios, y permite asignar permisos a grupos de Entra ID."
-      },
-      {
-        "id": "s2",
-        "text": "Si un usuario tiene varios roles de seguridad en Dataverse, obtiene la combinación de los privilegios de todos ellos.",
-        "answer": true,
-        "explanation": "Los privilegios de los roles son acumulativos: prevalece el acceso más amplio que conceda cualquiera de ellos."
-      },
-      {
-        "id": "s3",
-        "text": "Una directiva DLP determina qué columnas de una tabla puede ver cada usuario.",
-        "answer": false,
-        "explanation": "La seguridad a nivel de columna se configura en Dataverse con perfiles de seguridad de columna; las DLP solo controlan conectores."
-      },
-      {
-        "id": "s4",
-        "text": "Las unidades de negocio permiten delimitar el acceso a los datos según la estructura de la organización.",
-        "answer": true,
-        "explanation": "Las unidades de negocio agrupan usuarios y datos; combinadas con los niveles de acceso de los roles, limitan qué filas ve cada persona."
-      }
-    ],
-    "keyPoint": "Entra ID autentica; roles de seguridad y unidades de negocio de Dataverse autorizan; las DLP gobiernan conectores.",
-    "references": [
-      {
-        "title": "Seguridad en Microsoft Dataverse",
-        "url": "https://learn.microsoft.com/es-es/power-platform/admin/wp-security-cds"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d2-gobierno-007",
-    "type": "single",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d2",
-    "skill": "d2-gobierno",
-    "difficulty": 1,
-    "prompt": "¿Qué es el kit de inicio del Centro de excelencia (*CoE Starter Kit*) de Power Platform?",
-    "options": [
-      {
-        "id": "a",
-        "text": "Una licencia que desbloquea conectores premium para toda la organización",
-        "correct": false,
-        "explanation": "El kit no es una licencia; los conectores premium dependen de las licencias de Power Apps o Power Automate de cada usuario."
-      },
-      {
-        "id": "b",
-        "text": "Un tipo de entorno reservado a los administradores del inquilino",
-        "correct": false,
-        "explanation": "Los tipos de entorno son producción, espacio aislado, prueba, desarrollador, predeterminado y Dataverse for Teams; el kit se instala dentro de un entorno, no es uno."
-      },
-      {
-        "id": "c",
-        "text": "El nombre actual del centro de administración de Power Platform",
-        "correct": false,
-        "explanation": "El centro de administración es un portal propio del servicio; el kit de inicio es una solución independiente que se instala aparte."
-      },
-      {
-        "id": "d",
-        "text": "Un conjunto de aplicaciones, flujos y paneles que ayuda a inventariar, supervisar y gobernar el uso de Power Platform",
-        "correct": true,
-        "explanation": "El CoE Starter Kit reúne componentes y herramientas para conocer qué aplicaciones, flujos y creadores hay en el inquilino y para impulsar la adopción y el gobierno."
-      }
-    ],
-    "keyPoint": "CoE Starter Kit = conjunto de herramientas para inventariar, supervisar y gobernar Power Platform.",
-    "references": [
-      {
-        "title": "Kit de inicio del Centro de excelencia",
-        "url": "https://learn.microsoft.com/es-es/power-platform/guidance/coe/starter-kit"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d2-gobierno-008",
-    "type": "single",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d2",
-    "skill": "d2-gobierno",
-    "difficulty": 3,
-    "scenario": "Adventure Works quiere que una persona de TI administre todos los entornos del inquilino y sus directivas de datos desde el centro de administración de Power Platform, sin concederle el rol de administrador global.",
-    "prompt": "¿Qué debes asignarle?",
-    "options": [
-      {
-        "id": "a",
-        "text": "El rol de seguridad Administrador del sistema en el entorno predeterminado",
-        "correct": false,
-        "explanation": "Ese rol de Dataverse da control total solo dentro del entorno donde se asigna, no sobre todos los entornos del inquilino."
-      },
-      {
-        "id": "b",
-        "text": "El rol de administrador de Power Platform en Microsoft Entra ID",
-        "correct": true,
-        "explanation": "Es un rol de administración del servicio que permite gestionar todos los entornos y las directivas de Power Platform del inquilino sin ser administrador global."
-      },
-      {
-        "id": "c",
-        "text": "El rol de seguridad Creador de entornos (*Environment Maker*)",
-        "correct": false,
-        "explanation": "Permite crear recursos como aplicaciones, flujos y conexiones dentro de un entorno, pero no administrar el inquilino."
-      },
-      {
-        "id": "d",
-        "text": "El rol de seguridad Personalizador del sistema",
-        "correct": false,
-        "explanation": "Permite personalizar tablas y componentes de un entorno, pero no da acceso a la administración de todos los entornos ni de las directivas."
-      }
-    ],
-    "keyPoint": "Administrador de Power Platform (Entra ID) = todo el inquilino; Administrador del sistema (Dataverse) = un entorno.",
-    "references": [
-      {
-        "title": "Usar roles de administrador de servicio para administrar el inquilino",
-        "url": "https://learn.microsoft.com/es-es/power-platform/admin/use-service-admin-role-manage-tenant"
-      }
-    ]
-  },
-  {
     "id": "pl900-d2-dataverse-001",
     "type": "single",
     "exam": "PL-900",
@@ -932,7 +152,7 @@
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d2",
-    "skill": "d2-dataverse",
+    "skill": "d2-dataverse-logica",
     "difficulty": 2,
     "scenario": "En la tabla Línea de pedido, Contoso quiere que la columna Importe muestre automáticamente el resultado de Cantidad × Precio unitario, sin que el usuario la rellene y sin crear flujos.",
     "prompt": "¿Qué tipo de columna debes crear para Importe?",
@@ -959,7 +179,7 @@
         "id": "d",
         "text": "Fórmula",
         "correct": true,
-        "explanation": "Las columnas de fórmula calculan su valor con una expresión de Power Fx a partir de otras columnas de la fila, sin intervención del usuario. Microsoft las recomienda frente a las columnas calculadas clásicas, que siguen existiendo."
+        "explanation": "Las columnas de fórmula calculan su valor con una expresión de Power Fx, parecida a una fórmula de Excel, a partir de otras columnas de la fila, sin intervención del usuario ni flujos."
       }
     ],
     "keyPoint": "Valor derivado de otras columnas → columna de fórmula (Power Fx).",
@@ -1045,7 +265,7 @@
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d2",
-    "skill": "d2-dataverse",
+    "skill": "d2-dataverse-logica",
     "difficulty": 2,
     "prompt": "Indica si cada afirmación sobre las reglas de negocio (*business rules*) de Dataverse es verdadera.",
     "statements": [
@@ -1063,9 +283,9 @@
       },
       {
         "id": "s3",
-        "text": "Si su ámbito es la tabla completa, la regla se aplica en todos los formularios basados en modelos y también en el servidor.",
+        "text": "Si su ámbito es Tabla, la regla se aplica en todos los formularios y también en el servidor.",
         "answer": true,
-        "explanation": "Con ámbito de tabla (en el diseñador de reglas de negocio la opción todavía puede aparecer como «Entidad») la lógica se ejecuta además en el servidor, por lo que se aplica aunque los datos se modifiquen fuera de un formulario. Si el ámbito es un formulario concreto, solo se aplica en ese formulario."
+        "explanation": "Con ámbito Tabla (en algunos diseñadores aún aparece como «Entidad») la lógica se ejecuta además en el servidor, por lo que se aplica aunque los datos se modifiquen fuera de un formulario, incluso desde una aplicación de lienzo. Con ámbito Todos los formularios o un formulario concreto, solo se aplica en esos formularios."
       },
       {
         "id": "s4",
@@ -1079,6 +299,10 @@
       {
         "title": "Crear una regla de negocio para una tabla",
         "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/data-platform-create-business-rule"
+      },
+      {
+        "title": "Aplicar lógica de negocio con reglas de negocio y flujos en aplicaciones basadas en modelos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/guide-staff-through-common-tasks-processes"
       }
     ]
   },
@@ -1088,7 +312,7 @@
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d2",
-    "skill": "d2-dataverse",
+    "skill": "d2-dataverse-logica",
     "difficulty": 1,
     "prompt": "Completa la frase.",
     "template": "En Dataverse, cada fila de una tabla representa {{b1}}, y {{b2}} define qué filas y columnas se muestran en una lista de una aplicación basada en modelos.",
@@ -1141,56 +365,12 @@
     ]
   },
   {
-    "id": "pl900-d2-dataverse-008",
-    "type": "yesno",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d2",
-    "skill": "d2-dataverse",
-    "difficulty": 3,
-    "scenario": "El equipo de marketing de Fabrikam ha creado una aplicación en Microsoft Teams que guarda sus datos en Dataverse for Teams. Ahora quiere usarla también fuera de Teams y aprovechar capacidades más avanzadas de la plataforma.",
-    "prompt": "Indica si cada afirmación es verdadera.",
-    "statements": [
-      {
-        "id": "s1",
-        "text": "Dataverse for Teams ofrece un subconjunto de las capacidades de Dataverse.",
-        "answer": true,
-        "explanation": "Dataverse for Teams es una versión integrada en Teams con parte de las capacidades de Dataverse, pensada para aplicaciones de equipo."
-      },
-      {
-        "id": "s2",
-        "text": "Un entorno de Dataverse for Teams se puede actualizar a un entorno de Dataverse completo.",
-        "answer": true,
-        "explanation": "El administrador puede actualizar (*upgrade*) el entorno de Dataverse for Teams desde el centro de administración para obtener todas las capacidades de Dataverse sin rehacer la aplicación; a partir de ahí, los usuarios necesitan las licencias de Power Platform correspondientes."
-      },
-      {
-        "id": "s3",
-        "text": "Dataverse for Teams almacena los datos en listas de SharePoint del equipo.",
-        "answer": false,
-        "explanation": "Dataverse for Teams usa tablas de Dataverse en un entorno asociado al equipo, no listas de SharePoint."
-      },
-      {
-        "id": "s4",
-        "text": "Cada equipo de Teams que usa Dataverse for Teams tiene su propio entorno.",
-        "answer": true,
-        "explanation": "Se aprovisiona un entorno de Dataverse for Teams por equipo cuando se crea en él la primera aplicación o el primer agente."
-      }
-    ],
-    "keyPoint": "Dataverse for Teams = subconjunto de Dataverse, un entorno por equipo, actualizable a Dataverse completo.",
-    "references": [
-      {
-        "title": "Acerca del entorno de Dataverse for Teams",
-        "url": "https://learn.microsoft.com/es-es/power-platform/admin/about-teams-environment"
-      }
-    ]
-  },
-  {
     "id": "pl900-d2-dataverse-009",
     "type": "order",
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d2",
-    "skill": "d2-dataverse",
+    "skill": "d2-dataverse-logica",
     "difficulty": 2,
     "scenario": "Una empresa de mantenimiento necesita registrar en Dataverse las máquinas que revisa. Para ello vas a crear la tabla personalizada Máquina con la columna Fecha de revisión, y los usuarios deben poder rellenar esa columna en el formulario principal de la tabla.",
     "prompt": "Ordena los pasos necesarios.",
@@ -1278,56 +458,882 @@
   },
   {
     "id": "pl900-d2-dataverse-011",
-    "type": "multiple",
+    "type": "yesno",
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d2",
     "skill": "d2-dataverse",
     "difficulty": 2,
-    "prompt": "¿Cuáles de las siguientes tablas de Dataverse son tablas de actividad? Selecciona tres.",
+    "scenario": "Una cadena de clínicas mantiene una base de datos SQL Server en sus propios servidores para sus aplicaciones internas. Está valorando trasladar los datos de una nueva aplicación de citas a Dataverse.",
+    "prompt": "Indica si cada afirmación sobre Dataverse frente a una base de datos tradicional es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Con Dataverse, Microsoft se encarga de la infraestructura del servicio, por lo que tu equipo no instala ni actualiza servidores de base de datos.",
+        "answer": true,
+        "explanation": "Dataverse es un servicio de datos SaaS en la nube: los datos y los metadatos se almacenan en la nube y no tienes que preocuparte de cómo se almacenan ni de mantener servidores."
+      },
+      {
+        "id": "s2",
+        "text": "Power Apps aprovecha directamente los metadatos de Dataverse, como los tipos de columna y las relaciones, al crear aplicaciones.",
+        "answer": true,
+        "explanation": "Los metadatos enriquecidos de Dataverse (tipos de datos, relaciones, formularios, vistas) se usan directamente en Power Apps, algo que una base de datos tradicional no aporta por sí sola."
+      },
+      {
+        "id": "s3",
+        "text": "Para limitar qué filas ve cada usuario en Dataverse tienes que programar procedimientos almacenados.",
+        "answer": false,
+        "explanation": "Dataverse incluye seguridad basada en roles, unidades de negocio, uso compartido de filas y seguridad de columnas que se configuran sin programar."
+      },
+      {
+        "id": "s4",
+        "text": "Dataverse solo almacena datos relacionales, así que los archivos y las imágenes deben guardarse en otro sistema.",
+        "answer": false,
+        "explanation": "Dataverse está diseñado para trabajar con distintos tipos de datos: relacionales, no relacionales, archivos, imágenes, búsqueda y lago de datos; por ejemplo, ofrece columnas de archivo y de imagen."
+      }
+    ],
+    "keyPoint": "Dataverse es un servicio SaaS administrado con seguridad, metadatos y lógica integrados, y admite muchos tipos de datos.",
+    "references": [
+      {
+        "title": "¿Por qué elegir Microsoft Dataverse?",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/why-dataverse-overview"
+      },
+      {
+        "title": "¿Qué es Microsoft Dataverse?",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/data-platform-intro"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-dataverse-012",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse",
+    "difficulty": 2,
+    "scenario": "Una empresa de logística tiene una base de datos SQL Server hecha a medida. Cada vez que crea una aplicación nueva, un desarrollador tiene que volver a programar en ella las validaciones y los permisos. Quiere que esas reglas se apliquen igual en todas las aplicaciones.",
+    "prompt": "¿Qué característica de Dataverse responde mejor a esta necesidad?",
     "options": [
       {
         "id": "a",
-        "text": "Cuenta",
-        "correct": false,
-        "explanation": "Cuenta es una tabla estándar que representa organizaciones, como clientes o proveedores; no es una actividad."
+        "text": "Las reglas de negocio y la seguridad se definen una vez sobre las tablas y se aplican a todas las aplicaciones que usan esos datos",
+        "correct": true,
+        "explanation": "En Dataverse la lógica de negocio y la seguridad basada en roles residen en la plataforma de datos, por lo que se aplican de forma coherente independientemente de la aplicación o el canal desde el que se acceda a los datos."
       },
       {
         "id": "b",
-        "text": "Correo electrónico",
-        "correct": true,
-        "explanation": "El correo electrónico es una tabla de actividad: representa una interacción con fecha que puede vincularse a otras filas."
+        "text": "Cada aplicación incluye su propia copia de las reglas de validación, que se sincronizan con la base de datos",
+        "correct": false,
+        "explanation": "Eso es justo lo que la empresa quiere evitar; Dataverse no requiere duplicar la lógica en cada aplicación."
       },
       {
         "id": "c",
-        "text": "Contacto",
+        "text": "El motor de Dataverse se instala en los servidores locales de la empresa para que el equipo de TI lo controle",
         "correct": false,
-        "explanation": "Contacto es una tabla estándar que representa personas; no es una actividad."
+        "explanation": "Dataverse es un servicio en la nube administrado por Microsoft; no se instala en servidores propios."
       },
       {
         "id": "d",
-        "text": "Cita",
+        "text": "Dataverse guarda los datos como documentos sin esquema, por lo que no hace falta definir tablas ni columnas",
+        "correct": false,
+        "explanation": "Dataverse organiza los datos en tablas con columnas tipadas y relaciones; ese esquema es lo que aprovechan las aplicaciones."
+      }
+    ],
+    "keyPoint": "En Dataverse la lógica y la seguridad viven en los datos, no en cada aplicación.",
+    "references": [
+      {
+        "title": "¿Qué es Microsoft Dataverse?",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/data-platform-intro"
+      },
+      {
+        "title": "¿Por qué elegir Microsoft Dataverse?",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/why-dataverse-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-formularios-001",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse-logica",
+    "difficulty": 2,
+    "prompt": "Empareja cada necesidad de una aplicación basada en modelos con el tipo de formulario de tabla que debes usar. Cada opción puede usarse una vez o ninguna.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Mostrar todos los detalles de una fila, organizados en pestañas y secciones, para verla y editarla",
+        "answerId": "c1",
+        "explanation": "El formulario principal es la interfaz principal para ver los datos de una fila e interactuar con ellos."
+      },
+      {
+        "id": "m2",
+        "text": "Dar de alta un contacto rápidamente, con solo las columnas imprescindibles, sin salir de la página en la que estás",
+        "answerId": "c2",
+        "explanation": "El formulario de creación rápida es un formulario básico optimizado para crear filas nuevas."
+      },
+      {
+        "id": "m3",
+        "text": "Mostrar, dentro del formulario de un pedido, datos del cliente al que apunta su columna de búsqueda",
+        "answerId": "c3",
+        "explanation": "El formulario de vista rápida se inserta en el formulario principal para mostrar datos de la fila relacionada a través de una búsqueda, sin salir del formulario."
+      },
+      {
+        "id": "m4",
+        "text": "Presentar la información de cada fila de una vista en un formato compacto, adecuado para móviles",
+        "answerId": "c4",
+        "explanation": "Los formularios de tarjeta se usan en las vistas para mostrar la información de forma compacta, pensada para dispositivos móviles."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Principal"
+      },
+      {
+        "id": "c2",
+        "text": "Creación rápida"
+      },
+      {
+        "id": "c3",
+        "text": "Vista rápida"
+      },
+      {
+        "id": "c4",
+        "text": "Tarjeta"
+      },
+      {
+        "id": "c5",
+        "text": "Vista pública"
+      }
+    ],
+    "keyPoint": "Principal = ver y editar; creación rápida = alta ágil; vista rápida = datos relacionados; tarjeta = formato compacto. Una vista no es un formulario.",
+    "references": [
+      {
+        "title": "Tipos de formularios en aplicaciones basadas en modelos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/types-forms"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-vistas-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse-logica",
+    "difficulty": 2,
+    "scenario": "Una comercial usa a diario una aplicación basada en modelos. Quiere guardar una lista de sus oportunidades abiertas de la zona norte, ordenada por fecha de cierre, para consultarla rápidamente sin que aparezca a sus compañeros.",
+    "prompt": "¿Qué debe crear la comercial?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Una vista personal",
         "correct": true,
-        "explanation": "La cita es una actividad con fecha y hora de inicio y fin, que aparece en la escala de tiempo de los registros relacionados."
+        "explanation": "Las vistas personales pertenecen a quien las crea y solo esa persona las ve, salvo que decida compartirlas; los usuarios las crean desde la propia aplicación."
+      },
+      {
+        "id": "b",
+        "text": "Una vista pública",
+        "correct": false,
+        "explanation": "Las vistas públicas están disponibles para todos los usuarios de la aplicación en el selector de vistas, justo lo que la comercial no quiere."
+      },
+      {
+        "id": "c",
+        "text": "Una vista del sistema, como la de Búsqueda rápida",
+        "correct": false,
+        "explanation": "Las vistas del sistema tienen fines especiales (búsqueda rápida, búsqueda, asociada…), las editan administradores o personalizadores y no aparecen en el selector de vistas."
+      },
+      {
+        "id": "d",
+        "text": "Un formulario de vista rápida",
+        "correct": false,
+        "explanation": "Un formulario de vista rápida muestra datos de una fila relacionada dentro de otro formulario; no define una lista filtrada de filas."
+      }
+    ],
+    "keyPoint": "Lista solo para mí → vista personal; lista para todos → vista pública; vistas del sistema → usos especiales.",
+    "references": [
+      {
+        "title": "Comprender las vistas de las aplicaciones basadas en modelos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/create-edit-views"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-logica-001",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse-logica",
+    "difficulty": 3,
+    "prompt": "Empareja cada requisito con la opción de lógica de negocio de Dataverse más adecuada. Cada opción puede usarse una vez o ninguna.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Mostrar en cada línea de pedido el total, calculado con una expresión de Power Fx a partir de la cantidad y el precio",
+        "answerId": "c1",
+        "explanation": "Una columna de fórmula calcula su valor con Power Fx a partir de otras columnas, sin que el usuario lo escriba."
+      },
+      {
+        "id": "m2",
+        "text": "Hacer obligatoria la columna Motivo cuando el estado sea Rechazado, sin escribir código",
+        "answerId": "c2",
+        "explanation": "Las reglas de negocio aplican condiciones y acciones sin código, como cambiar el requisito de una columna o mostrar un mensaje de error."
+      },
+      {
+        "id": "m3",
+        "text": "Enviar un correo de Outlook y publicar un mensaje en Teams cuando se cree una incidencia de prioridad alta",
+        "answerId": "c3",
+        "explanation": "Un flujo de nube automatizado de Power Automate se desencadena con un evento de Dataverse y usa conectores para actuar en otros servicios."
+      },
+      {
+        "id": "m4",
+        "text": "Guiar a los usuarios por las fases Calificar, Proponer y Cerrar de una oportunidad en una aplicación basada en modelos",
+        "answerId": "c4",
+        "explanation": "Un flujo de proceso de negocio define un conjunto de fases y pasos que los usuarios siguen en una aplicación basada en modelos."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Columna de fórmula"
+      },
+      {
+        "id": "c2",
+        "text": "Regla de negocio"
+      },
+      {
+        "id": "c3",
+        "text": "Flujo de nube de Power Automate"
+      },
+      {
+        "id": "c4",
+        "text": "Flujo de proceso de negocio"
+      },
+      {
+        "id": "c5",
+        "text": "Vista personal"
+      }
+    ],
+    "keyPoint": "Cálculo con Power Fx → columna de fórmula; validación sin código → regla de negocio; automatizar con otros servicios → flujo de nube; guiar etapas → flujo de proceso de negocio.",
+    "references": [
+      {
+        "title": "Aplicar lógica de negocio en Microsoft Dataverse",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/processes"
+      },
+      {
+        "title": "Trabajar con columnas de fórmula",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/formula-columns"
+      },
+      {
+        "title": "Aplicar lógica de negocio con reglas de negocio y flujos en aplicaciones basadas en modelos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/guide-staff-through-common-tasks-processes"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-logica-002",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse-logica",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre Power Fx y las columnas de fórmula de Dataverse es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Power Fx es un lenguaje de fórmulas low-code, con una sintaxis parecida a la de Excel.",
+        "answer": true,
+        "explanation": "Power Fx se basa en fórmulas declarativas similares a las de una hoja de cálculo, lo que lo hace accesible a quien ya usa Excel."
+      },
+      {
+        "id": "s2",
+        "text": "Una columna de fórmula guarda el valor que escribe el usuario y la fórmula solo lo valida.",
+        "answer": false,
+        "explanation": "Una columna de fórmula muestra un valor calculado por la fórmula; el usuario no escribe ese valor."
+      },
+      {
+        "id": "s3",
+        "text": "El tipo de datos de una columna de fórmula lo determina el resultado de la fórmula que escribes.",
+        "answer": true,
+        "explanation": "La fórmula define el tipo de la columna (número, texto…), y después solo puedes cambiarla si el tipo resultante no cambia."
+      },
+      {
+        "id": "s4",
+        "text": "Para crear una columna de fórmula necesitas programar un complemento (*plug-in*) en C#.",
+        "answer": false,
+        "explanation": "Las columnas de fórmula se crean desde Power Apps eligiendo el tipo de datos Fórmula y escribiendo la expresión de Power Fx, sin código profesional."
+      }
+    ],
+    "keyPoint": "Columna de fórmula = valor calculado con Power Fx; la fórmula fija el tipo de la columna.",
+    "references": [
+      {
+        "title": "Trabajar con columnas de fórmula",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/formula-columns"
+      },
+      {
+        "title": "Información general sobre Microsoft Power Fx",
+        "url": "https://learn.microsoft.com/es-es/power-platform/power-fx/overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-ia-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse-logica",
+    "difficulty": 2,
+    "scenario": "Un jefe de flota sin experiencia en bases de datos quiere registrar en Dataverse las inspecciones de vehículos, el conductor asignado y las incidencias detectadas. Prefiere describir lo que necesita con sus palabras en lugar de diseñar cada tabla a mano.",
+    "prompt": "¿Qué debe usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Copilot en Power Apps, eligiendo empezar con Copilot al crear tablas y describiendo los datos en lenguaje natural",
+        "correct": true,
+        "explanation": "Al crear tablas puedes describir tus datos en lenguaje natural y Copilot genera las tablas, sus columnas y sus relaciones, que después revisas antes de guardar."
+      },
+      {
+        "id": "b",
+        "text": "Una regla de negocio que genere las columnas a partir de la descripción",
+        "correct": false,
+        "explanation": "Las reglas de negocio aplican lógica sobre columnas que ya existen; no crean tablas ni columnas."
+      },
+      {
+        "id": "c",
+        "text": "Una canalización de Power Platform que importe las tablas desde producción",
+        "correct": false,
+        "explanation": "Las canalizaciones implementan soluciones ya creadas entre entornos; no diseñan tablas nuevas."
+      },
+      {
+        "id": "d",
+        "text": "El Comprobador de soluciones (*Solution checker*)",
+        "correct": false,
+        "explanation": "El comprobador de soluciones analiza la calidad de los componentes de una solución; no genera modelos de datos."
+      }
+    ],
+    "keyPoint": "Describir los datos en lenguaje natural → Copilot genera tablas, columnas y relaciones en Dataverse.",
+    "references": [
+      {
+        "title": "Crear y editar tablas con Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/create-edit-entities-portal"
+      },
+      {
+        "title": "Crear aplicaciones a través de una conversación con Copilot",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/ai-conversations-create-app"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-ia-002",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse-logica",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre el uso de Copilot para crear y editar tablas de Dataverse es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puedes pedir a Copilot en lenguaje natural que agregue columnas a una tabla que está generando, por ejemplo para registrar la hora de inicio y de fin.",
+        "answer": true,
+        "explanation": "En el panel de Copilot puedes describir cambios y Copilot los aplica, por ejemplo agregando columnas nuevas a la tabla."
+      },
+      {
+        "id": "s2",
+        "text": "Copilot guarda las tablas en Dataverse en cuanto las genera, sin que puedas revisarlas antes.",
+        "answer": false,
+        "explanation": "Copilot muestra las tablas y relaciones propuestas para que las revises y sigas iterando; se crean cuando eliges guardar."
+      },
+      {
+        "id": "s3",
+        "text": "Copilot puede ayudarte a crear tablas a partir de un archivo de Excel o CSV o de una lista de SharePoint.",
+        "answer": true,
+        "explanation": "Además de describir tablas nuevas, el panel de Copilot permite importar datos de Excel, CSV o listas de SharePoint para generar las tablas."
+      },
+      {
+        "id": "s4",
+        "text": "Las tablas que genera Copilot se crean en una base de datos SQL independiente, fuera de Dataverse.",
+        "answer": false,
+        "explanation": "Copilot genera tablas de Dataverse en el entorno, con el mismo modelo de seguridad y metadatos que cualquier otra tabla."
+      }
+    ],
+    "keyPoint": "Copilot propone tablas, columnas y relaciones de Dataverse; tú las revisas, las ajustas en lenguaje natural y las guardas.",
+    "references": [
+      {
+        "title": "Crear aplicaciones a través de una conversación con Copilot",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/ai-conversations-create-app"
+      },
+      {
+        "title": "Crear y editar tablas con Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/create-edit-entities-portal"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-ia-003",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse-logica",
+    "difficulty": 3,
+    "prompt": "¿Qué dos requisitos se deben cumplir para crear tablas con Copilot en Power Apps? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Que Copilot esté habilitado para el entorno",
+        "correct": true,
+        "explanation": "La creación de tablas con Copilot requiere que Copilot esté habilitado en el entorno (lo está de forma predeterminada) y, según la región, puede requerir permitir el movimiento de datos entre regiones."
+      },
+      {
+        "id": "b",
+        "text": "Que el entorno tenga una base de datos de Dataverse",
+        "correct": true,
+        "explanation": "Copilot genera tablas de Dataverse, así que necesitas acceso a un entorno con base de datos de Dataverse."
+      },
+      {
+        "id": "c",
+        "text": "Que el entorno sea de tipo espacio aislado (*sandbox*)",
+        "correct": false,
+        "explanation": "No se exige un tipo de entorno concreto; lo necesario es que el entorno tenga Dataverse y Copilot habilitado."
+      },
+      {
+        "id": "d",
+        "text": "Que exista un conector personalizado para Copilot",
+        "correct": false,
+        "explanation": "Crear tablas con Copilot es una capacidad integrada de Power Apps; no requiere conectores personalizados."
       },
       {
         "id": "e",
-        "text": "Tarea",
-        "correct": true,
-        "explanation": "La tarea es una actividad que representa un trabajo pendiente asociado a una fila."
-      },
-      {
-        "id": "f",
-        "text": "Usuario",
+        "text": "Que la directiva de datos coloque Dataverse en el grupo Bloqueado",
         "correct": false,
-        "explanation": "Usuario es una tabla del sistema que representa a las personas con acceso al entorno, no una actividad."
+        "explanation": "Bloquear Dataverse no es posible, y además impediría trabajar con los datos en lugar de habilitar Copilot."
       }
     ],
-    "keyPoint": "Tablas de actividad = acciones con fecha (correo, cita, tarea, llamada…); Cuenta y Contacto son tablas estándar.",
+    "keyPoint": "Copilot para tablas: entorno con Dataverse + Copilot habilitado en el entorno.",
     "references": [
       {
-        "title": "Tablas en Dataverse",
-        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/entity-overview"
+        "title": "Crear y editar tablas con Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/create-edit-entities-portal"
+      },
+      {
+        "title": "Crear aplicaciones a través de una conversación con Copilot",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/ai-conversations-create-app"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-entornos-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "difficulty": 1,
+    "prompt": "¿Cuál es la finalidad principal de un entorno (*environment*) en Microsoft Power Platform?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Almacenar los informes y paneles de Power BI de la organización",
+        "correct": false,
+        "explanation": "Los informes de Power BI se organizan en áreas de trabajo de Power BI, no en entornos de Power Platform."
+      },
+      {
+        "id": "b",
+        "text": "Servir de contenedor para guardar, administrar y compartir aplicaciones, flujos y datos de forma aislada",
+        "correct": true,
+        "explanation": "Un entorno agrupa recursos de negocio (aplicaciones, flujos, conexiones, agentes y datos) y permite separarlos por finalidad, equipo o región."
+      },
+      {
+        "id": "c",
+        "text": "Definir qué conectores pueden combinarse dentro de una misma aplicación o flujo",
+        "correct": false,
+        "explanation": "Eso es lo que hacen las directivas de datos (antes llamadas directivas de prevención de pérdida de datos o DLP), que se aplican a entornos pero no son entornos."
+      },
+      {
+        "id": "d",
+        "text": "Asignar licencias de Power Apps y Power Automate a los usuarios",
+        "correct": false,
+        "explanation": "Las licencias de usuario se asignan desde el centro de administración de Microsoft 365 (o con Microsoft Entra ID); aunque a un entorno se le puede asignar capacidad, gestionar licencias no es la finalidad de un entorno."
+      }
+    ],
+    "keyPoint": "Un entorno es un contenedor que aísla aplicaciones, flujos y datos; puede tener como máximo una base de datos de Dataverse.",
+    "references": [
+      {
+        "title": "Información general sobre los entornos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/environments-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-entornos-002",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "difficulty": 2,
+    "scenario": "Contoso Seguros tiene una aplicación basada en modelos en producción. El equipo de TI quiere probar una actualización importante con una copia de los datos y poder restablecer el entorno de pruebas al terminar, sin afectar a los usuarios.",
+    "prompt": "¿Qué tipo de entorno debes crear para las pruebas?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Producción",
+        "correct": false,
+        "explanation": "Un entorno de producción está pensado para el trabajo diario de los usuarios finales; usarlo para pruebas mezclaría cambios a medio terminar con el uso real."
+      },
+      {
+        "id": "b",
+        "text": "Prueba (*trial*)",
+        "correct": false,
+        "explanation": "Un entorno de prueba sirve para evaluar funciones durante un tiempo limitado y caduca; no está pensado para el ciclo de pruebas de una aplicación existente."
+      },
+      {
+        "id": "c",
+        "text": "Espacio aislado (*sandbox*)",
+        "correct": true,
+        "explanation": "Los entornos de espacio aislado son de no producción y admiten operaciones como copiar desde otro entorno y restablecer, por lo que son ideales para desarrollar y probar."
+      },
+      {
+        "id": "d",
+        "text": "Predeterminado (*default*)",
+        "correct": false,
+        "explanation": "El entorno predeterminado lo comparten todos los usuarios del inquilino, así que no sirve para aislar unas pruebas."
+      }
+    ],
+    "keyPoint": "Espacio aislado = entorno de no producción para desarrollar y probar, con opciones de copia y restablecimiento.",
+    "references": [
+      {
+        "title": "Información general sobre los entornos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/environments-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-entornos-003",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "difficulty": 3,
+    "scenario": "Fabrikam ha creado una aplicación de lienzo, varios flujos de nube y tablas personalizadas en un entorno de desarrollo. Quiere implementarlos en producción de modo que los componentes queden protegidos frente a ediciones directas y que, si se desinstala el paquete, sus componentes se eliminen.",
+    "prompt": "¿Cómo debes llevar los componentes al entorno de producción?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Exportar una solución no administrada e importarla en producción",
+        "correct": false,
+        "explanation": "Las soluciones no administradas se usan en desarrollo: sus componentes se pueden editar y, al eliminar la solución, los componentes permanecen en el entorno."
+      },
+      {
+        "id": "b",
+        "text": "Volver a crear manualmente cada componente en producción",
+        "correct": false,
+        "explanation": "Recrear los componentes a mano es propenso a errores y no permite actualizar ni desinstalar el conjunto como una unidad."
+      },
+      {
+        "id": "c",
+        "text": "Copiar el entorno de desarrollo completo sobre el de producción",
+        "correct": false,
+        "explanation": "Copiar un entorno sobrescribe el destino con los datos y la configuración del origen; no es la forma de distribuir componentes de una aplicación."
+      },
+      {
+        "id": "d",
+        "text": "Exportar la solución como administrada e importarla en producción",
+        "correct": true,
+        "explanation": "Las soluciones administradas son las que se implementan en prueba y producción: sus componentes no se editan directamente (salvo lo que permitan sus propiedades administradas) y se quitan al eliminar la solución."
+      }
+    ],
+    "keyPoint": "Solución no administrada en desarrollo; solución administrada en prueba y producción.",
+    "references": [
+      {
+        "title": "Conceptos de soluciones",
+        "url": "https://learn.microsoft.com/es-es/power-platform/alm/solution-concepts-alm"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-entornos-005",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre los entornos de Power Platform es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Un entorno puede contener como máximo una base de datos de Dataverse.",
+        "answer": true,
+        "explanation": "Cada entorno tiene cero o una base de datos de Dataverse; si necesitas otra base de datos aislada, necesitas otro entorno."
+      },
+      {
+        "id": "s2",
+        "text": "Cada entorno se crea en una región geográfica, que determina dónde se almacenan sus datos.",
+        "answer": true,
+        "explanation": "Al crear el entorno eliges su región, y los datos de Dataverse de ese entorno se hospedan en ella."
+      },
+      {
+        "id": "s3",
+        "text": "Un entorno de prueba (*trial*) es la opción recomendada para alojar indefinidamente aplicaciones de producción.",
+        "answer": false,
+        "explanation": "Los entornos de prueba son temporales y caducan; las cargas de trabajo permanentes deben ir en entornos de producción."
+      },
+      {
+        "id": "s4",
+        "text": "Cada inquilino tiene un único entorno predeterminado (*default*), que se crea automáticamente y no se puede eliminar.",
+        "answer": true,
+        "explanation": "Microsoft crea un entorno predeterminado por inquilino, compartido por todos sus usuarios, y no se puede eliminar; por eso conviene gobernarlo y no usarlo para cargas de producción."
+      }
+    ],
+    "keyPoint": "Entorno = región + cero o una base de Dataverse; hay un único entorno predeterminado por inquilino y no se puede eliminar.",
+    "references": [
+      {
+        "title": "Información general sobre los entornos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/environments-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-entornos-006",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "difficulty": 2,
+    "scenario": "En Fabrikam, el administrador ha configurado una canalización de Power Platform (*pipeline*) con dos etapas, Prueba y Producción, asociada a tu entorno de desarrollo. Has terminado una aplicación con sus flujos dentro de una solución.",
+    "prompt": "Ordena los pasos que sigues como creador para llevar la solución a producción con la canalización.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Abrir en el entorno de desarrollo la solución no administrada que quieres implementar",
+        "explanation": "Las canalizaciones se ejecutan desde una solución no administrada del entorno de desarrollo; no aparecen en la solución predeterminada, en soluciones administradas ni en los entornos de destino."
+      },
+      {
+        "id": "p2",
+        "text": "Seleccionar la canalización y la etapa a la que quieres implementar, en este caso Prueba",
+        "explanation": "Dentro de la solución eliges la canalización y la etapa de destino; sin ese paso no se puede iniciar la validación."
+      },
+      {
+        "id": "p3",
+        "text": "Esperar la validación previa y proporcionar las referencias de conexión y variables de entorno que se te pidan",
+        "explanation": "Tras elegir la etapa, la canalización valida la solución contra el entorno de destino (dependencias que faltan, etc.) y te pide las conexiones y los valores de configuración de ese entorno antes de implementar."
+      },
+      {
+        "id": "p4",
+        "text": "Implementar en la etapa Prueba y comprobar allí la aplicación",
+        "explanation": "Con la validación superada, la canalización implementa automáticamente la solución, como administrada, en el entorno de prueba."
+      },
+      {
+        "id": "p5",
+        "text": "Implementar en la etapa Producción el mismo artefacto que se probó",
+        "explanation": "Las etapas se completan en orden: no puedes implementar una versión en producción antes de haberla implementado en prueba, y a producción llega exactamente el mismo artefacto de solución."
+      }
+    ],
+    "keyPoint": "Solución no administrada en desarrollo → elegir etapa → validación y conexiones → prueba → producción, sin saltarse etapas.",
+    "references": [
+      {
+        "title": "Ejecutar canalizaciones en Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-platform/alm/run-pipeline"
+      },
+      {
+        "title": "Información general de las canalizaciones de Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-platform/alm/pipelines"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-entornos-007",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "difficulty": 3,
+    "prompt": "Empareja cada necesidad con el tipo de entorno más adecuado. Cada opción puede usarse una vez o ninguna.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Un creador quiere un entorno personal, sin un periodo de evaluación que caduque, para aprender y crear por su cuenta",
+        "answerId": "c4",
+        "explanation": "Los entornos de desarrollador están pensados para el uso individual de su propietario y, a diferencia de los de prueba (*trial*), no están ligados a un periodo de evaluación."
+      },
+      {
+        "id": "m2",
+        "text": "Evaluar funciones de Power Platform durante un tiempo limitado",
+        "answerId": "c2",
+        "explanation": "El entorno de prueba (*trial*) es temporal y caduca tras un periodo determinado."
+      },
+      {
+        "id": "m3",
+        "text": "Ejecutar las aplicaciones que usa toda la plantilla en su trabajo diario",
+        "answerId": "c1",
+        "explanation": "Producción es el tipo de entorno pensado para cargas de trabajo permanentes y de uso real."
+      },
+      {
+        "id": "m4",
+        "text": "Probar cambios con la posibilidad de copiar y restablecer el entorno",
+        "answerId": "c3",
+        "explanation": "El espacio aislado (*sandbox*) es un entorno de no producción que admite copia y restablecimiento."
+      },
+      {
+        "id": "m5",
+        "text": "Crear aplicaciones ligeras para los miembros de un equipo de Microsoft Teams",
+        "answerId": "c5",
+        "explanation": "Un entorno de Dataverse for Teams se aprovisiona para un equipo cuando se crea en él la primera aplicación o el primer agente; el entorno predeterminado, en cambio, es compartido por todo el inquilino."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Producción"
+      },
+      {
+        "id": "c2",
+        "text": "Prueba (trial)"
+      },
+      {
+        "id": "c3",
+        "text": "Espacio aislado (sandbox)"
+      },
+      {
+        "id": "c4",
+        "text": "Desarrollador (developer)"
+      },
+      {
+        "id": "c5",
+        "text": "Dataverse for Teams"
+      },
+      {
+        "id": "c6",
+        "text": "Predeterminado (default)"
+      }
+    ],
+    "keyPoint": "Cada tipo de entorno responde a un propósito: producción, pruebas, uso personal, evaluación temporal o Teams.",
+    "references": [
+      {
+        "title": "Información general sobre los entornos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/environments-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-entornos-008",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "difficulty": 1,
+    "prompt": "Completa la frase.",
+    "template": "Para crear entornos y configurar sus directivas usas {{b1}}; para trasladar componentes como aplicaciones, flujos y tablas personalizadas entre entornos los empaquetas en {{b2}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Power Apps Studio"
+          },
+          {
+            "id": "o2",
+            "text": "el centro de administración de Power Platform"
+          },
+          {
+            "id": "o3",
+            "text": "el centro de administración de Microsoft Teams"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "El centro de administración de Power Platform es el portal para gestionar entornos, directivas de datos, capacidad y análisis; Power Apps Studio sirve para diseñar aplicaciones y el centro de administración de Teams gestiona Teams, no los entornos de Power Platform."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "una vista"
+          },
+          {
+            "id": "o2",
+            "text": "una directiva de datos"
+          },
+          {
+            "id": "o3",
+            "text": "una solución"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "Las soluciones son el mecanismo de ALM para empaquetar y mover componentes entre entornos; las vistas muestran filas y las directivas de datos (antes DLP) controlan qué conectores se pueden usar."
+      }
+    ],
+    "keyPoint": "Centro de administración = gestionar entornos; soluciones = mover componentes entre entornos.",
+    "references": [
+      {
+        "title": "Administrar Microsoft Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/admin-documentation"
+      },
+      {
+        "title": "Conceptos de soluciones",
+        "url": "https://learn.microsoft.com/es-es/power-platform/alm/solution-concepts-alm"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-pipelines-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "difficulty": 2,
+    "scenario": "El responsable de TI de una aseguradora quiere que los creadores lleven sus soluciones de desarrollo a prueba y a producción sin conocer en detalle los procesos de ALM, que cada implementación se valide antes contra el entorno de destino y que el paso a producción requiera aprobación.",
+    "prompt": "¿Qué debes configurar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Canalizaciones de Power Platform (*pipelines*) con etapas de prueba y producción",
+        "correct": true,
+        "explanation": "Las canalizaciones automatizan la implementación de soluciones entre entornos: los creadores implementan con pocos clics desde desarrollo, la solución se valida antes contra el destino y los administradores pueden exigir aprobaciones (implementaciones delegadas)."
+      },
+      {
+        "id": "b",
+        "text": "Exportar e importar manualmente soluciones no administradas en cada entorno",
+        "correct": false,
+        "explanation": "Es un proceso manual, sin validación previa ni aprobaciones integradas, y las soluciones no administradas no son las adecuadas para prueba y producción."
+      },
+      {
+        "id": "c",
+        "text": "Copiar el entorno de desarrollo sobre el de producción cada vez que haya cambios",
+        "correct": false,
+        "explanation": "Copiar un entorno sobrescribe el destino con el contenido del origen; no es un proceso de implementación controlado ni aprobable."
+      },
+      {
+        "id": "d",
+        "text": "Una directiva de datos que permita el conector de Dataverse en producción",
+        "correct": false,
+        "explanation": "Las directivas de datos controlan el uso de conectores; no trasladan soluciones entre entornos."
+      }
+    ],
+    "keyPoint": "Canalizaciones = ALM automatizado y gobernado: implementar desde desarrollo, validar, aprobar y desplegar por etapas.",
+    "references": [
+      {
+        "title": "Información general de las canalizaciones de Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-platform/alm/pipelines"
+      },
+      {
+        "title": "Configurar canalizaciones en Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-platform/alm/set-up-pipelines"
       }
     ]
   },
@@ -1339,57 +1345,755 @@
     "domain": "d2",
     "skill": "d2-entornos",
     "difficulty": 3,
-    "prompt": "Completa la frase.",
-    "template": "Para que un flujo incluido en una solución use una conexión distinta en cada entorno al importarlo, se basa en {{b1}}; al crear un conector personalizado, puedes describir la API importando {{b2}}.",
+    "prompt": "Completa la frase sobre las canalizaciones de Power Platform.",
+    "template": "Al implementar una solución con una canalización, si contiene {{b1}} o variables de entorno se te pide que indiques sus valores para el entorno de destino; la canalización instala allí la solución como {{b2}} y {{b3}} los datos de las tablas de Dataverse.",
     "blanks": [
       {
         "id": "b1",
         "options": [
           {
             "id": "o1",
-            "text": "una variable de entorno"
+            "text": "referencias de conexión"
           },
           {
             "id": "o2",
-            "text": "una referencia de conexión"
+            "text": "vistas personales"
           },
           {
             "id": "o3",
-            "text": "un rol de seguridad"
+            "text": "roles de seguridad"
           }
         ],
-        "correctId": "o2",
-        "explanation": "Las referencias de conexión son componentes de solución que apuntan a la conexión de un conector; al importar eliges la conexión del entorno de destino. Las variables de entorno guardan valores de configuración, no conexiones."
+        "correctId": "o1",
+        "explanation": "Las referencias de conexión son componentes de solución que apuntan a una conexión; al implementar eliges la conexión del entorno de destino. Las vistas personales no viajan en soluciones y los roles no se configuran en ese paso."
       },
       {
         "id": "b2",
         "options": [
           {
             "id": "o1",
-            "text": "una definición OpenAPI"
+            "text": "solución no administrada"
           },
           {
             "id": "o2",
-            "text": "una vista de Dataverse"
+            "text": "solución administrada"
           },
           {
             "id": "o3",
-            "text": "una directiva DLP"
+            "text": "copia completa del entorno"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Las canalizaciones implementan soluciones administradas en los entornos que no son de desarrollo; no permiten implementar soluciones no administradas ni copian entornos."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "no copia"
+          },
+          {
+            "id": "o2",
+            "text": "copia también"
           }
         ],
         "correctId": "o1",
-        "explanation": "Un archivo OpenAPI describe las operaciones de una API REST y sirve como punto de partida del conector personalizado; vistas y DLP no describen APIs."
+        "explanation": "Las canalizaciones, como las soluciones en general, trasladan personalizaciones (aplicaciones, flujos, tablas, etc.), pero no los datos almacenados en las tablas de Dataverse."
       }
     ],
-    "keyPoint": "Referencia de conexión = conexión intercambiable por entorno; OpenAPI = descripción de la API para un conector personalizado.",
+    "keyPoint": "La canalización pide las conexiones y la configuración de cada entorno y despliega soluciones administradas, sin copiar datos.",
     "references": [
+      {
+        "title": "Información general de las canalizaciones de Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-platform/alm/pipelines"
+      },
       {
         "title": "Usar una referencia de conexión en una solución",
         "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/create-connection-reference"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-gobierno-001",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 1,
+    "prompt": "¿Qué dos acciones permite una directiva de datos de Power Platform (antes llamada directiva de prevención de pérdida de datos, *data loss prevention* o DLP)? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Clasificar los conectores en grupos para que solo compartan datos los del mismo grupo",
+        "correct": true,
+        "explanation": "Las directivas de datos clasifican los conectores en grupos (Empresarial y No empresarial); los conectores de un grupo pueden compartir datos entre sí, pero una aplicación o un flujo no puede combinar conectores de grupos distintos."
       },
       {
-        "title": "Conectores personalizados",
-        "url": "https://learn.microsoft.com/es-es/connectors/custom-connectors/"
+        "id": "b",
+        "text": "Cifrar las tablas de Dataverse con una clave propia de la organización",
+        "correct": false,
+        "explanation": "El cifrado con una clave administrada por el cliente es una función distinta; las directivas de datos actúan sobre conectores, no sobre el cifrado."
+      },
+      {
+        "id": "c",
+        "text": "Limitar qué filas de una tabla puede leer cada usuario",
+        "correct": false,
+        "explanation": "El acceso a filas se controla con roles de seguridad y unidades de negocio de Dataverse, no con directivas de datos."
+      },
+      {
+        "id": "d",
+        "text": "Bloquear un conector para que no se pueda usar en aplicaciones ni flujos",
+        "correct": true,
+        "explanation": "Además de los grupos Empresarial y No empresarial, la directiva puede colocar un conector en el grupo Bloqueado para impedir su uso. Solo unos pocos conectores básicos de la plataforma, como Dataverse, no se pueden bloquear."
+      },
+      {
+        "id": "e",
+        "text": "Asignar licencias premium a los creadores de aplicaciones",
+        "correct": false,
+        "explanation": "Las licencias se asignan en el centro de administración de Microsoft 365; una directiva de datos no concede ni quita licencias."
+      }
+    ],
+    "keyPoint": "Las directivas de datos (antes DLP) gobiernan conectores: los agrupan (Empresarial / No empresarial) y pueden bloquearlos.",
+    "references": [
+      {
+        "title": "Clasificación de conectores en las directivas de datos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/dlp-connector-classification"
+      },
+      {
+        "title": "Directivas de datos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/wp-data-loss-prevention"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-gobierno-002",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 2,
+    "scenario": "En Northwind Traders, una directiva de datos (antes DLP) clasifica SharePoint y Office 365 Outlook en el grupo Empresarial (*Business*) y el conector de una red social en el grupo No empresarial (*Non-business*). Un empleado intenta crear un flujo que publique en la red social cada elemento nuevo de una lista de SharePoint.",
+    "prompt": "¿Qué ocurre?",
+    "options": [
+      {
+        "id": "a",
+        "text": "El flujo funciona, porque ninguno de los dos conectores está bloqueado",
+        "correct": false,
+        "explanation": "No estar bloqueado no basta: los conectores de grupos distintos no pueden combinarse en el mismo flujo o aplicación."
+      },
+      {
+        "id": "b",
+        "text": "El flujo funciona, pero solo cuando lo ejecuta su propietario",
+        "correct": false,
+        "explanation": "La directiva no hace excepciones según quién ejecute el flujo; la restricción se aplica al recurso que combina los conectores."
+      },
+      {
+        "id": "c",
+        "text": "La directiva impide usar el flujo porque combina conectores de los grupos Empresarial y No empresarial",
+        "correct": true,
+        "explanation": "Los conectores de grupos distintos no pueden compartir datos: el creador no puede guardar un flujo que combine conectores del grupo Empresarial y del No empresarial, y un flujo ya existente que infrinja la directiva queda suspendido."
+      },
+      {
+        "id": "d",
+        "text": "El conector de la red social pasa automáticamente al grupo Empresarial",
+        "correct": false,
+        "explanation": "Los conectores nunca cambian de grupo solos; solo un administrador puede reclasificarlos editando la directiva."
+      }
+    ],
+    "keyPoint": "Una app o flujo no puede mezclar conectores del grupo Empresarial con los del No empresarial.",
+    "references": [
+      {
+        "title": "Clasificación de conectores en las directivas de datos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/dlp-connector-classification"
+      },
+      {
+        "title": "Directivas de datos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/wp-data-loss-prevention"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-gobierno-005",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 2,
+    "scenario": "Una empresa de distribución usa una aplicación basada en modelos sobre una tabla Pedido de Dataverse. Cada comercial debe ver y editar solo los pedidos de los que es propietario, mientras que los jefes de ventas deben ver todos los pedidos de su unidad de negocio.",
+    "prompt": "¿Qué debes configurar en Dataverse?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Una directiva de datos para cada equipo de ventas",
+        "correct": false,
+        "explanation": "Las directivas de datos (antes DLP) controlan qué conectores se pueden combinar; no limitan qué filas ve cada usuario."
+      },
+      {
+        "id": "b",
+        "text": "Roles de seguridad con niveles de acceso Usuario y Unidad de negocio",
+        "correct": true,
+        "explanation": "Los roles de seguridad asignan privilegios (crear, leer, escribir…) con un nivel de acceso: Usuario limita a las filas propias y Unidad de negocio amplía a las de toda la unidad."
+      },
+      {
+        "id": "c",
+        "text": "Una vista personal para cada comercial",
+        "correct": false,
+        "explanation": "Una vista solo filtra lo que se muestra en una lista; no impide acceder a otras filas, así que no es un mecanismo de seguridad."
+      },
+      {
+        "id": "d",
+        "text": "Una puerta de enlace de datos local",
+        "correct": false,
+        "explanation": "La puerta de enlace conecta con datos de la red local; no tiene relación con los permisos sobre filas de Dataverse."
+      }
+    ],
+    "keyPoint": "Roles de seguridad + niveles de acceso (Usuario, Unidad de negocio, Organización…) controlan qué filas ve cada usuario.",
+    "references": [
+      {
+        "title": "Roles de seguridad y privilegios",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/security-roles-privileges"
+      },
+      {
+        "title": "Seguridad en Microsoft Dataverse",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/wp-security-cds"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-gobierno-006",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre la seguridad en Power Platform es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Microsoft Entra ID (antes Azure Active Directory) es el servicio de identidad que autentica a los usuarios de Power Platform.",
+        "answer": true,
+        "explanation": "Power Platform usa Microsoft Entra ID para la identidad y la autenticación de los usuarios, y permite asignar permisos a grupos de Entra ID."
+      },
+      {
+        "id": "s2",
+        "text": "Si un usuario tiene varios roles de seguridad en Dataverse, obtiene la combinación de los privilegios de todos ellos.",
+        "answer": true,
+        "explanation": "Los privilegios de los roles son acumulativos: prevalece el acceso más amplio que conceda cualquiera de ellos."
+      },
+      {
+        "id": "s3",
+        "text": "Una directiva de datos (antes DLP) determina qué columnas de una tabla puede ver cada usuario.",
+        "answer": false,
+        "explanation": "La seguridad a nivel de columna se configura en Dataverse con perfiles de seguridad de columna; las directivas de datos solo controlan conectores."
+      },
+      {
+        "id": "s4",
+        "text": "Las unidades de negocio permiten delimitar el acceso a los datos según la estructura de la organización.",
+        "answer": true,
+        "explanation": "Las unidades de negocio agrupan usuarios y datos; combinadas con los niveles de acceso de los roles, limitan qué filas ve cada persona."
+      }
+    ],
+    "keyPoint": "Entra ID autentica; roles de seguridad y unidades de negocio de Dataverse autorizan; las directivas de datos gobiernan conectores.",
+    "references": [
+      {
+        "title": "Conceptos de seguridad en Microsoft Dataverse",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/wp-security-cds"
+      },
+      {
+        "title": "¿Por qué elegir Microsoft Dataverse?",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/why-dataverse-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-gobierno-007",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-supervision",
+    "difficulty": 2,
+    "scenario": "Contoso usaba el kit de inicio del Centro de excelencia (*CoE Starter Kit*) para gobernar Power Platform. Como Microsoft ya no lo mantiene activamente y sus funciones principales están ahora en el centro de administración de Power Platform, el equipo de gobierno quiere usar directamente las experiencias integradas.",
+    "prompt": "Empareja cada necesidad del equipo de gobierno con la experiencia del centro de administración de Power Platform que la cubre. Cada opción puede usarse una vez o ninguna.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Ver en una lista unificada todas las aplicaciones, flujos y agentes del inquilino y filtrarlos por entorno o propietario",
+        "answerId": "c1",
+        "explanation": "El inventario de Power Platform ofrece una vista centralizada de agentes, aplicaciones y flujos de toda la organización, que se puede buscar, filtrar y ordenar; sirve, por ejemplo, para localizar recursos de usuarios que dejan la empresa."
+      },
+      {
+        "id": "m2",
+        "text": "Detectar qué aplicaciones y flujos muy usados tienen un estado operativo degradado mediante métricas de estado",
+        "answerId": "c2",
+        "explanation": "El área Supervisar (*Monitor*) calcula métricas de estado operativo de aplicaciones, flujos y agentes a partir de su actividad y señala los recursos que necesitan atención."
+      },
+      {
+        "id": "m3",
+        "text": "Recibir recomendaciones personalizadas para mejorar la seguridad y la confiabilidad, y actuar sobre ellas desde el propio portal",
+        "answerId": "c3",
+        "explanation": "La página Acciones analiza los entornos administrados y sus aplicaciones y propone recomendaciones de buenas prácticas sobre las que el administrador puede actuar directamente."
+      },
+      {
+        "id": "m4",
+        "text": "Impedir que una aplicación combine conectores de datos corporativos con conectores de redes sociales",
+        "answerId": "c4",
+        "explanation": "Esto no es supervisión sino control preventivo: lo hacen las directivas de datos (antes DLP), que clasifican los conectores en grupos que no pueden mezclarse."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Inventario"
+      },
+      {
+        "id": "c2",
+        "text": "Supervisar (Monitor)"
+      },
+      {
+        "id": "c3",
+        "text": "Acciones"
+      },
+      {
+        "id": "c4",
+        "text": "Directivas de datos"
+      },
+      {
+        "id": "c5",
+        "text": "Canalizaciones (pipelines)"
+      }
+    ],
+    "keyPoint": "Inventario = qué recursos hay; Supervisar = estado operativo; Acciones = recomendaciones; directivas de datos = control de conectores.",
+    "references": [
+      {
+        "title": "Transición del kit de inicio del CoE al centro de administración de Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-platform/guidance/coe/starter-kit"
+      },
+      {
+        "title": "Inventario de Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/power-platform-inventory"
+      },
+      {
+        "title": "Supervisar el estado de los recursos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/monitoring/monitoring-overview"
+      },
+      {
+        "title": "Información general sobre las acciones",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/power-platform-advisor"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-gobierno-008",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 3,
+    "scenario": "Adventure Works quiere que una persona de TI administre todos los entornos del inquilino y sus directivas de datos desde el centro de administración de Power Platform, sin concederle el rol de administrador global.",
+    "prompt": "¿Qué debes asignarle?",
+    "options": [
+      {
+        "id": "a",
+        "text": "El rol de seguridad Administrador del sistema en el entorno predeterminado",
+        "correct": false,
+        "explanation": "Ese rol de Dataverse da control total solo dentro del entorno donde se asigna, no sobre todos los entornos del inquilino."
+      },
+      {
+        "id": "b",
+        "text": "El rol de administrador de Power Platform en Microsoft Entra ID",
+        "correct": true,
+        "explanation": "Es un rol de administración del servicio que permite gestionar todos los entornos y las directivas de Power Platform del inquilino sin ser administrador global."
+      },
+      {
+        "id": "c",
+        "text": "El rol de seguridad Creador de entornos (*Environment Maker*)",
+        "correct": false,
+        "explanation": "Permite crear recursos como aplicaciones, flujos y conexiones dentro de un entorno, pero no administrar el inquilino."
+      },
+      {
+        "id": "d",
+        "text": "El rol de seguridad Personalizador del sistema",
+        "correct": false,
+        "explanation": "Permite personalizar tablas y componentes de un entorno, pero no da acceso a la administración de todos los entornos ni de las directivas."
+      }
+    ],
+    "keyPoint": "Administrador de Power Platform (Entra ID) = todo el inquilino; Administrador del sistema (Dataverse) = un entorno.",
+    "references": [
+      {
+        "title": "Usar roles de administrador de servicio para administrar el inquilino",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/use-service-admin-role-manage-tenant"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-privacidad-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 2,
+    "scenario": "Una mutua de salud con sede en Madrid va a crear una aplicación sobre Dataverse. Su normativa interna exige que los datos de la aplicación se almacenen en centros de datos europeos, aunque el inquilino de Microsoft Entra se creó en otra región.",
+    "prompt": "¿Qué debes hacer para cumplir el requisito?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crear el entorno en la región de Europa",
+        "correct": true,
+        "explanation": "Al crear un entorno eliges su región geográfica, y sus datos de Dataverse se almacenan en esa zona; Microsoft puede replicarlos dentro de la misma zona geográfica para la resiliencia, pero no fuera de ella."
+      },
+      {
+        "id": "b",
+        "text": "Crear una directiva de datos que bloquee los conectores que no son europeos",
+        "correct": false,
+        "explanation": "Las directivas de datos controlan qué conectores se pueden usar, pero no deciden dónde se almacenan los datos del entorno."
+      },
+      {
+        "id": "c",
+        "text": "Habilitar la Caja de seguridad del cliente (*Customer Lockbox*)",
+        "correct": false,
+        "explanation": "La Caja de seguridad permite aprobar o rechazar el acceso de ingenieros de Microsoft a tus datos, pero no determina su ubicación."
+      },
+      {
+        "id": "d",
+        "text": "Asignar a los usuarios un rol de seguridad con nivel de acceso Unidad de negocio",
+        "correct": false,
+        "explanation": "Los roles de seguridad controlan qué filas ve cada usuario, no en qué centros de datos se almacenan."
+      }
+    ],
+    "keyPoint": "La residencia de los datos se decide con la región del entorno.",
+    "references": [
+      {
+        "title": "Elegir la región al configurar un entorno",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/regions-overview"
+      },
+      {
+        "title": "Privacidad de datos y cumplimiento",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/wp-compliance-data-privacy"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-privacidad-002",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 3,
+    "prompt": "Empareja cada requisito de privacidad o cumplimiento con la capacidad de Power Platform que lo cubre. Cada opción puede usarse una vez o ninguna.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Aprobar o rechazar las solicitudes, poco frecuentes, de ingenieros de Microsoft para acceder a los datos de tus clientes",
+        "answerId": "c1",
+        "explanation": "Con la Caja de seguridad del cliente (*Customer Lockbox*) los administradores revisan y aprueban o rechazan esas solicitudes de acceso, que quedan registradas para auditoría."
+      },
+      {
+        "id": "m2",
+        "text": "Cifrar los datos en reposo de un entorno con una clave propia que puedes rotar o revocar",
+        "answerId": "c2",
+        "explanation": "Por defecto Microsoft administra las claves de cifrado; la clave administrada por el cliente (CMK) te permite gestionar tu propia clave y revocar el acceso a los datos."
+      },
+      {
+        "id": "m3",
+        "text": "Saber quién creó o modificó una fila y cuándo lo hizo",
+        "answerId": "c3",
+        "explanation": "La auditoría de Dataverse registra los cambios en las filas de las tablas auditadas y el acceso de los usuarios, y se consulta en el historial de auditoría."
+      },
+      {
+        "id": "m4",
+        "text": "Mantener los datos de una aplicación en una zona geográfica concreta por motivos normativos",
+        "answerId": "c4",
+        "explanation": "La región que eliges al crear el entorno determina dónde se almacenan sus datos."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Caja de seguridad del cliente"
+      },
+      {
+        "id": "c2",
+        "text": "Clave administrada por el cliente"
+      },
+      {
+        "id": "c3",
+        "text": "Auditoría de Dataverse"
+      },
+      {
+        "id": "c4",
+        "text": "Región del entorno"
+      },
+      {
+        "id": "c5",
+        "text": "Directivas de datos"
+      }
+    ],
+    "keyPoint": "Lockbox = controlar el acceso de Microsoft; CMK = tu clave de cifrado; auditoría = quién cambió qué; región = dónde residen los datos.",
+    "references": [
+      {
+        "title": "Caja de seguridad del cliente en Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/about-lockbox"
+      },
+      {
+        "title": "Administrar la clave de cifrado administrada por el cliente",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/customer-managed-key"
+      },
+      {
+        "title": "Administrar la auditoría de Dataverse",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/manage-dataverse-auditing"
+      },
+      {
+        "title": "Privacidad de datos y cumplimiento",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/wp-compliance-data-privacy"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-accesibilidad-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 3,
+    "scenario": "Estás terminando una aplicación de lienzo que usarán empleados con discapacidad visual mediante lector de pantalla y teclado. Antes de publicarla quieres localizar controles sin etiqueta accesible o sin foco visible y saber cómo corregirlos.",
+    "prompt": "¿Qué herramienta debes usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "El Comprobador de accesibilidad, dentro del Comprobador de aplicaciones de Power Apps Studio",
+        "correct": true,
+        "explanation": "El Comprobador de accesibilidad detecta problemas de lector de pantalla y de teclado (por ejemplo, controles sin etiqueta accesible), los clasifica por gravedad y explica cómo corregirlos."
+      },
+      {
+        "id": "b",
+        "text": "Monitor en directo (*Live Monitor*)",
+        "correct": false,
+        "explanation": "Monitor en directo muestra los eventos de una sesión de la aplicación para diagnosticar errores y rendimiento, no problemas de accesibilidad."
+      },
+      {
+        "id": "c",
+        "text": "Los análisis de Power Apps del centro de administración",
+        "correct": false,
+        "explanation": "Esos informes muestran el uso, los errores y el rendimiento de las aplicaciones de lienzo publicadas; no revisan la accesibilidad del diseño."
+      },
+      {
+        "id": "d",
+        "text": "Una directiva de datos aplicada al entorno",
+        "correct": false,
+        "explanation": "Las directivas de datos controlan conectores; no analizan cómo está diseñada una aplicación."
+      }
+    ],
+    "keyPoint": "Problemas de accesibilidad en una app de lienzo → Comprobador de accesibilidad de Power Apps Studio.",
+    "references": [
+      {
+        "title": "Revisar una aplicación de lienzo para mejorar la accesibilidad",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/accessibility-checker"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-accesibilidad-002",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 2,
+    "prompt": "¿Qué dos prácticas mejoran la accesibilidad de una aplicación de lienzo? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Rellenar la propiedad AccessibleLabel de los controles de entrada y de las imágenes que transmiten información",
+        "correct": true,
+        "explanation": "AccessibleLabel define lo que anuncia el lector de pantalla; sin ella, quien no ve la pantalla no sabe para qué sirve el control."
+      },
+      {
+        "id": "b",
+        "text": "Asegurar un contraste suficiente entre el texto y el fondo cuando personalizas los colores",
+        "correct": true,
+        "explanation": "Un contraste suficiente permite leer el contenido a personas con baja visión; los temas de Power Apps ya están diseñados con este criterio."
+      },
+      {
+        "id": "c",
+        "text": "Usar etiquetas (*Label*) en lugar de botones para el texto sobre el que se hace clic",
+        "correct": false,
+        "explanation": "Para el texto interactivo se recomienda usar un botón, que el lector de pantalla y el teclado reconocen como control interactivo."
+      },
+      {
+        "id": "d",
+        "text": "Asignar a TabIndex valores mayores que cero para fijar a mano el orden de tabulación",
+        "correct": false,
+        "explanation": "La guía recomienda no usar TabIndex mayor que cero; el orden lógico se consigue con la estructura de la pantalla y valores 0 o -1."
+      },
+      {
+        "id": "e",
+        "text": "Indicar los campos obligatorios solo con el color rojo",
+        "correct": false,
+        "explanation": "Transmitir información únicamente con el color excluye a quienes no distinguen colores o usan lector de pantalla."
+      }
+    ],
+    "keyPoint": "Accesibilidad en lienzo: AccessibleLabel, buen contraste, botones para lo interactivo y orden de tabulación lógico.",
+    "references": [
+      {
+        "title": "Crear aplicaciones de lienzo accesibles",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/accessible-apps"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-supervision-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-supervision",
+    "difficulty": 2,
+    "scenario": "Los usuarios se quejan de que una aplicación de lienzo tarda mucho en cargar la pantalla de pedidos. Como creador, quieres ver en tiempo real qué llamadas de red y qué fórmulas se ejecutan durante una sesión para encontrar el cuello de botella.",
+    "prompt": "¿Qué herramienta debes usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Monitor en directo (*Live Monitor*)",
+        "correct": true,
+        "explanation": "Monitor en directo muestra el flujo de eventos de una sesión (llamadas de red, fórmulas, errores, duración de las solicitudes) para diagnosticar y solucionar problemas de una aplicación."
+      },
+      {
+        "id": "b",
+        "text": "El Comprobador de accesibilidad",
+        "correct": false,
+        "explanation": "Detecta problemas de accesibilidad del diseño, no qué llamadas de red se hacen ni cuánto tardan."
+      },
+      {
+        "id": "c",
+        "text": "El inventario de Power Platform",
+        "correct": false,
+        "explanation": "El inventario lista los recursos del inquilino; no registra los eventos de una sesión de la aplicación."
+      },
+      {
+        "id": "d",
+        "text": "La auditoría de Dataverse",
+        "correct": false,
+        "explanation": "La auditoría registra cambios en los datos y accesos, no el rendimiento de las fórmulas ni las llamadas de la aplicación."
+      }
+    ],
+    "keyPoint": "Depurar una sesión concreta de una aplicación → Monitor en directo.",
+    "references": [
+      {
+        "title": "Información general sobre Monitor en directo",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/monitor-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-supervision-002",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-supervision",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre la supervisión y el análisis en el centro de administración de Power Platform es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Los análisis de Power Apps muestran, entre otros datos, los inicios de las aplicaciones y los usuarios activos diarios.",
+        "answer": true,
+        "explanation": "El informe de uso de los análisis de Power Apps ofrece los inicios de aplicaciones y los usuarios activos diarios, filtrables por plataforma, país o región, etc."
+      },
+      {
+        "id": "s2",
+        "text": "Los análisis de Dataverse ayudan a seguir la adopción y el uso, así como el consumo de almacenamiento.",
+        "answer": true,
+        "explanation": "Los análisis de Dataverse permiten supervisar usuarios activos, operaciones y tablas más usadas, y administrar almacenamiento y rendimiento."
+      },
+      {
+        "id": "s3",
+        "text": "Las métricas de estado del área Supervisar se actualizan al instante, en el mismo momento en que ocurre cada evento.",
+        "answer": false,
+        "explanation": "Las métricas se calculan agregando los registros de eventos diarios de la actividad; no son en tiempo real."
+      },
+      {
+        "id": "s4",
+        "text": "Para obtener informes que agreguen datos de todos los entornos del inquilino, un administrador debe activar el análisis en el nivel de inquilino.",
+        "answer": true,
+        "explanation": "El análisis en el nivel de inquilino debe activarse (por ejemplo, por un administrador de Power Platform) para ver informes de todo el inquilino y para que haya datos en Supervisar."
+      }
+    ],
+    "keyPoint": "Análisis = uso y adopción; Supervisar = estado operativo; ambos usan datos agregados y necesitan el análisis de nivel de inquilino para la vista global.",
+    "references": [
+      {
+        "title": "Análisis de administración para Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/analytics-powerapps"
+      },
+      {
+        "title": "Ver y descargar análisis de Microsoft Dataverse",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/analytics-common-data-service"
+      },
+      {
+        "title": "Supervisar el estado de los recursos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/monitoring/monitoring-overview"
+      },
+      {
+        "title": "Análisis en el nivel de inquilino",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/tenant-level-analytics"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-supervision-003",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-supervision",
+    "difficulty": 2,
+    "scenario": "La administradora de Power Platform de una cadena hotelera ha habilitado Entornos administrados en los entornos de producción. Quiere recibir cada semana en su buzón un resumen con las aplicaciones más usadas, los creadores más activos y los recursos que llevan tiempo sin usarse.",
+    "prompt": "¿Qué debe configurar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "La información de uso de Entornos administrados (*Managed Environments*), incluyendo esos entornos en el resumen semanal por correo",
+        "correct": true,
+        "explanation": "Con la información de uso, los administradores de Power Platform reciben cada semana un resumen con las aplicaciones y flujos más usados, los creadores con más impacto y los recursos inactivos que pueden limpiarse."
+      },
+      {
+        "id": "b",
+        "text": "Monitor en directo en cada aplicación",
+        "correct": false,
+        "explanation": "Monitor en directo sirve para depurar sesiones concretas de una aplicación, no para enviar un resumen semanal de todo el entorno."
+      },
+      {
+        "id": "c",
+        "text": "La auditoría de Dataverse en todas las tablas",
+        "correct": false,
+        "explanation": "La auditoría registra cambios en las filas; no resume qué aplicaciones se usan más ni cuáles están inactivas."
+      },
+      {
+        "id": "d",
+        "text": "Una directiva de datos para los entornos administrados",
+        "correct": false,
+        "explanation": "Las directivas de datos limitan conectores; no generan informes de uso."
+      }
+    ],
+    "keyPoint": "Resumen semanal de uso (apps populares, creadores destacados, recursos inactivos) → información de uso de Entornos administrados.",
+    "references": [
+      {
+        "title": "Información de uso",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/managed-environment-usage-insights"
+      },
+      {
+        "title": "Introducción a los entornos administrados",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/managed-environment-overview"
       }
     ]
   }
