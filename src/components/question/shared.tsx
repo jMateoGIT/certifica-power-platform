@@ -2,19 +2,35 @@ import clsx from 'clsx'
 import { CircleCheck, CircleX } from 'lucide-react'
 import type { ReactNode } from 'react'
 
-/** Texto con soporte mínimo de *cursiva* y **negrita** (los términos en inglés van en cursiva). */
+/**
+ * Marcado mínimo: **negrita** y *cursiva* (los términos en inglés van en cursiva).
+ * Solo se interpreta si el contenido empieza y acaba sin espacio y contiene alguna
+ * letra, para que asteriscos literales como «(*:*)», «TOTAL*» o «a * b» se muestren tal cual.
+ */
+const MARKUP = /\*\*([^\s*](?:[^*]*?[^\s*])?)\*\*|\*([^\s*](?:[^*]*?[^\s*])?)\*/g
+const hasLetter = (s: string) => /\p{L}/u.test(s)
+
+export type MarkupPart = { kind: 'text' | 'strong' | 'em'; text: string }
+
+export function parseMarkup(text: string): MarkupPart[] {
+  const parts: MarkupPart[] = []
+  let last = 0
+  for (const m of text.matchAll(MARKUP)) {
+    const inner = m[1] ?? m[2]
+    if (!hasLetter(inner)) continue
+    if (m.index! > last) parts.push({ kind: 'text', text: text.slice(last, m.index) })
+    parts.push({ kind: m[1] !== undefined ? 'strong' : 'em', text: inner })
+    last = m.index! + m[0].length
+  }
+  if (last < text.length) parts.push({ kind: 'text', text: text.slice(last) })
+  return parts
+}
+
 export function RichText({ text }: { text: string }) {
-  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g)
   return (
     <>
-      {parts.map((p, i) =>
-        p.startsWith('**') && p.endsWith('**') ? (
-          <strong key={i}>{p.slice(2, -2)}</strong>
-        ) : p.startsWith('*') && p.endsWith('*') && p.length > 2 ? (
-          <em key={i}>{p.slice(1, -1)}</em>
-        ) : (
-          p
-        ),
+      {parseMarkup(text).map((p, i) =>
+        p.kind === 'strong' ? <strong key={i}>{p.text}</strong> : p.kind === 'em' ? <em key={i}>{p.text}</em> : p.text,
       )}
     </>
   )
@@ -41,7 +57,7 @@ export function WhyNote({ ok, children, label }: { ok: boolean; children: ReactN
 export const LETTERS = 'ABCDEFGH'
 
 /** Quita las marcas de *cursiva* y **negrita** (para textos dentro de <option>). */
-export const plainText = (text: string) => text.replace(/\*\*([^*]+)\*\*|\*([^*]+)\*/g, (_, b, i) => b ?? i)
+export const plainText = (text: string) => parseMarkup(text).map((p) => p.text).join('')
 
 /** Resumen de una pregunta para listados: si depende de un escenario, lo antepone. */
 export function questionSummary(q: { scenario?: string; prompt: string }) {

@@ -611,7 +611,7 @@
     "id": "actualizacion-automatica-paginas",
     "term": "Actualización automática de páginas",
     "en": "Automatic page refresh",
-    "definition": "Opción de una página de informe que vuelve a consultar los datos a intervalos fijos, o al detectar cambios, mientras la página está abierta. Requiere orígenes DirectQuery (o algunas conexiones dinámicas); no está disponible en modo Importar.",
+    "definition": "Opción de una página de informe que vuelve a consultar los datos a intervalos regulares o cuando detecta cambios, para seguir datos casi en tiempo real. Funciona con modelos en DirectQuery o Direct Lake (y en algunos modelos compuestos), no con el modo Importar, y el administrador de la capacidad puede limitar su intervalo.",
     "domain": "d3",
     "reference": {
       "title": "Actualización automática de páginas",

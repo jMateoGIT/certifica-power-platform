@@ -82,7 +82,7 @@
         "id": "e",
         "text": "Puede cambiar el tipo de datos de las columnas del modelo de origen",
         "correct": false,
-        "explanation": "Los tipos de datos de un modelo semántico remoto no se pueden cambiar desde el informe; habría que cambiarlos en el origen o usar una columna calculada en un modelo compuesto."
+        "explanation": "Con una conexión dinámica no puedes modificar el modelo de datos: los tipos de las columnas los define el modelo semántico publicado y solo su propietario puede cambiarlos en el origen."
       }
     ],
     "keyPoint": "Conexión dinámica: requiere permiso de compilación, no copia datos y solo permite añadir medidas de informe, no cambiar el modelo.",
@@ -176,9 +176,9 @@
       },
       {
         "id": "m4",
-        "text": "Las tablas Delta de un lakehouse de Microsoft Fabric",
+        "text": "Las tablas Delta de un lakehouse de Microsoft Fabric, para crear en Desktop un modelo semántico en modo Direct Lake",
         "answerId": "c4",
-        "explanation": "Desde el catálogo de OneLake eliges elementos de Fabric, como un lakehouse o un almacén, y sus tablas."
+        "explanation": "Desde el catálogo de OneLake (*OneLake catalog*) eliges un elemento de Fabric, como un lakehouse, y creas un modelo Direct Lake sobre sus tablas Delta. Conectarte con el conector de SQL Server a su punto de conexión de análisis SQL daría un modelo de Importar o DirectQuery, no Direct Lake."
       }
     ],
     "choices": [
@@ -207,7 +207,7 @@
         "text": "Modelos semánticos de Power BI"
       }
     ],
-    "keyPoint": "Elige el conector según el origen: Carpeta para varios archivos, Web para páginas, el de la base de datos para SQL y el catálogo de OneLake para Fabric.",
+    "keyPoint": "Elige el conector según el origen: Carpeta para varios archivos, Web para páginas, el de la base de datos para SQL y el catálogo de OneLake para crear modelos Direct Lake sobre elementos de Fabric.",
     "references": [
       {
         "title": "Orígenes de datos en Power BI Desktop",
@@ -618,7 +618,7 @@
         "explanation": "Una conexión dinámica conecta un informe a un modelo semántico existente; no es un modo para construir el modelo sobre las tablas del lakehouse."
       }
     ],
-    "keyPoint": "Direct Lake combina datos Delta en OneLake con rendimiento tipo Importar y actualizaciones ligeras; requiere capacidad de Fabric.",
+    "keyPoint": "Direct Lake lee tablas Delta de OneLake con rendimiento similar a Importar y una actualización ligera (reencuadre) que no vuelve a copiar los datos.",
     "references": [
       {
         "title": "Introducción a Direct Lake",
@@ -713,19 +713,19 @@
         "id": "s1",
         "text": "Puedes cambiar una tabla en DirectQuery al modo Importar o Dual.",
         "answer": true,
-        "explanation": "Las tablas creadas en DirectQuery pueden pasar a Importar o Dual desde la propiedad Modo de almacenamiento, siempre que sus transformaciones se sigan plegando."
+        "explanation": "Desde la propiedad Modo de almacenamiento del panel Propiedades (vista de modelo) puedes pasar una tabla DirectQuery a Importar o a Dual; Desktop te ofrece además pasar a Dual las demás tablas relacionadas."
       },
       {
         "id": "s2",
         "text": "Después de pasar una tabla de DirectQuery a Importar en Power BI Desktop, puedes devolverla a DirectQuery desde el panel Propiedades.",
         "answer": false,
-        "explanation": "El cambio a Importar no tiene vuelta atrás en un modelo local de Power BI Desktop; solo el modelado web y la edición en vivo permiten revertirlo con el historial de versiones."
+        "explanation": "Según la documentación, una vez cambiada a Importar la tabla ya no puede volver a DirectQuery desde la propiedad Modo de almacenamiento. Las únicas excepciones son el modelado web y la edición en vivo (*live editing*) en Desktop, que permiten deshacer el cambio con el control de versiones, no desde el panel Propiedades."
       },
       {
         "id": "s3",
-        "text": "Los modelos semánticos con tablas Direct Lake requieren una capacidad de Microsoft Fabric.",
+        "text": "En un modelo compuesto, una tabla en modo Dual responde desde los datos importados cuando es posible y, si no, envía la consulta al origen como DirectQuery.",
         "answer": true,
-        "explanation": "Direct Lake solo está disponible con una suscripción de capacidad de Fabric, a diferencia de Importar y DirectQuery."
+        "explanation": "Las consultas que usan una tabla Dual obtienen los datos de la caché si pueden y, si no, se resuelven en modo DirectQuery; por eso Dual es útil para dimensiones que filtran tablas importadas y DirectQuery."
       },
       {
         "id": "s4",
@@ -734,7 +734,7 @@
         "explanation": "En DirectQuery las transformaciones deben poder traducirse a una única consulta nativa; los pasos que no se pliegan provocan errores o obligan a cambiar a Importar."
       }
     ],
-    "keyPoint": "DirectQuery → Importar es un cambio de un solo sentido en Desktop; DirectQuery exige pasos plegables y Direct Lake exige capacidad de Fabric.",
+    "keyPoint": "DirectQuery → Importar es un cambio de un solo sentido en Desktop; DirectQuery exige pasos plegables y Dual alterna entre caché y DirectQuery según la consulta.",
     "references": [
       {
         "title": "Modo de almacenamiento en Power BI Desktop",
@@ -743,10 +743,6 @@
       {
         "title": "Uso de DirectQuery en Power BI",
         "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/desktop-directquery-about"
-      },
-      {
-        "title": "Introducción a Direct Lake",
-        "url": "https://learn.microsoft.com/es-es/fabric/fundamentals/direct-lake-overview"
       }
     ]
   },
@@ -1475,7 +1471,7 @@
         "id": "a",
         "text": "Reemplazar valores N/D por null en Importe, coincidiendo con todo el contenido de la celda, y después cambiar el tipo a Número decimal",
         "correct": true,
-        "explanation": "Al sustituir N/D por null antes de la conversión, el cambio de tipo ya no encuentra texto que no sea numérico y las filas se conservan con null."
+        "explanation": "En Reemplazar valores (*Replace values*) escribes null en Reemplazar con y Power Query lo interpreta como valor nulo, no como texto. Con la coincidencia de todo el contenido de la celda se sustituyen solo las celdas N/D, y el cambio de tipo posterior ya no encuentra texto no numérico, así que las filas se conservan con null."
       },
       {
         "id": "b",
@@ -2253,7 +2249,7 @@
     "domain": "d1",
     "skill": "d1-transformar",
     "difficulty": 3,
-    "scenario": "Para cada país de la consulta Ventas (País, Producto, Unidades) quieres obtener el total de unidades y el nombre del producto más vendido.",
+    "scenario": "La consulta Ventas tiene las columnas País, Producto y Unidades, con una sola fila por cada combinación de país y producto. Para cada país quieres obtener el total de unidades y el nombre del producto más vendido.",
     "prompt": "Ordena los pasos.",
     "items": [
       {
@@ -2385,9 +2381,9 @@
       },
       {
         "id": "d",
-        "text": "Power Query usa Recuento como agregado predeterminado",
+        "text": "El resultado conserva las columnas Pregunta y Respuesta junto a las nuevas columnas",
         "correct": false,
-        "explanation": "De forma predeterminada intenta Suma; las demás agregaciones se eligen en Opciones avanzadas."
+        "explanation": "Al dinamizar, los valores de Pregunta pasan a ser encabezados y los de Respuesta rellenan las celdas, así que ambas columnas desaparecen: el resultado tiene Hotel, Limpieza y Atención."
       },
       {
         "id": "e",
@@ -2604,7 +2600,7 @@
     "items": [
       {
         "id": "p1",
-        "text": "Convertir la lista en tabla con A la tabla (*To table*)",
+        "text": "Convertir la lista en una tabla (*To table*)",
         "explanation": "Las herramientas de expansión trabajan sobre columnas de una tabla, así que primero hay que convertir la lista."
       },
       {
@@ -2782,12 +2778,12 @@
     "items": [
       {
         "id": "p1",
-        "text": "Crear una referencia (*Reference*) a la consulta del extracto para construir la dimensión",
-        "explanation": "La dimensión parte de los mismos datos limpios del extracto; la referencia hereda sus pasos sin duplicar la lógica."
+        "text": "Crear dos referencias (*Reference*) a la consulta del extracto, llamadas Producto (dimensión) y Ventas (hechos)",
+        "explanation": "Ambas tablas parten de los mismos datos sin duplicar la lógica. Si combinaras el propio extracto con una dimensión que lo referencia, crearías una referencia circular."
       },
       {
         "id": "p2",
-        "text": "En la nueva consulta, quitar todas las columnas excepto Producto, Categoría y Color",
+        "text": "En Producto, quitar todas las columnas excepto Producto, Categoría y Color",
         "explanation": "Hay que quedarse solo con los atributos del producto antes de eliminar duplicados; si no, Fecha y Unidades harían distintas las filas."
       },
       {
@@ -2802,16 +2798,16 @@
       },
       {
         "id": "p5",
-        "text": "Combinar la consulta de ventas con la dimensión por Producto y expandir ClaveProducto",
+        "text": "Combinar Ventas con Producto por la columna Producto y expandir ClaveProducto",
         "explanation": "La clave suplente debe existir en la dimensión para poder llevarla a la tabla de hechos."
       },
       {
         "id": "p6",
-        "text": "Quitar de la consulta de ventas las columnas Producto, Categoría y Color",
+        "text": "Quitar de Ventas las columnas Producto, Categoría y Color",
         "explanation": "Estas columnas se necesitan para la combinación; solo después pueden eliminarse de la tabla de hechos, que se queda con la clave."
       }
     ],
-    "keyPoint": "Dimensión: referencia → atributos → sin duplicados → índice; hechos: combinar para traer la clave y quitar los atributos.",
+    "keyPoint": "Referencia el extracto para cada tabla; dimensión: atributos → sin duplicados → índice; hechos: combinar para traer la clave y quitar los atributos.",
     "references": [
       {
         "title": "Descripción del esquema de estrella y la importancia para Power BI",
@@ -3310,7 +3306,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Crear en ambas consultas una columna clave que una País y CódigoTienda (por ejemplo, con Combinar columnas) y relacionar las tablas por ella",
+        "text": "Crear en ambas consultas una columna clave que una País y CódigoTienda, por ejemplo con Combinar columnas (*Merge columns*), y relacionar las tablas por ella",
         "correct": true,
         "explanation": "Las relaciones de Power BI usan una sola columna en cada lado; una columna que concatena ambas partes es única en Tiendas y permite la relación."
       },
