@@ -5,7 +5,7 @@
  */
 import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { join, relative } from 'node:path'
-import { glossarySchema, questionFileSchema, type ExamDefinition, type Question } from '../src/content/schema'
+import { caseStudyFileSchema, glossarySchema, questionFileSchema, type ExamDefinition, type Question } from '../src/content/schema'
 import { exams } from '../src/content/catalog'
 
 const root = join(import.meta.dirname, '..')
@@ -64,6 +64,7 @@ function checkSemantics(q: Question, exam: ExamDefinition, where: string) {
 
 const onlyFile = process.argv.slice(2).find((a) => a.endsWith('.json'))
 const allIds = new Map<string, string>()
+const allQuestions = new Map<string, Question>()
 let total = 0
 
 for (const exam of exams.filter((e) => e.status === 'disponible')) {
@@ -90,8 +91,31 @@ for (const exam of exams.filter((e) => e.status === 'disponible')) {
       total++
       if (allIds.has(q.id)) errors.push(`${where}: id duplicado "${q.id}" (también en ${allIds.get(q.id)})`)
       allIds.set(q.id, where)
+      allQuestions.set(q.id, q)
       checkSemantics(q, exam, where)
       perDomain.set(q.domain, (perDomain.get(q.domain) ?? 0) + 1)
+    }
+  }
+
+  // Casos prácticos: cada caso debe existir y tener entre 3 y 6 preguntas.
+  const casesFile = join(contentDir, exam.code.toLowerCase(), 'cases.json')
+  if (!onlyFile && existsSync(casesFile)) {
+    const parsed = caseStudyFileSchema.safeParse(readJson(casesFile))
+    if (!parsed.success) parsed.error.issues.slice(0, 20).forEach((i) => errors.push(`cases ${i.path.join('.')}: ${i.message}`))
+    else {
+      const caseIds = new Set(parsed.data.map((c) => c.id))
+      const perCase = new Map<string, number>()
+      for (const [qid, where] of allIds) {
+        const q = allQuestions.get(qid)
+        if (!q?.caseId) continue
+        if (!caseIds.has(q.caseId)) errors.push(`${where} ${qid}: caso desconocido "${q.caseId}"`)
+        perCase.set(q.caseId, (perCase.get(q.caseId) ?? 0) + 1)
+      }
+      for (const c of parsed.data) {
+        const n = perCase.get(c.id) ?? 0
+        if (n < 3 || n > 6) errors.push(`cases ${c.id}: tiene ${n} preguntas (deben ser 3–6)`)
+      }
+      console.log(`  casos prácticos: ${parsed.data.length} (${[...perCase.values()].reduce((a, b) => a + b, 0)} preguntas)`)
     }
   }
 
@@ -118,6 +142,8 @@ for (const exam of exams.filter((e) => e.status === 'disponible')) {
         if (!exam.domains.some((d) => d.id === t.domain)) errors.push(`glossary ${t.id}: dominio desconocido`)
       }
       console.log(`  glosario: ${g.data.length} términos`)
+      const preview = [...allQuestions.values()].filter((q) => q.tags?.includes('preview')).length
+      if (preview) console.log(`  marcadas como versión preliminar: ${preview}`)
     }
   }
 }

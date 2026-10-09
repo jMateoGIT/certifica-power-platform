@@ -1,0 +1,32 @@
+name: Vigilar cambios de temario
+
+on:
+  schedule:
+    - cron: '23 6 * * 1' # cada lunes
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  outline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run check-outline -- --out cambios.md
+      - name: Abrir incidencia si el temario ha cambiado
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -f cambios.md ]; then
+            title="Temario actualizado por Microsoft: revisar contenido"
+            if [ -z "$(gh issue list --state open --search "in:title \"$title\"" --json number --jq '.[].number')" ]; then
+              gh issue create --title "$title" --body-file cambios.md
+            fi
+          fi

@@ -14,7 +14,9 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "check-links": "vite-node scripts/check-links.ts"
+    "check-links": "vite-node scripts/check-links.ts",
+    "check-outline": "vite-node scripts/check-outline.ts",
+    "question-quality": "vite-node scripts/question-quality.ts"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.3.0",

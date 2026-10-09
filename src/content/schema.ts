@@ -39,7 +39,13 @@ const baseQuestion = z.object({
   /** Idea clave para recordar tras responder. */
   keyPoint: text,
   references: z.array(referenceSchema).min(1),
+  /**
+   * Etiquetas libres. `preview` marca preguntas sobre funciones en versión
+   * preliminar, que hay que revisar cuando cambien de estado.
+   */
   tags: z.array(z.string()).optional(),
+  /** Caso práctico al que pertenece (sus preguntas se muestran con el contexto del caso). */
+  caseId: id.optional(),
 })
 
 export const singleQuestionSchema = baseQuestion.extend({
@@ -126,6 +132,25 @@ export const questionSchema = z.union([
 
 export const questionFileSchema = z.array(questionSchema)
 
+/**
+ * Caso práctico: un escenario de empresa largo con varias preguntas encadenadas.
+ * Las preguntas viven en `questions/casos.json` y apuntan al caso con `caseId`.
+ */
+export const caseStudySchema = z.object({
+  id,
+  exam: z.string(),
+  outlineVersion: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  title: text,
+  /** Organización ficticia del caso. */
+  company: text,
+  /** Resumen de una o dos frases para el listado. */
+  summary: text,
+  /** Secciones del caso: contexto, situación actual, requisitos, problemas… */
+  sections: z.array(z.object({ title: text, body: text })).min(2).max(6),
+})
+
+export const caseStudyFileSchema = z.array(caseStudySchema)
+
 export const glossaryTermSchema = z.object({
   id,
   term: text,
@@ -148,6 +173,7 @@ export type OrderQuestion = z.infer<typeof orderQuestionSchema>
 export type MatchQuestion = z.infer<typeof matchQuestionSchema>
 export type DropdownQuestion = z.infer<typeof dropdownQuestionSchema>
 export type GlossaryTerm = z.infer<typeof glossaryTermSchema>
+export type CaseStudy = z.infer<typeof caseStudySchema>
 
 export interface Skill {
   id: string
@@ -179,5 +205,7 @@ export interface ExamDefinition {
   questionCount: number
   passingScore: number
   officialUrl: string
+  /** Guía de estudio oficial en inglés (la que Microsoft actualiza primero); se vigila para detectar cambios de temario. */
+  studyGuideUrl?: string
   domains: Domain[]
 }

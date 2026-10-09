@@ -16,6 +16,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
+import { TelemetryToggle } from '../components/TelemetryToggle'
 import { Button, Card, DomainIcon, PageTitle, ProgressBar, ProgressRing, Stat } from '../components/ui'
 import { domainProgress, readinessIndex, readinessLabel } from '../lib/analytics'
 import { useExam } from '../lib/useExam'
@@ -210,6 +211,7 @@ export function Progress() {
             <Trash2 size={16} /> Borrar progreso
           </Button>
         </div>
+        <TelemetryToggle />
         {message && (
           <p role="status" className={`mt-3 text-sm ${message.tone === 'ok' ? 'text-ok' : 'text-bad'}`}>
             {message.text}

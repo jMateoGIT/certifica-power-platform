@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import type { ExamDefinition, Question } from '../content/schema'
 import { grade, isComplete } from '../engine/grading'
 import type { Answer } from '../engine/types'
+import { trackAnswer, type AnswerMode } from '../lib/telemetry'
 import { useProgress } from '../store/progress'
 import { QuestionView } from './question/QuestionView'
 import { questionSummary, RichText } from './question/shared'
@@ -15,13 +16,15 @@ interface Props {
   seed: number
   onExit: () => void
   onRestart: (questions: Question[]) => void
+  /** Para la analítica: desde qué modo se responde. */
+  mode?: AnswerMode
 }
 
 /**
  * Modo práctica: una pregunta cada vez, corrección inmediata con la explicación
  * de cada opción y resumen final.
  */
-export function PracticeRunner({ exam, questions, seed, onExit, onRestart }: Props) {
+export function PracticeRunner({ exam, questions, seed, onExit, onRestart, mode = 'practica' }: Props) {
   const [index, setIndex] = useState(0)
   const [answers, setAnswers] = useState<Record<string, Answer>>({})
   const [revealed, setRevealed] = useState<Record<string, boolean>>({})
@@ -36,8 +39,10 @@ export function PracticeRunner({ exam, questions, seed, onExit, onRestart }: Pro
   const check = useCallback(() => {
     if (!q || isRevealed || !canCheck) return
     setRevealed((r) => ({ ...r, [q.id]: true }))
-    recordAnswer(q.id, grade(q, answer).score)
-  }, [q, isRevealed, canCheck, answer, recordAnswer])
+    const score = grade(q, answer).score
+    recordAnswer(q.id, score)
+    trackAnswer(q, score, mode)
+  }, [q, isRevealed, canCheck, answer, recordAnswer, mode])
 
   const next = useCallback(() => {
     if (index + 1 >= questions.length) setFinished(true)

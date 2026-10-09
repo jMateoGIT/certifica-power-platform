@@ -12,6 +12,7 @@ Empieza por **PL-900** (temario vigente desde el 24/07/2026) y está diseñada p
 - **6 tipos de pregunta** como en el examen: respuesta única, múltiple, Sí/No, ordenar, emparejar y completar frases.
 - **Modo práctica** con filtros por dominio, sub-habilidad, preguntas no vistas, falladas o guardadas.
 - **Simulacro cronometrado** (45 preguntas / 45 min o rápido de 20), navegador de preguntas, marcar para revisar, nota sobre 1000 e informe por dominio.
+- **Casos prácticos**: escenarios de empresa con varias preguntas encadenadas; el simulacro completo termina con uno.
 - **Repaso inteligente** con repetición espaciada (sistema Leitner de 5 cajas).
 - **Panel de progreso**: índice de preparación ponderado, radar por dominio, evolución de simulacros y racha.
 - **Glosario** de 81 términos en español e inglés, con modo de tarjetas.
@@ -33,6 +34,7 @@ npm test             # tests unitarios (Vitest)
 npm run build        # build de producción en dist/
 npm run test:e2e     # tests de extremo a extremo (Playwright, tras el build)
 npm run check-links  # comprueba los enlaces a Microsoft Learn (también cada lunes en CI)
+npm run check-outline  # avisa si Microsoft ha cambiado el temario
 ```
 
 Stack: Vite, React 19, TypeScript, Tailwind CSS 4, React Router 7, Zustand, Zod, Recharts y vite-plugin-pwa.
@@ -65,6 +67,30 @@ docs/                 # plan del proyecto y guía de redacción
 Para una **nueva certificación**, crea `src/content/<codigo>/exam.ts` con sus dominios, márcala como `disponible` en `catalog.ts` y añade sus preguntas: la interfaz se genera sola.
 
 ¿Has visto un error? Cada pregunta tiene un enlace «Repórtalo» que abre una *issue* ya rellenada.
+
+## Calidad y mantenimiento del contenido
+
+| Qué | Cómo |
+|---|---|
+| Esquema, ids, dominios y explicaciones | `npm run validate` (en cada build) |
+| Enlaces a Microsoft Learn | `npm run check-links` · cada lunes en GitHub Actions |
+| Cambios de temario de Microsoft | `npm run check-outline` · cada lunes; abre una incidencia si cambia la fecha |
+| Funciones en versión preliminar | Preguntas con `"tags": ["preview"]`; el validador las cuenta y la web las señala |
+| Preguntas ambiguas o demasiado fáciles | `npm run question-quality` con la analítica de Umami (abajo) |
+
+### Analítica anónima (opcional)
+
+La web puede enviar a [Umami](https://umami.is) (sin cookies ni datos personales) qué preguntas se aciertan o fallan
+y la nota de los simulacros. Está **desactivada** mientras no se configure, respeta «Do Not Track» y cada persona puede
+desactivarla desde *Acerca de* o *Mi progreso*.
+
+1. Crea una cuenta en Umami Cloud (plan gratuito) y añade el sitio `jmateogit.github.io`.
+2. En GitHub: *Settings → Secrets and variables → Actions → Variables*, crea `UMAMI_WEBSITE_ID` con el id del sitio.
+3. El siguiente despliegue la activa. Para el informe de calidad, crea una clave de API en Umami y ejecuta
+   `UMAMI_API_KEY=… UMAMI_WEBSITE_ID=… npm run question-quality`.
+
+Eventos: `respuesta-acierto`, `respuesta-parcial` y `respuesta-fallo` (propiedades `pregunta`, `dominio`, `tipo`, `modo`)
+y `simulacro` (`examen`, `modo`, `nota` redondeada a decenas, `aprobado`).
 
 ## Despliegue
 

@@ -1,11 +1,12 @@
 import clsx from 'clsx'
-import { Bookmark, BookmarkCheck, CircleCheck, CircleX, ExternalLink, Flag, Lightbulb, TriangleAlert } from 'lucide-react'
+import { Bookmark, BookmarkCheck, CircleCheck, CircleX, ExternalLink, FlaskConical, Flag, Lightbulb, TriangleAlert } from 'lucide-react'
 import type { ExamDefinition, Question, QuestionType } from '../../content/schema'
 import { grade, requiredSelections } from '../../engine/grading'
 import type { Answer } from '../../engine/types'
 import { useProgress } from '../../store/progress'
 import { reportQuestionUrl } from '../../lib/config'
 import { Badge, DomainIcon } from '../ui'
+import { CaseContext } from './CaseContext'
 import { ChoiceQuestion } from './ChoiceQuestion'
 import { DropdownQuestion } from './DropdownQuestion'
 import { MatchQuestion } from './MatchQuestion'
@@ -68,8 +69,15 @@ export function QuestionView({ exam, question: q, answer, onChange, revealed, se
           </span>
         )}
         {skill && <span className="hidden text-sm text-muted sm:inline">· {skill.name}</span>}
-        <span className="ml-auto flex items-center gap-2">
+        <span className="ml-auto flex flex-wrap items-center justify-end gap-2">
           <Badge>{typeLabels[q.type]}</Badge>
+          {q.tags?.includes('preview') && (
+            <span title="Trata una función en versión preliminar: puede cambiar antes de su disponibilidad general.">
+              <Badge tone="warn">
+                <FlaskConical size={12} /> Versión preliminar
+              </Badge>
+            </span>
+          )}
           <Badge tone={q.difficulty === 3 ? 'warn' : q.difficulty === 2 ? 'primary' : 'neutral'}>
             {difficultyLabels[q.difficulty]}
           </Badge>
@@ -85,6 +93,8 @@ export function QuestionView({ exam, question: q, answer, onChange, revealed, se
           </button>
         </span>
       </div>
+
+      {q.caseId && <CaseContext key={q.caseId} examCode={exam.code} caseId={q.caseId} />}
 
       {position && <div className="mb-1 text-sm font-medium text-muted">{position}</div>}
 

@@ -22,6 +22,7 @@ export const pl900: ExamDefinition = {
   questionCount: 45,
   passingScore: 700,
   officialUrl: 'https://learn.microsoft.com/es-es/credentials/certifications/power-platform-fundamentals/',
+  studyGuideUrl: 'https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/pl-900',
   domains: [
     {
       id: 'd1',

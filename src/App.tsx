@@ -19,6 +19,7 @@ const router = createBrowserRouter(
         { path: 'acerca', ...lazyPage(() => import('./pages/About'), 'About') },
         { path: ':code', element: <ExamHome /> },
         { path: ':code/practica', element: <Practice /> },
+        { path: ':code/casos', ...lazyPage(() => import('./pages/Cases'), 'Cases') },
         { path: ':code/repaso', ...lazyPage(() => import('./pages/Review'), 'Review') },
         { path: ':code/simulacro', ...lazyPage(() => import('./pages/ExamSetup'), 'ExamSetup') },
         { path: ':code/simulacro/en-curso', ...lazyPage(() => import('./pages/ExamRun'), 'ExamRun') },
