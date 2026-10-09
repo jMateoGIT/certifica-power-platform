@@ -1236,41 +1236,37 @@
     "outlineVersion": "2026-07-24",
     "domain": "d4",
     "skill": "d4-escenarios",
-    "difficulty": 3,
-    "scenario": "En Laboratorios Duna cada solicitud de formación, registrada en una lista de SharePoint, debe aprobarla primero el responsable directo y, solo si él la aprueba, después Recursos Humanos. Si el responsable la rechaza, Recursos Humanos no debe recibirla.",
-    "prompt": "¿Qué diseño del flujo cumple el requisito?",
+    "difficulty": 2,
+    "scenario": "En Laboratorios Duna cada solicitud de formación, registrada en una lista de SharePoint, debe revisarla primero el responsable directo y, después, Recursos Humanos. Recursos Humanos no debe recibir la solicitud hasta que el responsable haya respondido, y el flujo debe continuar cuando hayan respondido los dos.",
+    "prompt": "¿Qué tipo de aprobación debes elegir en la acción «Iniciar y esperar una aprobación»?",
     "options": [
       {
         "id": "a",
-        "text": "Dos acciones «Iniciar y esperar una aprobación», con una condición entre ellas que solo lance la segunda si la primera se aprueba",
+        "text": "Aprobación secuencial",
         "correct": true,
-        "explanation": "Es el patrón de aprobación secuencial: la condición evalúa el resultado de la primera aprobación y solo en la rama «Sí» se envía la solicitud a Recursos Humanos."
+        "explanation": "Las aprobaciones se solicitan de una en una y en el orden indicado: cada aprobador debe responder antes de que la solicitud pase al siguiente, y las acciones posteriores se ejecutan cuando han respondido todos los de la secuencia."
       },
       {
         "id": "b",
-        "text": "Una sola aprobación «Aprobar/Rechazar: todos deben aprobar» asignada a ambos",
+        "text": "Aprobar/Rechazar: todos deben aprobar",
         "correct": false,
-        "explanation": "Exige el sí de los dos, pero ambos reciben la solicitud a la vez, así que Recursos Humanos la vería aunque el responsable la rechace."
+        "explanation": "Necesita la respuesta de cada aprobador, pero la solicitud llega a todos a la vez, así que Recursos Humanos la recibiría sin esperar a que responda el responsable."
       },
       {
         "id": "c",
-        "text": "Una sola aprobación «Aprobar/Rechazar: el primero en responder» asignada a ambos",
+        "text": "Aprobar/Rechazar: el primero en responder",
         "correct": false,
-        "explanation": "Basta la respuesta de uno de ellos; Recursos Humanos podría aprobar sin que el responsable lo hiciera antes."
+        "explanation": "La primera respuesta de cualquiera de los aprobadores completa la solicitud: no hay orden y uno de los dos podría no llegar a revisarla."
       },
       {
         "id": "d",
-        "text": "Una aprobación «Respuestas personalizadas: esperar una respuesta» asignada al responsable",
+        "text": "Respuestas personalizadas: esperar todas las respuestas",
         "correct": false,
-        "explanation": "Solo cambia las opciones de respuesta y la envía a una persona; no incluye el paso posterior de Recursos Humanos."
+        "explanation": "Permite definir otras opciones de respuesta y espera a todos, pero también envía la solicitud a todos los aprobadores a la vez, sin ningún orden."
       }
     ],
-    "keyPoint": "Aprobación en orden (uno detrás de otro y solo si el anterior aprueba) = aprobación secuencial, no «todos deben aprobar».",
+    "keyPoint": "Varios aprobadores, uno detrás de otro y en un orden fijo = tipo «Aprobación secuencial»; «todos deben aprobar» envía la solicitud a todos a la vez.",
     "references": [
-      {
-        "title": "Configurar aprobaciones secuenciales",
-        "url": "https://learn.microsoft.com/es-es/power-automate/set-up-sequential-approvals"
-      },
       {
         "title": "Introducción a las aprobaciones",
         "url": "https://learn.microsoft.com/es-es/power-automate/get-started-approvals"
@@ -1398,35 +1394,35 @@
     "domain": "d4",
     "skill": "d4-escenarios",
     "difficulty": 3,
-    "scenario": "Mutua Cierzo usa en un flujo de nube la acción de AI Builder «Ejecutar una solicitud» (*Run a prompt*) para redactar un borrador de respuesta a cada reclamación que llega por correo. Antes de enviar ninguna respuesta, una persona del equipo de atención debe poder revisar el borrador y modificar el texto si hace falta.",
-    "prompt": "¿Qué acción debes agregar después de «Ejecutar una solicitud»?",
+    "scenario": "Mutua Cierzo usa en un flujo de nube una solicitud (*prompt*) de AI Builder para redactar un borrador de respuesta a cada reclamación que llega por correo. Antes de enviar ninguna respuesta, una persona del equipo de atención debe revisar el borrador, corregir el texto si hace falta y darle el visto bueno.",
+    "prompt": "¿Qué debes agregar al flujo después de la solicitud de AI Builder?",
     "options": [
       {
         "id": "a",
-        "text": "«Iniciar y esperar una aprobación del texto» (*Start and wait for an approval of text*), con el texto generado como texto sugerido",
+        "text": "Una aprobación de texto del conector Aprobaciones, con el borrador generado como texto sugerido",
         "correct": true,
-        "explanation": "Esta acción del conector Aprobaciones presenta el texto sugerido para que el revisor lo apruebe o lo modifique, y devuelve el texto aceptado para usarlo en los pasos siguientes."
+        "explanation": "La aprobación de texto (*approval of text*) muestra el borrador al revisor, que puede editarlo antes de responder, y devuelve el texto aceptado para usarlo en los pasos siguientes. Learn la propone precisamente para añadir revisión humana al resultado de una solicitud."
       },
       {
         "id": "b",
-        "text": "«Iniciar y esperar una aprobación» con el tipo «Aprobar/Rechazar: el primero en responder»",
+        "text": "Una aprobación de tipo Aprobar/Rechazar que incluya el borrador en los detalles",
         "correct": false,
-        "explanation": "Recoge una decisión de aprobar o rechazar, pero no ofrece el borrador como texto editable ni devuelve una versión corregida."
+        "explanation": "Recoge una decisión de aprobar o rechazar, pero el revisor no puede corregir el borrador ni el flujo recibe una versión modificada del texto."
       },
       {
         "id": "c",
-        "text": "«Enviar correo electrónico con opciones» de Office 365 Outlook",
+        "text": "Un correo de Outlook con botones de opciones para el revisor",
         "correct": false,
-        "explanation": "Solo permite elegir entre opciones predefinidas desde el correo; el revisor no puede editar el borrador generado."
+        "explanation": "Solo permite elegir entre respuestas predefinidas desde el correo; el revisor no puede editar el texto generado."
       },
       {
         "id": "d",
-        "text": "«Publicar un mensaje en un chat o canal» de Microsoft Teams",
+        "text": "Un mensaje en un canal de Teams con el borrador",
         "correct": false,
-        "explanation": "Publica el borrador para informar, pero el flujo no espera ninguna revisión ni recibe un texto modificado."
+        "explanation": "Informa del borrador, pero el flujo no espera ninguna revisión ni recibe un texto corregido."
       }
     ],
-    "keyPoint": "IA generativa en un flujo con revisión humana = «Ejecutar una solicitud» seguida de «Iniciar y esperar una aprobación del texto».",
+    "keyPoint": "IA generativa con revisión humana: una solicitud de AI Builder genera el borrador y una aprobación de texto permite revisarlo y corregirlo antes de usarlo.",
     "references": [
       {
         "title": "Usar una solicitud en Power Automate",
@@ -1456,15 +1452,15 @@
       },
       {
         "id": "s2",
-        "text": "Para extraer datos de un documento con un diseño propio de tu empresa, como un parte de trabajo, puedes entrenar un modelo personalizado de procesamiento de documentos y usarlo con la acción «Extraer información de documentos».",
+        "text": "Para extraer datos de un documento con un diseño propio de tu empresa, como un parte de trabajo, puedes entrenar un modelo personalizado de procesamiento de documentos y usarlo después en un flujo de nube.",
         "answer": true,
-        "explanation": "El procesamiento de documentos es un modelo personalizado: lo entrenas con tus documentos y el flujo lo usa mediante la acción «Extraer información de documentos»."
+        "explanation": "El procesamiento de documentos es un modelo personalizado: lo entrenas con ejemplos de tus documentos y el flujo lo usa mediante la acción de AI Builder que extrae información de documentos."
       },
       {
         "id": "s3",
-        "text": "La acción «Ejecutar una solicitud» solo puede usarse en flujos de escritorio.",
+        "text": "Las solicitudes (*prompts*) de AI Builder solo pueden usarse en aplicaciones de lienzo, no en flujos de nube.",
         "answer": false,
-        "explanation": "«Ejecutar una solicitud» (antes «Crear texto con GPT mediante una solicitud») es una acción de los flujos de nube; Learn la muestra, por ejemplo, en un flujo de nube instantáneo."
+        "explanation": "Una solicitud puede agregarse como acción en un flujo de nube para generar texto dentro de un proceso automatizado; Learn lo muestra, por ejemplo, en un flujo de nube instantáneo."
       },
       {
         "id": "s4",
@@ -1473,7 +1469,7 @@
         "explanation": "Sí pueden: por ejemplo, el texto que genera «Ejecutar una solicitud» o los campos extraídos de una factura se insertan como contenido dinámico en un mensaje de Teams o en una fila de Dataverse."
       }
     ],
-    "keyPoint": "AI Builder en flujos: modelos precompilados listos para usar, modelos personalizados para tus documentos y salidas reutilizables como contenido dinámico.",
+    "keyPoint": "AI Builder en flujos: modelos precompilados listos para usar, modelos personalizados para tus documentos, solicitudes para generar texto y salidas reutilizables como contenido dinámico.",
     "references": [
       {
         "title": "AI Builder en Power Automate",
@@ -1498,31 +1494,31 @@
     "items": [
       {
         "id": "p1",
-        "text": "Crear en Word la plantilla del contrato y agregar un control de contenido con nombre para cada dato variable",
-        "explanation": "La plantilla es la base de todo: la acción del flujo rellena precisamente los controles de contenido que definas en ella."
+        "text": "Crear en Word la plantilla del contrato con un control de contenido con nombre para cada dato variable y guardarla en una biblioteca de SharePoint o en OneDrive para la Empresa",
+        "explanation": "La acción del flujo rellena precisamente los controles de contenido de la plantilla, y el conector Word Online (Empresa) solo trabaja con archivos guardados en esas bibliotecas: sin la plantilla allí no hay nada que seleccionar."
       },
       {
         "id": "p2",
-        "text": "Guardar la plantilla en una biblioteca de SharePoint o en OneDrive para la Empresa",
-        "explanation": "El conector Word Online (Empresa) trabaja con archivos de esas bibliotecas; la plantilla tiene que estar allí para poder seleccionarla en el flujo."
+        "text": "En el flujo de nube, agregar la acción «Rellenar una plantilla de Microsoft Word» (*Populate a Microsoft Word template*) y asignar a cada control los datos del cliente",
+        "explanation": "Al seleccionar el archivo de plantilla, la acción muestra sus controles para que los rellenes con contenido dinámico; por eso necesita la plantilla ya creada y guardada."
       },
       {
         "id": "p3",
-        "text": "En el flujo de nube, agregar la acción «Rellenar una plantilla de Microsoft Word» (*Populate a Microsoft Word template*) y asignar a cada control los datos del cliente",
-        "explanation": "Al seleccionar el archivo de plantilla, la acción muestra sus controles para que los rellenes con contenido dinámico; por eso necesita los dos pasos anteriores."
+        "text": "Guardar el documento generado en la biblioteca de contratos con la acción «Crear archivo» de SharePoint",
+        "explanation": "La acción anterior devuelve el contenido del documento; hay que guardarlo como archivo para poder trabajar con él."
       },
       {
         "id": "p4",
-        "text": "Guardar el documento generado en la biblioteca de contratos con la acción «Crear archivo» de SharePoint",
-        "explanation": "La acción anterior devuelve el contenido del documento; hay que guardarlo como archivo antes de poder trabajar con él."
+        "text": "Aplicar «Convertir documento de Word en PDF» al archivo guardado",
+        "explanation": "La conversión trabaja sobre un archivo de una biblioteca, así que solo puede hacerse cuando el contrato ya está guardado."
       },
       {
         "id": "p5",
-        "text": "Aplicar «Convertir documento de Word en PDF» al archivo creado y adjuntar el PDF a un correo para el cliente",
-        "explanation": "La conversión obtiene la versión PDF de un archivo seleccionado, así que solo puede hacerse cuando el contrato ya está guardado."
+        "text": "Enviar al cliente un correo con el PDF adjunto",
+        "explanation": "El adjunto es el resultado de la conversión, por eso el envío va al final."
       }
     ],
-    "keyPoint": "Generar documentos: plantilla con controles → guardarla en OneDrive o SharePoint → «Rellenar una plantilla de Microsoft Word» → guardar el resultado → convertir a PDF y enviar.",
+    "keyPoint": "Generar documentos: plantilla con controles guardada en OneDrive o SharePoint → «Rellenar una plantilla de Microsoft Word» → guardar el resultado → convertir a PDF → enviar.",
     "references": [
       {
         "title": "Conector Word Online (Empresa)",
@@ -2183,75 +2179,41 @@
   },
   {
     "id": "pl900-d4-teams-002",
-    "type": "dropdown",
+    "type": "yesno",
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d4",
     "skill": "d4-conectores",
     "difficulty": 2,
     "scenario": "Cada vez que se sube un plano nuevo a la biblioteca de SharePoint de Construcciones Duero, un flujo de nube debe publicar un aviso en el canal Obras del equipo Producción de Teams. El aviso no debe aparecer como escrito por ninguna persona concreta.",
-    "prompt": "Completa la frase.",
-    "template": "En la acción «Publicar un mensaje en un chat o canal» del conector de Microsoft Teams, eliges {{b1}} en «Publicar como» y {{b2}} en «Publicar en». Si otro aviso tuviera que ir a un chat de grupo que todavía no existe, antes agregarías la acción {{b3}}.",
-    "blanks": [
+    "prompt": "Indica si cada afirmación sobre cómo puede publicar el flujo de nube el aviso en Teams es verdadera.",
+    "statements": [
       {
-        "id": "b1",
-        "options": [
-          {
-            "id": "o1",
-            "text": "Bot de flujo"
-          },
-          {
-            "id": "o2",
-            "text": "Usuario"
-          },
-          {
-            "id": "o3",
-            "text": "Propietario del equipo"
-          }
-        ],
-        "correctId": "o1",
-        "explanation": "Con «Bot de flujo» el mensaje sale de un remitente genérico. Con «Usuario» aparecería como enviado por quien creó la conexión de Teams (normalmente el propietario del flujo); «Propietario del equipo» no es una opción de la acción."
+        "id": "s1",
+        "text": "El flujo puede publicar el aviso como el bot de flujo (*Flow bot*), un remitente genérico que no está vinculado a ninguna persona.",
+        "answer": true,
+        "explanation": "La acción de publicar mensajes del conector de Microsoft Teams puede enviar el mensaje como el bot de flujo en lugar de como un usuario concreto, que es lo que pide Construcciones Duero."
       },
       {
-        "id": "b2",
-        "options": [
-          {
-            "id": "o1",
-            "text": "Canal"
-          },
-          {
-            "id": "o2",
-            "text": "Chat de grupo"
-          },
-          {
-            "id": "o3",
-            "text": "Chat con el bot de flujo"
-          }
-        ],
-        "correctId": "o1",
-        "explanation": "El destino es un canal de un equipo, así que eliges «Canal» y después el equipo y el canal. Las otras opciones envían el mensaje a un chat, no al canal Obras."
+        "id": "s2",
+        "text": "Si el flujo publica el aviso como usuario, el mensaje aparece como enviado por la persona que subió el plano a SharePoint.",
+        "answer": false,
+        "explanation": "Como usuario, el mensaje se envía en nombre de quien inició sesión en la conexión de Teams del flujo (normalmente su propietario), no de quien provocó el evento."
       },
       {
-        "id": "b3",
-        "options": [
-          {
-            "id": "o1",
-            "text": "Crear un chat"
-          },
-          {
-            "id": "o2",
-            "text": "Cuando se agrega un nuevo miembro del equipo"
-          },
-          {
-            "id": "o3",
-            "text": "Publicar tarjeta adaptable y esperar una respuesta"
-          }
-        ],
-        "correctId": "o1",
-        "explanation": "Learn explica que «Publicar un mensaje en un chat o canal» se combina con «Crear un chat» cuando el chat de grupo aún no existe. La segunda opción es un desencadenador y la tercera sirve para recoger respuestas."
+        "id": "s3",
+        "text": "Además de en canales, el conector de Microsoft Teams permite publicar en un chat de grupo e incluso crear antes el chat si todavía no existe.",
+        "answer": true,
+        "explanation": "El mismo conector publica en canales o en chats de grupo, y la acción de publicar se puede combinar con la de crear un chat cuando ese chat aún no existe."
+      },
+      {
+        "id": "s4",
+        "text": "Para publicar el aviso, el flujo de nube necesita un flujo de escritorio que abra Teams y escriba el mensaje.",
+        "answer": false,
+        "explanation": "Teams tiene conector, así que basta un flujo de nube con el desencadenador de SharePoint y una acción de Teams; la automatización de interfaz se reserva para aplicaciones sin API."
       }
     ],
-    "keyPoint": "«Publicar un mensaje en un chat o canal»: «Publicar como» decide el remitente (bot de flujo o usuario) y «Publicar en» el destino; para un chat nuevo, combínala con «Crear un chat».",
+    "keyPoint": "El conector de Microsoft Teams publica en canales o chats como bot de flujo (remitente genérico) o como el usuario de la conexión, sin necesidad de automatizar la interfaz.",
     "references": [
       {
         "title": "Enviar un mensaje en Teams con Power Automate",
@@ -2266,61 +2228,61 @@
     "outlineVersion": "2026-07-24",
     "domain": "d4",
     "skill": "d4-conectores",
-    "difficulty": 3,
-    "prompt": "Estás creando flujos de nube con el conector Office 365 Outlook. Empareja cada necesidad con el desencadenador que debes usar. Una de las opciones no se usa.",
+    "difficulty": 2,
+    "prompt": "Estás creando flujos de nube automatizados. Empareja cada necesidad con el conector que aporta el desencadenador que inicia el flujo. Puedes usar una opción más de una vez y una de ellas no se usa.",
     "prompts": [
       {
         "id": "m1",
-        "text": "Procesar los correos que llegan al buzón compartido de facturas que gestiona todo el departamento",
+        "text": "Procesar cada correo que llega al buzón compartido de facturas del departamento",
         "answerId": "c1",
-        "explanation": "Para un buzón compartido existe un desencadenador específico; el de correo nuevo (V3) vigila el buzón de la cuenta de la conexión."
+        "explanation": "Office 365 Outlook tiene desencadenadores de correo nuevo, también para buzones compartidos, así que el flujo arranca con cada mensaje que llega."
       },
       {
         "id": "m2",
-        "text": "Crear una tarea de seguimiento cada vez que marcas un correo para seguimiento",
-        "answerId": "c2",
-        "explanation": "«Cuando se marca un correo electrónico (V3)» se dispara al poner la marca de seguimiento en un mensaje."
+        "text": "Enviar un recordatorio a tu equipo poco antes de que empiece una reunión de tu calendario",
+        "answerId": "c1",
+        "explanation": "El calendario también forma parte de Office 365 Outlook, que ofrece un desencadenador para cuando un evento próximo está a punto de empezar."
       },
       {
         "id": "m3",
-        "text": "Enviar a tu equipo un recordatorio en Teams poco antes de que empiece una reunión de tu calendario",
-        "answerId": "c3",
-        "explanation": "Este desencadenador de calendario se dispara cuando un evento próximo está a punto de comenzar."
+        "text": "Avisar al equipo cuando alguien sube un archivo nuevo a una biblioteca de documentos",
+        "answerId": "c2",
+        "explanation": "El evento ocurre en la biblioteca, así que el desencadenador es de SharePoint, que se ejecuta, por ejemplo, cuando se crea un archivo."
       },
       {
         "id": "m4",
-        "text": "Reaccionar solo a los correos en los que te mencionan con @",
-        "answerId": "c4",
-        "explanation": "Hay un desencadenador específico para los correos nuevos que te mencionan, sin tener que filtrar todos los mensajes."
+        "text": "Revisar un pedido cada vez que se modifica su fila en una tabla de Dataverse",
+        "answerId": "c3",
+        "explanation": "El desencadenador de Dataverse se ejecuta cuando se agrega, modifica o elimina una fila de la tabla que elijas."
       }
     ],
     "choices": [
       {
         "id": "c1",
-        "text": "Cuando llega un nuevo correo electrónico a un buzón compartido (V2)"
+        "text": "Office 365 Outlook"
       },
       {
         "id": "c2",
-        "text": "Cuando se marca un correo electrónico (V3)"
+        "text": "SharePoint"
       },
       {
         "id": "c3",
-        "text": "Cuando se inicie pronto un evento próximo (V3)"
+        "text": "Microsoft Dataverse"
       },
       {
         "id": "c4",
-        "text": "Cuando llega un nuevo correo electrónico que me menciona (V3)"
-      },
-      {
-        "id": "c5",
-        "text": "Enviar correo electrónico con opciones"
+        "text": "Aprobaciones"
       }
     ],
-    "keyPoint": "Outlook ofrece desencadenadores para buzones compartidos, correos marcados, menciones y eventos de calendario; «Enviar correo electrónico con opciones» es una acción, no un desencadenador.",
+    "keyPoint": "El desencadenador lo aporta el conector del servicio donde ocurre el evento; Aprobaciones no tiene desencadenadores, solo acciones.",
     "references": [
       {
         "title": "Conector Office 365 Outlook",
         "url": "https://learn.microsoft.com/es-es/connectors/office365/"
+      },
+      {
+        "title": "Desencadenar flujos cuando se crea, modifica o elimina una fila",
+        "url": "https://learn.microsoft.com/es-es/power-automate/dataverse/create-update-delete-trigger"
       },
       {
         "title": "Introducción a los desencadenadores",
@@ -2391,19 +2353,19 @@
     "skill": "d4-conectores",
     "difficulty": 2,
     "scenario": "En Seguros Atlántico los empleados piden material de oficina con un formulario. Cada solicitud debe aprobarla el responsable directo de quien la pide, que cambia según el empleado, y nadie quiere mantener a mano una lista de responsables.",
-    "prompt": "¿Qué debes agregar al flujo antes de la acción «Iniciar y esperar una aprobación»?",
+    "prompt": "¿Qué debes agregar al flujo antes de la acción de aprobación?",
     "options": [
       {
         "id": "a",
-        "text": "La acción «Obtener administrador (V2)» (*Get manager (V2)*) del conector Usuarios de Office 365, con el correo del solicitante, para usar el correo del responsable en «Asignado a»",
+        "text": "Una acción del conector Usuarios de Office 365 que obtenga el responsable (*manager*) del solicitante a partir de su correo, para asignarle la aprobación",
         "correct": true,
-        "explanation": "La acción recupera el perfil del responsable configurado en Microsoft Entra ID, así que el flujo asigna la aprobación a la persona correcta sin listas manuales. Si un usuario no tiene responsable configurado, la acción falla."
+        "explanation": "Usuarios de Office 365 consulta los perfiles de Microsoft Entra ID, incluido el responsable configurado para cada usuario, así que el flujo asigna la aprobación a la persona correcta sin listas manuales."
       },
       {
         "id": "b",
-        "text": "La acción «Obtener mi perfil (V2)» del conector Usuarios de Office 365",
+        "text": "Una acción del conector Usuarios de Office 365 que obtenga el perfil del usuario de la conexión",
         "correct": false,
-        "explanation": "Devuelve el perfil del usuario actual de la conexión (normalmente el creador del flujo), no el del responsable de quien envía la solicitud."
+        "explanation": "Devuelve el perfil de quien creó la conexión (normalmente el creador del flujo), no el del responsable de quien envía la solicitud."
       },
       {
         "id": "c",
@@ -2418,15 +2380,15 @@
         "explanation": "La información ya está disponible mediante un conector; automatizar la interfaz de la intranet sería más lento y frágil."
       }
     ],
-    "keyPoint": "Usuarios de Office 365 + Aprobaciones: «Obtener administrador (V2)» lee el responsable en Microsoft Entra ID para asignar la aprobación de forma dinámica.",
+    "keyPoint": "Usuarios de Office 365 + Aprobaciones: obtener el responsable del solicitante desde Microsoft Entra ID permite asignar la aprobación de forma dinámica.",
     "references": [
       {
         "title": "Conector Usuarios de Office 365",
         "url": "https://learn.microsoft.com/es-es/connectors/office365users/"
       },
       {
-        "title": "Introducción a las aprobaciones",
-        "url": "https://learn.microsoft.com/es-es/power-automate/get-started-approvals"
+        "title": "Configurar aprobaciones secuenciales",
+        "url": "https://learn.microsoft.com/es-es/power-automate/set-up-sequential-approvals"
       }
     ]
   },
@@ -2778,7 +2740,7 @@
     ],
     "scenario": "Un flujo de escritorio de Química Ebro debe ejecutar un script de PowerShell que borre los archivos temporales de una carpeta, pero nadie del equipo sabe programar en PowerShell.",
     "prompt": "Completa la frase.",
-    "template": "Agregas al flujo la acción {{b1}}, seleccionas {{b2}} y describes en lenguaje natural lo que debe hacer el script; antes de usar el código generado, {{b3}}.",
+    "template": "En la acción de script de PowerShell del flujo de escritorio, describes en lenguaje natural lo que debe hacer el script y {{b1}} genera el código; antes de usarlo, {{b2}}.",
     "blanks": [
       {
         "id": "b1",
@@ -2786,26 +2748,7 @@
         "options": [
           {
             "id": "o1",
-            "text": "Ejecutar script de PowerShell"
-          },
-          {
-            "id": "o2",
-            "text": "Ejecutar un flujo creado con Power Automate para escritorio"
-          },
-          {
-            "id": "o3",
-            "text": "Obtener detalles de la respuesta"
-          }
-        ],
-        "explanation": "La generación de código con lenguaje natural está en las acciones de scripting, como la de PowerShell. Las otras dos acciones son de flujos de nube: una lanza un flujo de escritorio y la otra lee respuestas de Forms."
-      },
-      {
-        "id": "b2",
-        "correctId": "o1",
-        "options": [
-          {
-            "id": "o1",
-            "text": "Generar script con Copilot"
+            "text": "Copilot"
           },
           {
             "id": "o2",
@@ -2813,13 +2756,13 @@
           },
           {
             "id": "o3",
-            "text": "Probar flujo"
+            "text": "un modelo de AI Builder"
           }
         ],
-        "explanation": "«Generar script con Copilot» abre una pantalla donde escribes la instrucción y obtienes el script. La grabadora captura acciones de interfaz y «Probar flujo» no genera código."
+        "explanation": "Copilot en Power Automate para escritorio genera el código de las acciones de scripting (PowerShell, Python, VBScript, JavaScript o comandos DOS) a partir de una descripción. La grabadora captura clics y pulsaciones en pantalla, y los modelos de AI Builder procesan datos dentro del flujo, no escriben scripts."
       },
       {
-        "id": "b3",
+        "id": "b2",
         "correctId": "o1",
         "options": [
           {
@@ -2835,7 +2778,7 @@
             "text": "lo publicas en Dataverse para que se active"
           }
         ],
-        "explanation": "El contenido generado por IA debe revisarse siempre; tras elegir «Usar este script» puedes modificarlo y añadir variables. No se convierte en conector ni se publica en Dataverse."
+        "explanation": "Learn indica que hay que revisar siempre lo que genera Copilot; después de aceptar el script puedes modificarlo y añadir las variables necesarias. No se convierte en conector ni se publica en Dataverse."
       }
     ],
     "keyPoint": "En las acciones de scripting de los flujos de escritorio, Copilot genera el código a partir de una descripción; tú lo revisas antes de usarlo.",
@@ -2919,7 +2862,7 @@
         "id": "m2",
         "text": "Obtener el código de una acción «Ejecutar script de Python» describiendo lo que debe hacer",
         "answerId": "c2",
-        "explanation": "La opción «Generar script con Copilot» de las acciones de scripting crea el código a partir de lenguaje natural."
+        "explanation": "En las acciones de scripting, Copilot genera el código del script a partir de una descripción en lenguaje natural."
       },
       {
         "id": "m3",
@@ -2941,7 +2884,7 @@
       },
       {
         "id": "c2",
-        "text": "Generar script con Copilot en una acción de scripting"
+        "text": "Generación de scripts con Copilot en una acción de scripting"
       },
       {
         "id": "c3",
@@ -2996,9 +2939,9 @@
       },
       {
         "id": "s3",
-        "text": "Copilot admite todos los conectores de Power Platform, así que cualquier flujo puede generarse por completo con una sola indicación.",
+        "text": "Copilot solo sirve para crear flujos nuevos; para modificar un flujo existente tienes que hacerlo siempre a mano.",
         "answer": false,
-        "explanation": "Según las preguntas frecuentes de Learn, Copilot solo admite un subconjunto de los conectores; a menudo tendrás que completar o ajustar pasos en el diseñador."
+        "explanation": "Según Learn, Copilot puede crear un flujo desde cero, editar un flujo existente según tus instrucciones y responder preguntas sobre el flujo que estás editando."
       },
       {
         "id": "s4",
@@ -3007,7 +2950,7 @@
         "explanation": "Los cambios de Copilot se revisan en el diseñador y se pueden deshacer; además, Learn recomienda guardar el flujo antes de ediciones importantes para tener un punto al que volver."
       }
     ],
-    "keyPoint": "Copilot elige tipo de flujo y desencadenador, edita y escribe expresiones sencillas, pero solo admite parte de los conectores y sus cambios se revisan y se pueden deshacer.",
+    "keyPoint": "Copilot elige el tipo de flujo y el desencadenador, crea y edita flujos y escribe expresiones sencillas; sus cambios se revisan en el diseñador y se pueden deshacer.",
     "references": [
       {
         "title": "Introducción a los flujos de nube",
@@ -3108,7 +3051,7 @@
     "outlineVersion": "2026-07-24",
     "domain": "d4",
     "skill": "d4-ia",
-    "difficulty": 3,
+    "difficulty": 2,
     "scenario": "Pablo mantiene en Distribuciones Turia un flujo de nube que lee pedidos de una lista de SharePoint. Abre el flujo en el diseñador nuevo y quiere aprovechar el panel de Copilot para hacer varios cambios.",
     "prompt": "¿Qué dos peticiones puede resolver Copilot en el diseñador? Selecciona dos.",
     "options": [
@@ -3120,30 +3063,30 @@
       },
       {
         "id": "b",
-        "text": "«Agrupa las acciones de SharePoint en un ámbito y añade otro ámbito que avise en Teams si fallan»",
+        "text": "«Explica paso a paso qué hace este flujo»",
         "correct": true,
-        "explanation": "Copilot puede generar bloques de ámbito (*scope*) con la configuración «Ejecutar después» para crear un patrón de control de errores."
+        "explanation": "Copilot puede recorrer la lógica del flujo que estás editando y explicarla, algo especialmente útil cuando heredas un flujo de otra persona."
       },
       {
         "id": "c",
         "text": "«Renueva la conexión de SharePoint, cuyo token ha caducado»",
         "correct": false,
-        "explanation": "Los tokens caducados y los errores de permisos quedan fuera del alcance de Copilot: requieren volver a autenticarse o la intervención de un administrador."
+        "explanation": "Renovar una conexión exige volver a autenticarse o la intervención de un administrador; Learn indica que los tokens caducados y los errores de permisos quedan fuera del alcance de Copilot."
       },
       {
         "id": "d",
-        "text": "«Dime qué columnas tiene la lista Pedidos de SharePoint»",
+        "text": "«Crea una aplicación de lienzo para que el equipo consulte los pedidos»",
         "correct": false,
-        "explanation": "Copilot no consulta tus orígenes de datos; tienes que comprobar tú los nombres de las columnas y dárselos en la indicación."
+        "explanation": "Copilot en el diseñador de flujos trabaja sobre el flujo que estás editando; las aplicaciones de lienzo se crean en Power Apps."
       },
       {
         "id": "e",
-        "text": "«Explica por qué falló la ejecución de ayer a las 15:00»",
+        "text": "«Asigna licencias de Power Automate a todo el equipo de compras»",
         "correct": false,
-        "explanation": "Copilot en el diseñador no tiene acceso al historial de ejecuciones; para analizar una ejecución con errores se usa Solucionar problemas en Copilot desde la ejecución."
+        "explanation": "Las licencias las asignan los administradores desde el Centro de administración de Microsoft 365; no es un cambio en la definición del flujo."
       }
     ],
-    "keyPoint": "Copilot en el diseñador añade y modifica pasos (incluido el desencadenador) y estructuras como los ámbitos; no lee tus datos, no repara conexiones ni consulta el historial de ejecuciones.",
+    "keyPoint": "Copilot en el diseñador añade, modifica (incluido el desencadenador) y explica los pasos del flujo que editas; no renueva credenciales, no crea aplicaciones ni administra licencias.",
     "references": [
       {
         "title": "Saca el máximo partido de Copilot en el diseñador",
@@ -3252,7 +3195,7 @@
       },
       {
         "id": "c5",
-        "text": "Generar script con Copilot"
+        "text": "Generación de scripts con Copilot"
       }
     ],
     "keyPoint": "Cada experiencia de Copilot tiene su sitio: diseñador de nube (crear, editar, explicar), diseñador de escritorio (generar y resumir), análisis de actividad (preguntas sobre ejecuciones) y Solucionar problemas (errores de ejecución).",

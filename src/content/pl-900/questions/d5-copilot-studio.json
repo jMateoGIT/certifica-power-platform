@@ -2191,14 +2191,14 @@
     "domain": "d5",
     "skill": "d5-publicar",
     "difficulty": 2,
-    "scenario": "Rocío ha creado un agente de incorporación de empleados para Eléctrica Duero. Lo ha publicado, ha conectado el canal «Teams y Microsoft Copilot» y lo ha mostrado a sus compañeros en la sección «Creado con Power Platform» (*Built with Power Platform*) de la tienda de aplicaciones de Teams. Ahora Recursos Humanos quiere que cualquier empleado de la empresa pueda encontrarlo e instalarlo desde la tienda.",
+    "scenario": "Rocío ha creado un agente de incorporación de empleados para Eléctrica Duero. Lo ha publicado, ha conectado el canal «Teams y Microsoft Copilot» y lo ha mostrado a los compañeros con los que lo compartió, que ya pueden encontrarlo e instalarlo desde la tienda de aplicaciones de Teams. Ahora Recursos Humanos quiere que cualquier empleado de la empresa pueda encontrarlo e instalarlo desde la tienda.",
     "prompt": "¿Qué debe hacer Rocío?",
     "options": [
       {
         "id": "a",
-        "text": "Enviar el agente para que un administrador lo apruebe y aparezca en la sección de la organización (*Built for your org*) de la tienda de Teams",
+        "text": "Enviar el agente para que un administrador lo apruebe y lo ponga a disposición de toda la organización en la tienda de Teams",
         "correct": true,
-        "explanation": "La sección «Creado con Power Platform» solo la ven los usuarios con los que se ha compartido el agente. Para mostrarlo a toda la organización hay que solicitar la aprobación de un administrador, que gestiona esos agentes en el centro de administración de Teams."
+        "explanation": "Si muestras el agente a los usuarios con los que lo compartiste, solo esas personas lo encuentran en la tienda, aunque el agente permita que lo use todo el mundo. Para mostrarlo a toda la organización hay que enviarlo para que lo apruebe un administrador, que después gestiona su disponibilidad desde el Centro de administración de Teams."
       },
       {
         "id": "b",
@@ -2219,7 +2219,7 @@
         "explanation": "El sitio web de demostración está pensado para que compañeros y partes interesadas prueben el agente; no es para producción ni publica el agente en la tienda de Teams."
       }
     ],
-    "keyPoint": "«Creado con Power Platform» llega solo a los usuarios compartidos; para toda la organización hace falta la aprobación de un administrador.",
+    "keyPoint": "Mostrar el agente a los usuarios compartidos no lo hace visible para todos; para que toda la organización lo encuentre en la tienda de Teams hace falta la aprobación de un administrador.",
     "references": [
       {
         "title": "Conectar y configurar un agente para Teams y Microsoft Copilot",
@@ -2414,31 +2414,36 @@
     "domain": "d5",
     "skill": "d5-publicar",
     "difficulty": 2,
-    "scenario": "Cooperativa Valle Verde ha terminado su agente de soporte interno y quiere llevarlo a Teams y a Microsoft Copilot: primero lo usará la creadora y después toda la organización.",
+    "scenario": "Cooperativa Valle Verde ha terminado su agente de soporte interno y quiere que todos sus empleados puedan encontrarlo e instalarlo desde la tienda de aplicaciones de Teams.",
     "prompt": "Ordena los pasos teniendo en cuenta qué necesita cada uno del anterior.",
     "items": [
       {
         "id": "p1",
         "text": "Publicar el agente",
-        "explanation": "Hay que publicar el agente al menos una vez antes de conectar canales y antes de que nadie pueda usarlo en Teams."
+        "explanation": "Hay que publicar el agente al menos una vez antes de poder conectarlo a los canales de Teams y Microsoft Copilot."
       },
       {
         "id": "p2",
-        "text": "Conectar el canal «Teams y Microsoft Copilot», con la opción de que el agente esté disponible en Microsoft Copilot",
-        "explanation": "El canal solo se puede conectar después de publicar; al conectarlo decides si el agente estará solo en Teams o también en Microsoft Copilot."
+        "text": "Conectar el canal «Teams y Microsoft Copilot»",
+        "explanation": "El canal solo puede conectarse después de publicar, y es en su configuración donde están las opciones para poner el agente a disposición de otros usuarios."
       },
       {
         "id": "p3",
-        "text": "Instalar el agente para ti en Teams y probar la versión publicada",
-        "explanation": "La instalación se hace desde el canal ya conectado. Microsoft recomienda probar primero tú mismo la versión publicada antes de compartirla."
+        "text": "Enviar el agente para que un administrador lo apruebe y lo muestre a toda la organización",
+        "explanation": "El envío para aprobación es una de las opciones de disponibilidad del canal de Teams, así que requiere que el canal ya esté conectado."
       },
       {
         "id": "p4",
-        "text": "Enviar el agente para que un administrador lo apruebe y lo muestre a toda la organización",
-        "explanation": "Es el último paso: Microsoft aconseja no hacer el agente ampliamente disponible en Teams o Microsoft Copilot hasta que esté configurado y probado por completo."
+        "text": "Un administrador aprueba el agente en el Centro de administración de Teams",
+        "explanation": "El administrador solo puede aprobar un envío que ya existe; los agentes aprobados se gestionan en la página de administración de aplicaciones del Centro de administración de Teams."
+      },
+      {
+        "id": "p5",
+        "text": "Los empleados encuentran el agente en la tienda de aplicaciones de Teams y lo instalan",
+        "explanation": "Hasta que el administrador lo aprueba, el agente no se muestra a toda la organización en la tienda; por eso este paso va al final."
       }
     ],
-    "keyPoint": "Publicar → conectar el canal → probar tú mismo → ampliar a toda la organización.",
+    "keyPoint": "Publicar → conectar el canal de Teams → enviar para aprobación → aprobación del administrador → disponible para toda la organización en la tienda de Teams.",
     "references": [
       {
         "title": "Conectar y configurar un agente para Teams y Microsoft Copilot",
@@ -2506,18 +2511,18 @@
     "domain": "d5",
     "skill": "d5-conocimiento",
     "difficulty": 3,
-    "scenario": "Farmacéutica Solén usa un agente con orquestación generativa para responder a su personal sobre procedimientos normalizados de trabajo. El departamento de Calidad exige que el agente no conteste con el conocimiento general del modelo cuando no ha consultado ninguna de sus fuentes ni herramientas.",
+    "scenario": "Farmacéutica Solén usa un agente con orquestación generativa para responder a su personal sobre procedimientos normalizados de trabajo. El departamento de Calidad exige que el agente no conteste solo con lo que el modelo sabe por sí mismo cuando no ha consultado ninguna de sus fuentes ni herramientas.",
     "prompt": "¿Qué configuración de IA generativa del agente debes cambiar?",
     "options": [
       {
         "id": "a",
-        "text": "Desactivar «Permitir respuestas no fundamentadas» (*Allow ungrounded responses*)",
+        "text": "Desactivar las respuestas no fundamentadas (*ungrounded responses*)",
         "correct": true,
-        "explanation": "Con esta opción desactivada, el agente bloquea la respuesta de un turno en el que no usó ninguna fuente de conocimiento ni herramienta, y se activa el tema Alternativa. No es una garantía absoluta: el modelo puede combinar conocimiento general con la información que recupera."
+        "explanation": "Con «Permitir respuestas no fundamentadas» desactivada, el agente bloquea la respuesta de un turno en el que no usó ninguna fuente de conocimiento ni herramienta, y se activa el tema Alternativa. No es una garantía absoluta: el modelo puede combinar conocimiento general con la información que recupera."
       },
       {
         "id": "b",
-        "text": "Activar «Usar información de la web» (*Use information from the web*)",
+        "text": "Activar la búsqueda en todos los sitios web públicos (*Use information from the web*)",
         "correct": false,
         "explanation": "Esta opción permite buscar en cualquier sitio público indexado por Bing, es decir, amplía las respuestas en lugar de limitarlas a las fuentes del agente."
       },
@@ -2534,7 +2539,7 @@
         "explanation": "Una fuente oficial indica que su contenido es fiable y no necesita verificación, pero no impide responder sin fuentes; además, no es compatible con la orquestación generativa."
       }
     ],
-    "keyPoint": "«Permitir respuestas no fundamentadas» desactivada = el agente no responde en un turno en el que no usó conocimiento ni herramientas.",
+    "keyPoint": "Respuestas no fundamentadas desactivadas = el agente no responde en un turno en el que no usó conocimiento ni herramientas.",
     "references": [
       {
         "title": "Orígenes de conocimiento en Copilot Studio",
@@ -2949,45 +2954,49 @@
   },
   {
     "id": "pl900-d5-temas-012",
-    "type": "single",
+    "type": "yesno",
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d5",
     "skill": "d5-temas",
     "difficulty": 2,
-    "scenario": "Mensajería Ágil Sur identifica cada envío con un código de seguimiento que siempre tiene el mismo formato: tres letras seguidas de nueve dígitos (por ejemplo, MAS123456789). En el tema «Dónde está mi paquete», el agente debe reconocer ese código en la respuesta del cliente y guardarlo.",
-    "prompt": "¿Qué debes usar en el nodo de pregunta para reconocer el código?",
-    "options": [
+    "scenario": "El agente de Ópticas Mirada tiene un tema «Reservar cita» que pregunta al cliente en qué ciudad está su tienda y cuántos años tiene. Más adelante, el tema «Confirmar cita» necesita esos mismos datos.",
+    "prompt": "Indica si cada afirmación sobre las entidades y las variables de este agente es verdadera.",
+    "statements": [
       {
-        "id": "a",
-        "text": "Una entidad personalizada de expresión regular (*regex*)",
-        "correct": true,
-        "explanation": "Las entidades regex definen un patrón para reconocer y extraer datos con un formato concreto, como un número de seguimiento o de licencia."
+        "id": "s1",
+        "text": "Una entidad permite al agente reconocer en lo que escribe el cliente un tipo de información, como una ciudad o una edad.",
+        "answer": true,
+        "explanation": "Una entidad representa un tipo de información del mundo real (un teléfono, un código postal, una ciudad…); gracias a ella el agente reconoce ese dato en la respuesta del usuario y lo guarda para usarlo después."
       },
       {
-        "id": "b",
-        "text": "Una entidad personalizada de lista cerrada con todos los códigos de envío",
-        "correct": false,
-        "explanation": "Las listas cerradas sirven para conjuntos pequeños y estables de valores; los códigos de envío son innumerables y cambian a diario."
+        "id": "s2",
+        "text": "Para reconocer datos habituales, como un número o una edad, tienes que crear siempre una entidad personalizada.",
+        "answer": false,
+        "explanation": "Copilot Studio incluye entidades precompiladas para los tipos de información más habituales, como la edad, los números o los nombres. Las entidades personalizadas se crean para conceptos propios del negocio."
       },
       {
-        "id": "c",
-        "text": "La entidad precompilada Número",
-        "correct": false,
-        "explanation": "Reconocería cifras, pero no el patrón completo con las letras iniciales, así que no valida el formato del código."
+        "id": "s3",
+        "text": "El nodo de pregunta guarda la respuesta reconocida en una variable que puedes usar en los pasos siguientes del tema.",
+        "answer": true,
+        "explanation": "Cualquier nodo que devuelve una salida, como un nodo de pregunta, crea automáticamente una variable del tipo adecuado para reutilizar ese valor más adelante en la conversación."
       },
       {
-        "id": "d",
-        "text": "Una variable global con el prefijo de la empresa",
-        "correct": false,
-        "explanation": "Una variable almacena un valor, pero no enseña al agente a reconocer un patrón en lo que escribe el usuario."
+        "id": "s4",
+        "text": "Una variable creada en el tema «Reservar cita» está disponible automáticamente en «Confirmar cita», sin pasarla de un tema a otro ni convertirla en global.",
+        "answer": false,
+        "explanation": "Por defecto, una variable solo se puede usar en el tema donde se creó. Para reutilizarla hay que pasarla al otro tema al redirigir o convertirla en una variable global, disponible en todos los temas."
       }
     ],
-    "keyPoint": "Patrón fijo → entidad regex; pocos valores conocidos → lista cerrada; tipos de datos comunes → entidades precompiladas.",
+    "keyPoint": "Entidad = reconocer un tipo de dato; variable = guardarlo. Una variable de tema solo vive en su tema: pásala a otro tema o hazla global para reutilizarla.",
     "references": [
       {
         "title": "Usar entidades y relleno de espacios",
         "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/advanced-entities-slot-filling"
+      },
+      {
+        "title": "Trabajar con variables globales",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-variables-bot"
       }
     ]
   },
@@ -3097,7 +3106,7 @@
         "id": "s2",
         "text": "Puedes configurar una herramienta para que el agente pida confirmación al usuario antes de ejecutarla.",
         "answer": true,
-        "explanation": "La opción «Pregunte al usuario final antes de ejecutar» (*Ask the end user before running*) está desactivada por defecto y es útil para acciones sensibles, como cancelar un pedido."
+        "explanation": "Al configurar la herramienta puedes indicar que el agente pida confirmación al usuario antes de ejecutarla, algo útil para acciones sensibles como cancelar un pedido."
       },
       {
         "id": "s3",
@@ -3143,7 +3152,7 @@
         "id": "m1",
         "text": "TI quiere ver en un único registro todos los agentes de la organización y bloquear uno que incumple las directivas",
         "answerId": "c1",
-        "explanation": "Agent 365 ofrece un registro centralizado de agentes en el Centro de administración de Microsoft 365 y acciones de gobierno como bloquear un agente o reasignar su propiedad."
+        "explanation": "Agent 365 ofrece un registro centralizado de todos los agentes de la organización en el Centro de administración de Microsoft 365, con acciones de gobierno como bloquear un agente."
       },
       {
         "id": "m2",
@@ -3221,7 +3230,7 @@
       {
         "id": "p2",
         "text": "Elegir los métodos de prueba y añadir respuestas esperadas a los casos cuyo método las requiera",
-        "explanation": "Los métodos se aplican sobre los casos ya creados; todos salvo calidad general necesitan respuestas o palabras clave esperadas en cada caso."
+        "explanation": "Los métodos se aplican a los casos del conjunto ya creado: algunos, como comparar significado o la coincidencia de palabras clave, necesitan una respuesta o palabras clave esperadas en cada caso; calidad general, no."
       },
       {
         "id": "p3",
