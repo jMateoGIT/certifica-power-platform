@@ -1,0 +1,1654 @@
+[
+  {
+    "id": "pl900-d4-tipos-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-tipos",
+    "difficulty": 1,
+    "prompt": "Necesitas un flujo que se ejecute solo, sin intervención de nadie, cada vez que llegue un correo nuevo a un buzón compartido. ¿Qué tipo de flujo de nube (*cloud flow*) debes crear?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un flujo de nube instantáneo",
+        "correct": false,
+        "explanation": "Los flujos instantáneos se inician cuando alguien los lanza a mano (un botón, Power Apps, Teams); no reaccionan solos a la llegada de un correo."
+      },
+      {
+        "id": "b",
+        "text": "Un flujo de nube automatizado",
+        "correct": true,
+        "explanation": "Un flujo automatizado se inicia con un desencadenador (*trigger*) basado en un evento, como «Cuando llega un correo electrónico nuevo»."
+      },
+      {
+        "id": "c",
+        "text": "Un flujo de nube programado",
+        "correct": false,
+        "explanation": "Un flujo programado se ejecuta según una periodicidad (cada hora, cada día…), no en el momento en que ocurre un evento concreto."
+      },
+      {
+        "id": "d",
+        "text": "Un flujo de proceso de negocio",
+        "correct": false,
+        "explanation": "Un flujo de proceso de negocio guía a los usuarios por fases dentro de una aplicación basada en modelos; no procesa correos entrantes."
+      }
+    ],
+    "keyPoint": "Evento (llega un correo, se crea un elemento) = flujo de nube automatizado.",
+    "references": [
+      {
+        "title": "Tipos de flujos en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/flow-types"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-tipos-002",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-tipos",
+    "difficulty": 2,
+    "scenario": "El departamento de soporte de Logística Iberia quiere que cada lunes a las 8:00 el equipo reciba en Teams un resumen de las incidencias que siguen abiertas en una lista de SharePoint.",
+    "prompt": "¿Qué tipo de flujo de nube cubre mejor este requisito?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un flujo automatizado con el desencadenador «Cuando se crea un elemento»",
+        "correct": false,
+        "explanation": "Ese desencadenador se dispara con cada incidencia nueva, no una vez por semana a una hora fija."
+      },
+      {
+        "id": "b",
+        "text": "Un flujo instantáneo que el jefe de equipo lanza desde Teams",
+        "correct": false,
+        "explanation": "Funcionaría, pero dependería de que alguien lo ejecute cada lunes; el requisito pide que se ejecute solo a una hora concreta."
+      },
+      {
+        "id": "c",
+        "text": "Un flujo programado con el desencadenador «Periodicidad» (*Recurrence*)",
+        "correct": true,
+        "explanation": "Los flujos programados se ejecutan según una frecuencia definida (por ejemplo, semanal, los lunes a las 8:00), ideal para resúmenes periódicos."
+      },
+      {
+        "id": "d",
+        "text": "Un flujo de escritorio ejecutado en modo atendido",
+        "correct": false,
+        "explanation": "Los flujos de escritorio automatizan interfaces de usuario; para leer SharePoint y publicar en Teams bastan los conectores de un flujo de nube."
+      }
+    ],
+    "keyPoint": "Tarea periódica a una hora fija = flujo de nube programado (desencadenador Periodicidad).",
+    "references": [
+      {
+        "title": "Tipos de flujos en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/flow-types"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-tipos-003",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-tipos",
+    "difficulty": 2,
+    "scenario": "Los comerciales de Seguros Atlántico usan una aplicación basada en modelos. La dirección quiere que todos sigan las mismas fases (Calificar, Desarrollar, Proponer y Cerrar) y que la app les muestre en cada fase qué datos deben completar antes de avanzar.",
+    "prompt": "¿Qué debes usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un flujo de nube automatizado que envíe un correo en cada fase",
+        "correct": false,
+        "explanation": "Un correo puede avisar, pero no muestra en el formulario las fases ni los pasos que el usuario debe completar."
+      },
+      {
+        "id": "b",
+        "text": "Un flujo de escritorio que rellene los campos por el comercial",
+        "correct": false,
+        "explanation": "El objetivo es guiar al usuario, no sustituirlo; además, un flujo de escritorio automatiza interfaces, no define fases de un proceso."
+      },
+      {
+        "id": "c",
+        "text": "Un flujo de nube programado que revise las oportunidades cada noche",
+        "correct": false,
+        "explanation": "Una revisión nocturna no guía al usuario mientras trabaja en el registro ni muestra las fases en la aplicación."
+      },
+      {
+        "id": "d",
+        "text": "Un flujo de proceso de negocio (*business process flow*)",
+        "correct": true,
+        "explanation": "Los flujos de proceso de negocio muestran una barra de fases y pasos en las aplicaciones basadas en modelos para guiar a los usuarios por un proceso coherente."
+      }
+    ],
+    "keyPoint": "Guiar a usuarios por fases y pasos dentro de una app basada en modelos = flujo de proceso de negocio.",
+    "references": [
+      {
+        "title": "Información general de los flujos de proceso de negocio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/business-process-flows-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-tipos-004",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-tipos",
+    "difficulty": 1,
+    "prompt": "En un flujo de nube, ¿cómo se llama el elemento que determina cuándo empieza a ejecutarse el flujo?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Desencadenador (*trigger*)",
+        "correct": true,
+        "explanation": "Todo flujo de nube comienza con un desencadenador: un evento, una programación o una acción manual que inicia la ejecución."
+      },
+      {
+        "id": "b",
+        "text": "Acción (*action*)",
+        "correct": false,
+        "explanation": "Las acciones son los pasos que el flujo realiza después de iniciarse, como enviar un correo o crear un elemento."
+      },
+      {
+        "id": "c",
+        "text": "Conector (*connector*)",
+        "correct": false,
+        "explanation": "El conector es el componente que da acceso a un servicio; ofrece desencadenadores y acciones, pero no es el inicio del flujo en sí."
+      },
+      {
+        "id": "d",
+        "text": "Condición (*condition*)",
+        "correct": false,
+        "explanation": "Una condición es un control que bifurca la lógica según un valor; se evalúa durante la ejecución, no la inicia."
+      }
+    ],
+    "keyPoint": "Desencadenador = cuándo empieza el flujo; acciones = qué hace después.",
+    "references": [
+      {
+        "title": "Introducción a Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/getting-started"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-tipos-005",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-tipos",
+    "difficulty": 2,
+    "prompt": "¿Qué desencadenadores corresponden a flujos de nube instantáneos, que se inician cuando una persona los lanza? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Periodicidad (*Recurrence*)",
+        "correct": false,
+        "explanation": "Periodicidad es el desencadenador de los flujos programados: se ejecuta según un calendario, sin que nadie lo lance."
+      },
+      {
+        "id": "b",
+        "text": "Desencadenar un flujo manualmente (botón)",
+        "correct": true,
+        "explanation": "Es el desencadenador instantáneo clásico: el usuario pulsa un botón, por ejemplo desde la aplicación móvil de Power Automate."
+      },
+      {
+        "id": "c",
+        "text": "Cuando llega un correo electrónico nuevo",
+        "correct": false,
+        "explanation": "Este desencadenador reacciona a un evento del buzón, por lo que define un flujo automatizado."
+      },
+      {
+        "id": "d",
+        "text": "Cuando Power Apps llama a un flujo",
+        "correct": true,
+        "explanation": "Un flujo iniciado desde un botón o fórmula de una aplicación de Power Apps es un flujo instantáneo: lo lanza la acción del usuario en la app."
+      },
+      {
+        "id": "e",
+        "text": "Cuando se crea un elemento en una lista de SharePoint",
+        "correct": false,
+        "explanation": "Reacciona automáticamente a la creación de un elemento, así que corresponde a un flujo automatizado."
+      }
+    ],
+    "keyPoint": "Instantáneo = lo lanza una persona (botón, Power Apps, Teams); automatizado = evento; programado = periodicidad.",
+    "references": [
+      {
+        "title": "Tipos de flujos en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/flow-types"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-tipos-006",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-tipos",
+    "difficulty": 2,
+    "scenario": "Construcciones Duero recibe correos de proveedores con varios archivos adjuntos. Quiere un flujo que recorra todos los adjuntos de cada correo y guarde en SharePoint únicamente los que sean PDF.",
+    "prompt": "¿Qué dos elementos de control necesitas en el flujo? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Aplicar a cada uno (*Apply to each*)",
+        "correct": true,
+        "explanation": "Permite repetir las acciones para cada elemento de una matriz, en este caso para cada adjunto del correo."
+      },
+      {
+        "id": "b",
+        "text": "Periodicidad (*Recurrence*)",
+        "correct": false,
+        "explanation": "Periodicidad es un desencadenador programado; no sirve para recorrer adjuntos ni para filtrar por tipo."
+      },
+      {
+        "id": "c",
+        "text": "Condición (*Condition*)",
+        "correct": true,
+        "explanation": "Una condición evalúa si el nombre del adjunto termina en .pdf y solo en ese caso ejecuta la acción de guardar."
+      },
+      {
+        "id": "d",
+        "text": "Finalizar (*Terminate*)",
+        "correct": false,
+        "explanation": "Finalizar detiene la ejecución con un estado; no ayuda a procesar cada adjunto ni a filtrarlos."
+      },
+      {
+        "id": "e",
+        "text": "Iniciar y esperar una aprobación",
+        "correct": false,
+        "explanation": "Es una acción del conector de aprobaciones; el escenario no requiere que nadie apruebe los adjuntos."
+      }
+    ],
+    "keyPoint": "Bucle «Aplicar a cada uno» para recorrer listas; «Condición» para decidir qué hacer con cada elemento.",
+    "references": [
+      {
+        "title": "Introducción a Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/getting-started"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-tipos-007",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-tipos",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre los flujos de nube es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Un flujo de nube puede tener varios desencadenadores a la vez en su inicio.",
+        "answer": false,
+        "explanation": "Cada flujo de nube tiene un único desencadenador; si necesitas iniciar el mismo proceso de varias formas, creas varios flujos, cada uno con su propio desencadenador."
+      },
+      {
+        "id": "s2",
+        "text": "El contenido dinámico permite usar en una acción las salidas de pasos anteriores, como el asunto de un correo.",
+        "answer": true,
+        "explanation": "Power Automate expone las salidas del desencadenador y de cada acción como contenido dinámico que puedes insertar en los pasos siguientes."
+      },
+      {
+        "id": "s3",
+        "text": "Los conectores proporcionan los desencadenadores y las acciones que permiten al flujo trabajar con servicios como Outlook o SharePoint.",
+        "answer": true,
+        "explanation": "Un conector encapsula la API de un servicio y la ofrece como desencadenadores y acciones listos para usar en los flujos."
+      },
+      {
+        "id": "s4",
+        "text": "Un flujo programado necesita que un usuario pulse un botón para iniciarse.",
+        "answer": false,
+        "explanation": "El flujo programado se inicia solo según la periodicidad configurada; los que requieren pulsar un botón son los instantáneos."
+      }
+    ],
+    "keyPoint": "Un desencadenador por flujo, acciones encadenadas y contenido dinámico para reutilizar datos de pasos anteriores.",
+    "references": [
+      {
+        "title": "Introducción a Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/getting-started"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-tipos-008",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-tipos",
+    "difficulty": 1,
+    "prompt": "Empareja cada necesidad con el tipo de flujo más adecuado.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Guardar en OneDrive los adjuntos de cada correo que llega",
+        "answerId": "c1",
+        "explanation": "La llegada del correo es un evento que dispara el flujo sin intervención humana: flujo automatizado."
+      },
+      {
+        "id": "m2",
+        "text": "Un técnico pulsa un botón en el móvil para avisar de una avería",
+        "answerId": "c2",
+        "explanation": "La ejecución la inicia una persona a demanda, lo que define un flujo instantáneo."
+      },
+      {
+        "id": "m3",
+        "text": "Generar un informe todas las noches a las 23:00",
+        "answerId": "c3",
+        "explanation": "Una ejecución recurrente a hora fija se resuelve con un flujo programado."
+      },
+      {
+        "id": "m4",
+        "text": "Introducir datos en una aplicación de Windows antigua que no tiene API",
+        "answerId": "c4",
+        "explanation": "Sin API no hay conector posible; un flujo de escritorio automatiza la interfaz de usuario (RPA)."
+      },
+      {
+        "id": "m5",
+        "text": "Guiar a los agentes por las fases de un caso en una app basada en modelos",
+        "answerId": "c5",
+        "explanation": "Los flujos de proceso de negocio muestran fases y pasos dentro de las aplicaciones basadas en modelos."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Flujo de nube automatizado"
+      },
+      {
+        "id": "c2",
+        "text": "Flujo de nube instantáneo"
+      },
+      {
+        "id": "c3",
+        "text": "Flujo de nube programado"
+      },
+      {
+        "id": "c4",
+        "text": "Flujo de escritorio (*desktop flow*)"
+      },
+      {
+        "id": "c5",
+        "text": "Flujo de proceso de negocio"
+      }
+    ],
+    "keyPoint": "Evento → automatizado; persona → instantáneo; calendario → programado; UI sin API → escritorio; guiar fases → proceso de negocio.",
+    "references": [
+      {
+        "title": "Tipos de flujos en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/flow-types"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-tipos-009",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-tipos",
+    "difficulty": 1,
+    "prompt": "Completa la frase.",
+    "template": "En un flujo de nube, el elemento que inicia la ejecución es {{b1}}; cada paso posterior que realiza una tarea es {{b2}}; y para repetir los mismos pasos con cada elemento de una lista usas {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "una acción"
+          },
+          {
+            "id": "o2",
+            "text": "el desencadenador"
+          },
+          {
+            "id": "o3",
+            "text": "el conector"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "El desencadenador es siempre el primer elemento del flujo y define cuándo se ejecuta. Las acciones se ejecutan después, y el conector solo agrupa los desencadenadores y acciones de un servicio."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "una acción"
+          },
+          {
+            "id": "o2",
+            "text": "un desencadenador"
+          },
+          {
+            "id": "o3",
+            "text": "una variable de entorno"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Las acciones son las operaciones que se encadenan tras el desencadenador, como crear un elemento o enviar un mensaje. Un flujo solo tiene un desencadenador, y una variable de entorno guarda valores de configuración de una solución; no realiza tareas."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "una condición"
+          },
+          {
+            "id": "o2",
+            "text": "la Periodicidad"
+          },
+          {
+            "id": "o3",
+            "text": "Aplicar a cada uno"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "«Aplicar a cada uno» es el bucle que ejecuta las acciones que contiene una vez por cada elemento de una matriz. Una condición solo elige entre dos ramas, y Periodicidad es el desencadenador de los flujos programados."
+      }
+    ],
+    "keyPoint": "Desencadenador → acciones; los bucles «Aplicar a cada uno» repiten pasos por cada elemento.",
+    "references": [
+      {
+        "title": "Introducción a Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/getting-started"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-tipos-010",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-tipos",
+    "difficulty": 2,
+    "scenario": "Un flujo automatizado de Clínica Levante guarda en SharePoint los informes PDF que los laboratorios envían por correo como adjuntos.",
+    "prompt": "Ordena los elementos del flujo en el orden en que se ejecutan.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Desencadenador: cuando llega un correo nuevo con datos adjuntos",
+        "explanation": "El desencadenador siempre va primero: sin él, el flujo no se inicia."
+      },
+      {
+        "id": "p2",
+        "text": "Aplicar a cada uno sobre la lista de adjuntos del correo",
+        "explanation": "Como un correo puede traer varios adjuntos, se recorre la matriz con un bucle antes de evaluar cada archivo."
+      },
+      {
+        "id": "p3",
+        "text": "Condición: el nombre del adjunto termina en .pdf",
+        "explanation": "Dentro del bucle se comprueba cada adjunto para decidir si debe guardarse."
+      },
+      {
+        "id": "p4",
+        "text": "Crear archivo en la biblioteca de SharePoint (rama «Sí»)",
+        "explanation": "Solo cuando la condición se cumple se ejecuta la acción que guarda el archivo, usando el nombre y contenido como contenido dinámico."
+      }
+    ],
+    "keyPoint": "Estructura típica: desencadenador → bucle → condición → acción.",
+    "references": [
+      {
+        "title": "Introducción a Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/getting-started"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-nube-001",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-nube",
+    "difficulty": 1,
+    "prompt": "Indica si cada afirmación sobre las formas de crear un flujo de nube es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puedes crear un flujo de nube a partir de una plantilla que ya incluye el desencadenador y las acciones de un escenario habitual.",
+        "answer": true,
+        "explanation": "Las plantillas resuelven escenarios comunes (por ejemplo, guardar adjuntos de Outlook en OneDrive); solo hay que crear las conexiones y ajustar detalles."
+      },
+      {
+        "id": "s2",
+        "text": "Puedes partir de la página de un conector, como SharePoint, y elegir entre las plantillas que lo utilizan.",
+        "answer": true,
+        "explanation": "Al explorar un conector se muestran sus desencadenadores, acciones y plantillas relacionadas, un buen punto de partida para crear el flujo."
+      },
+      {
+        "id": "s3",
+        "text": "Para crear un flujo de nube desde cero es obligatorio escribir código en un editor de texto.",
+        "answer": false,
+        "explanation": "Crear desde cero significa elegir tú el desencadenador y añadir acciones en el diseñador visual, sin necesidad de programar."
+      },
+      {
+        "id": "s4",
+        "text": "Si describes el flujo a Copilot en lenguaje natural, el flujo propuesto se activa en producción sin que puedas revisarlo.",
+        "answer": false,
+        "explanation": "Copilot genera una propuesta que revisas, configuras (conexiones, parámetros) y guardas tú; no se publica sin tu intervención."
+      }
+    ],
+    "keyPoint": "Un flujo de nube puede crearse desde plantilla, desde un conector, desde cero en el diseñador o describiéndolo a Copilot.",
+    "references": [
+      {
+        "title": "Introducción a Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/getting-started"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-nube-002",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-nube",
+    "difficulty": 2,
+    "scenario": "Marta, responsable de compras de Alimentaria Norte, no tiene experiencia con Power Automate. Quiere escribir «Cuando se cree un elemento en la lista Solicitudes, envía un correo al responsable del departamento» y que la herramienta le proponga el flujo.",
+    "prompt": "¿Qué capacidad debe usar Marta?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Minería de procesos",
+        "correct": false,
+        "explanation": "La minería de procesos analiza registros de eventos para descubrir cómo funciona un proceso; no genera flujos a partir de una descripción."
+      },
+      {
+        "id": "b",
+        "text": "Copilot en Power Automate",
+        "correct": true,
+        "explanation": "Copilot permite describir en lenguaje natural lo que quieres automatizar y genera una propuesta de flujo de nube que luego revisas y ajustas."
+      },
+      {
+        "id": "c",
+        "text": "Un modelo de AI Builder",
+        "correct": false,
+        "explanation": "AI Builder aporta modelos de IA (extraer datos, clasificar texto) que se usan dentro de un flujo, pero no construye el flujo por ti."
+      },
+      {
+        "id": "d",
+        "text": "La grabadora de Power Automate para escritorio",
+        "correct": false,
+        "explanation": "La grabadora captura acciones de interfaz para flujos de escritorio; el escenario se resuelve con conectores de un flujo de nube."
+      }
+    ],
+    "keyPoint": "Describir un flujo en lenguaje natural y obtener una propuesta = Copilot en Power Automate.",
+    "references": [
+      {
+        "title": "Introducción a Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/getting-started"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-nube-003",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-nube",
+    "difficulty": 3,
+    "scenario": "En Textiles Ribera, cualquier compra superior a cierto importe debe ser aprobada tanto por el director financiero como por el director jurídico. Si uno de ellos rechaza, la compra no sigue adelante.",
+    "prompt": "¿Qué tipo de aprobación debes configurar en la acción «Iniciar y esperar una aprobación»?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Aprobar/Rechazar: el primero en responder",
+        "correct": false,
+        "explanation": "Con este tipo basta la respuesta de uno de los aprobadores, así que la compra podría avanzar con una sola aprobación."
+      },
+      {
+        "id": "b",
+        "text": "Respuestas personalizadas: esperar una respuesta",
+        "correct": false,
+        "explanation": "Permite opciones de respuesta propias, pero solo espera a la primera respuesta; no garantiza que ambos directores aprueben."
+      },
+      {
+        "id": "c",
+        "text": "Enviar un correo con opciones desde Outlook",
+        "correct": false,
+        "explanation": "Es una acción del conector de Outlook, no del de aprobaciones, y no consolida la decisión de varios aprobadores ni aparece en el centro de aprobaciones."
+      },
+      {
+        "id": "d",
+        "text": "Aprobar/Rechazar: todos deben aprobar",
+        "correct": true,
+        "explanation": "Este tipo exige la aprobación de todos los aprobadores asignados; un único rechazo hace que el resultado sea rechazado."
+      }
+    ],
+    "keyPoint": "«Todos deben aprobar» requiere el sí de cada aprobador; «el primero en responder» se resuelve con una sola respuesta.",
+    "references": [
+      {
+        "title": "Introducción a las aprobaciones",
+        "url": "https://learn.microsoft.com/es-es/power-automate/get-started-approvals"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-nube-004",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-nube",
+    "difficulty": 1,
+    "prompt": "Un flujo envía solicitudes de aprobación con el conector Aprobaciones (*Approvals*). ¿Desde dónde pueden responder los aprobadores? Selecciona tres.",
+    "options": [
+      {
+        "id": "a",
+        "text": "La aplicación Aprobaciones de Microsoft Teams",
+        "correct": true,
+        "explanation": "Teams incluye la aplicación Aprobaciones, donde se ven y responden las solicitudes creadas por los flujos."
+      },
+      {
+        "id": "b",
+        "text": "El centro de administración de Power Platform",
+        "correct": false,
+        "explanation": "El centro de administración sirve para gestionar entornos, directivas y capacidad; no es un lugar para responder aprobaciones."
+      },
+      {
+        "id": "c",
+        "text": "El correo de Outlook que recibe el aprobador",
+        "correct": true,
+        "explanation": "Las aprobaciones llegan como correos con botones de Aprobar y Rechazar (mensajes accionables) que se pueden usar directamente en Outlook."
+      },
+      {
+        "id": "d",
+        "text": "El centro de aprobaciones del portal de Power Automate",
+        "correct": true,
+        "explanation": "En Power Automate, el área de Aprobaciones muestra las solicitudes recibidas y enviadas y permite responderlas."
+      },
+      {
+        "id": "e",
+        "text": "Power BI Desktop",
+        "correct": false,
+        "explanation": "Power BI Desktop es una herramienta de creación de informes; no muestra ni responde solicitudes de aprobación."
+      }
+    ],
+    "keyPoint": "Las aprobaciones se responden desde Teams, Outlook o el centro de aprobaciones de Power Automate.",
+    "references": [
+      {
+        "title": "Introducción a las aprobaciones",
+        "url": "https://learn.microsoft.com/es-es/power-automate/get-started-approvals"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-nube-005",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-nube",
+    "difficulty": 2,
+    "prompt": "En una acción de un flujo de nube necesitas guardar la fecha y hora actuales mediante una expresión. ¿Qué expresión usas?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Now()",
+        "correct": false,
+        "explanation": "Now() es una función de Power Fx (Power Apps) y de Excel; las expresiones de los flujos de nube usan otro lenguaje."
+      },
+      {
+        "id": "b",
+        "text": "GETDATE()",
+        "correct": false,
+        "explanation": "GETDATE() es una función de SQL Server; no existe en las expresiones de Power Automate."
+      },
+      {
+        "id": "c",
+        "text": "utcNow()",
+        "correct": true,
+        "explanation": "utcNow() pertenece al lenguaje de expresiones de flujos de trabajo (*Workflow Definition Language*) que comparten Azure Logic Apps y los flujos de nube, y devuelve la fecha y hora actuales en UTC."
+      },
+      {
+        "id": "d",
+        "text": "Today()",
+        "correct": false,
+        "explanation": "Today() es una función de Power Fx y Excel que devuelve la fecha; no es válida en las expresiones de un flujo de nube."
+      }
+    ],
+    "keyPoint": "Las expresiones de los flujos de nube usan el lenguaje de expresiones de Azure Logic Apps: utcNow(), concat(), addDays()…",
+    "references": [
+      {
+        "title": "Guía de referencia de funciones de expresiones de flujos de trabajo (Azure Logic Apps y Power Automate)",
+        "url": "https://learn.microsoft.com/es-es/azure/logic-apps/workflow-definition-language-functions-reference"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-nube-006",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-nube",
+    "difficulty": 3,
+    "scenario": "Un flujo de nube de Recursos Humanos crea una tarea de bienvenida con el nombre completo del nuevo empleado y una fecha límite una semana después de hoy.",
+    "prompt": "Completa la frase con las expresiones correctas.",
+    "template": "Para unir el nombre y los apellidos en un único texto usas {{b1}}, y para calcular la fecha límite usas {{b2}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Concatenate(Nombre; Apellidos)"
+          },
+          {
+            "id": "o2",
+            "text": "concat(Nombre, ' ', Apellidos)"
+          },
+          {
+            "id": "o3",
+            "text": "Nombre & Apellidos"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "concat() es la función de las expresiones de flujos de nube para unir cadenas (en el flujo real, Nombre y Apellidos serían referencias al contenido dinámico). Concatenate() y el operador & pertenecen a Power Fx o Excel."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "DateAdd(Now(); 7)"
+          },
+          {
+            "id": "o2",
+            "text": "utcNow() + 7"
+          },
+          {
+            "id": "o3",
+            "text": "addDays(utcNow(), 7)"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "addDays() suma días a una marca de tiempo y utcNow() devuelve la actual. DateAdd() y Now() son funciones de Power Fx, y el operador + no existe en estas expresiones para sumar días a una fecha."
+      }
+    ],
+    "keyPoint": "No confundas Power Fx (Power Apps) con las expresiones de flujos de nube: concat(), addDays(), utcNow().",
+    "references": [
+      {
+        "title": "Guía de referencia de funciones de expresiones de flujos de trabajo (Azure Logic Apps y Power Automate)",
+        "url": "https://learn.microsoft.com/es-es/azure/logic-apps/workflow-definition-language-functions-reference"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-nube-007",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-nube",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre la prueba y supervisión de flujos de nube es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "El historial de ejecuciones indica si cada ejecución se completó o falló y permite ver las entradas y salidas de cada paso.",
+        "answer": true,
+        "explanation": "Desde el detalle de una ejecución puedes abrir cada paso y revisar sus entradas, salidas y el error concreto si falló."
+      },
+      {
+        "id": "s2",
+        "text": "Para probar un flujo de nube debes exportarlo antes a otro entorno.",
+        "answer": false,
+        "explanation": "Se puede probar directamente desde el diseñador con la opción Probar, en el mismo entorno donde se crea; exportar sirve para mover flujos entre entornos, no para probarlos."
+      },
+      {
+        "id": "s3",
+        "text": "Al probar un flujo puedes realizar tú mismo la acción que lo desencadena o, si ya se ha ejecutado antes, volver a usar los datos del desencadenador de una ejecución reciente.",
+        "answer": true,
+        "explanation": "En el panel de prueba eliges Manualmente (realizas tú el evento, por ejemplo enviar un correo) o Automáticamente, que repite la prueba con los datos del desencadenador de una ejecución anterior; esta segunda opción requiere que el flujo ya se haya ejecutado."
+      },
+      {
+        "id": "s4",
+        "text": "Un flujo desactivado sigue ejecutándose cada vez que se produce su desencadenador.",
+        "answer": false,
+        "explanation": "Mientras un flujo está desactivado no se ejecuta; hay que volver a activarlo para que responda a su desencadenador."
+      }
+    ],
+    "keyPoint": "Prueba desde el diseñador y diagnostica con el historial de ejecuciones paso a paso.",
+    "references": [
+      {
+        "title": "Introducción a Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/getting-started"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-nube-008",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-nube",
+    "difficulty": 3,
+    "scenario": "Pablo creó un flujo instantáneo que se inicia con un botón y registra visitas a clientes. Los veinte comerciales de su equipo deben poder ejecutarlo, pero ninguno debe poder modificarlo.",
+    "prompt": "¿Cómo debe compartir Pablo el flujo?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agregar a los comerciales como copropietarios",
+        "correct": false,
+        "explanation": "Los copropietarios tienen control total del flujo: pueden editarlo, compartirlo y ver su historial de ejecuciones, justo lo que se quiere evitar."
+      },
+      {
+        "id": "b",
+        "text": "Enviar una copia del flujo a cada comercial",
+        "correct": false,
+        "explanation": "Cada comercial sería propietario de su propia copia y podría modificarla; además, habría veinte flujos independientes que mantener."
+      },
+      {
+        "id": "c",
+        "text": "Agregar a los comerciales como usuarios de solo ejecución",
+        "correct": true,
+        "explanation": "En los flujos instantáneos (iniciados manualmente) puedes agregar usuarios de solo ejecución: pueden lanzar el flujo, pero no editarlo. Además, el propietario decide si usan las conexiones que él proporciona o las suyas propias."
+      },
+      {
+        "id": "d",
+        "text": "Exportar el flujo como paquete y publicarlo en Teams",
+        "correct": false,
+        "explanation": "Exportar un paquete sirve para mover el flujo entre entornos; no concede a otros usuarios permiso para ejecutarlo."
+      }
+    ],
+    "keyPoint": "Copropietario = control total (editar, compartir, ver el historial); usuario de solo ejecución = solo puede lanzar el flujo instantáneo.",
+    "references": [
+      {
+        "title": "Introducción a Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/getting-started"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-nube-009",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-nube",
+    "difficulty": 3,
+    "scenario": "El equipo de TI de Banca Sur desarrolla flujos en un entorno de desarrollo y debe trasladarlos después a pruebas y a producción, donde cambian la URL del sitio de SharePoint y las cuentas de conexión.",
+    "prompt": "¿Qué dos ventajas ofrece crear estos flujos dentro de una solución? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Se pueden exportar e importar junto con otros componentes para moverlos entre entornos",
+        "correct": true,
+        "explanation": "Las soluciones son el mecanismo de gestión del ciclo de vida de las aplicaciones (ALM, *application lifecycle management*) de Power Platform: empaquetan flujos, apps y tablas para trasladarlos entre entornos."
+      },
+      {
+        "id": "b",
+        "text": "Dejan de necesitar conectores para acceder a SharePoint",
+        "correct": false,
+        "explanation": "Un flujo siempre usa conectores para acceder a servicios, esté o no en una solución."
+      },
+      {
+        "id": "c",
+        "text": "Pueden usar variables de entorno y referencias de conexión para ajustar valores en cada entorno",
+        "correct": true,
+        "explanation": "Las variables de entorno y las referencias de conexión permiten cambiar la URL o la conexión al importar, sin editar el flujo."
+      },
+      {
+        "id": "d",
+        "text": "Se convierten automáticamente en flujos de escritorio",
+        "correct": false,
+        "explanation": "Incluir un flujo de nube en una solución no cambia su tipo; sigue siendo un flujo de nube."
+      },
+      {
+        "id": "e",
+        "text": "Se ejecutan sin necesidad de ninguna licencia",
+        "correct": false,
+        "explanation": "Estar en una solución no cambia los requisitos de licencia de los flujos ni de sus conectores."
+      }
+    ],
+    "keyPoint": "Flujos en soluciones = ALM entre entornos + variables de entorno y referencias de conexión.",
+    "references": [
+      {
+        "title": "Crear un flujo de nube en una solución",
+        "url": "https://learn.microsoft.com/es-es/power-automate/create-flow-solution"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-nube-010",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-nube",
+    "difficulty": 2,
+    "scenario": "Viajes Meridiano quiere que cada solicitud de vacaciones registrada en una lista de SharePoint la apruebe el responsable y que el empleado reciba la decisión.",
+    "prompt": "Ordena los pasos para crear el flujo desde cero.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Crear un flujo de nube automatizado con el desencadenador «Cuando se crea un elemento» de SharePoint",
+        "explanation": "Primero se define el desencadenador: cada solicitud nueva en la lista inicia el flujo."
+      },
+      {
+        "id": "p2",
+        "text": "Agregar la acción «Iniciar y esperar una aprobación» y elegir el tipo de aprobación",
+        "explanation": "Con los datos del elemento como contenido dinámico, se envía la solicitud al responsable y el flujo espera su respuesta."
+      },
+      {
+        "id": "p3",
+        "text": "Agregar una condición que evalúe el resultado de la aprobación",
+        "explanation": "La condición usa la salida de la aprobación (aprobada o rechazada) para decidir qué rama seguir."
+      },
+      {
+        "id": "p4",
+        "text": "En cada rama, notificar al empleado y actualizar el estado del elemento",
+        "explanation": "Las acciones de cada rama comunican la decisión y dejan constancia en la lista."
+      },
+      {
+        "id": "p5",
+        "text": "Guardar el flujo, probarlo y revisar el historial de ejecuciones",
+        "explanation": "Al final se valida el funcionamiento con una prueba y se comprueba cada paso en el historial."
+      }
+    ],
+    "keyPoint": "Desencadenador → aprobación → condición sobre el resultado → acciones → probar.",
+    "references": [
+      {
+        "title": "Introducción a las aprobaciones",
+        "url": "https://learn.microsoft.com/es-es/power-automate/get-started-approvals"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-escritorio-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escritorio",
+    "difficulty": 1,
+    "scenario": "Transportes Meseta usa una aplicación de facturación de Windows de hace veinte años. No tiene API ni conector, y cada día un empleado copia a mano datos de un Excel en sus pantallas.",
+    "prompt": "¿Qué herramienta de Power Automate permite automatizar esta tarea?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un flujo de proceso de negocio",
+        "correct": false,
+        "explanation": "Los flujos de proceso de negocio guían a los usuarios en apps basadas en modelos; no interactúan con aplicaciones de Windows."
+      },
+      {
+        "id": "b",
+        "text": "Un flujo de nube con un conector estándar",
+        "correct": false,
+        "explanation": "Los conectores necesitan una API; la aplicación heredada no la tiene, así que un flujo de nube no puede llegar a ella directamente."
+      },
+      {
+        "id": "c",
+        "text": "Power Automate para escritorio (*Power Automate for desktop*)",
+        "correct": true,
+        "explanation": "Permite crear flujos de escritorio que automatizan la interfaz de usuario de aplicaciones Windows y web (RPA), sin necesidad de API."
+      },
+      {
+        "id": "d",
+        "text": "La minería de procesos",
+        "correct": false,
+        "explanation": "La minería de procesos analiza cómo se ejecuta un proceso, pero no realiza las tareas por el usuario."
+      }
+    ],
+    "keyPoint": "Aplicación sin API = RPA con flujos de escritorio en Power Automate para escritorio.",
+    "references": [
+      {
+        "title": "Introducción a los flujos de escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/introduction"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-escritorio-002",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escritorio",
+    "difficulty": 2,
+    "scenario": "Una gestoría quiere que un flujo de escritorio registre facturas en un programa contable cada madrugada, en una máquina virtual en la que no hay nadie con sesión iniciada.",
+    "prompt": "¿Cómo debe ejecutarse el flujo de escritorio?",
+    "options": [
+      {
+        "id": "a",
+        "text": "En modo desatendido",
+        "correct": true,
+        "explanation": "En modo desatendido, Power Automate inicia sesión en la máquina con la cuenta configurada en la conexión, ejecuta el flujo y después cierra la sesión, así que no necesita a nadie conectado."
+      },
+      {
+        "id": "b",
+        "text": "En modo atendido",
+        "correct": false,
+        "explanation": "El modo atendido necesita un usuario con sesión iniciada en la máquina, algo que no ocurre de madrugada en este escenario."
+      },
+      {
+        "id": "c",
+        "text": "Como flujo de nube instantáneo",
+        "correct": false,
+        "explanation": "Un flujo instantáneo lo inicia una persona y, por sí solo, no automatiza la interfaz del programa contable."
+      },
+      {
+        "id": "d",
+        "text": "Como flujo de proceso de negocio",
+        "correct": false,
+        "explanation": "Los flujos de proceso de negocio no ejecutan tareas en aplicaciones de escritorio; guían a usuarios en apps basadas en modelos."
+      }
+    ],
+    "keyPoint": "Sin nadie conectado a la máquina = RPA desatendido; con el usuario trabajando = RPA atendido.",
+    "references": [
+      {
+        "title": "Introducción a los flujos de escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/introduction"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-escritorio-003",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escritorio",
+    "difficulty": 2,
+    "prompt": "Quieres que un flujo de nube, al recibir un pedido por correo, lance un flujo de escritorio que lo introduzca en una aplicación heredada. ¿Cómo lo consigues?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Convirtiendo el flujo de escritorio en un flujo de nube desde el portal",
+        "correct": false,
+        "explanation": "Los flujos de escritorio no se convierten en flujos de nube; ambos tipos conviven y se comunican."
+      },
+      {
+        "id": "b",
+        "text": "Usando en el flujo de nube la acción del conector Flujos de escritorio que ejecuta un flujo creado con Power Automate para escritorio",
+        "correct": true,
+        "explanation": "Esta acción ejecuta el flujo de escritorio en una máquina o grupo de máquinas registrados, en modo atendido o desatendido, y puede pasarle parámetros."
+      },
+      {
+        "id": "c",
+        "text": "Enviando un correo a la máquina para que el flujo de escritorio lo detecte",
+        "correct": false,
+        "explanation": "No es el mecanismo de integración previsto; la llamada se hace con una acción dedicada desde el flujo de nube."
+      },
+      {
+        "id": "d",
+        "text": "Agregando un modelo de AI Builder al flujo de escritorio",
+        "correct": false,
+        "explanation": "AI Builder aporta modelos de IA, pero no es lo que permite que un flujo de nube inicie un flujo de escritorio."
+      }
+    ],
+    "keyPoint": "Flujo de nube + acción «Ejecutar un flujo creado con Power Automate para escritorio» = integración de API y RPA.",
+    "references": [
+      {
+        "title": "Introducción a los flujos de escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/introduction"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-escritorio-004",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escritorio",
+    "difficulty": 3,
+    "prompt": "¿Qué dos afirmaciones describen correctamente un flujo de escritorio ejecutado en modo atendido? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Puede ejecutarse en una máquina en la que nadie ha iniciado sesión",
+        "correct": false,
+        "explanation": "Eso describe el modo desatendido; el atendido se ejecuta dentro de la sesión del usuario."
+      },
+      {
+        "id": "b",
+        "text": "Requiere que haya un usuario con la sesión de Windows iniciada",
+        "correct": true,
+        "explanation": "El modo atendido usa la sesión activa del usuario en la máquina, por lo que esa sesión debe estar iniciada."
+      },
+      {
+        "id": "c",
+        "text": "Es adecuado cuando el usuario trabaja junto al bot y lo lanza o interviene cuando lo necesita",
+        "correct": true,
+        "explanation": "Es el escenario típico de RPA atendido: el bot asiste a una persona que está delante del equipo."
+      },
+      {
+        "id": "d",
+        "text": "Solo puede automatizar aplicaciones web, no de Windows",
+        "correct": false,
+        "explanation": "Tanto en modo atendido como desatendido se pueden automatizar aplicaciones web y de Windows."
+      },
+      {
+        "id": "e",
+        "text": "No permite que lo inicie un flujo de nube",
+        "correct": false,
+        "explanation": "Un flujo de nube puede llamar a un flujo de escritorio y elegir el modo atendido."
+      }
+    ],
+    "keyPoint": "Atendido = sesión del usuario iniciada y persona presente; desatendido = sin usuario activo.",
+    "references": [
+      {
+        "title": "Introducción a los flujos de escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/introduction"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-escritorio-005",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escritorio",
+    "difficulty": 1,
+    "prompt": "Indica si cada afirmación sobre Power Automate para escritorio es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puede automatizar tanto aplicaciones de Windows como sitios web en el navegador.",
+        "answer": true,
+        "explanation": "Incluye acciones de automatización de UI para aplicaciones de escritorio y de automatización web para navegadores."
+      },
+      {
+        "id": "s2",
+        "text": "La grabadora captura los clics y las pulsaciones de teclado y los convierte en acciones del flujo de escritorio.",
+        "answer": true,
+        "explanation": "La grabadora registra lo que haces en pantalla y genera las acciones equivalentes, que después puedes editar."
+      },
+      {
+        "id": "s3",
+        "text": "Un flujo de escritorio solo puede automatizar aplicaciones que dispongan de un conector de Power Automate.",
+        "answer": false,
+        "explanation": "Al contrario: su principal valor es automatizar aplicaciones sin API ni conector interactuando con su interfaz."
+      },
+      {
+        "id": "s4",
+        "text": "Un flujo de escritorio desatendido necesita a una persona con la sesión iniciada vigilando la máquina.",
+        "answer": false,
+        "explanation": "El modo desatendido está pensado para máquinas sin sesiones de usuario activas: Power Automate inicia sesión con la cuenta de la conexión, ejecuta el flujo y cierra la sesión."
+      }
+    ],
+    "keyPoint": "Power Automate para escritorio = RPA sobre interfaces de Windows y web, con grabadora y modos atendido/desatendido.",
+    "references": [
+      {
+        "title": "Introducción a los flujos de escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/introduction"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-escritorio-006",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escritorio",
+    "difficulty": 3,
+    "prompt": "Empareja cada concepto de los flujos de escritorio con su descripción.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Máquina",
+        "answerId": "c1",
+        "explanation": "Una máquina es un equipo físico o virtual registrado en un entorno de Power Automate para que los flujos de nube ejecuten en él flujos de escritorio."
+      },
+      {
+        "id": "m2",
+        "text": "Grupo de máquinas",
+        "answerId": "c2",
+        "explanation": "Un grupo de máquinas agrupa varias máquinas para repartir las ejecuciones entre ellas y ganar capacidad y disponibilidad."
+      },
+      {
+        "id": "m3",
+        "text": "Ejecución atendida",
+        "answerId": "c3",
+        "explanation": "En modo atendido el flujo se ejecuta en la sesión del usuario que está trabajando en el equipo."
+      },
+      {
+        "id": "m4",
+        "text": "Ejecución desatendida",
+        "answerId": "c4",
+        "explanation": "En modo desatendido Power Automate inicia sesión en una máquina sin sesiones de usuario activas, con la cuenta de la conexión, ejecuta el flujo y cierra la sesión."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Equipo físico o virtual registrado en Power Automate donde se ejecutan flujos de escritorio"
+      },
+      {
+        "id": "c2",
+        "text": "Conjunto de máquinas entre las que se reparten las ejecuciones"
+      },
+      {
+        "id": "c3",
+        "text": "Se ejecuta en la sesión del usuario que está usando el equipo"
+      },
+      {
+        "id": "c4",
+        "text": "Power Automate inicia sesión en una máquina sin usuario activo"
+      },
+      {
+        "id": "c5",
+        "text": "Directiva que limita qué conectores pueden usarse juntos"
+      }
+    ],
+    "keyPoint": "Las máquinas (y grupos de máquinas) son donde los flujos de nube ejecutan flujos de escritorio, en modo atendido o desatendido.",
+    "references": [
+      {
+        "title": "Introducción a los flujos de escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/introduction"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-escritorio-007",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escritorio",
+    "difficulty": 2,
+    "scenario": "Ana, de Hostelería Cantábrica, quiere que los pedidos que llegan por correo se introduzcan automáticamente en un programa de almacén antiguo instalado en su equipo.",
+    "prompt": "Ordena los pasos que debe seguir.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Instalar Power Automate para escritorio en el equipo donde está el programa de almacén",
+        "explanation": "Los flujos de escritorio se crean y ejecutan con esta aplicación; sin ella instalada no se puede construir la automatización."
+      },
+      {
+        "id": "p2",
+        "text": "Crear el flujo de escritorio con la grabadora y acciones de automatización de la interfaz de usuario",
+        "explanation": "Con la herramienta instalada se construye la automatización que interactúa con las pantallas del programa; el flujo de nube solo podrá llamarla cuando exista."
+      },
+      {
+        "id": "p3",
+        "text": "Crear un flujo de nube que se desencadene al llegar el correo y use la acción que ejecuta ese flujo de escritorio",
+        "explanation": "La acción del conector Flujos de escritorio exige seleccionar un flujo de escritorio ya creado (y una máquina registrada donde ejecutarlo), por eso este paso va después."
+      },
+      {
+        "id": "p4",
+        "text": "Enviar un correo de pedido de prueba y comprobar en el historial de ejecuciones del flujo de nube que el pedido se ha registrado",
+        "explanation": "La prueba de extremo a extremo necesita que los dos flujos existan y estén conectados, así que es el último paso."
+      }
+    ],
+    "keyPoint": "Instalar → crear el flujo de escritorio → orquestarlo desde un flujo de nube → probar de extremo a extremo.",
+    "references": [
+      {
+        "title": "Introducción a los flujos de escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/introduction"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-escritorio-008",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escritorio",
+    "difficulty": 2,
+    "scenario": "La aplicación de nóminas de Metalúrgica Oeste solo es accesible a través de su interfaz de Windows y no expone ninguna API.",
+    "prompt": "Completa la frase.",
+    "template": "Para automatizar la introducción de datos usas {{b1}}, y para que se ejecute de madrugada sin nadie conectado al equipo lo ejecutas en modo {{b2}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "un conector personalizado"
+          },
+          {
+            "id": "o2",
+            "text": "un flujo de proceso de negocio"
+          },
+          {
+            "id": "o3",
+            "text": "un flujo de escritorio"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "Un flujo de escritorio automatiza la interfaz de usuario; un conector personalizado requeriría una API que la aplicación no tiene."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "desatendido"
+          },
+          {
+            "id": "o2",
+            "text": "atendido"
+          },
+          {
+            "id": "o3",
+            "text": "instantáneo"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "El modo desatendido se usa cuando no hay usuario con sesión iniciada; «instantáneo» es un tipo de flujo de nube, no un modo de ejecución de RPA."
+      }
+    ],
+    "keyPoint": "Sin API → flujo de escritorio; sin usuario presente → modo desatendido.",
+    "references": [
+      {
+        "title": "Introducción a los flujos de escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/introduction"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-procesos-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-procesos",
+    "difficulty": 1,
+    "prompt": "¿Para qué sirve la minería de procesos (*process mining*) en Power Automate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Para ejecutar tareas en aplicaciones heredadas sin API",
+        "correct": false,
+        "explanation": "Eso lo hacen los flujos de escritorio (RPA); la minería de procesos analiza, no ejecuta tareas."
+      },
+      {
+        "id": "b",
+        "text": "Para guiar a los usuarios por fases dentro de una app basada en modelos",
+        "correct": false,
+        "explanation": "Esa es la función de los flujos de proceso de negocio."
+      },
+      {
+        "id": "c",
+        "text": "Para enviar solicitudes de aprobación a varios responsables",
+        "correct": false,
+        "explanation": "Las aprobaciones se gestionan con el conector Aprobaciones dentro de un flujo de nube."
+      },
+      {
+        "id": "d",
+        "text": "Para descubrir cómo se ejecuta realmente un proceso a partir de registros de eventos y detectar cuellos de botella",
+        "correct": true,
+        "explanation": "La minería de procesos analiza los registros de eventos de los sistemas, dibuja el mapa real del proceso y revela variantes, demoras y oportunidades de automatización."
+      }
+    ],
+    "keyPoint": "Minería de procesos = entender el proceso real a partir de datos de eventos, antes de automatizar.",
+    "references": [
+      {
+        "title": "Información general sobre la minería de procesos",
+        "url": "https://learn.microsoft.com/es-es/power-automate/process-mining-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-procesos-002",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-procesos",
+    "difficulty": 2,
+    "scenario": "Distribuciones Turia quiere analizar con minería de procesos su ciclo de pedidos. El equipo de TI va a exportar datos de su ERP.",
+    "prompt": "¿Qué datos mínimos debe contener el registro de eventos?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un identificador de caso, el nombre de la actividad y la marca de tiempo de cada evento",
+        "correct": true,
+        "explanation": "Con el ID de caso se agrupan los eventos de cada pedido, la actividad indica qué ocurrió y la marca de tiempo permite ordenar y medir duraciones."
+      },
+      {
+        "id": "b",
+        "text": "Solo el nombre del proceso y el responsable del departamento",
+        "correct": false,
+        "explanation": "Sin eventos individuales con fecha y caso no es posible reconstruir el recorrido de cada pedido."
+      },
+      {
+        "id": "c",
+        "text": "Capturas de pantalla de los equipos de los usuarios",
+        "correct": false,
+        "explanation": "La minería de procesos trabaja con datos estructurados de eventos, no con imágenes de pantalla."
+      },
+      {
+        "id": "d",
+        "text": "El código fuente del ERP",
+        "correct": false,
+        "explanation": "No se analiza el código de la aplicación, sino los registros que deja la actividad del proceso."
+      }
+    ],
+    "keyPoint": "Registro de eventos mínimo: ID de caso + actividad + marca de tiempo.",
+    "references": [
+      {
+        "title": "Información general sobre la minería de procesos",
+        "url": "https://learn.microsoft.com/es-es/power-automate/process-mining-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-procesos-003",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-procesos",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "La minería de procesos trabaja a partir de registros de eventos de sistemas como un ERP o un CRM.",
+        "answer": true,
+        "explanation": "Los datos de origen son los registros de eventos que generan los sistemas de negocio al ejecutar el proceso."
+      },
+      {
+        "id": "s2",
+        "text": "La minería de procesos muestra un mapa del proceso con sus variantes y ayuda a localizar cuellos de botella.",
+        "answer": true,
+        "explanation": "El mapa de proceso y las métricas de tiempo y frecuencia permiten ver dónde se acumulan las demoras."
+      },
+      {
+        "id": "s3",
+        "text": "Para aplicar minería de procesos, antes hay que rediseñar el proceso como un flujo de nube.",
+        "answer": false,
+        "explanation": "Se analiza el proceso tal como existe hoy en los sistemas; la automatización suele ser una consecuencia del análisis, no un requisito previo."
+      },
+      {
+        "id": "s4",
+        "text": "Los modelos de AI Builder solo pueden usarse desde Power Apps, no desde flujos de Power Automate.",
+        "answer": false,
+        "explanation": "AI Builder ofrece acciones en Power Automate, por ejemplo para extraer información de facturas o documentos dentro de un flujo."
+      }
+    ],
+    "keyPoint": "Minería de procesos: analiza datos de eventos existentes; AI Builder: añade IA a apps y flujos.",
+    "references": [
+      {
+        "title": "Información general sobre la minería de procesos",
+        "url": "https://learn.microsoft.com/es-es/power-automate/process-mining-overview"
+      },
+      {
+        "title": "Información general de AI Builder",
+        "url": "https://learn.microsoft.com/es-es/ai-builder/overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-procesos-004",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-procesos",
+    "difficulty": 2,
+    "scenario": "El departamento de cuentas a pagar de Editorial Albor recibe cada día decenas de facturas en PDF por correo. Quiere que un flujo extraiga automáticamente el proveedor, la fecha y el importe total y los guarde en Dataverse.",
+    "prompt": "¿Qué debes incluir en el flujo de nube?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un flujo de proceso de negocio para cada factura",
+        "correct": false,
+        "explanation": "Los flujos de proceso de negocio guían a usuarios; no leen el contenido de un PDF."
+      },
+      {
+        "id": "b",
+        "text": "Un análisis de minería de procesos",
+        "correct": false,
+        "explanation": "La minería de procesos estudia el proceso de cuentas a pagar, pero no extrae datos de cada factura."
+      },
+      {
+        "id": "c",
+        "text": "Una acción de AI Builder con el modelo de procesamiento de facturas",
+        "correct": true,
+        "explanation": "El modelo precompilado de facturas de AI Builder extrae campos clave como proveedor, fecha e importe, y sus resultados se usan como contenido dinámico en el flujo."
+      },
+      {
+        "id": "d",
+        "text": "Una expresión concat() aplicada al archivo adjunto",
+        "correct": false,
+        "explanation": "concat() une cadenas de texto; no interpreta el contenido de un documento PDF."
+      }
+    ],
+    "keyPoint": "Extraer datos de facturas o documentos dentro de un flujo = AI Builder.",
+    "references": [
+      {
+        "title": "Información general de AI Builder",
+        "url": "https://learn.microsoft.com/es-es/ai-builder/overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-procesos-005",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-procesos",
+    "difficulty": 1,
+    "prompt": "¿Qué dos tareas puedes realizar con Copilot en Power Automate? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crear un flujo de nube describiendo en lenguaje natural lo que quieres automatizar",
+        "correct": true,
+        "explanation": "Copilot interpreta la descripción y propone un flujo con su desencadenador y acciones, que luego revisas."
+      },
+      {
+        "id": "b",
+        "text": "Pedir en el diseñador que modifique el flujo, por ejemplo que añada una acción",
+        "correct": true,
+        "explanation": "En el diseñador, Copilot permite editar el flujo conversando: añadir o cambiar pasos y explicar lo que hace el flujo."
+      },
+      {
+        "id": "c",
+        "text": "Aprobar automáticamente todas las solicitudes de aprobación pendientes",
+        "correct": false,
+        "explanation": "Copilot ayuda a crear y editar flujos; las decisiones de aprobación siguen correspondiendo a los aprobadores."
+      },
+      {
+        "id": "d",
+        "text": "Eliminar la necesidad de licencias para los conectores premium",
+        "correct": false,
+        "explanation": "Usar Copilot no cambia los requisitos de licencia de los conectores que use el flujo."
+      },
+      {
+        "id": "e",
+        "text": "Registrar automáticamente máquinas para los flujos de escritorio",
+        "correct": false,
+        "explanation": "Las máquinas se registran con el entorno de ejecución de máquina (*machine runtime*) de Power Automate, no mediante Copilot."
+      }
+    ],
+    "keyPoint": "Copilot en Power Automate: crear flujos a partir de lenguaje natural y editarlos conversando.",
+    "references": [
+      {
+        "title": "Introducción a Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/getting-started"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-procesos-006",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-procesos",
+    "difficulty": 3,
+    "scenario": "La oficina de transformación digital de Grupo Ebro está priorizando iniciativas de automatización.",
+    "prompt": "Empareja cada necesidad con la capacidad de Power Automate más adecuada.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Ver qué variantes tiene el proceso de compras y en qué actividad se acumulan los retrasos",
+        "answerId": "c1",
+        "explanation": "La minería de procesos reconstruye el mapa del proceso a partir de registros de eventos y muestra variantes y cuellos de botella."
+      },
+      {
+        "id": "m2",
+        "text": "Guiar a los usuarios de una app basada en modelos por las fases de tramitación de una compra",
+        "answerId": "c5",
+        "explanation": "Un flujo de proceso de negocio muestra en el formulario las fases y los pasos que el usuario debe completar, para que todos sigan el mismo proceso."
+      },
+      {
+        "id": "m3",
+        "text": "Extraer con un modelo de IA precompilado el importe y el proveedor de facturas PDF dentro de un flujo",
+        "answerId": "c3",
+        "explanation": "AI Builder aporta modelos de IA, como el de procesamiento de facturas, que se usan como acciones en los flujos."
+      },
+      {
+        "id": "m4",
+        "text": "Crear un flujo escribiendo en lenguaje natural lo que debe hacer",
+        "answerId": "c4",
+        "explanation": "Copilot en Power Automate genera una propuesta de flujo a partir de una descripción en lenguaje natural."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Minería de procesos (*process mining*)"
+      },
+      {
+        "id": "c2",
+        "text": "Conector personalizado (*custom connector*)"
+      },
+      {
+        "id": "c3",
+        "text": "AI Builder"
+      },
+      {
+        "id": "c4",
+        "text": "Copilot en Power Automate"
+      },
+      {
+        "id": "c5",
+        "text": "Flujo de proceso de negocio"
+      }
+    ],
+    "keyPoint": "Analizar procesos → minería de procesos; guiar fases → flujo de proceso de negocio; documentos → AI Builder; lenguaje natural → Copilot.",
+    "references": [
+      {
+        "title": "Información general sobre la minería de procesos",
+        "url": "https://learn.microsoft.com/es-es/power-automate/process-mining-overview"
+      },
+      {
+        "title": "Información general de AI Builder",
+        "url": "https://learn.microsoft.com/es-es/ai-builder/overview"
+      }
+    ]
+  }
+]

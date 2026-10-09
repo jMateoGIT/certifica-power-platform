@@ -1,0 +1,75 @@
+# Certifica Power Platform
+
+Plataforma **gratuita y en español** para preparar las certificaciones de Microsoft Power Platform.
+Empieza por **PL-900** (temario vigente desde el 24/07/2026) y está diseñada para crecer hacia PL-300, AB-410, AB-400 y DP-600.
+
+**Web:** https://jmateogit.github.io/certifica-power-platform/
+
+## Qué ofrece
+
+- **150 preguntas originales de PL-900**, repartidas según el peso oficial de cada dominio y revisadas técnicamente.
+- **Explicación de cada opción**: por qué es correcta o incorrecta, una idea clave y enlaces a Microsoft Learn.
+- **6 tipos de pregunta** como en el examen: respuesta única, múltiple, Sí/No, ordenar, emparejar y completar frases.
+- **Modo práctica** con filtros por dominio, sub-habilidad, preguntas no vistas, falladas o guardadas.
+- **Simulacro cronometrado** (45 preguntas / 45 min o rápido de 20), navegador de preguntas, marcar para revisar, nota sobre 1000 e informe por dominio.
+- **Repaso inteligente** con repetición espaciada (sistema Leitner de 5 cajas).
+- **Panel de progreso**: índice de preparación ponderado, radar por dominio, evolución de simulacros y racha.
+- **Glosario** de ~70 términos en español e inglés, con modo de tarjetas.
+- Modo claro y oscuro, diseño para móvil, accesible por teclado e instalable como **PWA** (funciona sin conexión).
+- Sin cuentas ni servidor: el progreso se guarda en el navegador y se puede exportar o importar.
+
+> Proyecto independiente, sin relación con Microsoft. Las preguntas son originales y **no son preguntas del examen real**.
+
+## Desarrollo
+
+Requiere Node.js 22.
+
+```bash
+npm install
+npm run dev          # servidor de desarrollo
+npm run validate     # valida el banco de preguntas y el glosario
+npm run typecheck    # TypeScript
+npm test             # tests unitarios (Vitest)
+npm run build        # build de producción en dist/
+npm run test:e2e     # tests de extremo a extremo (Playwright, tras el build)
+```
+
+Stack: Vite, React 19, TypeScript, Tailwind CSS 4, React Router 7, Zustand, Zod, Recharts y vite-plugin-pwa.
+
+## Estructura
+
+```
+src/
+  content/            # contenido como datos (validado con Zod)
+    schema.ts         # esquema de preguntas, glosario y exámenes
+    catalog.ts        # certificaciones disponibles y próximas
+    pl-900/
+      exam.ts         # dominios, pesos y sub-habilidades del temario
+      glossary.json
+      questions/      # un JSON por dominio
+  engine/             # corrección, construcción de simulacros, Leitner
+  store/              # progreso persistente (Zustand + localStorage)
+  components/         # interfaz (tipos de pregunta, gráficos, UI)
+  pages/              # rutas
+scripts/validate-content.ts
+docs/                 # plan del proyecto y guía de redacción
+```
+
+## Añadir contenido
+
+1. Lee la [guía de redacción](docs/GUIA-CONTENIDO.md).
+2. Añade preguntas al JSON del dominio correspondiente en `src/content/<examen>/questions/`.
+3. Ejecuta `npm run validate`: comprueba el esquema, los ids, los dominios y que cada opción tenga explicación.
+
+Para una **nueva certificación**, crea `src/content/<codigo>/exam.ts` con sus dominios, márcala como `disponible` en `catalog.ts` y añade sus preguntas: la interfaz se genera sola.
+
+¿Has visto un error? Cada pregunta tiene un enlace «Repórtalo» que abre una *issue* ya rellenada.
+
+## Despliegue
+
+Cada push a `main` despliega en GitHub Pages mediante `.github/workflows/deploy.yml`
+(en *Settings → Pages* el origen debe ser **GitHub Actions**).
+
+## Licencia
+
+Código bajo licencia [MIT](LICENSE).

@@ -1,0 +1,36 @@
+name: Reportar una pregunta
+description: Avisa de un error, una ambigüedad o una explicación mejorable en una pregunta.
+title: "[Pregunta] "
+labels: ["contenido"]
+body:
+  - type: input
+    id: question-id
+    attributes:
+      label: ID de la pregunta
+      description: Aparece en el enlace con el que has llegado aquí.
+    validations:
+      required: true
+  - type: textarea
+    id: prompt
+    attributes:
+      label: Enunciado
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Tipo de problema
+      options:
+        - La respuesta marcada como correcta es incorrecta
+        - La pregunta es ambigua (hay más de una respuesta defendible)
+        - La explicación es incorrecta o mejorable
+        - Contenido desactualizado (cambio de nombre o funcionalidad)
+        - Error de redacción u ortografía
+        - Enlace de referencia roto
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Detalles
+      description: Explica el problema y, si puedes, enlaza la documentación de Microsoft Learn que lo respalde.
+    validations:
+      required: true

@@ -1,0 +1,337 @@
+[
+  {
+    "id": "pl900-d1-servicios-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-servicios",
+    "difficulty": 1,
+    "prompt": "¿Qué servicio de Microsoft Power Platform usas principalmente para analizar datos y compartir informes y paneles interactivos?",
+    "options": [
+      { "id": "a", "text": "Power Apps", "correct": false, "explanation": "Power Apps sirve para crear aplicaciones con las que los usuarios consultan y editan datos, no para el análisis visual de datos." },
+      { "id": "b", "text": "Power Automate", "correct": false, "explanation": "Power Automate automatiza procesos y tareas repetitivas mediante flujos; no está pensado para crear informes analíticos." },
+      { "id": "c", "text": "Power BI", "correct": true, "explanation": "Power BI conecta con orígenes de datos, los modela y los muestra en informes y paneles interactivos que se pueden compartir." },
+      { "id": "d", "text": "Copilot Studio", "correct": false, "explanation": "Copilot Studio se usa para crear agentes conversacionales, no informes ni paneles de datos." }
+    ],
+    "keyPoint": "Power BI = analizar y visualizar datos; Power Apps = aplicaciones; Power Automate = automatizar; Copilot Studio = agentes.",
+    "references": [
+      { "title": "¿Qué es Power BI?", "url": "https://learn.microsoft.com/es-es/power-bi/fundamentals/power-bi-overview" },
+      { "title": "Documentación de Microsoft Power Platform", "url": "https://learn.microsoft.com/es-es/power-platform/" }
+    ]
+  },
+  {
+    "id": "pl900-d1-servicios-002",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-servicios",
+    "difficulty": 2,
+    "scenario": "Una cadena de tiendas de electrónica ofrece un servicio de reparaciones. Quiere que sus clientes, que no pertenecen a la organización, puedan registrarse en un sitio web, iniciar sesión y consultar el estado de sus reparaciones, que ya se gestionan en Dataverse.",
+    "prompt": "¿Qué componente de Power Platform debes recomendar?",
+    "options": [
+      { "id": "a", "text": "Una aplicación de lienzo (*canvas app*) compartida con cada cliente", "correct": false, "explanation": "Las aplicaciones de lienzo se comparten con usuarios que tienen cuenta y licencia en Microsoft Entra ID; no ofrecen un sitio web público donde clientes externos se registren por su cuenta." },
+      { "id": "b", "text": "Un sitio de Power Pages", "correct": true, "explanation": "Power Pages crea sitios web empresariales seguros orientados a usuarios externos, con registro, autenticación y acceso controlado a datos de Dataverse." },
+      { "id": "c", "text": "Un panel de Power BI publicado en Microsoft Teams", "correct": false, "explanation": "Un panel de Power BI en Teams es para análisis interno; no ofrece registro de clientes ni un sitio web público." },
+      { "id": "d", "text": "Un flujo de nube programado que envíe el estado por SMS", "correct": false, "explanation": "Un flujo podría enviar notificaciones, pero no proporciona un sitio web donde el cliente se registre e inicie sesión para consultar sus datos." }
+    ],
+    "keyPoint": "Para sitios web orientados a usuarios externos con datos de Dataverse, usa Power Pages (antes portales de Power Apps).",
+    "references": [
+      { "title": "¿Qué es Power Pages?", "url": "https://learn.microsoft.com/es-es/power-pages/introduction" }
+    ]
+  },
+  {
+    "id": "pl900-d1-servicios-003",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-servicios",
+    "difficulty": 1,
+    "prompt": "¿Qué dos afirmaciones describen el valor de negocio del enfoque de poco código (*low-code*) de Microsoft Power Platform? Selecciona dos.",
+    "options": [
+      { "id": "a", "text": "Elimina por completo la necesidad de desarrolladores profesionales en la organización.", "correct": false, "explanation": "El poco código no sustituye a los desarrolladores profesionales: estos siguen ampliando las soluciones con código, conectores personalizados o servicios de Azure." },
+      { "id": "b", "text": "Permite que usuarios de negocio creen soluciones con diseñadores visuales y fórmulas de tipo Excel.", "correct": true, "explanation": "Los desarrolladores ciudadanos usan diseñadores visuales, plantillas y Power Fx (similar a las fórmulas de Excel) sin necesidad de programar." },
+      { "id": "c", "text": "Las soluciones creadas por usuarios de negocio quedan fuera del control del departamento de TI.", "correct": false, "explanation": "TI puede gobernar lo que crean los usuarios mediante entornos, directivas de datos (DLP) y el centro de administración de Power Platform." },
+      { "id": "d", "text": "Reduce el tiempo necesario para digitalizar procesos y libera a TI para proyectos más complejos.", "correct": true, "explanation": "Al crear soluciones rápidamente cerca del negocio, se acorta el tiempo de entrega y TI puede centrarse en tareas de mayor complejidad." },
+      { "id": "e", "text": "Exige programar en C# o JavaScript para crear cualquier aplicación.", "correct": false, "explanation": "Es justo lo contrario: la mayoría de las soluciones se crean sin escribir código tradicional; el código es opcional para ampliar." }
+    ],
+    "keyPoint": "El poco código acelera la entrega y amplía quién puede crear soluciones, sin renunciar al gobierno de TI ni a los desarrolladores profesionales.",
+    "references": [
+      { "title": "Ruta de aprendizaje: Fundamentos de Microsoft Power Platform", "url": "https://learn.microsoft.com/es-es/training/paths/power-plat-fundamentals/" },
+      { "title": "Documentación de Microsoft Power Platform", "url": "https://learn.microsoft.com/es-es/power-platform/" }
+    ]
+  },
+  {
+    "id": "pl900-d1-servicios-004",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-servicios",
+    "difficulty": 2,
+    "prompt": "Empareja cada necesidad de negocio con el componente de Power Platform más adecuado. Cada opción puede usarse una vez, más de una vez o ninguna.",
+    "prompts": [
+      { "id": "m1", "text": "Automatizar la aprobación de solicitudes de vacaciones con notificaciones por correo", "answerId": "c2", "explanation": "Power Automate orquesta procesos con desencadenadores, acciones y aprobaciones integradas." },
+      { "id": "m2", "text": "Mostrar los indicadores de ventas en paneles interactivos", "answerId": "c3", "explanation": "Power BI está diseñado para visualizar y analizar datos en informes y paneles." },
+      { "id": "m3", "text": "Ofrecer un sitio web seguro donde los proveedores se registren y envíen documentación", "answerId": "c4", "explanation": "Power Pages crea sitios web orientados a usuarios externos con autenticación y formularios sobre Dataverse." },
+      { "id": "m4", "text": "Crear un agente que responda a las preguntas frecuentes de los empleados", "answerId": "c5", "explanation": "Copilot Studio permite crear agentes conversacionales que responden preguntas y ejecutan tareas." },
+      { "id": "m5", "text": "Crear una aplicación móvil para registrar inspecciones en las instalaciones", "answerId": "c1", "explanation": "Power Apps permite crear aplicaciones para web y móvil con las que los usuarios capturan y editan datos." }
+    ],
+    "choices": [
+      { "id": "c1", "text": "Power Apps" },
+      { "id": "c2", "text": "Power Automate" },
+      { "id": "c3", "text": "Power BI" },
+      { "id": "c4", "text": "Power Pages" },
+      { "id": "c5", "text": "Copilot Studio" },
+      { "id": "c6", "text": "Dataverse" }
+    ],
+    "keyPoint": "Apps para capturar datos, Automate para procesos, BI para análisis, Pages para sitios externos y Copilot Studio para agentes; Dataverse es el almacén de datos que los une.",
+    "references": [
+      { "title": "Documentación de Microsoft Power Platform", "url": "https://learn.microsoft.com/es-es/power-platform/" },
+      { "title": "Ruta de aprendizaje: Fundamentos de Microsoft Power Platform", "url": "https://learn.microsoft.com/es-es/training/paths/power-plat-fundamentals/" }
+    ]
+  },
+  {
+    "id": "pl900-d1-servicios-005",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-servicios",
+    "difficulty": 2,
+    "prompt": "Para cada afirmación sobre el desarrollo ciudadano y los equipos de fusión (*fusion teams*), indica si es verdadera.",
+    "statements": [
+      { "id": "s1", "text": "Un equipo de fusión combina usuarios de negocio, desarrolladores profesionales y TI para crear soluciones de forma conjunta.", "answer": true, "explanation": "Es la definición de equipo de fusión: cada perfil aporta su conocimiento (negocio, código, gobierno) a la misma solución." },
+      { "id": "s2", "text": "Los desarrolladores profesionales pueden ampliar una solución de poco código con conectores personalizados o servicios de Azure.", "answer": true, "explanation": "Power Platform es extensible: los desarrolladores pueden añadir conectores personalizados, componentes de código o lógica en Azure Functions." },
+      { "id": "s3", "text": "Un desarrollador ciudadano necesita conocimientos avanzados de programación para crear una aplicación de lienzo.", "answer": false, "explanation": "Las aplicaciones de lienzo se diseñan arrastrando controles y usando fórmulas Power Fx similares a las de Excel; no requieren programación avanzada." },
+      { "id": "s4", "text": "Cuando una organización adopta el desarrollo ciudadano, TI pierde la capacidad de controlar qué conectores se usan.", "answer": false, "explanation": "Los administradores siguen controlando el uso de conectores mediante directivas de datos (DLP) en el centro de administración de Power Platform." }
+    ],
+    "keyPoint": "El desarrollo ciudadano funciona mejor en equipos de fusión y bajo el gobierno de TI.",
+    "references": [
+      { "title": "Ruta de aprendizaje: Fundamentos de Microsoft Power Platform", "url": "https://learn.microsoft.com/es-es/training/paths/power-plat-fundamentals/" }
+    ]
+  },
+  {
+    "id": "pl900-d1-servicios-006",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-servicios",
+    "difficulty": 3,
+    "scenario": "Un hospital gestiona el mantenimiento de su equipamiento médico con varias hojas de Excel. Quiere sustituirlas por una solución en la que varias aplicaciones y flujos compartan los mismos datos, con tablas relacionadas (equipos, revisiones, proveedores), seguridad basada en roles y auditoría de cambios.",
+    "prompt": "¿Dónde deberías almacenar los datos?",
+    "options": [
+      { "id": "a", "text": "En un libro de Excel compartido en OneDrive", "correct": false, "explanation": "Excel no ofrece relaciones gestionadas, seguridad por roles a nivel de fila ni auditoría; es la situación que el hospital quiere abandonar." },
+      { "id": "b", "text": "En un modelo semántico de Power BI", "correct": false, "explanation": "Un modelo semántico de Power BI sirve para análisis; no es un almacén transaccional donde las aplicaciones creen y editen registros." },
+      { "id": "c", "text": "En una lista de SharePoint por cada tipo de dato", "correct": false, "explanation": "Las listas de SharePoint admiten columnas de búsqueda y permisos por lista o elemento, pero no ofrecen un modelo relacional completo, roles de seguridad con niveles de acceso ni la auditoría y la lógica de negocio integradas de Dataverse." },
+      { "id": "d", "text": "En tablas de Microsoft Dataverse", "correct": true, "explanation": "Dataverse almacena datos en tablas relacionadas, aplica roles de seguridad, registra auditoría y lo comparten todas las aplicaciones y flujos de Power Platform." }
+    ],
+    "keyPoint": "Si necesitas relaciones, seguridad por roles, auditoría y datos compartidos por varias soluciones, la opción es Dataverse.",
+    "references": [
+      { "title": "¿Qué es Microsoft Dataverse?", "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/data-platform-intro" }
+    ]
+  },
+  {
+    "id": "pl900-d1-integracion-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-integracion",
+    "difficulty": 2,
+    "scenario": "Una consultora trabaja a diario en Microsoft Teams. Un equipo de proyecto quiere crear, sin salir de Teams, una aplicación sencilla para registrar horas con datos relacionales, aprovechando las capacidades incluidas en sus licencias de Microsoft 365.",
+    "prompt": "¿Qué deberías recomendarles para almacenar los datos de la aplicación?",
+    "options": [
+      { "id": "a", "text": "Un entorno de producción con Dataverse completo", "correct": false, "explanation": "Dataverse completo ofrece más capacidades, pero usarlo desde aplicaciones y flujos requiere licencias premium de Power Platform que no forman parte de Microsoft 365, lo que contradice el requisito del escenario." },
+      { "id": "b", "text": "Un archivo de Excel en la pestaña Archivos del canal", "correct": false, "explanation": "Excel no es una base de datos relacional y no está pensado para que varias personas escriban registros desde una app al mismo tiempo." },
+      { "id": "c", "text": "Un sitio de Power Pages", "correct": false, "explanation": "Power Pages crea sitios web para usuarios externos; no es un almacén de datos para una app interna de Teams." },
+      { "id": "d", "text": "Dataverse for Teams", "correct": true, "explanation": "Dataverse for Teams es una plataforma de datos de bajo código integrada en Teams, incluida con determinadas licencias de Microsoft 365, para crear apps, flujos y agentes dentro de un equipo." }
+    ],
+    "keyPoint": "Dataverse for Teams = datos relacionales para apps dentro de Teams sin licencias premium; si la solución crece, se puede pasar a Dataverse completo.",
+    "references": [
+      { "title": "Información sobre Microsoft Dataverse for Teams", "url": "https://learn.microsoft.com/es-es/power-apps/teams/overview-data-platform" }
+    ]
+  },
+  {
+    "id": "pl900-d1-integracion-002",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-integracion",
+    "difficulty": 2,
+    "prompt": "Completa la frase sobre la relación entre Dynamics 365 y Power Platform.",
+    "template": "Las aplicaciones de Dynamics 365 Sales y Dynamics 365 Customer Service son aplicaciones basadas en modelos que almacenan sus datos en {{b1}}; por eso un creador puede {{b2}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "Azure SQL Database" },
+          { "id": "o2", "text": "Microsoft Dataverse" },
+          { "id": "o3", "text": "listas de SharePoint" }
+        ],
+        "correctId": "o2",
+        "explanation": "Las aplicaciones de interacción con clientes de Dynamics 365 (Sales, Customer Service, etc.) se construyen sobre Dataverse. No usan una base de datos de Azure SQL Database propia a la que accedas directamente ni guardan sus registros en listas de SharePoint."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "crear aplicaciones y flujos que usen las mismas tablas, como Cuenta y Contacto" },
+          { "id": "o2", "text": "acceder a sus datos solo exportándolos antes a Excel" },
+          { "id": "o3", "text": "ampliarlas únicamente con desarrollos de código en Azure" }
+        ],
+        "correctId": "o1",
+        "explanation": "Al compartir Dataverse, Power Apps, Power Automate y Copilot Studio trabajan directamente con las tablas de Dynamics 365, sin exportaciones ni código obligatorio."
+      }
+    ],
+    "keyPoint": "Dynamics 365 y Power Platform comparten Dataverse, por lo que se amplían mutuamente sin integraciones complejas.",
+    "references": [
+      { "title": "¿Qué es Microsoft Dataverse?", "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/data-platform-intro" },
+      { "title": "Información general sobre las aplicaciones basadas en modelos", "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/model-driven-app-overview" }
+    ]
+  },
+  {
+    "id": "pl900-d1-integracion-003",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-integracion",
+    "difficulty": 3,
+    "scenario": "Una empresa de logística tiene una aplicación de lienzo para planificar repartos. Necesita usar un algoritmo de cálculo de rutas que su equipo de desarrollo ya tiene escrito en C#, y leer el histórico de entregas que está en una base de datos de Azure SQL Database.",
+    "prompt": "¿Qué dos enfoques permiten integrar estos recursos de Azure en la solución? Selecciona dos.",
+    "options": [
+      { "id": "a", "text": "Instalar Power Apps en una máquina virtual de Azure para ejecutar el código C#.", "correct": false, "explanation": "Power Apps es un servicio en la nube (SaaS); no se instala en máquinas virtuales para ejecutar código." },
+      { "id": "b", "text": "Publicar el algoritmo como una Azure Function y llamarla mediante un conector personalizado.", "correct": true, "explanation": "Azure Functions ejecuta código bajo demanda y se puede exponer como API; un conector personalizado permite usarla desde apps y flujos." },
+      { "id": "c", "text": "Convertir la aplicación de lienzo en una Azure Function.", "correct": false, "explanation": "Una aplicación de lienzo no se convierte en una función; ambas piezas se integran a través de conectores." },
+      { "id": "d", "text": "Usar el conector de SQL Server para leer los datos de Azure SQL Database.", "correct": true, "explanation": "El conector de SQL Server (un conector premium) permite conectarse a Azure SQL Database y usar sus tablas como origen de datos en aplicaciones y flujos." },
+      { "id": "e", "text": "Mover el entorno de Power Platform a la suscripción de Azure de la empresa.", "correct": false, "explanation": "Los entornos de Power Platform no se mueven a una suscripción de Azure; la integración se hace mediante conectores y servicios." }
+    ],
+    "keyPoint": "Azure amplía Power Platform: lógica personalizada con Azure Functions (vía conector personalizado) y datos en Azure SQL (vía conector de SQL Server).",
+    "references": [
+      { "title": "Conectores personalizados", "url": "https://learn.microsoft.com/es-es/connectors/custom-connectors/" },
+      { "title": "Conector de SQL Server", "url": "https://learn.microsoft.com/es-es/connectors/sql/" },
+      { "title": "Información general sobre los conectores", "url": "https://learn.microsoft.com/es-es/connectors/overview" }
+    ]
+  },
+  {
+    "id": "pl900-d1-integracion-004",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-integracion",
+    "difficulty": 2,
+    "prompt": "Empareja cada necesidad con el servicio de Microsoft que la cubre al ampliar una solución de Power Platform. Cada opción puede usarse una vez, más de una vez o ninguna.",
+    "prompts": [
+      { "id": "m1", "text": "Ejecutar lógica de código personalizada bajo demanda, llamada desde un flujo", "answerId": "c1", "explanation": "Azure Functions ejecuta fragmentos de código sin servidor que pueden invocarse desde Power Platform como una API." },
+      { "id": "m2", "text": "Crear una aplicación con datos relacionales dentro de un equipo de Teams", "answerId": "c2", "explanation": "Dataverse for Teams proporciona tablas relacionales integradas en Teams para apps, flujos y agentes del equipo." },
+      { "id": "m3", "text": "Disponer de aplicaciones de ventas y servicio al cliente listas para usar que comparten datos con apps propias", "answerId": "c3", "explanation": "Dynamics 365 ofrece aplicaciones empresariales sobre Dataverse que se amplían con Power Apps y Power Automate." },
+      { "id": "m4", "text": "Crear, personalizar y desplegar modelos y agentes de IA avanzados con código", "answerId": "c4", "explanation": "Microsoft Foundry (antes Azure AI Foundry) es la plataforma de Azure para trabajar con modelos de IA y agentes a nivel profesional." },
+      { "id": "m5", "text": "Enviar correos y crear eventos de calendario desde un flujo", "answerId": "c5", "explanation": "El conector de Office 365 Outlook integra Power Automate con el correo y el calendario de Microsoft 365." }
+    ],
+    "choices": [
+      { "id": "c1", "text": "Azure Functions" },
+      { "id": "c2", "text": "Dataverse for Teams" },
+      { "id": "c3", "text": "Dynamics 365" },
+      { "id": "c4", "text": "Microsoft Foundry" },
+      { "id": "c5", "text": "Conector de Office 365 Outlook" },
+      { "id": "c6", "text": "Power Pages" }
+    ],
+    "keyPoint": "Power Platform se integra con Microsoft 365 (conectores), Teams (Dataverse for Teams), Dynamics 365 (Dataverse) y Azure (Functions, Foundry).",
+    "references": [
+      { "title": "Documentación de Microsoft Power Platform", "url": "https://learn.microsoft.com/es-es/power-platform/" },
+      { "title": "Información sobre Microsoft Dataverse for Teams", "url": "https://learn.microsoft.com/es-es/power-apps/teams/overview-data-platform" }
+    ]
+  },
+  {
+    "id": "pl900-d1-ia-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-ia",
+    "difficulty": 3,
+    "scenario": "Una aseguradora recibe cada día cientos de partes de siniestro en PDF con un formato propio de la compañía. Quiere extraer automáticamente el número de póliza, la fecha del siniestro y el importe reclamado, y guardarlos en Dataverse mediante un flujo de Power Automate.",
+    "prompt": "¿Qué capacidad de AI Builder debes usar?",
+    "options": [
+      { "id": "a", "text": "El modelo prediseñado de procesamiento de facturas", "correct": false, "explanation": "El modelo de facturas está entrenado para campos típicos de facturas; un parte de siniestro con formato propio no es una factura." },
+      { "id": "b", "text": "El modelo prediseñado de reconocimiento de texto (OCR)", "correct": false, "explanation": "El reconocimiento de texto extrae todo el texto, pero no identifica qué valor es la póliza, la fecha o el importe." },
+      { "id": "c", "text": "Un modelo personalizado de procesamiento de documentos", "correct": true, "explanation": "Se entrena con ejemplos etiquetados del propio formulario para extraer campos concretos de documentos con una estructura propia." },
+      { "id": "d", "text": "Un modelo de clasificación de categorías", "correct": false, "explanation": "La clasificación asigna una categoría a un texto; no extrae valores concretos de los campos de un documento." }
+    ],
+    "keyPoint": "Documentos con formato propio y campos concretos → modelo personalizado de procesamiento de documentos de AI Builder.",
+    "references": [
+      { "title": "Información general de AI Builder", "url": "https://learn.microsoft.com/es-es/ai-builder/overview" },
+      { "title": "Información general sobre el modelo de procesamiento de documentos", "url": "https://learn.microsoft.com/es-es/ai-builder/form-processing-model-overview" }
+    ]
+  },
+  {
+    "id": "pl900-d1-ia-002",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-ia",
+    "difficulty": 1,
+    "prompt": "Cuando empiezas una aplicación en Power Apps describiendo con Copilot lo que necesitas en lenguaje natural, ¿qué obtienes?",
+    "options": [
+      { "id": "a", "text": "Una aplicación publicada automáticamente para toda la organización", "correct": false, "explanation": "Copilot no publica ni comparte la aplicación por su cuenta; el creador decide cuándo guardar, publicar y compartir." },
+      { "id": "b", "text": "Una propuesta de tablas de Dataverse y una aplicación que puedes revisar y ajustar", "correct": true, "explanation": "Copilot sugiere la estructura de datos y genera una aplicación inicial que el creador revisa, modifica y completa." },
+      { "id": "c", "text": "Un informe de Power BI basado en tus datos", "correct": false, "explanation": "Copilot en Power Apps crea aplicaciones, no informes; los informes se generan con Copilot en Power BI." },
+      { "id": "d", "text": "El código fuente de la aplicación en C# para compilarlo", "correct": false, "explanation": "Power Apps es una plataforma de poco código: el resultado es una aplicación editable en el diseñador, no código C# para compilar." }
+    ],
+    "keyPoint": "Copilot acelera el primer borrador (datos + app), pero el creador siempre revisa y decide.",
+    "references": [
+      { "title": "¿Qué es Power Apps?", "url": "https://learn.microsoft.com/es-es/power-apps/powerapps-overview" }
+    ]
+  },
+  {
+    "id": "pl900-d1-ia-003",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-ia",
+    "difficulty": 2,
+    "prompt": "Para cada afirmación sobre la IA en Power Platform, indica si es verdadera.",
+    "statements": [
+      { "id": "s1", "text": "Copilot en Power Automate puede crear un flujo de nube a partir de una descripción en lenguaje natural.", "answer": true, "explanation": "Puedes describir la automatización que quieres y Copilot propone el desencadenador y las acciones del flujo, que luego puedes ajustar." },
+      { "id": "s2", "text": "Como el contenido lo genera Copilot, no es necesario revisarlo antes de usarlo en producción.", "answer": false, "explanation": "Según los principios de IA responsable, el contenido generado puede contener errores y una persona debe revisarlo antes de usarlo." },
+      { "id": "s3", "text": "AI Builder solo ofrece modelos prediseñados; no permite entrenar modelos personalizados.", "answer": false, "explanation": "AI Builder ofrece modelos prediseñados (listos para usar) y modelos personalizados que se entrenan con datos propios." },
+      { "id": "s4", "text": "Copilot en Power BI puede ayudar a crear páginas de informe y resúmenes a partir de peticiones en lenguaje natural.", "answer": true, "explanation": "Copilot en Power BI genera páginas de informe, resúmenes y respuestas sobre los datos a partir de lo que pide el usuario." }
+    ],
+    "keyPoint": "Copilot ayuda a crear con lenguaje natural en toda la plataforma, pero el resultado siempre lo revisa una persona.",
+    "references": [
+      { "title": "Introducción a Power Automate", "url": "https://learn.microsoft.com/es-es/power-automate/getting-started" },
+      { "title": "Información general de AI Builder", "url": "https://learn.microsoft.com/es-es/ai-builder/overview" },
+      { "title": "Introducción a Copilot en Power BI", "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/copilot-introduction" }
+    ]
+  },
+  {
+    "id": "pl900-d1-ia-004",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-ia",
+    "difficulty": 2,
+    "scenario": "Una cadena de tiendas quiere extraer automáticamente los datos de los albaranes de sus proveedores, que tienen un formato propio, con un modelo personalizado de AI Builder.",
+    "prompt": "Ordena los pasos para crear y usar el modelo.",
+    "items": [
+      { "id": "p1", "text": "Elegir el tipo de modelo personalizado (procesamiento de documentos)", "explanation": "Lo primero es decidir qué tipo de modelo se necesita, porque determina qué datos hay que aportar y cómo se etiquetan." },
+      { "id": "p2", "text": "Definir los campos que se quieren extraer, cargar documentos de ejemplo y etiquetarlos", "explanation": "El modelo aprende de ejemplos etiquetados: sin ellos no hay nada con lo que entrenarlo." },
+      { "id": "p3", "text": "Entrenar el modelo", "explanation": "Con los ejemplos etiquetados, AI Builder entrena el modelo y calcula su puntuación de rendimiento; solo un modelo entrenado se puede publicar." },
+      { "id": "p4", "text": "Publicar el modelo", "explanation": "Solo un modelo publicado está disponible para aplicaciones y flujos. Antes conviene revisar la puntuación y hacer una prueba rápida, aunque no es obligatorio." },
+      { "id": "p5", "text": "Usar el modelo en un flujo de Power Automate o en una aplicación de Power Apps", "explanation": "El último paso es consumir el modelo publicado desde las soluciones de negocio, por ejemplo para procesar cada albarán que llega por correo." }
+    ],
+    "keyPoint": "Modelo personalizado: elegir tipo → datos etiquetados → entrenar → publicar → usar.",
+    "references": [
+      { "title": "Información general de AI Builder", "url": "https://learn.microsoft.com/es-es/ai-builder/overview" },
+      { "title": "Información general sobre el modelo de procesamiento de documentos", "url": "https://learn.microsoft.com/es-es/ai-builder/form-processing-model-overview" }
+    ]
+  }
+]

@@ -1,0 +1,117 @@
+@import '@fontsource-variable/inter';
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Tokens de diseño: se redefinen en modo oscuro. */
+:root {
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --surface-2: #f0f1f7;
+  --border: #e3e5ee;
+  --text: #171a2b;
+  --muted: #5d6178;
+  --primary: #5b3cc4;
+  --primary-strong: #4a2fa8;
+  --primary-soft: #ece8ff;
+  --ok: #138a54;
+  --ok-soft: #e3f6ec;
+  --bad: #c8323a;
+  --bad-soft: #fde8e9;
+  --warn: #b36b00;
+  --warn-soft: #fff3dc;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #0e1020;
+  --surface: #171a2e;
+  --surface-2: #1f2340;
+  --border: #2c3155;
+  --text: #eceefb;
+  --muted: #a3a8c6;
+  --primary: #9a85ff;
+  --primary-strong: #b3a3ff;
+  --primary-soft: #2a2552;
+  --ok: #3ccf8e;
+  --ok-soft: #12352a;
+  --bad: #ff6b72;
+  --bad-soft: #3d1a22;
+  --warn: #f4b44a;
+  --warn-soft: #3a2b10;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-soft: var(--primary-soft);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-bad: var(--bad);
+  --color-bad-soft: var(--bad-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+}
+
+html {
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--bg);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.hero-gradient {
+  background:
+    radial-gradient(60rem 30rem at 10% -10%, color-mix(in oklab, #7c5cff 35%, transparent), transparent 60%),
+    radial-gradient(50rem 30rem at 100% 0%, color-mix(in oklab, #2f6fed 30%, transparent), transparent 60%);
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-pop {
+  animation: pop-in 0.25s ease-out both;
+}
+
+@keyframes confetti-fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0.8;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
