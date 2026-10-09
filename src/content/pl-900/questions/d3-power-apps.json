@@ -788,7 +788,8 @@
       { "title": "Generación de una página mediante lenguaje natural", "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/generative-pages" },
       { "title": "Información general sobre los planes", "url": "https://learn.microsoft.com/es-es/power-apps/maker/plan-designer/plan-designer" },
       { "title": "Información general sobre la experiencia vibe de Power Apps", "url": "https://learn.microsoft.com/es-es/power-apps/vibe/overview" }
-    ]
+    ],
+    "tags": ["preview"]
   },
   {
     "id": "pl900-d3-vibe-001",
@@ -808,7 +809,8 @@
     "keyPoint": "Vibe = de la idea a la app: plan, datos y aplicación con código generados con IA en un solo espacio de trabajo.",
     "references": [
       { "title": "Información general sobre la experiencia vibe de Power Apps", "url": "https://learn.microsoft.com/es-es/power-apps/vibe/overview" }
-    ]
+    ],
+    "tags": ["preview"]
   },
   {
     "id": "pl900-d3-vibe-002",
@@ -829,7 +831,8 @@
     "references": [
       { "title": "Crear aplicaciones, datos y planes con Power Apps vibe", "url": "https://learn.microsoft.com/es-es/power-apps/vibe/create-app-data-plan" },
       { "title": "Preguntas más frecuentes sobre la experiencia vibe de Power Apps", "url": "https://learn.microsoft.com/es-es/power-apps/maker/common/faq-vibe" }
-    ]
+    ],
+    "tags": ["preview"]
   },
   {
     "id": "pl900-d3-vibe-003",
@@ -851,6 +854,616 @@
     "references": [
       { "title": "Información general sobre la experiencia vibe de Power Apps", "url": "https://learn.microsoft.com/es-es/power-apps/vibe/overview" },
       { "title": "Crear aplicaciones, datos y planes con Power Apps vibe", "url": "https://learn.microsoft.com/es-es/power-apps/vibe/create-app-data-plan" }
+    ],
+    "tags": ["preview"]
+  },
+  {
+    "id": "pl900-d3-lienzo-009",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "difficulty": 3,
+    "prompt": "Empareja cada característica con el tipo de aplicación al que corresponde.",
+    "prompts": [
+      { "id": "m1", "text": "La navegación entre filas relacionadas aparece automáticamente si existen relaciones entre las tablas", "answerId": "c2", "explanation": "En una aplicación basada en modelos la navegación por relaciones es automática. En una de lienzo solo existe donde el creador la diseña con fórmulas de Power Fx." },
+      { "id": "m2", "text": "Pasarla de desarrollo a producción puede ser complejo porque quizá haya que actualizar sus orígenes de datos", "answerId": "c1", "explanation": "Learn indica que migrar una app de lienzo entre entornos es potencialmente complejo por sus orígenes de datos, mientras que en una basada en modelos es sencillo con soluciones." },
+      { "id": "m3", "text": "La accesibilidad viene integrada y la experiencia es coherente entre apps, lo que facilita adoptar otras nuevas", "answerId": "c2", "explanation": "Las apps basadas en modelos comparten una interfaz predefinida y accesible; en las de lienzo la accesibilidad y la coherencia dependen de cómo las diseñe el creador." },
+      { "id": "m4", "text": "Las propiedades de cada control se definen con expresiones de Power Fx", "answerId": "c1", "explanation": "En las apps de lienzo el diseño consiste en manipular las propiedades de los controles con Power Fx; las basadas en modelos se diseñan agregando componentes sin código." },
+      { "id": "m5", "text": "Los usuarios pueden ejecutarla en un explorador o en la app móvil de Power Apps", "answerId": "c3", "explanation": "Ambos tipos de aplicación se ejecutan en el explorador y en la app móvil de Power Apps, así que esta característica no los distingue." }
+    ],
+    "choices": [
+      { "id": "c1", "text": "Aplicación de lienzo" },
+      { "id": "c2", "text": "Aplicación basada en modelos" },
+      { "id": "c3", "text": "Ambos tipos de aplicación" }
+    ],
+    "keyPoint": "Basada en modelos: navegación, adaptabilidad y accesibilidad automáticas y migración sencilla. Lienzo: control total con Power Fx, pero todo lo diseña el creador.",
+    "references": [
+      { "title": "Introducción a las aplicaciones basadas en modelos", "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/model-driven-app-overview" },
+      { "title": "¿Qué es Power Apps?", "url": "https://learn.microsoft.com/es-es/power-apps/powerapps-overview" }
     ]
+  },
+  {
+    "id": "pl900-d3-lienzo-010",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "difficulty": 2,
+    "scenario": "El equipo comercial de Adventure Works revisa cada semana un informe de Power BI con las oportunidades abiertas. Los comerciales quieren anotar el siguiente paso de cada oportunidad sin salir del informe, y que lo que ven se filtre con los mismos segmentadores que el resto de los objetos visuales.",
+    "prompt": "¿Qué solución cumple el requisito?",
+    "options": [
+      { "id": "a", "text": "Agregar al informe el objeto visual de Power Apps (*Power Apps visual*) y crear con él una aplicación de lienzo", "correct": true, "explanation": "El objeto visual de Power Apps inserta una app de lienzo dentro del informe. Al crearla se abre Power Apps Studio con una conexión dinámica a los datos de Power BI, así que la app se filtra junto con el resto del informe." },
+      { "id": "b", "text": "Crear una aplicación basada en modelos y mostrar el informe dentro de ella como un panel", "correct": false, "explanation": "Invierte el requisito: los comerciales tendrían que salir del informe para trabajar en otra app, y lo que registren no se filtraría con los segmentadores del informe." },
+      { "id": "c", "text": "Exportar los datos del informe a Excel para que cada comercial anote allí el siguiente paso", "correct": false, "explanation": "Exportar saca los datos del informe y los copia en archivos sueltos. Las anotaciones no vuelven al informe ni se filtran con él." },
+      { "id": "d", "text": "Crear un flujo de escritorio que copie cada noche las oportunidades a Dataverse", "correct": false, "explanation": "Un flujo de escritorio automatiza tareas repetitivas en aplicaciones de escritorio. No ofrece a los comerciales una interfaz para escribir dentro del informe." }
+    ],
+    "keyPoint": "Las apps de lienzo pueden insertarse en informes de Power BI (objeto visual de Power Apps), además de en Teams y SharePoint.",
+    "references": [
+      { "title": "Tutorial: Inserción de un objeto visual de Power Apps en un informe de Power BI", "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-powerapp" },
+      { "title": "¿Qué son las aplicaciones de lienzo?", "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/getting-started" }
+    ]
+  },
+  {
+    "id": "pl900-d3-lienzo-011",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "difficulty": 2,
+    "scenario": "Lamna Salud quiere una aplicación de lienzo para que el personal de admisión consulte y actualice las citas desde el ordenador y el teléfono. Los datos están en una base de datos de SQL Server instalada en el centro de datos de la propia clínica.",
+    "prompt": "Indica si cada afirmación es verdadera.",
+    "statements": [
+      { "id": "s1", "text": "La app puede trabajar con la base de datos local a través de la puerta de enlace de datos local (*on-premises data gateway*), sin migrarla antes a la nube.", "answer": true, "explanation": "La puerta de enlace de datos local hace de puente seguro entre los datos que no están en la nube y servicios como Power Apps, de modo que la base de datos puede quedarse en la red de la clínica." },
+      { "id": "s2", "text": "Al compartir la app puedes hacer que unos usuarios solo la ejecuten y que otros, como copropietarios, también puedan editarla y compartirla.", "answer": true, "explanation": "Al compartir una app de lienzo eliges si cada usuario o grupo solo la usa o si es copropietario. Un copropietario puede usarla, editarla y compartirla, pero no eliminarla ni cambiar sus propietarios." },
+      { "id": "s3", "text": "El diseño de la app se adaptará automáticamente a teléfonos y tabletas aunque el creador no lo haya preparado para ello.", "answer": false, "explanation": "Una app de lienzo solo es adaptable si se diseña así. La adaptación automática al tamaño de la pantalla es una ventaja de las aplicaciones basadas en modelos." },
+      { "id": "s4", "text": "Para usarla en el teléfono hay que crear una versión de la app para iOS y otra distinta para Android.", "answer": false, "explanation": "La misma app se ejecuta en la app móvil de Power Apps en iOS y en Android, y también en el explorador. No hace falta mantener una versión para cada sistema operativo." }
+    ],
+    "keyPoint": "Lienzo: datos locales con la puerta de enlace, una sola app para todos los dispositivos y un diseño adaptable solo si el creador lo prepara.",
+    "references": [
+      { "title": "Descripción de las puertas de enlace de datos locales para aplicaciones de lienzo", "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/gateway-reference" },
+      { "title": "Compartir una aplicación de lienzo en la organización", "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/share-app" },
+      { "title": "Introducción a las aplicaciones basadas en modelos", "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/model-driven-app-overview" }
+    ]
+  },
+  {
+    "id": "pl900-d3-lienzo-012",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "difficulty": 1,
+    "prompt": "Completa la frase sobre los controles y las funciones habituales de una aplicación de lienzo.",
+    "template": "Para mostrar una lista desplazable de pedidos usas un control {{b1}}; para editar o crear el pedido seleccionado, un control {{b2}}; y para que un botón lleve al usuario a otra pantalla, la función {{b3}} de Power Fx.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "Galería" },
+          { "id": "o2", "text": "Formulario de visualización" },
+          { "id": "o3", "text": "Temporizador" }
+        ],
+        "correctId": "o1",
+        "explanation": "La galería (*Gallery*) muestra varios registros a la vez y permite filtrarlos, ordenarlos, buscar y desplazarse. Un formulario de visualización muestra un solo registro y un temporizador ejecuta acciones cuando pasa un tiempo."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "Formulario de visualización" },
+          { "id": "o2", "text": "Formulario de edición" },
+          { "id": "o3", "text": "Etiqueta" }
+        ],
+        "correctId": "o2",
+        "explanation": "El formulario de edición (*Edit form*) actualiza los campos de un registro, o crea uno nuevo, y guarda los cambios en el origen de datos. El de visualización solo muestra los campos y una etiqueta solo muestra texto."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "Patch" },
+          { "id": "o2", "text": "Filter" },
+          { "id": "o3", "text": "Navigate" }
+        ],
+        "correctId": "o3",
+        "explanation": "Navigate (junto con Back) cambia la pantalla que se muestra. Patch crea o modifica registros en un origen de datos y Filter devuelve las filas que cumplen una condición."
+      }
+    ],
+    "keyPoint": "Galería para listar, formulario de edición para crear o modificar y Navigate para cambiar de pantalla.",
+    "references": [
+      { "title": "Comprender los formularios de datos en aplicaciones de lienzo", "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/working-with-forms" },
+      { "title": "Funciones Back y Navigate", "url": "https://learn.microsoft.com/es-es/power-platform/power-fx/reference/function-navigate" }
+    ]
+  },
+  {
+    "id": "pl900-d3-modelos-010",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-modelos",
+    "difficulty": 2,
+    "scenario": "El departamento de TI de Alpine Ski House va a crear una aplicación basada en modelos para gestionar el alquiler de equipos. Se desarrollará en un entorno de desarrollo y después tendrá que pasar a pruebas y a producción con sus tablas, formularios y vistas.",
+    "prompt": "¿Cómo debes crear la aplicación para facilitar ese paso entre entornos?",
+    "options": [
+      { "id": "a", "text": "Dentro de una solución, que hace de contenedor de la app y de los componentes que necesita", "correct": true, "explanation": "Las soluciones agrupan la app, sus tablas, formularios, vistas y demás componentes para moverlos entre entornos. Learn indica que una app basada en modelos debe crearse dentro de una solución." },
+      { "id": "b", "text": "En la solución predeterminada, porque ya incluye todo lo que hay en el entorno", "correct": false, "explanation": "Microsoft no recomienda crear ni editar personalizaciones en la solución predeterminada. Mezcla todo lo del entorno y no sirve para empaquetar solo lo que necesita la app." },
+      { "id": "c", "text": "Como aplicación de lienzo, porque las apps de lienzo se migran entre entornos con más facilidad", "correct": false, "explanation": "Es al revés: en la comparación de Learn, migrar una app basada en modelos es sencillo y migrar una de lienzo puede ser complejo por sus orígenes de datos." },
+      { "id": "d", "text": "Exportando cada tabla a Excel y volviendo a crearla a mano en cada entorno", "correct": false, "explanation": "Es un proceso manual y propenso a errores, y no traslada los formularios, las vistas ni la propia app. Las soluciones existen para evitarlo." }
+    ],
+    "keyPoint": "Las apps basadas en modelos se crean dentro de una solución, que es la que permite moverlas entre entornos (ALM).",
+    "references": [
+      { "title": "Introducción a las aplicaciones basadas en modelos", "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/model-driven-app-overview" },
+      { "title": "Crear una aplicación basada en modelos con el diseñador de aplicaciones", "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/create-model-driven-app" }
+    ]
+  },
+  {
+    "id": "pl900-d3-modelos-011",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-modelos",
+    "difficulty": 2,
+    "prompt": "Completa la frase sobre las aplicaciones basadas en modelos.",
+    "template": "Las aplicaciones basadas en modelos son especialmente adecuadas para aplicaciones {{b1}}. Como mínimo necesitan {{b2}} de Dataverse y {{b3}}, además de la propia aplicación.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "controladas por procesos y con muchos datos" },
+          { "id": "o2", "text": "con un diseño de marca controlado al píxel" },
+          { "id": "o3", "text": "web públicas para visitantes anónimos" }
+        ],
+        "correctId": "o1",
+        "explanation": "Learn las recomienda para procesos con muchos datos en los que el usuario se mueve entre registros relacionados, como ventas o incorporación de empleados. El diseño al píxel es propio del lienzo y los sitios públicos, de Power Pages."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "un panel" },
+          { "id": "o2", "text": "una tabla" },
+          { "id": "o3", "text": "un flujo de proceso de negocio" }
+        ],
+        "correctId": "o2",
+        "explanation": "Sin un modelo de datos en Dataverse no se puede crear una app basada en modelos, así que al menos necesita una tabla. Paneles y flujos de proceso de negocio son componentes opcionales."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "una página personalizada" },
+          { "id": "o2", "text": "un informe de Power BI" },
+          { "id": "o3", "text": "un mapa del sitio" }
+        ],
+        "correctId": "o3",
+        "explanation": "El mapa del sitio (*site map*) define la navegación de la app y forma parte de los requisitos mínimos. Las páginas personalizadas y los informes de Power BI se pueden agregar, pero no son obligatorios."
+      }
+    ],
+    "keyPoint": "Basada en modelos = procesos con muchos datos; mínimo: una tabla de Dataverse, un mapa del sitio y la app.",
+    "references": [
+      { "title": "Introducción a las aplicaciones basadas en modelos", "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/model-driven-app-overview" }
+    ]
+  },
+  {
+    "id": "pl900-d3-modelos-012",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-modelos",
+    "difficulty": 2,
+    "scenario": "Litware gestiona sus contratos con proveedores en una aplicación basada en modelos sobre Dataverse. Los usuarios han pedido varias mejoras.",
+    "prompt": "Empareja cada mejora con el componente que debes configurar.",
+    "prompts": [
+      { "id": "m1", "text": "Mostrar un error si la fecha de fin del contrato es anterior a la de inicio, sin escribir código", "answerId": "c1", "explanation": "Las reglas de negocio (*business rules*) aplican lógica y validaciones, como mostrar un mensaje de error, con una interfaz sencilla y sin código ni complementos." },
+      { "id": "m2", "text": "Dar de alta un proveedor nuevo desde la búsqueda del contrato, con un formulario breve y sin salir del contrato", "answerId": "c2", "explanation": "El formulario de creación rápida (*quick create form*) aparece al elegir «+ Nuevo» desde una búsqueda o subcuadrícula y simplifica la entrada de datos sin abandonar el registro actual." },
+      { "id": "m3", "text": "Ver dentro del contrato, en solo lectura, el teléfono y la categoría del proveedor relacionado", "answerId": "c3", "explanation": "El formulario de vista rápida (*quick view form*) muestra datos de la fila relacionada a través de una columna de búsqueda. Sus datos no se pueden editar, que es justo lo que se pide." },
+      { "id": "m4", "text": "Listar en el formulario del proveedor todos sus contratos", "answerId": "c4", "explanation": "Una subcuadrícula (*subgrid*) muestra en un formulario una lista tabular de registros relacionados, desde la que también se pueden crear o abrir filas." }
+    ],
+    "choices": [
+      { "id": "c1", "text": "Regla de negocio" },
+      { "id": "c2", "text": "Formulario de creación rápida" },
+      { "id": "c3", "text": "Formulario de vista rápida" },
+      { "id": "c4", "text": "Subcuadrícula" },
+      { "id": "c5", "text": "Panel" },
+      { "id": "c6", "text": "Mapa del sitio" }
+    ],
+    "keyPoint": "Validar sin código: regla de negocio. Crear sin salir: creación rápida. Ver lo relacionado en solo lectura: vista rápida. Listar lo relacionado: subcuadrícula.",
+    "references": [
+      { "title": "Crear reglas de negocio y recomendaciones para aplicar lógica", "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/data-platform-create-business-rule" },
+      { "title": "Crear o editar formularios de creación rápida", "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/create-edit-quick-create-forms" },
+      { "title": "Crear o editar formularios de vista rápida", "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/create-edit-quick-view-forms" },
+      { "title": "Agregar y configurar un componente de subcuadrícula en un formulario", "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/form-designer-add-configure-subgrid" }
+    ]
+  },
+  {
+    "id": "pl900-d3-modelos-013",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-modelos",
+    "difficulty": 2,
+    "prompt": "¿Qué ventajas ofrece el enfoque de las aplicaciones basadas en modelos? Selecciona tres.",
+    "options": [
+      { "id": "a", "text": "Son adaptables y accesibles de forma automática, sin trabajo extra del creador", "correct": true, "explanation": "La interfaz se genera a partir de los componentes, responde automáticamente al tamaño del dispositivo e incluye accesibilidad integrada." },
+      { "id": "b", "text": "Ofrecen una experiencia coherente entre apps, por lo que los usuarios adoptan antes las nuevas", "correct": true, "explanation": "Todas las apps basadas en modelos se usan de forma parecida. Cuando un usuario domina una, le resulta más fácil adoptar las siguientes." },
+      { "id": "c", "text": "Con el modelo de datos creado, la app se construye rápido con diseñadores sin código", "correct": true, "explanation": "Learn destaca que, una vez definidos el modelo de datos y las relaciones, crear la app es relativamente rápido con diseñadores basados en componentes." },
+      { "id": "d", "text": "Permiten colocar cada elemento en una posición exacta de la pantalla", "correct": false, "explanation": "El control total del diseño es propio de las apps de lienzo. En una basada en modelos gran parte de la interfaz está predefinida." },
+      { "id": "e", "text": "Pueden usar un libro de Excel como único origen de datos, sin Dataverse", "correct": false, "explanation": "Las apps basadas en modelos solo usan Dataverse como plataforma de datos. Combinar Excel u otros orígenes con conectores es propio del lienzo." },
+      { "id": "f", "text": "La navegación entre tablas se programa con fórmulas de Power Fx", "correct": false, "explanation": "En las apps basadas en modelos la navegación la definen el mapa del sitio y las relaciones. Programarla con Power Fx es lo que ocurre en las de lienzo." }
+    ],
+    "keyPoint": "Basada en modelos: menos control del diseño a cambio de rapidez, coherencia, accesibilidad y adaptabilidad automáticas.",
+    "references": [
+      { "title": "Introducción a las aplicaciones basadas en modelos", "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/model-driven-app-overview" }
+    ]
+  },
+  {
+    "id": "pl900-d3-plan-005",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-plan-codigo",
+    "difficulty": 2,
+    "prompt": "Has guardado un plan en una solución y seleccionas Crear en cada tecnología que propone. Empareja cada tecnología con la herramienta que se abre para terminarla.",
+    "prompts": [
+      { "id": "m1", "text": "Aplicación de lienzo", "answerId": "c1", "explanation": "Se abre Power Apps Studio con una app ya conectada a los datos, con pantallas para ver y editar cada tabla recomendada y una pantalla de bienvenida." },
+      { "id": "m2", "text": "Aplicación basada en modelos", "answerId": "c2", "explanation": "Se abre el diseñador de aplicaciones moderno con las tablas del plan ya agregadas. Después hay que guardar y publicar la app." },
+      { "id": "m3", "text": "Sitio web de Power Pages", "answerId": "c3", "explanation": "Se abre el estudio de diseño de Power Pages con una configuración inicial de diseño, dominio y páginas adaptadas a los objetivos del plan." },
+      { "id": "m4", "text": "Flujo de nube", "answerId": "c4", "explanation": "Se abre Power Automate en la experiencia de creación con lenguaje natural, con una instrucción ya rellenada a partir del problema de negocio y los orígenes de datos." },
+      { "id": "m5", "text": "Agente", "answerId": "c5", "explanation": "Se abre Copilot Studio con el nombre, la descripción y las instrucciones rellenados, y las tablas del plan como fuentes de conocimiento. Lo revisas, lo pruebas y lo publicas." }
+    ],
+    "choices": [
+      { "id": "c1", "text": "Power Apps Studio" },
+      { "id": "c2", "text": "Diseñador de aplicaciones moderno" },
+      { "id": "c3", "text": "Estudio de diseño de Power Pages" },
+      { "id": "c4", "text": "Power Automate con lenguaje natural" },
+      { "id": "c5", "text": "Copilot Studio" },
+      { "id": "c6", "text": "Centro de administración de Power Platform" }
+    ],
+    "keyPoint": "El plan no termina los objetos solo: abre la herramienta de cada tecnología con el trabajo adelantado, y tú revisas, guardas y publicas.",
+    "references": [
+      { "title": "Crear una solución a partir de un plan", "url": "https://learn.microsoft.com/es-es/power-apps/maker/plan-designer/build-solution" }
+    ]
+  },
+  {
+    "id": "pl900-d3-plan-006",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-plan-codigo",
+    "difficulty": 3,
+    "scenario": "Contoso ya usa una aplicación de lienzo para controlar el inventario del almacén. Al crear un plan para su nuevo proceso de pedidos a proveedores, el agente de soluciones propone, entre otras cosas, una aplicación de inventario muy parecida a la que ya tienen.",
+    "prompt": "¿Qué debes hacer para aprovechar la aplicación existente?",
+    "options": [
+      { "id": "a", "text": "Reemplazar en el plan la aplicación propuesta por la aplicación existente", "correct": true, "explanation": "Los planes permiten sustituir una app propuesta por una que ya existe, o agregar apps existentes. Así se ahorra tiempo, se evita la redundancia y la solución es más coherente." },
+      { "id": "b", "text": "Crear la aplicación propuesta y eliminar después la existente", "correct": false, "explanation": "Duplica un trabajo que ya está hecho y obliga a los usuarios a cambiar de app sin necesidad. El plan permite reutilizar la existente." },
+      { "id": "c", "text": "Exportar el plan a PDF y pedir a TI que retire la propuesta", "correct": false, "explanation": "Exportar a PDF sirve para compartir los requisitos y el modelo de datos con otras personas. No modifica las tecnologías propuestas en el plan." },
+      { "id": "d", "text": "Descartar el plan y crear la solución a mano, porque un plan no admite aplicaciones existentes", "correct": false, "explanation": "La premisa es falsa: un plan puede incluir aplicaciones existentes, tanto en lugar de una propuesta como además de ellas." }
+    ],
+    "keyPoint": "En un plan puedes reemplazar una app propuesta por otra existente, o agregar apps que ya tienes.",
+    "references": [
+      { "title": "Crear una solución a partir de un plan", "url": "https://learn.microsoft.com/es-es/power-apps/maker/plan-designer/build-solution" }
+    ]
+  },
+  {
+    "id": "pl900-d3-plan-007",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-plan-codigo",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre los planes de Power Apps es verdadera.",
+    "statements": [
+      { "id": "s1", "text": "Además de aplicaciones, flujos y agentes, un plan puede proponer sitios web de Power Pages e informes de Power BI.", "answer": true, "explanation": "Entre las tecnologías que sugieren los planes están las apps de lienzo y basadas en modelos, los sitios de Power Pages, los flujos de Power Automate, los informes de Power BI y los agentes de Copilot Studio." },
+      { "id": "s2", "text": "Para crear las aplicaciones, flujos y agentes propuestos, primero debes guardar el plan y sus tablas en una solución.", "answer": true, "explanation": "Hasta que guardas el plan y sus tablas en una solución no puedes crear objetos. Al guardarlo, el plan queda almacenado en la solución y puedes pasar a construir." },
+      { "id": "s3", "text": "Si tu rol en el entorno es Creador de entorno (*Environment Maker*), al guardar las tablas del plan se te redirige a tu propio entorno de desarrollador.", "answer": true, "explanation": "Learn indica que los creadores de entornos acceden a los planes, pero se les redirige a su propio entorno de desarrollador cuando guardan tablas, donde sí pueden crearlas." },
+      { "id": "s4", "text": "Las aplicaciones existentes que agregas a un plan se incluyen automáticamente en la nueva solución del plan.", "answer": false, "explanation": "Las apps existentes que agregas no se incluyen en la nueva solución. Para ver todas las soluciones relacionadas con el plan usas la vista de soluciones." }
+    ],
+    "keyPoint": "Un plan propone apps, Power Pages, flujos, Power BI y agentes, pero solo puedes construirlos después de guardarlo en una solución.",
+    "references": [
+      { "title": "Crear un plan", "url": "https://learn.microsoft.com/es-es/power-apps/maker/plan-designer/create-plan" },
+      { "title": "Información general de los planes en Power Apps", "url": "https://learn.microsoft.com/es-es/power-apps/maker/plan-designer/plan-designer" },
+      { "title": "Crear una solución a partir de un plan", "url": "https://learn.microsoft.com/es-es/power-apps/maker/plan-designer/build-solution" }
+    ]
+  },
+  {
+    "id": "pl900-d3-plan-008",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-plan-codigo",
+    "difficulty": 1,
+    "scenario": "Marta ha creado un plan para gestionar las solicitudes de formación de Fabrikam. Quiere que su compañero Iván pueda abrirlo, editarlo y compartirlo con otros creadores, pero no que pueda eliminarlo ni cambiar sus propietarios.",
+    "prompt": "¿Qué permiso debe darle al compartir el plan?",
+    "options": [
+      { "id": "a", "text": "Copropietario", "correct": true, "explanation": "El copropietario puede usar, editar y compartir el plan, pero no eliminarlo ni cambiar sus propietarios. Es exactamente lo que necesita Iván." },
+      { "id": "b", "text": "Visor", "correct": false, "explanation": "Un visor solo puede ver el plan. Iván no podría editarlo ni compartirlo." },
+      { "id": "c", "text": "Administrador del sistema del entorno", "correct": false, "explanation": "Es un rol de seguridad de todo el entorno, con muchos más privilegios de los necesarios, y no un nivel de acceso al plan concreto." },
+      { "id": "d", "text": "Ninguno: basta con exportar el plan a PDF y enviárselo", "correct": false, "explanation": "El PDF sirve para compartir el contenido con personas que no usan Power Apps, pero es una copia que no se puede editar ni compartir como plan." }
+    ],
+    "keyPoint": "Al compartir un plan eliges Visor (solo ver) o Copropietario (usar, editar y compartir, sin eliminar).",
+    "references": [
+      { "title": "Crear un plan", "url": "https://learn.microsoft.com/es-es/power-apps/maker/plan-designer/create-plan" }
+    ]
+  },
+  {
+    "id": "pl900-d3-codigo-004",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-plan-codigo",
+    "difficulty": 2,
+    "scenario": "Un desarrollador de Proseware va a crear una aplicación de código que consulta una lista de SharePoint mediante un conector. Un administrador ya ha habilitado las aplicaciones de código en el entorno.",
+    "prompt": "Ordena los pasos para que la aplicación quede publicada y disponible para los usuarios.",
+    "items": [
+      { "id": "p1", "text": "Crear el proyecto web a partir de una plantilla, por ejemplo de Vite, e instalar sus dependencias", "explanation": "Todo lo demás se hace sobre el proyecto, así que primero tiene que existir el código base de la aplicación web." },
+      { "id": "p2", "text": "Inicializar la app de código con la CLI de Power Apps (pa app init), que te pide iniciar sesión y la vincula a un entorno", "explanation": "La inicialización necesita el proyecto creado y genera los metadatos (power.config.json) que después se usan para establecer conexiones y publicar en el entorno." },
+      { "id": "p3", "text": "Agregar el origen de datos de SharePoint (pa app add data-source), que genera el modelo y el servicio tipados para llamarlo", "explanation": "Learn indica que los orígenes de datos se agregan después de inicializar la app, porque la conexión pertenece al entorno vinculado." },
+      { "id": "p4", "text": "Compilar la app y publicarla en el entorno con pa app push", "explanation": "pa app push toma la app ya compilada, con su acceso a datos terminado, y la publica en el entorno de Power Platform donde se hospeda." },
+      { "id": "p5", "text": "Compartir la app desde Power Apps con los usuarios que la necesitan", "explanation": "Solo se puede compartir una app que ya está publicada en el entorno. A partir de ahí los usuarios la ejecutan desde Power Apps." }
+    ],
+    "keyPoint": "Código: proyecto → pa app init → orígenes de datos → compilar y pa app push → compartir.",
+    "references": [
+      { "title": "Inicio rápido: crear una aplicación de código desde cero", "url": "https://learn.microsoft.com/es-es/power-apps/developer/code-apps/how-to/create-an-app-from-scratch" },
+      { "title": "Conectar una aplicación de código a datos", "url": "https://learn.microsoft.com/es-es/power-apps/developer/code-apps/how-to/connect-to-data" },
+      { "title": "Arquitectura de las aplicaciones de código", "url": "https://learn.microsoft.com/es-es/power-apps/developer/code-apps/architecture" }
+    ]
+  },
+  {
+    "id": "pl900-d3-codigo-005",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-plan-codigo",
+    "difficulty": 2,
+    "prompt": "¿Qué necesitas para empezar a crear una aplicación de código (*code app*) de Power Apps? Selecciona tres.",
+    "options": [
+      { "id": "a", "text": "Un entorno en el que un administrador haya habilitado las aplicaciones de código", "correct": true, "explanation": "Las aplicaciones de código se activan por entorno en el centro de administración de Power Platform. Sin esa opción no puedes publicarlas en él." },
+      { "id": "b", "text": "Node.js y la CLI de Power Apps instalados en tu equipo", "correct": true, "explanation": "Learn incluye Node.js, npm, Git y la CLI de Power Apps entre los requisitos. La CLI se usa para inicializar, conectar y publicar la app." },
+      { "id": "c", "text": "Un IDE orientado al código, como Visual Studio Code", "correct": true, "explanation": "Las aplicaciones de código se desarrollan en el IDE que prefieras, con marcos como React o Vue, y se pueden ejecutar en local antes de publicarlas." },
+      { "id": "d", "text": "Power Apps Studio con la coautoría activada", "correct": false, "explanation": "La coautoría en Power Apps Studio se usa para editar apps de lienzo con herramientas de IA externas. Las aplicaciones de código no se crean en Power Apps Studio." },
+      { "id": "e", "text": "Un servidor web propio en el que hospedar la aplicación publicada", "correct": false, "explanation": "No hace falta: la app se publica y se hospeda en Power Platform, que además aplica las directivas de la organización." },
+      { "id": "f", "text": "Un sitio de Power Pages que sirva la interfaz de la aplicación", "correct": false, "explanation": "Power Pages sirve para crear sitios web. Una aplicación de código se publica directamente en un entorno de Power Apps." }
+    ],
+    "keyPoint": "Para una code app: entorno con la opción habilitada, IDE, Node.js y CLI de Power Apps. El hospedaje lo pone Power Platform.",
+    "references": [
+      { "title": "Descripción general de las aplicaciones de código de Power Apps", "url": "https://learn.microsoft.com/es-es/power-apps/developer/code-apps/overview" },
+      { "title": "Inicio rápido: crear una aplicación de código desde cero", "url": "https://learn.microsoft.com/es-es/power-apps/developer/code-apps/how-to/create-an-app-from-scratch" }
+    ]
+  },
+  {
+    "id": "pl900-d3-codigo-006",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-plan-codigo",
+    "difficulty": 3,
+    "prompt": "Completa la frase sobre cómo funciona una aplicación de código cuando se ejecuta.",
+    "template": "El código de la app usa {{b1}} para hacer las solicitudes de datos a través de los conectores de Power Platform, mientras que {{b2}} administra la autenticación del usuario final y la carga de la aplicación.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "el archivo power.config.json" },
+          { "id": "o2", "text": "la biblioteca cliente de Power Apps" },
+          { "id": "o3", "text": "Power Apps Studio" }
+        ],
+        "correctId": "o2",
+        "explanation": "La biblioteca cliente de Power Apps para aplicaciones de código expone las API y los modelos y servicios generados con los que la app llama a los conectores. power.config.json solo guarda metadatos para la CLI y Power Apps Studio es el editor del lienzo."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "el host de Power Apps" },
+          { "id": "o2", "text": "la CLI de Power Apps" },
+          { "id": "o3", "text": "la puerta de enlace de datos local" }
+        ],
+        "correctId": "o1",
+        "explanation": "El host de Power Apps se encarga de autenticar al usuario, cargar la app y mostrar mensajes si no se carga. La CLI interviene al desarrollar y publicar, y la puerta de enlace conecta con datos locales."
+      }
+    ],
+    "keyPoint": "En ejecución: tu código + biblioteca cliente (datos y conectores) + host de Power Apps (autenticación y carga).",
+    "references": [
+      { "title": "Arquitectura de las aplicaciones de código", "url": "https://learn.microsoft.com/es-es/power-apps/developer/code-apps/architecture" }
+    ]
+  },
+  {
+    "id": "pl900-d3-ia-006",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-ia",
+    "difficulty": 2,
+    "scenario": "Un desarrollador de Wide World Importers quiere usar una herramienta de generación de código con IA, como GitHub Copilot o Claude Code, con el complemento de aplicaciones de lienzo para crear una app de seguimiento de gastos describiéndola en lenguaje natural.",
+    "prompt": "Ordena los pasos.",
+    "items": [
+      { "id": "p1", "text": "Crear y guardar una aplicación de lienzo en blanco en el entorno previsto", "explanation": "La herramienta trabaja sobre una app que ya existe: aunque esté vacía, primero hay que crearla y guardarla en Power Apps." },
+      { "id": "p2", "text": "Abrir la app en Power Apps Studio y activar la coautoría", "explanation": "La conexión de la herramienta depende de una sesión de coautoría abierta en Power Apps Studio, que solo puede activarse en una app guardada." },
+      { "id": "p3", "text": "Configurar el servidor MCP de creación de aplicaciones de lienzo con la URL de esa sesión de Power Apps Studio", "explanation": "Para conectar el servidor MCP hay que darle la URL de Studio con la coautoría activa; de ella obtiene el entorno y la app." },
+      { "id": "p4", "text": "Describir la app en lenguaje natural y responder a las preguntas aclaratorias de la herramienta", "explanation": "Con el servidor MCP conectado, la herramienta puede descubrir los controles y orígenes de datos disponibles y preguntar lo que necesite antes de generar." },
+      { "id": "p5", "text": "Revisar las pantallas generadas, que la herramienta valida y sincroniza con Power Apps Studio", "explanation": "La herramienta genera archivos .pa.yaml con pantallas, controles y fórmulas de Power Fx, los valida con el servidor MCP y los sincroniza mediante la sesión de coautoría." }
+    ],
+    "keyPoint": "Herramientas de IA con lienzo: app guardada → coautoría → servidor MCP → describir → validar y sincronizar con Studio.",
+    "references": [
+      { "title": "Crear y editar aplicaciones de lienzo con herramientas de generación de código de IA", "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/create-canvas-external-tools" }
+    ]
+  },
+  {
+    "id": "pl900-d3-ia-007",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-ia",
+    "difficulty": 2,
+    "scenario": "Un creador de Northwind usa GitHub Copilot CLI con la habilidad de creación de aplicaciones basadas en modelos (*model app-builder*). Escribe: «Crea una aplicación para gestionar la incorporación de proveedores y la aprobación de sus contratos».",
+    "prompt": "¿Cuándo se crean las tablas, los formularios y la aplicación en su entorno?",
+    "options": [
+      { "id": "a", "text": "Después de revisar la especificación de la app y aprobar el plan de creación que le presenta la herramienta", "correct": true, "explanation": "La habilidad primero presenta una especificación (roles, tablas, formularios, vistas, mapa del sitio…) y después un plan de creación. No crea nada en el entorno hasta que el creador aprueba ese plan." },
+      { "id": "b", "text": "En cuanto envía la descripción, sin ningún paso de revisión", "correct": false, "explanation": "El proceso es interactivo y por pasos precisamente para que revises y ajustes la propuesta antes de que se cree nada en Dataverse." },
+      { "id": "c", "text": "Nunca: la habilidad solo genera un documento de requisitos que hay que implementar a mano", "correct": false, "explanation": "Tras la aprobación, la habilidad genera el esquema de Dataverse, la app, sus páginas y los artefactos auxiliares, y puede comprobar el resultado frente a la especificación." },
+      { "id": "d", "text": "Cuando publica en Power Apps Studio la app de lienzo que se ha generado", "correct": false, "explanation": "La habilidad crea una aplicación basada en modelos, no una de lienzo. Power Apps Studio es el editor de las apps de lienzo." }
+    ],
+    "keyPoint": "Con model app-builder describes el escenario, revisas la especificación y apruebas el plan; solo entonces se generan los artefactos.",
+    "references": [
+      { "title": "Crear y editar aplicaciones basadas en modelos con herramientas de generación de código de IA", "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/model-driven-app-external-tools" }
+    ]
+  },
+  {
+    "id": "pl900-d3-ia-008",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-ia",
+    "difficulty": 2,
+    "prompt": "¿Qué puede generar la habilidad de creación de aplicaciones basadas en modelos (*model app-builder*) a partir de la descripción de un escenario de negocio? Selecciona tres.",
+    "options": [
+      { "id": "a", "text": "Tablas, columnas y relaciones de Dataverse, con datos de ejemplo", "correct": true, "explanation": "La habilidad crea las tablas auxiliares con sus columnas y relaciones, y también datos de ejemplo para probar la app." },
+      { "id": "b", "text": "Formularios, vistas, reglas de negocio y flujos de proceso de negocio", "correct": true, "explanation": "Genera los componentes estándar de una app basada en modelos, incluidos formularios con subcuadrículas, de creación rápida y de vista rápida." },
+      { "id": "c", "text": "Páginas generativas para paneles o flujos de trabajo guiados, y roles de seguridad", "correct": true, "explanation": "Recomienda páginas generativas cuando se necesita una interfaz más personalizada y agrega roles de seguridad según el acceso a datos planeado." },
+      { "id": "d", "text": "Un sitio de Power Pages para que accedan usuarios externos", "correct": false, "explanation": "La habilidad se centra en la app basada en modelos y sus artefactos de Dataverse. Los sitios para usuarios externos se crean con Power Pages." },
+      { "id": "e", "text": "Directivas de prevención de pérdida de datos (DLP) para el entorno", "correct": false, "explanation": "Las directivas DLP las configura un administrador en el centro de administración de Power Platform; no forman parte de una app." },
+      { "id": "f", "text": "Una aplicación de lienzo sincronizada con Power Apps Studio", "correct": false, "explanation": "Eso lo hace el complemento de aplicaciones de lienzo. La habilidad model app-builder crea aplicaciones basadas en modelos." }
+    ],
+    "keyPoint": "model app-builder genera la app basada en modelos completa: datos, formularios, vistas, lógica, páginas generativas y roles.",
+    "references": [
+      { "title": "Crear y editar aplicaciones basadas en modelos con herramientas de generación de código de IA", "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/model-driven-app-external-tools" }
+    ]
+  },
+  {
+    "id": "pl900-d3-ia-009",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-ia",
+    "difficulty": 2,
+    "prompt": "Completa la frase sobre las páginas generativas (*generative pages*) de las aplicaciones basadas en modelos.",
+    "template": "A partir de tu descripción en lenguaje natural, el agente genera una página con código {{b1}} que incluye la interfaz y la lógica de negocio. Puedes crearla en el explorador desde {{b2}} o en tu equipo con {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "React" },
+          { "id": "o2", "text": "Power Fx" },
+          { "id": "o3", "text": "DAX" }
+        ],
+        "correctId": "o1",
+        "explanation": "Las páginas generativas se generan como código React que cubre la interfaz y la lógica. Power Fx es el lenguaje de las apps de lienzo y DAX el de los modelos de Power BI."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "el centro de administración de Power Platform" },
+          { "id": "o2", "text": "el diseñador de aplicaciones de la app" },
+          { "id": "o3", "text": "el diseñador de planes" }
+        ],
+        "correctId": "o2",
+        "explanation": "En el diseñador de aplicaciones eliges Agregar página y el tipo generativa. El centro de administración gestiona entornos y el diseñador de planes propone soluciones completas, no páginas sueltas."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "Power Automate para escritorio" },
+          { "id": "o2", "text": "el diseñador de formularios" },
+          { "id": "o3", "text": "herramientas de IA como GitHub Copilot CLI" }
+        ],
+        "correctId": "o3",
+        "explanation": "Microsoft recomienda también crear y editar páginas generativas desde el entorno local con herramientas de generación de código con IA. Power Automate para escritorio crea flujos RPA y el diseñador de formularios edita formularios estándar."
+      }
+    ],
+    "keyPoint": "Página generativa: descripción → código React; se crea en el diseñador de aplicaciones o con herramientas de IA en el IDE.",
+    "references": [
+      { "title": "Crear páginas generativas en aplicaciones basadas en modelos", "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/generative-pages" },
+      { "title": "Crear y editar páginas generativas con herramientas de generación de código de IA", "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/generative-page-external-tools" }
+    ]
+  },
+  {
+    "id": "pl900-d3-ia-010",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-ia",
+    "difficulty": 2,
+    "scenario": "Los creadores de Tailwind Traders quieren aprovechar Copilot para acelerar el desarrollo de sus aplicaciones de lienzo y basadas en modelos.",
+    "prompt": "Indica si cada afirmación es verdadera.",
+    "statements": [
+      { "id": "s1", "text": "Al empezar con datos, Copilot puede crear las tablas importando un archivo de Excel o CSV, o una lista de SharePoint.", "answer": true, "explanation": "El panel de Copilot ofrece crear tablas desde una descripción, importar datos de archivos de Excel o CSV o de listas de SharePoint, y cambiar lo generado." },
+      { "id": "s2", "text": "Para crear una app de lienzo con Copilot empezando con datos no hace falta una base de datos de Dataverse en el entorno.", "answer": false, "explanation": "Copilot genera tablas de Dataverse sobre las que crea la app, así que necesitas acceso a una base de datos de Dataverse en el entorno." },
+      { "id": "s3", "text": "Copilot puede generar la descripción de una aplicación basada en modelos al publicarla, si la app está en un entorno administrado (*Managed Environment*).", "answer": true, "explanation": "La generación de descripciones de apps con IA requiere que la app esté en un entorno administrado y se ofrece en el cuadro de diálogo de publicación o en la configuración de la app." },
+      { "id": "s4", "text": "Si no tienes permisos para crear tablas en el entorno actual, Power Apps puede pedirte que crees la app en tu propio entorno de desarrollador.", "answer": true, "explanation": "Sin permisos o sin Dataverse en el entorno actual, una alerta te propone trabajar en tu entorno de desarrollador, que se crea automáticamente si no tienes uno." }
+    ],
+    "keyPoint": "Copilot en Power Apps se apoya en Dataverse: crea o importa tablas para apps de lienzo y describe apps basadas en modelos en entornos administrados.",
+    "references": [
+      { "title": "Crear aplicaciones mediante conversaciones con Copilot", "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/ai-conversations-create-app" },
+      { "title": "Crear una aplicación basada en modelos con el diseñador de aplicaciones", "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/create-model-driven-app" }
+    ]
+  },
+  {
+    "id": "pl900-d3-ia-011",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-ia",
+    "difficulty": 3,
+    "prompt": "Empareja cada necesidad con la opción de Power Apps más adecuada.",
+    "prompts": [
+      { "id": "m1", "text": "Un desarrollador quiere que su asistente de IA genere en el IDE las pantallas y fórmulas de una app de lienzo y las sincronice con Power Apps Studio", "answerId": "c1", "explanation": "El complemento de aplicaciones de lienzo genera y valida el código de la app y lo sincroniza con Power Apps Studio mediante una sesión de coautoría." },
+      { "id": "m2", "text": "Un creador quiere que su herramienta de IA genere una app basada en modelos completa: tablas, formularios, vistas, mapa del sitio y roles", "answerId": "c2", "explanation": "La habilidad model app-builder convierte un escenario de negocio en una especificación y, tras aprobarla, crea la app basada en modelos y sus artefactos de Dataverse." },
+      { "id": "m3", "text": "Una creadora quiere añadir a una app basada en modelos existente un tablero Kanban descrito en lenguaje natural", "answerId": "c3", "explanation": "Una página generativa añade a una app basada en modelos una página personalizada descrita en lenguaje natural, como galerías, tableros Kanban o paneles." },
+      { "id": "m4", "text": "Un equipo quiere escribir él mismo una aplicación web en React, con control total del código, que use conectores de Power Platform", "answerId": "c4", "explanation": "Una aplicación de código se escribe en un IDE con marcos como React, llama a los conectores desde el código y se publica en Power Platform." }
+    ],
+    "choices": [
+      { "id": "c1", "text": "Complemento de aplicaciones de lienzo" },
+      { "id": "c2", "text": "Habilidad model app-builder" },
+      { "id": "c3", "text": "Página generativa" },
+      { "id": "c4", "text": "Aplicación de código" },
+      { "id": "c5", "text": "Formulario de creación rápida" },
+      { "id": "c6", "text": "Flujo de escritorio" }
+    ],
+    "keyPoint": "Lienzo desde el IDE: complemento de lienzo. App basada en modelos completa: model app-builder. Página nueva en una app existente: página generativa. Código propio: code app.",
+    "references": [
+      { "title": "Crear y editar aplicaciones de lienzo con herramientas de generación de código de IA", "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/create-canvas-external-tools" },
+      { "title": "Crear y editar aplicaciones basadas en modelos con herramientas de generación de código de IA", "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/model-driven-app-external-tools" },
+      { "title": "Crear páginas generativas en aplicaciones basadas en modelos", "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/generative-pages" },
+      { "title": "Descripción general de las aplicaciones de código de Power Apps", "url": "https://learn.microsoft.com/es-es/power-apps/developer/code-apps/overview" }
+    ]
+  },
+  {
+    "id": "pl900-d3-vibe-004",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-ia",
+    "difficulty": 2,
+    "scenario": "Una analista de Relecloud ha generado con la experiencia vibe de Power Apps un prototipo funcional de una app de incorporación de empleados y quiere ponerlo a disposición de todo su departamento esta misma semana.",
+    "prompt": "¿Qué enfoque recomienda Microsoft antes de compartir la aplicación?",
+    "options": [
+      { "id": "a", "text": "Tratarla como un punto de partida: revisarla, probarla y validar que cumple los requisitos funcionales, de seguridad y de cumplimiento", "correct": true, "explanation": "Microsoft indica que las apps generadas pueden no reflejar del todo la intención del creador y que este es el responsable último de validarlas antes de usarlas o compartirlas." },
+      { "id": "b", "text": "Compartirla directamente, porque la IA garantiza que cumple las directivas de la organización", "correct": false, "explanation": "La IA no certifica el cumplimiento. Microsoft recomienda revisar el contenido generado y probar la app en el entorno adecuado antes de un uso más amplio." },
+      { "id": "c", "text": "Reconstruirla en Power Apps Studio, porque lo que se genera es solo una maqueta sin datos", "correct": false, "explanation": "La experiencia vibe genera una app funcional con su modelo de datos, y esa app no es de lienzo, así que no se edita en Power Apps Studio." },
+      { "id": "d", "text": "Exportarla a PDF para que el equipo de TI la programe desde cero", "correct": false, "explanation": "La exportación a PDF es una función de los planes para compartir requisitos. Además, vibe ya genera el código de la aplicación." }
+    ],
+    "keyPoint": "Lo que genera la experiencia vibe es un punto de partida: el creador revisa, prueba y valida la app antes de compartirla.",
+    "references": [
+      { "title": "Preguntas frecuentes sobre la experiencia vibe de Power Apps", "url": "https://learn.microsoft.com/es-es/power-apps/maker/common/faq-vibe" },
+      { "title": "Información general sobre la experiencia vibe de Power Apps (versión preliminar)", "url": "https://learn.microsoft.com/es-es/power-apps/vibe/overview" }
+    ],
+    "tags": ["preview"]
   }
 ]

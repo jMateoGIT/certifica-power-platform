@@ -1,1 +1,138 @@
-[]
+[
+  {
+    "id": "caso-1",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "title": "Incidencias de mantenimiento y atención al huésped",
+    "company": "Hoteles Brisamar",
+    "summary": "Una cadena hotelera de costa quiere dejar atrás el papel y el Excel para gestionar las averías de sus hoteles y atender las consultas repetidas de sus huéspedes.",
+    "sections": [
+      {
+        "title": "Contexto",
+        "body": "**Hoteles Brisamar** gestiona catorce hoteles vacacionales en el Mediterráneo y Canarias. Cada hotel tiene su propio equipo de recepción, camareras de piso y mantenimiento, y una dirección de operaciones central supervisa toda la cadena. La empresa ya usa Microsoft 365 (Teams, Outlook y SharePoint)."
+      },
+      {
+        "title": "Situación actual",
+        "body": "Las camareras de piso anotan las averías en un parte de papel que entregan en recepción al final del turno. Recepción las copia en un Excel compartido y llama por teléfono al jefe de mantenimiento cuando algo es urgente, así que muchas averías tardan días en registrarse.\n\nAdemás, recepción contesta cada día decenas de correos de huéspedes que preguntan por el horario del spa, la admisión de mascotas o la hora de salida, aunque esa información ya está publicada en las páginas públicas del sitio web de la cadena."
+      },
+      {
+        "title": "Requisitos",
+        "body": "1. Las camareras de piso deben registrar una incidencia desde el móvil en el momento, con una foto de la avería.\n2. Cuando se registre una incidencia de prioridad *alta*, el jefe de mantenimiento del hotel debe recibir un aviso inmediato en Microsoft Teams.\n3. Los huéspedes deben resolver sus dudas a cualquier hora desde el sitio web, con respuestas basadas en el contenido ya publicado y sin iniciar sesión.\n4. El personal de cada hotel solo debe ver las incidencias de su hotel; la dirección de operaciones debe ver las de toda la cadena.\n5. La empresa no tiene desarrolladores: quiere que el propio personal de operaciones cree y mejore las soluciones, integradas con Microsoft 365."
+      },
+      {
+        "title": "Restricciones técnicas",
+        "body": "Las incidencias se almacenarán en una tabla de **Dataverse** en el entorno de producción de la cadena."
+      }
+    ]
+  },
+  {
+    "id": "caso-2",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "title": "Licencias de ocupación de vía pública",
+    "company": "Ayuntamiento de Robledal del Tajo",
+    "summary": "Un ayuntamiento mediano quiere digitalizar las solicitudes de terrazas, contenedores y mudanzas, y ofrecer a los vecinos un portal y un asistente en línea.",
+    "sections": [
+      {
+        "title": "Contexto",
+        "body": "El **Ayuntamiento de Robledal del Tajo** tramita cada año miles de solicitudes de ocupación de vía pública: terrazas de bares, contenedores de obra y vehículos de mudanza. El departamento de Urbanismo tiene seis funcionarios, y el servicio de Informática, tres técnicos que ya administran Microsoft 365 y Power Platform."
+      },
+      {
+        "title": "Situación actual",
+        "body": "Los vecinos descargan un PDF de la web, lo rellenan a mano y lo entregan en el registro o lo envían por correo. Los funcionarios pasan los datos a un Excel y marcan el estado de cada expediente con colores. El técnico de urbanismo revisa la solicitud y, si la ve correcta, la reenvía por correo a la concejala, que a veces tarda semanas en encontrarla. Las ordenanzas que regulan cada tipo de ocupación están en varios PDF que casi nadie consulta."
+      },
+      {
+        "title": "Requisitos",
+        "body": "1. Los vecinos deben registrarse en un portal web, presentar solicitudes y consultar solo el estado de las suyas.\n2. Cada solicitud la revisa primero el técnico de urbanismo y, solo si él la aprueba, la concejala de Urbanismo; ambos deben poder responder desde Outlook o Teams.\n3. Los funcionarios gestionarán los expedientes (vecino, solicitud, ubicación, tasas) en una aplicación interna que los guíe por unas fases fijas: *Registro → Revisión técnica → Resolución*.\n4. Un asistente en el portal debe responder dudas sobre las ordenanzas, guiar al vecino para pedir cita previa y pasarle con un funcionario si lo pide.\n5. Informática quiere desarrollar y probar los cambios sin afectar al servicio que usan los vecinos."
+      }
+    ]
+  },
+  {
+    "id": "caso-3",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "title": "Entregas en ruta y ERP heredado",
+    "company": "Logística Cierzo",
+    "summary": "Una distribuidora logística necesita conectar su ERP antiguo, digitalizar las entregas en zonas sin cobertura y proteger los datos de sus clientes.",
+    "sections": [
+      {
+        "title": "Contexto",
+        "body": "**Logística Cierzo** distribuye material de ferretería desde dos almacenes del valle del Ebro a cientos de comercios. Tiene sesenta repartidores, un equipo de almacén y un pequeño departamento de Sistemas. Usa Microsoft 365 y dispone de un entorno de producción de Power Platform con Dataverse."
+      },
+      {
+        "title": "Situación actual",
+        "body": "Los albaranes se generan en un ERP de escritorio de hace veinte años que **no tiene API**: cada mañana un administrativo copia a mano los albaranes del día en una hoja de cálculo. Los repartidores llevan los albaranes impresos, los clientes firman en papel y muchas rutas atraviesan zonas rurales sin cobertura móvil. Los procedimientos de almacén están en una biblioteca de SharePoint con permisos distintos por departamento."
+      },
+      {
+        "title": "Requisitos",
+        "body": "1. Cada noche, los albaranes del ERP deben pasarse a Dataverse sin que nadie tenga que estar delante del equipo.\n2. Los repartidores deben registrar la entrega y una foto del albarán firmado aunque no tengan cobertura; los datos se sincronizarán al recuperarla.\n3. Cada cliente puede tener muchas entregas, y cada entrega pertenece a un único cliente.\n4. Ningún flujo ni aplicación debe poder combinar datos de clientes con servicios de consumo, como un almacenamiento personal en la nube o un correo personal.\n5. Un agente en Teams debe responder dudas sobre los procedimientos de almacén y mostrar a cada empleado solo el contenido al que ya tiene acceso."
+      }
+    ]
+  },
+  {
+    "id": "caso-4",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "title": "Historias clínicas, vacunas y citas en línea",
+    "company": "Grupo Veterinario Alcaraván",
+    "summary": "Una red de clínicas veterinarias quiere unificar sus historias clínicas, automatizar los recordatorios de vacunas y permitir que los dueños reserven cita con un agente.",
+    "sections": [
+      {
+        "title": "Contexto",
+        "body": "El **Grupo Veterinario Alcaraván** tiene cinco clínicas con veinticinco veterinarios y auxiliares. La gerente, Lucía, no tiene perfil técnico, pero el grupo dispone de licencias de Microsoft 365 y de un entorno de Power Platform con Dataverse."
+      },
+      {
+        "title": "Situación actual",
+        "body": "Cada clínica guarda las historias clínicas en hojas de Excel distintas y en fichas de papel. Los recordatorios de vacunas se hacen llamando por teléfono cuando alguien se acuerda, y las citas solo se piden por teléfono en horario de apertura. Son frecuentes los errores de datos: pesos negativos, fechas de vacunación mal calculadas…"
+      },
+      {
+        "title": "Requisitos",
+        "body": "1. Lucía quiere describir en lenguaje natural el funcionamiento de la clínica y obtener como punto de partida una propuesta de solución completa: tablas, aplicaciones, flujos y un agente.\n2. Los veterinarios necesitan una aplicación para gestionar dueños, mascotas, consultas y tratamientos relacionados entre sí, con vistas, formularios y gráficos, sin dedicar tiempo a diseñar pantallas.\n3. La fecha de la próxima vacuna debe calcularse sola (un año después de la última) y no debe poder guardarse un peso negativo.\n4. Cada lunes por la mañana, los dueños de las mascotas con vacuna en los siete días siguientes deben recibir un correo de recordatorio.\n5. En la web, un agente debe consultar los huecos libres de la agenda en Dataverse y reservar la cita durante la propia conversación."
+      }
+    ]
+  },
+  {
+    "id": "caso-5",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "title": "Gestión de becas propias",
+    "company": "Universidad de Montecierzo",
+    "summary": "Una universidad quiere automatizar la solicitud de sus becas propias, medir el uso de las soluciones y ofrecer a los estudiantes un asistente en Teams.",
+    "sections": [
+      {
+        "title": "Contexto",
+        "body": "La **Universidad de Montecierzo** concede cada curso becas propias de comedor, transporte y residencia. La Oficina de Becas cuenta con cinco personas sin experiencia en programación. Todos los estudiantes y empleados tienen una cuenta de Microsoft 365 de la universidad y usan Teams a diario."
+      },
+      {
+        "title": "Situación actual",
+        "body": "Los estudiantes envían la solicitud por correo con un documento de Word adjunto. La oficina copia los datos en una lista de SharePoint y contesta a mano para confirmar la recepción. Durante el plazo de solicitud, el buzón recibe cientos de preguntas repetidas sobre requisitos y plazos, y las entrevistas personales con los candidatos se anotan en papel."
+      },
+      {
+        "title": "Requisitos",
+        "body": "1. Los estudiantes rellenarán un formulario de Microsoft Forms; cada respuesta debe crear un elemento en la lista de SharePoint *Solicitudes de beca* y enviar al estudiante un correo de confirmación.\n2. El personal de la Oficina de Becas quiere crear y ajustar sus propios flujos describiendo lo que necesita en lenguaje natural.\n3. Para registrar las entrevistas, la oficina quiere una aplicación de lienzo generada a partir de una descripción de los datos, sin diseñar tablas ni pantallas desde cero.\n4. El Servicio de Informática necesita informes ya preparados sobre usuarios activos, uso, errores y rendimiento de las aplicaciones de lienzo del entorno.\n5. Un agente *Asistente de becas* debe estar disponible para todos los estudiantes en Teams y en Microsoft 365 Copilot, con su cuenta de la universidad."
+      }
+    ]
+  },
+  {
+    "id": "caso-6",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "title": "Calidad en planta y agentes de producción",
+    "company": "Fundiciones Valdeferro",
+    "summary": "Un fabricante industrial quiere automatizar los certificados de calidad de sus proveedores, conectar un agente a su sistema de planta y gobernar los agentes que empiezan a proliferar.",
+    "sections": [
+      {
+        "title": "Contexto",
+        "body": "**Fundiciones Valdeferro** fabrica piezas de fundición para maquinaria agrícola en dos plantas. Tiene un equipo interno de cuatro desarrolladores que programa en React con Visual Studio Code, un departamento de Calidad y un área de Seguridad de la información muy exigente."
+      },
+      {
+        "title": "Situación actual",
+        "body": "Los proveedores envían certificados de calidad en PDF, cada uno con su propio formato, a un buzón compartido. Una técnica de Calidad copia a mano el número de lote, la colada y los resultados de los ensayos en un Excel. El sistema de ejecución de fabricación (MES) de la planta ya publica un **servidor MCP** con herramientas para consultar el estado de las máquinas. Varios departamentos han empezado a crear sus propios agentes sin ningún control central."
+      },
+      {
+        "title": "Requisitos",
+        "body": "1. Extraer automáticamente los datos de los certificados, guardarlos en Dataverse y que una persona revise en una aplicación los documentos cuya extracción sea dudosa.\n2. El agente *Asistente de planta* de Copilot Studio debe consultar el estado de las máquinas mediante el servidor MCP del MES.\n3. Calidad quiere probar el agente con conjuntos de pruebas automatizadas antes de desplegarlo y revisar después sus métricas de uso; Seguridad quiere un registro centralizado de todos los agentes de la organización.\n4. Los desarrolladores quieren crear un panel interno de indicadores con React desde Visual Studio Code, alojado en Power Platform y sujeto a sus directivas.\n5. El director de TI duda entre montar una base de datos SQL tradicional o usar Dataverse para los datos de calidad."
+      }
+    ]
+  }
+]
