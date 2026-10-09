@@ -9,11 +9,11 @@
     "sections": [
       {
         "title": "Contexto",
-        "body": "**Hoteles Brisamar** gestiona catorce hoteles vacacionales en el Mediterráneo y Canarias. Cada hotel tiene su propio equipo de recepción, camareras de piso y mantenimiento, y una dirección de operaciones central supervisa toda la cadena. Ya usa Microsoft 365 (Teams, Outlook y SharePoint)."
+        "body": "**Hoteles Brisamar** gestiona catorce hoteles vacacionales en el Mediterráneo y Canarias. Cada hotel tiene su equipo de recepción, camareras de piso y mantenimiento, y una dirección de operaciones central supervisa la cadena. Todo el personal tiene cuenta de Microsoft 365 (Teams, Outlook y SharePoint)."
       },
       {
         "title": "Situación actual",
-        "body": "Las camareras de piso anotan las averías en un parte de papel que entregan en recepción al final del turno. Recepción las copia en un Excel compartido y avisa por teléfono a mantenimiento si algo es urgente; muchas averías tardan días en registrarse.\n\nAdemás, recepción contesta a diario decenas de correos sobre el horario del spa, las mascotas o la hora de salida, aunque todo eso ya está publicado en el sitio web público de la cadena."
+        "body": "Las camareras de piso anotan las averías en un parte de papel que entregan en recepción al final del turno. Recepción las copia en un Excel compartido y avisa por teléfono a mantenimiento si es urgente; muchas averías tardan días en registrarse.\n\nAdemás, recepción contesta a diario decenas de correos sobre el spa, las mascotas o la hora de salida, aunque todo está publicado en el sitio web público de la cadena."
       },
       {
         "title": "Requisitos",
@@ -21,7 +21,7 @@
       },
       {
         "title": "Restricciones técnicas",
-        "body": "Las incidencias se guardarán en una tabla de **Dataverse** del entorno de producción."
+        "body": "Las incidencias se guardarán en la tabla *Incidencias* de **Dataverse**, en el entorno de producción."
       }
     ]
   },
@@ -61,11 +61,11 @@
       },
       {
         "title": "Situación actual",
-        "body": "Los albaranes se generan en un ERP de escritorio de hace veinte años que **no tiene API**: cada mañana un administrativo copia a mano los albaranes del día en una hoja de cálculo. Los repartidores llevan los albaranes impresos, los clientes firman en papel y muchas rutas atraviesan zonas rurales sin cobertura móvil. Los procedimientos de almacén están en una biblioteca de SharePoint con permisos distintos por departamento."
+        "body": "Los albaranes se generan en un ERP de escritorio de hace veinte años, instalado en un equipo Windows de la oficina, que **no tiene API**: cada mañana un administrativo copia a mano los albaranes del día en una hoja de cálculo. Los repartidores llevan los albaranes impresos, los clientes firman en papel y muchas rutas atraviesan zonas rurales sin cobertura móvil. Los procedimientos de almacén están en una biblioteca de SharePoint con permisos distintos por departamento."
       },
       {
         "title": "Requisitos",
-        "body": "1. Cada noche, los albaranes del ERP deben pasarse a Dataverse sin que nadie tenga que estar delante del equipo.\n2. Los repartidores deben registrar la entrega y una foto del albarán firmado aunque no tengan cobertura; los datos se sincronizarán al recuperarla.\n3. Cada cliente puede tener muchas entregas, y cada entrega pertenece a un único cliente.\n4. Ningún flujo ni aplicación debe poder combinar datos de clientes con servicios de consumo, como un almacenamiento personal en la nube o un correo personal.\n5. Un agente en Teams debe responder dudas sobre los procedimientos de almacén y mostrar a cada empleado solo el contenido al que ya tiene acceso."
+        "body": "1. Cada noche, los albaranes del ERP deben pasarse a Dataverse sin que nadie tenga que estar delante del equipo.\n2. Los repartidores deben registrar la entrega y una foto del albarán firmado aunque no tengan cobertura; los datos se sincronizarán al recuperarla.\n3. En Dataverse habrá una tabla *Cliente* y otra *Entrega*: cada cliente puede tener muchas entregas, y cada entrega pertenece a un único cliente.\n4. Ningún flujo ni aplicación debe poder combinar datos de clientes con servicios de consumo, como un almacenamiento personal en la nube o un correo personal.\n5. Un agente en Teams debe responder dudas sobre los procedimientos de almacén y mostrar a cada empleado solo el contenido al que ya tiene acceso."
       }
     ]
   },
@@ -101,15 +101,15 @@
     "sections": [
       {
         "title": "Contexto",
-        "body": "La **Universidad de Montecierzo** concede cada curso becas propias de comedor, transporte y residencia. La Oficina de Becas cuenta con cinco personas sin experiencia en programación. Todos los estudiantes y empleados tienen una cuenta de Microsoft 365 de la universidad y usan Teams a diario."
+        "body": "La **Universidad de Montecierzo** concede cada curso becas propias de comedor, transporte y residencia. La Oficina de Becas cuenta con cinco personas sin experiencia en programación. Todos los estudiantes y empleados tienen una cuenta de Microsoft 365 de la universidad y usan Teams a diario. La universidad dispone de un entorno de Power Platform con Dataverse."
       },
       {
         "title": "Situación actual",
-        "body": "Los estudiantes envían la solicitud por correo con un documento de Word adjunto. La oficina copia los datos en una lista de SharePoint y contesta a mano para confirmar la recepción. Durante el plazo de solicitud, el buzón recibe cientos de preguntas repetidas sobre requisitos y plazos, y las entrevistas personales con los candidatos se anotan en papel."
+        "body": "Los estudiantes envían la solicitud por correo con un documento de Word adjunto. La oficina copia los datos en una lista de SharePoint y contesta a mano para confirmar la recepción. Durante el plazo, el buzón recibe cientos de preguntas repetidas y las entrevistas con los candidatos se anotan en papel."
       },
       {
         "title": "Requisitos",
-        "body": "1. Los estudiantes rellenarán un formulario de Microsoft Forms; cada respuesta debe crear un elemento en la lista de SharePoint *Solicitudes de beca* y enviar al estudiante un correo de confirmación.\n2. El personal de la Oficina de Becas quiere crear y ajustar sus propios flujos describiendo lo que necesita en lenguaje natural.\n3. Para registrar las entrevistas, la oficina quiere una aplicación de lienzo generada a partir de una descripción de los datos, sin diseñar tablas ni pantallas desde cero.\n4. El Servicio de Informática necesita informes ya preparados sobre usuarios activos, uso, errores y rendimiento de las aplicaciones de lienzo del entorno.\n5. Un agente *Asistente de becas* debe estar disponible para todos los estudiantes en Teams y en Microsoft 365 Copilot, con su cuenta de la universidad."
+        "body": "1. Los estudiantes rellenarán un formulario de Microsoft Forms; cada respuesta debe crear un elemento en la lista de SharePoint *Solicitudes de beca* y enviar al estudiante un correo de confirmación con el número que la lista asigne a su solicitud.\n2. El personal de la Oficina de Becas quiere crear y ajustar sus propios flujos describiendo lo que necesita en lenguaje natural.\n3. Para registrar las entrevistas, la oficina quiere una aplicación de lienzo generada a partir de una descripción de los datos, sin diseñar tablas ni pantallas desde cero.\n4. El Servicio de Informática necesita informes ya preparados sobre usuarios activos, uso, errores y rendimiento de las aplicaciones de lienzo del entorno.\n5. Un agente *Asistente de becas* debe estar disponible para todos los estudiantes en Teams y en Microsoft 365 Copilot, con su cuenta de la universidad."
       }
     ]
   },
@@ -123,15 +123,15 @@
     "sections": [
       {
         "title": "Contexto",
-        "body": "**Fundiciones Valdeferro** fabrica piezas de fundición para maquinaria agrícola en dos plantas. Tiene un equipo interno de cuatro desarrolladores que programa en React con Visual Studio Code, un departamento de Calidad y un área de Seguridad de la información muy exigente."
+        "body": "**Fundiciones Valdeferro** fabrica piezas de fundición para maquinaria agrícola en dos plantas. Tiene cuatro desarrolladores internos que programan en React, un departamento de Calidad y un área de Seguridad de la información muy exigente."
       },
       {
         "title": "Situación actual",
-        "body": "Los proveedores envían certificados de calidad en PDF, cada uno con su propio formato, a un buzón compartido. Una técnica de Calidad copia a mano el número de lote, la colada y los resultados de los ensayos en un Excel. El sistema de ejecución de fabricación (MES) de la planta ya publica un **servidor MCP** con herramientas para consultar el estado de las máquinas. Varios departamentos han empezado a crear sus propios agentes sin ningún control central."
+        "body": "Los proveedores envían certificados de calidad en PDF, cada uno con su propio formato, a un buzón compartido. Una técnica de Calidad copia a mano el lote, la colada y los resultados de los ensayos en un Excel. El sistema de ejecución de fabricación (MES) de la planta ya publica un **servidor MCP** con herramientas para consultar el estado de las máquinas. Varios departamentos han empezado a crear sus propios agentes sin ningún control central."
       },
       {
         "title": "Requisitos",
-        "body": "1. Extraer automáticamente los datos de los certificados, guardarlos en Dataverse y que una persona revise en una aplicación los documentos cuya extracción sea dudosa.\n2. El agente *Asistente de planta* de Copilot Studio debe consultar el estado de las máquinas mediante el servidor MCP del MES.\n3. Calidad quiere probar el agente con conjuntos de pruebas automatizadas antes de desplegarlo y revisar después sus métricas de uso; Seguridad quiere un registro centralizado de todos los agentes de la organización.\n4. Los desarrolladores quieren crear un panel interno de indicadores con React desde Visual Studio Code, alojado en Power Platform y sujeto a sus directivas.\n5. El director de TI duda entre montar una base de datos SQL tradicional o usar Dataverse para los datos de calidad."
+        "body": "1. Extraer automáticamente los datos de los certificados, guardarlos en Dataverse y que una persona revise en una aplicación los documentos cuya extracción sea dudosa.\n2. El agente *Asistente de planta* de Copilot Studio debe consultar el estado de las máquinas mediante el servidor MCP del MES.\n3. Calidad quiere probar el agente con conjuntos de pruebas automatizadas antes de desplegarlo y revisar después sus métricas de uso; Seguridad quiere un registro centralizado de todos los agentes de la organización.\n4. Los desarrolladores quieren crear con React, desde Visual Studio Code, un panel de indicadores para los empleados que se ejecute como una aplicación de Power Apps y respete las directivas de la plataforma.\n5. El director de TI duda entre montar una base de datos SQL tradicional o usar Dataverse para los datos de calidad."
       }
     ]
   }

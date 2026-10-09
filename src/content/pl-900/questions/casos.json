@@ -57,7 +57,7 @@
     "caseId": "caso-1",
     "difficulty": 2,
     "prompt": "Completa la descripción de la solución para el requisito 2.",
-    "template": "Creas un {{b1}} que se inicia con el desencadenador de Dataverse {{b2}} sobre la tabla Incidencias; una condición comprueba la prioridad y, si es alta, una acción del conector {{b3}} envía el aviso al jefe de mantenimiento.",
+    "template": "Creas un {{b1}} que se inicia {{b2}}; una condición comprueba la prioridad y, si es alta, una acción del conector {{b3}} envía el aviso al jefe de mantenimiento.",
     "blanks": [
       {
         "id": "b1",
@@ -72,12 +72,12 @@
       {
         "id": "b2",
         "options": [
-          { "id": "o1", "text": "Periodicidad" },
-          { "id": "o2", "text": "Cuando se agrega, modifica o elimina una fila" },
-          { "id": "o3", "text": "Cuando se envía una nueva respuesta" }
+          { "id": "o1", "text": "cada hora, para revisar las incidencias nuevas" },
+          { "id": "o2", "text": "cuando se agrega una fila a la tabla Incidencias de Dataverse" },
+          { "id": "o3", "text": "cuando se envía una respuesta de Microsoft Forms" }
         ],
         "correctId": "o2",
-        "explanation": "El desencadenador «Cuando se agrega, modifica o elimina una fila» de Dataverse inicia el flujo al crearse una fila en la tabla elegida. «Periodicidad» es el desencadenador de los flujos programados y «Cuando se envía una nueva respuesta» pertenece a Microsoft Forms."
+        "explanation": "El aviso debe salir en cuanto se registra la incidencia, así que el flujo se inicia con un desencadenador de Dataverse que reacciona al agregarse una fila en la tabla Incidencias. Revisar la tabla cada hora no sería inmediato, y las incidencias no llegan desde Microsoft Forms, sino desde la aplicación de las camareras."
       },
       {
         "id": "b3",
@@ -121,9 +121,9 @@
       },
       {
         "id": "b",
-        "text": "Publicar el agente e insertarlo en el sitio web en vivo de la cadena",
+        "text": "Publicar el agente e insertarlo en el sitio web público de la cadena",
         "correct": true,
-        "explanation": "El requisito pide que los huéspedes consulten desde el sitio web. Tras publicar el agente, lo insertas en el sitio web activo; el sitio de demostración solo sirve para pruebas internas."
+        "explanation": "El requisito pide que los huéspedes consulten desde el sitio web. Tras publicar el agente, lo insertas en el sitio web activo de la cadena (canal de sitio web); el sitio de demostración solo sirve para pruebas internas."
       },
       {
         "id": "c",
@@ -179,9 +179,9 @@
       },
       {
         "id": "s2",
-        "text": "A la dirección de operaciones le basta un rol de seguridad con acceso de nivel de organización a la tabla Incidencias para ver las de toda la cadena.",
+        "text": "Un rol de seguridad con privilegio de lectura de nivel de organización sobre la tabla Incidencias permite a la dirección de operaciones ver las de toda la cadena.",
         "answer": true,
-        "explanation": "El nivel de acceso del privilegio (usuario, unidad de negocio, unidad de negocio y sus subordinadas, u organización) define el alcance; el nivel de organización da acceso a todos los registros de la tabla."
+        "explanation": "El nivel de acceso del privilegio (usuario, unidad de negocio, unidad de negocio y sus subordinadas, u organización) define el alcance; el nivel de organización da acceso a todas las filas de la tabla, sea cual sea el hotel."
       },
       {
         "id": "s3",
@@ -317,15 +317,15 @@
     "statements": [
       {
         "id": "s1",
-        "text": "Puedes usar la acción «Iniciar y esperar una aprobación» con el tipo «Aprobación secuencial»: primero el técnico y después la concejala.",
+        "text": "Puedes usar una aprobación secuencial: la solicitud llega primero al técnico y solo pasa a la concejala si él la aprueba.",
         "answer": true,
-        "explanation": "En la aprobación secuencial las solicitudes se piden de una en una y en orden; cada aprobador responde antes de pasar al siguiente, que es la aprobación previa que describe el requisito 2."
+        "explanation": "En la aprobación secuencial los aprobadores responden de uno en uno y en orden, de modo que el técnico da la aprobación previa antes de que la concejala decida, justo lo que describe el requisito 2."
       },
       {
         "id": "s2",
-        "text": "El tipo «Aprobar/Rechazar: el primero en responder», con el técnico y la concejala como aprobadores, cumple el requisito.",
+        "text": "Una única aprobación enviada a la vez al técnico y a la concejala, que se complete con la primera respuesta, cumple el requisito.",
         "answer": false,
-        "explanation": "Con ese tipo ambos reciben la solicitud a la vez y la respuesta de cualquiera la completa, de modo que la concejala podría resolver sin la revisión previa del técnico."
+        "explanation": "En una aprobación del tipo «el primero en responder» ambos reciben la solicitud a la vez y la respuesta de cualquiera la completa, de modo que la concejala podría resolver sin la revisión previa del técnico."
       },
       {
         "id": "s3",
@@ -423,10 +423,10 @@
         "options": [
           { "id": "o1", "text": "producción" },
           { "id": "o2", "text": "desarrollo" },
-          { "id": "o3", "text": "prueba (trial)" }
+          { "id": "o3", "text": "predeterminado" }
         ],
         "correctId": "o2",
-        "explanation": "Separar los entornos permite trabajar sin afectar a los vecinos: se desarrolla en un entorno de desarrollo y solo lo validado llega a producción. Un entorno de prueba (*trial*) es temporal y no está pensado para el ciclo de vida de una solución."
+        "explanation": "Separar los entornos permite trabajar sin afectar a los vecinos: se desarrolla en un entorno de desarrollo y solo lo validado llega a producción. Desarrollar en producción afectaría al servicio, y el entorno predeterminado lo comparten todos los usuarios del inquilino, por lo que no es adecuado para el ciclo de vida de una solución."
       },
       {
         "id": "b2",
@@ -560,9 +560,9 @@
       },
       {
         "id": "s4",
-        "text": "En modo desatendido, conviene dejar una sesión de Windows iniciada y bloqueada en el equipo con Windows 11.",
+        "text": "En modo desatendido, alguien debe dejar cada noche una sesión de Windows iniciada y bloqueada en el equipo del ERP.",
         "answer": false,
-        "explanation": "Es al revés: en Windows 10 y 11 no se puede ejecutar un flujo desatendido si hay alguna sesión de usuario activa, aunque esté bloqueada."
+        "explanation": "Es al revés: Power Automate crea la sesión de Windows, ejecuta el flujo y la cierra. Una sesión de usuario activa, aunque esté bloqueada, impide la ejecución desatendida en Windows 10 y 11."
       }
     ],
     "keyPoint": "Sin API → flujo de escritorio; sin supervisión → modo desatendido iniciado desde un flujo de nube.",
@@ -649,7 +649,7 @@
           { "id": "o2", "text": "Entrega" }
         ],
         "correctId": "o2",
-        "explanation": "En una relación 1:N la referencia se guarda en la tabla del lado «varios»: cada fila de Entrega indica a qué cliente pertenece."
+        "explanation": "En una relación 1:N la columna de búsqueda se crea en la tabla relacionada (la del lado «varios», también llamada secundaria): cada fila de Entrega guarda a qué cliente pertenece. La tabla principal, Cliente, no recibe ninguna columna nueva; desde ella se ven sus entregas como filas relacionadas."
       },
       {
         "id": "b3",
@@ -662,11 +662,11 @@
         "explanation": "Las relaciones 1:N se materializan con una columna de búsqueda (*lookup*), que vincula la fila con una fila de otra tabla. Una columna de elección solo ofrece una lista fija de valores y el texto no mantiene el vínculo."
       }
     ],
-    "keyPoint": "Relación 1:N = columna de búsqueda en la tabla del lado «varios».",
+    "keyPoint": "Relación 1:N = columna de búsqueda en la tabla relacionada, la del lado «varios» (aquí, Entrega).",
     "references": [
       {
-        "title": "Crear y editar relaciones de uno a varios o varios a uno",
-        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/create-edit-1n-relationships-portal"
+        "title": "Crear y editar relaciones entre tablas",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/create-edit-entity-relationships"
       },
       {
         "title": "Usar la columna de búsqueda en una fila",
@@ -895,9 +895,9 @@
       },
       {
         "id": "s3",
-        "text": "Una regla de negocio que muestra u oculta columnas funciona igual en una aplicación de lienzo que en un formulario de una aplicación basada en modelos.",
+        "text": "Un veterinario puede sobrescribir a mano en el formulario la fecha que calcula la columna de fórmula.",
         "answer": false,
-        "explanation": "Mostrar u ocultar columnas y habilitarlas o deshabilitarlas solo está disponible en las reglas de ámbito de formulario de las aplicaciones basadas en modelos, no en las de lienzo."
+        "explanation": "Una columna de fórmula muestra un valor calculado a partir de su fórmula, no un dato que se escriba; por eso la próxima vacuna se calcula sola, como pide el requisito 3, y cambia solo si cambia la fecha de la última."
       },
       {
         "id": "s4",
@@ -931,23 +931,23 @@
     "items": [
       {
         "id": "p1",
-        "text": "Desencadenador «Periodicidad» configurado para los lunes por la mañana",
-        "explanation": "Va primero porque es lo que inicia el flujo: un flujo programado se ejecuta según una periodicidad, sin esperar a ningún evento."
+        "text": "Desencadenador de periodicidad configurado para los lunes por la mañana",
+        "explanation": "Va primero porque es lo que inicia el flujo: un flujo programado se ejecuta según una periodicidad (cada lunes), sin esperar a ningún evento."
       },
       {
         "id": "p2",
-        "text": "Acción de Dataverse «Enumerar filas» filtrada por las vacunas de los siete días siguientes",
-        "explanation": "Una vez iniciado, el flujo debe obtener las mascotas afectadas; «Enumerar filas» recupera de una tabla las filas que cumplen un filtro."
+        "text": "Acción de Dataverse que obtiene las mascotas con vacuna en los siete días siguientes",
+        "explanation": "Una vez iniciado, el flujo debe obtener las mascotas afectadas: una acción de Dataverse recupera de la tabla las filas que cumplen un filtro."
       },
       {
         "id": "p3",
-        "text": "Bucle «Aplicar a cada uno» sobre las filas obtenidas",
-        "explanation": "La consulta devuelve varias filas, así que el flujo las recorre una a una para procesar cada mascota."
+        "text": "Bucle que recorre una a una las filas obtenidas",
+        "explanation": "Solo puede ir después de la consulta, porque recorre sus resultados: como devuelve varias filas, el flujo procesa cada mascota por separado."
       },
       {
         "id": "p4",
         "text": "Acción de Office 365 Outlook para enviar el correo de recordatorio al dueño",
-        "explanation": "Va al final y dentro del bucle: para cada mascota se envía un correo personalizado a su dueño con los datos obtenidos."
+        "explanation": "Va al final y dentro del bucle: para cada mascota se envía un correo personalizado a su dueño con los datos que ha obtenido la consulta."
       }
     ],
     "keyPoint": "Flujo programado: periodicidad → obtener datos → recorrerlos → actuar sobre cada elemento.",
@@ -975,13 +975,13 @@
     "options": [
       {
         "id": "a",
-        "text": "Tener el desencadenador «Cuando un agente llama al flujo» y la acción «Responder al agente», y estar publicado",
+        "text": "Iniciarse cuando el agente lo llama y devolverle el resultado en tiempo real, dentro de la misma conversación",
         "correct": true,
-        "explanation": "Solo los flujos con ese desencadenador y esa acción, configurados para responder en tiempo real y publicados, se pueden agregar como herramienta, ya sea a nivel de agente o de tema."
+        "explanation": "Un flujo de agente que se usa como herramienta lo invoca el agente durante la conversación, recibe datos (por ejemplo, el día pedido), consulta o crea filas en Dataverse y responde al agente con el resultado, como los huecos libres o la cita reservada. Además, debe estar publicado."
       },
       {
         "id": "b",
-        "text": "Usar el desencadenador «Periodicidad» para revisar la agenda cada pocos minutos",
+        "text": "Ejecutarse de forma programada cada pocos minutos para revisar la agenda",
         "correct": false,
         "explanation": "Un flujo programado se ejecuta por su cuenta y no puede devolver resultados al agente durante la conversación, que es lo que pide el requisito."
       },
@@ -993,12 +993,12 @@
       },
       {
         "id": "d",
-        "text": "Usar el desencadenador de Microsoft Forms «Cuando se envía una nueva respuesta»",
+        "text": "Iniciarse cuando el dueño envíe un formulario de Microsoft Forms con la cita deseada",
         "correct": false,
-        "explanation": "Ese desencadenador reacciona a formularios de Forms; el agente no podría invocarlo ni recibir su respuesta."
+        "explanation": "Un flujo iniciado por Forms reacciona a formularios, no a la conversación: el agente no podría invocarlo ni recibir su respuesta para reservar la cita en el momento."
       }
     ],
-    "keyPoint": "Flujo de agente como herramienta: desencadenador «Cuando un agente llama al flujo» + «Responder al agente».",
+    "keyPoint": "Flujo de agente como herramienta: el agente lo llama durante la conversación y el flujo le devuelve el resultado.",
     "references": [
       {
         "title": "Añadir un flujo de agente como herramienta a un agente",
@@ -1019,26 +1019,26 @@
     "items": [
       {
         "id": "p1",
-        "text": "Desencadenador de Microsoft Forms «Cuando se envía una nueva respuesta»",
-        "explanation": "Es el único desencadenador del conector de Forms e inicia el flujo cada vez que un estudiante envía el formulario."
+        "text": "Desencadenador de Microsoft Forms que se activa al enviarse una nueva respuesta",
+        "explanation": "Va primero porque inicia el flujo automatizado cada vez que un estudiante envía el formulario."
       },
       {
         "id": "p2",
-        "text": "Acción de Forms «Obtener detalles de la respuesta»",
-        "explanation": "El desencadenador solo aporta el identificador de la respuesta; esta acción extrae las respuestas como contenido dinámico para los pasos siguientes."
+        "text": "Acción de Forms que obtiene los detalles de esa respuesta",
+        "explanation": "El desencadenador solo aporta el identificador de la respuesta; esta acción recupera lo que ha contestado el estudiante para usarlo en los pasos siguientes."
       },
       {
         "id": "p3",
-        "text": "Acción de SharePoint «Crear elemento» en la lista Solicitudes de beca",
-        "explanation": "Con los datos ya disponibles, se crea el elemento en la lista, que sustituye a la copia manual que hace hoy la oficina."
+        "text": "Acción de SharePoint que crea un elemento en la lista Solicitudes de beca",
+        "explanation": "Necesita los datos de la respuesta, así que va después de obtenerlos; crea el elemento que sustituye a la copia manual que hace hoy la oficina."
       },
       {
         "id": "p4",
         "text": "Acción de Office 365 Outlook para enviar el correo de confirmación al estudiante",
-        "explanation": "Va al final para confirmar al estudiante que su solicitud ya está registrada en la lista."
+        "explanation": "Va al final porque el correo incluye el número que la lista asigna a la solicitud, y ese número solo existe después de crear el elemento."
       }
     ],
-    "keyPoint": "Forms + Power Automate: «Cuando se envía una nueva respuesta» → «Obtener detalles de la respuesta» → acciones.",
+    "keyPoint": "Forms + Power Automate: el desencadenador solo trae el identificador; primero obtienes los detalles de la respuesta y luego actúas con ellos.",
     "references": [
       {
         "title": "Descripción general de los flujos de Microsoft Forms",
@@ -1075,18 +1075,18 @@
       },
       {
         "id": "s3",
-        "text": "Copilot no puede explicar qué hace un flujo que ya existe.",
-        "answer": false,
-        "explanation": "Puedes preguntarle «¿Qué hace mi flujo?» y obtener un resumen; también responde preguntas sobre el producto."
+        "text": "Copilot puede resumir qué hace un flujo que ya existe.",
+        "answer": true,
+        "explanation": "Puedes preguntarle qué hace tu flujo y obtener un resumen; también responde preguntas sobre el producto, algo útil para un personal sin experiencia en programación."
       },
       {
         "id": "s4",
-        "text": "Copilot está optimizado para el español, por lo que nunca mostrará partes de la experiencia en inglés.",
+        "text": "Copilot crea y activa el flujo sin que la persona tenga que revisar la propuesta ni las conexiones.",
         "answer": false,
-        "explanation": "Copilot está optimizado para el inglés y tiene compatibilidad limitada con otros idiomas, así que algunas partes pueden aparecer en inglés."
+        "explanation": "Copilot propone el desencadenador y las acciones, pero la persona revisa la propuesta, comprueba que las conexiones están bien configuradas y crea el flujo; después conviene probarlo antes de usarlo."
       }
     ],
-    "keyPoint": "Copilot en flujos de nube crea, modifica y explica flujos a partir de lenguaje natural (optimizado para inglés).",
+    "keyPoint": "Copilot en flujos de nube crea, modifica y explica flujos a partir de lenguaje natural; la persona revisa y prueba el resultado.",
     "references": [
       {
         "title": "Crear un flujo de nube con Copilot",
@@ -1107,9 +1107,9 @@
     "options": [
       {
         "id": "a",
-        "text": "En la página principal de Power Apps, elegir empezar con datos, crear datos nuevos y describir a Copilot la información de las entrevistas",
+        "text": "Describir a Copilot en Power Apps, en lenguaje natural, qué información de las entrevistas quiere registrar",
         "correct": true,
-        "explanation": "Copilot en Power Apps genera a partir de la descripción una o varias tablas de Dataverse y, tras revisarlas, crea con ellas la aplicación de lienzo, sin diseñar tablas ni pantallas desde cero."
+        "explanation": "Copilot en Power Apps genera a partir de la descripción una o varias tablas de Dataverse con sus relaciones y, después de que la oficina las revise, crea con ellas la aplicación de lienzo, sin diseñar tablas ni pantallas desde cero."
       },
       {
         "id": "b",
@@ -1196,7 +1196,7 @@
     "caseId": "caso-5",
     "difficulty": 2,
     "prompt": "Completa los pasos para cumplir el requisito 5.",
-    "template": "Publicas el agente y lo conectas al canal {{b1}}; mantienes la opción de autenticación {{b2}} y, para que todos los estudiantes lo encuentren en la sección «Creado por su organización» de la tienda de Teams, {{b3}}.",
+    "template": "Publicas el agente y lo conectas al canal {{b1}}; mantienes la opción de autenticación {{b2}} y, para que todos los estudiantes lo encuentren en la tienda de aplicaciones de Teams de la universidad, {{b3}}.",
     "blanks": [
       {
         "id": "b1",
@@ -1225,7 +1225,7 @@
           { "id": "o3", "text": "lo vuelves a crear en cada equipo de Teams" }
         ],
         "correctId": "o1",
-        "explanation": "Para que aparezca en la sección «Creado por su organización» de la tienda de Teams, el agente se envía para aprobación del administrador. La URL de demostración no es para producción y no hace falta recrear el agente."
+        "explanation": "Para mostrar el agente a toda la organización en la tienda de Teams (y en la de agentes de Microsoft 365), lo envías para que lo apruebe el administrador. La URL de demostración no es para producción y no hace falta recrear el agente."
       }
     ],
     "keyPoint": "Usuarios internos → canal Teams y Microsoft 365 con «Autenticar con Microsoft»; para toda la organización, aprobación del administrador.",
@@ -1298,17 +1298,17 @@
     "caseId": "caso-6",
     "difficulty": 3,
     "prompt": "Completa la configuración del agente para cumplir el requisito 2.",
-    "template": "Conectas el agente al servidor MCP del MES con {{b1}}; para que el agente use sus herramientas, debe tener activada la {{b2}}; y cuando el MES publique una herramienta nueva, {{b3}}.",
+    "template": "Conectas el agente al MES agregando {{b1}}; para que el agente use sus herramientas, debe tener activada la {{b2}}; y cuando el MES publique una herramienta nueva, {{b3}}.",
     "blanks": [
       {
         "id": "b1",
         "options": [
-          { "id": "o1", "text": "el asistente de incorporación de MCP" },
+          { "id": "o1", "text": "su servidor MCP como herramienta del agente" },
           { "id": "o2", "text": "un origen de conocimiento de sitio web público" },
-          { "id": "o3", "text": "un flujo de escritorio" }
+          { "id": "o3", "text": "un flujo de escritorio que lea la pantalla del MES" }
         ],
         "correctId": "o1",
-        "explanation": "El asistente de incorporación de MCP conecta el agente a un servidor MCP existente y agrega sus herramientas y recursos. Un sitio web público solo aporta contenido para responder y un flujo de escritorio no habla con servidores MCP."
+        "explanation": "En Copilot Studio puedes conectar el agente a un servidor MCP existente como herramienta, y el agente obtiene así sus herramientas y recursos. Un sitio web público solo aporta contenido para responder, y un flujo de escritorio sería una solución frágil cuando el MES ya ofrece un servidor MCP."
       },
       {
         "id": "b2",
@@ -1331,7 +1331,7 @@
         "explanation": "Las herramientas que publica un servidor MCP conectado están disponibles automáticamente, y Copilot Studio refleja de forma dinámica las altas, cambios y bajas en el servidor."
       }
     ],
-    "keyPoint": "MCP: conexión con el asistente, orquestación generativa obligatoria y herramientas que se actualizan solas.",
+    "keyPoint": "Servidor MCP = herramienta del agente; requiere orquestación generativa y sus herramientas se actualizan solas.",
     "references": [
       {
         "title": "Extender el agente con el protocolo de contexto de modelo (MCP)",
@@ -1425,7 +1425,7 @@
         "id": "d",
         "text": "Un sitio de Power Pages",
         "correct": false,
-        "explanation": "Power Pages está orientado a sitios web para usuarios externos; el requisito pide un panel interno para empleados."
+        "explanation": "Power Pages crea sitios web orientados sobre todo a usuarios externos; el requisito 4 pide un panel para empleados que se ejecute como una aplicación de Power Apps."
       }
     ],
     "keyPoint": "Desarrolladores con React y un IDE que quieren alojar y gobernar su aplicación en Power Platform → aplicaciones de código.",
