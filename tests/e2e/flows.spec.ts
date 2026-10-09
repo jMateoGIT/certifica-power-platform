@@ -63,3 +63,25 @@ test('progreso y rutas profundas cargan', async ({ page }) => {
   await page.goto('./no-existe')
   await expect(page.getByText('Página no encontrada')).toBeVisible()
 })
+
+test('casos prácticos: listado, contexto del caso y corrección', async ({ page }) => {
+  await page.goto('./pl-900/casos')
+  await expect(page.getByRole('heading', { name: 'Casos prácticos', level: 1 })).toBeVisible()
+  await page.getByRole('button', { name: /Empezar caso/ }).first().click()
+  // El contexto del caso se muestra junto a la pregunta y se puede plegar.
+  const context = page.getByRole('button', { name: /Caso práctico/ })
+  await expect(context).toHaveAttribute('aria-expanded', 'true')
+  await expect(page.getByRole('heading', { name: 'Contexto' })).toBeVisible()
+  await context.click()
+  await expect(context).toHaveAttribute('aria-expanded', 'false')
+  await expect(page.getByText(/^1\/\d+$/)).toBeVisible()
+})
+
+test('el simulacro completo termina con un caso práctico', async ({ page }) => {
+  await page.goto('./pl-900/simulacro')
+  await page.getByRole('button', { name: /Empezar simulacro/ }).click()
+  await expect(page.getByText('Pregunta 1 de 45')).toBeVisible()
+  await page.getByRole('button', { name: /Revisar/ }).click()
+  await page.getByRole('button', { name: /^Pregunta 45/ }).click()
+  await expect(page.getByRole('button', { name: /Caso práctico/ })).toBeVisible()
+})

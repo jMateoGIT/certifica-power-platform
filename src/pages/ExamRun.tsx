@@ -97,7 +97,7 @@ export function ExamRun() {
             {answeredCount}/{total} respondidas
           </div>
           <div className="ml-auto flex gap-2">
-            <Button variant="secondary" size="sm" onClick={() => setShowGrid((s) => !s)} aria-expanded={showGrid}>
+            <Button variant="secondary" size="sm" onClick={() => setShowGrid((s) => !s)} aria-expanded={showGrid} aria-label={`Revisar preguntas (${idx + 1} de ${total})`}>
               <LayoutGrid size={15} /> <span className="hidden sm:inline">Revisar</span> {idx + 1}/{total}
             </Button>
             <Button size="sm" onClick={() => setConfirming(true)}>

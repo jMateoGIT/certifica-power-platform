@@ -9,11 +9,11 @@
     "sections": [
       {
         "title": "Contexto",
-        "body": "**Hoteles Brisamar** gestiona catorce hoteles vacacionales en el Mediterráneo y Canarias. Cada hotel tiene su propio equipo de recepción, camareras de piso y mantenimiento, y una dirección de operaciones central supervisa toda la cadena. La empresa ya usa Microsoft 365 (Teams, Outlook y SharePoint)."
+        "body": "**Hoteles Brisamar** gestiona catorce hoteles vacacionales en el Mediterráneo y Canarias. Cada hotel tiene su propio equipo de recepción, camareras de piso y mantenimiento, y una dirección de operaciones central supervisa toda la cadena. Ya usa Microsoft 365 (Teams, Outlook y SharePoint)."
       },
       {
         "title": "Situación actual",
-        "body": "Las camareras de piso anotan las averías en un parte de papel que entregan en recepción al final del turno. Recepción las copia en un Excel compartido y llama por teléfono al jefe de mantenimiento cuando algo es urgente, así que muchas averías tardan días en registrarse.\n\nAdemás, recepción contesta cada día decenas de correos de huéspedes que preguntan por el horario del spa, la admisión de mascotas o la hora de salida, aunque esa información ya está publicada en las páginas públicas del sitio web de la cadena."
+        "body": "Las camareras de piso anotan las averías en un parte de papel que entregan en recepción al final del turno. Recepción las copia en un Excel compartido y avisa por teléfono a mantenimiento si algo es urgente; muchas averías tardan días en registrarse.\n\nAdemás, recepción contesta a diario decenas de correos sobre el horario del spa, las mascotas o la hora de salida, aunque todo eso ya está publicado en el sitio web público de la cadena."
       },
       {
         "title": "Requisitos",
@@ -21,7 +21,7 @@
       },
       {
         "title": "Restricciones técnicas",
-        "body": "Las incidencias se almacenarán en una tabla de **Dataverse** en el entorno de producción de la cadena."
+        "body": "Las incidencias se guardarán en una tabla de **Dataverse** del entorno de producción."
       }
     ]
   },
