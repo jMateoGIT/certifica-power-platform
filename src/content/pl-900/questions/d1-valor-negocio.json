@@ -1081,20 +1081,20 @@
     "domain": "d1",
     "skill": "d1-apps-automate",
     "difficulty": 2,
-    "scenario": "Una aseguradora quiere mejorar la tramitación de siniestros con Power Automate. Primero necesita averiguar en qué pasos se acumulan los retrasos a partir de los registros de eventos de su sistema de gestión. Después quiere automatizar los avisos entre Outlook, Teams y SharePoint y, por último, la introducción de datos en una aplicación de escritorio antigua que no tiene API.",
+    "scenario": "Una aseguradora quiere mejorar la tramitación de siniestros con Power Automate. Necesita que un responsable apruebe o rechace los siniestros de importe elevado, que los avisos entre Outlook, Teams y SharePoint se envíen solos y que los datos se introduzcan en una aplicación de escritorio antigua que no tiene API.",
     "prompt": "Completa la frase con la capacidad de Power Automate adecuada para cada objetivo.",
-    "template": "Para descubrir los cuellos de botella del proceso a partir de los datos de eventos usas {{b1}}; para automatizar los avisos entre los servicios en la nube usas {{b2}}; y para automatizar la aplicación de escritorio sin API usas {{b3}}.",
+    "template": "Para que el responsable apruebe o rechace los siniestros de importe elevado, el flujo usa {{b1}}; para automatizar los avisos entre los servicios en la nube usas {{b2}}; y para automatizar la aplicación de escritorio sin API usas {{b3}}.",
     "blanks": [
       {
         "id": "b1",
         "options": [
           {
             "id": "o1",
-            "text": "la minería de procesos"
+            "text": "la acción Iniciar y esperar una aprobación"
           },
           {
             "id": "o2",
-            "text": "un flujo de nube"
+            "text": "la minería de procesos"
           },
           {
             "id": "o3",
@@ -1102,52 +1102,52 @@
           }
         ],
         "correctId": "o1",
-        "explanation": "La minería de procesos (*process mining*) de Power Automate extrae los datos de eventos del sistema de registro y muestra cómo se ejecuta realmente el proceso, para localizar cuellos de botella e ineficiencias antes de automatizar. Los flujos de nube y de escritorio ejecutan tareas, pero no analizan el proceso."
+        "explanation": "La capacidad de aprobaciones de Power Automate añade la decisión humana al flujo: la acción Iniciar y esperar una aprobación envía la solicitud al responsable, que la aprueba o rechaza desde el correo, el centro de aprobaciones o la aplicación de Power Automate, y el flujo continúa según su respuesta. La minería de procesos analiza cómo se ejecuta un proceso, pero no pide aprobaciones, y un flujo de escritorio automatiza interfaces de usuario, no recoge decisiones."
       },
       {
         "id": "b2",
         "options": [
           {
             "id": "o1",
-            "text": "la minería de procesos"
-          },
-          {
-            "id": "o2",
             "text": "un flujo de nube"
           },
           {
-            "id": "o3",
+            "id": "o2",
             "text": "un flujo de escritorio"
+          },
+          {
+            "id": "o3",
+            "text": "la minería de procesos"
           }
         ],
-        "correctId": "o2",
-        "explanation": "Los flujos de nube (*cloud flows*) conectan aplicaciones y servicios mediante conectores y se desencadenan por un evento, a mano o según una programación, justo lo que necesitan los avisos entre Outlook, Teams y SharePoint. No hace falta un flujo de escritorio porque estos servicios ya tienen conector."
+        "correctId": "o1",
+        "explanation": "Los flujos de nube (*cloud flows*) conectan aplicaciones y servicios mediante conectores y se desencadenan por un evento, a mano o según una programación, justo lo que necesitan los avisos entre Outlook, Teams y SharePoint. No hace falta un flujo de escritorio porque estos servicios ya tienen conector, y la minería de procesos no ejecuta acciones."
       },
       {
         "id": "b3",
         "options": [
           {
             "id": "o1",
-            "text": "la minería de procesos"
-          },
-          {
-            "id": "o2",
             "text": "un flujo de nube"
           },
           {
-            "id": "o3",
+            "id": "o2",
             "text": "un flujo de escritorio"
+          },
+          {
+            "id": "o3",
+            "text": "la minería de procesos"
           }
         ],
-        "correctId": "o3",
-        "explanation": "Los flujos de escritorio (*desktop flows*) aportan la automatización robótica de procesos (*robotic process automation*, RPA): reproducen las acciones de una persona en aplicaciones de escritorio o web, por lo que sirven cuando no hay API ni conector. Un flujo de nube necesitaría un conector que esta aplicación no tiene."
+        "correctId": "o2",
+        "explanation": "Los flujos de escritorio (*desktop flows*) aportan la automatización robótica de procesos (*robotic process automation*, RPA): reproducen las acciones de una persona en aplicaciones de escritorio o web, por lo que sirven cuando no hay API ni conector. Un flujo de nube necesitaría un conector que esta aplicación no tiene, y la minería de procesos solo analiza el proceso, no lo ejecuta."
       }
     ],
-    "keyPoint": "Power Automate cubre todo el ciclo: descubrir con la minería de procesos, automatizar servicios en la nube con flujos de nube y aplicaciones sin API con flujos de escritorio (RPA).",
+    "keyPoint": "Power Automate añade decisiones humanas con las aprobaciones, conecta servicios en la nube con flujos de nube y automatiza aplicaciones sin API con flujos de escritorio (RPA).",
     "references": [
       {
-        "title": "Información general de la minería de procesos",
-        "url": "https://learn.microsoft.com/es-es/power-automate/process-mining-overview"
+        "title": "Comience con las aprobaciones",
+        "url": "https://learn.microsoft.com/es-es/power-automate/get-started-approvals"
       },
       {
         "title": "¿Qué es Power Automate?",
