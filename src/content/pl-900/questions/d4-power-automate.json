@@ -722,7 +722,7 @@
     "references": [
       {
         "title": "Guía de referencia de funciones de expresiones de flujos de trabajo (Azure Logic Apps y Power Automate)",
-        "url": "https://learn.microsoft.com/es-es/azure/logic-apps/workflow-definition-language-functions-reference"
+        "url": "https://learn.microsoft.com/es-es/azure/logic-apps/expression-functions-reference"
       }
     ]
   },
@@ -781,7 +781,7 @@
     "references": [
       {
         "title": "Guía de referencia de funciones de expresiones de flujos de trabajo (Azure Logic Apps y Power Automate)",
-        "url": "https://learn.microsoft.com/es-es/azure/logic-apps/workflow-definition-language-functions-reference"
+        "url": "https://learn.microsoft.com/es-es/azure/logic-apps/expression-functions-reference"
       }
     ]
   },
@@ -1648,6 +1648,55 @@
       {
         "title": "Información general de AI Builder",
         "url": "https://learn.microsoft.com/es-es/ai-builder/overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-conectores-002",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "difficulty": 1,
+    "prompt": "¿Qué dos tipos de operaciones puede exponer un conector? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Formularios",
+        "correct": false,
+        "explanation": "Los formularios son componentes de las aplicaciones basadas en modelos para ver y editar filas; no son operaciones de un conector."
+      },
+      {
+        "id": "b",
+        "text": "Desencadenadores (*triggers*)",
+        "correct": true,
+        "explanation": "Un desencadenador inicia un flujo cuando ocurre un evento en el servicio, como la llegada de un correo o la creación de un archivo."
+      },
+      {
+        "id": "c",
+        "text": "Vistas",
+        "correct": false,
+        "explanation": "Las vistas son listas de filas de una tabla de Dataverse; no forman parte de la definición de un conector."
+      },
+      {
+        "id": "d",
+        "text": "Roles de seguridad",
+        "correct": false,
+        "explanation": "Los roles de seguridad controlan permisos en Dataverse; un conector no los expone."
+      },
+      {
+        "id": "e",
+        "text": "Acciones (*actions*)",
+        "correct": true,
+        "explanation": "Una acción realiza una operación en el servicio cuando se invoca, como enviar un correo o crear una fila."
+      }
+    ],
+    "keyPoint": "Los conectores ofrecen desencadenadores (inician flujos) y acciones (hacen algo).",
+    "references": [
+      {
+        "title": "Información general sobre conectores",
+        "url": "https://learn.microsoft.com/es-es/connectors/overview"
       }
     ]
   }

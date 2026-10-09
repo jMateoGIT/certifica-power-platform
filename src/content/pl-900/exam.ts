@@ -1,12 +1,11 @@
 import type { ExamDefinition } from '../schema'
 
 /**
- * Temario de PL-900 vigente desde el 24/07/2026.
- *
- * Los pesos de los dominios 1–4 están confirmados en la guía de estudio oficial.
- * El dominio 5 (agentes en Copilot Studio) y el desglose de sub-habilidades se
- * han reconstruido a partir de fuentes secundarias y del temario anterior:
- * revisar contra https://learn.microsoft.com/credentials/certifications/resources/study-guides/pl-900
+ * Temario oficial de PL-900 vigente desde el 24/07/2026
+ * (https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/pl-900).
+ * La guía en español de Microsoft Learn aún muestra el temario anterior, así que los
+ * nombres son traducción propia de la versión en inglés. Las sub-habilidades agrupan
+ * los puntos oficiales de cada área.
  */
 export const pl900: ExamDefinition = {
   code: 'PL-900',
@@ -18,7 +17,7 @@ export const pl900: ExamDefinition = {
     'Valida los conocimientos básicos de Power Platform: valor de negocio, administración del entorno y Dataverse, Power Apps, Power Automate y agentes de Copilot Studio.',
   outlineVersion: '2026-07-24',
   outlineNote:
-    'Las sub-habilidades se han reconstruido a partir de la guía oficial y fuentes secundarias. Consulta siempre la guía de estudio oficial antes del examen.',
+    'Temario verificado con la guía de estudio oficial (versión en inglés del 24/07/2026). La versión en español de Microsoft Learn aún no está actualizada.',
   durationMinutes: 45,
   questionCount: 45,
   passingScore: 700,
@@ -32,23 +31,24 @@ export const pl900: ExamDefinition = {
       icon: 'Briefcase',
       color: '#7c5cff',
       skills: [
-        { id: 'd1-servicios', name: 'Valor de negocio de los servicios de Power Platform' },
-        { id: 'd1-integracion', name: 'Integración con Microsoft 365, Teams, Dynamics 365 y Azure' },
-        { id: 'd1-ia', name: 'Capacidades de IA y Copilot en Power Platform' },
+        { id: 'd1-apps-automate', name: 'Valor de Power Apps y Power Automate' },
+        { id: 'd1-datos', name: 'Valor de Dataverse y de los conectores' },
+        { id: 'd1-ia', name: 'Valor de Power Pages, la IA generativa y Copilot Studio' },
       ],
     },
     {
       id: 'd2',
-      name: 'Gestionar el entorno de Microsoft Power Platform',
+      name: 'Administrar el entorno de Microsoft Power Platform',
       shortName: 'Entorno y Dataverse',
       weight: [20, 25],
       icon: 'Database',
       color: '#0f9d8a',
       skills: [
-        { id: 'd2-entornos', name: 'Entornos, soluciones y centro de administración' },
-        { id: 'd2-gobierno', name: 'Seguridad, gobierno y directivas de datos (DLP)' },
-        { id: 'd2-dataverse', name: 'Microsoft Dataverse: tablas, columnas, relaciones y lógica' },
-        { id: 'd2-conectores', name: 'Conectores: estándar, premium y personalizados' },
+        { id: 'd2-dataverse', name: 'Dataverse frente a bases de datos tradicionales; tablas, columnas y relaciones' },
+        { id: 'd2-dataverse-logica', name: 'Formularios, vistas, lógica de negocio (con Power Fx) e IA para crear tablas' },
+        { id: 'd2-entornos', name: 'Entornos y ALM con canalizaciones (pipelines)' },
+        { id: 'd2-seguridad', name: 'Modelo de seguridad, privacidad de datos y accesibilidad' },
+        { id: 'd2-supervision', name: 'Supervisión y análisis' },
       ],
     },
     {
@@ -59,10 +59,10 @@ export const pl900: ExamDefinition = {
       icon: 'AppWindow',
       color: '#a3369a',
       skills: [
-        { id: 'd3-lienzo', name: 'Capacidades de las aplicaciones de lienzo' },
-        { id: 'd3-lienzo-crear', name: 'Crear y compartir aplicaciones de lienzo (Power Fx, controles, Copilot)' },
-        { id: 'd3-modelos', name: 'Capacidades de las aplicaciones basadas en modelos' },
-        { id: 'd3-modelos-crear', name: 'Crear aplicaciones basadas en modelos (formularios, vistas, paneles)' },
+        { id: 'd3-lienzo', name: 'Aplicaciones de lienzo: casos de uso y capacidades' },
+        { id: 'd3-modelos', name: 'Aplicaciones basadas en modelos: casos de uso y capacidades' },
+        { id: 'd3-plan-codigo', name: 'Diseñador de planes y aplicaciones de código' },
+        { id: 'd3-ia', name: 'Crear aplicaciones con IA (lienzo, basadas en modelos y experiencia vibe)' },
       ],
     },
     {
@@ -73,24 +73,26 @@ export const pl900: ExamDefinition = {
       icon: 'Workflow',
       color: '#2f6fed',
       skills: [
-        { id: 'd4-tipos', name: 'Tipos de flujos, desencadenadores y acciones' },
-        { id: 'd4-nube', name: 'Crear flujos de nube (plantillas, Copilot, aprobaciones, expresiones)' },
-        { id: 'd4-escritorio', name: 'Flujos de escritorio y RPA (atendido y desatendido)' },
-        { id: 'd4-procesos', name: 'Minería de procesos y otras capacidades' },
+        { id: 'd4-casos', name: 'Casos de uso de los flujos de nube y de escritorio' },
+        { id: 'd4-escenarios', name: 'Aprobaciones, Teams, Outlook, SharePoint, Forms y automatización de documentos' },
+        { id: 'd4-conectores', name: 'Desencadenadores y acciones de conectores en flujos de nube' },
+        { id: 'd4-ia', name: 'IA para crear y modificar flujos de nube y de escritorio' },
       ],
     },
     {
       id: 'd5',
-      name: 'Demostrar las capacidades de los agentes de Microsoft Copilot Studio',
+      name: 'Describir las características y capacidades de los agentes de Microsoft Copilot Studio',
       shortName: 'Copilot Studio',
       weight: [20, 25],
       icon: 'Bot',
       color: '#e07a1f',
       skills: [
-        { id: 'd5-capacidades', name: 'Capacidades y casos de uso de los agentes' },
-        { id: 'd5-temas', name: 'Temas, frases desencadenantes, nodos y variables' },
-        { id: 'd5-conocimiento', name: 'Conocimiento, IA generativa y orquestación' },
-        { id: 'd5-publicar', name: 'Herramientas, publicación en canales y análisis' },
+        { id: 'd5-casos', name: 'Casos de uso de los agentes' },
+        { id: 'd5-temas', name: 'Rutas de conversación con temas' },
+        { id: 'd5-conocimiento', name: 'Fuentes de conocimiento' },
+        { id: 'd5-herramientas', name: 'Herramientas: servidores MCP y flujos de agente' },
+        { id: 'd5-publicar', name: 'Publicación en canales' },
+        { id: 'd5-gestion', name: 'Gestión: Microsoft Agent 365, supervisión del uso y evaluaciones' },
       ],
     },
   ],
