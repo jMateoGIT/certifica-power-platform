@@ -39,6 +39,7 @@ export function Review() {
           seed={session.seed}
           onExit={() => setSession(null)}
           onRestart={(qs) => setSession({ questions: qs, seed: randomSeed() })}
+          mode="repaso"
         />
       </div>
     )

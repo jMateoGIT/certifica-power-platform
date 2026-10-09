@@ -50,6 +50,9 @@ export interface ProgressData {
 
 interface ProgressState extends ProgressData {
   theme: Theme
+  /** Permite la analítica anónima (si está configurada en el despliegue). */
+  telemetry: boolean
+  setTelemetry: (on: boolean) => void
   recordAnswer: (questionId: string, score: number) => void
   saveAttempt: (attempt: ExamAttempt) => void
   setActiveExam: (exam: ActiveExam | null) => void
@@ -101,6 +104,7 @@ export const useProgress = create<ProgressState>()(
     (set) => ({
       ...initialData,
       theme: 'system',
+      telemetry: true,
       recordAnswer: (questionId, score) =>
         set((s) => ({
           stats: { ...s.stats, [questionId]: nextStat(s.stats[questionId], score) },
@@ -124,6 +128,7 @@ export const useProgress = create<ProgressState>()(
           bookmarks: s.bookmarks.includes(id) ? s.bookmarks.filter((b) => b !== id) : [...s.bookmarks, id],
         })),
       setTheme: (theme) => set({ theme }),
+      setTelemetry: (telemetry) => set({ telemetry }),
       importData: (data) => set({ ...initialData, ...data }),
       resetExam: (prefix) =>
         set((s) => ({

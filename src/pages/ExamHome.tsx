@@ -1,5 +1,6 @@
-import { ArrowRight, BookOpen, Clock, ExternalLink, Gauge, Info, Layers, Repeat, Target, Timer } from 'lucide-react'
+import { ArrowRight, BookOpen, Building2, Clock, ExternalLink, Gauge, Info, Layers, Repeat, Target, Timer } from 'lucide-react'
 import { Link } from 'react-router'
+import { getCases } from '../content'
 import { Badge, ButtonLink, Card, DomainIcon, ProgressBar, ProgressRing } from '../components/ui'
 import { domainProgress, readinessIndex, readinessLabel, reviewQueues } from '../lib/analytics'
 import { formatIsoDate } from '../lib/format'
@@ -19,20 +20,24 @@ export function ExamHome() {
   const readiness = readinessIndex(exam, progress)
   const level = readinessLabel(readiness)
   const queues = reviewQueues(questions, stats)
+  const cases = getCases(exam.code)
   const examAttempts = attempts.filter((a) => a.exam === exam.code)
   const best = examAttempts.reduce((m, a) => Math.max(m, a.scaled), 0)
 
   const modes = [
-    { to: `${base}/practica`, Icon: Target, title: 'Práctica', text: 'Corrección inmediata y explicación de cada opción. Filtra por dominio.', cta: 'Practicar' },
-    { to: `${base}/simulacro`, Icon: Timer, title: 'Simulacro de examen', text: `${exam.questionCount} preguntas en ${exam.durationMinutes} minutos con nota sobre 1000.`, cta: 'Empezar simulacro' },
+    { to: `${base}/practica`, Icon: Target, title: 'Práctica', text: 'Corrección inmediata y explicación de cada opción.', cta: 'Practicar' },
+    { to: `${base}/simulacro`, Icon: Timer, title: 'Simulacro', text: `${exam.questionCount} preguntas en ${exam.durationMinutes} minutos con nota sobre 1000.`, cta: 'Empezar' },
+    ...(cases.length
+      ? [{ to: `${base}/casos`, Icon: Building2, title: 'Casos prácticos', text: `${cases.length} escenarios de empresa con preguntas encadenadas.`, cta: 'Ver casos' }]
+      : []),
     {
       to: `${base}/repaso`,
       Icon: Repeat,
       title: 'Repaso inteligente',
-      text: queues.due.length ? `Tienes ${queues.due.length} preguntas pendientes de repaso.` : 'Repetición espaciada de lo que fallas.',
+      text: queues.due.length ? `${queues.due.length} preguntas pendientes de repaso.` : 'Repetición espaciada de lo que fallas.',
       cta: 'Repasar',
     },
-    { to: `${base}/glosario`, Icon: BookOpen, title: 'Glosario y tarjetas', text: 'Los conceptos clave en español e inglés, con tarjetas para memorizar.', cta: 'Abrir glosario' },
+    { to: `${base}/glosario`, Icon: BookOpen, title: 'Glosario', text: 'Conceptos clave en español e inglés, con tarjetas.', cta: 'Abrir glosario' },
   ]
 
   return (
@@ -90,7 +95,7 @@ export function ExamHome() {
         </Card>
       </div>
 
-      <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <section className={`mt-8 grid gap-4 sm:grid-cols-2 ${modes.length > 4 ? 'lg:grid-cols-5' : 'lg:grid-cols-4'}`}>
         {modes.map(({ to, Icon, title, text, cta }) => (
           <Link key={to} to={to} className="group">
             <Card className="flex h-full flex-col p-5 transition-all group-hover:-translate-y-0.5 group-hover:border-primary/60 group-hover:shadow-md">

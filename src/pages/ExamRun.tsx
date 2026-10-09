@@ -7,6 +7,7 @@ import { Button, Card } from '../components/ui'
 import { getQuestion } from '../content'
 import { isComplete, isStarted } from '../engine/grading'
 import { finishExam } from '../lib/finishExam'
+import { trackAnswer, trackExam } from '../lib/telemetry'
 import { formatDuration } from '../lib/format'
 import { useExam } from '../lib/useExam'
 import { useProgress } from '../store/progress'
@@ -37,6 +38,11 @@ export function ExamRun() {
     submitted.current = true
     const attempt = finishExam(exam, active)
     saveAttempt(attempt)
+    trackExam(exam.code, attempt.mode, attempt.scaled, attempt.passed)
+    for (const id of attempt.questionIds) {
+      const q = getQuestion(id)
+      if (q) trackAnswer(q, attempt.scores[id] ?? 0, 'simulacro')
+    }
     navigate(`/${exam.code.toLowerCase()}/resultados/${attempt.id}`, { replace: true })
   }, [exam, active, saveAttempt, navigate])
 
@@ -91,7 +97,7 @@ export function ExamRun() {
             {answeredCount}/{total} respondidas
           </div>
           <div className="ml-auto flex gap-2">
-            <Button variant="secondary" size="sm" onClick={() => setShowGrid((s) => !s)} aria-expanded={showGrid}>
+            <Button variant="secondary" size="sm" onClick={() => setShowGrid((s) => !s)} aria-expanded={showGrid} aria-label={`Revisar preguntas (${idx + 1} de ${total})`}>
               <LayoutGrid size={15} /> <span className="hidden sm:inline">Revisar</span> {idx + 1}/{total}
             </Button>
             <Button size="sm" onClick={() => setConfirming(true)}>

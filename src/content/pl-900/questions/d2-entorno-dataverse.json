@@ -853,9 +853,9 @@
       },
       {
         "id": "s3",
-        "text": "Copilot puede ayudarte a crear tablas a partir de un archivo de Excel o CSV o de una lista de SharePoint.",
+        "text": "Copilot puede ayudarte a crear una tabla a partir de un archivo de Excel o CSV.",
         "answer": true,
-        "explanation": "Además de describir tablas nuevas, el panel de Copilot permite importar datos de Excel, CSV o listas de SharePoint para generar las tablas."
+        "explanation": "Además de describir tablas nuevas, puedes importar un archivo de Excel o CSV y Copilot te ayuda a generar la tabla de Dataverse a partir de sus datos."
       },
       {
         "id": "s4",
@@ -2094,6 +2094,1294 @@
       {
         "title": "Introducción a los entornos administrados",
         "url": "https://learn.microsoft.com/es-es/power-platform/admin/managed-environment-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-supervision-004",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-supervision",
+    "difficulty": 2,
+    "scenario": "La administradora de Power Platform de una cooperativa agrícola quiere detectar qué aplicaciones y flujos de nube del inquilino tienen un estado operativo degradado, por ejemplo, una aplicación que a menudo no se abre correctamente, y obtener recomendaciones para mejorarlos. No quiere configurar ningún servicio de Azure.",
+    "prompt": "¿Qué debe usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Monitor en directo (*Live Monitor*) en cada aplicación",
+        "correct": false,
+        "explanation": "Monitor en directo sirve para depurar en tiempo real una sesión concreta de una aplicación. No compara el estado de los recursos de todo el inquilino ni incluye flujos."
+      },
+      {
+        "id": "b",
+        "text": "El área Supervisar (*Monitor*) del centro de administración de Power Platform",
+        "correct": true,
+        "explanation": "Supervisar calcula métricas de estado operativo de aplicaciones y flujos a partir de su actividad, destaca los recursos que necesitan atención y, en entornos administrados, ofrece recomendaciones para mejorarlos. No requiere una suscripción de Azure."
+      },
+      {
+        "id": "c",
+        "text": "La auditoría de Dataverse",
+        "correct": false,
+        "explanation": "La auditoría registra quién creó, modificó o eliminó datos y cuándo lo hizo. No mide el estado operativo de las aplicaciones ni de los flujos."
+      },
+      {
+        "id": "d",
+        "text": "Una directiva de datos (antes DLP) en cada entorno",
+        "correct": false,
+        "explanation": "Una directiva de datos controla qué conectores se pueden usar juntos. Es una herramienta de gobierno, no de supervisión del estado de los recursos."
+      }
+    ],
+    "keyPoint": "El área Supervisar del centro de administración mide el estado operativo de aplicaciones y flujos y propone mejoras; Monitor en directo depura una sesión concreta.",
+    "references": [
+      {
+        "title": "Supervisar el estado de sus recursos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/monitoring/monitoring-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-supervision-005",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-supervision",
+    "difficulty": 3,
+    "prompt": "Empareja cada necesidad de supervisión con la herramienta que la cubre. Cada opción puede usarse una vez o ninguna.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Ver en tiempo real los eventos que genera una aplicación de lienzo mientras la reproduces, para depurar un error",
+        "answerId": "c1",
+        "explanation": "Monitor en directo (*Live Monitor*) muestra, mientras usas la aplicación, el registro de eventos que genera, por lo que sirve para depurar y diagnosticar problemas de rendimiento."
+      },
+      {
+        "id": "m2",
+        "text": "Enviar la telemetría a tu propio recurso de Azure para crear consultas personalizadas, paneles y alertas",
+        "answerId": "c2",
+        "explanation": "La integración con Application Insights, una característica de Azure Monitor, exporta los datos a tu instancia, donde puedes escribir consultas, crear paneles y configurar alertas."
+      },
+      {
+        "id": "m3",
+        "text": "Saber qué usuario modificó una fila de Dataverse, qué columna cambió y cuál era su valor anterior",
+        "answerId": "c3",
+        "explanation": "La auditoría de Dataverse registra las operaciones de creación, actualización y eliminación, con el valor anterior de cada columna modificada y quién hizo el cambio."
+      },
+      {
+        "id": "m4",
+        "text": "Buscar en el portal de cumplimiento eventos de actividad como la creación, edición o eliminación de flujos",
+        "answerId": "c4",
+        "explanation": "Los eventos de actividad de Power Automate y Power Apps se consultan en la búsqueda del registro de auditoría de Microsoft Purview."
+      },
+      {
+        "id": "m5",
+        "text": "Revisar desde el centro de administración las tendencias de ejecuciones, uso y errores de los flujos de nube de un entorno",
+        "answerId": "c5",
+        "explanation": "Los análisis de Power Automate del centro de administración ofrecen informes de ejecuciones, uso, flujos creados y errores."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Monitor en directo"
+      },
+      {
+        "id": "c2",
+        "text": "Application Insights"
+      },
+      {
+        "id": "c3",
+        "text": "Auditoría de Dataverse"
+      },
+      {
+        "id": "c4",
+        "text": "Auditoría de Microsoft Purview"
+      },
+      {
+        "id": "c5",
+        "text": "Análisis de Power Automate"
+      },
+      {
+        "id": "c6",
+        "text": "Comprobador de soluciones"
+      }
+    ],
+    "keyPoint": "Monitor en directo depura una sesión; Application Insights da telemetría propia en Azure; la auditoría de Dataverse sigue cambios en filas; Purview reúne eventos de actividad; los análisis muestran tendencias.",
+    "references": [
+      {
+        "title": "Información general sobre Monitor en directo",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/monitor-overview"
+      },
+      {
+        "title": "Información general sobre la integración con Application Insights",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/overview-integration-application-insights"
+      },
+      {
+        "title": "Administrar auditorías de Dataverse",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/manage-dataverse-auditing"
+      },
+      {
+        "title": "Visualización de registros de actividad de Power Automate en Microsoft Purview",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/activity-logging-auditing/activity-logs-power-automate"
+      },
+      {
+        "title": "Ver análisis para flujos en la nube de Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/analytics-flow"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-supervision-006",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-supervision",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre el área Supervisar (*Monitor*) del centro de administración de Power Platform y Application Insights es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Supervisar puede ofrecer recomendaciones para mejorar una métrica de estado, algo que Application Insights no hace de forma automática.",
+        "answer": true,
+        "explanation": "Learn lo señala como una diferencia entre ambos: Supervisar incluye recomendaciones para mejorar una métrica (en entornos administrados), mientras que Application Insights no las obtiene por sí mismo."
+      },
+      {
+        "id": "s2",
+        "text": "Para usar Supervisar necesitas una suscripción de Azure.",
+        "answer": false,
+        "explanation": "Supervisar está integrado en Power Platform y no requiere suscripciones de Azure. Es Application Insights, un servicio de Azure, el que sí la necesita."
+      },
+      {
+        "id": "s3",
+        "text": "Application Insights permite definir tu propia retención de datos y registrar eventos y métricas personalizados.",
+        "answer": true,
+        "explanation": "Application Insights reúne más registros que Supervisar, permite que el cliente defina la retención y admite trazas personalizadas con eventos, métricas y dimensiones propios."
+      },
+      {
+        "id": "s4",
+        "text": "Solo los administradores pueden ver los datos de Supervisar; los creadores no tienen acceso a ellos.",
+        "answer": false,
+        "explanation": "La experiencia Supervisar también está disponible para los creadores, por ejemplo en Power Apps, donde ven los datos de los recursos que pueden editar para mejorarlos."
+      }
+    ],
+    "keyPoint": "Supervisar viene integrado, sin Azure, para creadores y administradores, y propone mejoras; Application Insights aporta en Azure una telemetría más amplia y personalizable.",
+    "references": [
+      {
+        "title": "Supervisar el estado de sus recursos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/monitoring/monitoring-overview"
+      },
+      {
+        "title": "Información general sobre la integración con Application Insights",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/overview-integration-application-insights"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-supervision-007",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-supervision",
+    "difficulty": 2,
+    "prompt": "Completa la frase sobre dónde se supervisa cada tipo de recurso de Power Platform.",
+    "template": "Para revisar el historial de ejecuciones y los errores de tus flujos desde el propio portal de Power Automate usas {{b1}}; para analizar el uso de un agente desde Copilot Studio usas {{b2}}; y para comparar el estado operativo de las aplicaciones y los flujos de todo el inquilino usas {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "el centro de automatización"
+          },
+          {
+            "id": "o2",
+            "text": "la pestaña Análisis de Copilot Studio"
+          },
+          {
+            "id": "o3",
+            "text": "el área Supervisar del centro de administración"
+          },
+          {
+            "id": "o4",
+            "text": "Monitor en directo"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Power Automate no tiene una página Supervisar en su portal: su equivalente es el centro de automatización (*Automation center*), que reúne las ejecuciones, los errores y las tendencias de los flujos de nube y de escritorio. Monitor en directo depura sesiones de aplicaciones."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "el centro de automatización"
+          },
+          {
+            "id": "o2",
+            "text": "la pestaña Análisis de Copilot Studio"
+          },
+          {
+            "id": "o3",
+            "text": "el área Supervisar del centro de administración"
+          },
+          {
+            "id": "o4",
+            "text": "Monitor en directo"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "En Copilot Studio, la pestaña Análisis (*Analytics*) ofrece una experiencia similar para los agentes, con datos sobre su uso y sus conversaciones. El centro de automatización se centra en los flujos."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "el centro de automatización"
+          },
+          {
+            "id": "o2",
+            "text": "la pestaña Análisis de Copilot Studio"
+          },
+          {
+            "id": "o3",
+            "text": "el área Supervisar del centro de administración"
+          },
+          {
+            "id": "o4",
+            "text": "Monitor en directo"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "El área Supervisar del centro de administración de Power Platform muestra a los administradores el estado operativo agregado de los recursos en el inquilino o en entornos concretos. Monitor en directo solo depura una sesión."
+      }
+    ],
+    "keyPoint": "Flujos: centro de automatización; agentes: pestaña Análisis de Copilot Studio; visión del inquilino: área Supervisar del centro de administración.",
+    "references": [
+      {
+        "title": "Supervisar el estado de sus recursos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/monitoring/monitoring-overview"
+      },
+      {
+        "title": "Explore el centro de automatización de Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/automation-center-overview"
+      },
+      {
+        "title": "Información general sobre el análisis de Copilot Studio",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/analytics-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-supervision-008",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-supervision",
+    "difficulty": 2,
+    "scenario": "En una empresa de transporte, el equipo de automatización tiene flujos de nube que llaman a flujos de escritorio. Desde el propio portal de Power Automate quieren ver en un solo lugar el historial de ejecuciones de ambos tipos de flujo agrupado por flujo principal, la tasa de errores y las tendencias.",
+    "prompt": "¿Qué deben usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Monitor en directo (*Live Monitor*)",
+        "correct": false,
+        "explanation": "Monitor en directo sirve para depurar en tiempo real una sesión de una aplicación, no para revisar el historial y las tendencias de ejecución de los flujos."
+      },
+      {
+        "id": "b",
+        "text": "El centro de automatización (*Automation center*) de Power Automate",
+        "correct": true,
+        "explanation": "El centro de automatización reúne en Power Automate el historial de ejecuciones de flujos de nube y de escritorio, organizado por flujo de nivel superior, con métricas como la tasa de errores y sus tendencias."
+      },
+      {
+        "id": "c",
+        "text": "Los análisis de Power Apps del centro de administración",
+        "correct": false,
+        "explanation": "Esos informes tratan sobre el uso y los errores de las aplicaciones de lienzo, no sobre las ejecuciones de flujos."
+      },
+      {
+        "id": "d",
+        "text": "El Comprobador de soluciones (*Solution checker*)",
+        "correct": false,
+        "explanation": "El Comprobador de soluciones analiza los componentes de una solución en busca de problemas, pero no muestra el historial de ejecuciones."
+      }
+    ],
+    "keyPoint": "El centro de automatización es el punto de supervisión de los flujos de nube y de escritorio dentro de Power Automate.",
+    "references": [
+      {
+        "title": "Explore el centro de automatización de Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/automation-center-overview"
+      },
+      {
+        "title": "Supervisar el estado de sus recursos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/monitoring/monitoring-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-pipelines-002",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "difficulty": 2,
+    "scenario": "Una ONG usa una canalización de Power Platform (*pipeline*) con las etapas Prueba y Producción. Su equipo de cumplimiento exige que a producción llegue exactamente la versión de la solución que se validó en Prueba y que nadie pueda saltarse esa etapa.",
+    "prompt": "¿Cómo ayuda la canalización a cumplir este requisito?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Vuelve a exportar la solución desde el entorno de desarrollo justo antes de implementarla en cada etapa",
+        "correct": false,
+        "explanation": "Es lo contrario de lo que hace: si volviera a exportar en cada etapa, a producción podrían llegar cambios que nunca se probaron."
+      },
+      {
+        "id": "b",
+        "text": "Copia el entorno de prueba completo, con sus datos, sobre el entorno de producción",
+        "correct": false,
+        "explanation": "Las canalizaciones implementan soluciones, no copian entornos. Además, las soluciones no contienen los datos de las tablas de Dataverse."
+      },
+      {
+        "id": "c",
+        "text": "Exporta la solución al solicitar la implementación y hace pasar ese mismo artefacto, sin cambios, por las etapas en orden",
+        "correct": true,
+        "explanation": "La solución se exporta cuando el creador pide implementar y no se vuelve a exportar en las etapas siguientes: el mismo artefacto, protegido frente a modificaciones, recorre Prueba y después Producción. Así ninguna personalización se salta la etapa de prueba."
+      },
+      {
+        "id": "d",
+        "text": "Implementa la solución como no administrada para que TI la revise y la edite directamente en producción",
+        "correct": false,
+        "explanation": "Editar en producción rompería la garantía de que llega lo que se probó. Además, a los entornos de destino se implementa el artefacto administrado."
+      }
+    ],
+    "keyPoint": "Una canalización hace pasar el mismo artefacto de solución, sin cambios y en orden, por todas las etapas: a producción llega lo que se probó.",
+    "references": [
+      {
+        "title": "Información general de las canalizaciones de Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-platform/alm/pipelines"
+      },
+      {
+        "title": "Ampliar canalizaciones en Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-platform/alm/extend-pipelines"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-pipelines-003",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre las canalizaciones de Power Platform (*pipelines*) es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Las canalizaciones están integradas en Power Platform, así que no necesitas configurar Azure DevOps ni GitHub para automatizar las implementaciones.",
+        "answer": true,
+        "explanation": "Las canalizaciones llevan la automatización de ALM y la integración y entrega continuas (CI/CD) al propio servicio. Azure DevOps o GitHub son opcionales: puedes combinarlos con las canalizaciones si los necesitas."
+      },
+      {
+        "id": "s2",
+        "text": "Para ejecutar una canalización, los creadores necesitan conocer antes los procesos y las herramientas de ALM.",
+        "answer": false,
+        "explanation": "Una vez configuradas, los creadores implementan con unos pocos clics desde su entorno de desarrollo, sin conocimientos previos de ALM: para ellos es un proceso guiado."
+      },
+      {
+        "id": "s3",
+        "text": "En cada implementación se guarda automáticamente una copia de la solución, de modo que queda un historial de lo implementado.",
+        "answer": true,
+        "explanation": "En cada implementación, las versiones administrada y no administrada de la solución se exportan y se almacenan en el host de canalizaciones, junto con el historial de ejecuciones."
+      },
+      {
+        "id": "s4",
+        "text": "Puedes usar una canalización para implementar una solución en un entorno de otro inquilino.",
+        "answer": false,
+        "explanation": "Las canalizaciones trabajan dentro de un mismo inquilino. Para implementar en otro inquilino, Microsoft recomienda Azure DevOps o GitHub."
+      }
+    ],
+    "keyPoint": "Canalizaciones: ALM integrado en Power Platform, sencillo para los creadores, con copia de cada implementación y limitado al propio inquilino.",
+    "references": [
+      {
+        "title": "Información general de las canalizaciones de Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-platform/alm/pipelines"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-pipelines-004",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "difficulty": 2,
+    "prompt": "Empareja cada descripción con el elemento de una canalización de Power Platform (*pipeline*) al que corresponde. Cada opción puede usarse una vez o ninguna.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Entorno en el que los creadores crean y modifican la solución no administrada, y desde el que lanzan la implementación",
+        "answerId": "c1",
+        "explanation": "Las canalizaciones se ven y se ejecutan desde una solución no administrada del entorno de desarrollo vinculado: ahí se construye la solución."
+      },
+      {
+        "id": "m2",
+        "text": "Paso de la canalización que implementa la solución en un entorno concreto, como Prueba o Producción, en un orden definido",
+        "answerId": "c2",
+        "explanation": "Cada etapa apunta a un entorno de destino y las etapas se recorren en orden; por ejemplo, Producción después de Prueba."
+      },
+      {
+        "id": "m3",
+        "text": "Entorno, como el de prueba o el de producción, en el que se instala la solución administrada",
+        "answerId": "c3",
+        "explanation": "En los entornos de destino no se desarrolla: en ellos se implementa el artefacto administrado que sale de la canalización."
+      },
+      {
+        "id": "m4",
+        "text": "Entorno que almacena las canalizaciones, su historial de ejecuciones y las copias de las soluciones implementadas",
+        "answerId": "c4",
+        "explanation": "El host guarda las canalizaciones y sus datos de ejecución, y en cada implementación almacena las copias administrada y no administrada de la solución."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Entorno de desarrollo"
+      },
+      {
+        "id": "c2",
+        "text": "Etapa"
+      },
+      {
+        "id": "c3",
+        "text": "Entorno de destino"
+      },
+      {
+        "id": "c4",
+        "text": "Host de canalizaciones"
+      },
+      {
+        "id": "c5",
+        "text": "Directiva de datos"
+      },
+      {
+        "id": "c6",
+        "text": "Grupo de entornos"
+      }
+    ],
+    "keyPoint": "Desarrollo = donde se crea la solución; etapa = paso ordenado; destino = donde se instala la solución administrada; host = donde se guardan las canalizaciones y su historial.",
+    "references": [
+      {
+        "title": "Información general de las canalizaciones de Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-platform/alm/pipelines"
+      },
+      {
+        "title": "Configurar canalizaciones en Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-platform/alm/set-up-pipelines"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-pipelines-005",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "difficulty": 2,
+    "prompt": "Completa la frase sobre quién hace qué con las canalizaciones de Power Platform.",
+    "template": "Con las canalizaciones, {{b1}} las configuran y gobiernan de forma centralizada; {{b2}} implementan sus soluciones desde el entorno de desarrollo con unos pocos clics; y {{b3}} pueden, si lo desean, ampliarlas y ejecutarlas con la CLI de Power Platform.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "los administradores"
+          },
+          {
+            "id": "o2",
+            "text": "los creadores"
+          },
+          {
+            "id": "o3",
+            "text": "los desarrolladores profesionales"
+          },
+          {
+            "id": "o4",
+            "text": "los usuarios finales de las aplicaciones"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Los administradores configuran las canalizaciones y establecen las salvaguardas que gobiernan el desarrollo, las pruebas y la entrega de soluciones en toda la organización. Los usuarios finales solo usan las aplicaciones implementadas."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "los administradores"
+          },
+          {
+            "id": "o2",
+            "text": "los creadores"
+          },
+          {
+            "id": "o3",
+            "text": "los desarrolladores profesionales"
+          },
+          {
+            "id": "o4",
+            "text": "los usuarios finales de las aplicaciones"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Los creadores ejecutan las canalizaciones ya configuradas directamente desde su entorno de desarrollo, sin conocimientos previos de ALM, y la implementación se valida antes contra el entorno de destino."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "los administradores"
+          },
+          {
+            "id": "o2",
+            "text": "los creadores"
+          },
+          {
+            "id": "o3",
+            "text": "los desarrolladores profesionales"
+          },
+          {
+            "id": "o4",
+            "text": "los usuarios finales de las aplicaciones"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "Los desarrolladores profesionales pueden ampliar las canalizaciones, integrarlas con otras herramientas de CI/CD y ejecutarlas con la CLI de Power Platform. Es opcional, no un requisito para usarlas."
+      }
+    ],
+    "keyPoint": "Los administradores configuran y gobiernan las canalizaciones, los creadores implementan con pocos clics y los desarrolladores pueden ampliarlas con la CLI.",
+    "references": [
+      {
+        "title": "Información general de las canalizaciones de Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-platform/alm/pipelines"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-pipelines-006",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "difficulty": 2,
+    "scenario": "Un banco usa canalizaciones de Power Platform. Su política exige que un responsable apruebe cada implementación en producción y que esta no se haga con la cuenta del creador que la solicita, sino con una identidad controlada por TI.",
+    "prompt": "¿Qué capacidad de las canalizaciones cumple esta política?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Asignar a todos los creadores el rol Administrador del sistema en el entorno de producción",
+        "correct": false,
+        "explanation": "Así se ampliarían los permisos de los creadores en producción, justo lo contrario de lo que pide la política, y la implementación seguiría haciéndose con su identidad."
+      },
+      {
+        "id": "b",
+        "text": "Las implementaciones delegadas (*delegated deployments*), que admiten aprobaciones",
+        "correct": true,
+        "explanation": "En una implementación delegada, la etapa se implementa con una identidad designada, como una entidad de servicio (*service principal*) o el propietario de la canalización, en lugar de con la del creador. Learn las presenta como la forma de proteger producción con aprobaciones."
+      },
+      {
+        "id": "c",
+        "text": "Implementar la solución como no administrada para que TI la revise directamente en producción",
+        "correct": false,
+        "explanation": "A los entornos de destino se implementa la solución administrada. Además, el tipo de solución no cambia la identidad con la que se implementa ni añade aprobaciones."
+      },
+      {
+        "id": "d",
+        "text": "Una directiva de datos que bloquee el conector de Dataverse en producción",
+        "correct": false,
+        "explanation": "Una directiva de datos controla qué conectores se pueden usar juntos. No gestiona identidades de implementación ni aprobaciones, y bloquear Dataverse rompería las aplicaciones."
+      }
+    ],
+    "keyPoint": "Las implementaciones delegadas protegen producción: implementan con una identidad designada en lugar de la del creador y admiten aprobaciones.",
+    "references": [
+      {
+        "title": "Información general de las canalizaciones de Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-platform/alm/pipelines"
+      },
+      {
+        "title": "Implementar canalizaciones como una entidad de servicio o como el propietario de la canalización",
+        "url": "https://learn.microsoft.com/es-es/power-platform/alm/delegated-deployments-setup"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-privacidad-003",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 2,
+    "scenario": "Una antigua alumna de una academia en línea ejerce varios derechos del Reglamento general de protección de datos (RGPD) sobre la información que la academia guarda en sus aplicaciones de Power Apps y en Dataverse.",
+    "prompt": "Empareja cada tarea con la acción de respuesta a una solicitud del interesado (*data subject request*, DSR) que le corresponde. Cada opción puede usarse una vez o ninguna.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Averiguar en qué entornos, aplicaciones y tablas hay datos personales suyos",
+        "answerId": "c1",
+        "explanation": "Detectar es el primer paso: buscar y revisar los datos personales afectados, lo que también ayuda a decidir si la solicitud se acepta."
+      },
+      {
+        "id": "m2",
+        "text": "Corregir su dirección postal, que está mal escrita en la tabla Contacto",
+        "answerId": "c3",
+        "explanation": "Rectificar consiste en hacer cambios en los datos personales, como corregir un dato erróneo."
+      },
+      {
+        "id": "m3",
+        "text": "Entregarle sus datos en un formato electrónico legible por máquina para llevarlos a otro proveedor",
+        "answerId": "c6",
+        "explanation": "Exportar consiste en proporcionar al interesado una copia electrónica en formato legible por máquina, lo que facilita la portabilidad."
+      },
+      {
+        "id": "m4",
+        "text": "Dejar de tratar sus datos sin borrarlos todavía",
+        "answerId": "c4",
+        "explanation": "Restringir limita el tratamiento de los datos personales, por ejemplo, quitando licencias o desactivando servicios, sin eliminarlos."
+      },
+      {
+        "id": "m5",
+        "text": "Quitar de forma permanente su información personal de la nube de Microsoft",
+        "answerId": "c5",
+        "explanation": "Eliminar quita de forma permanente los datos personales que se encuentran en la nube de Microsoft."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Detectar"
+      },
+      {
+        "id": "c2",
+        "text": "Acceder"
+      },
+      {
+        "id": "c3",
+        "text": "Rectificar"
+      },
+      {
+        "id": "c4",
+        "text": "Restringir"
+      },
+      {
+        "id": "c5",
+        "text": "Eliminar"
+      },
+      {
+        "id": "c6",
+        "text": "Exportar"
+      }
+    ],
+    "keyPoint": "Las solicitudes DSR se atienden con seis acciones: detectar, acceder, rectificar, restringir, eliminar y exportar.",
+    "references": [
+      {
+        "title": "Respuesta a las solicitudes del interesado (DSR) para los datos de clientes de Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/powerapps-privacy-dsr-guide"
+      },
+      {
+        "title": "Privacidad de datos y cumplimiento",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/wp-compliance-data-privacy"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-privacidad-004",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre la protección y la ubicación de los datos en Power Platform es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Las bases de datos de Dataverse se cifran en reposo de forma predeterminada.",
+        "answer": true,
+        "explanation": "Todos los entornos con base de datos de Dataverse usan el cifrado de datos transparente (TDE) de SQL Server, que cifra los datos al escribirlos en disco."
+      },
+      {
+        "id": "s2",
+        "text": "De forma predeterminada, Microsoft almacena y administra las claves de cifrado de la base de datos de tus entornos.",
+        "answer": true,
+        "explanation": "Es el comportamiento predeterminado. Si tu organización lo necesita, puede usar en su lugar una clave administrada por el cliente."
+      },
+      {
+        "id": "s3",
+        "text": "Para garantizar la continuidad del servicio, Microsoft puede replicar tus datos en regiones de cualquier zona geográfica.",
+        "answer": false,
+        "explanation": "Microsoft puede replicar los datos en otras regiones, pero siempre dentro de la misma zona geográfica (*geo*). No los traslada fuera de ella por motivos de resiliencia."
+      },
+      {
+        "id": "s4",
+        "text": "Una vez creado el entorno en una zona geográfica, ninguna acción de los usuarios puede exponer sus datos fuera de ella.",
+        "answer": false,
+        "explanation": "Learn advierte de que los usuarios, o servicios configurados para acceder a los datos, pueden realizar acciones que los expongan fuera de la zona geográfica. Por eso conviene gobernar, por ejemplo, con directivas de datos."
+      }
+    ],
+    "keyPoint": "Dataverse cifra en reposo con claves que administra Microsoft y replica solo dentro de la zona geográfica, aunque las acciones de los usuarios pueden sacar datos de ella.",
+    "references": [
+      {
+        "title": "Privacidad de datos y cumplimiento",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/wp-compliance-data-privacy"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-seguridad-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 2,
+    "scenario": "En una consultora, la tabla Empleado de Dataverse tiene la columna Salario. Todos los usuarios de la aplicación de recursos humanos deben poder leer el resto de la información de los empleados, pero solo el equipo de Nóminas debe poder ver y modificar el salario.",
+    "prompt": "¿Qué característica de seguridad de Dataverse debes usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un rol de seguridad que conceda a los usuarios de recursos humanos el privilegio Leer sobre la tabla Empleado",
+        "correct": false,
+        "explanation": "Los privilegios de los roles controlan el acceso a las filas de la tabla: quien puede leer una fila ve todas sus columnas, incluido el salario."
+      },
+      {
+        "id": "b",
+        "text": "Una unidad de negocio para el equipo de Nóminas",
+        "correct": false,
+        "explanation": "Las unidades de negocio delimitan qué filas ve cada grupo según la estructura de la organización, pero no ocultan columnas concretas dentro de una fila."
+      },
+      {
+        "id": "c",
+        "text": "La seguridad de nivel de columna (*column-level security*), con un perfil que dé acceso al equipo de Nóminas",
+        "correct": true,
+        "explanation": "Cuando una columna contiene datos más sensibles que el resto de la tabla, la seguridad de nivel de columna permite decidir quién puede ver o modificar su valor, aunque los demás usuarios puedan leer la fila."
+      },
+      {
+        "id": "d",
+        "text": "Una directiva de datos (antes DLP) aplicada al entorno",
+        "correct": false,
+        "explanation": "Una directiva de datos controla qué conectores pueden usarse juntos en aplicaciones y flujos; no decide qué columnas ve cada usuario."
+      }
+    ],
+    "keyPoint": "Los roles de seguridad controlan el acceso a las filas de una tabla; la seguridad de nivel de columna protege columnas sensibles concretas, como el salario.",
+    "references": [
+      {
+        "title": "Seguridad en el nivel de columna para controlar el acceso",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/field-level-security"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-accesibilidad-003",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 2,
+    "prompt": "Completa la frase sobre las recomendaciones de accesibilidad para aplicaciones de lienzo.",
+    "template": "Para que las personas con baja visión puedan ampliar la aplicación sin desplazarse de un lado a otro, conviene crear una aplicación {{b1}}; para las personas con discapacidad auditiva, los vídeos deben incluir {{b2}}; y para personalizar el aspecto es buena idea partir de {{b3}}, diseñados para cumplir los estándares de accesibilidad.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "con un tamaño de pantalla fijo"
+          },
+          {
+            "id": "o2",
+            "text": "adaptable"
+          },
+          {
+            "id": "o3",
+            "text": "con el texto más pequeño para que quepa todo"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Learn recomienda crear una aplicación adaptable (*responsive*) para que los usuarios con baja visión puedan hacer zoom y usarla sin desplazarse en horizontal. Un tamaño fijo o un texto más pequeño dificultan la lectura."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "reproducción automática"
+          },
+          {
+            "id": "o2",
+            "text": "música de fondo"
+          },
+          {
+            "id": "o3",
+            "text": "subtítulos"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "Todos los vídeos deben tener subtítulos y las grabaciones de audio, una transcripción. La reproducción automática es lo contrario de lo recomendado: el Comprobador de accesibilidad avisa cuando está activada."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "los temas de Power Apps"
+          },
+          {
+            "id": "o2",
+            "text": "elementos HTML personalizados"
+          },
+          {
+            "id": "o3",
+            "text": "colores elegidos solo por la imagen de marca"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Los temas de Power Apps están diseñados para cumplir los estándares de accesibilidad. Power Apps no admite la accesibilidad de los elementos HTML personalizados, y si eliges colores propios debes comprobar que el contraste entre texto y fondo sea suficiente."
+      }
+    ],
+    "keyPoint": "Accesibilidad en lienzo: diseño adaptable para poder hacer zoom, subtítulos en los vídeos y los temas de Power Apps como punto de partida.",
+    "references": [
+      {
+        "title": "Crear aplicaciones de lienzo accesibles",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/accessible-apps"
+      },
+      {
+        "title": "Revisar una aplicación de lienzo para mejorar la accesibilidad",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/accessibility-checker"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-accesibilidad-004",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 2,
+    "scenario": "Un ayuntamiento publica una aplicación de lienzo para que los vecinos notifiquen incidencias. En la pantalla principal hay un icono puramente decorativo y una imagen de una cámara que, al seleccionarla, abre la pantalla para adjuntar fotos. Algunos vecinos usan lector de pantalla y teclado.",
+    "prompt": "¿Qué dos prácticas debes aplicar en esa pantalla? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Dar a la imagen de la cámara una etiqueta accesible que describa su acción y hacer que se pueda alcanzar con el teclado",
+        "correct": true,
+        "explanation": "Si una imagen funciona como un botón, el lector de pantalla debe anunciar qué hace y quien usa solo el teclado debe poder llegar a ella. Learn recomienda rellenar su etiqueta accesible (AccessibleLabel) y permitir que reciba el foco."
+      },
+      {
+        "id": "b",
+        "text": "Dejar sin etiqueta accesible el icono decorativo para que el lector de pantalla lo omita",
+        "correct": true,
+        "explanation": "Un elemento puramente decorativo no aporta información, así que su etiqueta accesible debe quedar vacía para que el lector de pantalla no lo anuncie."
+      },
+      {
+        "id": "c",
+        "text": "Dar al icono decorativo una etiqueta accesible, como «Icono de flores», para que se anuncie",
+        "correct": false,
+        "explanation": "Anunciar elementos decorativos añade ruido a quien usa un lector de pantalla sin aportarle información útil."
+      },
+      {
+        "id": "d",
+        "text": "Excluir la imagen de la cámara de la navegación con el teclado para que no reciba el foco",
+        "correct": false,
+        "explanation": "Si la imagen no se puede alcanzar con el teclado, quien no usa ratón no podrá abrir la pantalla para adjuntar fotos."
+      },
+      {
+        "id": "e",
+        "text": "Reproducir automáticamente un vídeo con instrucciones al abrir la pantalla",
+        "correct": false,
+        "explanation": "La reproducción automática distrae, y el Comprobador de accesibilidad la marca como advertencia: es mejor que el usuario decida cuándo reproducir el vídeo."
+      }
+    ],
+    "keyPoint": "Una imagen interactiva necesita una etiqueta accesible que describa su acción y debe poder alcanzarse con el teclado; una imagen decorativa no lleva etiqueta accesible.",
+    "references": [
+      {
+        "title": "Crear aplicaciones de lienzo accesibles",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/accessible-apps"
+      },
+      {
+        "title": "Revisar una aplicación de lienzo para mejorar la accesibilidad",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/accessibility-checker"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-ia-004",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse-logica",
+    "difficulty": 2,
+    "scenario": "La coordinadora de una escuela de idiomas describe a Copilot en Power Apps los datos que necesita: cursos, alumnos, profesores y las matrículas de cada alumno en los cursos.",
+    "prompt": "¿Qué dos cosas puede hacer Copilot a partir de esa descripción? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Proponer varias tablas de Dataverse y las relaciones entre ellas",
+        "correct": true,
+        "explanation": "Copilot genera tablas junto con sus relaciones a partir de la descripción en lenguaje natural, y puedes revisarlas antes de guardarlas."
+      },
+      {
+        "id": "b",
+        "text": "Rellenar las tablas propuestas con filas de datos de ejemplo",
+        "correct": true,
+        "explanation": "Copilot puede generar tablas, columnas, filas y relaciones. Las tablas propuestas incluyen datos de ejemplo típicos del escenario descrito."
+      },
+      {
+        "id": "c",
+        "text": "Crear y asignar automáticamente un rol de seguridad para cada tabla",
+        "correct": false,
+        "explanation": "Copilot no configura la seguridad. Los roles de seguridad se definen y asignan aparte, normalmente un administrador."
+      },
+      {
+        "id": "d",
+        "text": "Implementar las tablas en el entorno de producción mediante una canalización",
+        "correct": false,
+        "explanation": "Copilot crea las tablas en el entorno en el que trabajas. Para llevarlas a producción hay que empaquetarlas en una solución e implementarla, por ejemplo, con una canalización."
+      },
+      {
+        "id": "e",
+        "text": "Generar reglas de negocio que validen el contenido de cada columna",
+        "correct": false,
+        "explanation": "La creación de tablas con Copilot no genera reglas de negocio. Esas reglas se crean con su propio diseñador."
+      }
+    ],
+    "keyPoint": "Al crear tablas con Copilot obtienes tablas, columnas, relaciones y datos de ejemplo que puedes revisar; la seguridad y la implementación son tareas aparte.",
+    "references": [
+      {
+        "title": "Creación de aplicaciones a través de una conversación con Copilot",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/ai-conversations-create-app"
+      },
+      {
+        "title": "Crear y editar tablas con Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/create-edit-entities-portal"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-ia-005",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse-logica",
+    "difficulty": 2,
+    "tags": [
+      "preview"
+    ],
+    "scenario": "Un hotel guarda en la tabla Valoración la puntuación que dan sus huéspedes. El responsable quiere una columna de fórmula que muestre «Excelente», «Buena» o «Mejorable» según la puntuación, pero no sabe escribir Power Fx.",
+    "prompt": "¿Qué función le ayuda a obtener la fórmula describiendo en lenguaje natural lo que necesita?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Obtener sugerencias de fórmulas, que propone una fórmula de Power Fx generada por IA",
+        "correct": true,
+        "explanation": "Esta función (en versión preliminar) interpreta una descripción en lenguaje natural y sugiere una fórmula de Power Fx, que puedes revisar y pegar en la columna de fórmula."
+      },
+      {
+        "id": "b",
+        "text": "Una regla de negocio que traduzca la descripción a Power Fx",
+        "correct": false,
+        "explanation": "Las reglas de negocio se diseñan con condiciones y acciones en un diseñador visual. No generan fórmulas de Power Fx ni crean columnas de fórmula."
+      },
+      {
+        "id": "c",
+        "text": "Una columna de búsqueda (*lookup*) que apunte a una tabla de calificaciones",
+        "correct": false,
+        "explanation": "Una columna de búsqueda relaciona filas de dos tablas. No calcula un valor a partir de la puntuación ni usa IA para escribir fórmulas."
+      },
+      {
+        "id": "d",
+        "text": "Un complemento (*plug-in*) en C# registrado en Dataverse",
+        "correct": false,
+        "explanation": "Un complemento requiere programación profesional, que es justo lo que el responsable quiere evitar. Tampoco genera la fórmula a partir de lenguaje natural."
+      }
+    ],
+    "keyPoint": "Las sugerencias de fórmulas usan IA para convertir una descripción en lenguaje natural en una fórmula de Power Fx para una columna de fórmula.",
+    "references": [
+      {
+        "title": "Trabajar con columnas de fórmulas de Dataverse",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/formula-columns"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-formularios-002",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse-logica",
+    "difficulty": 3,
+    "scenario": "Una empresa de ascensores tiene una aplicación basada en modelos sobre la tabla Orden de trabajo. Los técnicos de campo necesitan un formulario principal sencillo, con pocas columnas, mientras que los supervisores deben ver el formulario completo. Cada grupo tiene su propio rol de seguridad.",
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crear dos formularios principales y, en la configuración del formulario, asignar a cada uno los roles de seguridad que lo usarán",
+        "correct": true,
+        "explanation": "Si una tabla tiene varios formularios principales, puedes asignarlos a roles de seguridad para que cada grupo vea el suyo. Siempre debe haber un formulario de reserva para los usuarios sin un formulario asignado."
+      },
+      {
+        "id": "b",
+        "text": "Crear dos formularios de creación rápida y asignar cada uno a un rol de seguridad",
+        "correct": false,
+        "explanation": "Los formularios de creación rápida, de vista rápida y de tarjeta no se pueden asignar a roles de seguridad. Además, la creación rápida solo sirve para dar de alta filas."
+      },
+      {
+        "id": "c",
+        "text": "Cambiar el orden de los formularios para que el sencillo aparezca primero",
+        "correct": false,
+        "explanation": "El orden solo decide qué formulario se muestra de forma predeterminada. No determina quién puede ver cada formulario: eso se controla con los roles de seguridad."
+      },
+      {
+        "id": "d",
+        "text": "Crear una regla de negocio que oculte columnas según el rol de seguridad del usuario",
+        "correct": false,
+        "explanation": "Las condiciones de una regla de negocio se basan en los valores de las columnas de la fila, no en el rol de seguridad del usuario."
+      }
+    ],
+    "keyPoint": "Para mostrar formularios principales distintos según el grupo de usuarios, asígnalos a roles de seguridad; el orden de formularios no controla el acceso.",
+    "references": [
+      {
+        "title": "Controlar el acceso a formularios de aplicaciones controladas por modelos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/control-access-forms"
+      },
+      {
+        "title": "Tipos de formularios de aplicaciones controladas por modelos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/types-forms"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-formularios-003",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse-logica",
+    "difficulty": 2,
+    "scenario": "Un estudio de arquitectura usa una aplicación basada en modelos con las tablas Proyecto y Tarea, unidas por una relación uno a varios. Al abrir un proyecto, los usuarios quieren ver en el propio formulario la lista de sus tareas y poder abrir o crear tareas desde ella.",
+    "prompt": "¿Qué debes agregar al formulario principal de Proyecto?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un formulario de vista rápida de la tabla Tarea",
+        "correct": false,
+        "explanation": "Un formulario de vista rápida muestra los datos de la única fila a la que apunta una columna de búsqueda. No muestra una lista con las muchas tareas relacionadas."
+      },
+      {
+        "id": "b",
+        "text": "Un componente de subcuadrícula (*subgrid*) que muestre las tareas relacionadas",
+        "correct": true,
+        "explanation": "La subcuadrícula muestra en el formulario, en formato de tabla, las filas relacionadas, y desde ella los usuarios pueden crear filas nuevas o abrir las existentes."
+      },
+      {
+        "id": "c",
+        "text": "Un formulario de tarjeta de la tabla Tarea",
+        "correct": false,
+        "explanation": "Los formularios de tarjeta presentan cada fila de una vista en formato compacto, pero no se insertan en un formulario para listar las filas relacionadas."
+      },
+      {
+        "id": "d",
+        "text": "Una columna de búsqueda en Proyecto que apunte a la tabla Tarea",
+        "correct": false,
+        "explanation": "Una columna de búsqueda solo guarda una referencia a una fila. Además, en una relación uno a varios la búsqueda va en Tarea, apuntando a Proyecto."
+      }
+    ],
+    "keyPoint": "Subcuadrícula = lista de filas relacionadas dentro de un formulario; vista rápida = datos de la fila a la que apunta una búsqueda.",
+    "references": [
+      {
+        "title": "Agregar y configurar un componente de subcuadrícula en un formulario",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/form-designer-add-configure-subgrid"
+      },
+      {
+        "title": "Tipos de formularios de aplicaciones controladas por modelos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/types-forms"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-vistas-002",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse-logica",
+    "difficulty": 2,
+    "prompt": "Empareja cada descripción con el tipo de vista de una tabla de Dataverse. Cada opción puede usarse una vez o ninguna.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Define en qué columnas se busca cuando el usuario usa la búsqueda rápida de la tabla",
+        "answerId": "c1",
+        "explanation": "La vista del sistema Búsqueda rápida es la que se usa en estas búsquedas y define las columnas en las que se busca."
+      },
+      {
+        "id": "m2",
+        "text": "Es la lista que aparece al seleccionar una fila para rellenar una columna de búsqueda",
+        "answerId": "c4",
+        "explanation": "La vista del sistema de búsqueda (*lookup*) es la que se muestra al elegir el valor de una columna de búsqueda."
+      },
+      {
+        "id": "m3",
+        "text": "Muestra las filas relacionadas con un registro, por ejemplo, desde la pestaña Relacionado",
+        "answerId": "c3",
+        "explanation": "La vista Asociada es la vista del sistema predeterminada para listar las filas relacionadas con un registro."
+      },
+      {
+        "id": "m4",
+        "text": "Está disponible para todos los usuarios en el selector de vistas y puede usarse en una subcuadrícula de un formulario",
+        "answerId": "c5",
+        "explanation": "Las vistas públicas son de uso general: aparecen en el selector de vistas y pueden usarse en subcuadrículas y paneles. Las vistas del sistema no aparecen en el selector."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Búsqueda rápida"
+      },
+      {
+        "id": "c2",
+        "text": "Búsqueda avanzada"
+      },
+      {
+        "id": "c3",
+        "text": "Asociada"
+      },
+      {
+        "id": "c4",
+        "text": "Búsqueda (Lookup)"
+      },
+      {
+        "id": "c5",
+        "text": "Pública"
+      },
+      {
+        "id": "c6",
+        "text": "Personal"
+      }
+    ],
+    "keyPoint": "Las vistas del sistema (búsqueda rápida, búsqueda avanzada, asociada y búsqueda) tienen fines concretos; las públicas son las que se eligen en el selector de vistas.",
+    "references": [
+      {
+        "title": "Crear o editar una vista de aplicación controlada por modelos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/create-edit-views"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-logica-003",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse-logica",
+    "difficulty": 2,
+    "scenario": "Una distribuidora de material de oficina usa la tabla Pedido de Dataverse en una aplicación de lienzo y en una aplicación basada en modelos. Quiere aplicar lógica sin código con reglas de negocio (*business rules*).",
+    "prompt": "Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Una regla de negocio definida para la tabla Pedido se aplica en las dos aplicaciones, porque ambas usan esa tabla.",
+        "answer": true,
+        "explanation": "Learn indica que las reglas de negocio definidas para una tabla se aplican tanto en las aplicaciones de lienzo como en las basadas en modelos que usan esa tabla."
+      },
+      {
+        "id": "s2",
+        "text": "Una regla que establece el valor de una columna, o que valida los datos y muestra un mensaje de error, también funciona en la aplicación de lienzo.",
+        "answer": true,
+        "explanation": "Establecer o borrar valores de columnas, fijar valores predeterminados y validar datos con mensajes de error son acciones sobre los datos que también están disponibles en las aplicaciones de lienzo."
+      },
+      {
+        "id": "s3",
+        "text": "Una regla que muestra u oculta columnas funciona igual en la aplicación de lienzo que en un formulario de la aplicación basada en modelos.",
+        "answer": false,
+        "explanation": "Mostrar u ocultar columnas, habilitarlas o deshabilitarlas y crear recomendaciones de negocio son acciones de los formularios de aplicaciones basadas en modelos; Learn indica que no están disponibles en las aplicaciones de lienzo."
+      },
+      {
+        "id": "s4",
+        "text": "En la aplicación de lienzo, el creador puede mostrar u ocultar controles con fórmulas de Power Fx en sus propiedades.",
+        "answer": true,
+        "explanation": "En las aplicaciones de lienzo el diseño consiste en manipular las propiedades de los controles con expresiones de Power Fx, por ejemplo, la propiedad que decide si un control es visible."
+      }
+    ],
+    "keyPoint": "Las reglas de negocio de una tabla se aplican en apps de lienzo y basadas en modelos, pero sus acciones visuales (mostrar, ocultar, habilitar columnas) solo funcionan en formularios de apps basadas en modelos.",
+    "references": [
+      {
+        "title": "Creación de una regla de negocio en Microsoft Dataverse",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/data-platform-create-business-rule"
+      },
+      {
+        "title": "Introducción a las aplicaciones basadas en modelos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/model-driven-app-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-dataverse-013",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse",
+    "difficulty": 2,
+    "scenario": "Un centro de formación tiene en Dataverse las tablas Curso e Inscripción, con una relación uno a varios: cada curso tiene muchas inscripciones. Antes de poner la solución en marcha, quieren decidir qué debe pasar con las inscripciones de un curso cuando ese curso se elimine o se asigne a otro propietario.",
+    "prompt": "¿Dónde se define ese comportamiento?",
+    "options": [
+      {
+        "id": "a",
+        "text": "En una vista pública de la tabla Inscripción",
+        "correct": false,
+        "explanation": "Una vista solo define qué filas y columnas se muestran en una lista. No cambia lo que ocurre con los datos al eliminar o asignar una fila."
+      },
+      {
+        "id": "b",
+        "text": "En el formulario principal de la tabla Curso",
+        "correct": false,
+        "explanation": "Un formulario es la interfaz para ver y editar una fila. Lo que pasa con las filas relacionadas no se configura en él."
+      },
+      {
+        "id": "c",
+        "text": "En una columna de elección de la tabla Inscripción",
+        "correct": false,
+        "explanation": "Una columna de elección guarda un valor de una lista de opciones. No relaciona filas ni define qué les ocurre."
+      },
+      {
+        "id": "d",
+        "text": "En la relación uno a varios entre Curso e Inscripción",
+        "correct": true,
+        "explanation": "Además de vincular filas, una relación uno a varios define qué ocurre con las filas relacionadas cuando se elimina o se asigna la fila principal; por ejemplo, si las inscripciones también se eliminan o pasan al nuevo propietario."
+      }
+    ],
+    "keyPoint": "Las relaciones uno a varios no solo vinculan filas: también definen qué pasa con las filas relacionadas al eliminar o asignar la fila principal.",
+    "references": [
+      {
+        "title": "Acerca de las relaciones de tabla para Microsoft Dataverse",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/create-edit-entity-relationships"
       }
     ]
   }

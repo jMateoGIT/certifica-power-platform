@@ -36,7 +36,9 @@ Se empieza por **PL-900** con una arquitectura preparada para el resto de certif
 - [x] **F5** Progreso, repaso inteligente, exportar/importar
 - [x] **F6** PWA, accesibilidad, tests e2e
 - [x] Verificar sub-habilidades y referencias contra la guía oficial de Microsoft Learn (181 preguntas, 136 enlaces comprobados)
-- [ ] Ampliar PL-900 a 300 preguntas e incluir casos prácticos
+- [x] Ampliar PL-900 a 301 preguntas con 6 casos prácticos (revisión independiente de nivel y exactitud)
+- [x] Analítica anónima opcional (Umami), informe de calidad por pregunta y aviso de cambios de temario
+- [ ] Activar la analítica (crear cuenta de Umami y la variable `UMAMI_WEBSITE_ID`)
 - [ ] Revisar las funciones en versión preliminar (experiencia vibe, Copilot en Power Automate para escritorio) cuando cambie su estado
 - [ ] PL-300 (Power BI), después AB-410, AB-400 y DP-600
 

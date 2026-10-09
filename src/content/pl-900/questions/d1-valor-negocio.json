@@ -1072,5 +1072,268 @@
         "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/knowledge-copilot-studio"
       }
     ]
+  },
+  {
+    "id": "pl900-d1-automate-002",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-apps-automate",
+    "difficulty": 2,
+    "scenario": "Una aseguradora quiere mejorar la tramitación de siniestros con Power Automate. Necesita que un responsable apruebe o rechace los siniestros de importe elevado, que los avisos entre Outlook, Teams y SharePoint se envíen solos y que los datos se introduzcan en una aplicación de escritorio antigua que no tiene API.",
+    "prompt": "Completa la frase con la capacidad de Power Automate adecuada para cada objetivo.",
+    "template": "Para que el responsable apruebe o rechace los siniestros de importe elevado, el flujo usa {{b1}}; para automatizar los avisos entre los servicios en la nube usas {{b2}}; y para automatizar la aplicación de escritorio sin API usas {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "la acción Iniciar y esperar una aprobación"
+          },
+          {
+            "id": "o2",
+            "text": "la minería de procesos"
+          },
+          {
+            "id": "o3",
+            "text": "un flujo de escritorio"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "La capacidad de aprobaciones de Power Automate añade la decisión humana al flujo: la acción Iniciar y esperar una aprobación envía la solicitud al responsable, que la aprueba o rechaza desde el correo, el centro de aprobaciones o la aplicación de Power Automate, y el flujo continúa según su respuesta. La minería de procesos analiza cómo se ejecuta un proceso, pero no pide aprobaciones, y un flujo de escritorio automatiza interfaces de usuario, no recoge decisiones."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "un flujo de nube"
+          },
+          {
+            "id": "o2",
+            "text": "un flujo de escritorio"
+          },
+          {
+            "id": "o3",
+            "text": "la minería de procesos"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Los flujos de nube (*cloud flows*) conectan aplicaciones y servicios mediante conectores y se desencadenan por un evento, a mano o según una programación, justo lo que necesitan los avisos entre Outlook, Teams y SharePoint. No hace falta un flujo de escritorio porque estos servicios ya tienen conector, y la minería de procesos no ejecuta acciones."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "un flujo de nube"
+          },
+          {
+            "id": "o2",
+            "text": "un flujo de escritorio"
+          },
+          {
+            "id": "o3",
+            "text": "la minería de procesos"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Los flujos de escritorio (*desktop flows*) aportan la automatización robótica de procesos (*robotic process automation*, RPA): reproducen las acciones de una persona en aplicaciones de escritorio o web, por lo que sirven cuando no hay API ni conector. Un flujo de nube necesitaría un conector que esta aplicación no tiene, y la minería de procesos solo analiza el proceso, no lo ejecuta."
+      }
+    ],
+    "keyPoint": "Power Automate añade decisiones humanas con las aprobaciones, conecta servicios en la nube con flujos de nube y automatiza aplicaciones sin API con flujos de escritorio (RPA).",
+    "references": [
+      {
+        "title": "Comience con las aprobaciones",
+        "url": "https://learn.microsoft.com/es-es/power-automate/get-started-approvals"
+      },
+      {
+        "title": "¿Qué es Power Automate?",
+        "url": "https://learn.microsoft.com/es-es/power-automate/flow-types"
+      },
+      {
+        "title": "Introducción a los flujos de escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/introduction"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d1-ia-005",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-ia",
+    "difficulty": 2,
+    "scenario": "Una cadena de clínicas veterinarias quiere aprovechar las funciones de IA generativa de Power Platform para que cada equipo cree sus soluciones describiendo en lenguaje natural lo que necesita.",
+    "prompt": "Empareja cada necesidad con la funcionalidad de IA generativa que la cubre. Cada opción puede usarse una vez, más de una vez o ninguna.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "El equipo de citas quiere obtener una fórmula de Power Fx para su aplicación de lienzo a partir de una descripción",
+        "answerId": "c1",
+        "explanation": "Copilot en la barra de fórmulas de Power Apps Studio genera fórmulas de Power Fx a partir de lenguaje natural o de comentarios de código, y también las explica en lenguaje cotidiano, sin que tengas que dominar la sintaxis."
+      },
+      {
+        "id": "m2",
+        "text": "El equipo de administración quiere un borrador de automatización que envíe un recordatorio cuando se registre una cita",
+        "answerId": "c2",
+        "explanation": "Con Copilot en Power Automate describes lo que quieres automatizar y te propone un flujo de nube con su desencadenador y sus acciones, que revisas y ajustas antes de guardarlo."
+      },
+      {
+        "id": "m3",
+        "text": "El equipo de marketing quiere añadir a su sitio web público un formulario de alta de mascotas describiendo los campos que necesita",
+        "answerId": "c3",
+        "explanation": "Copilot en Power Pages genera un formulario a partir de tu descripción y muestra una vista previa para que lo revises antes de añadirlo a una página del sitio externo."
+      },
+      {
+        "id": "m4",
+        "text": "Los veterinarios quieren un asistente en Microsoft Teams que responda a sus dudas sobre los protocolos internos publicados en SharePoint",
+        "answerId": "c4",
+        "explanation": "Copilot Studio sirve para crear agentes que conversan con los usuarios, basan sus respuestas en fuentes de conocimiento como SharePoint y se publican en canales como Teams. Los Copilot de los demás productos ayudan a crear aplicaciones, flujos o sitios, no agentes conversacionales."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Copilot en Power Apps"
+      },
+      {
+        "id": "c2",
+        "text": "Copilot en Power Automate"
+      },
+      {
+        "id": "c3",
+        "text": "Copilot en Power Pages"
+      },
+      {
+        "id": "c4",
+        "text": "Copilot Studio"
+      },
+      {
+        "id": "c5",
+        "text": "Reglas de negocio de Dataverse"
+      }
+    ],
+    "keyPoint": "Cada producto incluye Copilot para crear más rápido (fórmulas y aplicaciones, flujos, sitios y formularios), y Copilot Studio es la herramienta para crear agentes; las reglas de negocio de Dataverse no usan IA generativa.",
+    "references": [
+      {
+        "title": "Usar Copilot para crear y editar fórmulas de Power Fx",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/ai-formulas-formulabar"
+      },
+      {
+        "title": "Descripción general de los flujos de nube",
+        "url": "https://learn.microsoft.com/es-es/power-automate/overview-cloud"
+      },
+      {
+        "title": "Agregar un formulario generado mediante IA con Copilot",
+        "url": "https://learn.microsoft.com/es-es/power-pages/getting-started/add-form-copilot"
+      },
+      {
+        "title": "Resumen de fuentes de conocimiento",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/knowledge-copilot-studio"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d1-copilotstudio-002",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-ia",
+    "difficulty": 1,
+    "prompt": "Para cada afirmación sobre el valor de Microsoft Copilot Studio para crear agentes, indica si es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Copilot Studio es una herramienta de poco código (*low-code*): puedes crear un agente describiéndolo en lenguaje natural y probarlo antes de publicarlo.",
+        "answer": true,
+        "explanation": "Copilot Studio es un estudio gráfico de poco código, así que puedes crear agentes sin una amplia formación técnica: describes el agente en lenguaje sencillo y lo pruebas antes de ponerlo a disposición de los usuarios."
+      },
+      {
+        "id": "s2",
+        "text": "Los agentes de Copilot Studio solo pueden atender a empleados dentro de Microsoft Teams.",
+        "answer": false,
+        "explanation": "Los agentes pueden trabajar tanto con empleados como con clientes y publicarse en varios canales, como Microsoft Teams, Microsoft Copilot, sitios web o aplicaciones móviles."
+      },
+      {
+        "id": "s3",
+        "text": "Con Copilot Studio puedes ampliar Microsoft Copilot con tus propias instrucciones, conocimientos y herramientas.",
+        "answer": true,
+        "explanation": "Además de crear agentes independientes, Copilot Studio permite ampliar Microsoft Copilot para tareas y conocimientos específicos de tu organización."
+      },
+      {
+        "id": "s4",
+        "text": "Un agente solo puede responder preguntas; para que realice acciones en otros sistemas tienes que programar una integración aparte.",
+        "answer": false,
+        "explanation": "Los agentes usan herramientas para actuar, por ejemplo conectores precompilados o personalizados y flujos de agente, de modo que pueden completar tareas en otros sistemas sin programar la integración."
+      }
+    ],
+    "keyPoint": "Copilot Studio crea agentes con poco código que responden con su conocimiento, actúan con herramientas, se publican en muchos canales y pueden ampliar Microsoft Copilot.",
+    "references": [
+      {
+        "title": "Información general de Copilot Studio",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/fundamentals-what-is-copilot-studio"
+      },
+      {
+        "title": "Conceptos clave: publicar e implementar su agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/publication-fundamentals-publish-channels"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d1-pages-002",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-ia",
+    "difficulty": 2,
+    "scenario": "El equipo de marketing de una editorial ha creado con el estudio de diseño (*design studio*) de Power Pages un sitio para que los autores envíen sus manuscritos. Ahora necesita un comportamiento a medida que no se puede configurar de forma visual. La editorial cuenta con desarrolladores web profesionales.",
+    "prompt": "¿Qué enfoque aprovecha mejor el valor de Power Pages en esta situación?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Que los desarrolladores amplíen el mismo sitio con Visual Studio Code, la CLI de Power Platform y componentes de código, en un equipo de fusión (*fusion team*) con los creadores",
+        "correct": true,
+        "explanation": "Power Pages está pensado tanto para creadores de poco código como para desarrolladores profesionales: en un equipo de fusión, los desarrolladores amplían la funcionalidad del sitio con Visual Studio Code, la CLI de Power Platform o componentes de código sin perder lo que ya se ha construido."
+      },
+      {
+        "id": "b",
+        "text": "Volver a crear el sitio desde cero con código, porque un sitio de Power Pages no admite ninguna personalización con código",
+        "correct": false,
+        "explanation": "La premisa es falsa: Power Pages ofrece capacidades de desarrollo avanzadas, como el editor de código y los componentes de código, así que no hace falta rehacer el sitio."
+      },
+      {
+        "id": "c",
+        "text": "Sustituir el sitio por una aplicación basada en modelos y compartirla con cada autor",
+        "correct": false,
+        "explanation": "Las aplicaciones basadas en modelos están pensadas para que los usuarios de la organización gestionen procesos sobre Dataverse; para una audiencia externa, como los autores, la opción adecuada es un sitio de Power Pages."
+      },
+      {
+        "id": "d",
+        "text": "Sustituir el sitio por un agente de Copilot Studio que recoja los manuscritos por chat",
+        "correct": false,
+        "explanation": "Un agente conversa y realiza tareas, pero no reemplaza un sitio web con páginas, formularios y acceso seguro para usuarios externos, ni resuelve la necesidad de ampliar el sitio existente."
+      }
+    ],
+    "keyPoint": "Power Pages une a creadores de poco código y desarrolladores profesionales: lo que no se configura en el estudio de diseño se amplía con código (Visual Studio Code, CLI de Power Platform, componentes de código).",
+    "references": [
+      {
+        "title": "Funcionalidades de Power Pages",
+        "url": "https://learn.microsoft.com/es-es/power-pages/capabilities"
+      },
+      {
+        "title": "Tutorial: uso de Microsoft Power Platform CLI con Power Pages",
+        "url": "https://learn.microsoft.com/es-es/power-pages/configure/power-platform-cli-tutorial"
+      },
+      {
+        "title": "Usar componentes de código en Power Pages",
+        "url": "https://learn.microsoft.com/es-es/power-pages/configure/component-framework"
+      }
+    ]
   }
 ]

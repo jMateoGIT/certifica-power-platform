@@ -34,15 +34,47 @@ export function allocateByWeight(domains: Domain[], available: Record<string, nu
 
 /**
  * Construye un simulacro: preguntas aleatorias por dominio según los pesos
- * oficiales, ordenadas por dominio como en el examen real.
+ * oficiales, ordenadas por dominio como en el examen real. Con `includeCase`,
+ * añade al final un caso práctico completo (sus preguntas cuentan en el reparto
+ * por dominio). Las preguntas de casos nunca aparecen sueltas en el simulacro.
  */
-export function buildExam(questions: Question[], domains: Domain[], count: number, seed: number): Question[] {
+export function buildExam(
+  questions: Question[],
+  domains: Domain[],
+  count: number,
+  seed: number,
+  options: { includeCase?: boolean } = {},
+): Question[] {
   const rng = createRng(seed)
+  const standalone = questions.filter((q) => !q.caseId)
+
+  let caseBlock: Question[] = []
+  if (options.includeCase) {
+    const caseIds = [...new Set(questions.flatMap((q) => (q.caseId ? [q.caseId] : [])))].sort()
+    if (caseIds.length) {
+      const picked = caseIds[Math.floor(rng() * caseIds.length)]
+      caseBlock = questions.filter((q) => q.caseId === picked)
+      if (caseBlock.length >= count) caseBlock = []
+    }
+  }
+
   const byDomain = new Map<string, Question[]>()
-  for (const q of questions) byDomain.set(q.domain, [...(byDomain.get(q.domain) ?? []), q])
-  const available = Object.fromEntries(domains.map((d) => [d.id, byDomain.get(d.id)?.length ?? 0]))
+  for (const q of standalone) byDomain.set(q.domain, [...(byDomain.get(q.domain) ?? []), q])
+  const inCase = (d: string) => caseBlock.filter((q) => q.domain === d).length
+  const available = Object.fromEntries(domains.map((d) => [d.id, (byDomain.get(d.id)?.length ?? 0) + inCase(d.id)]))
   const alloc = allocateByWeight(domains, available, count)
-  return domains.flatMap((d) => shuffle(byDomain.get(d.id) ?? [], rng).slice(0, alloc[d.id] ?? 0))
+
+  const shuffled = new Map(domains.map((d) => [d.id, shuffle(byDomain.get(d.id) ?? [], rng)]))
+  const main = domains.flatMap((d) => shuffled.get(d.id)!.splice(0, Math.max(0, (alloc[d.id] ?? 0) - inCase(d.id))))
+
+  // Si el caso ocupa más hueco del previsto en un dominio, se completa con otros.
+  const target = Math.min(count, standalone.length + caseBlock.length) - caseBlock.length
+  const leftovers = shuffle([...shuffled.values()].flat(), rng)
+  while (main.length < target && leftovers.length) main.push(leftovers.pop()!)
+
+  const order = new Map(domains.map((d, i) => [d.id, i]))
+  main.sort((a, b) => (order.get(a.domain) ?? 0) - (order.get(b.domain) ?? 0))
+  return [...main.slice(0, target), ...caseBlock]
 }
 
 export interface PracticeFilter {

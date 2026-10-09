@@ -106,3 +106,24 @@ Cada pregunta incluye al menos una referencia a **Microsoft Learn**
 
 `<examen>-<dominio>-<tema>-<nnn>`, p. ej. `pl900-d4-escritorio-003`. Deben ser únicos
 en todo el banco.
+
+## Casos prácticos
+
+Un caso práctico es un escenario de empresa largo con **4–5 preguntas** encadenadas que
+cubren varios dominios, como en los exámenes de Microsoft.
+
+- El caso se define en `src/content/<examen>/cases.json` (`id`, `title`, `company`,
+  `summary` y 2–6 `sections` como «Contexto», «Situación actual», «Requisitos»,
+  «Problemas»).
+- Sus preguntas van en `src/content/<examen>/questions/casos.json`, son preguntas normales
+  (cualquier tipo, con su `domain` y `skill`) y llevan `"caseId": "<id del caso>"`.
+- Las preguntas **no repiten el contexto** en `scenario`: la web muestra el caso completo
+  junto a cada pregunta. El enunciado puede referirse a él («Según los requisitos…»).
+- Ids: `<examen>-caso-<n>-<nnn>`, p. ej. `pl900-caso-1-001`.
+
+## Funciones en versión preliminar
+
+Si una pregunta trata una función que Learn marca como versión preliminar (*preview*),
+añade `"tags": ["preview"]`. El validador las cuenta para revisarlas cuando la función
+pase a disponibilidad general o cambie. Pregunta solo por su propósito, nunca por
+detalles de interfaz que puedan cambiar.

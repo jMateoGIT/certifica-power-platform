@@ -35,3 +35,30 @@ describe('buildExam', () => {
     expect(new Set(a).size).toBe(45)
   })
 })
+
+describe('buildExam con casos prácticos', () => {
+  const standalone = pl900.domains.flatMap((d) =>
+    Array.from({ length: 20 }, (_, i) => ({ id: `${d.id}-${i}`, domain: d.id }) as unknown as Question),
+  )
+  const cases = ['caso-1', 'caso-2'].flatMap((c) =>
+    ['d2', 'd3', 'd4', 'd5', 'd1'].map((d, i) => ({ id: `${c}-${i}`, domain: d, caseId: c }) as unknown as Question),
+  )
+  const all = [...standalone, ...cases]
+
+  it('sin includeCase no incluye preguntas de casos', () => {
+    const exam = buildExam(all, pl900.domains, 45, 7)
+    expect(exam).toHaveLength(45)
+    expect(exam.some((q) => q.caseId)).toBe(false)
+  })
+
+  it('con includeCase añade un caso completo al final y mantiene el total', () => {
+    const exam = buildExam(all, pl900.domains, 45, 7, { includeCase: true })
+    expect(exam).toHaveLength(45)
+    const tail = exam.slice(-5)
+    expect(new Set(tail.map((q) => q.caseId)).size).toBe(1)
+    expect(tail[0].caseId).toBeTruthy()
+    expect(exam.slice(0, -5).some((q) => q.caseId)).toBe(false)
+    expect(new Set(exam.map((q) => q.id)).size).toBe(45)
+  })
+})
+

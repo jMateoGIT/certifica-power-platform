@@ -1,4 +1,5 @@
 import { ExternalLink } from 'lucide-react'
+import { TelemetryToggle } from '../components/TelemetryToggle'
 import { Card, PageTitle } from '../components/ui'
 import { REPO_URL } from '../lib/config'
 
@@ -35,6 +36,15 @@ export function About() {
             el valor de cada pregunta. Aquí usamos una aproximación lineal con crédito parcial en las preguntas de varias
             partes: tómala como orientación, no como predicción exacta.
           </p>
+        </Card>
+        <Card className="p-5">
+          <h2 className="font-semibold">Privacidad</h2>
+          <p className="mt-2 text-muted">
+            Tu progreso se guarda solo en tu navegador. Si la analítica está activa, se envía de forma anónima, sin cookies ni
+            datos personales, qué preguntas se aciertan o fallan y la nota de los simulacros, para detectar preguntas ambiguas
+            o demasiado fáciles. Se respeta la señal «no rastrear» del navegador y puedes desactivarla aquí.
+          </p>
+          <TelemetryToggle />
         </Card>
         <Card className="p-5">
           <h2 className="font-semibold">Recursos oficiales</h2>

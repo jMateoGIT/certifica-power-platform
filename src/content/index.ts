@@ -1,8 +1,9 @@
-import type { GlossaryTerm, Question } from './schema'
+import type { CaseStudy, GlossaryTerm, Question } from './schema'
 
 // El contenido se valida en CI (`npm run validate`), así que aquí solo se tipa.
 const questionFiles = import.meta.glob<Question[]>('./*/questions/*.json', { eager: true, import: 'default' })
 const glossaryFiles = import.meta.glob<GlossaryTerm[]>('./*/glossary.json', { eager: true, import: 'default' })
+const caseFiles = import.meta.glob<CaseStudy[]>('./*/cases.json', { eager: true, import: 'default' })
 
 const folderOf = (path: string) => path.split('/')[1]
 
@@ -27,4 +28,21 @@ export function getQuestion(id: string): Question | undefined {
 export function getGlossary(examCode: string): GlossaryTerm[] {
   const entry = Object.entries(glossaryFiles).find(([p]) => folderOf(p) === examCode.toLowerCase())
   return entry ? [...entry[1]].sort((a, b) => a.term.localeCompare(b.term, 'es')) : []
+}
+
+const caseIndex = new Map<string, CaseStudy>()
+for (const list of Object.values(caseFiles)) for (const c of list) caseIndex.set(`${c.exam}:${c.id}`, c)
+
+/** Casos prácticos de un examen. */
+export function getCases(examCode: string): CaseStudy[] {
+  return [...caseIndex.values()].filter((c) => c.exam === examCode)
+}
+
+export function getCase(examCode: string, caseId: string): CaseStudy | undefined {
+  return caseIndex.get(`${examCode}:${caseId}`)
+}
+
+/** Preguntas de un caso práctico, en el orden en que están escritas. */
+export function getCaseQuestions(examCode: string, caseId: string): Question[] {
+  return getQuestions(examCode).filter((q) => q.caseId === caseId)
 }

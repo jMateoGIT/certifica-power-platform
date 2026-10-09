@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router'
 import clsx from 'clsx'
 import { Menu, Monitor, Moon, Sun, X } from 'lucide-react'
+import { trackPageview } from '../../lib/telemetry'
 import { useProgress, type Theme } from '../../store/progress'
 
 function useApplyTheme() {
@@ -81,6 +82,7 @@ export function Layout() {
   useEffect(() => {
     setOpen(false)
     window.scrollTo(0, 0)
+    trackPageview()
   }, [pathname])
 
   return (

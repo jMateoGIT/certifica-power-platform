@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { Clock, Flag, Gauge, ListChecks, Play, Shuffle, Timer, Zap } from 'lucide-react'
+import { Building2, Clock, Flag, Gauge, ListChecks, Play, Shuffle, Timer, Zap } from 'lucide-react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { Button, ButtonLink, Card, PageTitle } from '../components/ui'
@@ -19,16 +19,18 @@ export function ExamSetup() {
 
   const base = `/${exam.code.toLowerCase()}`
   const modes = {
-    completo: { count: exam.questionCount, minutes: exam.durationMinutes, title: 'Examen completo', Icon: Timer, text: 'Las mismas condiciones que el examen real.' },
+    completo: { count: exam.questionCount, minutes: exam.durationMinutes, title: 'Examen completo', Icon: Timer, text: 'Las mismas condiciones que el examen real, con un caso práctico al final.' },
     rapido: { count: 20, minutes: 20, title: 'Simulacro rápido', Icon: Zap, text: 'Una versión corta para cuando tienes poco tiempo.' },
   }
   const pending = activeExam?.exam === exam.code ? activeExam : null
+  const hasCases = questions.some((q) => q.caseId)
   const history = attempts.filter((a) => a.exam === exam.code).slice(0, 5)
 
   const start = () => {
     const cfg = modes[mode]
     const seed = randomSeed()
-    const picked = buildExam(questions, exam.domains, cfg.count, seed)
+    // El examen completo incluye un caso práctico al final, como el real.
+    const picked = buildExam(questions, exam.domains, cfg.count, seed, { includeCase: mode === 'completo' && hasCases })
     const now = Date.now()
     const active: ActiveExam = {
       id: `${exam.code}-${now}`,
@@ -106,6 +108,7 @@ export function ExamSetup() {
         <ul className="mt-3 grid gap-3 text-sm text-muted sm:grid-cols-2">
           <li className="flex gap-2"><Shuffle size={16} className="mt-0.5 shrink-0 text-primary" /> Preguntas aleatorias repartidas según el peso oficial de cada dominio.</li>
           <li className="flex gap-2"><Flag size={16} className="mt-0.5 shrink-0 text-primary" /> Puedes marcar preguntas para revisarlas y moverte libremente entre ellas.</li>
+          <li className="flex gap-2"><Building2 size={16} className="mt-0.5 shrink-0 text-primary" /> El examen completo termina con un caso práctico: varias preguntas sobre la misma empresa.</li>
           <li className="flex gap-2"><Timer size={16} className="mt-0.5 shrink-0 text-primary" /> Al acabarse el tiempo, el simulacro se entrega automáticamente.</li>
           <li className="flex gap-2"><Gauge size={16} className="mt-0.5 shrink-0 text-primary" /> Aprobado con {exam.passingScore}/1000. Las preguntas de varias partes puntúan de forma parcial.</li>
         </ul>
