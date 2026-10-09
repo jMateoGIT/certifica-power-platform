@@ -961,5 +961,1812 @@
         "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-parameters"
       }
     ]
+  },
+  {
+    "id": "pl300-d1-perfilar-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 2,
+    "scenario": "En el Editor de Power Query, la columna CódigoPostal de una consulta de clientes con 250 000 filas muestra en Calidad de columna (*Column quality*) un 100 % de valores válidos. Sin embargo, al cargar el modelo aparecen errores en esa columna.",
+    "prompt": "¿Qué explica mejor la diferencia y cómo lo compruebas?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Por defecto el perfil se calcula sobre las primeras 1000 filas; cambia en la barra de estado a la generación de perfiles basada en todo el conjunto de datos",
+        "correct": true,
+        "explanation": "Las herramientas de generación de perfiles analizan por defecto solo las primeras filas; al cambiar a todo el conjunto de datos, Calidad de columna mostrará los errores que hay más abajo."
+      },
+      {
+        "id": "b",
+        "text": "Calidad de columna no detecta los errores de conversión de tipos",
+        "correct": false,
+        "explanation": "Sí los detecta: la categoría Error de Calidad de columna recoge precisamente los valores de error, como los de conversión de tipo."
+      },
+      {
+        "id": "c",
+        "text": "Los errores los genera DAX en el modelo y no tienen relación con Power Query",
+        "correct": false,
+        "explanation": "Los errores al cargar una columna proceden de los pasos de Power Query, por ejemplo de un cambio de tipo que falla en algunas filas."
+      },
+      {
+        "id": "d",
+        "text": "Hay que activar Distribución de columnas para que Calidad de columna analice todas las filas",
+        "correct": false,
+        "explanation": "Las herramientas son independientes; el número de filas analizadas lo decide la opción de la barra de estado, no qué herramientas tengas activas."
+      }
+    ],
+    "keyPoint": "Los perfiles de columna usan por defecto las primeras 1000 filas; cámbialo a todo el conjunto de datos antes de sacar conclusiones.",
+    "references": [
+      {
+        "title": "Uso de las herramientas de generación de perfiles de datos",
+        "url": "https://learn.microsoft.com/es-es/power-query/data-profiling-tools"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-002",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 1,
+    "prompt": "Empareja cada necesidad con la herramienta del Editor de Power Query que la cubre.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Ver de un vistazo el porcentaje de valores válidos, con error y vacíos de cada columna",
+        "answerId": "c1",
+        "explanation": "Calidad de columna (*Column quality*) muestra bajo cada encabezado una barra con los porcentajes de valores válidos, con error y vacíos."
+      },
+      {
+        "id": "m2",
+        "text": "Ver bajo cada encabezado un histograma con el recuento de valores distintos y únicos",
+        "answerId": "c2",
+        "explanation": "Distribución de columnas (*Column distribution*) muestra la frecuencia de los valores y los recuentos de distintos y únicos."
+      },
+      {
+        "id": "m3",
+        "text": "Ver estadísticas detalladas (mínimo, máximo, promedio…) y la distribución de valores de la columna seleccionada",
+        "answerId": "c3",
+        "explanation": "Perfil de columna (*Column profile*) añade, bajo la vista previa, las estadísticas de la columna y un gráfico de distribución de valores."
+      },
+      {
+        "id": "m4",
+        "text": "Analizar qué hace y cuánto tarda cada consulta durante la evaluación o la actualización",
+        "answerId": "c4",
+        "explanation": "Diagnóstico de consultas (*Query diagnostics*) registra las operaciones que ejecuta Power Query; las herramientas de perfil no miden tiempos."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Calidad de columna"
+      },
+      {
+        "id": "c2",
+        "text": "Distribución de columnas"
+      },
+      {
+        "id": "c3",
+        "text": "Perfil de columna"
+      },
+      {
+        "id": "c4",
+        "text": "Diagnóstico de consultas"
+      },
+      {
+        "id": "c5",
+        "text": "Vista de esquema"
+      },
+      {
+        "id": "c6",
+        "text": "Vista de diagrama"
+      }
+    ],
+    "keyPoint": "Calidad = válidos/errores/vacíos; Distribución = distintos y únicos; Perfil = estadísticas y distribución de una columna.",
+    "references": [
+      {
+        "title": "Uso de las herramientas de generación de perfiles de datos",
+        "url": "https://learn.microsoft.com/es-es/power-query/data-profiling-tools"
+      },
+      {
+        "title": "Diagnóstico de consultas",
+        "url": "https://learn.microsoft.com/es-es/power-query/query-diagnostics"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-003",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 2,
+    "scenario": "Activas Distribución de columnas (*Column distribution*) en una consulta de pedidos que contiene estas filas:",
+    "table": {
+      "caption": "Consulta Pedidos",
+      "headers": [
+        "IdPedido",
+        "Canal"
+      ],
+      "rows": [
+        [
+          "1001",
+          "Web"
+        ],
+        [
+          "1002",
+          "Tienda"
+        ],
+        [
+          "1003",
+          "Web"
+        ],
+        [
+          "1004",
+          "Teléfono"
+        ],
+        [
+          "1005",
+          "Tienda"
+        ],
+        [
+          "1006",
+          "Distribuidor"
+        ]
+      ]
+    },
+    "prompt": "¿Qué recuentos muestra la herramienta para la columna Canal?",
+    "options": [
+      {
+        "id": "a",
+        "text": "4 distintos y 2 únicos",
+        "correct": true,
+        "explanation": "Hay cuatro valores diferentes (Web, Tienda, Teléfono, Distribuidor) y solo dos aparecen una única vez (Teléfono y Distribuidor)."
+      },
+      {
+        "id": "b",
+        "text": "4 distintos y 4 únicos",
+        "correct": false,
+        "explanation": "Confunde únicos con distintos: un valor único es el que aparece exactamente una vez, y Web y Tienda aparecen dos veces."
+      },
+      {
+        "id": "c",
+        "text": "6 distintos y 2 únicos",
+        "correct": false,
+        "explanation": "Seis es el número de filas, no de valores diferentes."
+      },
+      {
+        "id": "d",
+        "text": "2 distintos y 4 únicos",
+        "correct": false,
+        "explanation": "Invierte los conceptos: el recuento de únicos nunca puede ser mayor que el de distintos."
+      }
+    ],
+    "keyPoint": "Distintos = valores diferentes; únicos = valores que aparecen una sola vez.",
+    "references": [
+      {
+        "title": "Uso de las herramientas de generación de perfiles de datos",
+        "url": "https://learn.microsoft.com/es-es/power-query/data-profiling-tools"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-004",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 1,
+    "prompt": "Indica si cada afirmación sobre las herramientas de generación de perfiles de datos de Power Query es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Se activan en la pestaña Vista del Editor de Power Query, en el grupo Vista previa de datos.",
+        "answer": true,
+        "explanation": "En Power Query Desktop, Calidad de columna, Distribución de columnas y Perfil de columna se activan en Vista > Vista previa de datos."
+      },
+      {
+        "id": "s2",
+        "text": "Activar Perfil de columna agrega un paso a la lista de Pasos aplicados de la consulta.",
+        "answer": false,
+        "explanation": "Las herramientas de perfil solo muestran información sobre los datos; no transforman la consulta ni añaden pasos."
+      },
+      {
+        "id": "s3",
+        "text": "Si en una columna el recuento de valores distintos coincide con el de valores únicos, ningún valor se repite en las filas analizadas.",
+        "answer": true,
+        "explanation": "Si todos los valores distintos aparecen una sola vez, no hay repeticiones; es una comprobación útil para columnas candidatas a clave."
+      },
+      {
+        "id": "s4",
+        "text": "Por defecto, los perfiles se calculan sobre todas las filas de la consulta.",
+        "answer": false,
+        "explanation": "Por defecto se calculan sobre las primeras 1000 filas; puedes cambiarlo a todo el conjunto de datos en la barra de estado."
+      }
+    ],
+    "keyPoint": "Los perfiles se activan en Vista, no cambian los datos y por defecto solo miran las primeras filas.",
+    "references": [
+      {
+        "title": "Uso de las herramientas de generación de perfiles de datos",
+        "url": "https://learn.microsoft.com/es-es/power-query/data-profiling-tools"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-005",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 2,
+    "scenario": "Antes de usar IdCliente como columna del lado «uno» de una relación, quieres asegurarte de que no tiene valores repetidos en toda la tabla de clientes.",
+    "prompt": "Completa la frase.",
+    "template": "Activas {{b1}}, cambias la generación de perfiles a {{b2}} y confirmas que {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Distribución de columnas"
+          },
+          {
+            "id": "o2",
+            "text": "Calidad de columna"
+          },
+          {
+            "id": "o3",
+            "text": "Vista de diagrama"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Distribución de columnas muestra los recuentos de valores distintos y únicos, que son los que revelan duplicados; Calidad de columna solo informa de válidos, errores y vacíos."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "todo el conjunto de datos"
+          },
+          {
+            "id": "o2",
+            "text": "las primeras 1000 filas"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Un duplicado puede estar más allá de las primeras filas; para validar una clave hay que perfilar todo el conjunto de datos."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "el recuento de valores distintos es igual al de valores únicos"
+          },
+          {
+            "id": "o2",
+            "text": "el porcentaje de valores válidos es del 100 %"
+          },
+          {
+            "id": "o3",
+            "text": "la columna es de tipo Número entero"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Si distintos y únicos coinciden, cada valor aparece una sola vez. El 100 % de válidos o el tipo numérico no garantizan que no haya repeticiones."
+      }
+    ],
+    "keyPoint": "Para validar una clave, perfila todo el conjunto de datos y comprueba que distintos = únicos.",
+    "references": [
+      {
+        "title": "Uso de las herramientas de generación de perfiles de datos",
+        "url": "https://learn.microsoft.com/es-es/power-query/data-profiling-tools"
+      },
+      {
+        "title": "Relaciones del modelo en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-relationships-understand"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-006",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 2,
+    "scenario": "Un CRM exporta la ciudad de cada cliente escrita a mano. Al agrupar por Ciudad en Power Query obtienes varios grupos para la misma ciudad. Las comillas de la tabla solo marcan dónde hay espacios.",
+    "table": {
+      "caption": "Columna Ciudad (extracto)",
+      "headers": [
+        "IdCliente",
+        "Ciudad"
+      ],
+      "rows": [
+        [
+          "C01",
+          "\"Sevilla\""
+        ],
+        [
+          "C02",
+          "\"sevilla\""
+        ],
+        [
+          "C03",
+          "\"  Sevilla\""
+        ],
+        [
+          "C04",
+          "\"SEVILLA \""
+        ],
+        [
+          "C05",
+          "\"Cádiz\""
+        ]
+      ]
+    },
+    "prompt": "¿Qué transformaciones de Formato unifican los valores?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Recortar (*Trim*) y después Poner En Mayúsculas Cada Palabra (*Capitalize Each Word*)",
+        "correct": true,
+        "explanation": "Recortar quita los espacios iniciales y finales, y poner en mayúsculas cada palabra deja todas las variantes como «Sevilla». Power Query distingue mayúsculas y espacios al comparar texto, por eso salían grupos distintos."
+      },
+      {
+        "id": "b",
+        "text": "Quitar duplicados en la columna Ciudad",
+        "correct": false,
+        "explanation": "Eliminaría filas de clientes en lugar de corregir los valores, y además «Sevilla» y «sevilla» no se consideran duplicados."
+      },
+      {
+        "id": "c",
+        "text": "Solo Limpiar (*Clean*)",
+        "correct": false,
+        "explanation": "Limpiar elimina caracteres no imprimibles, pero no quita espacios ni cambia mayúsculas y minúsculas."
+      },
+      {
+        "id": "d",
+        "text": "Cambiar el tipo de la columna a Texto",
+        "correct": false,
+        "explanation": "La columna ya es texto; el tipo no corrige diferencias de escritura."
+      }
+    ],
+    "keyPoint": "Normaliza el texto con Recortar y un cambio de mayúsculas antes de agrupar o combinar: Power Query compara el texto de forma exacta.",
+    "references": [
+      {
+        "title": "Text.Trim",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/text-trim"
+      },
+      {
+        "title": "Text.Proper",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/text-proper"
+      },
+      {
+        "title": "Dar forma a los datos iniciales",
+        "url": "https://learn.microsoft.com/es-es/training/modules/clean-data-power-bi/2-shape-data"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-007",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 1,
+    "scenario": "Un informe exportado de un ERP muestra la región solo en la primera fila de cada bloque; el resto de filas del bloque llegan con null en Región.",
+    "table": {
+      "headers": [
+        "Región",
+        "Tienda",
+        "Ventas"
+      ],
+      "rows": [
+        [
+          "Norte",
+          "T-01",
+          "1200"
+        ],
+        [
+          "null",
+          "T-02",
+          "950"
+        ],
+        [
+          "null",
+          "T-03",
+          "1100"
+        ],
+        [
+          "Sur",
+          "T-04",
+          "870"
+        ],
+        [
+          "null",
+          "T-05",
+          "640"
+        ]
+      ]
+    },
+    "prompt": "¿Qué transformación completa correctamente la columna Región?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Rellenar > Hacia abajo (*Fill down*) en la columna Región",
+        "correct": true,
+        "explanation": "Rellenar hacia abajo sustituye cada null por el último valor no vacío de encima: T-02 y T-03 quedan en Norte y T-05 en Sur."
+      },
+      {
+        "id": "b",
+        "text": "Rellenar > Hacia arriba (*Fill up*) en la columna Región",
+        "correct": false,
+        "explanation": "Rellenar hacia arriba copia el siguiente valor hacia las filas anteriores, así que T-02 y T-03 quedarían asignadas a Sur."
+      },
+      {
+        "id": "c",
+        "text": "Reemplazar los null de Región por «Sin región»",
+        "correct": false,
+        "explanation": "Eliminaría los nulos, pero perdiendo la región real de cada tienda."
+      },
+      {
+        "id": "d",
+        "text": "Quitar filas en blanco",
+        "correct": false,
+        "explanation": "Solo elimina filas completamente vacías; estas filas tienen tienda y ventas y deben conservarse."
+      }
+    ],
+    "keyPoint": "Cuando un valor solo aparece en la primera fila de cada grupo, usa Rellenar hacia abajo.",
+    "references": [
+      {
+        "title": "Rellenar valores en una columna",
+        "url": "https://learn.microsoft.com/es-es/power-query/fill-values-column"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-008",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 2,
+    "scenario": "La columna Importe de un CSV de Ferretería Iriarte llega como texto (configuración regional Español (España)) y contiene N/D cuando el proveedor no informa el importe. Quieres que sea de tipo Número decimal y que esas filas queden con null, sin perderlas.",
+    "table": {
+      "headers": [
+        "IdAlbarán",
+        "Importe"
+      ],
+      "rows": [
+        [
+          "A-301",
+          "125,40"
+        ],
+        [
+          "A-302",
+          "N/D"
+        ],
+        [
+          "A-303",
+          "89,90"
+        ],
+        [
+          "A-304",
+          "N/D"
+        ]
+      ]
+    },
+    "prompt": "¿Qué dos soluciones consiguen el resultado? Cada respuesta es una solución completa. Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Reemplazar valores N/D por null en Importe, coincidiendo con todo el contenido de la celda, y después cambiar el tipo a Número decimal",
+        "correct": true,
+        "explanation": "Al sustituir N/D por null antes de la conversión, el cambio de tipo ya no encuentra texto que no sea numérico y las filas se conservan con null."
+      },
+      {
+        "id": "b",
+        "text": "Cambiar el tipo a Número decimal y después, en Importe, Reemplazar errores (*Replace errors*) por null",
+        "correct": true,
+        "explanation": "El cambio de tipo convierte N/D en errores de nivel de celda; reemplazarlos por null conserva las filas con el valor deseado."
+      },
+      {
+        "id": "c",
+        "text": "Cambiar el tipo a Número decimal y después Quitar errores (*Remove errors*)",
+        "correct": false,
+        "explanation": "Quitar errores elimina las filas con error, y el requisito es conservarlas."
+      },
+      {
+        "id": "d",
+        "text": "Dejar la columna como Texto y resumirla con Suma en el informe",
+        "correct": false,
+        "explanation": "Una columna de texto no se puede sumar; el tipo debe corregirse en Power Query."
+      },
+      {
+        "id": "e",
+        "text": "Quitar duplicados en la columna Importe",
+        "correct": false,
+        "explanation": "No tiene relación con el problema y además eliminaría filas con el mismo importe."
+      }
+    ],
+    "keyPoint": "Un marcador de texto como N/D se trata reemplazándolo por null antes del cambio de tipo o reemplazando los errores después.",
+    "references": [
+      {
+        "title": "Reemplazar valores",
+        "url": "https://learn.microsoft.com/es-es/power-query/replace-values"
+      },
+      {
+        "title": "Tratamiento de errores en Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/dealing-with-errors"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-009",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 3,
+    "scenario": "En la consulta Tarifas de Hoteles Brisa, la columna TarifaEstandar trae algunos valores de error procedentes del libro de Excel (#N/A, #DIV/0!). Añades este paso:",
+    "code": {
+      "language": "m",
+      "content": "TarifaFinal = Table.AddColumn(\n    Origen,\n    \"TarifaFinal\",\n    each try [TarifaEstandar] otherwise [TarifaEspecial],\n    type number\n)"
+    },
+    "prompt": "¿Qué hace el paso?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agrega TarifaFinal con el valor de TarifaEstandar cuando no hay error y, en las filas con error, el de TarifaEspecial",
+        "correct": true,
+        "explanation": "try … otherwise evalúa la expresión y, si produce un error, devuelve el valor alternativo; es el equivalente en M a SIERROR."
+      },
+      {
+        "id": "b",
+        "text": "Reemplaza los errores de TarifaEstandar por TarifaEspecial sin crear columnas nuevas",
+        "correct": false,
+        "explanation": "Table.AddColumn agrega una columna nueva; la columna TarifaEstandar original no cambia."
+      },
+      {
+        "id": "c",
+        "text": "Quita las filas en las que TarifaEstandar tiene un error",
+        "correct": false,
+        "explanation": "El paso no filtra filas; para eso existiría Quitar errores (Table.RemoveRowsWithErrors)."
+      },
+      {
+        "id": "d",
+        "text": "Usa TarifaEspecial cuando TarifaEstandar es null",
+        "correct": false,
+        "explanation": "try solo captura errores; un null no es un error, así que se devolvería null."
+      }
+    ],
+    "keyPoint": "try … otherwise da un valor alternativo cuando una expresión produce error, sin perder filas.",
+    "references": [
+      {
+        "title": "Control de errores",
+        "url": "https://learn.microsoft.com/es-es/power-query/error-handling"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-010",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 2,
+    "scenario": "Importas una hoja de Excel de Ópticas Miralba. Las tres primeras filas contienen el título y la fecha de exportación, la cuarta tiene los nombres de columna, y la columna Importe contiene algún texto como «pendiente» que no debe impedir la carga.",
+    "prompt": "Ordena los pasos para obtener una tabla limpia.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Quitar filas > Quitar filas superiores (*Remove top rows*), indicando 3",
+        "explanation": "Primero hay que eliminar las filas de título para que la fila con los nombres de columna quede arriba."
+      },
+      {
+        "id": "p2",
+        "text": "Usar la primera fila como encabezado (*Use first row as headers*)",
+        "explanation": "Solo tras quitar las filas superiores la primera fila contiene los nombres de columna correctos."
+      },
+      {
+        "id": "p3",
+        "text": "Cambiar el tipo de la columna Importe a Número decimal",
+        "explanation": "El cambio de tipo hace referencia a la columna Importe, que solo existe con ese nombre tras promover los encabezados."
+      },
+      {
+        "id": "p4",
+        "text": "Reemplazar errores en Importe por null",
+        "explanation": "Los errores aparecen al convertir textos como «pendiente» a número, así que solo pueden tratarse después del cambio de tipo."
+      }
+    ],
+    "keyPoint": "Quitar filas de cabecera → promover encabezados → asignar tipos → tratar los errores que genere la conversión.",
+    "references": [
+      {
+        "title": "Dar forma a los datos iniciales",
+        "url": "https://learn.microsoft.com/es-es/training/modules/clean-data-power-bi/2-shape-data"
+      },
+      {
+        "title": "Tratamiento de errores en Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/dealing-with-errors"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-011",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 2,
+    "scenario": "Elena comparte con Luis un archivo .pbix cuya consulta lee D:\\Compras\\pedidos.csv de su propio equipo. Al actualizar, Luis recibe un error DataSource.NotFound.",
+    "prompt": "¿Cuál es la solución más adecuada?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Guardar el CSV en una ubicación a la que ambos tengan acceso y actualizar la ruta con Configuración del origen de datos > Cambiar origen",
+        "correct": true,
+        "explanation": "DataSource.NotFound indica que no se puede acceder al origen, por ejemplo porque la ruta no existe en el equipo de Luis; una ubicación compartida resuelve el problema para ambos."
+      },
+      {
+        "id": "b",
+        "text": "Cambiar el nivel de privacidad del origen a Público",
+        "correct": false,
+        "explanation": "El nivel de privacidad no influye en si la ruta del archivo existe o es accesible."
+      },
+      {
+        "id": "c",
+        "text": "Añadir un paso Quitar errores al final de la consulta",
+        "correct": false,
+        "explanation": "Es un error de nivel de paso: la consulta no llega a cargarse, así que no hay filas con errores que quitar."
+      },
+      {
+        "id": "d",
+        "text": "Cambiar el tipo de datos de todas las columnas a Texto",
+        "correct": false,
+        "explanation": "Los tipos de datos no tienen relación con un origen que no se encuentra."
+      }
+    ],
+    "keyPoint": "DataSource.NotFound = origen inaccesible o movido: corrige la ruta o las credenciales en Configuración del origen de datos.",
+    "references": [
+      {
+        "title": "Tratamiento de errores en Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/dealing-with-errors"
+      },
+      {
+        "title": "Resolución de errores de importación de datos",
+        "url": "https://learn.microsoft.com/es-es/training/modules/get-data/9-import-errors"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-012",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 2,
+    "scenario": "El equipo de TI de Distribuciones Arga renombró la columna «Fecha venta» del archivo de origen a «FechaVenta». Desde entonces, la consulta falla al actualizar con un error Expression.Error que indica que no se encontró la columna «Fecha venta» de la tabla.",
+    "code": {
+      "language": "m",
+      "content": "let\n    Origen = Csv.Document(File.Contents(\"\\\\srv01\\ventas\\ventas.csv\"), [Delimiter = \";\", Encoding = 65001]),\n    Encabezados = Table.PromoteHeaders(Origen, [PromoteAllScalars = true]),\n    TipoCambiado = Table.TransformColumnTypes(\n        Encabezados,\n        {{\"Fecha venta\", type date}, {\"Importe\", type number}}\n    )\nin\n    TipoCambiado"
+    },
+    "prompt": "¿Qué corrección resuelve el error?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cambiar en el paso TipoCambiado el nombre «Fecha venta» por «FechaVenta»",
+        "correct": true,
+        "explanation": "El paso hace referencia a un nombre de columna que ya no existe; actualizar la referencia (o editar el paso) permite que la consulta vuelva a ejecutarse."
+      },
+      {
+        "id": "b",
+        "text": "Añadir un paso Quitar errores al final de la consulta",
+        "correct": false,
+        "explanation": "Es un error de nivel de paso que detiene la consulta; Quitar errores solo trata errores de nivel de celda."
+      },
+      {
+        "id": "c",
+        "text": "Cambiar el valor de Encoding a 1252",
+        "correct": false,
+        "explanation": "La codificación afecta a cómo se leen los caracteres, no a qué columnas existen."
+      },
+      {
+        "id": "d",
+        "text": "Desactivar Habilitar carga de la consulta",
+        "correct": false,
+        "explanation": "Ocultaría el problema dejando el modelo sin la tabla; no corrige la referencia a la columna."
+      }
+    ],
+    "keyPoint": "Si el origen cambia nombres de columna, corrige los pasos que hacen referencia al nombre antiguo, como los cambios de tipo.",
+    "references": [
+      {
+        "title": "Tratamiento de errores en Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/dealing-with-errors"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-013",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre los errores en Power Query es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Un error de nivel de paso impide que la consulta se cargue.",
+        "answer": true,
+        "explanation": "Los errores de nivel de paso, como un origen no encontrado o una columna inexistente, detienen la consulta y se muestran en un panel amarillo."
+      },
+      {
+        "id": "s2",
+        "text": "Un error de nivel de celda impide que se cargue toda la consulta.",
+        "answer": false,
+        "explanation": "La consulta se carga y las celdas afectadas muestran Error; puedes quitarlas, reemplazarlas o mantenerlas."
+      },
+      {
+        "id": "s3",
+        "text": "Mantener errores (*Keep errors*) es útil para auditar qué filas contienen errores.",
+        "answer": true,
+        "explanation": "Mantener errores deja solo las filas con error, lo que facilita revisar su causa antes de corregirla."
+      },
+      {
+        "id": "s4",
+        "text": "Reemplazar errores corrige el valor en el archivo o la base de datos de origen.",
+        "answer": false,
+        "explanation": "Las transformaciones de Power Query solo cambian el resultado de la consulta; el origen no se modifica."
+      }
+    ],
+    "keyPoint": "Errores de paso detienen la consulta; errores de celda se quitan, reemplazan o mantienen sin tocar el origen.",
+    "references": [
+      {
+        "title": "Tratamiento de errores en Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/dealing-with-errors"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "El equipo de Viajes Altamar usa Power BI Desktop en equipos configurados en Inglés (Estados Unidos). Un proveedor envía un CSV con fechas en formato dd/mm/aaaa. Al cambiar el tipo de la columna a Fecha, algunas filas dan error y otras muestran el día y el mes intercambiados.",
+    "table": {
+      "caption": "Columna FechaSalida (texto)",
+      "headers": [
+        "IdReserva",
+        "FechaSalida"
+      ],
+      "rows": [
+        [
+          "R-01",
+          "03/02/2026"
+        ],
+        [
+          "R-02",
+          "25/02/2026"
+        ],
+        [
+          "R-03",
+          "11/03/2026"
+        ]
+      ]
+    },
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Usar Cambiar tipo > Usar configuración regional (*Using locale*), elegir Fecha y la configuración regional Español (España)",
+        "correct": true,
+        "explanation": "La configuración regional indica a Power Query cómo interpretar el texto; con Español (España), 03/02/2026 se lee como 3 de febrero y 25/02/2026 deja de dar error."
+      },
+      {
+        "id": "b",
+        "text": "Cambiar el tipo a Fecha y hora en lugar de Fecha",
+        "correct": false,
+        "explanation": "La conversión seguiría usando la configuración regional Inglés (Estados Unidos), que interpreta mes/día/año, así que el problema persiste."
+      },
+      {
+        "id": "c",
+        "text": "Reemplazar los errores de la columna por null",
+        "correct": false,
+        "explanation": "Ocultaría los errores, pero las fechas cuyo día es 12 o menor seguirían con el día y el mes intercambiados."
+      },
+      {
+        "id": "d",
+        "text": "Usar Detectar tipo de datos (*Detect data type*) en la pestaña Transformar",
+        "correct": false,
+        "explanation": "La detección automática también interpreta el texto con la configuración regional activa, así que no corrige el formato dd/mm/aaaa."
+      }
+    ],
+    "keyPoint": "Para convertir texto con un formato regional distinto del equipo, usa Cambiar tipo > Usar configuración regional.",
+    "references": [
+      {
+        "title": "Tipos de datos en Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/data-types"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-002",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 3,
+    "scenario": "El departamento financiero de Coopera Banca detecta diferencias de céntimos al comparar los totales del informe con el sistema contable. La columna Importe tiene tipo Número decimal.",
+    "prompt": "¿Qué tipo de datos deberías asignar a Importe en Power Query para evitar esas diferencias?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Número decimal fijo (*Fixed decimal number*)",
+        "correct": true,
+        "explanation": "El tipo Número decimal fijo (tipo moneda) tiene una posición fija del separador decimal con cuatro decimales y es siempre preciso, evitando la imprecisión del punto flotante."
+      },
+      {
+        "id": "b",
+        "text": "Número entero",
+        "correct": false,
+        "explanation": "Perdería los decimales de los importes."
+      },
+      {
+        "id": "c",
+        "text": "Porcentaje",
+        "correct": false,
+        "explanation": "Porcentaje es básicamente un Número decimal con formato de porcentaje: mantiene la misma imprecisión de punto flotante."
+      },
+      {
+        "id": "d",
+        "text": "Texto",
+        "correct": false,
+        "explanation": "Una columna de texto no se puede sumar ni promediar en el modelo."
+      }
+    ],
+    "keyPoint": "Para importes monetarios que deben cuadrar al céntimo, usa Número decimal fijo en lugar de Número decimal.",
+    "references": [
+      {
+        "title": "Tipos de datos en Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/data-types"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-003",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre los tipos de datos en Power Query es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Al conectarte a una base de datos, Power Query lee el esquema de la tabla y asigna a cada columna el tipo definido en el origen.",
+        "answer": true,
+        "explanation": "En orígenes estructurados los tipos se obtienen del esquema; en orígenes no estructurados, como CSV o Excel, se detectan inspeccionando los valores."
+      },
+      {
+        "id": "s2",
+        "text": "Es recomendable dejar columnas con tipo Any (Cualquiera) en la salida de las consultas.",
+        "answer": false,
+        "explanation": "Microsoft recomienda definir siempre los tipos de forma explícita y evitar columnas Any en la salida de las consultas."
+      },
+      {
+        "id": "s3",
+        "text": "Una columna de tipo Fecha, hora y zona horaria se convierte a Fecha y hora al cargarla en el modelo.",
+        "answer": true,
+        "explanation": "El tipo datetimezone representa una fecha y hora UTC con desplazamiento, y se convierte en fecha y hora al cargarse."
+      },
+      {
+        "id": "s4",
+        "text": "Una columna de tipo Duración se carga en el modelo como texto.",
+        "answer": false,
+        "explanation": "La duración se convierte en un número decimal al cargarla, lo que permite sumarla o restarla de fechas."
+      }
+    ],
+    "keyPoint": "Define tipos explícitos en todas las columnas; algunos tipos de Power Query se transforman al cargarse en el modelo.",
+    "references": [
+      {
+        "title": "Tipos de datos en Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/data-types"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-004",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 1,
+    "scenario": "Quieres clasificar los pedidos de Editorial Brújula: si Importe es mayor o igual que 1000, «Grande»; si es mayor o igual que 300, «Mediano»; en otro caso, «Pequeño».",
+    "prompt": "Completa la frase.",
+    "template": "Usas {{b1}} de la pestaña {{b2}}; las cláusulas se evalúan {{b3}}, así que la cláusula de 1000 debe ir antes que la de 300.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Columna condicional"
+          },
+          {
+            "id": "o2",
+            "text": "Columna dinámica"
+          },
+          {
+            "id": "o3",
+            "text": "Columna de índice"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Columna condicional (*Conditional column*) crea valores a partir de cláusulas si / si no sin escribir código; Columna dinámica pivota una tabla y Columna de índice numera filas."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Agregar columna"
+          },
+          {
+            "id": "o2",
+            "text": "Vista"
+          },
+          {
+            "id": "o3",
+            "text": "Inicio"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Columna condicional está en la pestaña Agregar columna, grupo General."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "de arriba abajo, y se aplica la primera que se cumple"
+          },
+          {
+            "id": "o2",
+            "text": "todas a la vez, y gana la última que se cumple"
+          },
+          {
+            "id": "o3",
+            "text": "en orden alfabético de la salida"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Las cláusulas se prueban en el orden en que aparecen en el cuadro de diálogo; un importe de 1500 cumple ambas condiciones, por eso la de 1000 debe ir primero."
+      }
+    ],
+    "keyPoint": "En una columna condicional el orden de las cláusulas importa: pon primero las condiciones más restrictivas.",
+    "references": [
+      {
+        "title": "Agregar una columna condicional",
+        "url": "https://learn.microsoft.com/es-es/power-query/add-conditional-column"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-005",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "En Power BI Desktop, la consulta Pedidos de Suministros Altea tiene este paso:",
+    "code": {
+      "language": "m",
+      "content": "ImporteNeto = Table.AddColumn(\n    TipoCambiado,\n    \"ImporteNeto\",\n    each [Unidades] * [PrecioUnitario] * (1 - [Descuento]),\n    type number\n)"
+    },
+    "prompt": "¿Qué afirmación sobre el paso es correcta?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agrega la columna ImporteNeto, calculada fila a fila, con tipo número gracias al cuarto argumento",
+        "correct": true,
+        "explanation": "each define una función que se evalúa para cada fila, y el argumento type number asigna el tipo de la nueva columna; si se omite, la columna quedaría como Any."
+      },
+      {
+        "id": "b",
+        "text": "Sustituye la columna PrecioUnitario por el importe neto",
+        "correct": false,
+        "explanation": "Table.AddColumn agrega una columna nueva y conserva las existentes."
+      },
+      {
+        "id": "c",
+        "text": "Calcula un único total para toda la tabla y lo repite en todas las filas",
+        "correct": false,
+        "explanation": "La expresión usa los valores de cada fila; no agrega la tabla."
+      },
+      {
+        "id": "d",
+        "text": "La nueva columna queda con tipo Any aunque se indique type number",
+        "correct": false,
+        "explanation": "El cuarto argumento de Table.AddColumn define precisamente el tipo de la columna."
+      }
+    ],
+    "keyPoint": "Una columna personalizada evalúa una expresión M por fila; asígnale siempre un tipo de datos.",
+    "references": [
+      {
+        "title": "Agregar una columna personalizada",
+        "url": "https://learn.microsoft.com/es-es/power-query/add-custom-column"
+      },
+      {
+        "title": "Table.AddColumn",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-addcolumn"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-006",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 1,
+    "prompt": "Empareja cada necesidad con la opción de la pestaña Agregar columna más adecuada.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Obtener «Ruiz, Ana» a partir de Nombre y Apellido escribiendo un par de resultados de ejemplo",
+        "answerId": "c1",
+        "explanation": "Columna a partir de los ejemplos (*Column from examples*) deduce la transformación a partir de los valores que escribes."
+      },
+      {
+        "id": "m2",
+        "text": "Asignar «Alta», «Media» o «Baja» según reglas si / si no, sin escribir código",
+        "answerId": "c2",
+        "explanation": "Columna condicional define cláusulas que se evalúan en orden y una salida para cada una."
+      },
+      {
+        "id": "m3",
+        "text": "Calcular el margen con una fórmula M que combina varias columnas y funciones",
+        "answerId": "c3",
+        "explanation": "Columna personalizada (*Custom column*) permite escribir cualquier expresión del lenguaje M."
+      },
+      {
+        "id": "m4",
+        "text": "Numerar las filas de forma secuencial empezando en 1",
+        "answerId": "c4",
+        "explanation": "Columna de índice (*Index column*) agrega valores de posición secuenciales y permite elegir el valor inicial, por ejemplo 1."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Columna a partir de los ejemplos"
+      },
+      {
+        "id": "c2",
+        "text": "Columna condicional"
+      },
+      {
+        "id": "c3",
+        "text": "Columna personalizada"
+      },
+      {
+        "id": "c4",
+        "text": "Columna de índice"
+      },
+      {
+        "id": "c5",
+        "text": "Columna dinámica"
+      },
+      {
+        "id": "c6",
+        "text": "Duplicar columna"
+      }
+    ],
+    "keyPoint": "Ejemplos = sin saber la fórmula; condicional = reglas si / si no; personalizada = fórmula M; índice = numeración.",
+    "references": [
+      {
+        "title": "Agregar una columna a partir de ejemplos",
+        "url": "https://learn.microsoft.com/es-es/power-query/column-from-example"
+      },
+      {
+        "title": "Agregar una columna condicional",
+        "url": "https://learn.microsoft.com/es-es/power-query/add-conditional-column"
+      },
+      {
+        "title": "Agregar una columna personalizada",
+        "url": "https://learn.microsoft.com/es-es/power-query/add-custom-column"
+      },
+      {
+        "title": "Agregar una columna de índice",
+        "url": "https://learn.microsoft.com/es-es/power-query/add-index-column"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-007",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "La consulta Ventas de Tostadero Sol contiene estas filas y le añades el paso siguiente:",
+    "code": {
+      "language": "m",
+      "content": "Agrupado = Table.Group(\n    Ventas,\n    {\"Region\"},\n    {\n        {\"Total\", each List.Sum([Importe]), type number},\n        {\"Pedidos\", each Table.RowCount(_), Int64.Type}\n    }\n)"
+    },
+    "table": {
+      "caption": "Consulta Ventas",
+      "headers": [
+        "Region",
+        "IdPedido",
+        "Importe"
+      ],
+      "rows": [
+        [
+          "Norte",
+          "P1",
+          "100"
+        ],
+        [
+          "Sur",
+          "P2",
+          "50"
+        ],
+        [
+          "Norte",
+          "P3",
+          "70"
+        ],
+        [
+          "Norte",
+          "P4",
+          "30"
+        ],
+        [
+          "Sur",
+          "P5",
+          "20"
+        ]
+      ]
+    },
+    "prompt": "¿Qué fila obtiene el paso para la región Norte?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Region = Norte, Total = 200, Pedidos = 3",
+        "correct": true,
+        "explanation": "Table.Group crea una fila por región: suma los importes del grupo Norte (100 + 70 + 30) y cuenta sus filas con Table.RowCount."
+      },
+      {
+        "id": "b",
+        "text": "Region = Norte, Total = 200, Pedidos = 5",
+        "correct": false,
+        "explanation": "Table.RowCount(_) cuenta las filas del grupo, no de toda la tabla."
+      },
+      {
+        "id": "c",
+        "text": "Region = Norte, Total = 270, Pedidos = 3",
+        "correct": false,
+        "explanation": "270 es la suma de todas las regiones; List.Sum solo suma los importes del grupo."
+      },
+      {
+        "id": "d",
+        "text": "Tres filas de Norte, cada una con Total = 200",
+        "correct": false,
+        "explanation": "Agrupar por resume el grupo en una sola fila; la columna IdPedido desaparece porque no se agrupa ni se agrega."
+      }
+    ],
+    "keyPoint": "Table.Group devuelve una fila por combinación de claves con las agregaciones indicadas; el resto de columnas se pierde.",
+    "references": [
+      {
+        "title": "Agrupar o resumir filas",
+        "url": "https://learn.microsoft.com/es-es/power-query/group-by"
+      },
+      {
+        "title": "Table.Group",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-group"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-008",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "Debes resumir en Power Query las ventas de Muebles Roble por País y Canal de venta, con el total de unidades.",
+    "prompt": "¿Qué dos afirmaciones sobre Agrupar por (*Group by*) son correctas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Para agrupar por País y Canal a la vez debes usar la opción Avanzadas y agregar una segunda agrupación",
+        "correct": true,
+        "explanation": "La opción básica agrupa por una columna; Avanzadas permite añadir varias columnas de agrupación y varias agregaciones."
+      },
+      {
+        "id": "b",
+        "text": "La operación Todas las filas (*All rows*) devuelve en cada grupo una tabla anidada con las filas originales",
+        "correct": true,
+        "explanation": "Todas las filas no agrega: guarda las filas de cada grupo en un valor [Table] que después puedes expandir o analizar."
+      },
+      {
+        "id": "c",
+        "text": "Las columnas que no agrupas ni agregas se conservan en el resultado con su primer valor",
+        "correct": false,
+        "explanation": "El resultado solo contiene las columnas de agrupación y las columnas agregadas; las demás se descartan."
+      },
+      {
+        "id": "d",
+        "text": "Recuento de filas (*Count rows*) cuenta los valores distintos de la columna Unidades",
+        "correct": false,
+        "explanation": "Recuento de filas cuenta todas las filas del grupo, sin mirar los valores de ninguna columna."
+      },
+      {
+        "id": "e",
+        "text": "Agrupar por solo está disponible en la pestaña Agregar columna",
+        "correct": false,
+        "explanation": "Está en la pestaña Inicio (grupo Transformar), en la pestaña Transformar (grupo Tabla) y en el menú contextual de las columnas."
+      }
+    ],
+    "keyPoint": "Agrupar por avanzado admite varias columnas y agregaciones; Todas las filas conserva el detalle en tablas anidadas.",
+    "references": [
+      {
+        "title": "Agrupar o resumir filas",
+        "url": "https://learn.microsoft.com/es-es/power-query/group-by"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-009",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 3,
+    "scenario": "Para cada país de la consulta Ventas (País, Producto, Unidades) quieres obtener el total de unidades y el nombre del producto más vendido.",
+    "prompt": "Ordena los pasos.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Agrupar por País con dos agregaciones: Total (Suma de Unidades) y Productos (Todas las filas)",
+        "explanation": "La agrupación crea una fila por país con el total y una tabla anidada con sus productos, de la que se partirá."
+      },
+      {
+        "id": "p2",
+        "text": "Agregar una columna personalizada con la fórmula Table.Max([Productos], \"Unidades\")",
+        "explanation": "La fórmula necesita la columna Productos con tablas anidadas; devuelve en cada fila el registro con más unidades."
+      },
+      {
+        "id": "p3",
+        "text": "Expandir la nueva columna de registros y seleccionar el campo Producto",
+        "explanation": "Solo se puede expandir cuando existe la columna de registros creada en el paso anterior."
+      }
+    ],
+    "keyPoint": "Agrupar con Todas las filas permite calcular sobre el detalle de cada grupo y luego expandir el resultado.",
+    "references": [
+      {
+        "title": "Agrupar o resumir filas",
+        "url": "https://learn.microsoft.com/es-es/power-query/group-by"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-010",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "Un libro de Excel de Hortícola Vega tiene una columna Producto y una columna por mes (Ene, Feb, Mar…); cada mes se añade una columna nueva. Al importarlo, los nombres de columna aparecen como primera fila de datos.",
+    "prompt": "Ordena los pasos para obtener una tabla con las columnas Producto, Mes y Unidades.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Usar la primera fila como encabezado",
+        "explanation": "Sin encabezados correctos no hay columnas Producto ni de meses que seleccionar."
+      },
+      {
+        "id": "p2",
+        "text": "Seleccionar la columna Producto y elegir Anular dinamización de otras columnas (*Unpivot other columns*)",
+        "explanation": "Convierte todas las columnas de mes, también las que lleguen en el futuro, en pares Atributo-Valor."
+      },
+      {
+        "id": "p3",
+        "text": "Cambiar el nombre de Atributo a Mes y de Valor a Unidades",
+        "explanation": "Las columnas Atributo y Valor solo existen después de anular la dinamización."
+      },
+      {
+        "id": "p4",
+        "text": "Cambiar el tipo de la columna Unidades a Número entero",
+        "explanation": "El paso hace referencia a la columna Unidades, que solo tiene ese nombre tras el paso anterior."
+      }
+    ],
+    "keyPoint": "Encabezados → anular dinamización de otras columnas → renombrar Atributo y Valor → asignar tipos.",
+    "references": [
+      {
+        "title": "Anulación de dinamización de columnas",
+        "url": "https://learn.microsoft.com/es-es/power-query/unpivot-column"
+      },
+      {
+        "title": "Dar forma a los datos iniciales",
+        "url": "https://learn.microsoft.com/es-es/training/modules/clean-data-power-bi/2-shape-data"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-011",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 3,
+    "scenario": "La consulta Encuesta de Hoteles Brisa tiene una fila por hotel y pregunta, con respuestas de texto. Quieres una columna por pregunta y aplicas Columna dinámica (*Pivot column*) a Pregunta, con Respuesta como columna de valores.",
+    "table": {
+      "caption": "Consulta Encuesta",
+      "headers": [
+        "Hotel",
+        "Pregunta",
+        "Respuesta"
+      ],
+      "rows": [
+        [
+          "H1",
+          "Limpieza",
+          "Buena"
+        ],
+        [
+          "H1",
+          "Atención",
+          "Excelente"
+        ],
+        [
+          "H2",
+          "Limpieza",
+          "Regular"
+        ],
+        [
+          "H2",
+          "Atención",
+          "Buena"
+        ]
+      ]
+    },
+    "prompt": "¿Qué dos afirmaciones son correctas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "En Opciones avanzadas debes elegir No agregar (*Don't aggregate*), porque los valores son texto",
+        "correct": true,
+        "explanation": "Con No agregar, cada celda recibe el valor de texto correspondiente; una agregación como Suma no tiene sentido sobre texto."
+      },
+      {
+        "id": "b",
+        "text": "Si un hotel tuviera dos filas para la misma pregunta, No agregar produciría errores en esas celdas",
+        "correct": true,
+        "explanation": "No agregar espera un único valor por combinación de fila y columna; con varios se produce un error de demasiados elementos en la enumeración."
+      },
+      {
+        "id": "c",
+        "text": "La operación crea las columnas Atributo y Valor",
+        "correct": false,
+        "explanation": "Atributo y Valor son el resultado de anular la dinamización, que es la operación inversa."
+      },
+      {
+        "id": "d",
+        "text": "Power Query usa Recuento como agregado predeterminado",
+        "correct": false,
+        "explanation": "De forma predeterminada intenta Suma; las demás agregaciones se eligen en Opciones avanzadas."
+      },
+      {
+        "id": "e",
+        "text": "El resultado tiene una fila por cada combinación de Hotel y Pregunta",
+        "correct": false,
+        "explanation": "Al dinamizar, el resultado tiene una fila por hotel y una columna por cada pregunta."
+      }
+    ],
+    "keyPoint": "Dinamiza valores de texto con No agregar, y asegúrate de que hay un solo valor por combinación.",
+    "references": [
+      {
+        "title": "Columnas dinámicas",
+        "url": "https://learn.microsoft.com/es-es/power-query/pivot-columns"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-012",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "Una hoja de Excel de la Fundación Lumen tiene las métricas en filas y los eventos en columnas. Al importarla en Power Query queda así, y quieres una tabla con las columnas Evento, Asistentes y Fondos, y una fila por evento.",
+    "table": {
+      "headers": [
+        "Column1",
+        "Column2",
+        "Column3",
+        "Column4"
+      ],
+      "rows": [
+        [
+          "Evento",
+          "Feria Norte",
+          "Congreso Sur",
+          "Gala Este"
+        ],
+        [
+          "Asistentes",
+          "150",
+          "450",
+          "1250"
+        ],
+        [
+          "Fondos",
+          "4000",
+          "10000",
+          "15000"
+        ]
+      ]
+    },
+    "prompt": "¿Qué secuencia de transformaciones produce la tabla deseada?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Transponer (*Transpose*) y después Usar la primera fila como encabezado",
+        "correct": true,
+        "explanation": "Transponer gira la tabla, de modo que las filas pasan a ser columnas; como los encabezados se pierden, después se promueve la primera fila (Evento, Asistentes, Fondos)."
+      },
+      {
+        "id": "b",
+        "text": "Usar la primera fila como encabezado y después Anular dinamización de otras columnas",
+        "correct": false,
+        "explanation": "Obtendrías pares atributo-valor con los nombres de evento como atributos, no una fila por evento con sus métricas en columnas."
+      },
+      {
+        "id": "c",
+        "text": "Columna dinámica sobre Column1",
+        "correct": false,
+        "explanation": "Dinamizar requiere una columna de atributos y otra de valores con un valor por combinación; esta tabla solo necesita girarse."
+      },
+      {
+        "id": "d",
+        "text": "Transponer únicamente, porque la operación conserva los encabezados",
+        "correct": false,
+        "explanation": "Transponer no conserva los encabezados: las nuevas columnas se llaman Column1, Column2…, así que hace falta promover la primera fila."
+      }
+    ],
+    "keyPoint": "Transponer intercambia filas y columnas y pierde los encabezados; suele ir seguido de Usar la primera fila como encabezado.",
+    "references": [
+      {
+        "title": "Transponer una tabla",
+        "url": "https://learn.microsoft.com/es-es/power-query/transpose-table"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-013",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "La consulta Stock de Calzados Ría tiene la forma de la tabla y le añades el paso del código.",
+    "code": {
+      "language": "m",
+      "content": "SinDinamizar = Table.UnpivotOtherColumns(\n    Stock,\n    {\"Tienda\"},\n    \"Mes\",\n    \"Unidades\"\n)"
+    },
+    "table": {
+      "caption": "Consulta Stock",
+      "headers": [
+        "Tienda",
+        "Ene",
+        "Feb",
+        "Mar"
+      ],
+      "rows": [
+        [
+          "T1",
+          "10",
+          "12",
+          "9"
+        ],
+        [
+          "T2",
+          "7",
+          "8",
+          "11"
+        ],
+        [
+          "T3",
+          "5",
+          "6",
+          "4"
+        ]
+      ]
+    },
+    "prompt": "Completa la frase.",
+    "template": "El resultado tiene {{b1}} filas con las columnas {{b2}}; si el origen añade una columna Abr, el paso {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "9"
+          },
+          {
+            "id": "o2",
+            "text": "3"
+          },
+          {
+            "id": "o3",
+            "text": "12"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Cada una de las 3 tiendas genera una fila por cada una de las 3 columnas que se anulan (Ene, Feb, Mar): 3 × 3 = 9."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Tienda, Mes y Unidades"
+          },
+          {
+            "id": "o2",
+            "text": "Tienda, Ene, Feb y Mar"
+          },
+          {
+            "id": "o3",
+            "text": "Mes y Unidades"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Se conserva la columna indicada en la lista (Tienda) y se crean la columna de atributo (Mes) y la de valor (Unidades)."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "también la convierte en filas"
+          },
+          {
+            "id": "o2",
+            "text": "la deja como una columna aparte"
+          },
+          {
+            "id": "o3",
+            "text": "produce un error"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Anular dinamización de otras columnas convierte todas las columnas salvo las indicadas, así que incluye las nuevas; Anular dinamización de solo las columnas seleccionadas, en cambio, dejaría Abr como columna."
+      }
+    ],
+    "keyPoint": "Table.UnpivotOtherColumns fija las columnas que conservas y convierte en filas todas las demás, incluidas las futuras.",
+    "references": [
+      {
+        "title": "Anulación de dinamización de columnas",
+        "url": "https://learn.microsoft.com/es-es/power-query/unpivot-column"
+      },
+      {
+        "title": "Table.UnpivotOtherColumns",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-unpivotothercolumns"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-014",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "Obtienes de la API de Pedidos Kora, con el conector Web, un JSON que Power Query muestra como una lista. Cada elemento es un registro con id, cliente y lineas; lineas es una lista de registros con producto y cantidad.",
+    "prompt": "Ordena los pasos para obtener una tabla con una fila por línea de pedido.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Convertir la lista en tabla con A la tabla (*To table*)",
+        "explanation": "Las herramientas de expansión trabajan sobre columnas de una tabla, así que primero hay que convertir la lista."
+      },
+      {
+        "id": "p2",
+        "text": "Expandir la columna de registros para obtener id, cliente y lineas",
+        "explanation": "Cada fila contiene un registro; al expandirlo, sus campos pasan a ser columnas, entre ellas lineas."
+      },
+      {
+        "id": "p3",
+        "text": "Expandir la columna lineas a nuevas filas (*Expand to new rows*)",
+        "explanation": "lineas contiene listas; expandirlas genera una fila por elemento y repite id y cliente."
+      },
+      {
+        "id": "p4",
+        "text": "Expandir los registros de lineas para obtener producto y cantidad",
+        "explanation": "Tras el paso anterior, cada celda de lineas es un registro cuyos campos ya se pueden expandir en columnas."
+      },
+      {
+        "id": "p5",
+        "text": "Asignar el tipo de datos a cada columna resultante",
+        "explanation": "Las columnas expandidas quedan sin tipo definido; los tipos se asignan cuando la tabla ya tiene su forma final."
+      }
+    ],
+    "keyPoint": "JSON anidado: lista → tabla, registros → columnas, listas → nuevas filas y, al final, tipos.",
+    "references": [
+      {
+        "title": "Table.FromList",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-fromlist"
+      },
+      {
+        "title": "Table.ExpandListColumn",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-expandlistcolumn"
+      },
+      {
+        "title": "Table.ExpandRecordColumn",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-expandrecordcolumn"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-015",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "prompt": "Empareja cada situación con la transformación adecuada para convertir datos semiestructurados en tabla.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Una columna contiene valores Record con los campos Nombre y Email",
+        "answerId": "c1",
+        "explanation": "Al expandir una columna de registros, cada campo seleccionado se convierte en una columna."
+      },
+      {
+        "id": "m2",
+        "text": "Una columna contiene valores List con las etiquetas de cada producto y quieres una fila por etiqueta",
+        "answerId": "c2",
+        "explanation": "Expandir a nuevas filas crea una fila por elemento de la lista y repite los valores de las demás columnas."
+      },
+      {
+        "id": "m3",
+        "text": "Una columna de texto contiene cadenas como {\"id\": 7, \"zona\": \"N\"}",
+        "answerId": "c3",
+        "explanation": "Analizar > JSON (*Parse > JSON*) convierte cada cadena en un valor estructurado (aquí, un registro) que después se puede expandir."
+      },
+      {
+        "id": "m4",
+        "text": "El resultado de la consulta es un único registro y quieres una tabla con columnas Name y Value",
+        "answerId": "c4",
+        "explanation": "Convertir un registro en tabla (*Into table*, Record.ToTable) devuelve una fila por campo con sus columnas Name y Value."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Expandir la columna y elegir sus campos"
+      },
+      {
+        "id": "c2",
+        "text": "Expandir a nuevas filas"
+      },
+      {
+        "id": "c3",
+        "text": "Analizar > JSON"
+      },
+      {
+        "id": "c4",
+        "text": "Convertir el registro en tabla"
+      },
+      {
+        "id": "c5",
+        "text": "Transponer"
+      },
+      {
+        "id": "c6",
+        "text": "Columna dinámica"
+      }
+    ],
+    "keyPoint": "Registros se expanden en columnas, listas en filas, el texto JSON se analiza y un registro suelto se convierte en tabla Name/Value.",
+    "references": [
+      {
+        "title": "Analizar texto como JSON o XML",
+        "url": "https://learn.microsoft.com/es-es/power-query/parse-json-xml"
+      },
+      {
+        "title": "Record.ToTable",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/record-totable"
+      },
+      {
+        "title": "Table.ExpandListColumn",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-expandlistcolumn"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-016",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "En la consulta Pedidos, la columna Etiquetas contiene listas, por ejemplo {\"urgente\", \"regalo\"}. Añades este paso:",
+    "code": {
+      "language": "m",
+      "content": "Expandida = Table.ExpandListColumn(Pedidos, \"Etiquetas\")"
+    },
+    "prompt": "¿Qué hace el paso?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crea una fila por cada elemento de la lista y repite en ellas los valores de las demás columnas",
+        "correct": true,
+        "explanation": "Table.ExpandListColumn divide cada lista en una fila por valor y duplica el resto de columnas en cada fila nueva."
+      },
+      {
+        "id": "b",
+        "text": "Crea una columna por cada elemento de la lista",
+        "correct": false,
+        "explanation": "Ese comportamiento corresponde a expandir registros en columnas o a dividir texto en columnas, no a expandir listas."
+      },
+      {
+        "id": "c",
+        "text": "Une los elementos de cada lista en un texto separado por comas",
+        "correct": false,
+        "explanation": "Eso lo hace la opción Extraer valores (*Extract values*), no la expansión a filas."
+      },
+      {
+        "id": "d",
+        "text": "Convierte la consulta en una lista con todas las etiquetas",
+        "correct": false,
+        "explanation": "El resultado sigue siendo una tabla con las mismas columnas; solo cambia el número de filas."
+      }
+    ],
+    "keyPoint": "Expandir una columna de listas genera una fila por elemento (Table.ExpandListColumn).",
+    "references": [
+      {
+        "title": "Table.ExpandListColumn",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-expandlistcolumn"
+      }
+    ]
   }
 ]
