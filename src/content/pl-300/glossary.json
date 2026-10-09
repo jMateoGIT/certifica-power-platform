@@ -113,22 +113,11 @@
     "id": "anular-dinamizacion",
     "term": "Anular dinamización de columnas",
     "en": "Unpivot columns",
-    "definition": "Transformación que convierte varias columnas en pares de filas atributo-valor, por ejemplo una columna por mes en dos columnas Mes e Importe. Es clave para obtener tablas de hechos con estructura adecuada.",
+    "definition": "Transformación de Power Query que convierte varias columnas en filas con dos columnas, Atributo y Valor; por ejemplo, una columna por mes pasa a las columnas Mes e Importe. Es clave para dar a las tablas de hechos una estructura adecuada.",
     "domain": "d1",
     "reference": {
       "title": "Anulación de dinamización de columnas",
       "url": "https://learn.microsoft.com/es-es/power-query/unpivot-column"
-    }
-  },
-  {
-    "id": "dinamizar-columna",
-    "term": "Columna dinamizada",
-    "en": "Pivot column",
-    "definition": "Transformación inversa a anular la dinamización: convierte los valores de una columna en nuevas columnas y agrega los valores de otra columna en ellas.",
-    "domain": "d1",
-    "reference": {
-      "title": "Dinamización de columnas",
-      "url": "https://learn.microsoft.com/es-es/power-query/pivot-columns"
     }
   },
   {
@@ -197,7 +186,7 @@
     "id": "modelo-semantico",
     "term": "Modelo semántico",
     "en": "Semantic model",
-    "definition": "Conjunto de tablas, relaciones, medidas y seguridad que alimenta los informes de Power BI. Antes se llamaba conjunto de datos (*dataset*); se crea en Power BI Desktop y se publica en el servicio.",
+    "definition": "Conjunto de tablas, relaciones, medidas y seguridad que alimenta los informes de Power BI. Antes se llamaba conjunto de datos (*dataset*); normalmente se crea en Power BI Desktop y se publica en el servicio.",
     "domain": "d2",
     "reference": {
       "title": "Modelos semánticos en el servicio Power BI",
@@ -274,7 +263,7 @@
     "id": "dimension-rol-multiple",
     "term": "Dimensión de rol múltiple",
     "en": "Role-playing dimension",
-    "definition": "Dimensión que filtra una tabla de hechos de varias formas, como una tabla Fecha para la fecha de pedido y la de envío. Se implementa con relaciones inactivas y USERELATIONSHIP o con copias de la tabla (dimensiones de juego de roles).",
+    "definition": "Dimensión que filtra una tabla de hechos de varias formas, como una tabla Fecha para la fecha de pedido y la de envío. Se implementa con relaciones inactivas activadas con USERELATIONSHIP o con una copia de la tabla por cada rol.",
     "domain": "d2",
     "reference": {
       "title": "Descripción de un esquema de estrella",
@@ -501,19 +490,12 @@
     "id": "informe-paginado",
     "term": "Informe paginado",
     "en": "Paginated report",
-    "definition": "Informe con diseño de página fija, pensado para imprimir o exportar documentos de varias páginas, como facturas o listados. Se crea con Power BI Report Builder.",
+    "definition": "Informe con diseño de página fija, pensado para imprimir o exportar documentos de varias páginas, como facturas o listados. Se crea principalmente con Power BI Report Builder.",
     "domain": "d3",
     "reference": {
       "title": "Informes paginados en Power BI",
       "url": "https://learn.microsoft.com/es-es/power-bi/paginated-reports/paginated-reports-report-builder-power-bi"
     }
-  },
-  {
-    "id": "objeto-visual-ia",
-    "term": "Objeto visual de IA",
-    "en": "AI visual",
-    "definition": "Objeto visual que usa aprendizaje automático para descubrir información, como influenciadores clave, árbol de descomposición o narrativas inteligentes.",
-    "domain": "d3"
   },
   {
     "id": "arbol-descomposicion",
@@ -535,17 +517,6 @@
     "reference": {
       "title": "Objeto visual de influenciadores clave",
       "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-influencers"
-    }
-  },
-  {
-    "id": "preguntas-respuestas",
-    "term": "Preguntas y respuestas",
-    "en": "Q&A",
-    "definition": "Función que permite hacer preguntas sobre los datos en lenguaje natural y obtener un objeto visual como respuesta. Microsoft ha anunciado su retirada y recomienda usar Copilot en Power BI en su lugar.",
-    "domain": "d3",
-    "reference": {
-      "title": "Objeto visual de preguntas y respuestas",
-      "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-q-and-a"
     }
   },
   {
@@ -574,7 +545,7 @@
     "id": "agrupar-discretizar",
     "term": "Grupos y discretización",
     "en": "Groups and binning",
-    "definition": "Técnicas para combinar valores de una columna en grupos definidos por ti o dividir valores numéricos o de fecha en intervalos (bins) del mismo tamaño para analizarlos mejor.",
+    "definition": "Técnicas para combinar valores de una columna en grupos definidos por ti o para dividir valores numéricos o de fecha en intervalos (*bins*) del mismo tamaño y analizarlos mejor.",
     "domain": "d3",
     "reference": {
       "title": "Uso de agrupaciones y discretizaciones",
@@ -640,7 +611,7 @@
     "id": "actualizacion-automatica-paginas",
     "term": "Actualización automática de páginas",
     "en": "Automatic page refresh",
-    "definition": "Opción de una página de informe que vuelve a consultar los datos cada cierto intervalo mientras la página está abierta. Solo está disponible con orígenes DirectQuery.",
+    "definition": "Opción de una página de informe que vuelve a consultar los datos a intervalos fijos, o al detectar cambios, mientras la página está abierta. Requiere orígenes DirectQuery (o algunas conexiones dinámicas); no está disponible en modo Importar.",
     "domain": "d3",
     "reference": {
       "title": "Actualización automática de páginas",
@@ -673,7 +644,7 @@
     "id": "area-trabajo",
     "term": "Área de trabajo",
     "en": "Workspace",
-    "definition": "Contenedor del servicio Power BI donde un equipo crea y comparte informes, paneles, modelos semánticos y otros elementos. El acceso se controla con roles y de ella se publica la aplicación.",
+    "definition": "Contenedor del servicio Power BI donde un equipo crea y comparte informes, paneles, modelos semánticos y otros elementos. El acceso se controla con roles y desde ella se puede publicar una aplicación para distribuir su contenido.",
     "domain": "d4",
     "reference": {
       "title": "Áreas de trabajo en Power BI",
@@ -681,17 +652,10 @@
     }
   },
   {
-    "id": "mi-area-trabajo",
-    "term": "Mi área de trabajo",
-    "en": "My workspace",
-    "definition": "Área de trabajo personal de cada usuario para su propio contenido. Para colaborar o distribuir contenido de forma gobernada se usan áreas de trabajo compartidas.",
-    "domain": "d4"
-  },
-  {
     "id": "roles-area-trabajo",
     "term": "Roles del área de trabajo",
     "en": "Workspace roles",
-    "definition": "Niveles de acceso a un área de trabajo: Administrador (control total), Miembro (además gestiona personas y la aplicación), Colaborador (crea y edita contenido) y Visor (solo ve e interactúa).",
+    "definition": "Niveles de acceso a un área de trabajo: Administrador (control total), Miembro (además agrega personas con permisos iguales o inferiores y publica la aplicación), Colaborador (crea y edita contenido) y Visor (solo ve e interactúa).",
     "domain": "d4",
     "reference": {
       "title": "Roles en áreas de trabajo en Power BI",
@@ -700,9 +664,9 @@
   },
   {
     "id": "aplicacion",
-    "term": "Aplicación",
-    "en": "App",
-    "definition": "Paquete de solo lectura de informes, paneles y otros elementos de un área de trabajo que se publica para distribuirlo a muchos usuarios. Los cambios del área de trabajo llegan a la app al actualizarla.",
+    "term": "Aplicación del área de trabajo",
+    "en": "Workspace app",
+    "definition": "Paquete de informes, paneles y otros elementos de un área de trabajo que se publica para que muchos usuarios lo consuman en modo de solo lectura. Cada área de trabajo puede tener una, y sus cambios no llegan a la aplicación hasta que la actualizas.",
     "domain": "d4",
     "reference": {
       "title": "Publicar una aplicación en Power BI",
@@ -735,7 +699,7 @@
     "id": "puerta-enlace",
     "term": "Puerta de enlace de datos local",
     "en": "On-premises data gateway",
-    "definition": "Software instalado en la red de la empresa que conecta el servicio Power BI con orígenes locales para actualizarlos o consultarlos. El modo estándar es compartido y admite DirectQuery; el personal es de un solo usuario.",
+    "definition": "Software instalado en la red de la empresa que conecta el servicio Power BI con orígenes locales para actualizarlos o consultarlos. No hace falta para orígenes en la nube accesibles directamente. El modo estándar es compartido y admite DirectQuery; el personal es de un solo usuario y solo importa.",
     "domain": "d4",
     "reference": {
       "title": "Puertas de enlace de datos locales en Power BI",
@@ -757,7 +721,7 @@
     "id": "rls",
     "term": "Seguridad de nivel de fila (RLS)",
     "en": "Row-level security (RLS)",
-    "definition": "Roles definidos en el modelo con expresiones de filtro DAX que limitan las filas que ve cada usuario. Puede ser estática (valor fijo) o dinámica (USERPRINCIPALNAME) y solo se aplica a usuarios con acceso de lectura.",
+    "definition": "Roles definidos en el modelo con expresiones de filtro DAX que limitan las filas que ve cada usuario. Puede ser estática (valor fijo) o dinámica (USERPRINCIPALNAME). Solo se aplica a quien tiene acceso de lectura (por ejemplo, el rol Visor), no a Administrador, Miembro ni Colaborador.",
     "domain": "d4",
     "reference": {
       "title": "Seguridad de nivel de fila (RLS) con Power BI",
@@ -768,7 +732,7 @@
     "id": "ols",
     "term": "Seguridad de nivel de objeto (OLS)",
     "en": "Object-level security (OLS)",
-    "definition": "Seguridad definida en los roles del modelo que oculta tablas o columnas completas a determinados usuarios. Se configura con la vista TMDL o herramientas externas.",
+    "definition": "Seguridad definida en los roles del modelo que oculta tablas o columnas completas a determinados usuarios. Se configura con la vista TMDL o con herramientas externas como Tabular Editor.",
     "domain": "d4",
     "reference": {
       "title": "Seguridad de nivel de objeto",
@@ -779,7 +743,7 @@
     "id": "etiqueta-confidencialidad",
     "term": "Etiqueta de confidencialidad",
     "en": "Sensitivity label",
-    "definition": "Etiqueta de Microsoft Purview Information Protection que clasifica informes, paneles, modelos y archivos .pbix. Se hereda al crear contenido y viaja con los datos exportados, aplicando su protección.",
+    "definition": "Etiqueta de Microsoft Purview Information Protection que clasifica modelos semánticos, informes, paneles, flujos de datos y archivos .pbix. Se hereda al crear contenido y viaja con los datos exportados aplicando su protección, pero en el servicio no cambia quién tiene acceso.",
     "domain": "d4",
     "reference": {
       "title": "Etiquetas de confidencialidad en Power BI",
@@ -788,9 +752,9 @@
   },
   {
     "id": "aprobacion",
-    "term": "Aprobación (promocionado o certificado)",
+    "term": "Aprobación",
     "en": "Endorsement",
-    "definition": "Distintivo que destaca contenido fiable. Promocionado lo aplica cualquier usuario con permisos de escritura; Certificado solo lo aplican revisores autorizados. Los paneles no se pueden aprobar.",
+    "definition": "Distintivo que destaca contenido fiable. Promocionado lo aplica cualquier usuario con permisos de escritura sobre el elemento; Certificado, solo los revisores autorizados por el administrador. Se pueden aprobar todos los elementos salvo los paneles.",
     "domain": "d4",
     "reference": {
       "title": "Información general sobre la aprobación",
@@ -801,7 +765,7 @@
     "id": "permiso-compilacion",
     "term": "Permiso de compilación",
     "en": "Build permission",
-    "definition": "Permiso sobre un modelo semántico que permite crear contenido nuevo con él (informes, Analizar en Excel, informes paginados) y exportar datos subyacentes. Lo tienen los colaboradores y superiores o se concede explícitamente.",
+    "definition": "Permiso sobre un modelo semántico que permite crear contenido nuevo con él (informes, Analizar en Excel, informes paginados) y exportar datos subyacentes. Lo tienen los colaboradores y roles superiores; a otros usuarios se les concede directamente, al compartir o a través de la aplicación.",
     "domain": "d4",
     "reference": {
       "title": "Permiso de compilación para modelos semánticos",
@@ -834,7 +798,7 @@
     "id": "publicar-en-web",
     "term": "Publicar en la web",
     "en": "Publish to web",
-    "definition": "Opción que genera un código de inserción para mostrar un informe en un sitio público sin autenticación. Cualquiera puede ver los datos, por lo que solo es apropiada para información pública.",
+    "definition": "Opción que genera un código de inserción para mostrar un informe en un sitio público sin autenticación. Cualquiera puede ver los datos, por lo que solo es apropiada para información pública; no está disponible en informes con RLS.",
     "domain": "d4",
     "reference": {
       "title": "Publicar en la web desde Power BI",

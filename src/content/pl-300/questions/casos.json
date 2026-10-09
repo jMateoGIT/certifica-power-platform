@@ -332,33 +332,33 @@
     "difficulty": 3,
     "code": {
       "language": "dax",
-      "content": "Variación primas % =\nVAR PrimasActual =\n    SUM ( Polizas[PrimaEmitida] )\nVAR PrimasAA =\n    CALCULATE (\n        SUM ( Polizas[PrimaEmitida] ),\n        SAMEPERIODLASTYEAR ( 'Fecha'[Fecha] )\n    )\nRETURN\n    DIVIDE ( PrimasActual - PrimasAA, PrimasAA )"
+      "content": "Variación aperturas % =\nVAR AperturasActual =\n    COUNTROWS ( Siniestros )\nVAR AperturasAA =\n    CALCULATE (\n        COUNTROWS ( Siniestros ),\n        SAMEPERIODLASTYEAR ( 'Fecha'[Fecha] )\n    )\nRETURN\n    DIVIDE ( AperturasActual - AperturasAA, AperturasAA )"
     },
-    "prompt": "Para el requisito de informes 3 creas la medida del anexo. Polizas se relaciona con la tabla Fecha, marcada como tabla de fechas. Indica si cada afirmación es verdadera.",
+    "prompt": "Para el requisito de informes 3 creas la medida del anexo. La tabla Fecha está marcada como tabla de fechas y su relación activa con Siniestros es la de FechaApertura. Indica si cada afirmación es verdadera.",
     "statements": [
       {
         "id": "s1",
-        "text": "En un objeto visual por mes, en la fila de marzo de 2026, PrimasAA devuelve las primas de marzo de 2025.",
+        "text": "En un objeto visual por mes, en la fila de marzo de 2026, AperturasAA devuelve los siniestros abiertos en marzo de 2025.",
         "answer": true,
-        "explanation": "SAMEPERIODLASTYEAR desplaza un año las fechas del contexto de filtro. Si el filtro es marzo de 2026, CALCULATE evalúa la suma con las fechas de marzo de 2025."
+        "explanation": "SAMEPERIODLASTYEAR desplaza un año las fechas del contexto de filtro. Si el filtro es marzo de 2026, CALCULATE cuenta las filas con las fechas de marzo de 2025, que filtran Siniestros a través de la relación activa de FechaApertura."
       },
       {
         "id": "s2",
-        "text": "Si no hubo primas en el mismo periodo del año anterior, la medida devuelve un error de división entre cero.",
+        "text": "Si no se abrió ningún siniestro en el mismo periodo del año anterior, la medida devuelve un error de división entre cero.",
         "answer": false,
-        "explanation": "DIVIDE controla la división entre cero o entre un valor en blanco y, si no indicas un resultado alternativo, devuelve BLANK. Por eso se recomienda en lugar del operador /."
+        "explanation": "Sin filas, COUNTROWS devuelve BLANK, y DIVIDE controla la división entre cero o entre un valor en blanco: si no indicas un resultado alternativo, devuelve BLANK. Por eso se recomienda en lugar del operador /."
       },
       {
         "id": "s3",
-        "text": "PrimasAA se calcula dos veces porque aparece dos veces en la expresión RETURN.",
+        "text": "AperturasAA se calcula dos veces porque aparece dos veces en la expresión RETURN.",
         "answer": false,
         "explanation": "Una variable se evalúa una sola vez y su resultado se reutiliza en cada referencia. Esa es una de las ventajas de rendimiento de usar VAR."
       },
       {
         "id": "s4",
-        "text": "Si en el eje del objeto visual usas Polizas[FechaEmision] en lugar de las columnas de la tabla Fecha, la variación sigue siendo correcta.",
+        "text": "Si en el eje del objeto visual usas Siniestros[FechaApertura] en lugar de las columnas de la tabla Fecha, la variación sigue siendo correcta.",
         "answer": false,
-        "explanation": "SAMEPERIODLASTYEAR trabaja sobre 'Fecha'[Fecha]. Si el visual filtra por una columna de la tabla de hechos, la tabla Fecha no recibe el filtro del periodo y el cálculo del año anterior deja de ser correcto. Las funciones de inteligencia de tiempo necesitan que el periodo se filtre desde la tabla de fechas."
+        "explanation": "SAMEPERIODLASTYEAR trabaja sobre 'Fecha'[Fecha]. Si el visual filtra por una columna de la tabla de hechos, la tabla Fecha no recibe el filtro del periodo y, además, el filtro del periodo sobre FechaApertura se mantiene dentro de CALCULATE, así que el cálculo del año anterior deja de ser correcto. Las funciones de inteligencia de tiempo necesitan que el periodo se filtre desde la tabla de fechas."
       }
     ],
     "keyPoint": "SAMEPERIODLASTYEAR desplaza el filtro de la tabla de fechas un año; DIVIDE evita errores; cada VAR se evalúa una sola vez.",
@@ -430,15 +430,15 @@
     "options": [
       {
         "id": "a",
-        "text": "La actualización automática de páginas en la página «Siniestros abiertos», de tipo intervalo fijo, cada 5 minutos",
+        "text": "La actualización automática de páginas de tipo intervalo fijo en la página «Siniestros abiertos»",
         "correct": true,
-        "explanation": "La actualización automática de páginas hace que los visuales de la página vuelvan a consultar el origen DirectQuery con la frecuencia indicada, sin intervención del usuario. En una capacidad de Fabric, el intervalo mínimo predeterminado que fija el administrador es de cinco minutos, así que el requisito se cumple con la configuración predeterminada."
+        "explanation": "La actualización automática de páginas hace que los objetos visuales de la página vuelvan a consultar el origen DirectQuery con la frecuencia que indiques, sin intervención del usuario. En una capacidad de Fabric, el administrador de la capacidad decide si la función está habilitada y fija el intervalo mínimo permitido."
       },
       {
         "id": "b",
-        "text": "Una actualización programada del modelo semántico cada 5 minutos",
+        "text": "Una actualización programada del modelo semántico con la máxima frecuencia posible",
         "correct": false,
-        "explanation": "La actualización programada vuelve a importar datos y no admite intervalos de cinco minutos (el máximo es 48 al día). Además, una tabla DirectQuery no guarda datos importados, y los visuales abiertos no se volverían a consultar solos."
+        "explanation": "La actualización programada vuelve a importar datos y tiene un límite diario de ejecuciones, lejos de una cada pocos minutos. Además, una tabla DirectQuery no guarda datos importados, y los objetos visuales abiertos no se volverían a consultar solos."
       },
       {
         "id": "c",
@@ -448,12 +448,12 @@
       },
       {
         "id": "d",
-        "text": "Una suscripción por correo electrónico a la página cada 5 minutos",
+        "text": "Una suscripción por correo electrónico a la página",
         "correct": false,
         "explanation": "Una suscripción envía por correo una instantánea del informe, pero no actualiza la página que el usuario tiene abierta."
       }
     ],
-    "keyPoint": "Visuales que se actualizan solos con datos DirectQuery → actualización automática de páginas (en capacidad dedicada, con el mínimo que fije el administrador).",
+    "keyPoint": "Objetos visuales que se actualizan solos con datos DirectQuery → actualización automática de páginas (en una capacidad, con el intervalo mínimo que fije su administrador).",
     "references": [
       { "title": "Actualización automática de páginas en Power BI", "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-automatic-page-refresh" }
     ]
@@ -703,7 +703,7 @@
         "id": "b",
         "text": "Importación",
         "correct": false,
-        "explanation": "Importación copia todo el volumen de datos en el modelo en cada actualización. Con miles de millones de filas que cambian cada 15 minutos, sería costoso y lento, y el requisito pide expresamente no copiar todo el volumen."
+        "explanation": "Importación copia todo el volumen de datos en el modelo en cada actualización. Con cientos de millones de filas que crecen cada 15 minutos, sería costoso y lento, y el requisito pide expresamente no copiar todo el volumen."
       },
       {
         "id": "c",
@@ -757,7 +757,7 @@
           { "id": "o3", "text": "ALL ( 'Fecha' )" }
         ],
         "correctId": "o1",
-        "explanation": "LASTDATE devuelve la última fecha del contexto de filtro, así que en un mes o un año suma solo la instantánea del último día. Como el requisito se refiere a meses ya cerrados, ese día tiene datos. DATESYTD acumularía todas las instantáneas del año, y ALL quitaría el filtro de fecha y sumaría todas las instantáneas."
+        "explanation": "LASTDATE devuelve la última fecha del contexto de filtro, así que en un mes o un año suma solo la instantánea del último día. Como el requisito se refiere a meses y años ya cerrados, ese último día tiene instantánea. DATESYTD acumularía todas las instantáneas del año, y ALL quitaría el filtro de fecha y sumaría todas las instantáneas."
       }
     ],
     "keyPoint": "Instantáneas (existencias, saldos) → medida semiaditiva que evalúa solo la última fecha del periodo, por ejemplo con LASTDATE.",
@@ -1031,30 +1031,30 @@
     "skill": "d3-usabilidad",
     "caseId": "caso-5",
     "difficulty": 2,
-    "prompt": "Ordena los pasos para cumplir el requisito de informes 4 en Power BI Desktop.",
+    "prompt": "Ordena los pasos para cumplir el requisito de informes 4 en Power BI Desktop con la obtención de detalles (*drillthrough*). Cada paso necesita que el anterior esté hecho.",
     "items": [
       {
         "id": "p1",
-        "text": "Crear la página «Detalle del título» con los objetos visuales de detalle",
-        "explanation": "Primero necesitas la página de destino, que mostrará la información de un solo título."
+        "text": "Agregar al informe una página nueva y llamarla «Detalle del título»",
+        "explanation": "Primero necesitas la página de destino, que mostrará la información de un solo título. Sin ella no hay dónde configurar la obtención de detalles."
       },
       {
         "id": "p2",
-        "text": "Agregar el campo Títulos[Título] al área de obtención de detalles de esa página",
-        "explanation": "El campo de obtención de detalles convierte la página en destino y define el filtro que se aplicará. Power BI añade además un botón Atrás para volver."
+        "text": "En esa página, agregar Títulos[Título] al área de obtención de detalles del panel Visualizaciones y añadir los objetos visuales de detalle",
+        "explanation": "El campo de obtención de detalles convierte esa página en una página de obtención de detalles y define el filtro que recibirá. Al agregarlo, Power BI añade automáticamente un botón Atrás para volver a la página de origen."
       },
       {
         "id": "p3",
-        "text": "En «Ventas por colección», insertar el botón «Ver detalle» y establecer su acción en Obtener detalles con destino «Detalle del título»",
-        "explanation": "El destino de un botón de obtención de detalles solo puede ser una página ya configurada para obtener detalles por un campo que esté en el visual seleccionado; por eso este paso va después."
+        "text": "En «Ventas por colección», insertar el botón «Ver detalle», establecer su acción en Obtener detalles y elegir «Detalle del título» como página de destino",
+        "explanation": "Como destino de un botón de obtención de detalles se elige una página de obtención de detalles, y «Detalle del título» solo lo es desde que tiene el campo Títulos[Título] en su área de obtención de detalles. Por eso este paso va después."
       },
       {
         "id": "p4",
         "text": "Probar: seleccionar un título en el gráfico y pulsar el botón con Ctrl+clic",
-        "explanation": "En Power BI Desktop los botones se prueban con Ctrl+clic. El botón lleva a la página filtrada por el título que hayas seleccionado en el gráfico, así que primero seleccionas uno."
+        "explanation": "Solo puedes probar el botón cuando ya tiene la acción y el destino configurados. En Power BI Desktop los botones se prueban con Ctrl+clic, y el botón lleva a la página filtrada por el título que hayas seleccionado en el gráfico."
       }
     ],
-    "keyPoint": "Obtención de detalles con botón: página de destino → campo de obtención de detalles → botón con acción Obtener detalles → probar.",
+    "keyPoint": "Obtención de detalles con botón: página nueva → campo en su área de obtención de detalles → botón con acción Obtener detalles y esa página como destino → probar con Ctrl+clic.",
     "references": [
       { "title": "Configurar la obtención de detalles en informes de Power BI", "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-drillthrough" },
       { "title": "Crear botones en informes de Power BI", "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-buttons" }
