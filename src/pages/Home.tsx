@@ -8,7 +8,7 @@ import { Ecosystem } from '../components/Ecosystem'
 const features = [
   { Icon: Lightbulb, title: 'Por qué sí y por qué no', text: 'Cada opción tiene su explicación: aprendes también de los errores.' },
   { Icon: Clock, title: 'Simulacros reales', text: '45 minutos, preguntas ponderadas por dominio y nota sobre 1000 como en el examen.' },
-  { Icon: ListChecks, title: '6 tipos de pregunta', text: 'Única, múltiple, Sí/No, ordenar, emparejar y completar frases.' },
+  { Icon: ListChecks, title: 'Como el examen real', text: 'Seis tipos de pregunta, casos prácticos y anexos con código DAX y Power Query.' },
   { Icon: Repeat, title: 'Repaso inteligente', text: 'Repetición espaciada: lo que fallas vuelve hasta que lo dominas.' },
   { Icon: Gauge, title: 'Índice de preparación', text: 'Tu progreso por dominio, ponderado con los pesos oficiales.' },
   { Icon: ShieldCheck, title: 'Contenido original', text: 'Basado en Microsoft Learn y el temario vigente. Sin «dumps».' },
@@ -21,7 +21,7 @@ export function Home() {
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 sm:py-20 lg:grid-cols-[1.1fr_1fr]">
           <div>
             <Badge tone="primary" className="mb-4">
-              <Sparkles size={13} /> Temario PL-900 actualizado al 24/07/2026
+              <Sparkles size={13} /> Nuevo: PL-300 · Analista de datos de Power BI
             </Badge>
             <h1 className="text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
               Aprueba tu certificación de <span className="bg-gradient-to-r from-[#7c5cff] to-[#2f6fed] bg-clip-text text-transparent">Power Platform</span> entendiendo cada respuesta
@@ -34,8 +34,8 @@ export function Home() {
               <ButtonLink to="/pl-900" size="lg">
                 Empezar con PL-900 <ArrowRight size={18} />
               </ButtonLink>
-              <ButtonLink to="/pl-900/simulacro" size="lg" variant="secondary">
-                Hacer un simulacro
+              <ButtonLink to="/pl-300" size="lg" variant="secondary">
+                Preparar PL-300 (Power BI)
               </ButtonLink>
             </div>
             <p className="mt-4 text-sm text-muted">Gratis · Sin registro · Funciona sin conexión</p>

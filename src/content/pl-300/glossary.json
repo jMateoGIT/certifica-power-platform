@@ -1,0 +1,808 @@
+[
+  {
+    "id": "power-query",
+    "term": "Power Query",
+    "en": "Power Query",
+    "definition": "Motor y editor de preparación de datos de Power BI con el que te conectas a orígenes y los limpias y transformas sin código. Cada transformación queda registrada como un paso aplicado en lenguaje M.",
+    "domain": "d1",
+    "reference": {
+      "title": "¿Qué es Power Query?",
+      "url": "https://learn.microsoft.com/es-es/power-query/power-query-what-is-power-query"
+    }
+  },
+  {
+    "id": "modo-importar",
+    "term": "Modo Importar",
+    "en": "Import",
+    "definition": "Modo de almacenamiento que copia los datos del origen en el modelo semántico, en memoria. Ofrece consultas muy rápidas, pero los datos solo cambian cuando se actualiza el modelo.",
+    "domain": "d1",
+    "reference": {
+      "title": "Modo de almacenamiento en Power BI Desktop",
+      "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-storage-mode"
+    }
+  },
+  {
+    "id": "directquery",
+    "term": "DirectQuery",
+    "en": "DirectQuery",
+    "definition": "Modo de almacenamiento en el que el modelo no guarda los datos: cada objeto visual envía consultas al origen en el momento de verse. Muestra datos casi en tiempo real a costa de depender del rendimiento del origen.",
+    "domain": "d1",
+    "reference": {
+      "title": "DirectQuery en Power BI",
+      "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/desktop-directquery-about"
+    }
+  },
+  {
+    "id": "direct-lake",
+    "term": "Direct Lake",
+    "en": "Direct Lake",
+    "definition": "Modo de almacenamiento de Microsoft Fabric que carga en memoria, bajo demanda, las tablas Delta de OneLake. Ofrece un rendimiento parecido a Importar sin copiar todos los datos en cada actualización, que solo actualiza metadatos.",
+    "domain": "d1",
+    "reference": {
+      "title": "Información general sobre Direct Lake",
+      "url": "https://learn.microsoft.com/es-es/fabric/fundamentals/direct-lake-overview"
+    }
+  },
+  {
+    "id": "modo-dual",
+    "term": "Modo dual",
+    "en": "Dual",
+    "definition": "Modo de almacenamiento de una tabla que se comporta como importada o como DirectQuery según la consulta. Se usa sobre todo en tablas de dimensiones de modelos compuestos para mejorar el rendimiento y mantener relaciones normales.",
+    "domain": "d1",
+    "reference": {
+      "title": "Modo de almacenamiento en Power BI Desktop",
+      "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-storage-mode"
+    }
+  },
+  {
+    "id": "modelo-compuesto",
+    "term": "Modelo compuesto",
+    "en": "Composite model",
+    "definition": "Modelo semántico que combina tablas con distintos modos de almacenamiento (Importar, DirectQuery, Dual) o varios orígenes DirectQuery, incluidos otros modelos semánticos publicados.",
+    "domain": "d1",
+    "reference": {
+      "title": "Uso de modelos compuestos en Power BI Desktop",
+      "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-composite-models"
+    }
+  },
+  {
+    "id": "conexion-dinamica",
+    "term": "Conexión dinámica",
+    "en": "Live connection",
+    "definition": "Conexión de un informe de Power BI Desktop a un modelo semántico ya publicado (o a Analysis Services) sin importar datos. Permite reutilizar un modelo compartido y separar el desarrollo del modelo del de los informes.",
+    "domain": "d1",
+    "reference": {
+      "title": "Conectarse a modelos semánticos del servicio Power BI desde Desktop",
+      "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/desktop-report-lifecycle-datasets"
+    }
+  },
+  {
+    "id": "nivel-privacidad",
+    "term": "Nivel de privacidad",
+    "en": "Privacy level",
+    "definition": "Clasificación de cada origen de datos como Ninguno, Privado, Organizativo o Público. Power Query la usa para decidir qué datos pueden combinarse entre orígenes sin exponer información confidencial.",
+    "domain": "d1",
+    "reference": {
+      "title": "Niveles de privacidad",
+      "url": "https://learn.microsoft.com/es-es/power-query/privacy-levels"
+    }
+  },
+  {
+    "id": "parametro",
+    "term": "Parámetro",
+    "en": "Parameter",
+    "definition": "Valor con nombre que se define en Power Query y se reutiliza en consultas, por ejemplo el nombre del servidor o una fecha de corte. Permite cambiar orígenes o filtros en un solo lugar.",
+    "domain": "d1",
+    "reference": {
+      "title": "Uso de parámetros",
+      "url": "https://learn.microsoft.com/es-es/power-query/power-query-query-parameters"
+    }
+  },
+  {
+    "id": "perfil-columna",
+    "term": "Perfil de columna",
+    "en": "Column profile",
+    "definition": "Herramienta de generación de perfiles de datos de Power Query que muestra estadísticas y distribución de valores de una columna. Se complementa con la calidad de columna (válidos, errores, vacíos) y la distribución de columna.",
+    "domain": "d1",
+    "reference": {
+      "title": "Herramientas de generación de perfiles de datos",
+      "url": "https://learn.microsoft.com/es-es/power-query/data-profiling-tools"
+    }
+  },
+  {
+    "id": "anular-dinamizacion",
+    "term": "Anular dinamización de columnas",
+    "en": "Unpivot columns",
+    "definition": "Transformación de Power Query que convierte varias columnas en filas con dos columnas, Atributo y Valor; por ejemplo, una columna por mes pasa a las columnas Mes e Importe. Es clave para dar a las tablas de hechos una estructura adecuada.",
+    "domain": "d1",
+    "reference": {
+      "title": "Anulación de dinamización de columnas",
+      "url": "https://learn.microsoft.com/es-es/power-query/unpivot-column"
+    }
+  },
+  {
+    "id": "combinar-consultas",
+    "term": "Combinar consultas",
+    "en": "Merge queries",
+    "definition": "Operación de Power Query que une dos consultas por columnas coincidentes, igual que una combinación (join) de SQL. El tipo de combinación (externa izquierda, interna, anti, etc.) decide qué filas se conservan.",
+    "domain": "d1",
+    "reference": {
+      "title": "Información general sobre la combinación de consultas",
+      "url": "https://learn.microsoft.com/es-es/power-query/merge-queries-overview"
+    }
+  },
+  {
+    "id": "anexar-consultas",
+    "term": "Anexar consultas",
+    "en": "Append queries",
+    "definition": "Operación de Power Query que apila las filas de dos o más consultas en una sola tabla, por ejemplo las ventas de varios años. Las columnas se emparejan por nombre.",
+    "domain": "d1",
+    "reference": {
+      "title": "Anexar consultas",
+      "url": "https://learn.microsoft.com/es-es/power-query/append-queries"
+    }
+  },
+  {
+    "id": "consulta-referencia",
+    "term": "Consulta de referencia",
+    "en": "Reference",
+    "definition": "Consulta nueva cuyo origen es el resultado de otra consulta, de modo que los cambios en la original se propagan. En la actualización, Power Query evalúa la consulta referenciada por separado para cada consulta que la usa.",
+    "domain": "d1",
+    "reference": {
+      "title": "Instrucciones sobre consultas a las que se hace referencia",
+      "url": "https://learn.microsoft.com/es-es/power-bi/guidance/power-query-referenced-queries"
+    }
+  },
+  {
+    "id": "consulta-duplicada",
+    "term": "Duplicar consulta",
+    "en": "Duplicate",
+    "definition": "Copia independiente de una consulta con todos sus pasos. A diferencia de una referencia, los cambios posteriores en la consulta original no afectan a la copia.",
+    "domain": "d1"
+  },
+  {
+    "id": "plegado-consultas",
+    "term": "Plegado de consultas",
+    "en": "Query folding",
+    "definition": "Capacidad de Power Query de traducir los pasos de transformación a una consulta nativa del origen (por ejemplo SQL) para que los ejecute el propio origen. Mejora el rendimiento de la actualización.",
+    "domain": "d1",
+    "reference": {
+      "title": "Introducción al plegado de consultas",
+      "url": "https://learn.microsoft.com/es-es/power-query/query-folding-basics"
+    }
+  },
+  {
+    "id": "flujo-datos",
+    "term": "Flujo de datos",
+    "en": "Dataflow",
+    "definition": "Elemento del servicio que ejecuta consultas de Power Query en la nube y guarda el resultado para que varios modelos semánticos lo reutilicen, centralizando la preparación de datos.",
+    "domain": "d1",
+    "reference": {
+      "title": "Introducción a los flujos de datos",
+      "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/dataflows/dataflows-introduction-self-service"
+    }
+  },
+  {
+    "id": "modelo-semantico",
+    "term": "Modelo semántico",
+    "en": "Semantic model",
+    "definition": "Conjunto de tablas, relaciones, medidas y seguridad que alimenta los informes de Power BI. Antes se llamaba conjunto de datos (*dataset*); normalmente se crea en Power BI Desktop y se publica en el servicio.",
+    "domain": "d2",
+    "reference": {
+      "title": "Modelos semánticos en el servicio Power BI",
+      "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-datasets-understand"
+    }
+  },
+  {
+    "id": "tabla-hechos",
+    "term": "Tabla de hechos",
+    "en": "Fact table",
+    "definition": "Tabla que almacena eventos u observaciones medibles, como pedidos o lecturas de inventario, con columnas de clave hacia las dimensiones y columnas numéricas que se agregan. Suele tener muchas filas.",
+    "domain": "d2",
+    "reference": {
+      "title": "Descripción de un esquema de estrella",
+      "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
+    }
+  },
+  {
+    "id": "tabla-dimensiones",
+    "term": "Tabla de dimensiones",
+    "en": "Dimension table",
+    "definition": "Tabla que describe entidades de negocio (productos, clientes, fechas) con una clave única y atributos para filtrar y agrupar. Se relaciona con las tablas de hechos en el lado «uno».",
+    "domain": "d2",
+    "reference": {
+      "title": "Descripción de un esquema de estrella",
+      "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
+    }
+  },
+  {
+    "id": "esquema-estrella",
+    "term": "Esquema de estrella",
+    "en": "Star schema",
+    "definition": "Diseño de modelo con tablas de hechos en el centro relacionadas con tablas de dimensiones a su alrededor. Es el diseño recomendado para modelos de Power BI por rendimiento y facilidad de uso.",
+    "domain": "d2",
+    "reference": {
+      "title": "Descripción de un esquema de estrella",
+      "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
+    }
+  },
+  {
+    "id": "cardinalidad",
+    "term": "Cardinalidad",
+    "en": "Cardinality",
+    "definition": "Propiedad de una relación que indica cuántas filas coinciden en cada lado: uno a varios, varios a uno, uno a uno o varios a varios. Lo habitual es uno a varios de la dimensión a los hechos.",
+    "domain": "d2",
+    "reference": {
+      "title": "Crear y administrar relaciones",
+      "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-create-and-manage-relationships"
+    }
+  },
+  {
+    "id": "direccion-filtro-cruzado",
+    "term": "Dirección de filtro cruzado",
+    "en": "Cross-filter direction",
+    "definition": "Propiedad de una relación que indica hacia dónde se propagan los filtros: única (del lado uno al lado varios) o ambas. El filtrado bidireccional debe usarse con moderación porque puede crear ambigüedad y afectar al rendimiento.",
+    "domain": "d2",
+    "reference": {
+      "title": "Relaciones del modelo en Power BI Desktop",
+      "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-relationships-understand"
+    }
+  },
+  {
+    "id": "relacion-inactiva",
+    "term": "Relación inactiva",
+    "en": "Inactive relationship",
+    "definition": "Relación del modelo que no propaga filtros por defecto, porque solo puede haber una ruta activa entre dos tablas. Se activa en una medida concreta con la función USERELATIONSHIP dentro de CALCULATE.",
+    "domain": "d2",
+    "reference": {
+      "title": "Instrucciones sobre relaciones activas e inactivas",
+      "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-active-inactive"
+    }
+  },
+  {
+    "id": "dimension-rol-multiple",
+    "term": "Dimensión de rol múltiple",
+    "en": "Role-playing dimension",
+    "definition": "Dimensión que filtra una tabla de hechos de varias formas, como una tabla Fecha para la fecha de pedido y la de envío. Se implementa con relaciones inactivas activadas con USERELATIONSHIP o con una copia de la tabla por cada rol.",
+    "domain": "d2",
+    "reference": {
+      "title": "Descripción de un esquema de estrella",
+      "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
+    }
+  },
+  {
+    "id": "tabla-fechas",
+    "term": "Tabla de fechas",
+    "en": "Date table",
+    "definition": "Tabla de dimensión con una fila por día, sin huecos, que cubre años completos. Al marcarla como tabla de fechas, las funciones de inteligencia de tiempo de DAX la usan de forma fiable.",
+    "domain": "d2",
+    "reference": {
+      "title": "Establecer y usar tablas de fechas",
+      "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-date-tables"
+    }
+  },
+  {
+    "id": "fecha-hora-automatica",
+    "term": "Fecha y hora automáticas",
+    "en": "Auto date/time",
+    "definition": "Opción de carga de datos de Power BI Desktop que crea una tabla de fechas oculta por cada columna de fecha. Es cómoda para modelos sencillos, pero en modelos grandes se recomienda desactivarla y usar una tabla de fechas común.",
+    "domain": "d2",
+    "reference": {
+      "title": "Fecha y hora automáticas en Power BI Desktop",
+      "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-auto-date-time"
+    }
+  },
+  {
+    "id": "dax",
+    "term": "DAX",
+    "en": "Data Analysis Expressions (DAX)",
+    "definition": "Lenguaje de fórmulas de Power BI para crear medidas, columnas calculadas, tablas calculadas, filtros de seguridad y consultas sobre el modelo semántico.",
+    "domain": "d2",
+    "reference": {
+      "title": "Introducción a DAX",
+      "url": "https://learn.microsoft.com/es-es/dax/dax-overview"
+    }
+  },
+  {
+    "id": "medida",
+    "term": "Medida",
+    "en": "Measure",
+    "definition": "Cálculo DAX que se evalúa en el momento de la consulta según el contexto de filtro del objeto visual, por ejemplo un total de ventas. No ocupa espacio por fila en el modelo.",
+    "domain": "d2",
+    "reference": {
+      "title": "Medidas en Power BI Desktop",
+      "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-measures"
+    }
+  },
+  {
+    "id": "columna-calculada",
+    "term": "Columna calculada",
+    "en": "Calculated column",
+    "definition": "Columna que se agrega a una tabla con una fórmula DAX evaluada fila a fila (contexto de fila) durante la actualización y se almacena en el modelo. Útil para filtrar o agrupar por el resultado.",
+    "domain": "d2",
+    "reference": {
+      "title": "Columnas calculadas en Power BI Desktop",
+      "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-calculated-columns"
+    }
+  },
+  {
+    "id": "tabla-calculada",
+    "term": "Tabla calculada",
+    "en": "Calculated table",
+    "definition": "Tabla creada con una expresión DAX que se evalúa al actualizar el modelo, por ejemplo una tabla de fechas con CALENDAR o una copia de una dimensión para otro rol.",
+    "domain": "d2"
+  },
+  {
+    "id": "contexto-fila",
+    "term": "Contexto de fila",
+    "en": "Row context",
+    "definition": "Contexto de evaluación en el que DAX conoce la fila actual de una tabla. Existe en las columnas calculadas y en las funciones iteradoras como SUMX; no filtra el modelo por sí mismo.",
+    "domain": "d2",
+    "reference": {
+      "title": "Introducción a DAX",
+      "url": "https://learn.microsoft.com/es-es/dax/dax-overview"
+    }
+  },
+  {
+    "id": "contexto-filtro",
+    "term": "Contexto de filtro",
+    "en": "Filter context",
+    "definition": "Conjunto de filtros activos al evaluar una expresión DAX, procedentes de filas y columnas del objeto visual, segmentaciones, filtros del informe y RLS. Determina el resultado de cada medida.",
+    "domain": "d2",
+    "reference": {
+      "title": "Introducción a DAX",
+      "url": "https://learn.microsoft.com/es-es/dax/dax-overview"
+    }
+  },
+  {
+    "id": "calculate",
+    "term": "CALCULATE",
+    "en": "CALCULATE",
+    "definition": "Función DAX que evalúa una expresión en un contexto de filtro modificado: agrega, reemplaza o quita filtros. Es la base de la mayoría de medidas avanzadas, como las de inteligencia de tiempo.",
+    "domain": "d2",
+    "reference": {
+      "title": "CALCULATE (DAX)",
+      "url": "https://learn.microsoft.com/es-es/dax/calculate-function-dax"
+    }
+  },
+  {
+    "id": "inteligencia-tiempo",
+    "term": "Inteligencia de tiempo",
+    "en": "Time intelligence",
+    "definition": "Familia de funciones DAX (TOTALYTD, SAMEPERIODLASTYEAR, DATEADD…) que comparan o acumulan valores entre períodos usando una tabla de fechas.",
+    "domain": "d2",
+    "reference": {
+      "title": "Funciones de inteligencia de tiempo",
+      "url": "https://learn.microsoft.com/es-es/dax/time-intelligence-functions-dax"
+    }
+  },
+  {
+    "id": "medida-semiaditiva",
+    "term": "Medida semiaditiva",
+    "en": "Semi-additive measure",
+    "definition": "Medida que puede sumarse en algunas dimensiones pero no en el tiempo, como un saldo o unas existencias. Se calcula tomando el valor de un punto del período, por ejemplo con LASTDATE o CLOSINGBALANCEMONTH.",
+    "domain": "d2",
+    "reference": {
+      "title": "Uso de funciones de inteligencia de tiempo en DAX",
+      "url": "https://learn.microsoft.com/es-es/training/modules/dax-power-bi-time-intelligence/"
+    }
+  },
+  {
+    "id": "grupo-calculo",
+    "term": "Grupo de cálculo",
+    "en": "Calculation group",
+    "definition": "Objeto del modelo que define elementos de cálculo (por ejemplo, Acumulado anual o Año anterior) aplicables a cualquier medida, lo que reduce el número de medidas redundantes.",
+    "domain": "d2",
+    "reference": {
+      "title": "Crear grupos de cálculo",
+      "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/calculation-groups"
+    }
+  },
+  {
+    "id": "medida-rapida",
+    "term": "Medida rápida",
+    "en": "Quick measure",
+    "definition": "Asistente que genera una medida DAX a partir de cálculos habituales (acumulados, variaciones, promedios por categoría) eligiendo campos en un cuadro de diálogo.",
+    "domain": "d2",
+    "reference": {
+      "title": "Medidas rápidas",
+      "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-quick-measures"
+    }
+  },
+  {
+    "id": "analizador-rendimiento",
+    "term": "Analizador de rendimiento",
+    "en": "Performance Analyzer",
+    "definition": "Panel de Power BI Desktop que registra cuánto tarda cada objeto visual en la consulta DAX, la representación visual y otras tareas. Permite copiar la consulta para analizarla en la vista de consultas DAX.",
+    "domain": "d2",
+    "reference": {
+      "title": "Uso del Analizador de rendimiento",
+      "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/performance-analyzer"
+    }
+  },
+  {
+    "id": "vista-consultas-dax",
+    "term": "Vista de consultas DAX",
+    "en": "DAX query view",
+    "definition": "Vista de Power BI para escribir y ejecutar consultas DAX (EVALUATE) contra el modelo semántico. Sirve para comprobar resultados y depurar o probar medidas sin crear objetos visuales.",
+    "domain": "d2",
+    "reference": {
+      "title": "Vista de consultas DAX",
+      "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/dax-query-view"
+    }
+  },
+  {
+    "id": "calculo-visual",
+    "term": "Cálculo visual",
+    "en": "Visual calculation",
+    "definition": "Cálculo DAX que se define y ejecuta en un objeto visual, sobre los datos que este ya muestra, en lugar de en el modelo. Simplifica totales acumulados, medias móviles o comparaciones entre filas, por ejemplo con RUNNINGSUM.",
+    "domain": "d3",
+    "reference": {
+      "title": "Uso de cálculos visuales",
+      "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-visual-calculations-overview"
+    }
+  },
+  {
+    "id": "marcador",
+    "term": "Marcador",
+    "en": "Bookmark",
+    "definition": "Captura del estado de una página del informe (filtros, segmentaciones, visibilidad de objetos visuales) que puedes volver a aplicar, por ejemplo desde un botón, para contar una historia o crear navegación.",
+    "domain": "d3",
+    "reference": {
+      "title": "Crear marcadores en Power BI",
+      "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-bookmarks"
+    }
+  },
+  {
+    "id": "obtencion-detalles",
+    "term": "Obtención de detalles",
+    "en": "Drillthrough",
+    "definition": "Navegación desde un punto de datos a una página de destino que muestra el detalle filtrado por ese valor, por ejemplo de un cliente a su ficha.",
+    "domain": "d3",
+    "reference": {
+      "title": "Configurar la obtención de detalles",
+      "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-drillthrough"
+    }
+  },
+  {
+    "id": "informacion-herramientas",
+    "term": "Información sobre herramientas",
+    "en": "Tooltip",
+    "definition": "Ventana emergente que aparece al pasar el puntero sobre un objeto visual. Puede personalizarse con campos adicionales o con una página de informe diseñada como información sobre herramientas.",
+    "domain": "d3",
+    "reference": {
+      "title": "Crear información sobre herramientas basada en páginas de informe",
+      "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-tooltips"
+    }
+  },
+  {
+    "id": "sincronizar-segmentaciones",
+    "term": "Sincronizar segmentaciones",
+    "en": "Sync slicers",
+    "definition": "Opción que mantiene la misma selección de una segmentación en varias páginas del informe y permite decidir en qué páginas es visible.",
+    "domain": "d3",
+    "reference": {
+      "title": "Segmentaciones en Power BI",
+      "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-slicers"
+    }
+  },
+  {
+    "id": "informe-paginado",
+    "term": "Informe paginado",
+    "en": "Paginated report",
+    "definition": "Informe con diseño de página fija, pensado para imprimir o exportar documentos de varias páginas, como facturas o listados. Se crea principalmente con Power BI Report Builder.",
+    "domain": "d3",
+    "reference": {
+      "title": "Informes paginados en Power BI",
+      "url": "https://learn.microsoft.com/es-es/power-bi/paginated-reports/paginated-reports-report-builder-power-bi"
+    }
+  },
+  {
+    "id": "arbol-descomposicion",
+    "term": "Árbol de descomposición",
+    "en": "Decomposition tree",
+    "definition": "Objeto visual de IA que desglosa una medida por varias dimensiones de forma interactiva y puede sugerir automáticamente el siguiente nivel con el valor más alto o más bajo.",
+    "domain": "d3",
+    "reference": {
+      "title": "Árbol de descomposición",
+      "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-decomposition-tree"
+    }
+  },
+  {
+    "id": "influenciadores-clave",
+    "term": "Influenciadores clave",
+    "en": "Key influencers",
+    "definition": "Objeto visual de IA que identifica los factores que más influyen en un resultado o una métrica y los clasifica por impacto, además de mostrar segmentos destacados.",
+    "domain": "d3",
+    "reference": {
+      "title": "Objeto visual de influenciadores clave",
+      "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-influencers"
+    }
+  },
+  {
+    "id": "deteccion-anomalias",
+    "term": "Detección de anomalías",
+    "en": "Anomaly detection",
+    "definition": "Función de los gráficos de líneas con series temporales que marca automáticamente valores fuera del rango esperado y ofrece posibles explicaciones.",
+    "domain": "d3",
+    "reference": {
+      "title": "Detección de anomalías",
+      "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-anomaly-detection"
+    }
+  },
+  {
+    "id": "analizar",
+    "term": "Analizar (explicar el aumento o la disminución)",
+    "en": "Analyze",
+    "definition": "Opción del menú contextual de un punto de datos que busca automáticamente qué categorías explican un aumento o una disminución, o en qué difiere una distribución.",
+    "domain": "d3",
+    "reference": {
+      "title": "Uso de conclusiones para explicar fluctuaciones",
+      "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-insights"
+    }
+  },
+  {
+    "id": "agrupar-discretizar",
+    "term": "Grupos y discretización",
+    "en": "Groups and binning",
+    "definition": "Técnicas para combinar valores de una columna en grupos definidos por ti o para dividir valores numéricos o de fecha en intervalos (*bins*) del mismo tamaño y analizarlos mejor.",
+    "domain": "d3",
+    "reference": {
+      "title": "Uso de agrupaciones y discretizaciones",
+      "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-grouping-and-binning"
+    }
+  },
+  {
+    "id": "parametro-campo",
+    "term": "Parámetro de campo",
+    "en": "Field parameters",
+    "definition": "Parámetro que permite al lector cambiar dinámicamente las medidas o columnas que analiza un objeto visual, normalmente desde una segmentación.",
+    "domain": "d3",
+    "reference": {
+      "title": "Parámetros de campo",
+      "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/power-bi-field-parameters"
+    }
+  },
+  {
+    "id": "formato-condicional",
+    "term": "Formato condicional",
+    "en": "Conditional formatting",
+    "definition": "Formato que cambia según los valores, como colores de fondo, escalas de color, iconos o barras de datos, para resaltar resultados en tablas, matrices y otros objetos visuales.",
+    "domain": "d3",
+    "reference": {
+      "title": "Formato condicional en tablas",
+      "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-conditional-table-formatting"
+    }
+  },
+  {
+    "id": "tema-informe",
+    "term": "Tema del informe",
+    "en": "Theme",
+    "definition": "Conjunto de colores, fuentes y formatos predeterminados que se aplica a todo el informe. Puede personalizarse o importarse como archivo JSON para mantener la identidad corporativa.",
+    "domain": "d3",
+    "reference": {
+      "title": "Uso de temas de informe",
+      "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-report-themes"
+    }
+  },
+  {
+    "id": "copilot-power-bi",
+    "term": "Copilot en Power BI",
+    "en": "Copilot in Power BI",
+    "definition": "Asistente de IA generativa que ayuda a crear páginas de informe, sugerir contenido, resumir el modelo semántico, generar narrativas y escribir DAX. Algunas experiencias están en versión preliminar.",
+    "domain": "d3",
+    "reference": {
+      "title": "Introducción a Copilot en Power BI",
+      "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/copilot-introduction"
+    }
+  },
+  {
+    "id": "objeto-visual-narrativo",
+    "term": "Objeto visual narrativo con Copilot",
+    "en": "Narrative visual with Copilot",
+    "definition": "Objeto visual que usa Copilot para redactar un resumen en texto de todo el informe, de páginas o de objetos visuales concretos, con tono y nivel de detalle configurables.",
+    "domain": "d3",
+    "reference": {
+      "title": "Crear un objeto visual narrativo con Copilot",
+      "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/copilot-create-narrative"
+    }
+  },
+  {
+    "id": "actualizacion-automatica-paginas",
+    "term": "Actualización automática de páginas",
+    "en": "Automatic page refresh",
+    "definition": "Opción de una página de informe que vuelve a consultar los datos a intervalos regulares o cuando detecta cambios, para seguir datos casi en tiempo real. Funciona con modelos en DirectQuery o Direct Lake (y en algunos modelos compuestos), no con el modo Importar, y el administrador de la capacidad puede limitar su intervalo.",
+    "domain": "d3",
+    "reference": {
+      "title": "Actualización automática de páginas",
+      "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-automatic-page-refresh"
+    }
+  },
+  {
+    "id": "personalizar-objetos-visuales",
+    "term": "Personalizar objetos visuales",
+    "en": "Personalize visuals",
+    "definition": "Opción que permite a los lectores cambiar el tipo de objeto visual o sus campos en la vista de lectura, sin permisos de edición, y guardar sus cambios con marcadores personales.",
+    "domain": "d3",
+    "reference": {
+      "title": "Personalizar objetos visuales en un informe",
+      "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/power-bi-personalize-visuals"
+    }
+  },
+  {
+    "id": "diseno-movil",
+    "term": "Diseño móvil",
+    "en": "Mobile layout",
+    "definition": "Vista de Power BI Desktop para crear una versión vertical de cada página del informe, optimizada para las aplicaciones móviles de Power BI.",
+    "domain": "d3",
+    "reference": {
+      "title": "Informes optimizados para dispositivos móviles",
+      "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/power-bi-create-mobile-optimized-report-about"
+    }
+  },
+  {
+    "id": "area-trabajo",
+    "term": "Área de trabajo",
+    "en": "Workspace",
+    "definition": "Contenedor del servicio Power BI donde un equipo crea y comparte informes, paneles, modelos semánticos y otros elementos. El acceso se controla con roles y desde ella se puede publicar una aplicación para distribuir su contenido.",
+    "domain": "d4",
+    "reference": {
+      "title": "Áreas de trabajo en Power BI",
+      "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-new-workspaces"
+    }
+  },
+  {
+    "id": "roles-area-trabajo",
+    "term": "Roles del área de trabajo",
+    "en": "Workspace roles",
+    "definition": "Niveles de acceso a un área de trabajo: Administrador (control total), Miembro (además agrega personas con permisos iguales o inferiores y publica la aplicación), Colaborador (crea y edita contenido) y Visor (solo ve e interactúa).",
+    "domain": "d4",
+    "reference": {
+      "title": "Roles en áreas de trabajo en Power BI",
+      "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-roles-new-workspaces"
+    }
+  },
+  {
+    "id": "aplicacion",
+    "term": "Aplicación del área de trabajo",
+    "en": "Workspace app",
+    "definition": "Paquete de informes, paneles y otros elementos de un área de trabajo que se publica para que muchos usuarios lo consuman en modo de solo lectura. Cada área de trabajo puede tener una, y sus cambios no llegan a la aplicación hasta que la actualizas.",
+    "domain": "d4",
+    "reference": {
+      "title": "Publicar una aplicación en Power BI",
+      "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-create-distribute-apps"
+    }
+  },
+  {
+    "id": "audiencia",
+    "term": "Audiencia",
+    "en": "Audience",
+    "definition": "Grupo de usuarios de una aplicación al que puedes mostrar u ocultar elementos concretos, de modo que una sola aplicación presente contenido distinto a cada grupo.",
+    "domain": "d4",
+    "reference": {
+      "title": "Publicar una aplicación en Power BI",
+      "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-create-distribute-apps"
+    }
+  },
+  {
+    "id": "panel",
+    "term": "Panel",
+    "en": "Dashboard",
+    "definition": "Lienzo de una sola página del servicio Power BI formado por iconos anclados desde uno o varios informes. No se crea en Power BI Desktop y admite alertas de datos sobre sus iconos.",
+    "domain": "d4",
+    "reference": {
+      "title": "Crear un panel desde un informe",
+      "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/service-dashboard-create"
+    }
+  },
+  {
+    "id": "puerta-enlace",
+    "term": "Puerta de enlace de datos local",
+    "en": "On-premises data gateway",
+    "definition": "Software instalado en la red de la empresa que conecta el servicio Power BI con orígenes locales para actualizarlos o consultarlos. No hace falta para orígenes en la nube accesibles directamente. El modo estándar es compartido y admite DirectQuery; el personal es de un solo usuario y solo importa.",
+    "domain": "d4",
+    "reference": {
+      "title": "Puertas de enlace de datos locales en Power BI",
+      "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-gateway-onprem"
+    }
+  },
+  {
+    "id": "actualizacion-programada",
+    "term": "Actualización programada",
+    "en": "Scheduled refresh",
+    "definition": "Configuración de un modelo semántico importado que lo actualiza automáticamente en las franjas horarias definidas. Requiere credenciales válidas y, para orígenes locales, una puerta de enlace.",
+    "domain": "d4",
+    "reference": {
+      "title": "Configurar la actualización programada",
+      "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/refresh-scheduled-refresh"
+    }
+  },
+  {
+    "id": "rls",
+    "term": "Seguridad de nivel de fila (RLS)",
+    "en": "Row-level security (RLS)",
+    "definition": "Roles definidos en el modelo con expresiones de filtro DAX que limitan las filas que ve cada usuario. Puede ser estática (valor fijo) o dinámica (USERPRINCIPALNAME). Solo se aplica a quien tiene acceso de lectura (por ejemplo, el rol Visor), no a Administrador, Miembro ni Colaborador.",
+    "domain": "d4",
+    "reference": {
+      "title": "Seguridad de nivel de fila (RLS) con Power BI",
+      "url": "https://learn.microsoft.com/es-es/fabric/security/service-admin-row-level-security"
+    }
+  },
+  {
+    "id": "ols",
+    "term": "Seguridad de nivel de objeto (OLS)",
+    "en": "Object-level security (OLS)",
+    "definition": "Seguridad definida en los roles del modelo que oculta tablas o columnas completas a determinados usuarios. Se configura con la vista TMDL o con herramientas externas como Tabular Editor.",
+    "domain": "d4",
+    "reference": {
+      "title": "Seguridad de nivel de objeto",
+      "url": "https://learn.microsoft.com/es-es/fabric/security/service-admin-object-level-security"
+    }
+  },
+  {
+    "id": "etiqueta-confidencialidad",
+    "term": "Etiqueta de confidencialidad",
+    "en": "Sensitivity label",
+    "definition": "Etiqueta de Microsoft Purview Information Protection que clasifica modelos semánticos, informes, paneles, flujos de datos y archivos .pbix. Se hereda al crear contenido y viaja con los datos exportados aplicando su protección, pero en el servicio no cambia quién tiene acceso.",
+    "domain": "d4",
+    "reference": {
+      "title": "Etiquetas de confidencialidad en Power BI",
+      "url": "https://learn.microsoft.com/es-es/fabric/enterprise/powerbi/service-security-sensitivity-label-overview"
+    }
+  },
+  {
+    "id": "aprobacion",
+    "term": "Aprobación",
+    "en": "Endorsement",
+    "definition": "Distintivo que destaca contenido fiable. Promocionado lo aplica cualquier usuario con permisos de escritura sobre el elemento; Certificado, solo los revisores autorizados por el administrador. Se pueden aprobar todos los elementos salvo los paneles.",
+    "domain": "d4",
+    "reference": {
+      "title": "Información general sobre la aprobación",
+      "url": "https://learn.microsoft.com/es-es/fabric/governance/endorsement-overview"
+    }
+  },
+  {
+    "id": "permiso-compilacion",
+    "term": "Permiso de compilación",
+    "en": "Build permission",
+    "definition": "Permiso sobre un modelo semántico que permite crear contenido nuevo con él (informes, Analizar en Excel, informes paginados) y exportar datos subyacentes. Lo tienen los colaboradores y roles superiores; a otros usuarios se les concede directamente, al compartir o a través de la aplicación.",
+    "domain": "d4",
+    "reference": {
+      "title": "Permiso de compilación para modelos semánticos",
+      "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-datasets-build-permissions"
+    }
+  },
+  {
+    "id": "suscripcion",
+    "term": "Suscripción",
+    "en": "Subscription",
+    "definition": "Envío programado por correo de una instantánea y un vínculo a un informe o panel, con la frecuencia elegida o después de la actualización de datos, para ti o para otras personas.",
+    "domain": "d4",
+    "reference": {
+      "title": "Suscribirse a informes y paneles",
+      "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/end-user-subscribe"
+    }
+  },
+  {
+    "id": "alerta-datos",
+    "term": "Alerta de datos",
+    "en": "Data alert",
+    "definition": "Notificación personal que salta cuando el valor de un icono de tarjeta, KPI o medidor de un panel cruza un umbral. Puede enviar correo y desencadenar un flujo de Power Automate.",
+    "domain": "d4",
+    "reference": {
+      "title": "Alertas de datos en el servicio Power BI",
+      "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/service-set-data-alerts"
+    }
+  },
+  {
+    "id": "publicar-en-web",
+    "term": "Publicar en la web",
+    "en": "Publish to web",
+    "definition": "Opción que genera un código de inserción para mostrar un informe en un sitio público sin autenticación. Cualquiera puede ver los datos, por lo que solo es apropiada para información pública; no está disponible en informes con RLS.",
+    "domain": "d4",
+    "reference": {
+      "title": "Publicar en la web desde Power BI",
+      "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-publish-to-web"
+    }
+  }
+]

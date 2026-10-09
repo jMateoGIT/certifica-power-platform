@@ -1,0 +1,3632 @@
+[
+  {
+    "id": "pl300-d1-conectar-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "scenario": "El equipo de BI de Lumen Seguros ha publicado y certificado un modelo semántico de Siniestros en un área de trabajo. Tienes permiso de compilación sobre él y debes crear un informe nuevo para la dirección sin duplicar el modelo ni su lógica.",
+    "prompt": "¿Cómo debes conectarte desde Power BI Desktop?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Con Obtener datos > Modelos semánticos de Power BI, eligiendo el modelo en el catálogo de OneLake",
+        "correct": true,
+        "explanation": "Crea una conexión dinámica (*live connection*) al modelo publicado: el informe reutiliza sus tablas, relaciones y medidas sin copiar datos ni lógica, y todos los informes comparten una única versión del modelo."
+      },
+      {
+        "id": "b",
+        "text": "Con el conector de SQL Server contra la base de datos de origen del modelo, importando las mismas tablas",
+        "correct": false,
+        "explanation": "Así vuelves a construir el modelo desde cero: duplicas transformaciones, relaciones y medidas, y tendrías otro modelo que actualizar y mantener."
+      },
+      {
+        "id": "c",
+        "text": "Exportando a Excel los datos de los objetos visuales de un informe existente e importando ese archivo",
+        "correct": false,
+        "explanation": "Obtendrías una copia estática y parcial de los datos, sin las relaciones ni las medidas del modelo certificado, y sin actualización automática."
+      },
+      {
+        "id": "d",
+        "text": "Descargando el archivo .pbix del modelo y publicando una copia con otro nombre",
+        "correct": false,
+        "explanation": "Publicar una copia crea un segundo modelo semántico con su propia actualización: es justo la proliferación de modelos que la conexión dinámica pretende evitar."
+      }
+    ],
+    "keyPoint": "Para reutilizar un modelo semántico publicado, conéctate en directo con Obtener datos > Modelos semánticos de Power BI; necesitas permiso de compilación.",
+    "references": [
+      {
+        "title": "Conexión con modelos semánticos en el servicio Power BI desde Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/desktop-report-lifecycle-datasets"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-002",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "scenario": "Marta crea en Power BI Desktop un informe con conexión dinámica (*live connection*) a un modelo semántico compartido de Ventas que mantiene otro equipo.",
+    "prompt": "¿Qué dos afirmaciones sobre su trabajo son correctas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Necesita permiso de compilación (*Build*) sobre el modelo semántico",
+        "correct": true,
+        "explanation": "Solo los usuarios con permiso de compilación pueden conectarse a un modelo semántico publicado mediante conexión dinámica."
+      },
+      {
+        "id": "b",
+        "text": "Puede crear medidas de informe, que se guardan en su propio informe",
+        "correct": true,
+        "explanation": "Con una conexión dinámica no hay modelo local, pero las medidas que crea el autor del informe se almacenan en el informe, sin modificar el modelo compartido."
+      },
+      {
+        "id": "c",
+        "text": "Puede abrir el Editor de Power Query y añadir pasos a las consultas del modelo",
+        "correct": false,
+        "explanation": "En una conexión dinámica no se puede modificar el modelo de datos: el informe no tiene consultas de Power Query propias y las del modelo solo puede cambiarlas su propietario."
+      },
+      {
+        "id": "d",
+        "text": "Los datos del modelo se copian dentro de su archivo .pbix",
+        "correct": false,
+        "explanation": "La conexión dinámica no importa datos: las consultas se resuelven contra el modelo publicado en el servicio."
+      },
+      {
+        "id": "e",
+        "text": "Puede cambiar el tipo de datos de las columnas del modelo de origen",
+        "correct": false,
+        "explanation": "Con una conexión dinámica no puedes modificar el modelo de datos: los tipos de las columnas los define el modelo semántico publicado y solo su propietario puede cambiarlos en el origen."
+      }
+    ],
+    "keyPoint": "Conexión dinámica: requiere permiso de compilación, no copia datos y solo permite añadir medidas de informe, no cambiar el modelo.",
+    "references": [
+      {
+        "title": "Conexión con modelos semánticos en el servicio Power BI desde Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/desktop-report-lifecycle-datasets"
+      },
+      {
+        "title": "Modo de almacenamiento en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-storage-mode"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-003",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 3,
+    "scenario": "En Andes Logística, Pablo tiene un informe con conexión dinámica al modelo semántico corporativo de Envíos. Ahora necesita añadir una tabla de objetivos que tiene en un libro de Excel y relacionarla con el modelo, sin modificar el modelo corporativo.",
+    "prompt": "¿Qué debe hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Seleccionar Realizar cambios en este modelo (*Make changes to this model*) para agregar un modelo local y después importar la tabla de Excel",
+        "correct": true,
+        "explanation": "Esta opción convierte la conexión dinámica en una conexión DirectQuery al modelo semántico y crea un modelo local (modelo compuesto) donde puede añadir tablas importadas y relacionarlas, sin tocar el modelo de origen."
+      },
+      {
+        "id": "b",
+        "text": "Pedir al equipo corporativo que cambie el modelo de Envíos a modo DirectQuery",
+        "correct": false,
+        "explanation": "El modo de almacenamiento del modelo remoto no es el problema: lo que Pablo necesita es un modelo local en su informe para poder añadir otras tablas."
+      },
+      {
+        "id": "c",
+        "text": "Importar el Excel manteniendo la conexión dinámica pura, porque admite tablas adicionales sin modelo local",
+        "correct": false,
+        "explanation": "Una conexión dinámica pura no tiene modelo local; para combinar el modelo con otros datos hay que agregar un modelo local y pasar a un modelo compuesto."
+      },
+      {
+        "id": "d",
+        "text": "Crear con DAX una tabla calculada con los objetivos dentro del modelo corporativo",
+        "correct": false,
+        "explanation": "Desde una conexión dinámica no se puede modificar el modelo corporativo y, además, el requisito es no cambiarlo."
+      }
+    ],
+    "keyPoint": "Para enriquecer un modelo semántico compartido con datos propios, usa Realizar cambios en este modelo: se crea un modelo compuesto con DirectQuery al modelo remoto.",
+    "references": [
+      {
+        "title": "Uso de modelos compuestos en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-composite-models"
+      },
+      {
+        "title": "Modo de almacenamiento en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-storage-mode"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-004",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "scenario": "Aurora Retail quiere reunir en un mismo modelo de Power BI datos de varias procedencias.",
+    "prompt": "Empareja cada origen con la opción de Obtener datos más adecuada.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Doce archivos CSV mensuales con el mismo esquema, guardados en una carpeta de red",
+        "answerId": "c1",
+        "explanation": "El conector Carpeta (*Folder*) lista todos los archivos y permite Combinar archivos (*Combine files*) en una sola tabla; el conector Texto o CSV solo abriría un archivo cada vez."
+      },
+      {
+        "id": "m2",
+        "text": "Una tabla HTML publicada en una página web pública de estadísticas",
+        "answerId": "c2",
+        "explanation": "El conector Web lee una dirección URL y detecta las tablas HTML de la página para mostrarlas en el Navegador."
+      },
+      {
+        "id": "m3",
+        "text": "La base de datos de pedidos de un servidor SQL Server de la oficina",
+        "answerId": "c3",
+        "explanation": "El conector de base de datos de SQL Server pide servidor y base de datos y permite elegir Importar o DirectQuery."
+      },
+      {
+        "id": "m4",
+        "text": "Las tablas Delta de un lakehouse de Microsoft Fabric, para crear en Desktop un modelo semántico en modo Direct Lake",
+        "answerId": "c4",
+        "explanation": "Desde el catálogo de OneLake (*OneLake catalog*) eliges un elemento de Fabric, como un lakehouse, y creas un modelo Direct Lake sobre sus tablas Delta. Conectarte con el conector de SQL Server a su punto de conexión de análisis SQL daría un modelo de Importar o DirectQuery, no Direct Lake."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Carpeta"
+      },
+      {
+        "id": "c2",
+        "text": "Web"
+      },
+      {
+        "id": "c3",
+        "text": "Base de datos de SQL Server"
+      },
+      {
+        "id": "c4",
+        "text": "Catálogo de OneLake"
+      },
+      {
+        "id": "c5",
+        "text": "Texto o CSV"
+      },
+      {
+        "id": "c6",
+        "text": "Modelos semánticos de Power BI"
+      }
+    ],
+    "keyPoint": "Elige el conector según el origen: Carpeta para varios archivos, Web para páginas, el de la base de datos para SQL y el catálogo de OneLake para crear modelos Direct Lake sobre elementos de Fabric.",
+    "references": [
+      {
+        "title": "Orígenes de datos en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/desktop-data-sources"
+      },
+      {
+        "title": "Introducción a la combinación de archivos",
+        "url": "https://learn.microsoft.com/es-es/power-query/combine-files-overview"
+      },
+      {
+        "title": "Direct Lake en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/fabric/fundamentals/direct-lake-power-bi-desktop"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-005",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "scenario": "Recursos humanos de Iberfruta mantiene la plantilla en un libro de Excel que cambia cada semana. El informe publicado debe reflejar los cambios con la actualización programada, y la empresa no quiere instalar una puerta de enlace de datos local.",
+    "prompt": "¿Dónde deberías guardar el libro antes de conectarte a él?",
+    "options": [
+      {
+        "id": "a",
+        "text": "En OneDrive para el trabajo o la escuela o en SharePoint, conectándote mediante su vínculo en línea",
+        "correct": true,
+        "explanation": "El servicio Power BI accede directamente a archivos en la nube, así que el modelo puede actualizarse sin puerta de enlace y mantenerse sincronizado con el libro."
+      },
+      {
+        "id": "b",
+        "text": "En el escritorio del analista, porque Power BI copia el archivo al publicar",
+        "correct": false,
+        "explanation": "Al importar un archivo local los datos se cargan en el modelo, pero el archivo no queda vinculado: para actualizar desde una ruta local el servicio necesita una puerta de enlace."
+      },
+      {
+        "id": "c",
+        "text": "En una carpeta compartida de la red de la oficina",
+        "correct": false,
+        "explanation": "Una carpeta de red es un origen local para el servicio Power BI: no puede alcanzarla por Internet sin una puerta de enlace de datos local."
+      },
+      {
+        "id": "d",
+        "text": "Dentro del propio archivo .pbix, como recurso incrustado",
+        "correct": false,
+        "explanation": "Los datos importados son una instantánea del momento de la carga; incrustar el archivo no permite que la actualización programada lea sus cambios."
+      }
+    ],
+    "keyPoint": "Los archivos en OneDrive o SharePoint se actualizan desde el servicio sin puerta de enlace; los archivos locales o de red la necesitan.",
+    "references": [
+      {
+        "title": "Obtención de datos de archivos",
+        "url": "https://learn.microsoft.com/es-es/training/modules/get-data/2-data-files"
+      },
+      {
+        "title": "Usar vínculos de OneDrive para el trabajo o escuela en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/desktop-use-onedrive-business-links"
+      },
+      {
+        "title": "Puertas de enlace de datos locales en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-gateway-onprem"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-006",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 1,
+    "scenario": "La directiva de seguridad de Termalia obliga a cambiar cada trimestre la contraseña de la cuenta de base de datos con la que tu archivo de Power BI Desktop se conecta a SQL Server.",
+    "prompt": "¿Cómo actualizas la contraseña guardada en Power BI Desktop?",
+    "options": [
+      {
+        "id": "a",
+        "text": "En Transformar datos > Configuración del origen de datos (*Data source settings*), seleccionas el origen, Editar permisos y, en Credenciales, Editar",
+        "correct": true,
+        "explanation": "Las credenciales se guardan por origen de datos y se cambian desde Configuración del origen de datos > Editar permisos, sin tocar las consultas."
+      },
+      {
+        "id": "b",
+        "text": "Escribes la nueva contraseña en el paso Origen desde el Editor avanzado",
+        "correct": false,
+        "explanation": "Las credenciales no forman parte del código M de la consulta; se almacenan aparte, asociadas al origen de datos."
+      },
+      {
+        "id": "c",
+        "text": "Eliminas la consulta y la vuelves a crear desde Obtener datos",
+        "correct": false,
+        "explanation": "Funcionaría, pero perderías los pasos aplicados; basta con editar las credenciales del origen existente."
+      },
+      {
+        "id": "d",
+        "text": "Cambias el nivel de privacidad del origen a Público para que deje de pedir credenciales",
+        "correct": false,
+        "explanation": "El nivel de privacidad controla cómo se combinan los datos entre orígenes; no tiene nada que ver con la autenticación."
+      }
+    ],
+    "keyPoint": "Credenciales y niveles de privacidad se cambian en Configuración del origen de datos > Editar permisos.",
+    "references": [
+      {
+        "title": "Obtención de datos de bases de datos relacionales",
+        "url": "https://learn.microsoft.com/es-es/training/modules/get-data/3-relational-data"
+      },
+      {
+        "title": "Autenticación con un origen de datos",
+        "url": "https://learn.microsoft.com/es-es/power-query/connector-authentication"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-007",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre los niveles de privacidad de Power Query es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Los datos de un origen marcado como Privado no se pueden plegar a otros orígenes, ni siquiera a otro origen Privado.",
+        "answer": true,
+        "explanation": "Privado es el nivel más restrictivo: sus datos no se envían a ningún otro origen, incluidos otros privados."
+      },
+      {
+        "id": "s2",
+        "text": "Un origen marcado como Organizativo puede enviar sus datos a un origen marcado como Público al combinarlos.",
+        "answer": false,
+        "explanation": "Los orígenes organizativos pueden combinarse con orígenes privados y organizativos, pero sus datos no pueden plegarse a orígenes públicos."
+      },
+      {
+        "id": "s3",
+        "text": "Omitir los niveles de privacidad (combinación rápida o *Fast Combine*) puede mejorar el rendimiento, pero puede exponer datos confidenciales.",
+        "answer": true,
+        "explanation": "Al omitirlos, Power Query combina sin aislar los orígenes; por eso Microsoft recomienda activarlo solo si los orígenes no contienen datos sensibles."
+      },
+      {
+        "id": "s4",
+        "text": "La opción global predeterminada de Power BI Desktop omite siempre la configuración de nivel de privacidad.",
+        "answer": false,
+        "explanation": "El valor predeterminado global es combinar los datos según la configuración de nivel de privacidad de cada archivo; omitirla nunca está activado por defecto."
+      }
+    ],
+    "keyPoint": "Privado no comparte con nadie, Organizativo comparte con orígenes de confianza pero no con Públicos, y omitir la privacidad es un riesgo consciente.",
+    "references": [
+      {
+        "title": "Niveles de privacidad",
+        "url": "https://learn.microsoft.com/es-es/power-query/privacy-levels"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-008",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 3,
+    "scenario": "En Vinoteca Duero, una consulta combina la tabla de comisiones de un libro de Excel con una tabla de SQL Server de la empresa. El libro está en el SharePoint de la intranet, accesible para el equipo comercial, pero alguien lo marcó como Privado; el origen SQL Server está marcado como Organizativo. Al actualizar aparece un error Formula.Firewall que indica que los orígenes tienen niveles de privacidad que no se pueden usar juntos.",
+    "prompt": "¿Qué debes hacer para resolver el error sin desactivar la protección de privacidad?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cambiar el nivel de privacidad del libro a Organizativo en Configuración del origen de datos > Editar permisos",
+        "correct": true,
+        "explanation": "El libro es información interna para un grupo de confianza, que es la definición de Organizativo; con ambos orígenes en Organizativo pueden combinarse sin riesgo."
+      },
+      {
+        "id": "b",
+        "text": "Activar Omitir siempre la configuración del nivel de privacidad",
+        "correct": false,
+        "explanation": "Resolvería el error, pero desactivando la protección, que es justo lo que pide evitar el enunciado."
+      },
+      {
+        "id": "c",
+        "text": "Marcar también el origen SQL Server como Privado",
+        "correct": false,
+        "explanation": "Los datos de un origen privado no pueden plegarse a ningún otro origen, ni siquiera a otro privado, así que el error persistiría."
+      },
+      {
+        "id": "d",
+        "text": "Cambiar las credenciales de SQL Server a una cuenta de Windows",
+        "correct": false,
+        "explanation": "El error lo provoca el firewall de privacidad por los niveles asignados, no el método de autenticación."
+      }
+    ],
+    "keyPoint": "Los errores Formula.Firewall por niveles de privacidad se resuelven clasificando bien cada origen, no omitiendo la privacidad.",
+    "references": [
+      {
+        "title": "Niveles de privacidad",
+        "url": "https://learn.microsoft.com/es-es/power-query/privacy-levels"
+      },
+      {
+        "title": "Firewall de privacidad de datos de Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/data-privacy-firewall"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-009",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 1,
+    "scenario": "El archivo CSV de inventario que usa tu informe se ha movido de C:\\Datos a la carpeta compartida \\\\srv-almacen\\informes, con el mismo nombre y la misma estructura.",
+    "prompt": "Completa la frase.",
+    "template": "En Power BI Desktop abres {{b1}} y, tras seleccionar el origen, usas {{b2}} para indicar la nueva ruta.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Transformar datos > Configuración del origen de datos"
+          },
+          {
+            "id": "o2",
+            "text": "Archivo > Opciones > Características en versión preliminar"
+          },
+          {
+            "id": "o3",
+            "text": "Modelado > Administrar relaciones"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Configuración del origen de datos (*Data source settings*) lista los orígenes del archivo y permite cambiarlos; las otras opciones no gestionan orígenes."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Cambiar origen"
+          },
+          {
+            "id": "o2",
+            "text": "Borrar permisos"
+          },
+          {
+            "id": "o3",
+            "text": "Editar permisos"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Cambiar origen (*Change source*) actualiza la ruta del archivo en las consultas; Editar y Borrar permisos solo afectan a credenciales y niveles de privacidad."
+      }
+    ],
+    "keyPoint": "Si un archivo de origen cambia de ubicación, usa Configuración del origen de datos > Cambiar origen; la estructura del archivo debe ser la misma.",
+    "references": [
+      {
+        "title": "Obtención de datos de archivos",
+        "url": "https://learn.microsoft.com/es-es/training/modules/get-data/2-data-files"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-010",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "prompt": "Empareja cada origen de datos con el nivel de privacidad más adecuado.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Libro con las evaluaciones de desempeño de los empleados",
+        "answerId": "c2",
+        "explanation": "Contiene información confidencial que solo deben ver usuarios autorizados: es el ejemplo típico de origen Privado."
+      },
+      {
+        "id": "m2",
+        "text": "Documento en un sitio de SharePoint de la intranet con permisos para un grupo de confianza",
+        "answerId": "c3",
+        "explanation": "Organizativo se usa para datos visibles para un grupo de confianza dentro de la organización."
+      },
+      {
+        "id": "m3",
+        "text": "Tabla de población de una página pública de Wikipedia",
+        "answerId": "c4",
+        "explanation": "Los datos disponibles para cualquiera en Internet pueden marcarse como Públicos y plegarse a otros orígenes."
+      },
+      {
+        "id": "m4",
+        "text": "Base de datos de un entorno de desarrollo controlado, usada para pruebas de rendimiento",
+        "answerId": "c1",
+        "explanation": "Ninguno desactiva la clasificación de privacidad; Microsoft lo sugiere solo para entornos de desarrollo controlados, con cuidado."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Ninguno"
+      },
+      {
+        "id": "c2",
+        "text": "Privado"
+      },
+      {
+        "id": "c3",
+        "text": "Organizativo"
+      },
+      {
+        "id": "c4",
+        "text": "Público"
+      }
+    ],
+    "keyPoint": "Privado = confidencial, Organizativo = grupo de confianza, Público = datos abiertos, Ninguno = solo entornos controlados.",
+    "references": [
+      {
+        "title": "Niveles de privacidad",
+        "url": "https://learn.microsoft.com/es-es/power-query/privacy-levels"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-011",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "scenario": "Mercaluz, una cadena de supermercados, registra las ventas de sus terminales punto de venta en una base de datos de Azure SQL con miles de millones de filas que crece cada minuto. La directiva de seguridad prohíbe guardar copias de esos datos fuera de la base de datos, y los responsables de tienda necesitan ver las ventas más recientes al abrir el informe.",
+    "prompt": "¿Qué modo de almacenamiento debes usar para la tabla de ventas?",
+    "options": [
+      {
+        "id": "a",
+        "text": "DirectQuery",
+        "correct": true,
+        "explanation": "DirectQuery no importa datos: cada objeto visual consulta el origen, así que se respetan la prohibición de copias y la necesidad de datos actuales con grandes volúmenes."
+      },
+      {
+        "id": "b",
+        "text": "Importar",
+        "correct": false,
+        "explanation": "Importar guarda una copia de los datos en el modelo, lo que incumple la directiva, y solo muestra lo cargado en la última actualización."
+      },
+      {
+        "id": "c",
+        "text": "Direct Lake",
+        "correct": false,
+        "explanation": "Direct Lake lee tablas Delta de OneLake en Microsoft Fabric; el origen aquí es una base de datos de Azure SQL."
+      },
+      {
+        "id": "d",
+        "text": "Dual",
+        "correct": false,
+        "explanation": "Una tabla Dual también guarda una copia importada para responder desde memoria cuando conviene, así que no cumple la restricción de no copiar datos."
+      }
+    ],
+    "keyPoint": "Usa DirectQuery cuando los datos no pueden copiarse al modelo o deben verse casi en tiempo real desde un origen relacional grande.",
+    "references": [
+      {
+        "title": "Uso de DirectQuery en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/desktop-directquery-about"
+      },
+      {
+        "title": "Modo de almacenamiento en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-storage-mode"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-012",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 3,
+    "scenario": "Los ingenieros de datos de Nórdica Energía cargan cada hora las lecturas de contadores en tablas Delta de un lakehouse de Microsoft Fabric. El área de trabajo está en una capacidad de Fabric. Quieren un modelo semántico con un rendimiento de consulta similar al de Importar, sin copiar todo el volumen de datos en cada actualización programada.",
+    "prompt": "¿Qué modo de almacenamiento recomiendas?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Direct Lake",
+        "correct": true,
+        "explanation": "Direct Lake carga en memoria las columnas de las tablas Delta de OneLake y las consulta con el motor VertiPaq; su actualización solo renueva metadatos, sin copiar los datos."
+      },
+      {
+        "id": "b",
+        "text": "Importar",
+        "correct": false,
+        "explanation": "Importar ofrece buen rendimiento, pero cada actualización vuelve a copiar los datos en el modelo, lo que es justo lo que se quiere evitar."
+      },
+      {
+        "id": "c",
+        "text": "DirectQuery",
+        "correct": false,
+        "explanation": "DirectQuery envía cada consulta al origen; suele ser más lento que Importar o Direct Lake al interactuar con los objetos visuales."
+      },
+      {
+        "id": "d",
+        "text": "Conexión dinámica",
+        "correct": false,
+        "explanation": "Una conexión dinámica conecta un informe a un modelo semántico existente; no es un modo para construir el modelo sobre las tablas del lakehouse."
+      }
+    ],
+    "keyPoint": "Direct Lake lee tablas Delta de OneLake con rendimiento similar a Importar y una actualización ligera (reencuadre) que no vuelve a copiar los datos.",
+    "references": [
+      {
+        "title": "Introducción a Direct Lake",
+        "url": "https://learn.microsoft.com/es-es/fabric/fundamentals/direct-lake-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-013",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 3,
+    "prompt": "Empareja cada requisito con el modo de almacenamiento de tabla más adecuado.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Combinar un Excel, una lista de SharePoint y una API con todas las funciones de Power Query y DAX; basta con actualizar una vez al día",
+        "answerId": "c1",
+        "explanation": "Importar admite cualquier conector y el conjunto completo de transformaciones M y de DAX; es el modo predeterminado cuando la latencia de una actualización diaria es aceptable."
+      },
+      {
+        "id": "m2",
+        "text": "Consultar tablas Delta de OneLake con el motor VertiPaq sin copiar los datos en cada actualización",
+        "answerId": "c3",
+        "explanation": "Direct Lake lee directamente las tablas Delta de OneLake y su actualización (reencuadre) solo cambia metadatos."
+      },
+      {
+        "id": "m3",
+        "text": "Mostrar en cada interacción los datos actuales de una base de datos relacional muy grande",
+        "answerId": "c2",
+        "explanation": "DirectQuery traduce cada consulta al lenguaje del origen, así que siempre devuelve los datos actuales."
+      },
+      {
+        "id": "m4",
+        "text": "Una dimensión de fechas que filtra a la vez una tabla de hechos importada y otra en DirectQuery",
+        "answerId": "c4",
+        "explanation": "Una tabla Dual puede actuar como importada o como DirectQuery según la consulta, lo que evita relaciones limitadas en modelos compuestos."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Importar"
+      },
+      {
+        "id": "c2",
+        "text": "DirectQuery"
+      },
+      {
+        "id": "c3",
+        "text": "Direct Lake"
+      },
+      {
+        "id": "c4",
+        "text": "Dual"
+      },
+      {
+        "id": "c5",
+        "text": "Conexión dinámica"
+      }
+    ],
+    "keyPoint": "Importar = flexibilidad total, DirectQuery = datos actuales del origen, Direct Lake = Delta en OneLake, Dual = dimensiones compartidas en modelos compuestos.",
+    "references": [
+      {
+        "title": "Modo de almacenamiento en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-storage-mode"
+      },
+      {
+        "title": "Introducción a Direct Lake",
+        "url": "https://learn.microsoft.com/es-es/fabric/fundamentals/direct-lake-overview"
+      },
+      {
+        "title": "Modos de modelo semántico en el servicio Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-dataset-modes-understand"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-014",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre los modos de almacenamiento en Power BI Desktop es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puedes cambiar una tabla en DirectQuery al modo Importar o Dual.",
+        "answer": true,
+        "explanation": "Desde la propiedad Modo de almacenamiento del panel Propiedades (vista de modelo) puedes pasar una tabla DirectQuery a Importar o a Dual; Desktop te ofrece además pasar a Dual las demás tablas relacionadas."
+      },
+      {
+        "id": "s2",
+        "text": "Después de pasar una tabla de DirectQuery a Importar en Power BI Desktop, puedes devolverla a DirectQuery desde el panel Propiedades.",
+        "answer": false,
+        "explanation": "Según la documentación, una vez cambiada a Importar la tabla ya no puede volver a DirectQuery desde la propiedad Modo de almacenamiento. Las únicas excepciones son el modelado web y la edición en vivo (*live editing*) en Desktop, que permiten deshacer el cambio con el control de versiones, no desde el panel Propiedades."
+      },
+      {
+        "id": "s3",
+        "text": "En un modelo compuesto, una tabla en modo Dual responde desde los datos importados cuando es posible y, si no, envía la consulta al origen como DirectQuery.",
+        "answer": true,
+        "explanation": "Las consultas que usan una tabla Dual obtienen los datos de la caché si pueden y, si no, se resuelven en modo DirectQuery; por eso Dual es útil para dimensiones que filtran tablas importadas y DirectQuery."
+      },
+      {
+        "id": "s4",
+        "text": "En DirectQuery puedes aplicar cualquier transformación de Power Query aunque no se pueda plegar al origen.",
+        "answer": false,
+        "explanation": "En DirectQuery las transformaciones deben poder traducirse a una única consulta nativa; los pasos que no se pliegan provocan errores o obligan a cambiar a Importar."
+      }
+    ],
+    "keyPoint": "DirectQuery → Importar es un cambio de un solo sentido en Desktop; DirectQuery exige pasos plegables y Dual alterna entre caché y DirectQuery según la consulta.",
+    "references": [
+      {
+        "title": "Modo de almacenamiento en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-storage-mode"
+      },
+      {
+        "title": "Uso de DirectQuery en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/desktop-directquery-about"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-015",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "prompt": "Completa la frase sobre Direct Lake.",
+    "template": "Una tabla en modo Direct Lake lee los datos de {{b1}}, y su actualización {{b2}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "tablas Delta almacenadas en OneLake"
+          },
+          {
+            "id": "o2",
+            "text": "una copia comprimida dentro del archivo .pbix"
+          },
+          {
+            "id": "o3",
+            "text": "consultas SQL enviadas a cualquier base de datos local"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Direct Lake está optimizado para cargar en memoria datos de tablas Delta de OneLake; no guarda una copia importada ni consulta bases de datos locales."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "solo renueva los metadatos para apuntar a la versión más reciente de las tablas Delta"
+          },
+          {
+            "id": "o2",
+            "text": "vuelve a copiar todos los datos en el modelo"
+          },
+          {
+            "id": "o3",
+            "text": "requiere una puerta de enlace de datos local"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "La actualización de Direct Lake (reencuadre, *framing*) es una operación ligera de metadatos, a diferencia de la actualización de Importar, que copia todos los datos."
+      }
+    ],
+    "keyPoint": "Direct Lake = datos Delta en OneLake + actualización de solo metadatos (reencuadre).",
+    "references": [
+      {
+        "title": "Introducción a Direct Lake",
+        "url": "https://learn.microsoft.com/es-es/fabric/fundamentals/direct-lake-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-016",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "scenario": "Tu informe de Clínicas Sanavida se conecta al servidor SQL de desarrollo. Antes de publicarlo has creado un parámetro y lo usas en el paso Origen de la consulta Citas:",
+    "code": {
+      "language": "m",
+      "content": "// Consulta ServidorSQL (parámetro)\n\"sql-dev.sanavida.local\" meta [IsParameterQuery = true, Type = \"Text\", IsParameterQueryRequired = true]\n\n// Consulta Citas\nlet\n    Origen = Sql.Database(ServidorSQL, \"Clinica\"),\n    Citas = Origen{[Schema = \"dbo\", Item = \"Citas\"]}[Data]\nin\n    Citas"
+    },
+    "prompt": "Una vez publicado, el modelo semántico debe apuntar al servidor de producción. ¿Qué es lo más sencillo?",
+    "options": [
+      {
+        "id": "a",
+        "text": "En el servicio Power BI, abrir la configuración del modelo semántico, expandir Parámetros y cambiar el valor de ServidorSQL",
+        "correct": true,
+        "explanation": "Los parámetros definidos en Desktop se publican con el modelo y su valor puede editarse en la configuración del modelo semántico, sin volver a publicar."
+      },
+      {
+        "id": "b",
+        "text": "Crear en el servicio un parámetro nuevo con el nombre del servidor de producción",
+        "correct": false,
+        "explanation": "En el servicio Power BI puedes revisar y editar parámetros existentes, pero no crearlos."
+      },
+      {
+        "id": "c",
+        "text": "Cambiar el nivel de privacidad del origen a Organizativo",
+        "correct": false,
+        "explanation": "El nivel de privacidad no determina a qué servidor se conecta la consulta."
+      },
+      {
+        "id": "d",
+        "text": "Volver a crear la consulta Citas desde Obtener datos apuntando a producción y publicar de nuevo",
+        "correct": false,
+        "explanation": "Funcionaría, pero obliga a rehacer los pasos y republicar; el parámetro existe precisamente para cambiar el servidor sin editar consultas."
+      }
+    ],
+    "keyPoint": "Parametriza servidores y bases de datos para cambiar de entorno editando el parámetro en la configuración del modelo semántico.",
+    "references": [
+      {
+        "title": "Edición de la configuración de los parámetros en el servicio Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-parameters"
+      },
+      {
+        "title": "Uso de parámetros",
+        "url": "https://learn.microsoft.com/es-es/power-query/power-query-query-parameters"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-017",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "scenario": "Quieres que el informe de Fábricas Ebro pueda cambiar de base de datos (pruebas o producción) sin editar las consultas, también después de publicarlo.",
+    "prompt": "Ordena los pasos.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "En el Editor de Power Query, selecciona Administrar parámetros (*Manage parameters*) > Nuevo parámetro",
+        "explanation": "Primero hay que abrir la ventana donde se crean los parámetros."
+      },
+      {
+        "id": "p2",
+        "text": "Define el nombre BaseDatos, el tipo Texto y el valor actual con la base de datos de pruebas",
+        "explanation": "El parámetro debe existir, con su tipo y valor, antes de poder usarlo en una consulta."
+      },
+      {
+        "id": "p3",
+        "text": "Modifica el paso Origen de la consulta para usar BaseDatos en lugar del nombre escrito a mano",
+        "explanation": "Solo puedes referenciar el parámetro una vez creado; a partir de aquí la consulta depende de su valor."
+      },
+      {
+        "id": "p4",
+        "text": "Cierra y aplica, y publica el informe en el área de trabajo",
+        "explanation": "El modelo semántico, con sus parámetros, debe estar publicado para poder configurarlo en el servicio."
+      },
+      {
+        "id": "p5",
+        "text": "En la configuración del modelo semántico del servicio, cambia el valor del parámetro a la base de datos de producción y actualiza",
+        "explanation": "El último paso solo es posible cuando el modelo ya está en el servicio con el parámetro en uso."
+      }
+    ],
+    "keyPoint": "Crear parámetro → usarlo en la consulta → publicar → cambiar su valor en el servicio.",
+    "references": [
+      {
+        "title": "Uso de parámetros",
+        "url": "https://learn.microsoft.com/es-es/power-query/power-query-query-parameters"
+      },
+      {
+        "title": "Edición de la configuración de los parámetros en el servicio Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-parameters"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-conectar-018",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-conectar",
+    "difficulty": 2,
+    "prompt": "¿Qué dos afirmaciones sobre los parámetros de consulta en Power BI Desktop son correctas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Puedes convertir en parámetro una consulta cuyo resultado es un valor constante, como un texto o una fecha, con Convertir en parámetro",
+        "correct": true,
+        "explanation": "Power Query permite crear parámetros desde una consulta con un valor constante simple, además de desde Administrar parámetros."
+      },
+      {
+        "id": "b",
+        "text": "En Valores sugeridos puedes elegir Lista de valores o una consulta que devuelva una lista",
+        "correct": true,
+        "explanation": "Valores sugeridos admite Cualquier valor, Lista de valores o Consulta (una consulta de lista) para proponer los valores del parámetro."
+      },
+      {
+        "id": "c",
+        "text": "En el servicio Power BI puedes crear parámetros nuevos para un modelo semántico publicado",
+        "correct": false,
+        "explanation": "En el servicio solo puedes revisar y editar los parámetros creados en Desktop, no crearlos."
+      },
+      {
+        "id": "d",
+        "text": "El servicio Power BI permite editar parámetros de tipo Any o Binary",
+        "correct": false,
+        "explanation": "Los parámetros Any y Binary funcionan en Desktop, pero el servicio no los admite por motivos de seguridad."
+      },
+      {
+        "id": "e",
+        "text": "Un parámetro solo puede usarse en el paso Origen de una consulta",
+        "correct": false,
+        "explanation": "Los parámetros sirven como argumento de muchas transformaciones (por ejemplo, un filtro de filas) y de funciones personalizadas, no solo en el origen."
+      }
+    ],
+    "keyPoint": "Los parámetros se crean en Desktop (Administrar parámetros o Convertir en parámetro), se usan en cualquier paso y en el servicio solo se editan.",
+    "references": [
+      {
+        "title": "Uso de parámetros",
+        "url": "https://learn.microsoft.com/es-es/power-query/power-query-query-parameters"
+      },
+      {
+        "title": "Edición de la configuración de los parámetros en el servicio Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-parameters"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 2,
+    "scenario": "En el Editor de Power Query, la columna CódigoPostal de una consulta de clientes con 250 000 filas muestra en Calidad de columna (*Column quality*) un 100 % de valores válidos. Sin embargo, al cargar el modelo aparecen errores en esa columna.",
+    "prompt": "¿Qué explica mejor la diferencia y cómo lo compruebas?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Por defecto el perfil se calcula sobre las primeras 1000 filas; cambia en la barra de estado a la generación de perfiles basada en todo el conjunto de datos",
+        "correct": true,
+        "explanation": "Las herramientas de generación de perfiles analizan por defecto solo las primeras filas; al cambiar a todo el conjunto de datos, Calidad de columna mostrará los errores que hay más abajo."
+      },
+      {
+        "id": "b",
+        "text": "Calidad de columna no detecta los errores de conversión de tipos",
+        "correct": false,
+        "explanation": "Sí los detecta: la categoría Error de Calidad de columna recoge precisamente los valores de error, como los de conversión de tipo."
+      },
+      {
+        "id": "c",
+        "text": "Los errores los genera DAX en el modelo y no tienen relación con Power Query",
+        "correct": false,
+        "explanation": "Los errores al cargar una columna proceden de los pasos de Power Query, por ejemplo de un cambio de tipo que falla en algunas filas."
+      },
+      {
+        "id": "d",
+        "text": "Hay que activar Distribución de columnas para que Calidad de columna analice todas las filas",
+        "correct": false,
+        "explanation": "Las herramientas son independientes; el número de filas analizadas lo decide la opción de la barra de estado, no qué herramientas tengas activas."
+      }
+    ],
+    "keyPoint": "Los perfiles de columna usan por defecto las primeras 1000 filas; cámbialo a todo el conjunto de datos antes de sacar conclusiones.",
+    "references": [
+      {
+        "title": "Uso de las herramientas de generación de perfiles de datos",
+        "url": "https://learn.microsoft.com/es-es/power-query/data-profiling-tools"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-002",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 1,
+    "prompt": "Empareja cada necesidad con la herramienta del Editor de Power Query que la cubre.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Ver de un vistazo el porcentaje de valores válidos, con error y vacíos de cada columna",
+        "answerId": "c1",
+        "explanation": "Calidad de columna (*Column quality*) muestra bajo cada encabezado una barra con los porcentajes de valores válidos, con error y vacíos."
+      },
+      {
+        "id": "m2",
+        "text": "Ver bajo cada encabezado un histograma con el recuento de valores distintos y únicos",
+        "answerId": "c2",
+        "explanation": "Distribución de columnas (*Column distribution*) muestra la frecuencia de los valores y los recuentos de distintos y únicos."
+      },
+      {
+        "id": "m3",
+        "text": "Ver estadísticas detalladas (mínimo, máximo, promedio…) y la distribución de valores de la columna seleccionada",
+        "answerId": "c3",
+        "explanation": "Perfil de columna (*Column profile*) añade, bajo la vista previa, las estadísticas de la columna y un gráfico de distribución de valores."
+      },
+      {
+        "id": "m4",
+        "text": "Analizar qué hace y cuánto tarda cada consulta durante la evaluación o la actualización",
+        "answerId": "c4",
+        "explanation": "Diagnóstico de consultas (*Query diagnostics*) registra las operaciones que ejecuta Power Query; las herramientas de perfil no miden tiempos."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Calidad de columna"
+      },
+      {
+        "id": "c2",
+        "text": "Distribución de columnas"
+      },
+      {
+        "id": "c3",
+        "text": "Perfil de columna"
+      },
+      {
+        "id": "c4",
+        "text": "Diagnóstico de consultas"
+      },
+      {
+        "id": "c5",
+        "text": "Vista de esquema"
+      },
+      {
+        "id": "c6",
+        "text": "Vista de diagrama"
+      }
+    ],
+    "keyPoint": "Calidad = válidos/errores/vacíos; Distribución = distintos y únicos; Perfil = estadísticas y distribución de una columna.",
+    "references": [
+      {
+        "title": "Uso de las herramientas de generación de perfiles de datos",
+        "url": "https://learn.microsoft.com/es-es/power-query/data-profiling-tools"
+      },
+      {
+        "title": "Diagnóstico de consultas",
+        "url": "https://learn.microsoft.com/es-es/power-query/query-diagnostics"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-003",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 2,
+    "scenario": "Activas Distribución de columnas (*Column distribution*) en una consulta de pedidos que contiene estas filas:",
+    "table": {
+      "caption": "Consulta Pedidos",
+      "headers": [
+        "IdPedido",
+        "Canal"
+      ],
+      "rows": [
+        [
+          "1001",
+          "Web"
+        ],
+        [
+          "1002",
+          "Tienda"
+        ],
+        [
+          "1003",
+          "Web"
+        ],
+        [
+          "1004",
+          "Teléfono"
+        ],
+        [
+          "1005",
+          "Tienda"
+        ],
+        [
+          "1006",
+          "Distribuidor"
+        ]
+      ]
+    },
+    "prompt": "¿Qué recuentos muestra la herramienta para la columna Canal?",
+    "options": [
+      {
+        "id": "a",
+        "text": "4 distintos y 2 únicos",
+        "correct": true,
+        "explanation": "Hay cuatro valores diferentes (Web, Tienda, Teléfono, Distribuidor) y solo dos aparecen una única vez (Teléfono y Distribuidor)."
+      },
+      {
+        "id": "b",
+        "text": "4 distintos y 4 únicos",
+        "correct": false,
+        "explanation": "Confunde únicos con distintos: un valor único es el que aparece exactamente una vez, y Web y Tienda aparecen dos veces."
+      },
+      {
+        "id": "c",
+        "text": "6 distintos y 2 únicos",
+        "correct": false,
+        "explanation": "Seis es el número de filas, no de valores diferentes."
+      },
+      {
+        "id": "d",
+        "text": "2 distintos y 4 únicos",
+        "correct": false,
+        "explanation": "Invierte los conceptos: el recuento de únicos nunca puede ser mayor que el de distintos."
+      }
+    ],
+    "keyPoint": "Distintos = valores diferentes; únicos = valores que aparecen una sola vez.",
+    "references": [
+      {
+        "title": "Uso de las herramientas de generación de perfiles de datos",
+        "url": "https://learn.microsoft.com/es-es/power-query/data-profiling-tools"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-004",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 1,
+    "prompt": "Indica si cada afirmación sobre las herramientas de generación de perfiles de datos de Power Query es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Se activan en la pestaña Vista del Editor de Power Query, en el grupo Vista previa de datos.",
+        "answer": true,
+        "explanation": "En Power Query Desktop, Calidad de columna, Distribución de columnas y Perfil de columna se activan en Vista > Vista previa de datos."
+      },
+      {
+        "id": "s2",
+        "text": "Activar Perfil de columna agrega un paso a la lista de Pasos aplicados de la consulta.",
+        "answer": false,
+        "explanation": "Las herramientas de perfil solo muestran información sobre los datos; no transforman la consulta ni añaden pasos."
+      },
+      {
+        "id": "s3",
+        "text": "Si en una columna el recuento de valores distintos coincide con el de valores únicos, ningún valor se repite en las filas analizadas.",
+        "answer": true,
+        "explanation": "Si todos los valores distintos aparecen una sola vez, no hay repeticiones; es una comprobación útil para columnas candidatas a clave."
+      },
+      {
+        "id": "s4",
+        "text": "Por defecto, los perfiles se calculan sobre todas las filas de la consulta.",
+        "answer": false,
+        "explanation": "Por defecto se calculan sobre las primeras 1000 filas; puedes cambiarlo a todo el conjunto de datos en la barra de estado."
+      }
+    ],
+    "keyPoint": "Los perfiles se activan en Vista, no cambian los datos y por defecto solo miran las primeras filas.",
+    "references": [
+      {
+        "title": "Uso de las herramientas de generación de perfiles de datos",
+        "url": "https://learn.microsoft.com/es-es/power-query/data-profiling-tools"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-005",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 2,
+    "scenario": "Antes de usar IdCliente como columna del lado «uno» de una relación, quieres asegurarte de que no tiene valores repetidos en toda la tabla de clientes.",
+    "prompt": "Completa la frase.",
+    "template": "Activas {{b1}}, cambias la generación de perfiles a {{b2}} y confirmas que {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Distribución de columnas"
+          },
+          {
+            "id": "o2",
+            "text": "Calidad de columna"
+          },
+          {
+            "id": "o3",
+            "text": "Vista de diagrama"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Distribución de columnas muestra los recuentos de valores distintos y únicos, que son los que revelan duplicados; Calidad de columna solo informa de válidos, errores y vacíos."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "todo el conjunto de datos"
+          },
+          {
+            "id": "o2",
+            "text": "las primeras 1000 filas"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Un duplicado puede estar más allá de las primeras filas; para validar una clave hay que perfilar todo el conjunto de datos."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "el recuento de valores distintos es igual al de valores únicos"
+          },
+          {
+            "id": "o2",
+            "text": "el porcentaje de valores válidos es del 100 %"
+          },
+          {
+            "id": "o3",
+            "text": "la columna es de tipo Número entero"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Si distintos y únicos coinciden, cada valor aparece una sola vez. El 100 % de válidos o el tipo numérico no garantizan que no haya repeticiones."
+      }
+    ],
+    "keyPoint": "Para validar una clave, perfila todo el conjunto de datos y comprueba que distintos = únicos.",
+    "references": [
+      {
+        "title": "Uso de las herramientas de generación de perfiles de datos",
+        "url": "https://learn.microsoft.com/es-es/power-query/data-profiling-tools"
+      },
+      {
+        "title": "Relaciones del modelo en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-relationships-understand"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-006",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 2,
+    "scenario": "Un CRM exporta la ciudad de cada cliente escrita a mano. Al agrupar por Ciudad en Power Query obtienes varios grupos para la misma ciudad. Las comillas de la tabla solo marcan dónde hay espacios.",
+    "table": {
+      "caption": "Columna Ciudad (extracto)",
+      "headers": [
+        "IdCliente",
+        "Ciudad"
+      ],
+      "rows": [
+        [
+          "C01",
+          "\"Sevilla\""
+        ],
+        [
+          "C02",
+          "\"sevilla\""
+        ],
+        [
+          "C03",
+          "\"  Sevilla\""
+        ],
+        [
+          "C04",
+          "\"SEVILLA \""
+        ],
+        [
+          "C05",
+          "\"Cádiz\""
+        ]
+      ]
+    },
+    "prompt": "¿Qué transformaciones de Formato unifican los valores?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Recortar (*Trim*) y después Poner En Mayúsculas Cada Palabra (*Capitalize Each Word*)",
+        "correct": true,
+        "explanation": "Recortar quita los espacios iniciales y finales, y poner en mayúsculas cada palabra deja todas las variantes como «Sevilla». Power Query distingue mayúsculas y espacios al comparar texto, por eso salían grupos distintos."
+      },
+      {
+        "id": "b",
+        "text": "Quitar duplicados en la columna Ciudad",
+        "correct": false,
+        "explanation": "Eliminaría filas de clientes en lugar de corregir los valores, y además «Sevilla» y «sevilla» no se consideran duplicados."
+      },
+      {
+        "id": "c",
+        "text": "Solo Limpiar (*Clean*)",
+        "correct": false,
+        "explanation": "Limpiar elimina caracteres no imprimibles, pero no quita espacios ni cambia mayúsculas y minúsculas."
+      },
+      {
+        "id": "d",
+        "text": "Cambiar el tipo de la columna a Texto",
+        "correct": false,
+        "explanation": "La columna ya es texto; el tipo no corrige diferencias de escritura."
+      }
+    ],
+    "keyPoint": "Normaliza el texto con Recortar y un cambio de mayúsculas antes de agrupar o combinar: Power Query compara el texto de forma exacta.",
+    "references": [
+      {
+        "title": "Text.Trim",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/text-trim"
+      },
+      {
+        "title": "Text.Proper",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/text-proper"
+      },
+      {
+        "title": "Dar forma a los datos iniciales",
+        "url": "https://learn.microsoft.com/es-es/training/modules/clean-data-power-bi/2-shape-data"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-007",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 1,
+    "scenario": "Un informe exportado de un ERP muestra la región solo en la primera fila de cada bloque; el resto de filas del bloque llegan con null en Región.",
+    "table": {
+      "headers": [
+        "Región",
+        "Tienda",
+        "Ventas"
+      ],
+      "rows": [
+        [
+          "Norte",
+          "T-01",
+          "1200"
+        ],
+        [
+          "null",
+          "T-02",
+          "950"
+        ],
+        [
+          "null",
+          "T-03",
+          "1100"
+        ],
+        [
+          "Sur",
+          "T-04",
+          "870"
+        ],
+        [
+          "null",
+          "T-05",
+          "640"
+        ]
+      ]
+    },
+    "prompt": "¿Qué transformación completa correctamente la columna Región?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Rellenar > Hacia abajo (*Fill down*) en la columna Región",
+        "correct": true,
+        "explanation": "Rellenar hacia abajo sustituye cada null por el último valor no vacío de encima: T-02 y T-03 quedan en Norte y T-05 en Sur."
+      },
+      {
+        "id": "b",
+        "text": "Rellenar > Hacia arriba (*Fill up*) en la columna Región",
+        "correct": false,
+        "explanation": "Rellenar hacia arriba copia el siguiente valor hacia las filas anteriores, así que T-02 y T-03 quedarían asignadas a Sur."
+      },
+      {
+        "id": "c",
+        "text": "Reemplazar los null de Región por «Sin región»",
+        "correct": false,
+        "explanation": "Eliminaría los nulos, pero perdiendo la región real de cada tienda."
+      },
+      {
+        "id": "d",
+        "text": "Quitar filas en blanco",
+        "correct": false,
+        "explanation": "Solo elimina filas completamente vacías; estas filas tienen tienda y ventas y deben conservarse."
+      }
+    ],
+    "keyPoint": "Cuando un valor solo aparece en la primera fila de cada grupo, usa Rellenar hacia abajo.",
+    "references": [
+      {
+        "title": "Rellenar valores en una columna",
+        "url": "https://learn.microsoft.com/es-es/power-query/fill-values-column"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-008",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 2,
+    "scenario": "La columna Importe de un CSV de Ferretería Iriarte llega como texto (configuración regional Español (España)) y contiene N/D cuando el proveedor no informa el importe. Quieres que sea de tipo Número decimal y que esas filas queden con null, sin perderlas.",
+    "table": {
+      "headers": [
+        "IdAlbarán",
+        "Importe"
+      ],
+      "rows": [
+        [
+          "A-301",
+          "125,40"
+        ],
+        [
+          "A-302",
+          "N/D"
+        ],
+        [
+          "A-303",
+          "89,90"
+        ],
+        [
+          "A-304",
+          "N/D"
+        ]
+      ]
+    },
+    "prompt": "¿Qué dos soluciones consiguen el resultado? Cada respuesta es una solución completa. Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Reemplazar valores N/D por null en Importe, coincidiendo con todo el contenido de la celda, y después cambiar el tipo a Número decimal",
+        "correct": true,
+        "explanation": "En Reemplazar valores (*Replace values*) escribes null en Reemplazar con y Power Query lo interpreta como valor nulo, no como texto. Con la coincidencia de todo el contenido de la celda se sustituyen solo las celdas N/D, y el cambio de tipo posterior ya no encuentra texto no numérico, así que las filas se conservan con null."
+      },
+      {
+        "id": "b",
+        "text": "Cambiar el tipo a Número decimal y después, en Importe, Reemplazar errores (*Replace errors*) por null",
+        "correct": true,
+        "explanation": "El cambio de tipo convierte N/D en errores de nivel de celda; reemplazarlos por null conserva las filas con el valor deseado."
+      },
+      {
+        "id": "c",
+        "text": "Cambiar el tipo a Número decimal y después Quitar errores (*Remove errors*)",
+        "correct": false,
+        "explanation": "Quitar errores elimina las filas con error, y el requisito es conservarlas."
+      },
+      {
+        "id": "d",
+        "text": "Dejar la columna como Texto y resumirla con Suma en el informe",
+        "correct": false,
+        "explanation": "Una columna de texto no se puede sumar; el tipo debe corregirse en Power Query."
+      },
+      {
+        "id": "e",
+        "text": "Quitar duplicados en la columna Importe",
+        "correct": false,
+        "explanation": "No tiene relación con el problema y además eliminaría filas con el mismo importe."
+      }
+    ],
+    "keyPoint": "Un marcador de texto como N/D se trata reemplazándolo por null antes del cambio de tipo o reemplazando los errores después.",
+    "references": [
+      {
+        "title": "Reemplazar valores",
+        "url": "https://learn.microsoft.com/es-es/power-query/replace-values"
+      },
+      {
+        "title": "Tratamiento de errores en Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/dealing-with-errors"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-009",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 3,
+    "scenario": "En la consulta Tarifas de Hoteles Brisa, la columna TarifaEstandar trae algunos valores de error procedentes del libro de Excel (#N/A, #DIV/0!). Añades este paso:",
+    "code": {
+      "language": "m",
+      "content": "TarifaFinal = Table.AddColumn(\n    Origen,\n    \"TarifaFinal\",\n    each try [TarifaEstandar] otherwise [TarifaEspecial],\n    type number\n)"
+    },
+    "prompt": "¿Qué hace el paso?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agrega TarifaFinal con el valor de TarifaEstandar cuando no hay error y, en las filas con error, el de TarifaEspecial",
+        "correct": true,
+        "explanation": "try … otherwise evalúa la expresión y, si produce un error, devuelve el valor alternativo; es el equivalente en M a SIERROR."
+      },
+      {
+        "id": "b",
+        "text": "Reemplaza los errores de TarifaEstandar por TarifaEspecial sin crear columnas nuevas",
+        "correct": false,
+        "explanation": "Table.AddColumn agrega una columna nueva; la columna TarifaEstandar original no cambia."
+      },
+      {
+        "id": "c",
+        "text": "Quita las filas en las que TarifaEstandar tiene un error",
+        "correct": false,
+        "explanation": "El paso no filtra filas; para eso existiría Quitar errores (Table.RemoveRowsWithErrors)."
+      },
+      {
+        "id": "d",
+        "text": "Usa TarifaEspecial cuando TarifaEstandar es null",
+        "correct": false,
+        "explanation": "try solo captura errores; un null no es un error, así que se devolvería null."
+      }
+    ],
+    "keyPoint": "try … otherwise da un valor alternativo cuando una expresión produce error, sin perder filas.",
+    "references": [
+      {
+        "title": "Control de errores",
+        "url": "https://learn.microsoft.com/es-es/power-query/error-handling"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-010",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 2,
+    "scenario": "Importas una hoja de Excel de Ópticas Miralba. Las tres primeras filas contienen el título y la fecha de exportación, la cuarta tiene los nombres de columna, y la columna Importe contiene algún texto como «pendiente» que no debe impedir la carga.",
+    "prompt": "Ordena los pasos para obtener una tabla limpia.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Quitar filas > Quitar filas superiores (*Remove top rows*), indicando 3",
+        "explanation": "Primero hay que eliminar las filas de título para que la fila con los nombres de columna quede arriba."
+      },
+      {
+        "id": "p2",
+        "text": "Usar la primera fila como encabezado (*Use first row as headers*)",
+        "explanation": "Solo tras quitar las filas superiores la primera fila contiene los nombres de columna correctos."
+      },
+      {
+        "id": "p3",
+        "text": "Cambiar el tipo de la columna Importe a Número decimal",
+        "explanation": "El cambio de tipo hace referencia a la columna Importe, que solo existe con ese nombre tras promover los encabezados."
+      },
+      {
+        "id": "p4",
+        "text": "Reemplazar errores en Importe por null",
+        "explanation": "Los errores aparecen al convertir textos como «pendiente» a número, así que solo pueden tratarse después del cambio de tipo."
+      }
+    ],
+    "keyPoint": "Quitar filas de cabecera → promover encabezados → asignar tipos → tratar los errores que genere la conversión.",
+    "references": [
+      {
+        "title": "Dar forma a los datos iniciales",
+        "url": "https://learn.microsoft.com/es-es/training/modules/clean-data-power-bi/2-shape-data"
+      },
+      {
+        "title": "Tratamiento de errores en Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/dealing-with-errors"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-011",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 2,
+    "scenario": "Elena comparte con Luis un archivo .pbix cuya consulta lee D:\\Compras\\pedidos.csv de su propio equipo. Al actualizar, Luis recibe un error DataSource.NotFound.",
+    "prompt": "¿Cuál es la solución más adecuada?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Guardar el CSV en una ubicación a la que ambos tengan acceso y actualizar la ruta con Configuración del origen de datos > Cambiar origen",
+        "correct": true,
+        "explanation": "DataSource.NotFound indica que no se puede acceder al origen, por ejemplo porque la ruta no existe en el equipo de Luis; una ubicación compartida resuelve el problema para ambos."
+      },
+      {
+        "id": "b",
+        "text": "Cambiar el nivel de privacidad del origen a Público",
+        "correct": false,
+        "explanation": "El nivel de privacidad no influye en si la ruta del archivo existe o es accesible."
+      },
+      {
+        "id": "c",
+        "text": "Añadir un paso Quitar errores al final de la consulta",
+        "correct": false,
+        "explanation": "Es un error de nivel de paso: la consulta no llega a cargarse, así que no hay filas con errores que quitar."
+      },
+      {
+        "id": "d",
+        "text": "Cambiar el tipo de datos de todas las columnas a Texto",
+        "correct": false,
+        "explanation": "Los tipos de datos no tienen relación con un origen que no se encuentra."
+      }
+    ],
+    "keyPoint": "DataSource.NotFound = origen inaccesible o movido: corrige la ruta o las credenciales en Configuración del origen de datos.",
+    "references": [
+      {
+        "title": "Tratamiento de errores en Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/dealing-with-errors"
+      },
+      {
+        "title": "Resolución de errores de importación de datos",
+        "url": "https://learn.microsoft.com/es-es/training/modules/get-data/9-import-errors"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-012",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 2,
+    "scenario": "El equipo de TI de Distribuciones Arga renombró la columna «Fecha venta» del archivo de origen a «FechaVenta». Desde entonces, la consulta falla al actualizar con un error Expression.Error que indica que no se encontró la columna «Fecha venta» de la tabla.",
+    "code": {
+      "language": "m",
+      "content": "let\n    Origen = Csv.Document(File.Contents(\"\\\\srv01\\ventas\\ventas.csv\"), [Delimiter = \";\", Encoding = 65001]),\n    Encabezados = Table.PromoteHeaders(Origen, [PromoteAllScalars = true]),\n    TipoCambiado = Table.TransformColumnTypes(\n        Encabezados,\n        {{\"Fecha venta\", type date}, {\"Importe\", type number}}\n    )\nin\n    TipoCambiado"
+    },
+    "prompt": "¿Qué corrección resuelve el error?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cambiar en el paso TipoCambiado el nombre «Fecha venta» por «FechaVenta»",
+        "correct": true,
+        "explanation": "El paso hace referencia a un nombre de columna que ya no existe; actualizar la referencia (o editar el paso) permite que la consulta vuelva a ejecutarse."
+      },
+      {
+        "id": "b",
+        "text": "Añadir un paso Quitar errores al final de la consulta",
+        "correct": false,
+        "explanation": "Es un error de nivel de paso que detiene la consulta; Quitar errores solo trata errores de nivel de celda."
+      },
+      {
+        "id": "c",
+        "text": "Cambiar el valor de Encoding a 1252",
+        "correct": false,
+        "explanation": "La codificación afecta a cómo se leen los caracteres, no a qué columnas existen."
+      },
+      {
+        "id": "d",
+        "text": "Desactivar Habilitar carga de la consulta",
+        "correct": false,
+        "explanation": "Ocultaría el problema dejando el modelo sin la tabla; no corrige la referencia a la columna."
+      }
+    ],
+    "keyPoint": "Si el origen cambia nombres de columna, corrige los pasos que hacen referencia al nombre antiguo, como los cambios de tipo.",
+    "references": [
+      {
+        "title": "Tratamiento de errores en Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/dealing-with-errors"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-perfilar-013",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-perfilar",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre los errores en Power Query es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Un error de nivel de paso impide que la consulta se cargue.",
+        "answer": true,
+        "explanation": "Los errores de nivel de paso, como un origen no encontrado o una columna inexistente, detienen la consulta y se muestran en un panel amarillo."
+      },
+      {
+        "id": "s2",
+        "text": "Un error de nivel de celda impide que se cargue toda la consulta.",
+        "answer": false,
+        "explanation": "La consulta se carga y las celdas afectadas muestran Error; puedes quitarlas, reemplazarlas o mantenerlas."
+      },
+      {
+        "id": "s3",
+        "text": "Mantener errores (*Keep errors*) es útil para auditar qué filas contienen errores.",
+        "answer": true,
+        "explanation": "Mantener errores deja solo las filas con error, lo que facilita revisar su causa antes de corregirla."
+      },
+      {
+        "id": "s4",
+        "text": "Reemplazar errores corrige el valor en el archivo o la base de datos de origen.",
+        "answer": false,
+        "explanation": "Las transformaciones de Power Query solo cambian el resultado de la consulta; el origen no se modifica."
+      }
+    ],
+    "keyPoint": "Errores de paso detienen la consulta; errores de celda se quitan, reemplazan o mantienen sin tocar el origen.",
+    "references": [
+      {
+        "title": "Tratamiento de errores en Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/dealing-with-errors"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "El equipo de Viajes Altamar usa Power BI Desktop en equipos configurados en Inglés (Estados Unidos). Un proveedor envía un CSV con fechas en formato dd/mm/aaaa. Al cambiar el tipo de la columna a Fecha, algunas filas dan error y otras muestran el día y el mes intercambiados.",
+    "table": {
+      "caption": "Columna FechaSalida (texto)",
+      "headers": [
+        "IdReserva",
+        "FechaSalida"
+      ],
+      "rows": [
+        [
+          "R-01",
+          "03/02/2026"
+        ],
+        [
+          "R-02",
+          "25/02/2026"
+        ],
+        [
+          "R-03",
+          "11/03/2026"
+        ]
+      ]
+    },
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Usar Cambiar tipo > Usar configuración regional (*Using locale*), elegir Fecha y la configuración regional Español (España)",
+        "correct": true,
+        "explanation": "La configuración regional indica a Power Query cómo interpretar el texto; con Español (España), 03/02/2026 se lee como 3 de febrero y 25/02/2026 deja de dar error."
+      },
+      {
+        "id": "b",
+        "text": "Cambiar el tipo a Fecha y hora en lugar de Fecha",
+        "correct": false,
+        "explanation": "La conversión seguiría usando la configuración regional Inglés (Estados Unidos), que interpreta mes/día/año, así que el problema persiste."
+      },
+      {
+        "id": "c",
+        "text": "Reemplazar los errores de la columna por null",
+        "correct": false,
+        "explanation": "Ocultaría los errores, pero las fechas cuyo día es 12 o menor seguirían con el día y el mes intercambiados."
+      },
+      {
+        "id": "d",
+        "text": "Usar Detectar tipo de datos (*Detect data type*) en la pestaña Transformar",
+        "correct": false,
+        "explanation": "La detección automática también interpreta el texto con la configuración regional activa, así que no corrige el formato dd/mm/aaaa."
+      }
+    ],
+    "keyPoint": "Para convertir texto con un formato regional distinto del equipo, usa Cambiar tipo > Usar configuración regional.",
+    "references": [
+      {
+        "title": "Tipos de datos en Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/data-types"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-002",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 3,
+    "scenario": "El departamento financiero de Coopera Banca detecta diferencias de céntimos al comparar los totales del informe con el sistema contable. La columna Importe tiene tipo Número decimal.",
+    "prompt": "¿Qué tipo de datos deberías asignar a Importe en Power Query para evitar esas diferencias?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Número decimal fijo (*Fixed decimal number*)",
+        "correct": true,
+        "explanation": "El tipo Número decimal fijo (tipo moneda) tiene una posición fija del separador decimal con cuatro decimales y es siempre preciso, evitando la imprecisión del punto flotante."
+      },
+      {
+        "id": "b",
+        "text": "Número entero",
+        "correct": false,
+        "explanation": "Perdería los decimales de los importes."
+      },
+      {
+        "id": "c",
+        "text": "Porcentaje",
+        "correct": false,
+        "explanation": "Porcentaje es básicamente un Número decimal con formato de porcentaje: mantiene la misma imprecisión de punto flotante."
+      },
+      {
+        "id": "d",
+        "text": "Texto",
+        "correct": false,
+        "explanation": "Una columna de texto no se puede sumar ni promediar en el modelo."
+      }
+    ],
+    "keyPoint": "Para importes monetarios que deben cuadrar al céntimo, usa Número decimal fijo en lugar de Número decimal.",
+    "references": [
+      {
+        "title": "Tipos de datos en Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/data-types"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-003",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre los tipos de datos en Power Query es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Al conectarte a una base de datos, Power Query lee el esquema de la tabla y asigna a cada columna el tipo definido en el origen.",
+        "answer": true,
+        "explanation": "En orígenes estructurados los tipos se obtienen del esquema; en orígenes no estructurados, como CSV o Excel, se detectan inspeccionando los valores."
+      },
+      {
+        "id": "s2",
+        "text": "Es recomendable dejar columnas con tipo Any (Cualquiera) en la salida de las consultas.",
+        "answer": false,
+        "explanation": "Microsoft recomienda definir siempre los tipos de forma explícita y evitar columnas Any en la salida de las consultas."
+      },
+      {
+        "id": "s3",
+        "text": "Una columna de tipo Fecha, hora y zona horaria se convierte a Fecha y hora al cargarla en el modelo.",
+        "answer": true,
+        "explanation": "El tipo datetimezone representa una fecha y hora UTC con desplazamiento, y se convierte en fecha y hora al cargarse."
+      },
+      {
+        "id": "s4",
+        "text": "Una columna de tipo Duración se carga en el modelo como texto.",
+        "answer": false,
+        "explanation": "La duración se convierte en un número decimal al cargarla, lo que permite sumarla o restarla de fechas."
+      }
+    ],
+    "keyPoint": "Define tipos explícitos en todas las columnas; algunos tipos de Power Query se transforman al cargarse en el modelo.",
+    "references": [
+      {
+        "title": "Tipos de datos en Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/data-types"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-004",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 1,
+    "scenario": "Quieres clasificar los pedidos de Editorial Brújula: si Importe es mayor o igual que 1000, «Grande»; si es mayor o igual que 300, «Mediano»; en otro caso, «Pequeño».",
+    "prompt": "Completa la frase.",
+    "template": "Usas {{b1}} de la pestaña {{b2}}; las cláusulas se evalúan {{b3}}, así que la cláusula de 1000 debe ir antes que la de 300.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Columna condicional"
+          },
+          {
+            "id": "o2",
+            "text": "Columna dinámica"
+          },
+          {
+            "id": "o3",
+            "text": "Columna de índice"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Columna condicional (*Conditional column*) crea valores a partir de cláusulas si / si no sin escribir código; Columna dinámica pivota una tabla y Columna de índice numera filas."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Agregar columna"
+          },
+          {
+            "id": "o2",
+            "text": "Vista"
+          },
+          {
+            "id": "o3",
+            "text": "Inicio"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Columna condicional está en la pestaña Agregar columna, grupo General."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "de arriba abajo, y se aplica la primera que se cumple"
+          },
+          {
+            "id": "o2",
+            "text": "todas a la vez, y gana la última que se cumple"
+          },
+          {
+            "id": "o3",
+            "text": "en orden alfabético de la salida"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Las cláusulas se prueban en el orden en que aparecen en el cuadro de diálogo; un importe de 1500 cumple ambas condiciones, por eso la de 1000 debe ir primero."
+      }
+    ],
+    "keyPoint": "En una columna condicional el orden de las cláusulas importa: pon primero las condiciones más restrictivas.",
+    "references": [
+      {
+        "title": "Agregar una columna condicional",
+        "url": "https://learn.microsoft.com/es-es/power-query/add-conditional-column"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-005",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "En Power BI Desktop, la consulta Pedidos de Suministros Altea tiene este paso:",
+    "code": {
+      "language": "m",
+      "content": "ImporteNeto = Table.AddColumn(\n    TipoCambiado,\n    \"ImporteNeto\",\n    each [Unidades] * [PrecioUnitario] * (1 - [Descuento]),\n    type number\n)"
+    },
+    "prompt": "¿Qué afirmación sobre el paso es correcta?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agrega la columna ImporteNeto, calculada fila a fila, con tipo número gracias al cuarto argumento",
+        "correct": true,
+        "explanation": "each define una función que se evalúa para cada fila, y el argumento type number asigna el tipo de la nueva columna; si se omite, la columna quedaría como Any."
+      },
+      {
+        "id": "b",
+        "text": "Sustituye la columna PrecioUnitario por el importe neto",
+        "correct": false,
+        "explanation": "Table.AddColumn agrega una columna nueva y conserva las existentes."
+      },
+      {
+        "id": "c",
+        "text": "Calcula un único total para toda la tabla y lo repite en todas las filas",
+        "correct": false,
+        "explanation": "La expresión usa los valores de cada fila; no agrega la tabla."
+      },
+      {
+        "id": "d",
+        "text": "La nueva columna queda con tipo Any aunque se indique type number",
+        "correct": false,
+        "explanation": "El cuarto argumento de Table.AddColumn define precisamente el tipo de la columna."
+      }
+    ],
+    "keyPoint": "Una columna personalizada evalúa una expresión M por fila; asígnale siempre un tipo de datos.",
+    "references": [
+      {
+        "title": "Agregar una columna personalizada",
+        "url": "https://learn.microsoft.com/es-es/power-query/add-custom-column"
+      },
+      {
+        "title": "Table.AddColumn",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-addcolumn"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-006",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 1,
+    "prompt": "Empareja cada necesidad con la opción de la pestaña Agregar columna más adecuada.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Obtener «Ruiz, Ana» a partir de Nombre y Apellido escribiendo un par de resultados de ejemplo",
+        "answerId": "c1",
+        "explanation": "Columna a partir de los ejemplos (*Column from examples*) deduce la transformación a partir de los valores que escribes."
+      },
+      {
+        "id": "m2",
+        "text": "Asignar «Alta», «Media» o «Baja» según reglas si / si no, sin escribir código",
+        "answerId": "c2",
+        "explanation": "Columna condicional define cláusulas que se evalúan en orden y una salida para cada una."
+      },
+      {
+        "id": "m3",
+        "text": "Calcular el margen con una fórmula M que combina varias columnas y funciones",
+        "answerId": "c3",
+        "explanation": "Columna personalizada (*Custom column*) permite escribir cualquier expresión del lenguaje M."
+      },
+      {
+        "id": "m4",
+        "text": "Numerar las filas de forma secuencial empezando en 1",
+        "answerId": "c4",
+        "explanation": "Columna de índice (*Index column*) agrega valores de posición secuenciales y permite elegir el valor inicial, por ejemplo 1."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Columna a partir de los ejemplos"
+      },
+      {
+        "id": "c2",
+        "text": "Columna condicional"
+      },
+      {
+        "id": "c3",
+        "text": "Columna personalizada"
+      },
+      {
+        "id": "c4",
+        "text": "Columna de índice"
+      },
+      {
+        "id": "c5",
+        "text": "Columna dinámica"
+      },
+      {
+        "id": "c6",
+        "text": "Duplicar columna"
+      }
+    ],
+    "keyPoint": "Ejemplos = sin saber la fórmula; condicional = reglas si / si no; personalizada = fórmula M; índice = numeración.",
+    "references": [
+      {
+        "title": "Agregar una columna a partir de ejemplos",
+        "url": "https://learn.microsoft.com/es-es/power-query/column-from-example"
+      },
+      {
+        "title": "Agregar una columna condicional",
+        "url": "https://learn.microsoft.com/es-es/power-query/add-conditional-column"
+      },
+      {
+        "title": "Agregar una columna personalizada",
+        "url": "https://learn.microsoft.com/es-es/power-query/add-custom-column"
+      },
+      {
+        "title": "Agregar una columna de índice",
+        "url": "https://learn.microsoft.com/es-es/power-query/add-index-column"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-007",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "La consulta Ventas de Tostadero Sol contiene estas filas y le añades el paso siguiente:",
+    "code": {
+      "language": "m",
+      "content": "Agrupado = Table.Group(\n    Ventas,\n    {\"Region\"},\n    {\n        {\"Total\", each List.Sum([Importe]), type number},\n        {\"Pedidos\", each Table.RowCount(_), Int64.Type}\n    }\n)"
+    },
+    "table": {
+      "caption": "Consulta Ventas",
+      "headers": [
+        "Region",
+        "IdPedido",
+        "Importe"
+      ],
+      "rows": [
+        [
+          "Norte",
+          "P1",
+          "100"
+        ],
+        [
+          "Sur",
+          "P2",
+          "50"
+        ],
+        [
+          "Norte",
+          "P3",
+          "70"
+        ],
+        [
+          "Norte",
+          "P4",
+          "30"
+        ],
+        [
+          "Sur",
+          "P5",
+          "20"
+        ]
+      ]
+    },
+    "prompt": "¿Qué fila obtiene el paso para la región Norte?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Region = Norte, Total = 200, Pedidos = 3",
+        "correct": true,
+        "explanation": "Table.Group crea una fila por región: suma los importes del grupo Norte (100 + 70 + 30) y cuenta sus filas con Table.RowCount."
+      },
+      {
+        "id": "b",
+        "text": "Region = Norte, Total = 200, Pedidos = 5",
+        "correct": false,
+        "explanation": "Table.RowCount(_) cuenta las filas del grupo, no de toda la tabla."
+      },
+      {
+        "id": "c",
+        "text": "Region = Norte, Total = 270, Pedidos = 3",
+        "correct": false,
+        "explanation": "270 es la suma de todas las regiones; List.Sum solo suma los importes del grupo."
+      },
+      {
+        "id": "d",
+        "text": "Tres filas de Norte, cada una con Total = 200",
+        "correct": false,
+        "explanation": "Agrupar por resume el grupo en una sola fila; la columna IdPedido desaparece porque no se agrupa ni se agrega."
+      }
+    ],
+    "keyPoint": "Table.Group devuelve una fila por combinación de claves con las agregaciones indicadas; el resto de columnas se pierde.",
+    "references": [
+      {
+        "title": "Agrupar o resumir filas",
+        "url": "https://learn.microsoft.com/es-es/power-query/group-by"
+      },
+      {
+        "title": "Table.Group",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-group"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-008",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "Debes resumir en Power Query las ventas de Muebles Roble por País y Canal de venta, con el total de unidades.",
+    "prompt": "¿Qué dos afirmaciones sobre Agrupar por (*Group by*) son correctas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Para agrupar por País y Canal a la vez debes usar la opción Avanzadas y agregar una segunda agrupación",
+        "correct": true,
+        "explanation": "La opción básica agrupa por una columna; Avanzadas permite añadir varias columnas de agrupación y varias agregaciones."
+      },
+      {
+        "id": "b",
+        "text": "La operación Todas las filas (*All rows*) devuelve en cada grupo una tabla anidada con las filas originales",
+        "correct": true,
+        "explanation": "Todas las filas no agrega: guarda las filas de cada grupo en un valor [Table] que después puedes expandir o analizar."
+      },
+      {
+        "id": "c",
+        "text": "Las columnas que no agrupas ni agregas se conservan en el resultado con su primer valor",
+        "correct": false,
+        "explanation": "El resultado solo contiene las columnas de agrupación y las columnas agregadas; las demás se descartan."
+      },
+      {
+        "id": "d",
+        "text": "Recuento de filas (*Count rows*) cuenta los valores distintos de la columna Unidades",
+        "correct": false,
+        "explanation": "Recuento de filas cuenta todas las filas del grupo, sin mirar los valores de ninguna columna."
+      },
+      {
+        "id": "e",
+        "text": "Agrupar por solo está disponible en la pestaña Agregar columna",
+        "correct": false,
+        "explanation": "Está en la pestaña Inicio (grupo Transformar), en la pestaña Transformar (grupo Tabla) y en el menú contextual de las columnas."
+      }
+    ],
+    "keyPoint": "Agrupar por avanzado admite varias columnas y agregaciones; Todas las filas conserva el detalle en tablas anidadas.",
+    "references": [
+      {
+        "title": "Agrupar o resumir filas",
+        "url": "https://learn.microsoft.com/es-es/power-query/group-by"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-009",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 3,
+    "scenario": "La consulta Ventas tiene las columnas País, Producto y Unidades, con una sola fila por cada combinación de país y producto. Para cada país quieres obtener el total de unidades y el nombre del producto más vendido.",
+    "prompt": "Ordena los pasos.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Agrupar por País con dos agregaciones: Total (Suma de Unidades) y Productos (Todas las filas)",
+        "explanation": "La agrupación crea una fila por país con el total y una tabla anidada con sus productos, de la que se partirá."
+      },
+      {
+        "id": "p2",
+        "text": "Agregar una columna personalizada con la fórmula Table.Max([Productos], \"Unidades\")",
+        "explanation": "La fórmula necesita la columna Productos con tablas anidadas; devuelve en cada fila el registro con más unidades."
+      },
+      {
+        "id": "p3",
+        "text": "Expandir la nueva columna de registros y seleccionar el campo Producto",
+        "explanation": "Solo se puede expandir cuando existe la columna de registros creada en el paso anterior."
+      }
+    ],
+    "keyPoint": "Agrupar con Todas las filas permite calcular sobre el detalle de cada grupo y luego expandir el resultado.",
+    "references": [
+      {
+        "title": "Agrupar o resumir filas",
+        "url": "https://learn.microsoft.com/es-es/power-query/group-by"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-010",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "Un libro de Excel de Hortícola Vega tiene una columna Producto y una columna por mes (Ene, Feb, Mar…); cada mes se añade una columna nueva. Al importarlo, los nombres de columna aparecen como primera fila de datos.",
+    "prompt": "Ordena los pasos para obtener una tabla con las columnas Producto, Mes y Unidades.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Usar la primera fila como encabezado",
+        "explanation": "Sin encabezados correctos no hay columnas Producto ni de meses que seleccionar."
+      },
+      {
+        "id": "p2",
+        "text": "Seleccionar la columna Producto y elegir Anular dinamización de otras columnas (*Unpivot other columns*)",
+        "explanation": "Convierte todas las columnas de mes, también las que lleguen en el futuro, en pares Atributo-Valor."
+      },
+      {
+        "id": "p3",
+        "text": "Cambiar el nombre de Atributo a Mes y de Valor a Unidades",
+        "explanation": "Las columnas Atributo y Valor solo existen después de anular la dinamización."
+      },
+      {
+        "id": "p4",
+        "text": "Cambiar el tipo de la columna Unidades a Número entero",
+        "explanation": "El paso hace referencia a la columna Unidades, que solo tiene ese nombre tras el paso anterior."
+      }
+    ],
+    "keyPoint": "Encabezados → anular dinamización de otras columnas → renombrar Atributo y Valor → asignar tipos.",
+    "references": [
+      {
+        "title": "Anulación de dinamización de columnas",
+        "url": "https://learn.microsoft.com/es-es/power-query/unpivot-column"
+      },
+      {
+        "title": "Dar forma a los datos iniciales",
+        "url": "https://learn.microsoft.com/es-es/training/modules/clean-data-power-bi/2-shape-data"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-011",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 3,
+    "scenario": "La consulta Encuesta de Hoteles Brisa tiene una fila por hotel y pregunta, con respuestas de texto. Quieres una columna por pregunta y aplicas Columna dinámica (*Pivot column*) a Pregunta, con Respuesta como columna de valores.",
+    "table": {
+      "caption": "Consulta Encuesta",
+      "headers": [
+        "Hotel",
+        "Pregunta",
+        "Respuesta"
+      ],
+      "rows": [
+        [
+          "H1",
+          "Limpieza",
+          "Buena"
+        ],
+        [
+          "H1",
+          "Atención",
+          "Excelente"
+        ],
+        [
+          "H2",
+          "Limpieza",
+          "Regular"
+        ],
+        [
+          "H2",
+          "Atención",
+          "Buena"
+        ]
+      ]
+    },
+    "prompt": "¿Qué dos afirmaciones son correctas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "En Opciones avanzadas debes elegir No agregar (*Don't aggregate*), porque los valores son texto",
+        "correct": true,
+        "explanation": "Con No agregar, cada celda recibe el valor de texto correspondiente; una agregación como Suma no tiene sentido sobre texto."
+      },
+      {
+        "id": "b",
+        "text": "Si un hotel tuviera dos filas para la misma pregunta, No agregar produciría errores en esas celdas",
+        "correct": true,
+        "explanation": "No agregar espera un único valor por combinación de fila y columna; con varios se produce un error de demasiados elementos en la enumeración."
+      },
+      {
+        "id": "c",
+        "text": "La operación crea las columnas Atributo y Valor",
+        "correct": false,
+        "explanation": "Atributo y Valor son el resultado de anular la dinamización, que es la operación inversa."
+      },
+      {
+        "id": "d",
+        "text": "El resultado conserva las columnas Pregunta y Respuesta junto a las nuevas columnas",
+        "correct": false,
+        "explanation": "Al dinamizar, los valores de Pregunta pasan a ser encabezados y los de Respuesta rellenan las celdas, así que ambas columnas desaparecen: el resultado tiene Hotel, Limpieza y Atención."
+      },
+      {
+        "id": "e",
+        "text": "El resultado tiene una fila por cada combinación de Hotel y Pregunta",
+        "correct": false,
+        "explanation": "Al dinamizar, el resultado tiene una fila por hotel y una columna por cada pregunta."
+      }
+    ],
+    "keyPoint": "Dinamiza valores de texto con No agregar, y asegúrate de que hay un solo valor por combinación.",
+    "references": [
+      {
+        "title": "Columnas dinámicas",
+        "url": "https://learn.microsoft.com/es-es/power-query/pivot-columns"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-012",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "Una hoja de Excel de la Fundación Lumen tiene las métricas en filas y los eventos en columnas. Al importarla en Power Query queda así, y quieres una tabla con las columnas Evento, Asistentes y Fondos, y una fila por evento.",
+    "table": {
+      "headers": [
+        "Column1",
+        "Column2",
+        "Column3",
+        "Column4"
+      ],
+      "rows": [
+        [
+          "Evento",
+          "Feria Norte",
+          "Congreso Sur",
+          "Gala Este"
+        ],
+        [
+          "Asistentes",
+          "150",
+          "450",
+          "1250"
+        ],
+        [
+          "Fondos",
+          "4000",
+          "10000",
+          "15000"
+        ]
+      ]
+    },
+    "prompt": "¿Qué secuencia de transformaciones produce la tabla deseada?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Transponer (*Transpose*) y después Usar la primera fila como encabezado",
+        "correct": true,
+        "explanation": "Transponer gira la tabla, de modo que las filas pasan a ser columnas; como los encabezados se pierden, después se promueve la primera fila (Evento, Asistentes, Fondos)."
+      },
+      {
+        "id": "b",
+        "text": "Usar la primera fila como encabezado y después Anular dinamización de otras columnas",
+        "correct": false,
+        "explanation": "Obtendrías pares atributo-valor con los nombres de evento como atributos, no una fila por evento con sus métricas en columnas."
+      },
+      {
+        "id": "c",
+        "text": "Columna dinámica sobre Column1",
+        "correct": false,
+        "explanation": "Dinamizar requiere una columna de atributos y otra de valores con un valor por combinación; esta tabla solo necesita girarse."
+      },
+      {
+        "id": "d",
+        "text": "Transponer únicamente, porque la operación conserva los encabezados",
+        "correct": false,
+        "explanation": "Transponer no conserva los encabezados: las nuevas columnas se llaman Column1, Column2…, así que hace falta promover la primera fila."
+      }
+    ],
+    "keyPoint": "Transponer intercambia filas y columnas y pierde los encabezados; suele ir seguido de Usar la primera fila como encabezado.",
+    "references": [
+      {
+        "title": "Transponer una tabla",
+        "url": "https://learn.microsoft.com/es-es/power-query/transpose-table"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-013",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "La consulta Stock de Calzados Ría tiene la forma de la tabla y le añades el paso del código.",
+    "code": {
+      "language": "m",
+      "content": "SinDinamizar = Table.UnpivotOtherColumns(\n    Stock,\n    {\"Tienda\"},\n    \"Mes\",\n    \"Unidades\"\n)"
+    },
+    "table": {
+      "caption": "Consulta Stock",
+      "headers": [
+        "Tienda",
+        "Ene",
+        "Feb",
+        "Mar"
+      ],
+      "rows": [
+        [
+          "T1",
+          "10",
+          "12",
+          "9"
+        ],
+        [
+          "T2",
+          "7",
+          "8",
+          "11"
+        ],
+        [
+          "T3",
+          "5",
+          "6",
+          "4"
+        ]
+      ]
+    },
+    "prompt": "Completa la frase.",
+    "template": "El resultado tiene {{b1}} filas con las columnas {{b2}}; si el origen añade una columna Abr, el paso {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "9"
+          },
+          {
+            "id": "o2",
+            "text": "3"
+          },
+          {
+            "id": "o3",
+            "text": "12"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Cada una de las 3 tiendas genera una fila por cada una de las 3 columnas que se anulan (Ene, Feb, Mar): 3 × 3 = 9."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Tienda, Mes y Unidades"
+          },
+          {
+            "id": "o2",
+            "text": "Tienda, Ene, Feb y Mar"
+          },
+          {
+            "id": "o3",
+            "text": "Mes y Unidades"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Se conserva la columna indicada en la lista (Tienda) y se crean la columna de atributo (Mes) y la de valor (Unidades)."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "también la convierte en filas"
+          },
+          {
+            "id": "o2",
+            "text": "la deja como una columna aparte"
+          },
+          {
+            "id": "o3",
+            "text": "produce un error"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Anular dinamización de otras columnas convierte todas las columnas salvo las indicadas, así que incluye las nuevas; Anular dinamización de solo las columnas seleccionadas, en cambio, dejaría Abr como columna."
+      }
+    ],
+    "keyPoint": "Table.UnpivotOtherColumns fija las columnas que conservas y convierte en filas todas las demás, incluidas las futuras.",
+    "references": [
+      {
+        "title": "Anulación de dinamización de columnas",
+        "url": "https://learn.microsoft.com/es-es/power-query/unpivot-column"
+      },
+      {
+        "title": "Table.UnpivotOtherColumns",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-unpivotothercolumns"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-014",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "Obtienes de la API de Pedidos Kora, con el conector Web, un JSON que Power Query muestra como una lista. Cada elemento es un registro con id, cliente y lineas; lineas es una lista de registros con producto y cantidad.",
+    "prompt": "Ordena los pasos para obtener una tabla con una fila por línea de pedido.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Convertir la lista en una tabla (*To table*)",
+        "explanation": "Las herramientas de expansión trabajan sobre columnas de una tabla, así que primero hay que convertir la lista."
+      },
+      {
+        "id": "p2",
+        "text": "Expandir la columna de registros para obtener id, cliente y lineas",
+        "explanation": "Cada fila contiene un registro; al expandirlo, sus campos pasan a ser columnas, entre ellas lineas."
+      },
+      {
+        "id": "p3",
+        "text": "Expandir la columna lineas a nuevas filas (*Expand to new rows*)",
+        "explanation": "lineas contiene listas; expandirlas genera una fila por elemento y repite id y cliente."
+      },
+      {
+        "id": "p4",
+        "text": "Expandir los registros de lineas para obtener producto y cantidad",
+        "explanation": "Tras el paso anterior, cada celda de lineas es un registro cuyos campos ya se pueden expandir en columnas."
+      },
+      {
+        "id": "p5",
+        "text": "Asignar el tipo de datos a cada columna resultante",
+        "explanation": "Las columnas expandidas quedan sin tipo definido; los tipos se asignan cuando la tabla ya tiene su forma final."
+      }
+    ],
+    "keyPoint": "JSON anidado: lista → tabla, registros → columnas, listas → nuevas filas y, al final, tipos.",
+    "references": [
+      {
+        "title": "Table.FromList",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-fromlist"
+      },
+      {
+        "title": "Table.ExpandListColumn",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-expandlistcolumn"
+      },
+      {
+        "title": "Table.ExpandRecordColumn",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-expandrecordcolumn"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-015",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "prompt": "Empareja cada situación con la transformación adecuada para convertir datos semiestructurados en tabla.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Una columna contiene valores Record con los campos Nombre y Email",
+        "answerId": "c1",
+        "explanation": "Al expandir una columna de registros, cada campo seleccionado se convierte en una columna."
+      },
+      {
+        "id": "m2",
+        "text": "Una columna contiene valores List con las etiquetas de cada producto y quieres una fila por etiqueta",
+        "answerId": "c2",
+        "explanation": "Expandir a nuevas filas crea una fila por elemento de la lista y repite los valores de las demás columnas."
+      },
+      {
+        "id": "m3",
+        "text": "Una columna de texto contiene cadenas como {\"id\": 7, \"zona\": \"N\"}",
+        "answerId": "c3",
+        "explanation": "Analizar > JSON (*Parse > JSON*) convierte cada cadena en un valor estructurado (aquí, un registro) que después se puede expandir."
+      },
+      {
+        "id": "m4",
+        "text": "El resultado de la consulta es un único registro y quieres una tabla con columnas Name y Value",
+        "answerId": "c4",
+        "explanation": "Convertir un registro en tabla (*Into table*, Record.ToTable) devuelve una fila por campo con sus columnas Name y Value."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Expandir la columna y elegir sus campos"
+      },
+      {
+        "id": "c2",
+        "text": "Expandir a nuevas filas"
+      },
+      {
+        "id": "c3",
+        "text": "Analizar > JSON"
+      },
+      {
+        "id": "c4",
+        "text": "Convertir el registro en tabla"
+      },
+      {
+        "id": "c5",
+        "text": "Transponer"
+      },
+      {
+        "id": "c6",
+        "text": "Columna dinámica"
+      }
+    ],
+    "keyPoint": "Registros se expanden en columnas, listas en filas, el texto JSON se analiza y un registro suelto se convierte en tabla Name/Value.",
+    "references": [
+      {
+        "title": "Analizar texto como JSON o XML",
+        "url": "https://learn.microsoft.com/es-es/power-query/parse-json-xml"
+      },
+      {
+        "title": "Record.ToTable",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/record-totable"
+      },
+      {
+        "title": "Table.ExpandListColumn",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-expandlistcolumn"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-016",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "En la consulta Pedidos, la columna Etiquetas contiene listas, por ejemplo {\"urgente\", \"regalo\"}. Añades este paso:",
+    "code": {
+      "language": "m",
+      "content": "Expandida = Table.ExpandListColumn(Pedidos, \"Etiquetas\")"
+    },
+    "prompt": "¿Qué hace el paso?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crea una fila por cada elemento de la lista y repite en ellas los valores de las demás columnas",
+        "correct": true,
+        "explanation": "Table.ExpandListColumn divide cada lista en una fila por valor y duplica el resto de columnas en cada fila nueva."
+      },
+      {
+        "id": "b",
+        "text": "Crea una columna por cada elemento de la lista",
+        "correct": false,
+        "explanation": "Ese comportamiento corresponde a expandir registros en columnas o a dividir texto en columnas, no a expandir listas."
+      },
+      {
+        "id": "c",
+        "text": "Une los elementos de cada lista en un texto separado por comas",
+        "correct": false,
+        "explanation": "Eso lo hace la opción Extraer valores (*Extract values*), no la expansión a filas."
+      },
+      {
+        "id": "d",
+        "text": "Convierte la consulta en una lista con todas las etiquetas",
+        "correct": false,
+        "explanation": "El resultado sigue siendo una tabla con las mismas columnas; solo cambia el número de filas."
+      }
+    ],
+    "keyPoint": "Expandir una columna de listas genera una fila por elemento (Table.ExpandListColumn).",
+    "references": [
+      {
+        "title": "Table.ExpandListColumn",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-expandlistcolumn"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-017",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 3,
+    "scenario": "Recibes de Grupo Textil Sena un extracto plano de ventas con Fecha, Producto, Categoría, Color y Unidades. Quieres un esquema de estrella con una dimensión Producto con clave suplente y una tabla de hechos que solo guarde esa clave.",
+    "prompt": "Ordena los pasos en Power Query.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Crear dos referencias (*Reference*) a la consulta del extracto, llamadas Producto (dimensión) y Ventas (hechos)",
+        "explanation": "Ambas tablas parten de los mismos datos sin duplicar la lógica. Si combinaras el propio extracto con una dimensión que lo referencia, crearías una referencia circular."
+      },
+      {
+        "id": "p2",
+        "text": "En Producto, quitar todas las columnas excepto Producto, Categoría y Color",
+        "explanation": "Hay que quedarse solo con los atributos del producto antes de eliminar duplicados; si no, Fecha y Unidades harían distintas las filas."
+      },
+      {
+        "id": "p3",
+        "text": "Quitar duplicados para que quede una fila por producto",
+        "explanation": "La dimensión debe tener una fila por miembro antes de asignarle una clave."
+      },
+      {
+        "id": "p4",
+        "text": "Agregar una columna de índice que sirva de clave suplente (ClaveProducto)",
+        "explanation": "Si el índice se añadiera antes de quitar duplicados, un mismo producto tendría varias claves."
+      },
+      {
+        "id": "p5",
+        "text": "Combinar Ventas con Producto por la columna Producto y expandir ClaveProducto",
+        "explanation": "La clave suplente debe existir en la dimensión para poder llevarla a la tabla de hechos."
+      },
+      {
+        "id": "p6",
+        "text": "Quitar de Ventas las columnas Producto, Categoría y Color",
+        "explanation": "Estas columnas se necesitan para la combinación; solo después pueden eliminarse de la tabla de hechos, que se queda con la clave."
+      }
+    ],
+    "keyPoint": "Referencia el extracto para cada tabla; dimensión: atributos → sin duplicados → índice; hechos: combinar para traer la clave y quitar los atributos.",
+    "references": [
+      {
+        "title": "Descripción del esquema de estrella y la importancia para Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
+      },
+      {
+        "title": "Agregar una columna de índice",
+        "url": "https://learn.microsoft.com/es-es/power-query/add-index-column"
+      },
+      {
+        "title": "Introducción a las combinaciones de consultas",
+        "url": "https://learn.microsoft.com/es-es/power-query/merge-queries-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-018",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "Diseñas un esquema de estrella a partir de este extracto de ventas de Vinos Ribera. Habrá una dimensión Producto con IdProducto como clave.",
+    "table": {
+      "caption": "Extracto de ventas",
+      "headers": [
+        "IdPedido",
+        "Fecha",
+        "IdProducto",
+        "NombreProducto",
+        "Categoría",
+        "Cantidad",
+        "Importe"
+      ],
+      "rows": [
+        [
+          "V-801",
+          "02/03/2026",
+          "P-07",
+          "Crianza 2022",
+          "Tinto",
+          "6",
+          "71,40"
+        ],
+        [
+          "V-802",
+          "02/03/2026",
+          "P-12",
+          "Verdejo 2025",
+          "Blanco",
+          "12",
+          "94,80"
+        ],
+        [
+          "V-803",
+          "03/03/2026",
+          "P-07",
+          "Crianza 2022",
+          "Tinto",
+          "3",
+          "35,70"
+        ]
+      ]
+    },
+    "prompt": "¿Qué tres de estas columnas deben quedarse en la tabla de hechos Ventas? Selecciona tres.",
+    "options": [
+      {
+        "id": "a",
+        "text": "IdProducto",
+        "correct": true,
+        "explanation": "La tabla de hechos guarda las claves de las dimensiones para relacionarse con ellas; IdProducto conecta cada venta con la dimensión Producto."
+      },
+      {
+        "id": "b",
+        "text": "Cantidad",
+        "correct": true,
+        "explanation": "Es una medida numérica del evento de venta que se va a resumir, así que pertenece a la tabla de hechos."
+      },
+      {
+        "id": "c",
+        "text": "Importe",
+        "correct": true,
+        "explanation": "Es otra columna numérica que se suma por fecha, producto, etc.; es una medida de la tabla de hechos."
+      },
+      {
+        "id": "d",
+        "text": "NombreProducto",
+        "correct": false,
+        "explanation": "Es un atributo descriptivo del producto: va en la dimensión Producto y se alcanza a través de IdProducto."
+      },
+      {
+        "id": "e",
+        "text": "Categoría",
+        "correct": false,
+        "explanation": "Describe al producto, no a la venta; mantenerla en los hechos repetiría datos y mezclaría hechos con dimensiones."
+      }
+    ],
+    "keyPoint": "La tabla de hechos guarda claves de dimensión y medidas numéricas; los atributos descriptivos van a las dimensiones.",
+    "references": [
+      {
+        "title": "Descripción del esquema de estrella y la importancia para Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-019",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre tablas de hechos y de dimensiones es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Una tabla de dimensiones describe entidades del negocio y tiene una columna de clave que identifica cada fila de forma única.",
+        "answer": true,
+        "explanation": "Las dimensiones (productos, clientes, fechas…) contienen una clave única y columnas que sirven para filtrar y agrupar."
+      },
+      {
+        "id": "s2",
+        "text": "Normalmente, una tabla de hechos tiene menos filas que sus tablas de dimensiones.",
+        "answer": false,
+        "explanation": "Es al revés: las dimensiones suelen tener relativamente pocas filas y los hechos muchas y en crecimiento."
+      },
+      {
+        "id": "s3",
+        "text": "Si el origen es un extracto desnormalizado, conviene usar Power Query para dividirlo en tablas de hechos y de dimensiones.",
+        "answer": true,
+        "explanation": "Microsoft recomienda transformar los extractos desnormalizados en tablas normalizadas de dimensiones y hechos."
+      },
+      {
+        "id": "s4",
+        "text": "En Power BI, cada tabla se marca como hecho o dimensión mediante una propiedad de la tabla.",
+        "answer": false,
+        "explanation": "No existe esa propiedad: el papel de cada tabla lo determinan las relaciones (el lado «uno» es la dimensión y el lado «varios», los hechos)."
+      }
+    ],
+    "keyPoint": "Dimensiones = entidades con clave única y pocas filas; hechos = eventos con claves y medidas; el papel lo marcan las relaciones.",
+    "references": [
+      {
+        "title": "Descripción del esquema de estrella y la importancia para Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-020",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "La consulta ClientesBase de Seguros Faro limpia y asigna tipos a la tabla de clientes. Necesitas una segunda consulta, ClientesActivos, que filtre solo los clientes activos y que herede automáticamente los pasos que añadas en el futuro a ClientesBase.",
+    "prompt": "¿Qué debes usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Referencia (*Reference*) sobre ClientesBase y añadir el filtro en la nueva consulta",
+        "correct": true,
+        "explanation": "Una consulta de referencia parte del resultado de ClientesBase, así que cualquier cambio en esta se transmite a ClientesActivos."
+      },
+      {
+        "id": "b",
+        "text": "Duplicar (*Duplicate*) ClientesBase y añadir el filtro en la copia",
+        "correct": false,
+        "explanation": "Duplicar copia todos los pasos en una consulta independiente: los cambios futuros en ClientesBase no se reflejarían."
+      },
+      {
+        "id": "c",
+        "text": "Anexar consultas como nuevas con ClientesBase",
+        "correct": false,
+        "explanation": "Anexar une filas de varias tablas; no crea una consulta derivada filtrada."
+      },
+      {
+        "id": "d",
+        "text": "Copiar y pegar ClientesBase en el panel Consultas",
+        "correct": false,
+        "explanation": "Pegar una consulta copiada crea, igual que Duplicar, una consulta independiente."
+      }
+    ],
+    "keyPoint": "Referencia = consulta que depende de otra y hereda sus cambios; Duplicar = copia independiente.",
+    "references": [
+      {
+        "title": "Panel Consultas",
+        "url": "https://learn.microsoft.com/es-es/power-query/queries-pane"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-021",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 3,
+    "prompt": "Indica si cada afirmación sobre las consultas de referencia y duplicadas es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Los cambios que hagas en una consulta se reflejan en las consultas que hacen referencia a ella.",
+        "answer": true,
+        "explanation": "La consulta de referencia usa los pasos de la original, así que hereda sus cambios."
+      },
+      {
+        "id": "s2",
+        "text": "Una consulta duplicada no se ve afectada por los cambios posteriores en la consulta original.",
+        "answer": true,
+        "explanation": "Al duplicar se copian los pasos en una consulta nueva e independiente."
+      },
+      {
+        "id": "s3",
+        "text": "Al actualizar, Power Query evalúa una sola vez la consulta original y reutiliza su resultado en todas las consultas que la referencian.",
+        "answer": false,
+        "explanation": "Cada consulta que hace referencia se evalúa por separado, como si incluyera los pasos de la original, por lo que el origen puede consultarse varias veces."
+      },
+      {
+        "id": "s4",
+        "text": "Usar Table.Buffer en la consulta original evita que el origen se lea varias veces cuando varias consultas la referencian.",
+        "answer": false,
+        "explanation": "Table.Buffer solo sirve dentro de la misma evaluación de consulta; cada consulta que hace referencia vuelve a almacenar los datos en búfer."
+      }
+    ],
+    "keyPoint": "Referenciar evita duplicar lógica, pero no evita que el origen se lea una vez por cada consulta que referencia.",
+    "references": [
+      {
+        "title": "Panel Consultas",
+        "url": "https://learn.microsoft.com/es-es/power-query/queries-pane"
+      },
+      {
+        "title": "Referenciar consultas de Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/power-query-referenced-queries"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-022",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 3,
+    "scenario": "En Agencia Delta, la consulta Base descarga datos de un servicio web y tiene la carga deshabilitada. Otras cuatro consultas hacen referencia a Base. La actualización es lenta y el proveedor del servicio se queja del número de llamadas.",
+    "prompt": "¿Qué recomienda la guía de Microsoft?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Llevar la descarga y las transformaciones de Base a un flujo de datos (Dataflow Gen2) y hacer que las consultas lean de él",
+        "correct": true,
+        "explanation": "El flujo de datos persiste el resultado en el servicio: Base se evalúa una vez y las consultas que lo usan leen de un almacén rápido sin volver a llamar al servicio web."
+      },
+      {
+        "id": "b",
+        "text": "Sustituir las referencias por consultas duplicadas de Base",
+        "correct": false,
+        "explanation": "Cada consulta duplicada seguiría llamando al servicio web; el número de llamadas no se reduce."
+      },
+      {
+        "id": "c",
+        "text": "Añadir Table.Buffer al final de Base",
+        "correct": false,
+        "explanation": "El búfer solo se reutiliza dentro de la misma evaluación; cada consulta que hace referencia vuelve a evaluar Base."
+      },
+      {
+        "id": "d",
+        "text": "Activar Habilitar carga en Base",
+        "correct": false,
+        "explanation": "Cargar Base en el modelo añadiría otra evaluación más, sin evitar las demás."
+      }
+    ],
+    "keyPoint": "Si muchas consultas referencian una consulta costosa, encapsúlala en un flujo de datos para que el origen se lea una sola vez.",
+    "references": [
+      {
+        "title": "Referenciar consultas de Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/power-query-referenced-queries"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-023",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "En Cafés Nube combinas Pedidos (tabla izquierda) con Clientes (tabla derecha) con este paso:",
+    "code": {
+      "language": "m",
+      "content": "Combinada = Table.NestedJoin(\n    Pedidos, {\"IdCliente\"},\n    Clientes, {\"IdCliente\"},\n    \"Clientes\",\n    JoinKind.LeftOuter\n)"
+    },
+    "prompt": "Completa la frase.",
+    "template": "El resultado contiene {{b1}}, y la nueva columna Clientes contiene {{b2}}, que debes expandir para obtener campos como Nombre.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "todas las filas de Pedidos, tengan o no cliente coincidente"
+          },
+          {
+            "id": "o2",
+            "text": "solo los pedidos con cliente coincidente"
+          },
+          {
+            "id": "o3",
+            "text": "todas las filas de ambas tablas"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "JoinKind.LeftOuter (combinación externa izquierda) devuelve todas las filas de la tabla izquierda y las coincidencias de la derecha; solo los pedidos coincidentes sería una combinación interna y todas las filas de ambas, una externa completa."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "un valor de tabla con las filas coincidentes de Clientes"
+          },
+          {
+            "id": "o2",
+            "text": "directamente el nombre del cliente"
+          },
+          {
+            "id": "o3",
+            "text": "el número de coincidencias"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Table.NestedJoin añade una columna de tablas anidadas; para traer campos concretos hay que expandirla o agregarla."
+      }
+    ],
+    "keyPoint": "Combinar consultas (Table.NestedJoin) añade una columna de tablas que se expande; el tipo de combinación decide qué filas se conservan.",
+    "references": [
+      {
+        "title": "Introducción a las combinaciones de consultas",
+        "url": "https://learn.microsoft.com/es-es/power-query/merge-queries-overview"
+      },
+      {
+        "title": "Table.NestedJoin",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-nestedjoin"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-024",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "En Combinar consultas (*Merge queries*) usas Pedidos como tabla izquierda y Clientes como tabla derecha, relacionadas por IdCliente.",
+    "prompt": "Empareja cada resultado deseado con el tipo de combinación.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Todos los pedidos, con los datos del cliente cuando existe",
+        "answerId": "c1",
+        "explanation": "Externa izquierda (*Left outer*) devuelve todas las filas de la izquierda y las coincidentes de la derecha."
+      },
+      {
+        "id": "m2",
+        "text": "Solo los pedidos cuyo cliente existe en Clientes",
+        "answerId": "c2",
+        "explanation": "Interna (*Inner*) devuelve solo las filas que coinciden en ambas tablas."
+      },
+      {
+        "id": "m3",
+        "text": "Los pedidos cuyo IdCliente no existe en Clientes",
+        "answerId": "c3",
+        "explanation": "Anti izquierda (*Left anti*) devuelve solo las filas de la izquierda sin coincidencia, útil para detectar claves huérfanas."
+      },
+      {
+        "id": "m4",
+        "text": "Los clientes que no tienen ningún pedido",
+        "answerId": "c4",
+        "explanation": "Anti derecha (*Right anti*) devuelve solo las filas de la tabla derecha sin coincidencia en la izquierda."
+      },
+      {
+        "id": "m5",
+        "text": "Todas las filas de ambas tablas, coincidan o no",
+        "answerId": "c5",
+        "explanation": "Externa completa (*Full outer*) conserva todas las filas de las dos tablas."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Externa izquierda"
+      },
+      {
+        "id": "c2",
+        "text": "Interna"
+      },
+      {
+        "id": "c3",
+        "text": "Anti izquierda"
+      },
+      {
+        "id": "c4",
+        "text": "Anti derecha"
+      },
+      {
+        "id": "c5",
+        "text": "Externa completa"
+      },
+      {
+        "id": "c6",
+        "text": "Externa derecha"
+      }
+    ],
+    "keyPoint": "El tipo de combinación decide qué filas sobreviven; la posición izquierda/derecha de cada tabla es clave para elegirlo.",
+    "references": [
+      {
+        "title": "Introducción a las combinaciones de consultas",
+        "url": "https://learn.microsoft.com/es-es/power-query/merge-queries-overview"
+      },
+      {
+        "title": "Anticombinación izquierda",
+        "url": "https://learn.microsoft.com/es-es/power-query/merge-queries-left-anti"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-025",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "Tienes las consultas VentasTienda y VentasOnline de Librerías Faro con las columnas Fecha, IdProducto e Importe, salvo que en VentasOnline la columna de importe se llama Total. Quieres una sola tabla con todas las ventas.",
+    "prompt": "¿Qué dos afirmaciones sobre Anexar consultas (*Append queries*) son correctas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Anexar empareja las columnas por nombre, así que debes renombrar Total a Importe antes de anexar",
+        "correct": true,
+        "explanation": "Si no coinciden los nombres, la tabla resultante tendría dos columnas, Importe y Total, cada una con null en las filas de la otra tabla."
+      },
+      {
+        "id": "b",
+        "text": "Anexar consultas como nuevas crea una consulta nueva y deja sin cambios VentasTienda y VentasOnline",
+        "correct": true,
+        "explanation": "La variante como nuevas genera una consulta adicional con el resultado; la otra variante añade un paso a la consulta seleccionada."
+      },
+      {
+        "id": "c",
+        "text": "Anexar agrega columnas de la segunda tabla según una columna clave común",
+        "correct": false,
+        "explanation": "Eso es combinar consultas (*merge*); anexar agrega filas."
+      },
+      {
+        "id": "d",
+        "text": "Anexar exige que ambas tablas tengan exactamente las mismas columnas o la operación falla",
+        "correct": false,
+        "explanation": "No falla: la tabla resultante incluye todas las columnas y rellena con null las que falten en cada tabla."
+      },
+      {
+        "id": "e",
+        "text": "Solo puedes anexar dos tablas en cada operación",
+        "correct": false,
+        "explanation": "El cuadro de diálogo tiene un modo Tres o más tablas para anexar cualquier número de consultas."
+      }
+    ],
+    "keyPoint": "Anexar suma filas y alinea columnas por nombre; Combinar suma columnas a partir de una clave.",
+    "references": [
+      {
+        "title": "Anexar consultas",
+        "url": "https://learn.microsoft.com/es-es/power-query/append-queries"
+      },
+      {
+        "title": "Combinar varias tablas en una sola",
+        "url": "https://learn.microsoft.com/es-es/training/modules/clean-data-power-bi/5-combine-tables"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-026",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 3,
+    "scenario": "En Hostelería Iris, una tienda se identifica por País y CódigoTienda (el mismo código se repite en distintos países). Quieres relacionar la tabla de hechos Ventas, que tiene ambas columnas, con la dimensión Tiendas, que tiene una fila por combinación de País y CódigoTienda.",
+    "prompt": "¿Qué dos enfoques permiten crear una relación uno a varios válida? Cada respuesta es una solución completa. Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crear en ambas consultas una columna clave que una País y CódigoTienda, por ejemplo con Combinar columnas (*Merge columns*), y relacionar las tablas por ella",
+        "correct": true,
+        "explanation": "Las relaciones de Power BI usan una sola columna en cada lado; una columna que concatena ambas partes es única en Tiendas y permite la relación."
+      },
+      {
+        "id": "b",
+        "text": "Agregar a Tiendas una columna de índice como clave suplente, combinar Ventas con Tiendas por País y CódigoTienda para traer esa clave y relacionar por ella",
+        "correct": true,
+        "explanation": "Es el patrón de clave suplente: la combinación por varias columnas lleva a los hechos un identificador único de una sola columna."
+      },
+      {
+        "id": "c",
+        "text": "Relacionar solo por CódigoTienda, porque Power BI deduce el país automáticamente",
+        "correct": false,
+        "explanation": "CódigoTienda se repite entre países, así que no es único en Tiendas y no puede ser el lado «uno»."
+      },
+      {
+        "id": "d",
+        "text": "Crear dos relaciones activas entre las tablas, una por País y otra por CódigoTienda",
+        "correct": false,
+        "explanation": "Entre dos tablas solo puede haber una relación activa, y ninguna de las dos columnas por separado es única en Tiendas."
+      },
+      {
+        "id": "e",
+        "text": "Anexar Ventas y Tiendas en una sola tabla",
+        "correct": false,
+        "explanation": "Anexar apila filas de ambas tablas; no relaciona ventas con tiendas."
+      }
+    ],
+    "keyPoint": "Si la clave natural ocupa varias columnas, crea una clave de una sola columna: concatenada o suplente con índice.",
+    "references": [
+      {
+        "title": "Descripción del esquema de estrella y la importancia para Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
+      },
+      {
+        "title": "Introducción a las combinaciones de consultas",
+        "url": "https://learn.microsoft.com/es-es/power-query/merge-queries-overview"
+      },
+      {
+        "title": "Relaciones del modelo en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-relationships-understand"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-027",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "Al actualizar el modelo de Óptica Lince se produce un error porque la columna IdProducto, en el lado «uno» de la relación con Ventas, contiene valores duplicados. El extracto de productos trae filas repetidas idénticas:",
+    "table": {
+      "caption": "Consulta Productos",
+      "headers": [
+        "IdProducto",
+        "Producto",
+        "Categoría"
+      ],
+      "rows": [
+        [
+          "P-10",
+          "Gafas de sol",
+          "Accesorios"
+        ],
+        [
+          "P-11",
+          "Lentillas",
+          "Lentes"
+        ],
+        [
+          "P-10",
+          "Gafas de sol",
+          "Accesorios"
+        ],
+        [
+          "P-12",
+          "Funda",
+          "Accesorios"
+        ]
+      ]
+    },
+    "prompt": "¿Qué haces en Power Query para resolverlo?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Seleccionar IdProducto y usar Quitar duplicados (*Remove duplicates*)",
+        "correct": true,
+        "explanation": "Las filas repetidas son idénticas, así que quitar duplicados en la clave deja una fila por producto y el lado «uno» vuelve a tener valores únicos."
+      },
+      {
+        "id": "b",
+        "text": "Cambiar la cardinalidad de la relación a varios a varios",
+        "correct": false,
+        "explanation": "Ocultaría el problema de calidad con una relación limitada; la dimensión seguiría teniendo filas repetidas."
+      },
+      {
+        "id": "c",
+        "text": "Agregar una columna de índice y usarla como clave sin quitar duplicados",
+        "correct": false,
+        "explanation": "P-10 tendría dos índices distintos, y la tabla de hechos, que usa IdProducto, no sabría con cuál relacionarse."
+      },
+      {
+        "id": "d",
+        "text": "Cambiar el tipo de IdProducto a Texto",
+        "correct": false,
+        "explanation": "La columna ya es texto; el tipo no elimina las repeticiones."
+      }
+    ],
+    "keyPoint": "La columna del lado «uno» debe ser única: si una carga intenta duplicados, la actualización falla; elimínalos en Power Query.",
+    "references": [
+      {
+        "title": "Relaciones del modelo en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-relationships-understand"
+      },
+      {
+        "title": "Simplificación de la estructura de datos",
+        "url": "https://learn.microsoft.com/es-es/training/modules/clean-data-power-bi/3-data-structure"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-028",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "Al combinar Ventas y Clientes por IdCliente en Power Query no obtienes ninguna coincidencia: en Ventas, IdCliente es de tipo Texto y en Clientes es Número entero.",
+    "prompt": "Completa la frase.",
+    "template": "Las columnas que usas para combinar consultas o crear relaciones deben tener {{b1}}; por eso debes {{b2}} antes de combinar.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "el mismo tipo de datos"
+          },
+          {
+            "id": "o2",
+            "text": "el mismo nombre"
+          },
+          {
+            "id": "o3",
+            "text": "el mismo número de filas"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Tanto las combinaciones de Power Query como las relaciones del modelo requieren que las columnas tengan el mismo tipo; los nombres pueden ser distintos."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "cambiar el tipo de una de ellas para que coincidan"
+          },
+          {
+            "id": "o2",
+            "text": "renombrar las columnas para que se llamen igual"
+          },
+          {
+            "id": "o3",
+            "text": "ordenar ambas tablas por IdCliente"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Con el mismo tipo en ambas columnas, los valores pueden compararse y la combinación encuentra coincidencias; renombrar u ordenar no cambia la comparación."
+      }
+    ],
+    "keyPoint": "Las columnas clave de una combinación o relación deben compartir tipo de datos; el nombre no importa.",
+    "references": [
+      {
+        "title": "Introducción a las combinaciones de consultas",
+        "url": "https://learn.microsoft.com/es-es/power-query/merge-queries-overview"
+      },
+      {
+        "title": "Relaciones del modelo en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-relationships-understand"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-029",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 1,
+    "scenario": "En el modelo de Cervezas Mar, la consulta TablaIntermedia solo sirve para combinarla con otras dos consultas; no debe cargarse en el modelo.",
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Desactivar Habilitar carga (*Enable load*) en el menú contextual de TablaIntermedia",
+        "correct": true,
+        "explanation": "La consulta sigue existiendo y otras consultas pueden usarla, pero su resultado no se carga en el modelo."
+      },
+      {
+        "id": "b",
+        "text": "Eliminar TablaIntermedia después de hacer las combinaciones",
+        "correct": false,
+        "explanation": "Las consultas que la usan dependen de ella; al eliminarla, dejarían de funcionar."
+      },
+      {
+        "id": "c",
+        "text": "Desactivar Incluir en la actualización del informe",
+        "correct": false,
+        "explanation": "Esa opción evita que la consulta se actualice, pero la tabla seguiría cargada en el modelo."
+      },
+      {
+        "id": "d",
+        "text": "Ocultar la tabla en la vista de modelo",
+        "correct": false,
+        "explanation": "Ocultarla solo la quita de la vista de los usuarios; los datos se siguen cargando y ocupando memoria."
+      }
+    ],
+    "keyPoint": "Las consultas intermedias se dejan con Habilitar carga desactivado: siguen disponibles para otras consultas sin cargarse en el modelo.",
+    "references": [
+      {
+        "title": "Administración de la actualización de consultas en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/refresh-include-in-report-refresh"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-030",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "La consulta HistóricoVentas de Navalia contiene ventas de ejercicios cerrados que nunca cambian, y su actualización tarda mucho. El informe debe seguir mostrando esos datos.",
+    "prompt": "¿Qué dos afirmaciones son correctas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Puedes desactivar Incluir en la actualización del informe (*Include in report refresh*) en esa consulta",
+        "correct": true,
+        "explanation": "Esta opción excluye la consulta de las actualizaciones del informe, adecuado para orígenes que no cambian."
+      },
+      {
+        "id": "b",
+        "text": "La consulta excluida tampoco se actualiza en la actualización programada del servicio Power BI",
+        "correct": true,
+        "explanation": "Las consultas excluidas de la actualización también se excluyen de la actualización automática en el servicio."
+      },
+      {
+        "id": "c",
+        "text": "Debes desactivar Habilitar carga para que no se actualice",
+        "correct": false,
+        "explanation": "Sin carga la tabla no estaría en el modelo y el informe no podría mostrar los datos históricos."
+      },
+      {
+        "id": "d",
+        "text": "Excluirla de la actualización vacía la tabla en el modelo",
+        "correct": false,
+        "explanation": "La tabla conserva los datos ya cargados; simplemente no se vuelven a leer del origen."
+      },
+      {
+        "id": "e",
+        "text": "Esta opción solo se puede cambiar en la vista de modelo",
+        "correct": false,
+        "explanation": "Se cambia en el Editor de Power Query, desde el menú contextual de la consulta o desde sus Propiedades."
+      }
+    ],
+    "keyPoint": "Incluir en la actualización del informe desactivado = la tabla se carga, pero no se vuelve a actualizar, ni en Desktop ni en el servicio.",
+    "references": [
+      {
+        "title": "Administración de la actualización de consultas en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/refresh-include-in-report-refresh"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-031",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre la configuración de carga de las consultas es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Una consulta con la carga deshabilitada puede seguir usándose como origen de otras consultas, por ejemplo en una combinación.",
+        "answer": true,
+        "explanation": "Deshabilitar la carga solo evita que su resultado llegue al modelo; la consulta sigue disponible en el Editor de Power Query."
+      },
+      {
+        "id": "s2",
+        "text": "Desactivar Habilitar carga elimina los pasos aplicados de la consulta.",
+        "answer": false,
+        "explanation": "Los pasos se mantienen intactos; solo cambia si el resultado se carga."
+      },
+      {
+        "id": "s3",
+        "text": "Puedes cambiar Habilitar carga e Incluir en la actualización del informe desde el menú contextual de la consulta o desde sus Propiedades.",
+        "answer": true,
+        "explanation": "Ambas opciones están en el menú contextual del panel Consultas y en la ventana Propiedades de la consulta."
+      },
+      {
+        "id": "s4",
+        "text": "Si desactivas Habilitar carga, la tabla sigue disponible en el panel Datos del informe.",
+        "answer": false,
+        "explanation": "Una consulta que no se carga no crea tabla en el modelo, así que no aparece en el panel Datos."
+      }
+    ],
+    "keyPoint": "Habilitar carga decide si la consulta llega al modelo; Incluir en la actualización decide si se vuelve a leer al actualizar.",
+    "references": [
+      {
+        "title": "Administración de la actualización de consultas en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/refresh-include-in-report-refresh"
+      }
+    ]
+  }
+]

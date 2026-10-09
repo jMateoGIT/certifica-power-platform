@@ -1,0 +1,3822 @@
+[
+  {
+    "id": "pl300-d2-diseno-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 1,
+    "scenario": "En un informe de ventas, el eje de un gráfico de columnas usa la columna Fecha[NombreMes] y los meses aparecen como abril, agosto, diciembre, enero… La tabla Fecha ya tiene una columna Fecha[NumMes] con valores de 1 a 12.",
+    "prompt": "¿Qué debes configurar para que los meses aparezcan en orden cronológico en todos los objetos visuales?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Seleccionar NombreMes y, en Herramientas de columna (*Column tools*), usar Ordenar por columna (*Sort by column*) con NumMes",
+        "correct": true,
+        "explanation": "Ordenar por columna (*Sort by column*) define que una columna se ordene según los valores de otra con la misma granularidad (un NumMes por cada NombreMes), y el criterio se aplica a cualquier objeto visual que use NombreMes."
+      },
+      {
+        "id": "b",
+        "text": "Cambiar el tipo de datos de NombreMes a Fecha",
+        "correct": false,
+        "explanation": "Un nombre de mes como «enero» no es un valor de fecha válido; la conversión fallaría y no resolvería el orden."
+      },
+      {
+        "id": "c",
+        "text": "Asignar a NombreMes la categoría de datos Mes",
+        "correct": false,
+        "explanation": "La categoría de datos indica cómo interpretar los valores (ubicaciones, URL, códigos de barras…), no el criterio de ordenación."
+      },
+      {
+        "id": "d",
+        "text": "Ordenar cada objeto visual por NombreMes en orden descendente",
+        "correct": false,
+        "explanation": "Ordenar por la propia columna de texto sigue siendo un orden alfabético (solo que invertido) y habría que repetirlo en cada objeto visual."
+      }
+    ],
+    "keyPoint": "Ordenar por columna usa otra columna con un valor por cada valor (p. ej., NumMes) para ordenar en todos los objetos visuales.",
+    "references": [
+      {
+        "title": "Ordenar por columna en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-sort-by-column"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-002",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 1,
+    "scenario": "La tabla Productos de una tienda en línea incluye la columna Productos[Foto], con la dirección https de la imagen de cada artículo. El equipo comercial quiere ver la miniatura del producto dentro de un objeto visual de tabla.",
+    "prompt": "¿Qué categoría de datos (*Data category*) debes asignar a la columna Foto?",
+    "options": [
+      {
+        "id": "a",
+        "text": "URL web",
+        "correct": false,
+        "explanation": "URL web convierte el valor en un hipervínculo azul y subrayado, pero no muestra la imagen."
+      },
+      {
+        "id": "b",
+        "text": "Dirección URL de imagen",
+        "correct": true,
+        "explanation": "Con la categoría Dirección URL de imagen (*Image URL*), las tablas, matrices y otros objetos visuales compatibles muestran la imagen a la que apunta la dirección en lugar del texto."
+      },
+      {
+        "id": "c",
+        "text": "Código de barras",
+        "correct": false,
+        "explanation": "Código de barras sirve para filtrar el informe en la aplicación móvil al escanear un código; no muestra imágenes."
+      },
+      {
+        "id": "d",
+        "text": "Sin categorizar",
+        "correct": false,
+        "explanation": "Sin categoría, Power BI trata la columna como texto normal y mostraría la dirección literal."
+      }
+    ],
+    "keyPoint": "La categoría de datos indica cómo tratar los valores: Dirección URL de imagen muestra imágenes y URL web, vínculos.",
+    "references": [
+      {
+        "title": "Mostrar imágenes en una tabla, matriz o segmentación",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/power-bi-images-tables"
+      },
+      {
+        "title": "Categorización de datos en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-data-categorization"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-003",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 1,
+    "scenario": "La tabla Fecha tiene una columna numérica Año. Cada vez que un autor la arrastra a un objeto visual, Power BI la suma y muestra valores como 4.048.200 en lugar de los años.",
+    "prompt": "Completa la configuración de la columna Año en el modelo.",
+    "template": "Selecciona la columna Año y cambia su {{b1}} al valor {{b2}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "agregación predeterminada (resumen)"
+          },
+          {
+            "id": "o2",
+            "text": "categoría de datos"
+          },
+          {
+            "id": "o3",
+            "text": "columna de ordenación (ordenar por columna)"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "La agregación predeterminada (*summarization*) define cómo se agrega una columna numérica al añadirla a un objeto visual. La categoría de datos indica cómo interpretar los valores (ubicaciones, URL…) y la ordenación por columna solo cambia el orden; ninguna controla la agregación."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Recuento"
+          },
+          {
+            "id": "o2",
+            "text": "No resumir"
+          },
+          {
+            "id": "o3",
+            "text": "Mínimo"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "No resumir (*Don't summarize*) hace que cada año se muestre como un valor de agrupación. Recuento o Mínimo seguirían agregando la columna y no mostrarían la lista de años."
+      }
+    ],
+    "keyPoint": "Para columnas numéricas que son atributos (años, códigos, números de pedido), cambia la agregación predeterminada a No resumir.",
+    "references": [
+      {
+        "title": "Técnicas de reducción de datos para el modelado de importación",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/import-modeling-data-reduction"
+      },
+      {
+        "title": "Trabajar con la vista de modelo",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-modeling-view"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-004",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "scenario": "Diseñas un esquema de estrella con la tabla de hechos Ventas (IdProducto, IdCliente, FechaPedido, Cantidad, PrecioUnitario) y las dimensiones Productos, Clientes y Fecha. Ya has creado las medidas explícitas Precio medio, Precio mínimo y Precio máximo. Quieres que el panel Datos sea claro para los autores de informes.",
+    "prompt": "¿Qué dos elementos del modelo deberías ocultar? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ventas[IdProducto] y Ventas[IdCliente], las claves que relacionan Ventas con sus dimensiones",
+        "correct": true,
+        "explanation": "Las columnas clave solo sirven para las relaciones; los autores deben filtrar con los atributos de las dimensiones. Ocultarlas evita confusiones y filtros por el lado «varios»."
+      },
+      {
+        "id": "b",
+        "text": "Ventas[PrecioUnitario], que nunca debe sumarse",
+        "correct": true,
+        "explanation": "La guía de esquema de estrella recomienda ocultar columnas como el precio unitario y exponer medidas explícitas con las agregaciones válidas (media, mínimo, máximo) para que nadie la sume."
+      },
+      {
+        "id": "c",
+        "text": "Productos[Categoría], porque se repite en muchas filas",
+        "correct": false,
+        "explanation": "La categoría es un atributo descriptivo de la dimensión pensado precisamente para filtrar y agrupar; debe quedar visible."
+      },
+      {
+        "id": "d",
+        "text": "Fecha[Fecha], porque la tabla ya está marcada como tabla de fechas",
+        "correct": false,
+        "explanation": "Marcar la tabla de fechas no implica ocultar la columna de fecha; los autores la necesitan para filtrar y para los ejes."
+      },
+      {
+        "id": "e",
+        "text": "Las medidas Precio medio, Precio mínimo y Precio máximo",
+        "correct": false,
+        "explanation": "Las medidas explícitas son justo lo que quieres que usen los autores; ocultarlas eliminaría la alternativa a sumar el precio."
+      }
+    ],
+    "keyPoint": "Oculta claves de relación y columnas que no deben agregarse directamente; expón atributos de dimensión y medidas explícitas.",
+    "references": [
+      {
+        "title": "Esquema de estrella e importancia para Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
+      },
+      {
+        "title": "Instrucciones para relaciones de varios a varios",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-many-to-many"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-005",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "prompt": "Empareja cada necesidad con la propiedad de tabla, columna o medida que la resuelve.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Agrupar las 40 medidas de la tabla Ventas en subcarpetas del panel Datos",
+        "answerId": "c4",
+        "explanation": "Las carpetas (*display folders*) organizan columnas y medidas en carpetas dentro de una tabla sin cambiar el modelo."
+      },
+      {
+        "id": "m2",
+        "text": "Explicar qué filtra la tabla Fecha de envío cuando un autor pasa el cursor sobre ella",
+        "answerId": "c3",
+        "explanation": "La descripción aparece como información sobre herramientas en el panel Datos; la guía la recomienda en tablas de rol para comunicar cómo propagan filtros."
+      },
+      {
+        "id": "m3",
+        "text": "Mostrar la medida Importe con el símbolo € y dos decimales en todos los objetos visuales",
+        "answerId": "c1",
+        "explanation": "El formato (*format*) del campo se aplica por defecto en todos los objetos visuales que lo usan."
+      },
+      {
+        "id": "m4",
+        "text": "Que un mapa interprete una columna de texto como nombres de municipios",
+        "answerId": "c2",
+        "explanation": "La categoría de datos (*data category*), por ejemplo Ciudad, le dice a Power BI cómo interpretar valores geográficos ambiguos."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Formato"
+      },
+      {
+        "id": "c2",
+        "text": "Categoría de datos"
+      },
+      {
+        "id": "c3",
+        "text": "Descripción"
+      },
+      {
+        "id": "c4",
+        "text": "Carpetas para organizar campos (display folders)"
+      },
+      {
+        "id": "c5",
+        "text": "Ordenar por columna"
+      },
+      {
+        "id": "c6",
+        "text": "Agregación predeterminada"
+      }
+    ],
+    "keyPoint": "Formato, categoría de datos, descripción y carpetas (*display folders*) mejoran la usabilidad del modelo sin tocar los datos.",
+    "references": [
+      {
+        "title": "Categorización de datos en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-data-categorization"
+      },
+      {
+        "title": "Instrucciones para elegir entre relaciones activas e inactivas",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-active-inactive"
+      },
+      {
+        "title": "Instrucciones para relaciones uno a uno",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-one-to-one"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-006",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 3,
+    "scenario": "El departamento comercial fija objetivos anuales por categoría de producto en la tabla Objetivos. La tabla Productos tiene una fila por producto y una columna Categoría que se repite en muchos productos. Quieres que un filtro por categoría en Productos filtre los objetivos.",
+    "table": {
+      "caption": "Tabla Objetivos (extracto)",
+      "headers": [
+        "Categoría",
+        "Año",
+        "Objetivo"
+      ],
+      "rows": [
+        [
+          "Bicicletas",
+          "2025",
+          "450.000"
+        ],
+        [
+          "Accesorios",
+          "2025",
+          "100.000"
+        ],
+        [
+          "Bicicletas",
+          "2026",
+          "500.000"
+        ],
+        [
+          "Accesorios",
+          "2026",
+          "120.000"
+        ]
+      ]
+    },
+    "prompt": "¿Qué relación debes crear entre Productos[Categoría] y Objetivos[Categoría]?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Uno a varios (1:*), de Productos a Objetivos, dirección de filtro cruzado Única",
+        "correct": false,
+        "explanation": "Para un lado «uno» la columna debe tener valores únicos, y Productos[Categoría] se repite en muchos productos; Power BI no permitiría esa cardinalidad."
+      },
+      {
+        "id": "b",
+        "text": "Varios a varios, con dirección Única de Productos hacia Objetivos",
+        "correct": true,
+        "explanation": "Ambas columnas contienen duplicados, así que la cardinalidad es varios a varios. La guía recomienda que propague filtros en una sola dirección, de la dimensión a la tabla de hechos con mayor granularidad."
+      },
+      {
+        "id": "c",
+        "text": "Varios a varios, con dirección Ambos",
+        "correct": false,
+        "explanation": "La cardinalidad es correcta, pero no hace falta que Objetivos filtre Productos; el filtrado bidireccional añade coste y posibles ambigüedades sin aportar nada."
+      },
+      {
+        "id": "d",
+        "text": "Uno a uno (1:1), con dirección Ambos",
+        "correct": false,
+        "explanation": "Uno a uno exige valores únicos en ambas columnas, y aquí las dos tienen valores repetidos."
+      }
+    ],
+    "keyPoint": "Hechos con granularidad superior a la dimensión (p. ej., por categoría) se relacionan con varios a varios y dirección única desde la dimensión.",
+    "references": [
+      {
+        "title": "Instrucciones para relaciones de varios a varios",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-many-to-many"
+      },
+      {
+        "title": "Relaciones de modelos en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-relationships-understand"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-007",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "scenario": "Importas dos tablas del CRM: Clientes y ClientesFidelidad (nivel de fidelidad y puntos de cada cliente). Ambas proceden de la misma base de datos y se relacionan por IdCliente. El perfil de columnas muestra lo siguiente.",
+    "table": {
+      "caption": "Perfil de la columna IdCliente",
+      "headers": [
+        "Tabla",
+        "Filas",
+        "Valores distintos",
+        "Valores vacíos"
+      ],
+      "rows": [
+        [
+          "Clientes",
+          "12.500",
+          "12.500",
+          "0"
+        ],
+        [
+          "ClientesFidelidad",
+          "12.500",
+          "12.500",
+          "0"
+        ]
+      ]
+    },
+    "prompt": "¿Qué relación crea Power BI entre ambas tablas y qué recomienda la guía de modelado?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Uno a uno (1:1) con dirección Ambos; se recomienda combinar las dos consultas en Power Query en una sola tabla",
+        "correct": true,
+        "explanation": "Con valores únicos a ambos lados la cardinalidad es uno a uno, y estas relaciones filtran siempre en ambas direcciones. Para tablas del mismo grupo de origen, la guía recomienda consolidarlas con una combinación externa izquierda en Power Query."
+      },
+      {
+        "id": "b",
+        "text": "Uno a uno (1:1) con dirección Única; se recomienda mantener las dos tablas",
+        "correct": false,
+        "explanation": "Una relación uno a uno no admite dirección única: siempre filtra en ambos sentidos. Además, la guía desaconseja repartir los datos de una entidad en dos tablas."
+      },
+      {
+        "id": "c",
+        "text": "Uno a varios (1:*) de Clientes a ClientesFidelidad con dirección Única",
+        "correct": false,
+        "explanation": "Ninguna de las columnas tiene duplicados, por lo que no hay lado «varios»; Power BI detecta uno a uno."
+      },
+      {
+        "id": "d",
+        "text": "Varios a varios con dirección Ambos",
+        "correct": false,
+        "explanation": "Varios a varios crea una relación limitada sin necesidad; aquí ambas columnas son únicas y la cardinalidad natural es uno a uno."
+      }
+    ],
+    "keyPoint": "Uno a uno = valores únicos en ambos lados y filtro siempre bidireccional; normalmente conviene fusionar las tablas.",
+    "references": [
+      {
+        "title": "Instrucciones para relaciones uno a uno",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-one-to-one"
+      },
+      {
+        "title": "Relaciones de modelos en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-relationships-understand"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-008",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre la cardinalidad y la dirección de filtro cruzado (*cross filter direction*) es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "En una relación uno a varios, los filtros siempre se propagan desde el lado «uno»; opcionalmente también desde el lado «varios».",
+        "answer": true,
+        "explanation": "Cuando la cardinalidad incluye un lado «uno», el filtro siempre fluye desde él; la opción Ambos añade la propagación desde el lado «varios»."
+      },
+      {
+        "id": "s2",
+        "text": "Una relación uno a uno puede configurarse con dirección de filtro cruzado Única.",
+        "answer": false,
+        "explanation": "En las relaciones uno a uno la dirección es siempre Ambos; no hay otra configuración posible."
+      },
+      {
+        "id": "s3",
+        "text": "Las relaciones bidireccionales pueden empeorar el rendimiento e introducir rutas de filtro ambiguas.",
+        "answer": true,
+        "explanation": "La documentación recomienda usar el filtrado bidireccional solo cuando sea necesario por su impacto en el rendimiento y el riesgo de ambigüedad."
+      },
+      {
+        "id": "s4",
+        "text": "Solo puedes crear una relación varios a varios si ambas columnas contienen valores duplicados.",
+        "answer": false,
+        "explanation": "Puedes establecer varios a varios aunque una o ambas columnas tengan valores únicos; en ese caso la relación se evalúa igualmente como limitada."
+      }
+    ],
+    "keyPoint": "1:* filtra desde el lado uno; 1:1 siempre es bidireccional; usa Ambos solo cuando haga falta.",
+    "references": [
+      {
+        "title": "Relaciones de modelos en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-relationships-understand"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-009",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 3,
+    "scenario": "El modelo tiene Clientes (1) → Ventas (*) ← Productos (1), ambas relaciones con dirección Única. Quieres una medida que cuente cuántos clientes han comprado los productos seleccionados en una segmentación de Productos, sin cambiar la dirección de las relaciones del modelo.",
+    "code": {
+      "language": "dax",
+      "content": "Clientes con compras =\nCALCULATE (\n    COUNTROWS ( Clientes ),\n    ??? ( Ventas[IdCliente], Clientes[IdCliente], BOTH )\n)"
+    },
+    "prompt": "¿Qué función debe sustituir a ??? en la medida?",
+    "options": [
+      {
+        "id": "a",
+        "text": "CROSSFILTER",
+        "correct": true,
+        "explanation": "CROSSFILTER cambia la dirección de filtro cruzado de una relación existente (aquí a BOTH) solo durante la evaluación de la medida, de modo que el filtro de Productos llega a Clientes a través de Ventas."
+      },
+      {
+        "id": "b",
+        "text": "USERELATIONSHIP",
+        "correct": false,
+        "explanation": "USERELATIONSHIP activa una relación inactiva y solo recibe dos columnas; no tiene argumento de dirección."
+      },
+      {
+        "id": "c",
+        "text": "KEEPFILTERS",
+        "correct": false,
+        "explanation": "KEEPFILTERS conserva los filtros existentes al añadir uno nuevo; no modifica cómo se propagan los filtros por las relaciones."
+      },
+      {
+        "id": "d",
+        "text": "RELATED",
+        "correct": false,
+        "explanation": "RELATED devuelve un valor del lado «uno» en un contexto de fila; no puede usarse como modificador de filtro en CALCULATE."
+      }
+    ],
+    "keyPoint": "Para el análisis de dimensión a dimensión, usa CROSSFILTER en la medida en lugar de hacer bidireccional la relación.",
+    "references": [
+      {
+        "title": "Función CROSSFILTER",
+        "url": "https://learn.microsoft.com/es-es/dax/crossfilter-function-dax"
+      },
+      {
+        "title": "Guía de relaciones bidireccionales",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-bidirectional-filtering"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-010",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 1,
+    "scenario": "Power BI no ha detectado la relación entre Ventas[IdProducto] y Productos[IdProducto] y vas a crearla a mano desde la vista de informe.",
+    "prompt": "Ordena los pasos para crear la relación.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "En la cinta Modelado, selecciona Administrar relaciones (*Manage relationships*) y después Nuevo",
+        "explanation": "Primero abres el cuadro de diálogo Crear relación; sin él no puedes elegir tablas ni columnas."
+      },
+      {
+        "id": "p2",
+        "text": "Selecciona la tabla Ventas con su columna IdProducto en una lista desplegable y la tabla Productos con su columna IdProducto en la otra",
+        "explanation": "Con el cuadro de diálogo abierto eliges las dos tablas y las columnas que las relacionan; Power BI necesita ambas para proponer la configuración."
+      },
+      {
+        "id": "p3",
+        "text": "Comprueba que la cardinalidad es Varios a uno (*:1) y la dirección de filtro cruzado es Única",
+        "explanation": "Solo cuando ambas columnas están elegidas, Power BI propone cardinalidad y dirección según los datos; revisas que sean las de un esquema de estrella."
+      },
+      {
+        "id": "p4",
+        "text": "Selecciona Aceptar",
+        "explanation": "Al aceptar, la relación se crea en el modelo con las opciones revisadas; es siempre el último paso."
+      }
+    ],
+    "keyPoint": "Administrar relaciones > Nuevo > elegir las dos tablas y columnas > revisar cardinalidad y dirección > Aceptar.",
+    "references": [
+      {
+        "title": "Crear y administrar relaciones en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-create-and-manage-relationships"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-011",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "scenario": "La tabla Pedidos tiene FechaPedido y FechaEntrega, ambas relacionadas con la tabla Fecha; la relación con FechaEntrega está inactiva. Logística necesita una matriz con el año de pedido en las filas y el año de entrega en las columnas, y que los autores puedan arrastrar cualquier medida sin escribir DAX.",
+    "prompt": "¿Qué diseño debes aplicar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crear una tabla calculada Fecha entrega = 'Fecha' y relacionarla con Pedidos[FechaEntrega] mediante una relación activa",
+        "correct": true,
+        "explanation": "Una tabla por rol, cada una con su relación activa, permite filtrar por ambos roles a la vez y que cualquier medida responda sin USERELATIONSHIP. El coste es una tabla de dimensión más, normalmente pequeña."
+      },
+      {
+        "id": "b",
+        "text": "Crear una medida con USERELATIONSHIP para cada medida existente",
+        "correct": false,
+        "explanation": "USERELATIONSHIP solo activa la relación dentro de cada medida; no permite agrupar por año de pedido y año de entrega en el mismo objeto visual con una sola tabla Fecha."
+      },
+      {
+        "id": "c",
+        "text": "Activar ambas relaciones entre Fecha y Pedidos",
+        "correct": false,
+        "explanation": "Solo puede haber una ruta activa entre dos tablas; Power BI no permite activar las dos relaciones."
+      },
+      {
+        "id": "d",
+        "text": "Cambiar la relación con FechaPedido a dirección Ambos",
+        "correct": false,
+        "explanation": "La dirección del filtro no cambia qué columna de fecha usa la relación, así que seguiría sin haber un rol de fecha de entrega."
+      }
+    ],
+    "keyPoint": "Si hay que filtrar por varios roles a la vez, crea una tabla de dimensión por rol con relaciones activas.",
+    "references": [
+      {
+        "title": "Instrucciones para elegir entre relaciones activas e inactivas",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-active-inactive"
+      },
+      {
+        "title": "Esquema de estrella e importancia para Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-012",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "scenario": "Ventas tiene FechaPedido y FechaEnvio. La relación entre Ventas[FechaPedido] y 'Fecha'[Fecha] ya está activa. Necesitas una medida que cuente los pedidos por fecha de envío.",
+    "code": {
+      "language": "dax",
+      "content": "Pedidos enviados =\nCALCULATE (\n    COUNTROWS ( Ventas ),\n    ??? ( Ventas[FechaEnvio], 'Fecha'[Fecha] )\n)"
+    },
+    "prompt": "Completa la frase.",
+    "template": "Debes sustituir ??? por {{b1}}, y la relación entre Ventas[FechaEnvio] y 'Fecha'[Fecha] debe existir en el modelo como relación {{b2}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "USERELATIONSHIP"
+          },
+          {
+            "id": "o2",
+            "text": "CROSSFILTER"
+          },
+          {
+            "id": "o3",
+            "text": "TREATAS"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "USERELATIONSHIP recibe las dos columnas de una relación existente y la usa durante el cálculo, dejando de lado la relación activa. CROSSFILTER exigiría un tercer argumento de dirección y TREATAS recibe una tabla como primer argumento."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "inactiva"
+          },
+          {
+            "id": "o2",
+            "text": "activa"
+          },
+          {
+            "id": "o3",
+            "text": "bidireccional"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Entre dos tablas solo puede haber una ruta activa, y ya la ocupa FechaPedido; la relación con FechaEnvio tiene que existir como inactiva (línea discontinua) para que USERELATIONSHIP la active en la medida."
+      }
+    ],
+    "keyPoint": "Dimensión de rol con una sola tabla: relación activa para el rol principal y USERELATIONSHIP para los demás.",
+    "references": [
+      {
+        "title": "Función USERELATIONSHIP",
+        "url": "https://learn.microsoft.com/es-es/dax/userelationship-function-dax"
+      },
+      {
+        "title": "Instrucciones para elegir entre relaciones activas e inactivas",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-active-inactive"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-013",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 3,
+    "prompt": "Tienes una sola tabla Fecha relacionada con Ventas[FechaPedido] (activa) y con Ventas[FechaEnvio] (inactiva). ¿En qué dos situaciones es adecuado mantener este diseño en lugar de crear una tabla de fechas por rol? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Los informes no necesitan filtrar ni agrupar a la vez por fecha de pedido y fecha de envío",
+        "correct": true,
+        "explanation": "La guía indica que las relaciones inactivas son viables cuando no hay que filtrar simultáneamente por roles distintos."
+      },
+      {
+        "id": "b",
+        "text": "Solo una o pocas medidas necesitan analizar los datos por fecha de envío",
+        "correct": true,
+        "explanation": "Cada medida que use el rol secundario requiere USERELATIONSHIP; si son pocas, el diseño es manejable y evita duplicar la tabla."
+      },
+      {
+        "id": "c",
+        "text": "Los autores crean objetos visuales resumiendo columnas directamente, sin medidas",
+        "correct": false,
+        "explanation": "Sin medidas no pueden usar la relación inactiva; solo una medida con USERELATIONSHIP la activa."
+      },
+      {
+        "id": "d",
+        "text": "La seguridad de nivel de fila (RLS) debe propagarse a través de la fecha de envío",
+        "correct": false,
+        "explanation": "Los filtros RLS solo se propagan por relaciones activas, ni siquiera cuando la medida usa USERELATIONSHIP."
+      },
+      {
+        "id": "e",
+        "text": "Se necesitan dos segmentaciones, una por fecha de pedido y otra por fecha de envío, en la misma página",
+        "correct": false,
+        "explanation": "Eso exige filtrar por ambos roles a la vez, y para ello hace falta una tabla por rol con relaciones activas."
+      }
+    ],
+    "keyPoint": "Relación inactiva + USERELATIONSHIP: válida si no filtras por varios roles a la vez y pocas medidas usan el rol secundario.",
+    "references": [
+      {
+        "title": "Instrucciones para elegir entre relaciones activas e inactivas",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-active-inactive"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-014",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "scenario": "Te conectas a un almacenamiento de datos. La tabla DimFecha tiene la columna ClaveFecha (número entero con formato aaaammdd, p. ej. 20251231) y la columna Fecha (tipo fecha). La tabla de hechos se relaciona con DimFecha por ClaveFecha. Las medidas con TOTALYTD devuelven resultados incorrectos.",
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Marcar DimFecha como tabla de fechas (*Mark as date table*) y seleccionar la columna Fecha",
+        "correct": true,
+        "explanation": "Cuando la relación con la tabla de fechas usa una columna que no es de tipo fecha (como una clave suplente entera), debes marcar la tabla como tabla de fechas para que las funciones de inteligencia de tiempo clásicas funcionen."
+      },
+      {
+        "id": "b",
+        "text": "Activar Fecha y hora automáticas (*Auto date/time*) en las opciones del archivo",
+        "correct": false,
+        "explanation": "Fecha y hora automáticas crea tablas ocultas para columnas de fecha; no corrige una relación basada en una clave entera ni se recomienda en modelos con tabla de fechas propia."
+      },
+      {
+        "id": "c",
+        "text": "Cambiar la categoría de datos de ClaveFecha a Fecha",
+        "correct": false,
+        "explanation": "La categoría de datos no cambia el tipo ni le dice al motor qué tabla es la de fechas."
+      },
+      {
+        "id": "d",
+        "text": "Crear una relación varios a varios entre DimFecha[Fecha] y la tabla de hechos",
+        "correct": false,
+        "explanation": "La tabla de hechos se relaciona por ClaveFecha, no por una columna de fecha; además, una relación varios a varios sería limitada y no indica al motor cuál es la tabla de fechas."
+      }
+    ],
+    "keyPoint": "Si la relación con la tabla de fechas usa una clave entera, márcala como tabla de fechas para la inteligencia de tiempo.",
+    "references": [
+      {
+        "title": "Configurar y usar tablas de fechas en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-date-tables"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-015",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 1,
+    "prompt": "Vas a crear una tabla de fechas con DAX y a marcarla como tabla de fechas. Ordena los pasos.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Seleccionar Nueva tabla y escribir Fecha = CALENDAR ( DATE ( 2024, 1, 1 ), DATE ( 2026, 12, 31 ) )",
+        "explanation": "Primero debe existir la tabla calculada; CALENDAR devuelve una columna Date con fechas contiguas."
+      },
+      {
+        "id": "p2",
+        "text": "Seleccionar la tabla Fecha en el panel Datos",
+        "explanation": "Las opciones de Herramientas de tabla se aplican a la tabla seleccionada, así que antes hay que elegirla."
+      },
+      {
+        "id": "p3",
+        "text": "En Herramientas de tabla (*Table tools*), elegir Marcar como tabla de fechas",
+        "explanation": "Con la tabla seleccionada se abre el cuadro de diálogo para marcarla."
+      },
+      {
+        "id": "p4",
+        "text": "Elegir la columna Date en el cuadro de diálogo y confirmar",
+        "explanation": "En el cuadro de diálogo indicas la columna de fecha; Power BI comprueba que tenga valores únicos, sin vacíos y contiguos antes de aceptar."
+      }
+    ],
+    "keyPoint": "Crear la tabla > seleccionarla > Marcar como tabla de fechas > elegir la columna de fecha (se valida).",
+    "references": [
+      {
+        "title": "Configurar y usar tablas de fechas en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-date-tables"
+      },
+      {
+        "title": "Función CALENDAR",
+        "url": "https://learn.microsoft.com/es-es/dax/calendar-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-016",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 3,
+    "scenario": "Tu empresa cierra el año fiscal el 30 de junio. Creas una tabla de fechas con la fórmula del anexo. Las columnas de fecha del modelo tienen estos valores.",
+    "code": {
+      "language": "dax",
+      "content": "Fecha = CALENDARAUTO ( 6 )"
+    },
+    "table": {
+      "caption": "Columnas de fecha del modelo",
+      "headers": [
+        "Columna",
+        "Tipo de columna",
+        "Fecha mínima",
+        "Fecha máxima"
+      ],
+      "rows": [
+        [
+          "Ventas[FechaPedido]",
+          "Importada",
+          "15/03/2024",
+          "28/01/2026"
+        ],
+        [
+          "Ventas[FechaEnvio]",
+          "Importada",
+          "18/03/2024",
+          "10/02/2026"
+        ],
+        [
+          "Clientes[FechaRenovacion]",
+          "Columna calculada",
+          "15/03/2025",
+          "31/12/2027"
+        ]
+      ]
+    },
+    "prompt": "¿Qué intervalo de fechas devuelve la tabla Fecha?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Del 01/07/2023 al 30/06/2026",
+        "correct": true,
+        "explanation": "CALENDARAUTO ignora las columnas calculadas, así que usa como mínimo 15/03/2024 y como máximo 10/02/2026. Con fin de año en junio, el 15/03/2024 cae en el año fiscal 01/07/2023–30/06/2024 y el 10/02/2026 en el 01/07/2025–30/06/2026; devuelve años fiscales completos."
+      },
+      {
+        "id": "b",
+        "text": "Del 01/01/2024 al 31/12/2026",
+        "correct": false,
+        "explanation": "Sería el resultado de CALENDARAUTO() sin argumento, que usa por defecto el mes 12 (año natural); el argumento 6 hace que el año termine en junio."
+      },
+      {
+        "id": "c",
+        "text": "Del 01/07/2023 al 30/06/2028",
+        "correct": false,
+        "explanation": "Este intervalo incluiría la fecha 31/12/2027 de la columna calculada, pero CALENDARAUTO no tiene en cuenta columnas ni tablas calculadas."
+      },
+      {
+        "id": "d",
+        "text": "Del 15/03/2024 al 10/02/2026",
+        "correct": false,
+        "explanation": "CALENDARAUTO no se limita a las fechas mínima y máxima: amplía el intervalo a años (fiscales) completos."
+      }
+    ],
+    "keyPoint": "CALENDARAUTO(mes_fin) devuelve años fiscales completos y omite fechas de columnas y tablas calculadas.",
+    "references": [
+      {
+        "title": "Función CALENDARAUTO",
+        "url": "https://learn.microsoft.com/es-es/dax/calendarauto-function-dax"
+      },
+      {
+        "title": "Guía de diseño para tablas de fechas",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/model-date-tables"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-017",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "prompt": "¿Qué tres requisitos debe cumplir la columna de fecha de una tabla de fechas para usar las funciones de inteligencia de tiempo clásicas de DAX? Selecciona tres.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Contener valores únicos",
+        "correct": true,
+        "explanation": "Cada fecha debe aparecer una sola vez; Power BI lo valida al marcar la tabla."
+      },
+      {
+        "id": "b",
+        "text": "No contener valores en blanco",
+        "correct": true,
+        "explanation": "La columna de fecha no admite vacíos; es otra de las validaciones al marcarla."
+      },
+      {
+        "id": "c",
+        "text": "No tener fechas que falten entre la primera y la última",
+        "correct": true,
+        "explanation": "Las fechas deben ser contiguas; si faltan días, las funciones clásicas de inteligencia de tiempo fallan."
+      },
+      {
+        "id": "d",
+        "text": "Empezar siempre el 1 de enero",
+        "correct": false,
+        "explanation": "Debe abarcar años completos, pero el año no tiene por qué ser natural: puede ser fiscal, por ejemplo de julio a junio."
+      },
+      {
+        "id": "e",
+        "text": "Haberse creado con CALENDAR o CALENDARAUTO",
+        "correct": false,
+        "explanation": "Puedes obtener la tabla de fechas de un almacenamiento de datos, de Power Query o de DAX; lo que importa es que cumpla los requisitos."
+      },
+      {
+        "id": "f",
+        "text": "Ser de tipo texto con formato aaaammdd",
+        "correct": false,
+        "explanation": "La columna de fecha debe ser de tipo Fecha o Fecha y hora, no texto."
+      }
+    ],
+    "keyPoint": "Tabla de fechas: columna de tipo fecha, valores únicos, sin vacíos, sin huecos y años completos.",
+    "references": [
+      {
+        "title": "Guía de diseño para tablas de fechas",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/model-date-tables"
+      },
+      {
+        "title": "Configurar y usar tablas de fechas en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-date-tables"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-018",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre las relaciones inactivas es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Entre dos tablas solo puede haber una ruta de propagación de filtros activa; las relaciones adicionales deben ser inactivas.",
+        "answer": true,
+        "explanation": "Las rutas de filtro deben ser deterministas, así que solo una puede estar activa entre dos tablas."
+      },
+      {
+        "id": "s2",
+        "text": "En la vista de modelo, una relación inactiva se dibuja con una línea discontinua.",
+        "answer": true,
+        "explanation": "La línea continua representa una relación activa y la discontinua, una inactiva."
+      },
+      {
+        "id": "s3",
+        "text": "Los filtros de seguridad de nivel de fila se propagan por una relación inactiva si la medida usa USERELATIONSHIP.",
+        "answer": false,
+        "explanation": "Los filtros RLS solo se propagan por relaciones activas, aunque una medida use USERELATIONSHIP."
+      },
+      {
+        "id": "s4",
+        "text": "Un autor de informes puede usar una relación inactiva arrastrando columnas a un objeto visual, sin ninguna medida.",
+        "answer": false,
+        "explanation": "La única forma de usar una relación inactiva es una expresión DAX con USERELATIONSHIP."
+      }
+    ],
+    "keyPoint": "Relación inactiva = línea discontinua; solo la activa una medida con USERELATIONSHIP y RLS nunca la recorre.",
+    "references": [
+      {
+        "title": "Instrucciones para elegir entre relaciones activas e inactivas",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-active-inactive"
+      },
+      {
+        "title": "Relaciones de modelos en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-relationships-understand"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-019",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 3,
+    "prompt": "Empareja cada requisito con el tipo de objeto más adecuado para implementarlo.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Clasificar cada cliente en un segmento según el resultado de una medida de compras históricas, para usarlo en una segmentación",
+        "answerId": "c1",
+        "explanation": "Hace falta un valor fijo por fila que se pueda usar para filtrar, y la fórmula evalúa una medida; la guía señala este caso como apropiado para una columna calculada de DAX."
+      },
+      {
+        "id": "m2",
+        "text": "Crear una copia de la tabla Fecha para el rol de fecha de envío",
+        "answerId": "c2",
+        "explanation": "Una tabla calculada como Fecha envío = 'Fecha' clona la tabla dentro del modelo."
+      },
+      {
+        "id": "m3",
+        "text": "Calcular el margen % que responda a las segmentaciones del informe",
+        "answerId": "c3",
+        "explanation": "Una medida se evalúa en el momento de la consulta, según el contexto de filtro, así que responde a segmentaciones y filtros."
+      },
+      {
+        "id": "m4",
+        "text": "Extraer el año de una fecha al cargar una tabla grande desde SQL Server, con la mejor compresión posible",
+        "answerId": "c4",
+        "explanation": "La guía recomienda crear las columnas en Power Query (o en el origen) cuando sea posible, porque las columnas calculadas de DAX se comprimen peor y alargan la actualización."
+      },
+      {
+        "id": "m5",
+        "text": "Unir en una sola tabla del modelo dos tablas ya cargadas con la misma estructura",
+        "answerId": "c2",
+        "explanation": "Una tabla calculada con UNION combina dos tablas del modelo con la misma estructura."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Columna calculada"
+      },
+      {
+        "id": "c2",
+        "text": "Tabla calculada"
+      },
+      {
+        "id": "c3",
+        "text": "Medida"
+      },
+      {
+        "id": "c4",
+        "text": "Columna personalizada de Power Query"
+      }
+    ],
+    "keyPoint": "Medida = cálculo dinámico; columna calculada = valor fijo por fila; tabla calculada = tabla derivada del modelo; Power Query = transformaciones al cargar.",
+    "references": [
+      {
+        "title": "Columnas calculadas en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-calculated-columns"
+      },
+      {
+        "title": "Tablas calculadas en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-calculated-tables"
+      },
+      {
+        "title": "Técnicas de reducción de datos para el modelado de importación",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/import-modeling-data-reduction"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-020",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "scenario": "Revisas un modelo de importación y decides, caso por caso, si un cálculo debe ser una columna calculada o una medida.",
+    "prompt": "¿En qué dos casos es más adecuada una columna calculada que una medida? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Clasificar cada producto en un tramo de precio (Bajo, Medio, Alto) para usarlo en una segmentación",
+        "correct": true,
+        "explanation": "Las segmentaciones y los ejes necesitan valores de columna; una columna calculada guarda un valor por fila que se puede usar para filtrar o agrupar."
+      },
+      {
+        "id": "b",
+        "text": "Crear una clave combinando dos columnas para relacionar dos tablas",
+        "correct": true,
+        "explanation": "Las relaciones se definen entre columnas; una columna calculada puede servir de clave, mientras que una medida no puede."
+      },
+      {
+        "id": "c",
+        "text": "Calcular el porcentaje de margen que cambia según los filtros del usuario",
+        "correct": false,
+        "explanation": "Un ratio que debe responder a los filtros se calcula en el momento de la consulta; es un caso típico de medida."
+      },
+      {
+        "id": "d",
+        "text": "Mostrar el total de ventas del año anterior en una tarjeta",
+        "correct": false,
+        "explanation": "La inteligencia de tiempo se evalúa en el contexto de filtro de la consulta; se implementa con medidas."
+      },
+      {
+        "id": "e",
+        "text": "Contar los pedidos distintos de la selección actual",
+        "correct": false,
+        "explanation": "Un recuento que depende de la selección se calcula al consultar con una medida (p. ej., DISTINCTCOUNT)."
+      }
+    ],
+    "keyPoint": "Columna calculada para filtrar, agrupar o relacionar por fila; medida para agregados que dependen del contexto de filtro.",
+    "references": [
+      {
+        "title": "Columnas calculadas en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-calculated-columns"
+      },
+      {
+        "title": "Medidas en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-measures"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-021",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "prompt": "¿Qué dos afirmaciones sobre las tablas y columnas calculadas son correctas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Una tabla calculada puede tener relaciones con otras tablas del modelo",
+        "correct": true,
+        "explanation": "Las tablas calculadas se comportan como cualquier otra tabla: admiten relaciones, medidas y columnas calculadas."
+      },
+      {
+        "id": "b",
+        "text": "Al clonar una tabla con DAX (Nueva = 'Fecha') se copian sus formatos, descripciones y jerarquías",
+        "correct": false,
+        "explanation": "Clonar con DAX solo crea las columnas; no copia propiedades como formatos o descripciones, ni las jerarquías."
+      },
+      {
+        "id": "c",
+        "text": "Las columnas calculadas se calculan durante la actualización y se almacenan en el modelo, por lo que ocupan memoria",
+        "correct": true,
+        "explanation": "Sus valores se materializan al actualizar o cargar los datos y se guardan como cualquier otra columna."
+      },
+      {
+        "id": "d",
+        "text": "Las columnas calculadas se recalculan en cada consulta según las segmentaciones",
+        "correct": false,
+        "explanation": "Eso describe las medidas; las columnas calculadas no responden a los filtros del informe."
+      },
+      {
+        "id": "e",
+        "text": "Una tabla calculada basada en tablas DirectQuery se actualiza automáticamente con cada consulta",
+        "correct": false,
+        "explanation": "Con DirectQuery, las tablas calculadas no se actualizan de forma predeterminada; reflejan los cambios al actualizar el modelo semántico."
+      }
+    ],
+    "keyPoint": "Lo calculado con DAX en columnas y tablas se materializa al actualizar; las medidas se evalúan al consultar.",
+    "references": [
+      {
+        "title": "Tablas calculadas en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-calculated-tables"
+      },
+      {
+        "title": "Guía de diseño para tablas de fechas",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/model-date-tables"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-022",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "scenario": "Has creado medidas explícitas para todos los cálculos del modelo, pero los autores siguen arrastrando columnas numéricas como PrecioUnitario a los objetos visuales y Power BI las suma.",
+    "prompt": "¿Qué propiedad del modelo impide que las columnas se agreguen directamente como valores en los objetos visuales?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Desaconsejar medidas implícitas (*Discourage implicit measures*)",
+        "correct": true,
+        "explanation": "Con esta propiedad, el panel Datos deja de mostrar el símbolo Σ junto a las columnas y bloquea que se agreguen directamente como valores; las medidas implícitas ya creadas siguen funcionando."
+      },
+      {
+        "id": "b",
+        "text": "Categoría de datos = Sin categorizar en todas las columnas numéricas",
+        "correct": false,
+        "explanation": "La categoría de datos no controla si una columna puede agregarse en un objeto visual."
+      },
+      {
+        "id": "c",
+        "text": "Marcar la tabla Ventas como tabla de fechas",
+        "correct": false,
+        "explanation": "Marcar como tabla de fechas solo se aplica a tablas de fechas y no tiene relación con las medidas implícitas."
+      },
+      {
+        "id": "d",
+        "text": "Cambiar todas las relaciones a dirección de filtro cruzado Ambos",
+        "correct": false,
+        "explanation": "La dirección de filtro cambia cómo se propagan los filtros, no cómo se agregan las columnas; además perjudicaría el rendimiento."
+      }
+    ],
+    "keyPoint": "Desaconsejar medidas implícitas obliga a usar medidas explícitas (y es necesaria para los grupos de cálculo).",
+    "references": [
+      {
+        "title": "Creación de grupos de cálculo",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/calculation-groups"
+      },
+      {
+        "title": "Esquema de estrella e importancia para Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "scenario": "La tabla Ventas guarda la cantidad y el precio unitario de cada línea, pero no el importe. Creas la medida del anexo y la muestras en una tarjeta sin filtros.",
+    "code": {
+      "language": "dax",
+      "content": "Importe total =\nSUMX (\n    Ventas,\n    Ventas[Cantidad] * Ventas[PrecioUnitario]\n)"
+    },
+    "table": {
+      "caption": "Tabla Ventas",
+      "headers": [
+        "Línea",
+        "Cantidad",
+        "PrecioUnitario"
+      ],
+      "rows": [
+        [
+          "1",
+          "2",
+          "10,00"
+        ],
+        [
+          "2",
+          "1",
+          "25,50"
+        ],
+        [
+          "3",
+          "4",
+          "5,00"
+        ],
+        [
+          "4",
+          "3",
+          "12,00"
+        ]
+      ]
+    },
+    "prompt": "¿Qué valor muestra la tarjeta?",
+    "options": [
+      {
+        "id": "a",
+        "text": "101,50",
+        "correct": true,
+        "explanation": "SUMX recorre cada fila, multiplica Cantidad × PrecioUnitario (20 + 25,50 + 20 + 36) y suma los resultados: 101,50."
+      },
+      {
+        "id": "b",
+        "text": "525,00",
+        "correct": false,
+        "explanation": "Es SUM(Cantidad) × SUM(PrecioUnitario) = 10 × 52,50, el error típico de multiplicar dos agregados en lugar de iterar fila a fila."
+      },
+      {
+        "id": "c",
+        "text": "52,50",
+        "correct": false,
+        "explanation": "Es solo la suma de los precios unitarios; ignora las cantidades."
+      },
+      {
+        "id": "d",
+        "text": "10",
+        "correct": false,
+        "explanation": "Es solo la suma de las cantidades; la expresión multiplica cada cantidad por su precio."
+      }
+    ],
+    "keyPoint": "SUMX evalúa la expresión en cada fila (contexto de fila) y después suma; SUM solo suma una columna.",
+    "references": [
+      {
+        "title": "Función SUMX",
+        "url": "https://learn.microsoft.com/es-es/dax/sumx-function-dax"
+      },
+      {
+        "title": "Función SUM",
+        "url": "https://learn.microsoft.com/es-es/dax/sum-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-002",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 3,
+    "scenario": "En la tabla Pedidos, los pedidos de clientes anónimos no tienen IdCliente (aparece en blanco). Creas la medida del anexo.",
+    "code": {
+      "language": "dax",
+      "content": "Clientes distintos =\nDISTINCTCOUNT ( Pedidos[IdCliente] )"
+    },
+    "table": {
+      "caption": "Tabla Pedidos",
+      "headers": [
+        "IdPedido",
+        "IdCliente"
+      ],
+      "rows": [
+        [
+          "P1",
+          "C01"
+        ],
+        [
+          "P2",
+          "C02"
+        ],
+        [
+          "P3",
+          "C01"
+        ],
+        [
+          "P4",
+          ""
+        ],
+        [
+          "P5",
+          "C03"
+        ],
+        [
+          "P6",
+          "C02"
+        ],
+        [
+          "P7",
+          ""
+        ]
+      ]
+    },
+    "prompt": "¿Qué valor devuelve la medida sin filtros?",
+    "options": [
+      {
+        "id": "a",
+        "text": "3",
+        "correct": false,
+        "explanation": "Sería el resultado de DISTINCTCOUNTNOBLANK, que excluye el valor en blanco."
+      },
+      {
+        "id": "b",
+        "text": "4",
+        "correct": true,
+        "explanation": "DISTINCTCOUNT cuenta el valor BLANK como un valor distinto más: C01, C02, C03 y (en blanco) suman 4."
+      },
+      {
+        "id": "c",
+        "text": "5",
+        "correct": false,
+        "explanation": "Sería COUNT(Pedidos[IdCliente]), que cuenta los valores no vacíos aunque se repitan."
+      },
+      {
+        "id": "d",
+        "text": "7",
+        "correct": false,
+        "explanation": "Sería COUNTROWS(Pedidos), que cuenta todas las filas de la tabla."
+      }
+    ],
+    "keyPoint": "DISTINCTCOUNT incluye BLANK como valor; para excluirlo usa DISTINCTCOUNTNOBLANK.",
+    "references": [
+      {
+        "title": "Función DISTINCTCOUNT",
+        "url": "https://learn.microsoft.com/es-es/dax/distinctcount-function-dax"
+      },
+      {
+        "title": "Función DISTINCTCOUNTNOBLANK",
+        "url": "https://learn.microsoft.com/es-es/dax/distinctcountnoblank-function-dax"
+      },
+      {
+        "title": "Función COUNT",
+        "url": "https://learn.microsoft.com/es-es/dax/count-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-003",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 1,
+    "prompt": "Empareja cada medida de agregación con la función DAX más adecuada.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Número de filas de la tabla Pedidos, aunque alguna columna tenga vacíos",
+        "answerId": "c1",
+        "explanation": "COUNTROWS cuenta las filas de la tabla y no depende de los vacíos de ninguna columna; la guía de DAX lo prefiere a COUNT para contar filas."
+      },
+      {
+        "id": "m2",
+        "text": "Número de clientes diferentes que han comprado",
+        "answerId": "c2",
+        "explanation": "DISTINCTCOUNT devuelve el número de valores distintos de una columna."
+      },
+      {
+        "id": "m3",
+        "text": "Total de la columna Ventas[Importe]",
+        "answerId": "c3",
+        "explanation": "SUM agrega directamente una columna numérica existente."
+      },
+      {
+        "id": "m4",
+        "text": "Margen sobre ventas que devuelva BLANK en lugar de error si las ventas son 0",
+        "answerId": "c4",
+        "explanation": "DIVIDE gestiona la división por cero devolviendo BLANK (o un valor alternativo) en lugar de un error."
+      },
+      {
+        "id": "m5",
+        "text": "Importe calculado fila a fila como Cantidad × Precio",
+        "answerId": "c5",
+        "explanation": "SUMX es un iterador: evalúa la expresión en cada fila y suma los resultados."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "COUNTROWS"
+      },
+      {
+        "id": "c2",
+        "text": "DISTINCTCOUNT"
+      },
+      {
+        "id": "c3",
+        "text": "SUM"
+      },
+      {
+        "id": "c4",
+        "text": "DIVIDE"
+      },
+      {
+        "id": "c5",
+        "text": "SUMX"
+      },
+      {
+        "id": "c6",
+        "text": "COUNT"
+      }
+    ],
+    "keyPoint": "COUNTROWS cuenta filas, DISTINCTCOUNT valores únicos, SUM una columna, SUMX una expresión por fila y DIVIDE divide de forma segura.",
+    "references": [
+      {
+        "title": "Usar COUNTROWS en lugar de COUNT",
+        "url": "https://learn.microsoft.com/es-es/dax/best-practices/dax-countrows"
+      },
+      {
+        "title": "Función DIVIDE frente al operador de división",
+        "url": "https://learn.microsoft.com/es-es/dax/best-practices/dax-divide-function-operator"
+      },
+      {
+        "title": "Función SUMX",
+        "url": "https://learn.microsoft.com/es-es/dax/sumx-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-004",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 3,
+    "scenario": "Una matriz muestra las categorías de producto en filas y tiene una segmentación por Fecha[Año]. Necesitas la medida % sobre total: el peso de cada categoría sobre el total de todas las categorías del año seleccionado. [Ventas] ya existe.",
+    "prompt": "¿Qué fórmula debes usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "DIVIDE ( [Ventas], CALCULATE ( [Ventas], REMOVEFILTERS ( Productos[Categoría] ) ) )",
+        "correct": true,
+        "explanation": "REMOVEFILTERS quita solo el filtro de Categoría en el denominador, que pasa a ser el total de todas las categorías, y mantiene el filtro de año de la segmentación. ALL ( Productos[Categoría] ) daría el mismo resultado."
+      },
+      {
+        "id": "b",
+        "text": "DIVIDE ( [Ventas], CALCULATE ( [Ventas], REMOVEFILTERS () ) )",
+        "correct": false,
+        "explanation": "REMOVEFILTERS sin argumentos quita todos los filtros del modelo, incluido el año; el denominador sería el total histórico."
+      },
+      {
+        "id": "c",
+        "text": "DIVIDE ( [Ventas], CALCULATE ( [Ventas], ALL ( 'Fecha' ) ) )",
+        "correct": false,
+        "explanation": "ALL ( 'Fecha' ) quita el filtro de año y mantiene el de categoría: calcularía el peso del año sobre el histórico de la categoría."
+      },
+      {
+        "id": "d",
+        "text": "DIVIDE ( [Ventas], CALCULATE ( [Ventas], Productos[Categoría] = \"Todas\" ) )",
+        "correct": false,
+        "explanation": "Este filtro sustituye la categoría por un valor que no existe; el denominador quedaría en blanco y DIVIDE devolvería BLANK."
+      }
+    ],
+    "keyPoint": "Para porcentajes sobre el total, quita en el denominador solo el filtro de la columna de agrupación (REMOVEFILTERS/ALL de esa columna).",
+    "references": [
+      {
+        "title": "Función REMOVEFILTERS",
+        "url": "https://learn.microsoft.com/es-es/dax/removefilters-function-dax"
+      },
+      {
+        "title": "Función ALL",
+        "url": "https://learn.microsoft.com/es-es/dax/all-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-005",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 3,
+    "scenario": "Un objeto visual de tabla muestra la columna Productos[Color] y las medidas del anexo. Las ventas por color son las de la tabla.",
+    "code": {
+      "language": "dax",
+      "content": "Ventas = SUM ( Ventas[Importe] )\n\nVentas rojo =\nCALCULATE (\n    [Ventas],\n    Productos[Color] = \"Rojo\"\n)"
+    },
+    "table": {
+      "caption": "Ventas por color",
+      "headers": [
+        "Color",
+        "Ventas"
+      ],
+      "rows": [
+        [
+          "Azul",
+          "50"
+        ],
+        [
+          "Rojo",
+          "130"
+        ],
+        [
+          "Verde",
+          "20"
+        ]
+      ]
+    },
+    "prompt": "¿Qué valor muestra la medida Ventas rojo en la fila Azul?",
+    "options": [
+      {
+        "id": "a",
+        "text": "130",
+        "correct": true,
+        "explanation": "El filtro booleano de CALCULATE sobre Productos[Color] sobrescribe el filtro que la fila aplica a esa misma columna, así que en cada fila se calculan las ventas de Rojo."
+      },
+      {
+        "id": "b",
+        "text": "50",
+        "correct": false,
+        "explanation": "Serían las ventas de Azul; CALCULATE no conserva el filtro de la fila porque el nuevo filtro afecta a la misma columna."
+      },
+      {
+        "id": "c",
+        "text": "(en blanco)",
+        "correct": false,
+        "explanation": "Sería el resultado con KEEPFILTERS ( Productos[Color] = \"Rojo\" ), que combina Azul y Rojo y no encuentra filas."
+      },
+      {
+        "id": "d",
+        "text": "200",
+        "correct": false,
+        "explanation": "200 es el total de todos los colores; el filtro limita el cálculo a Rojo."
+      }
+    ],
+    "keyPoint": "Un filtro de CALCULATE sobre una columna ya filtrada sustituye el filtro existente, salvo que uses KEEPFILTERS.",
+    "references": [
+      {
+        "title": "Función CALCULATE",
+        "url": "https://learn.microsoft.com/es-es/dax/calculate-function-dax"
+      },
+      {
+        "title": "Función KEEPFILTERS",
+        "url": "https://learn.microsoft.com/es-es/dax/keepfilters-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-006",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre CALCULATE es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Un argumento de filtro booleano de CALCULATE no puede hacer referencia a una medida.",
+        "answer": true,
+        "explanation": "Las expresiones de filtro booleanas solo pueden usar columnas de una tabla; para filtrar por una medida necesitas una expresión de tabla, por ejemplo con FILTER."
+      },
+      {
+        "id": "s2",
+        "text": "Si la columna del filtro ya está filtrada en el contexto, el nuevo filtro sobrescribe el existente (sin KEEPFILTERS).",
+        "answer": true,
+        "explanation": "Es el comportamiento estándar: los filtros sobre columnas que ya están en el contexto se reemplazan."
+      },
+      {
+        "id": "s3",
+        "text": "CALCULATE sin argumentos de filtro, dentro de una columna calculada, convierte el contexto de fila en contexto de filtro.",
+        "answer": true,
+        "explanation": "Es la transición de contexto: CALCULATE convierte la fila actual en filtros para evaluar la expresión."
+      },
+      {
+        "id": "s4",
+        "text": "REMOVEFILTERS devuelve una tabla que puedes usar como primer argumento de FILTER.",
+        "answer": false,
+        "explanation": "REMOVEFILTERS solo quita filtros dentro de CALCULATE; no devuelve una tabla (a diferencia de ALL)."
+      }
+    ],
+    "keyPoint": "CALCULATE modifica el contexto de filtro: los filtros sobrescriben, KEEPFILTERS combina y sin filtros hace transición de contexto.",
+    "references": [
+      {
+        "title": "Función CALCULATE",
+        "url": "https://learn.microsoft.com/es-es/dax/calculate-function-dax"
+      },
+      {
+        "title": "Función REMOVEFILTERS",
+        "url": "https://learn.microsoft.com/es-es/dax/removefilters-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-007",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "scenario": "Necesitas sumar las ventas solo de los meses con beneficio positivo. [Ventas] y [Beneficio] son medidas. Al guardar la fórmula del anexo, Power BI muestra un error.",
+    "code": {
+      "language": "dax",
+      "content": "Ventas meses rentables =\nCALCULATE (\n    [Ventas],\n    [Beneficio] > 0\n)"
+    },
+    "prompt": "¿Cómo debes corregir la medida?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Sustituir el filtro por FILTER ( VALUES ( 'Fecha'[Mes] ), [Beneficio] > 0 )",
+        "correct": true,
+        "explanation": "Un filtro booleano no puede referirse a una medida. FILTER recorre los meses, evalúa [Beneficio] en cada uno y devuelve una tabla de meses que CALCULATE usa como filtro."
+      },
+      {
+        "id": "b",
+        "text": "Envolver el filtro en KEEPFILTERS ( [Beneficio] > 0 )",
+        "correct": false,
+        "explanation": "KEEPFILTERS no cambia las restricciones de los filtros booleanos; la expresión sigue usando una medida y seguiría siendo inválida."
+      },
+      {
+        "id": "c",
+        "text": "Sustituir CALCULATE por SUMX ( Ventas, [Beneficio] > 0 )",
+        "correct": false,
+        "explanation": "SUMX iteraría las filas de Ventas evaluando una comparación lógica (verdadero/falso), no el importe; nunca devolvería las ventas de los meses rentables."
+      },
+      {
+        "id": "d",
+        "text": "Crear la fórmula como columna calculada en lugar de medida",
+        "correct": false,
+        "explanation": "La restricción es la misma en cualquier CALCULATE; además, una columna calculada no responde a los filtros del informe."
+      }
+    ],
+    "keyPoint": "Usa FILTER como argumento de CALCULATE solo cuando la condición necesita una medida u otra lógica que un filtro booleano no admite.",
+    "references": [
+      {
+        "title": "Evitar el uso de FILTER como argumento de filtro",
+        "url": "https://learn.microsoft.com/es-es/dax/best-practices/dax-avoid-avoid-filter-as-filter-argument"
+      },
+      {
+        "title": "Función FILTER",
+        "url": "https://learn.microsoft.com/es-es/dax/filter-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-008",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 3,
+    "scenario": "Revisas una medida lenta en un modelo de importación y quieres que devuelva exactamente los mismos resultados con mejor rendimiento.",
+    "code": {
+      "language": "dax",
+      "content": "Ventas rojas =\nCALCULATE (\n    [Ventas],\n    FILTER ( 'Producto', 'Producto'[Color] = \"Rojo\" )\n)"
+    },
+    "prompt": "Completa la recomendación.",
+    "template": "Sustituye el argumento FILTER por {{b1}} envuelta en la función {{b2}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "la expresión booleana 'Producto'[Color] = \"Rojo\""
+          },
+          {
+            "id": "o2",
+            "text": "la expresión ALL ( 'Producto' )"
+          },
+          {
+            "id": "o3",
+            "text": "la expresión VALUES ( 'Producto'[Color] )"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Las tablas de importación se guardan por columnas y están optimizadas para filtrar columnas con expresiones booleanas; filtrar toda la tabla Producto con FILTER es menos eficiente. ALL o VALUES no aplicarían la condición Rojo."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "KEEPFILTERS"
+          },
+          {
+            "id": "o2",
+            "text": "REMOVEFILTERS"
+          },
+          {
+            "id": "o3",
+            "text": "ALLEXCEPT"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "FILTER sobre 'Producto' respeta los filtros de color existentes; para mantener ese comportamiento, KEEPFILTERS evita que el filtro booleano sobrescriba los filtros actuales de Color. REMOVEFILTERS y ALLEXCEPT quitan filtros."
+      }
+    ],
+    "keyPoint": "Prefiere filtros booleanos (con KEEPFILTERS si hay que conservar filtros) a FILTER sobre tablas completas.",
+    "references": [
+      {
+        "title": "Evitar el uso de FILTER como argumento de filtro",
+        "url": "https://learn.microsoft.com/es-es/dax/best-practices/dax-avoid-avoid-filter-as-filter-argument"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-009",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "scenario": "La tabla Fecha está marcada como tabla de fechas y relacionada con Ventas. Una matriz muestra los meses en filas y la medida del anexo. Las ventas mensuales son las de la tabla.",
+    "code": {
+      "language": "dax",
+      "content": "Ventas YTD =\nTOTALYTD ( [Ventas], 'Fecha'[Fecha] )"
+    },
+    "table": {
+      "caption": "Ventas mensuales",
+      "headers": [
+        "Mes",
+        "Ventas"
+      ],
+      "rows": [
+        [
+          "Noviembre 2025",
+          "90"
+        ],
+        [
+          "Diciembre 2025",
+          "80"
+        ],
+        [
+          "Enero 2026",
+          "100"
+        ],
+        [
+          "Febrero 2026",
+          "120"
+        ],
+        [
+          "Marzo 2026",
+          "90"
+        ],
+        [
+          "Abril 2026",
+          "110"
+        ],
+        [
+          "Mayo 2026",
+          "130"
+        ]
+      ]
+    },
+    "prompt": "¿Qué valor muestra Ventas YTD en la fila Mayo 2026?",
+    "options": [
+      {
+        "id": "a",
+        "text": "550",
+        "correct": true,
+        "explanation": "TOTALYTD acumula desde el inicio del año (1 de enero, por defecto) hasta la última fecha del contexto: 100 + 120 + 90 + 110 + 130 = 550."
+      },
+      {
+        "id": "b",
+        "text": "720",
+        "correct": false,
+        "explanation": "Incluye noviembre y diciembre de 2025; el acumulado se reinicia cada 1 de enero salvo que indiques otra fecha de fin de año."
+      },
+      {
+        "id": "c",
+        "text": "130",
+        "correct": false,
+        "explanation": "Son solo las ventas de mayo; TOTALYTD amplía el contexto a todas las fechas del año hasta mayo."
+      },
+      {
+        "id": "d",
+        "text": "630",
+        "correct": false,
+        "explanation": "Suma diciembre de 2025 (80); el año a la fecha no incluye meses del año anterior."
+      }
+    ],
+    "keyPoint": "TOTALYTD acumula desde el inicio del año hasta la última fecha del contexto; el año termina el 31/12 salvo que indiques otro fin.",
+    "references": [
+      {
+        "title": "Función TOTALYTD",
+        "url": "https://learn.microsoft.com/es-es/dax/totalytd-function-dax"
+      },
+      {
+        "title": "Funciones de inteligencia de tiempo",
+        "url": "https://learn.microsoft.com/es-es/dax/time-intelligence-functions-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-010",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "scenario": "Creas dos medidas de comparación temporal. La tabla Fecha está marcada como tabla de fechas.",
+    "code": {
+      "language": "dax",
+      "content": "Ventas AA =\nCALCULATE ( [Ventas], <1> ( 'Fecha'[Fecha] ) )\n\nVentas mes anterior =\nCALCULATE ( [Ventas], DATEADD ( 'Fecha'[Fecha], -1, <2> ) )"
+    },
+    "prompt": "Completa las medidas.",
+    "template": "Para que Ventas AA devuelva el mismo periodo del año anterior (p. ej., marzo 2025 en la fila de marzo 2026), <1> debe ser {{b1}}. Para desplazar un mes, <2> debe ser {{b2}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "SAMEPERIODLASTYEAR"
+          },
+          {
+            "id": "o2",
+            "text": "PREVIOUSYEAR"
+          },
+          {
+            "id": "o3",
+            "text": "DATESYTD"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "SAMEPERIODLASTYEAR desplaza las fechas del contexto un año atrás (equivale a DATEADD con -1 YEAR). PREVIOUSYEAR devolvería todas las fechas del año anterior y DATESYTD el acumulado del año actual."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "MONTH"
+          },
+          {
+            "id": "o2",
+            "text": "\"MONTH\""
+          },
+          {
+            "id": "o3",
+            "text": "30"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "El intervalo de DATEADD es una enumeración (YEAR, QUARTER, MONTH, DAY) y se escribe sin comillas; un número no es un intervalo válido."
+      }
+    ],
+    "keyPoint": "SAMEPERIODLASTYEAR = DATEADD(fechas, -1, YEAR); el intervalo de DATEADD va sin comillas.",
+    "references": [
+      {
+        "title": "Función SAMEPERIODLASTYEAR",
+        "url": "https://learn.microsoft.com/es-es/dax/sameperiodlastyear-function-dax"
+      },
+      {
+        "title": "Función DATEADD",
+        "url": "https://learn.microsoft.com/es-es/dax/dateadd-function-dax"
+      },
+      {
+        "title": "Función PREVIOUSYEAR",
+        "url": "https://learn.microsoft.com/es-es/dax/previousyear-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-011",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "prompt": "Empareja cada necesidad con la función de inteligencia de tiempo que la resuelve.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Devolver directamente el valor acumulado del año hasta la fecha de una expresión",
+        "answerId": "c1",
+        "explanation": "TOTALYTD recibe una expresión y devuelve un valor escalar con el acumulado del año."
+      },
+      {
+        "id": "m2",
+        "text": "Obtener la tabla de fechas desde el inicio del año hasta la última fecha del contexto, para pasarla como filtro a CALCULATE",
+        "answerId": "c2",
+        "explanation": "DATESYTD devuelve una tabla de fechas; CALCULATE ( [Ventas], DATESYTD ( 'Fecha'[Fecha] ) ) equivale a TOTALYTD."
+      },
+      {
+        "id": "m3",
+        "text": "Obtener las fechas equivalentes del año anterior",
+        "answerId": "c3",
+        "explanation": "SAMEPERIODLASTYEAR devuelve las fechas del contexto desplazadas un año atrás."
+      },
+      {
+        "id": "m4",
+        "text": "Desplazar las fechas del contexto tres meses hacia atrás",
+        "answerId": "c4",
+        "explanation": "DATEADD ( 'Fecha'[Fecha], -3, MONTH ) desplaza cualquier número de intervalos."
+      },
+      {
+        "id": "m5",
+        "text": "Evaluar una expresión en la última fecha del mes del contexto",
+        "answerId": "c5",
+        "explanation": "CLOSINGBALANCEMONTH evalúa la expresión en la última fecha del mes, útil para saldos de cierre."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "TOTALYTD"
+      },
+      {
+        "id": "c2",
+        "text": "DATESYTD"
+      },
+      {
+        "id": "c3",
+        "text": "SAMEPERIODLASTYEAR"
+      },
+      {
+        "id": "c4",
+        "text": "DATEADD"
+      },
+      {
+        "id": "c5",
+        "text": "CLOSINGBALANCEMONTH"
+      },
+      {
+        "id": "c6",
+        "text": "DATESMTD"
+      }
+    ],
+    "keyPoint": "TOTALYTD (y sus variantes QTD y MTD) y CLOSINGBALANCEMONTH devuelven valores; DATESYTD, DATESMTD, SAMEPERIODLASTYEAR y DATEADD devuelven tablas de fechas para filtrar.",
+    "references": [
+      {
+        "title": "Funciones de inteligencia de tiempo",
+        "url": "https://learn.microsoft.com/es-es/dax/time-intelligence-functions-dax"
+      },
+      {
+        "title": "Función DATESYTD",
+        "url": "https://learn.microsoft.com/es-es/dax/datesytd-function-dax"
+      },
+      {
+        "title": "Función CLOSINGBALANCEMONTH",
+        "url": "https://learn.microsoft.com/es-es/dax/closingbalancemonth-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-012",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "scenario": "Dirección quiere ver la variación interanual en una matriz con los meses en filas. La tabla Fecha está marcada como tabla de fechas.",
+    "code": {
+      "language": "dax",
+      "content": "Ventas AA =\nCALCULATE ( [Ventas], SAMEPERIODLASTYEAR ( 'Fecha'[Fecha] ) )\n\nVar % AA =\nDIVIDE ( [Ventas] - [Ventas AA], [Ventas AA] )"
+    },
+    "table": {
+      "caption": "Ventas mensuales",
+      "headers": [
+        "Mes",
+        "Ventas"
+      ],
+      "rows": [
+        [
+          "Febrero 2025",
+          "70"
+        ],
+        [
+          "Marzo 2025",
+          "80"
+        ],
+        [
+          "Abril 2025",
+          "90"
+        ],
+        [
+          "Febrero 2026",
+          "95"
+        ],
+        [
+          "Marzo 2026",
+          "100"
+        ],
+        [
+          "Abril 2026",
+          "110"
+        ]
+      ]
+    },
+    "prompt": "¿Qué valor muestra Var % AA en la fila Marzo 2026?",
+    "options": [
+      {
+        "id": "a",
+        "text": "25 %",
+        "correct": true,
+        "explanation": "Ventas AA en marzo 2026 son las de marzo 2025 (80). (100 − 80) / 80 = 0,25."
+      },
+      {
+        "id": "b",
+        "text": "20 %",
+        "correct": false,
+        "explanation": "Es (100 − 80) / 100: divide entre las ventas actuales, pero la medida divide entre las del año anterior."
+      },
+      {
+        "id": "c",
+        "text": "5,26 %",
+        "correct": false,
+        "explanation": "Compara con febrero 2026 (95), que sería una variación respecto al mes anterior, no interanual."
+      },
+      {
+        "id": "d",
+        "text": "22,2 %",
+        "correct": false,
+        "explanation": "Es la variación de abril (110 frente a 90), no la de marzo."
+      }
+    ],
+    "keyPoint": "SAMEPERIODLASTYEAR trae el mismo periodo del año anterior; la variación se divide entre el valor del año anterior.",
+    "references": [
+      {
+        "title": "Función SAMEPERIODLASTYEAR",
+        "url": "https://learn.microsoft.com/es-es/dax/sameperiodlastyear-function-dax"
+      },
+      {
+        "title": "Función DIVIDE",
+        "url": "https://learn.microsoft.com/es-es/dax/divide-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-013",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 3,
+    "prompt": "Indica si cada afirmación sobre las funciones de inteligencia de tiempo clásicas es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "SAMEPERIODLASTYEAR ( 'Fecha'[Fecha] ) devuelve las mismas fechas que DATEADD ( 'Fecha'[Fecha], -1, YEAR ).",
+        "answer": true,
+        "explanation": "La documentación indica que son equivalentes para la sintaxis de columna de fecha."
+      },
+      {
+        "id": "s2",
+        "text": "La tabla que devuelve DATEADD solo incluye fechas que existen en la columna de fechas.",
+        "answer": true,
+        "explanation": "DATEADD no inventa fechas: si la tabla de fechas no llega al periodo desplazado, esas fechas no aparecen. Por eso conviene una tabla de fechas completa."
+      },
+      {
+        "id": "s3",
+        "text": "TOTALYTD devuelve una tabla de fechas que puedes pasar como filtro a CALCULATE.",
+        "answer": false,
+        "explanation": "TOTALYTD devuelve un valor escalar. La que devuelve la tabla de fechas del año hasta la fecha es DATESYTD."
+      },
+      {
+        "id": "s4",
+        "text": "Con la sintaxis de columna de fecha, DATEADD devuelve un error si las fechas del contexto no forman un intervalo contiguo.",
+        "answer": true,
+        "explanation": "La referencia de DATEADD indica que, con columna de fecha, un contexto de fechas no contiguo produce un error."
+      }
+    ],
+    "keyPoint": "Diferencia funciones que devuelven tablas de fechas (DATEADD, DATESYTD, SAMEPERIODLASTYEAR) de las que devuelven valores (TOTALYTD).",
+    "references": [
+      {
+        "title": "Función DATEADD",
+        "url": "https://learn.microsoft.com/es-es/dax/dateadd-function-dax"
+      },
+      {
+        "title": "Función SAMEPERIODLASTYEAR",
+        "url": "https://learn.microsoft.com/es-es/dax/sameperiodlastyear-function-dax"
+      },
+      {
+        "title": "Función TOTALYTD",
+        "url": "https://learn.microsoft.com/es-es/dax/totalytd-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-014",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "scenario": "El responsable de logística analiza los plazos de entrega en días. Algunos envíos internacionales tardan mucho más que el resto y distorsionan la media, así que prefiere un valor central menos sensible a esos casos.",
+    "code": {
+      "language": "dax",
+      "content": "Plazo central =\nMEDIAN ( Entregas[Dias] )"
+    },
+    "table": {
+      "caption": "Tabla Entregas",
+      "headers": [
+        "IdEnvio",
+        "Dias"
+      ],
+      "rows": [
+        [
+          "E1",
+          "2"
+        ],
+        [
+          "E2",
+          "3"
+        ],
+        [
+          "E3",
+          "3"
+        ],
+        [
+          "E4",
+          "4"
+        ],
+        [
+          "E5",
+          "18"
+        ]
+      ]
+    },
+    "prompt": "¿Qué valor devuelve la medida?",
+    "options": [
+      {
+        "id": "a",
+        "text": "3",
+        "correct": true,
+        "explanation": "MEDIAN ordena los valores (2, 3, 3, 4, 18) y devuelve el central: 3. El valor atípico 18 no lo altera."
+      },
+      {
+        "id": "b",
+        "text": "6",
+        "correct": false,
+        "explanation": "6 es la media (30 / 5), lo que devolvería AVERAGE; el valor 18 la eleva."
+      },
+      {
+        "id": "c",
+        "text": "3,5",
+        "correct": false,
+        "explanation": "Con cinco valores la mediana es el tercero; no se promedian los dos centrales (eso solo ocurre con un número par de valores)."
+      },
+      {
+        "id": "d",
+        "text": "4",
+        "correct": false,
+        "explanation": "4 es el cuarto valor ordenado, no el central."
+      }
+    ],
+    "keyPoint": "MEDIAN devuelve el valor central y es más robusta que AVERAGE ante valores atípicos.",
+    "references": [
+      {
+        "title": "Función MEDIAN",
+        "url": "https://learn.microsoft.com/es-es/dax/median-function-dax"
+      },
+      {
+        "title": "Funciones estadísticas",
+        "url": "https://learn.microsoft.com/es-es/dax/statistical-functions-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-015",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "prompt": "Empareja cada análisis con la función estadística de DAX adecuada.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Valor central de los plazos de entrega, poco sensible a valores atípicos",
+        "answerId": "c1",
+        "explanation": "MEDIAN devuelve el valor central de una columna numérica."
+      },
+      {
+        "id": "m2",
+        "text": "Dispersión de los importes de una muestra de pedidos auditados",
+        "answerId": "c2",
+        "explanation": "STDEV.S calcula la desviación estándar suponiendo que los datos son una muestra (divide entre n − 1)."
+      },
+      {
+        "id": "m3",
+        "text": "Plazo por debajo del cual se sitúa el 90 % de las entregas",
+        "answerId": "c4",
+        "explanation": "PERCENTILE.INC devuelve el percentil k de una columna, con k entre 0 y 1 incluidos; aquí k = 0,9 (en el código, 0.9)."
+      },
+      {
+        "id": "m4",
+        "text": "Importe medio por pedido cuando la tabla tiene una fila por línea de pedido",
+        "answerId": "c5",
+        "explanation": "AVERAGEX permite iterar sobre una tabla de pedidos (p. ej., VALUES de IdPedido) y promediar el importe de cada uno."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "MEDIAN"
+      },
+      {
+        "id": "c2",
+        "text": "STDEV.S"
+      },
+      {
+        "id": "c3",
+        "text": "STDEV.P"
+      },
+      {
+        "id": "c4",
+        "text": "PERCENTILE.INC"
+      },
+      {
+        "id": "c5",
+        "text": "AVERAGEX"
+      },
+      {
+        "id": "c6",
+        "text": "COUNTX"
+      }
+    ],
+    "keyPoint": "MEDIAN para el valor central, STDEV.S/STDEV.P para la dispersión de una muestra o de toda la población, PERCENTILE.INC para percentiles y AVERAGEX para promedios sobre una tabla.",
+    "references": [
+      {
+        "title": "Funciones estadísticas",
+        "url": "https://learn.microsoft.com/es-es/dax/statistical-functions-dax"
+      },
+      {
+        "title": "Función STDEV.S",
+        "url": "https://learn.microsoft.com/es-es/dax/stdev-s-function-dax"
+      },
+      {
+        "title": "Función PERCENTILE.INC",
+        "url": "https://learn.microsoft.com/es-es/dax/percentile-inc-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-016",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 3,
+    "scenario": "La tabla Ventas tiene una fila por línea de pedido. Marketing quiere conocer el ticket medio por pedido, no el importe medio por línea.",
+    "code": {
+      "language": "dax",
+      "content": "Ticket medio =\nAVERAGEX (\n    VALUES ( Ventas[IdPedido] ),\n    CALCULATE ( SUM ( Ventas[Importe] ) )\n)"
+    },
+    "table": {
+      "caption": "Tabla Ventas",
+      "headers": [
+        "IdPedido",
+        "Línea",
+        "Importe"
+      ],
+      "rows": [
+        [
+          "1",
+          "1",
+          "100"
+        ],
+        [
+          "1",
+          "2",
+          "50"
+        ],
+        [
+          "2",
+          "1",
+          "30"
+        ],
+        [
+          "3",
+          "1",
+          "60"
+        ],
+        [
+          "3",
+          "2",
+          "20"
+        ],
+        [
+          "3",
+          "3",
+          "40"
+        ]
+      ]
+    },
+    "prompt": "¿Qué valor devuelve la medida sin filtros?",
+    "options": [
+      {
+        "id": "a",
+        "text": "100",
+        "correct": true,
+        "explanation": "AVERAGEX recorre los tres pedidos; CALCULATE hace la transición de contexto y suma el importe de cada uno (150, 30 y 120). La media es 300 / 3 = 100."
+      },
+      {
+        "id": "b",
+        "text": "50",
+        "correct": false,
+        "explanation": "Es AVERAGE ( Ventas[Importe] ): la media por línea (300 / 6), no por pedido."
+      },
+      {
+        "id": "c",
+        "text": "300",
+        "correct": false,
+        "explanation": "Es el importe total; AVERAGEX lo reparte entre el número de pedidos."
+      },
+      {
+        "id": "d",
+        "text": "150",
+        "correct": false,
+        "explanation": "Es el importe del pedido 1, el mayor; la medida promedia los tres pedidos."
+      }
+    ],
+    "keyPoint": "Para promediar a otra granularidad, itera con AVERAGEX sobre los valores de esa granularidad y usa CALCULATE para la transición de contexto.",
+    "references": [
+      {
+        "title": "Función AVERAGEX",
+        "url": "https://learn.microsoft.com/es-es/dax/averagex-function-dax"
+      },
+      {
+        "title": "Función CALCULATE",
+        "url": "https://learn.microsoft.com/es-es/dax/calculate-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-017",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 3,
+    "scenario": "El almacén registra recuentos de existencias en fechas irregulares. La tabla Fecha (con todos los días) está marcada como tabla de fechas. Una tarjeta, filtrada a enero de 2026 sin filtro de producto, muestra la medida Existencias.",
+    "code": {
+      "language": "dax",
+      "content": "Unidades = SUM ( Inventario[Unidades] )\n\nExistencias =\nCALCULATE (\n    [Unidades],\n    LASTNONBLANK ( 'Fecha'[Fecha], [Unidades] )\n)"
+    },
+    "table": {
+      "caption": "Tabla Inventario (enero de 2026)",
+      "headers": [
+        "Fecha",
+        "Producto",
+        "Unidades"
+      ],
+      "rows": [
+        [
+          "05/01/2026",
+          "A",
+          "100"
+        ],
+        [
+          "05/01/2026",
+          "B",
+          "50"
+        ],
+        [
+          "20/01/2026",
+          "A",
+          "80"
+        ],
+        [
+          "20/01/2026",
+          "B",
+          "40"
+        ],
+        [
+          "27/01/2026",
+          "A",
+          "70"
+        ]
+      ]
+    },
+    "prompt": "¿Qué valor muestra la tarjeta?",
+    "options": [
+      {
+        "id": "a",
+        "text": "70",
+        "correct": true,
+        "explanation": "LASTNONBLANK recorre las fechas de enero y evalúa la medida [Unidades] en cada una (la medida provoca la transición de contexto). La última con valor es el 27/01/2026; CALCULATE filtra ese día, en el que solo hay recuento de A, así que el resultado es 70."
+      },
+      {
+        "id": "b",
+        "text": "110",
+        "correct": false,
+        "explanation": "Sumaría el último recuento de cada producto (A 70 + B 40); para eso habría que calcular la última fecha por producto, por ejemplo iterando los productos con SUMX."
+      },
+      {
+        "id": "c",
+        "text": "340",
+        "correct": false,
+        "explanation": "Es la suma de todos los recuentos del mes; precisamente es lo que una medida semiaditiva evita, porque las existencias no se suman en el tiempo."
+      },
+      {
+        "id": "d",
+        "text": "(en blanco)",
+        "correct": false,
+        "explanation": "Sería el resultado de LASTDATE o CLOSINGBALANCEMONTH, que evalúan el 31/01/2026, día sin datos. LASTNONBLANK busca la última fecha con datos."
+      }
+    ],
+    "keyPoint": "Para saldos con fechas irregulares, LASTNONBLANK busca la última fecha con datos; LASTDATE y CLOSINGBALANCEMONTH usan el último día del periodo.",
+    "references": [
+      {
+        "title": "Función LASTNONBLANK",
+        "url": "https://learn.microsoft.com/es-es/dax/lastnonblank-function-dax"
+      },
+      {
+        "title": "Función CLOSINGBALANCEMONTH",
+        "url": "https://learn.microsoft.com/es-es/dax/closingbalancemonth-function-dax"
+      },
+      {
+        "title": "Función LASTDATE",
+        "url": "https://learn.microsoft.com/es-es/dax/lastdate-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-018",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "scenario": "La tabla Saldos guarda el saldo diario de cada cuenta bancaria. Hoy la medida es SUM ( Saldos[Importe] ) y, en una matriz con años y meses en filas, el total de cada mes y de cada año suma todos los saldos diarios. Vas a corregirla con la fórmula del anexo.",
+    "code": {
+      "language": "dax",
+      "content": "Saldo =\nCALCULATE (\n    SUM ( Saldos[Importe] ),\n    <1> ( 'Fecha'[Fecha] )\n)"
+    },
+    "prompt": "Completa la frase.",
+    "template": "Para que cada periodo muestre el saldo de su último día, <1> debe ser {{b1}}. Si los saldos solo se cargan en días laborables y el último día de algunos meses no tiene datos, es más robusto filtrar con {{b2}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "LASTDATE"
+          },
+          {
+            "id": "o2",
+            "text": "DATESYTD"
+          },
+          {
+            "id": "o3",
+            "text": "ALL"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "LASTDATE devuelve la última fecha del contexto (el último día del mes o del año), con lo que el saldo no se suma en el tiempo. DATESYTD acumularía todo el año y ALL quitaría el filtro de fechas."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "LASTNONBLANK sobre las fechas, evaluando una medida con la suma del saldo"
+          },
+          {
+            "id": "o2",
+            "text": "FIRSTDATE sobre las fechas"
+          },
+          {
+            "id": "o3",
+            "text": "SAMEPERIODLASTYEAR sobre las fechas"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "LASTNONBLANK devuelve la última fecha en la que la expresión no está en blanco; si la expresión es una medida (o va dentro de CALCULATE), se evalúa en cada fecha y encuentra el último día con saldo aunque sea anterior al fin de mes. FIRSTDATE tomaría el primer día y SAMEPERIODLASTYEAR, el año anterior."
+      }
+    ],
+    "keyPoint": "Saldos (semiaditivos): filtra al último día del periodo con LASTDATE o al último día con datos con LASTNONBLANK.",
+    "references": [
+      {
+        "title": "Función LASTDATE",
+        "url": "https://learn.microsoft.com/es-es/dax/lastdate-function-dax"
+      },
+      {
+        "title": "Función LASTNONBLANK",
+        "url": "https://learn.microsoft.com/es-es/dax/lastnonblank-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-019",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "prompt": "¿Qué dos métricas requieren una medida semiaditiva, que no se debe sumar a lo largo del tiempo? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Existencias en almacén registradas cada día",
+        "correct": true,
+        "explanation": "Las existencias son una foto en un momento dado: sumar las de todos los días de un mes no tiene sentido; se toma la del último día (o la última disponible)."
+      },
+      {
+        "id": "b",
+        "text": "Saldo diario de una cuenta bancaria",
+        "correct": true,
+        "explanation": "El saldo se puede sumar entre cuentas, pero no entre días; para un mes se muestra el saldo de cierre."
+      },
+      {
+        "id": "c",
+        "text": "Unidades vendidas por día",
+        "correct": false,
+        "explanation": "Las ventas son un flujo: las unidades de cada día se suman correctamente para obtener las del mes."
+      },
+      {
+        "id": "d",
+        "text": "Importe facturado por pedido",
+        "correct": false,
+        "explanation": "La facturación es totalmente aditiva en todas las dimensiones, incluido el tiempo."
+      },
+      {
+        "id": "e",
+        "text": "Horas trabajadas por empleado y día",
+        "correct": false,
+        "explanation": "Las horas se acumulan: las de cada día se suman para obtener las del mes."
+      }
+    ],
+    "keyPoint": "Saldos y existencias son semiaditivos: se suman entre entidades, pero en el tiempo se toma el valor de cierre.",
+    "references": [
+      {
+        "title": "Función CLOSINGBALANCEMONTH",
+        "url": "https://learn.microsoft.com/es-es/dax/closingbalancemonth-function-dax"
+      },
+      {
+        "title": "Inteligencia de tiempo en Power BI con DAX",
+        "url": "https://learn.microsoft.com/es-es/training/modules/dax-power-bi-time-intelligence/"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-020",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 1,
+    "scenario": "Lucía, analista de un modelo de importación, necesita mostrar hoy la variación de las ventas respecto al año anterior. Todavía no domina DAX y quiere ver qué fórmula se genera para aprender de ella.",
+    "prompt": "¿Qué debe hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crear una nueva medida rápida (*quick measure*) con el cálculo Cambio de año a año de la categoría Inteligencia de tiempo",
+        "correct": true,
+        "explanation": "Las medidas rápidas generan el DAX a partir de un cuadro de diálogo, y la fórmula queda visible en la barra de fórmulas para estudiarla o modificarla."
+      },
+      {
+        "id": "b",
+        "text": "Crear una medida rápida Total acumulado de la categoría Totales",
+        "correct": false,
+        "explanation": "El total acumulado suma valores sucesivos; no compara con el año anterior."
+      },
+      {
+        "id": "c",
+        "text": "Agregar en Power Query una columna con las ventas del año anterior",
+        "correct": false,
+        "explanation": "Una columna estática no responde a los filtros del informe y además aumenta el modelo; la comparación temporal se resuelve con medidas."
+      },
+      {
+        "id": "d",
+        "text": "Crear un grupo de cálculo con un elemento de cálculo de año anterior",
+        "correct": false,
+        "explanation": "Un grupo de cálculo exige escribir DAX con SELECTEDMEASURE; no resuelve la necesidad de generar la fórmula sin escribirla."
+      }
+    ],
+    "keyPoint": "Las medidas rápidas generan DAX habitual (p. ej., Cambio de año a año) y te dejan ver y editar la fórmula.",
+    "references": [
+      {
+        "title": "Uso de medidas rápidas para cálculos comunes",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-quick-measures"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-021",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre las medidas rápidas (*quick measures*) es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puedes ver la fórmula DAX que genera una medida rápida en la barra de fórmulas y modificarla.",
+        "answer": true,
+        "explanation": "Al seleccionar la medida rápida en el panel Datos, la barra de fórmulas muestra su DAX, que puedes editar como cualquier medida."
+      },
+      {
+        "id": "s2",
+        "text": "Puedes crear medidas rápidas de inteligencia de tiempo en modo DirectQuery.",
+        "answer": false,
+        "explanation": "No se pueden crear medidas rápidas de inteligencia de tiempo en modo DirectQuery por el impacto en el rendimiento de las consultas traducidas al origen."
+      },
+      {
+        "id": "s3",
+        "text": "Una medida rápida creada desde el área Valores de un objeto visual puede usarse en cualquier otro objeto visual del informe.",
+        "answer": true,
+        "explanation": "La medida se agrega al panel Datos como cualquier otra y está disponible para todos los objetos visuales."
+      },
+      {
+        "id": "s4",
+        "text": "Si importas tu propia tabla de fechas para usar medidas rápidas de inteligencia de tiempo, debes marcarla como tabla de fechas.",
+        "answer": true,
+        "explanation": "La documentación indica que, al importar tu propia tabla de fechas, debes marcarla como tabla de fechas para esas medidas rápidas."
+      }
+    ],
+    "keyPoint": "Las medidas rápidas son medidas normales con DAX visible; las de inteligencia de tiempo no están disponibles en DirectQuery.",
+    "references": [
+      {
+        "title": "Uso de medidas rápidas para cálculos comunes",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-quick-measures"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-022",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 1,
+    "prompt": "Empareja cada cálculo de medida rápida con su categoría en el cuadro de diálogo Medidas rápidas.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Total acumulado",
+        "answerId": "c1",
+        "explanation": "El total acumulado está en la categoría Totales, junto con los totales por categoría."
+      },
+      {
+        "id": "m2",
+        "text": "Promedio ponderado por categoría",
+        "answerId": "c2",
+        "explanation": "Pertenece a Agregación por categoría, con el promedio, la varianza, el máximo y el mínimo por categoría."
+      },
+      {
+        "id": "m3",
+        "text": "Cambio de mes a mes",
+        "answerId": "c3",
+        "explanation": "Es un cálculo de Inteligencia de tiempo, como el total del año a la fecha o el cambio de año a año."
+      },
+      {
+        "id": "m4",
+        "text": "Coeficiente de correlación",
+        "answerId": "c4",
+        "explanation": "Está en Operaciones matemáticas, con la suma, la resta, la división o la diferencia de porcentaje."
+      },
+      {
+        "id": "m5",
+        "text": "Lista concatenada de valores",
+        "answerId": "c5",
+        "explanation": "Es un cálculo de la categoría Texto, junto con la clasificación por estrellas."
+      },
+      {
+        "id": "m6",
+        "text": "Diferencia porcentual del valor filtrado",
+        "answerId": "c6",
+        "explanation": "Pertenece a Filtros, con el valor filtrado y la diferencia del valor filtrado."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Totales"
+      },
+      {
+        "id": "c2",
+        "text": "Agregación por categoría"
+      },
+      {
+        "id": "c3",
+        "text": "Inteligencia de tiempo"
+      },
+      {
+        "id": "c4",
+        "text": "Operaciones matemáticas"
+      },
+      {
+        "id": "c5",
+        "text": "Texto"
+      },
+      {
+        "id": "c6",
+        "text": "Filtros"
+      }
+    ],
+    "keyPoint": "Las medidas rápidas se agrupan en agregación por categoría, filtros, inteligencia de tiempo, totales, operaciones matemáticas y texto.",
+    "references": [
+      {
+        "title": "Uso de medidas rápidas para cálculos comunes",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-quick-measures"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-023",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 3,
+    "scenario": "Clientes (C1, C2 y C3) se relaciona uno a varios con Ventas. Agregas a Clientes la columna calculada del anexo para mostrar el total comprado por cada cliente.",
+    "code": {
+      "language": "dax",
+      "content": "Total compras = SUM ( Ventas[Importe] )"
+    },
+    "table": {
+      "caption": "Tabla Ventas",
+      "headers": [
+        "IdCliente",
+        "Importe"
+      ],
+      "rows": [
+        [
+          "C1",
+          "100"
+        ],
+        [
+          "C2",
+          "50"
+        ],
+        [
+          "C1",
+          "30"
+        ]
+      ]
+    },
+    "prompt": "¿Qué valor tiene la columna Total compras en la fila del cliente C2?",
+    "options": [
+      {
+        "id": "a",
+        "text": "180",
+        "correct": true,
+        "explanation": "En una columna calculada hay contexto de fila, pero no contexto de filtro: SUM no queda filtrada por el cliente de la fila y devuelve el total de Ventas (180) en todas las filas, también en C3."
+      },
+      {
+        "id": "b",
+        "text": "50",
+        "correct": false,
+        "explanation": "Sería el resultado con CALCULATE ( SUM ( Ventas[Importe] ) ): la transición de contexto convierte la fila de Clientes en un filtro que se propaga a Ventas."
+      },
+      {
+        "id": "c",
+        "text": "(en blanco)",
+        "correct": false,
+        "explanation": "SUM no devuelve blanco aquí: sin contexto de filtro ve todas las filas de Ventas."
+      },
+      {
+        "id": "d",
+        "text": "Error: no se puede determinar un valor único",
+        "correct": false,
+        "explanation": "SUM es una agregación, así que no hay ambigüedad; ese error aparece al hacer referencia a una columna sin agregarla y sin contexto de fila sobre su tabla."
+      }
+    ],
+    "keyPoint": "El contexto de fila no filtra otras tablas; para ello hace falta la transición de contexto (CALCULATE o una medida).",
+    "references": [
+      {
+        "title": "Función CALCULATE",
+        "url": "https://learn.microsoft.com/es-es/dax/calculate-function-dax"
+      },
+      {
+        "title": "Columnas calculadas en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-calculated-columns"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-024",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "scenario": "Ventas tiene una relación varios a uno con Productos. Quieres una columna calculada en Ventas con el margen de cada línea, pero la fórmula del anexo muestra un error porque no se puede determinar un único valor de Productos[Coste].",
+    "code": {
+      "language": "dax",
+      "content": "Margen =\nVentas[Importe] - Ventas[Cantidad] * Productos[Coste]"
+    },
+    "prompt": "¿Qué fórmula corrige la columna calculada?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Margen = Ventas[Importe] - Ventas[Cantidad] * RELATED ( Productos[Coste] )",
+        "correct": true,
+        "explanation": "RELATED usa la relación desde el lado «varios» (Ventas) y devuelve el coste del producto de la fila actual."
+      },
+      {
+        "id": "b",
+        "text": "Margen = Ventas[Importe] - Ventas[Cantidad] * SUM ( Productos[Coste] )",
+        "correct": false,
+        "explanation": "En una columna calculada no hay contexto de filtro, así que SUM sumaría el coste de todos los productos en cada fila."
+      },
+      {
+        "id": "c",
+        "text": "Margen = Ventas[Importe] - Ventas[Cantidad] * RELATEDTABLE ( Productos[Coste] )",
+        "correct": false,
+        "explanation": "RELATEDTABLE recibe una tabla (no una columna) y devuelve una tabla del lado «varios»; aquí necesitas un valor del lado «uno»."
+      },
+      {
+        "id": "d",
+        "text": "La misma fórmula, pero creada como medida",
+        "correct": false,
+        "explanation": "En una medida tampoco puedes hacer referencia a columnas sin agregarlas ni iterarlas; el error se mantendría."
+      }
+    ],
+    "keyPoint": "En una columna calculada del lado «varios», usa RELATED para leer columnas del lado «uno».",
+    "references": [
+      {
+        "title": "Función RELATED",
+        "url": "https://learn.microsoft.com/es-es/dax/related-function-dax"
+      },
+      {
+        "title": "Columnas calculadas en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-calculated-columns"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-025",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "scenario": "Creas una tabla de fechas calculada para los años 2024 a 2026, con columnas de año, número de mes y nombre de mes.",
+    "code": {
+      "language": "dax",
+      "content": "Fecha =\nADDCOLUMNS (\n    <1> ( DATE ( 2024, 1, 1 ), DATE ( 2026, 12, 31 ) ),\n    \"Año\", YEAR ( [Date] ),\n    \"NumMes\", MONTH ( [Date] ),\n    \"Mes\", FORMAT ( [Date], \"mmmm\" )\n)"
+    },
+    "prompt": "Completa la frase.",
+    "template": "La función que falta en <1> es {{b1}}. Para que los meses aparezcan en orden cronológico, ordena la columna Mes por {{b2}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "CALENDAR"
+          },
+          {
+            "id": "o2",
+            "text": "CALENDARAUTO"
+          },
+          {
+            "id": "o3",
+            "text": "DATESBETWEEN"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "CALENDAR recibe una fecha inicial y otra final y devuelve una tabla con la columna Date. CALENDARAUTO solo admite el mes de fin de año fiscal y DATESBETWEEN necesita una columna de fechas como primer argumento."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "NumMes"
+          },
+          {
+            "id": "o2",
+            "text": "Date"
+          },
+          {
+            "id": "o3",
+            "text": "Año"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "La columna de ordenación debe tener un único valor por cada valor de Mes: NumMes lo cumple. Date tiene muchos valores por mes (Power BI daría error) y Año no ordena los meses."
+      }
+    ],
+    "keyPoint": "Genera tablas de fechas con CALENDAR/CALENDARAUTO y amplíalas con ADDCOLUMNS; ordena el nombre del mes por su número.",
+    "references": [
+      {
+        "title": "Función CALENDAR",
+        "url": "https://learn.microsoft.com/es-es/dax/calendar-function-dax"
+      },
+      {
+        "title": "Función ADDCOLUMNS",
+        "url": "https://learn.microsoft.com/es-es/dax/addcolumns-function-dax"
+      },
+      {
+        "title": "Ordenar por columna en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-sort-by-column"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-026",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "scenario": "Un modelo financiero tiene 30 medidas base, y negocio pide para cada una el acumulado del año, el año anterior y la variación interanual. Eso supondría 90 medidas nuevas.",
+    "prompt": "¿Qué dos ventajas aporta resolverlo con un grupo de cálculo (*calculation group*)? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Reduce mucho el número de medidas redundantes que hay que crear y mantener",
+        "correct": true,
+        "explanation": "Cada elemento de cálculo se define una vez y se aplica a cualquier medida, en lugar de duplicar la lógica en 90 medidas."
+      },
+      {
+        "id": "b",
+        "text": "La misma lógica de tiempo se aplica a cualquier medida explícita mediante SELECTEDMEASURE",
+        "correct": true,
+        "explanation": "SELECTEDMEASURE actúa como marcador de posición de la medida que está en el objeto visual cuando se aplica el elemento de cálculo."
+      },
+      {
+        "id": "c",
+        "text": "Los elementos de cálculo también se aplican a las medidas implícitas creadas al arrastrar columnas",
+        "correct": false,
+        "explanation": "Los elementos de cálculo solo se aplican a medidas explícitas; por eso Power BI exige activar Desaconsejar medidas implícitas."
+      },
+      {
+        "id": "d",
+        "text": "Elimina la necesidad de una tabla de fechas en el modelo",
+        "correct": false,
+        "explanation": "Los elementos de inteligencia de tiempo siguen usando funciones como DATESYTD sobre una tabla de fechas."
+      },
+      {
+        "id": "e",
+        "text": "Los resultados se precalculan durante la actualización y aceleran las consultas",
+        "correct": false,
+        "explanation": "Los elementos de cálculo se evalúan en el momento de la consulta, como las medidas; no almacenan resultados."
+      }
+    ],
+    "keyPoint": "Grupo de cálculo = lógica reutilizable sobre cualquier medida explícita mediante SELECTEDMEASURE.",
+    "references": [
+      {
+        "title": "Creación de grupos de cálculo",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/calculation-groups"
+      },
+      {
+        "title": "Función SELECTEDMEASURE",
+        "url": "https://learn.microsoft.com/es-es/dax/selectedmeasure-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-027",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "scenario": "En Power BI Desktop, el modelo todavía no tiene activada la propiedad Desaconsejar medidas implícitas. Quieres crear un grupo de cálculo de inteligencia de tiempo y usarlo en una matriz.",
+    "prompt": "Ordena los pasos.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "En la vista de modelo, seleccionar el botón Grupo de cálculo de la cinta",
+        "explanation": "Los grupos de cálculo se crean desde la vista de modelo (o con TMDL); es el punto de partida."
+      },
+      {
+        "id": "p2",
+        "text": "Aceptar el cuadro de diálogo que activa Desaconsejar medidas implícitas",
+        "explanation": "Si la propiedad está desactivada, Power BI pide activarla al crear el grupo, porque los elementos de cálculo no se aplican a medidas implícitas; hasta que aceptas no se crea el grupo."
+      },
+      {
+        "id": "p3",
+        "text": "Definir los elementos de cálculo (YTD, AA, Var % AA) con expresiones que usan SELECTEDMEASURE ()",
+        "explanation": "Una vez creado el grupo, escribes la expresión del primer elemento y añades los demás con Nuevo elemento de cálculo; SELECTEDMEASURE representa la medida a la que se aplica cada uno."
+      },
+      {
+        "id": "p4",
+        "text": "En la vista de informe, colocar la columna del grupo de cálculo en Columnas de una matriz y una medida en Valores",
+        "explanation": "Solo con los elementos definidos tiene sentido usar la columna del grupo en objetos visuales o segmentaciones para aplicarlos a la medida."
+      }
+    ],
+    "keyPoint": "Grupo de cálculo: crearlo en la vista de modelo, desaconsejar medidas implícitas, definir elementos con SELECTEDMEASURE y usar su columna en los objetos visuales.",
+    "references": [
+      {
+        "title": "Creación de grupos de cálculo",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/calculation-groups"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-028",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 3,
+    "scenario": "El grupo de cálculo Inteligencia de tiempo tiene el elemento de cálculo YTD del anexo.",
+    "code": {
+      "language": "dax",
+      "content": "CALCULATE (\n    SELECTEDMEASURE (),\n    DATESYTD ( 'Fecha'[Fecha] )\n)"
+    },
+    "prompt": "Indica si cada afirmación es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Si colocas la columna del grupo en una segmentación y eliges YTD, se aplica a todas las medidas explícitas de los objetos visuales filtrados.",
+        "answer": true,
+        "explanation": "SELECTEDMEASURE se sustituye por cada medida explícita que se evalúa en el contexto donde el elemento está seleccionado."
+      },
+      {
+        "id": "s2",
+        "text": "El elemento YTD también se aplica a una columna que un autor suma directamente en un objeto visual.",
+        "answer": false,
+        "explanation": "Sumar una columna crea una medida implícita, y los elementos de cálculo no se aplican a medidas implícitas."
+      },
+      {
+        "id": "s3",
+        "text": "En cuanto el modelo tiene un grupo de cálculo, los informes tratan todas las medidas con el tipo de datos variant.",
+        "answer": true,
+        "explanation": "La documentación lo indica como consideración; si se quitan todos los grupos de cálculo, las medidas recuperan sus tipos originales."
+      },
+      {
+        "id": "s4",
+        "text": "Puedes usar el elemento en otra medida filtrando la columna del grupo dentro de CALCULATE.",
+        "answer": true,
+        "explanation": "Por ejemplo, CALCULATE ( [Pedidos], 'Inteligencia de tiempo'[Cálculo] = \"YTD\" ) aplica el elemento a una medida concreta."
+      }
+    ],
+    "keyPoint": "Los elementos de cálculo actúan sobre medidas explícitas, en objetos visuales, en segmentaciones o en CALCULATE.",
+    "references": [
+      {
+        "title": "Creación de grupos de cálculo",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/calculation-groups"
+      },
+      {
+        "title": "Función SELECTEDMEASURE",
+        "url": "https://learn.microsoft.com/es-es/dax/selectedmeasure-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 2,
+    "scenario": "La tabla de hechos Pedidos importa diez años de historial desde SQL Server, pero todos los informes analizan solo los dos últimos años. El modelo ocupa mucha memoria y la actualización es lenta.",
+    "prompt": "¿Qué debes hacer para reducir el tamaño del modelo?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Filtrar las filas en Power Query para cargar solo los dos últimos años, por ejemplo con un parámetro o un filtro de fecha relativo",
+        "correct": true,
+        "explanation": "Quitar filas innecesarias (filtrado horizontal por tiempo) antes de cargar reduce el número de filas, el tamaño del modelo y el tiempo de actualización."
+      },
+      {
+        "id": "b",
+        "text": "Aplicar un filtro de nivel de informe por año a todas las páginas",
+        "correct": false,
+        "explanation": "Un filtro de informe solo oculta datos en los objetos visuales; los diez años de filas se siguen importando y ocupando memoria."
+      },
+      {
+        "id": "c",
+        "text": "Ocultar las columnas de fecha de los años antiguos",
+        "correct": false,
+        "explanation": "Ocultar columnas no elimina filas ni datos; el modelo pesa lo mismo."
+      },
+      {
+        "id": "d",
+        "text": "Crear una regla de seguridad de nivel de fila que excluya los años antiguos",
+        "correct": false,
+        "explanation": "RLS restringe lo que ve cada usuario, pero los datos siguen cargados en el modelo."
+      }
+    ],
+    "keyPoint": "Para reducir el modelo, no cargues las filas que no necesitas: filtra en Power Query, no en el informe.",
+    "references": [
+      {
+        "title": "Técnicas de reducción de datos para el modelado de importación",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/import-modeling-data-reduction"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-002",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 2,
+    "scenario": "Un modelo de importación ha crecido mucho. Incluye columnas de comentarios y GUID que ningún informe usa, consultas auxiliares de Power Query que solo sirven para combinar con otras, y la opción Fecha y hora automáticas (*Auto date/time*) activada aunque ya hay una tabla de fechas.",
+    "prompt": "¿Qué tres acciones reducen el tamaño del modelo? Selecciona tres.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Quitar en Power Query las columnas de comentarios y GUID que no se usan",
+        "correct": true,
+        "explanation": "Quitar columnas innecesarias (filtrado vertical) reduce el tamaño, sobre todo si son columnas de texto con muchos valores distintos."
+      },
+      {
+        "id": "b",
+        "text": "Deshabilitar la carga de las consultas auxiliares de Power Query",
+        "correct": true,
+        "explanation": "Las consultas que solo sirven para integrar datos en otras no deben cargarse en el modelo."
+      },
+      {
+        "id": "c",
+        "text": "Desactivar Fecha y hora automáticas en las opciones del archivo actual",
+        "correct": true,
+        "explanation": "Esta opción crea una tabla oculta por cada columna de fecha; son tablas calculadas que aumentan el tamaño del modelo."
+      },
+      {
+        "id": "d",
+        "text": "Ocultar en la vista de informe las columnas que no se usan",
+        "correct": false,
+        "explanation": "Una columna oculta sigue cargada y comprimida en el modelo; ocultarla solo mejora la usabilidad."
+      },
+      {
+        "id": "e",
+        "text": "Sustituir las columnas personalizadas de Power Query por columnas calculadas de DAX",
+        "correct": false,
+        "explanation": "Las columnas calculadas de DAX suelen comprimirse peor y alargan la actualización; la guía recomienda lo contrario."
+      },
+      {
+        "id": "f",
+        "text": "Cambiar las relaciones a dirección de filtro cruzado Ambos",
+        "correct": false,
+        "explanation": "La dirección de filtro no influye en el tamaño de los datos y puede empeorar el rendimiento de las consultas."
+      }
+    ],
+    "keyPoint": "Reduce el modelo quitando columnas y consultas que no se usan y desactivando Fecha y hora automáticas; ocultar no reduce nada.",
+    "references": [
+      {
+        "title": "Técnicas de reducción de datos para el modelado de importación",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/import-modeling-data-reduction"
+      },
+      {
+        "title": "Aplicar fecha y hora automáticas en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-auto-date-time"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-003",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre la reducción de datos en modelos de importación es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Ocultar una columna en la vista de modelo reduce el tamaño del modelo.",
+        "answer": false,
+        "explanation": "Ocultar solo la quita del panel Datos; la columna sigue cargada en memoria."
+      },
+      {
+        "id": "s2",
+        "text": "Quitar columnas que no se necesitan para informes ni para la estructura del modelo se conoce como filtrado vertical.",
+        "answer": true,
+        "explanation": "La guía llama filtrado vertical a quitar columnas y filtrado horizontal a quitar filas."
+      },
+      {
+        "id": "s3",
+        "text": "Convertir números de pedido como «SO123456» en enteros quitando el prefijo puede reducir el tamaño de una tabla grande.",
+        "answer": true,
+        "explanation": "Las columnas numéricas usan codificación por valor, más eficiente que la codificación hash del texto, sobre todo con muchos valores distintos."
+      },
+      {
+        "id": "s4",
+        "text": "Una columna calculada de DAX se comprime normalmente igual de bien que una columna creada en Power Query.",
+        "answer": false,
+        "explanation": "Las columnas calculadas se almacenan de forma ligeramente distinta, suelen comprimirse peor y se construyen tras cargar todas las tablas."
+      }
+    ],
+    "keyPoint": "Quita columnas y filas, usa tipos numéricos cuando puedas y crea columnas en Power Query mejor que en DAX.",
+    "references": [
+      {
+        "title": "Técnicas de reducción de datos para el modelado de importación",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/import-modeling-data-reduction"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-004",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 2,
+    "scenario": "Los usuarios se quejan de que una página tarda en responder al cambiar una segmentación. El modelo es de importación. Grabas la interacción con el Analizador de rendimiento (*Performance Analyzer*) y obtienes estos tiempos.",
+    "table": {
+      "caption": "Analizador de rendimiento (milisegundos)",
+      "headers": [
+        "Objeto visual",
+        "Consulta DAX",
+        "Visual display",
+        "Otros"
+      ],
+      "rows": [
+        [
+          "Matriz de margen por cliente",
+          "5.240",
+          "160",
+          "310"
+        ],
+        [
+          "Gráfico de líneas de ventas",
+          "85",
+          "120",
+          "290"
+        ],
+        [
+          "Tarjeta de pedidos",
+          "12",
+          "20",
+          "300"
+        ]
+      ]
+    },
+    "prompt": "¿Qué conclusión es correcta?",
+    "options": [
+      {
+        "id": "a",
+        "text": "La matriz es el cuello de botella y el tiempo está en su consulta DAX: debes revisar sus medidas y el modelo, por ejemplo ejecutando su consulta en la vista de consulta DAX",
+        "correct": true,
+        "explanation": "La duración de Consulta DAX es el tiempo entre que el objeto visual envía la consulta y el modelo devuelve los resultados; 5,2 segundos apuntan a medidas o relaciones costosas."
+      },
+      {
+        "id": "b",
+        "text": "La matriz es el cuello de botella porque tarda en dibujarse en pantalla",
+        "correct": false,
+        "explanation": "Su tiempo de dibujo en pantalla (*Visual display*) es de solo 160 ms; el problema está en la consulta, no en el renderizado."
+      },
+      {
+        "id": "c",
+        "text": "La tarjeta es la más lenta, porque su tiempo Otros es similar al de los demás",
+        "correct": false,
+        "explanation": "Otros incluye preparar consultas y esperar a otros objetos visuales; la tarjeta tiene una consulta de 12 ms."
+      },
+      {
+        "id": "d",
+        "text": "El origen de datos es lento y conviene cambiar el modelo a DirectQuery",
+        "correct": false,
+        "explanation": "En un modelo de importación no hay tiempo de consulta directa; además, DirectQuery suele ser más lento que la importación."
+      }
+    ],
+    "keyPoint": "Si domina la Consulta DAX, optimiza medidas y modelo; si domina el dibujo del objeto visual (*Visual display*), simplifica el objeto visual.",
+    "references": [
+      {
+        "title": "Uso del Analizador de rendimiento",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/performance-analyzer"
+      },
+      {
+        "title": "Guía de optimización para Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/power-bi-optimization"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-005",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 1,
+    "prompt": "Empareja cada descripción con la categoría de duración que registra el Analizador de rendimiento.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Tiempo desde que el objeto visual envía la consulta hasta que el modelo semántico devuelve los resultados",
+        "answerId": "c1",
+        "explanation": "Es la duración de Consulta DAX (*DAX query*)."
+      },
+      {
+        "id": "m2",
+        "text": "Tiempo que tarda el origen externo en devolver resultados para una tabla en modo DirectQuery",
+        "answerId": "c2",
+        "explanation": "Es la duración de Consulta directa (*Direct query*), que solo aparece con tablas DirectQuery."
+      },
+      {
+        "id": "m3",
+        "text": "Tiempo para dibujar el objeto visual en pantalla, incluidas imágenes web o geocodificación",
+        "answerId": "c3",
+        "explanation": "Es la duración de dibujo en pantalla (*Visual display*), que mide lo que tarda el objeto visual en representarse."
+      },
+      {
+        "id": "m4",
+        "text": "Tiempo para preparar consultas o esperar a que terminen otros objetos visuales",
+        "answerId": "c4",
+        "explanation": "Es la duración Otros (*Other*), que incluye esperas y procesamiento en segundo plano."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Consulta DAX (DAX query)"
+      },
+      {
+        "id": "c2",
+        "text": "Consulta directa (Direct query)"
+      },
+      {
+        "id": "c3",
+        "text": "Dibujo en pantalla (Visual display)"
+      },
+      {
+        "id": "c4",
+        "text": "Otros (Other)"
+      },
+      {
+        "id": "c5",
+        "text": "Actualización de datos (Data refresh)"
+      }
+    ],
+    "keyPoint": "El Analizador de rendimiento desglosa cada objeto visual en Consulta DAX, Consulta directa, dibujo en pantalla (*Visual display*) y Otros.",
+    "references": [
+      {
+        "title": "Uso del Analizador de rendimiento",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/performance-analyzer"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-006",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 2,
+    "scenario": "Quieres averiguar qué objeto visual de una página es lento y estudiar su consulta en Power BI Desktop.",
+    "prompt": "Ordena los pasos.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "En la cinta Optimizar, seleccionar Analizador de rendimiento",
+        "explanation": "Primero muestras el panel Analizador de rendimiento en la vista de informe."
+      },
+      {
+        "id": "p2",
+        "text": "Seleccionar Iniciar grabación (*Start recording*)",
+        "explanation": "El panel solo registra duraciones mientras está grabando."
+      },
+      {
+        "id": "p3",
+        "text": "Seleccionar Actualizar objetos visuales (*Refresh visuals*)",
+        "explanation": "Con la grabación activa, actualizar los objetos visuales registra los tiempos de todos los de la página."
+      },
+      {
+        "id": "p4",
+        "text": "Expandir el objeto visual más lento y seleccionar Ejecutar en la vista de consulta DAX",
+        "explanation": "Con los tiempos registrados, identificas el más lento y abres su consulta en una nueva pestaña de la vista de consulta DAX, donde se ejecuta."
+      }
+    ],
+    "keyPoint": "Analizador de rendimiento: abrir el panel > Iniciar grabación > Actualizar objetos visuales > llevar la consulta a la vista de consulta DAX.",
+    "references": [
+      {
+        "title": "Uso del Analizador de rendimiento",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/performance-analyzer"
+      },
+      {
+        "title": "Uso de la vista de consulta DAX",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/dax-query-view"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-007",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 3,
+    "scenario": "La medida Margen % es lenta. Quieres reescribirla y probarla en la vista de consulta DAX (*DAX query view*) antes de guardar el cambio en el modelo.",
+    "prompt": "Ordena los pasos del flujo de trabajo.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "En el menú contextual de la medida, elegir Consultas rápidas > Evaluar",
+        "explanation": "La consulta rápida Evaluar crea automáticamente en una nueva pestaña una consulta que muestra el resultado de la medida."
+      },
+      {
+        "id": "p2",
+        "text": "Seleccionar la medida en la consulta y elegir Definir con referencias",
+        "explanation": "La acción rápida añade un bloque DEFINE con la fórmula de la medida (y de las que usa), que se puede modificar."
+      },
+      {
+        "id": "p3",
+        "text": "Modificar la fórmula en el bloque DEFINE MEASURE y ejecutar la consulta",
+        "explanation": "La medida definida en la consulta solo existe en ella; al ejecutarla compruebas resultados y tiempos sin tocar el modelo."
+      },
+      {
+        "id": "p4",
+        "text": "Seleccionar el CodeLens Actualizar modelo: Sobrescribir medida",
+        "explanation": "Cuando el resultado es el esperado, el CodeLens guarda la nueva fórmula en la medida del modelo."
+      }
+    ],
+    "keyPoint": "Vista de consulta DAX: Evaluar > Definir con referencias > editar y ejecutar > Actualizar modelo.",
+    "references": [
+      {
+        "title": "Uso de la vista de consulta DAX",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/dax-query-view"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-008",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre la vista de consulta DAX es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Una consulta DAX necesita una instrucción EVALUATE; la instrucción DEFINE es opcional.",
+        "answer": true,
+        "explanation": "EVALUATE indica qué datos devuelve la consulta; DEFINE permite definir medidas u otras fórmulas que se usan en ella."
+      },
+      {
+        "id": "s2",
+        "text": "Al ejecutar una consulta DAX se crean automáticamente en el modelo las medidas de su bloque DEFINE.",
+        "answer": false,
+        "explanation": "Las medidas de DEFINE MEASURE solo existen durante la consulta; para guardarlas en el modelo hay que usar el CodeLens o Actualizar modelo con cambios."
+      },
+      {
+        "id": "s3",
+        "text": "Puedes ejecutar en la vista de consulta DAX la consulta que genera un objeto visual, obtenida desde el Analizador de rendimiento.",
+        "answer": true,
+        "explanation": "El Analizador de rendimiento ofrece Ejecutar en la vista de consulta DAX para cada objeto visual registrado."
+      },
+      {
+        "id": "s4",
+        "text": "Los usuarios que consumen el informe ven las pestañas de consulta DAX guardadas con el archivo.",
+        "answer": false,
+        "explanation": "Las consultas se guardan en el archivo para el autor, pero los usuarios del informe o del modelo semántico no las ven."
+      }
+    ],
+    "keyPoint": "La vista de consulta DAX consulta el modelo sin modificarlo, salvo que actualices las medidas de forma explícita.",
+    "references": [
+      {
+        "title": "Uso de la vista de consulta DAX",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/dax-query-view"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-009",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 3,
+    "scenario": "Un modelo en estrella tiene todas las relaciones con dirección Ambos «por si acaso». El Analizador de rendimiento muestra consultas DAX lentas en casi todos los objetos visuales. Solo una medida, Clientes con compras, necesita que el filtro de Productos llegue a Clientes.",
+    "prompt": "¿Qué dos cambios debes hacer? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cambiar a dirección Única las relaciones que no necesitan filtrar en ambos sentidos",
+        "correct": true,
+        "explanation": "La guía recomienda minimizar las relaciones bidireccionales porque pueden perjudicar el rendimiento de las consultas y confundir a los usuarios."
+      },
+      {
+        "id": "b",
+        "text": "Usar CROSSFILTER ( ..., BOTH ) solo dentro de la medida Clientes con compras",
+        "correct": true,
+        "explanation": "CROSSFILTER activa el filtrado bidireccional solo durante la evaluación de esa medida, sin penalizar al resto de consultas."
+      },
+      {
+        "id": "c",
+        "text": "Convertir todas las relaciones en varios a varios",
+        "correct": false,
+        "explanation": "Las relaciones varios a varios son limitadas, se resuelven al consultar y no aportan nada en un esquema de estrella con claves únicas."
+      },
+      {
+        "id": "d",
+        "text": "Ocultar las columnas clave de las relaciones",
+        "correct": false,
+        "explanation": "Ocultar columnas mejora la usabilidad, pero no cambia cómo se propagan los filtros ni el coste de las consultas."
+      },
+      {
+        "id": "e",
+        "text": "Agregar una segunda relación activa entre Clientes y Ventas",
+        "correct": false,
+        "explanation": "Entre dos tablas solo puede haber una relación activa; además, más rutas de filtro aumentan el riesgo de ambigüedad."
+      }
+    ],
+    "keyPoint": "Usa dirección Única por defecto y activa el filtrado bidireccional solo donde haga falta, con CROSSFILTER en la medida.",
+    "references": [
+      {
+        "title": "Guía de relaciones bidireccionales",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-bidirectional-filtering"
+      },
+      {
+        "title": "Función CROSSFILTER",
+        "url": "https://learn.microsoft.com/es-es/dax/crossfilter-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-010",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 2,
+    "scenario": "Una cadena de tiendas carga cientos de millones de transacciones con fecha y hora al segundo. Los informes solo analizan las ventas por día, tienda y producto; nadie consulta tiques individuales.",
+    "table": {
+      "caption": "Tabla Transacciones (extracto)",
+      "headers": [
+        "IdTransaccion",
+        "FechaHora",
+        "Tienda",
+        "Producto",
+        "Importe"
+      ],
+      "rows": [
+        [
+          "T0001",
+          "02/03/2026 09:14:05",
+          "Madrid",
+          "P-10",
+          "12,50"
+        ],
+        [
+          "T0002",
+          "02/03/2026 09:15:41",
+          "Madrid",
+          "P-10",
+          "12,50"
+        ],
+        [
+          "T0003",
+          "02/03/2026 11:02:19",
+          "Madrid",
+          "P-22",
+          "8,00"
+        ],
+        [
+          "T0004",
+          "02/03/2026 12:40:07",
+          "Sevilla",
+          "P-10",
+          "12,50"
+        ],
+        [
+          "T0005",
+          "03/03/2026 10:05:55",
+          "Madrid",
+          "P-10",
+          "25,00"
+        ]
+      ]
+    },
+    "prompt": "¿Qué debes hacer para reducir la granularidad de la tabla y mejorar el rendimiento?",
+    "options": [
+      {
+        "id": "a",
+        "text": "En Power Query, convertir FechaHora en Fecha y usar Agrupar por (*Group by*) Fecha, Tienda y Producto, sumando Importe y contando transacciones",
+        "correct": true,
+        "explanation": "Cargar datos resumidos al nivel que necesitan los informes es de las técnicas más eficaces: menos filas y columnas de alta cardinalidad. A cambio, se pierde el detalle por transacción."
+      },
+      {
+        "id": "b",
+        "text": "Mantener el detalle y ocultar las columnas IdTransaccion y FechaHora",
+        "correct": false,
+        "explanation": "Ocultar columnas no cambia las filas cargadas ni su tamaño en memoria."
+      },
+      {
+        "id": "c",
+        "text": "Crear una tabla calculada de DAX con SUMMARIZE por día y mantener la tabla original",
+        "correct": false,
+        "explanation": "La tabla de detalle sigue cargada y la nueva tabla calculada añade más datos; el modelo crece en lugar de reducirse."
+      },
+      {
+        "id": "d",
+        "text": "Cambiar la agregación predeterminada de la columna Importe a No resumir",
+        "correct": false,
+        "explanation": "La agregación predeterminada solo decide cómo se resume la columna al añadirla a un objeto visual; no cambia el número de filas cargadas."
+      }
+    ],
+    "keyPoint": "Reducir la granularidad (agrupar y resumir antes de cargar) reduce mucho el modelo, a cambio de perder detalle.",
+    "references": [
+      {
+        "title": "Técnicas de reducción de datos para el modelado de importación",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/import-modeling-data-reduction"
+      },
+      {
+        "title": "Agrupar por o resumir filas en Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/group-by"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-011",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 2,
+    "scenario": "Para acelerar un informe, decides cargar la tabla de hechos de ventas agrupada por mes y producto, en lugar de por día y producto.",
+    "prompt": "Completa la frase.",
+    "template": "Este cambio reduce {{b1}}, pero pierdes {{b2}}. Para relacionar la tabla mensual con la tabla de fechas, guarda en su columna de fecha {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "el número de filas y el tamaño del modelo"
+          },
+          {
+            "id": "o2",
+            "text": "el número de relaciones del modelo"
+          },
+          {
+            "id": "o3",
+            "text": "el número de medidas necesarias"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Agrupar por un periodo mayor reduce las filas de la tabla de hechos y, con ello, el tamaño y el tiempo de actualización. Las relaciones y las medidas no cambian."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "la posibilidad de analizar por día"
+          },
+          {
+            "id": "o2",
+            "text": "la posibilidad de filtrar por año"
+          },
+          {
+            "id": "o3",
+            "text": "la posibilidad de aplicar seguridad de nivel de fila"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "La contrapartida de resumir es perder el detalle por debajo del nuevo grano; se puede seguir filtrando por año y aplicar RLS."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "el primer día de cada mes"
+          },
+          {
+            "id": "o2",
+            "text": "el nombre del mes como texto"
+          },
+          {
+            "id": "o3",
+            "text": "la fecha de la última venta del mes"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "La guía recomienda que la columna de fecha de hechos con granularidad superior al día guarde el primer día del periodo, con tipo Fecha, para relacionarla con la tabla de fechas. Un texto no relaciona con una columna de fechas y la última venta cambia cada mes."
+      }
+    ],
+    "keyPoint": "Hechos a nivel de mes: menos filas, sin análisis diario, y la fecha se guarda como el primer día del mes.",
+    "references": [
+      {
+        "title": "Técnicas de reducción de datos para el modelado de importación",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/import-modeling-data-reduction"
+      },
+      {
+        "title": "Instrucciones para relaciones de varios a varios",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-many-to-many"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-012",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 2,
+    "scenario": "Vas a reducir la granularidad de la tabla Ventas, de día y producto a mes y producto, y relacionarla con la tabla Fecha.",
+    "prompt": "Ordena los pasos.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "En Power Query, agregar la columna InicioMes con Date.StartOfMonth ( [Fecha] )",
+        "explanation": "Antes de agrupar necesitas una columna con el nuevo grano mensual (el primer día de cada mes)."
+      },
+      {
+        "id": "p2",
+        "text": "Usar Agrupar por con InicioMes e IdProducto, sumando Importe",
+        "explanation": "La agrupación usa la columna creada antes y elimina el detalle diario, reduciendo filas."
+      },
+      {
+        "id": "p3",
+        "text": "Seleccionar Cerrar y aplicar",
+        "explanation": "La tabla resumida se carga en el modelo; hasta entonces no se puede relacionar."
+      },
+      {
+        "id": "p4",
+        "text": "Crear la relación de Ventas[InicioMes] (varios) con Fecha[Fecha] (uno)",
+        "explanation": "Con la tabla ya cargada, relacionas la columna del primer día de mes con la tabla de fechas."
+      }
+    ],
+    "keyPoint": "Para reducir la granularidad: crear la columna del nuevo grano, agrupar, cargar y relacionar.",
+    "references": [
+      {
+        "title": "Agrupar por o resumir filas en Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/group-by"
+      },
+      {
+        "title": "Instrucciones para relaciones de varios a varios",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-many-to-many"
+      }
+    ]
+  }
+]

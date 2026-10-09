@@ -1,0 +1,2165 @@
+[
+  {
+    "id": "pl300-d4-area-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "scenario": "El equipo comercial de una cadena de ópticas tiene unas 40 personas y cambia con frecuencia por incorporaciones y bajas. Todas deben poder ver los informes del área de trabajo «Comercial» y no deben poder modificarlos. TI ya mantiene un grupo de seguridad de Microsoft Entra con los miembros del equipo.",
+    "prompt": "¿Cuál es la forma más sencilla de mantener el acceso al área de trabajo sin tener que editarla cada vez que cambia el equipo?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Asignar el grupo de seguridad de Microsoft Entra del equipo al rol Visor del área de trabajo",
+        "correct": true,
+        "explanation": "Los roles del área de trabajo admiten grupos de seguridad, grupos de Microsoft 365 y listas de distribución. Todos los miembros del grupo obtienen el rol, y las altas y bajas se gestionan en el grupo, sin tocar el área de trabajo."
+      },
+      {
+        "id": "b",
+        "text": "Agregar a cada persona de forma individual con el rol Visor y revisarlo cada mes",
+        "correct": false,
+        "explanation": "Funciona, pero obliga a mantener la lista a mano en Power BI cada vez que alguien entra o sale del equipo, justo lo que se quiere evitar."
+      },
+      {
+        "id": "c",
+        "text": "Compartir cada informe del área de trabajo con el grupo usando un vínculo «Personas con acceso existente»",
+        "correct": false,
+        "explanation": "Ese tipo de vínculo no concede acceso: solo sirve para enviar la dirección a quien ya tiene permisos."
+      },
+      {
+        "id": "d",
+        "text": "Asignar el grupo al rol Colaborador para que cada persona se agregue a sí misma",
+        "correct": false,
+        "explanation": "El rol Colaborador permite crear y editar contenido, no agregar personas al área de trabajo, y además concede mucho más que la lectura que el equipo necesita."
+      }
+    ],
+    "keyPoint": "Asigna grupos (no personas) a los roles del área de trabajo: la pertenencia se administra en Microsoft Entra ID.",
+    "references": [
+      {
+        "title": "Roles en áreas de trabajo en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-roles-new-workspaces"
+      },
+      {
+        "title": "Áreas de trabajo en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-new-workspaces"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-area-002",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "prompt": "Empareja cada necesidad con la opción de configuración del área de trabajo que la resuelve.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Que otras personas, además de los administradores, reciban avisos sobre problemas del área de trabajo y aparezcan como contacto de ayuda",
+        "answerId": "c1",
+        "explanation": "La lista de contactos define quién recibe las notificaciones de problemas; por defecto son los administradores del área de trabajo, pero puedes agregar usuarios o grupos."
+      },
+      {
+        "id": "m2",
+        "text": "Disponer de una biblioteca de documentos compartida de SharePoint para los archivos del equipo",
+        "answerId": "c2",
+        "explanation": "La opción Área de trabajo OneDrive vincula un grupo de Microsoft 365, creado fuera de Power BI, cuya biblioteca de documentos queda disponible para los usuarios del área de trabajo."
+      },
+      {
+        "id": "m3",
+        "text": "Que los usuarios con el rol Colaborador puedan modificar el contenido y la visibilidad de la aplicación ya publicada",
+        "answerId": "c3",
+        "explanation": "Esta opción permite al administrador delegar la actualización de la aplicación en los colaboradores, que siguen sin poder publicarla por primera vez ni cambiar quién tiene acceso."
+      },
+      {
+        "id": "m4",
+        "text": "Ejecutar el contenido del área de trabajo en una capacidad dedicada de la organización",
+        "answerId": "c4",
+        "explanation": "La asignación a una capacidad (modo de licencia del área de trabajo) determina dónde se hospeda y procesa el contenido."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Lista de contactos"
+      },
+      {
+        "id": "c2",
+        "text": "Área de trabajo OneDrive"
+      },
+      {
+        "id": "c3",
+        "text": "Permitir que los colaboradores actualicen la aplicación"
+      },
+      {
+        "id": "c4",
+        "text": "Asignación a una capacidad"
+      },
+      {
+        "id": "c5",
+        "text": "Imagen del área de trabajo"
+      }
+    ],
+    "keyPoint": "Lista de contactos, OneDrive del área de trabajo, delegación de la app y capacidad son ajustes del área de trabajo en el servicio, no en Desktop.",
+    "references": [
+      {
+        "title": "Creación de un área de trabajo en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-create-the-new-workspaces"
+      },
+      {
+        "title": "Áreas de trabajo en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-new-workspaces"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-app-001",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 3,
+    "scenario": "Publicaste hace meses la aplicación del área de trabajo (*workspace app*) «Finanzas» con dos audiencias: «Dirección» y «Controladores». Hoy has agregado al área de trabajo el informe «Previsión de tesorería», pero los directivos no lo ven en la aplicación.",
+    "prompt": "¿Qué dos acciones debes realizar para que la audiencia «Dirección» vea el nuevo informe en la aplicación? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "En Actualizar aplicación, incluir el informe nuevo en el contenido y hacerlo visible para la audiencia «Dirección»",
+        "correct": true,
+        "explanation": "Al actualizar una aplicación, el contenido que agregaste después al área de trabajo no se incluye de forma predeterminada: debes agregarlo en la pestaña Contenido y mostrarlo en cada audiencia que deba verlo."
+      },
+      {
+        "id": "b",
+        "text": "Seleccionar Actualizar aplicación para publicar los cambios",
+        "correct": true,
+        "explanation": "El área de trabajo funciona como zona de ensayo: los cambios no llegan a la aplicación hasta que vuelves a publicarla con Actualizar aplicación."
+      },
+      {
+        "id": "c",
+        "text": "Crear una segunda aplicación del área de trabajo solo con el informe nuevo",
+        "correct": false,
+        "explanation": "Cada área de trabajo admite una sola aplicación del área de trabajo; para mostrar contenido distinto a grupos distintos se usan audiencias. Además, los directivos seguirían sin ver el informe en la aplicación que ya usan."
+      },
+      {
+        "id": "d",
+        "text": "Volver a publicar el archivo .pbix desde Power BI Desktop",
+        "correct": false,
+        "explanation": "Publicar desde Desktop actualiza el informe y el modelo en el área de trabajo, pero no publica los cambios en la aplicación."
+      },
+      {
+        "id": "e",
+        "text": "Esperar a la siguiente actualización programada del modelo semántico",
+        "correct": false,
+        "explanation": "La actualización programada refresca los datos; no modifica el contenido ni la visibilidad de la aplicación."
+      }
+    ],
+    "keyPoint": "Contenido nuevo en una app ya publicada: inclúyelo, muéstralo en cada audiencia que deba verlo y selecciona Actualizar aplicación.",
+    "references": [
+      {
+        "title": "Publicar una aplicación en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-create-distribute-apps"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-app-002",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "prompt": "Ordena los pasos para publicar por primera vez una aplicación del área de trabajo (*workspace app*) en Power BI.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Comprobar que el área de trabajo contiene los informes y paneles listos para distribuir",
+        "explanation": "La aplicación empaqueta contenido del área de trabajo, así que primero debe existir y estar terminado."
+      },
+      {
+        "id": "p2",
+        "text": "En el área de trabajo, seleccionar Crear aplicación; el asistente se abre en la pestaña Configuración (nombre, descripción, logotipo)",
+        "explanation": "Sin iniciar la creación de la aplicación no hay asistente en el que elegir contenido ni audiencias; el asistente empieza por la configuración, que por defecto toma el nombre y el icono del área de trabajo."
+      },
+      {
+        "id": "p3",
+        "text": "En la pestaña Contenido, agregar los elementos del área de trabajo y ordenarlos en la navegación",
+        "explanation": "Solo los elementos que agregas en Contenido forman parte de la aplicación y pueden después mostrarse u ocultarse a cada audiencia."
+      },
+      {
+        "id": "p4",
+        "text": "En la pestaña Audiencia, crear las audiencias, mostrar u ocultar elementos y asignar usuarios o grupos",
+        "explanation": "Las audiencias trabajan sobre el contenido ya agregado: en cada una decides qué elementos ve y a qué usuarios o grupos se concede acceso."
+      },
+      {
+        "id": "p5",
+        "text": "Seleccionar Publicar aplicación",
+        "explanation": "La publicación es el último paso: hasta entonces nada es visible para los usuarios de la aplicación."
+      }
+    ],
+    "keyPoint": "Aplicación: contenido listo → Crear aplicación → Contenido → Audiencia → Publicar.",
+    "references": [
+      {
+        "title": "Publicar una aplicación en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-create-distribute-apps"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-app-003",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre las aplicaciones de Power BI es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Para mostrar contenido distinto a distintos grupos de usuarios dentro de la misma aplicación, usas audiencias.",
+        "answer": true,
+        "explanation": "Cada audiencia es un grupo de usuarios con su propia selección de elementos visibles, así que una sola aplicación puede presentar contenido distinto a cada grupo sin crear varias aplicaciones."
+      },
+      {
+        "id": "s2",
+        "text": "Los cambios que haces en un informe del área de trabajo aparecen automáticamente en la aplicación publicada.",
+        "answer": false,
+        "explanation": "El área de trabajo es la zona de ensayo: los cambios no se envían a la aplicación hasta que seleccionas Actualizar aplicación."
+      },
+      {
+        "id": "s3",
+        "text": "Si el administrador del área de trabajo lo permite, un Colaborador puede actualizar la aplicación.",
+        "answer": true,
+        "explanation": "La opción «Permitir que los colaboradores actualicen la aplicación para esta área de trabajo» delega la actualización, aunque el Colaborador no puede publicarla por primera vez ni cambiar quién tiene acceso."
+      },
+      {
+        "id": "s4",
+        "text": "Puedes instalar la aplicación automáticamente para toda la organización.",
+        "answer": false,
+        "explanation": "La instalación automática no es posible para toda la organización: al activarla, la opción Toda la organización se desactiva."
+      }
+    ],
+    "keyPoint": "Audiencias para segmentar, publicación manual de los cambios con Actualizar aplicación y actualización delegable en los Colaboradores.",
+    "references": [
+      {
+        "title": "Publicar una aplicación en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-create-distribute-apps"
+      },
+      {
+        "title": "Creación de un área de trabajo en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-create-the-new-workspaces"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-publicar-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "scenario": "Javier publicó desde Power BI Desktop el informe «Ventas 2026» en un área de trabajo. Después, su compañera Nuria agregó dos objetos visuales al informe editándolo directamente en el servicio Power BI. Hoy Javier abre en Desktop su archivo .pbix local para corregir una medida.",
+    "prompt": "¿Qué debe tener en cuenta Javier antes de seguir trabajando?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Su .pbix local no contiene los objetos visuales de Nuria, así que debe partir de la versión del servicio (por ejemplo, descargando el .pbix)",
+        "correct": true,
+        "explanation": "Los cambios que se hacen en un informe en el servicio no se guardan en el archivo de Power BI Desktop original. Si Javier sigue con su copia local, trabaja sobre una versión desactualizada del informe."
+      },
+      {
+        "id": "b",
+        "text": "Power BI Desktop descarga automáticamente los cambios del servicio al abrir el archivo",
+        "correct": false,
+        "explanation": "No hay sincronización del servicio hacia el archivo local: los cambios hechos en el servicio no vuelven al .pbix de Desktop."
+      },
+      {
+        "id": "c",
+        "text": "Los cambios de Nuria se guardaron en el modelo semántico, no en el informe, así que no le afectan",
+        "correct": false,
+        "explanation": "Agregar objetos visuales es un cambio del informe, no del modelo semántico; y esos cambios tampoco están en su archivo local."
+      },
+      {
+        "id": "d",
+        "text": "Debe publicar primero desde Desktop para que el servicio le envíe los cambios de Nuria",
+        "correct": false,
+        "explanation": "Publicar envía el contenido de Desktop al servicio, no al revés; publicar no trae a su archivo los cambios hechos en el servicio."
+      }
+    ],
+    "keyPoint": "Los cambios hechos en el servicio no vuelven al .pbix: decide un único lugar de edición o parte de la versión publicada.",
+    "references": [
+      {
+        "title": "Publicar modelos semánticos e informes desde Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-upload-desktop-files"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-publicar-002",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "scenario": "Control de gestión mantiene un libro de Excel con los objetivos mensuales por tienda (datos en una tabla de Excel). El libro se modifica varias veces por semana y quieres usarlo en el servicio Power BI sin tener que volver a cargarlo cada vez.",
+    "prompt": "¿Cómo debes cargar el libro en el área de trabajo para que los cambios guardados en el archivo lleguen a Power BI sin volver a importarlo?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Guardar el libro en OneDrive para el trabajo o la escuela (o en un sitio de SharePoint) y conectarlo desde allí",
+        "correct": true,
+        "explanation": "Con el archivo en OneDrive o SharePoint, Power BI sincroniza periódicamente el modelo semántico con el archivo de origen (actualización de OneDrive), sin cargas manuales."
+      },
+      {
+        "id": "b",
+        "text": "Cargarlo desde la carpeta local del equipo con Obtener datos > Cargar archivo",
+        "correct": false,
+        "explanation": "Al importar desde una unidad local, Power BI crea una copia; los cambios posteriores del archivo no se sincronizan solos."
+      },
+      {
+        "id": "c",
+        "text": "Cargarlo desde una cuenta de OneDrive personal",
+        "correct": false,
+        "explanation": "Power BI no permite cargar archivos desde cuentas personales de OneDrive, solo desde OneDrive para el trabajo o la escuela."
+      },
+      {
+        "id": "d",
+        "text": "Adjuntarlo a una suscripción de correo dirigida al área de trabajo",
+        "correct": false,
+        "explanation": "Las suscripciones envían instantáneas de informes por correo; no sirven para cargar archivos de datos."
+      }
+    ],
+    "keyPoint": "Archivos en OneDrive para el trabajo o la escuela o en SharePoint = sincronización automática con Power BI.",
+    "references": [
+      {
+        "title": "Obtener datos de archivos en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-get-data-from-files"
+      },
+      {
+        "title": "Actualización de datos en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/refresh-data"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-panel-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "scenario": "Tienes un informe con una página «Resumen» que incluye una segmentación por región y cuatro objetos visuales. Debes agregar esa página a un panel de dirección de forma que los usuarios puedan usar la segmentación en el propio panel y que los objetos visuales respondan.",
+    "prompt": "¿Qué debes hacer para cumplir el requisito?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Anclar la página completa del informe al panel como icono dinámico (Anclar en directo)",
+        "correct": true,
+        "explanation": "Al anclar una página completa, el icono es dinámico: puedes interactuar con él desde el panel y la segmentación sigue filtrando los objetos visuales de esa página."
+      },
+      {
+        "id": "b",
+        "text": "Anclar cada objeto visual de la página por separado",
+        "correct": false,
+        "explanation": "Los iconos de objetos visuales sueltos son instantáneas con hipervínculo; la segmentación anclada no filtra al resto de iconos del panel."
+      },
+      {
+        "id": "c",
+        "text": "Crear el panel en Power BI Desktop y publicarlo junto al informe",
+        "correct": false,
+        "explanation": "Los paneles son una característica del servicio Power BI; no se pueden crear en Power BI Desktop."
+      },
+      {
+        "id": "d",
+        "text": "Agregar un icono de contenido web con la dirección del informe",
+        "correct": false,
+        "explanation": "Un icono de contenido web inserta código HTML; no es la forma prevista de mostrar una página interactiva del informe en el panel."
+      }
+    ],
+    "keyPoint": "Anclar una página en directo crea un icono interactivo; anclar objetos visuales sueltos crea instantáneas enlazadas.",
+    "references": [
+      {
+        "title": "Anclar una página completa de un informe a un panel",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/service-dashboard-pin-live-tile-from-report"
+      },
+      {
+        "title": "Crear un panel de Power BI desde un informe",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/service-dashboard-create"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-panel-002",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 1,
+    "prompt": "Indica si cada afirmación sobre los paneles (*dashboards*) de Power BI es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puedes crear un panel en Power BI Desktop.",
+        "answer": false,
+        "explanation": "Los paneles son una característica del servicio Power BI; Desktop solo crea informes y modelos."
+      },
+      {
+        "id": "s2",
+        "text": "Un panel puede contener iconos anclados desde varios informes y modelos semánticos.",
+        "answer": true,
+        "explanation": "Puedes anclar objetos visuales de distintos informes o modelos al mismo panel, aunque no crear en el panel un objeto visual que combine sus datos."
+      },
+      {
+        "id": "s3",
+        "text": "Con Agregar un icono puedes poner en el panel una imagen, un cuadro de texto, un vídeo o contenido web sin anclarlo desde un informe.",
+        "answer": true,
+        "explanation": "Editar > Agregar un icono permite añadir imágenes, cuadros de texto, vídeos, datos de streaming o contenido web directamente."
+      },
+      {
+        "id": "s4",
+        "text": "Un panel puede tener varias páginas, igual que un informe.",
+        "answer": false,
+        "explanation": "Un panel se limita a una sola página (un lienzo); los informes sí pueden tener muchas páginas."
+      }
+    ],
+    "keyPoint": "Panel = una página, solo en el servicio, con iconos de varios orígenes.",
+    "references": [
+      {
+        "title": "Crear un panel de Power BI desde un informe",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/service-dashboard-create"
+      },
+      {
+        "title": "Agregar una imagen, un vídeo u otro icono a un panel",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/service-dashboard-add-widget"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-distribucion-001",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "prompt": "Empareja cada necesidad con el método de distribución más adecuado.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Distribuir un conjunto pulido de informes de solo lectura a 400 comerciales, con contenido distinto por grupo",
+        "answerId": "c1",
+        "explanation": "Una aplicación empaqueta contenido para audiencias grandes y permite mostrar u ocultar elementos por audiencia."
+      },
+      {
+        "id": "m2",
+        "text": "Que tres analistas puedan crear y editar informes juntos",
+        "answerId": "c2",
+        "explanation": "Para coautoría se asignan roles de área de trabajo con edición (Colaborador o superior)."
+      },
+      {
+        "id": "m3",
+        "text": "Ver y comentar un informe en el canal donde el equipo ya conversa",
+        "answerId": "c3",
+        "explanation": "La pestaña Power BI de Microsoft Teams inserta el informe interactivo en un canal o chat, con los permisos de cada usuario."
+      },
+      {
+        "id": "m4",
+        "text": "Mostrar en un blog público datos abiertos no confidenciales, sin inicio de sesión",
+        "answerId": "c4",
+        "explanation": "Publicar en la web genera un código para que cualquiera en Internet vea el informe sin autenticación; solo es apropiado para datos públicos."
+      },
+      {
+        "id": "m5",
+        "text": "Dar acceso a un único informe a un responsable que no pertenece al área de trabajo",
+        "answerId": "c5",
+        "explanation": "Compartir el elemento concede acceso a ese informe concreto sin abrir el resto del área de trabajo."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Aplicación con audiencias"
+      },
+      {
+        "id": "c2",
+        "text": "Roles del área de trabajo"
+      },
+      {
+        "id": "c3",
+        "text": "Pestaña de Power BI en Teams"
+      },
+      {
+        "id": "c4",
+        "text": "Publicar en la web"
+      },
+      {
+        "id": "c5",
+        "text": "Compartir el informe"
+      },
+      {
+        "id": "c6",
+        "text": "Suscripción por correo electrónico"
+      }
+    ],
+    "keyPoint": "App para muchos lectores, área de trabajo para coautores, compartir para casos puntuales, Teams para colaborar y Publicar en la web solo para datos públicos.",
+    "references": [
+      {
+        "title": "Compartir informes y paneles de Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-share-dashboards"
+      },
+      {
+        "title": "Publicar una aplicación en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-create-distribute-apps"
+      },
+      {
+        "title": "Insertar informes de Power BI en Microsoft Teams",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/office-integration/service-embed-report-microsoft-teams"
+      },
+      {
+        "title": "Publicar en la web desde Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-publish-to-web"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-distribucion-002",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 3,
+    "scenario": "Una aseguradora quiere mostrar su informe de siniestros en la intranet corporativa. Solo los empleados autenticados deben verlo y el modelo semántico tiene roles RLS para que cada delegado vea solo su zona.",
+    "prompt": "¿Qué método debes usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Insertar informe > Sitio web o portal (inserción segura) y conceder permisos de visualización a los empleados",
+        "correct": true,
+        "explanation": "La inserción segura exige iniciar sesión y respeta los permisos del elemento y la seguridad de nivel de fila (RLS), así que cada delegado ve solo su zona."
+      },
+      {
+        "id": "b",
+        "text": "Publicar en la web y pegar el código de inserción en la intranet",
+        "correct": false,
+        "explanation": "Publicar en la web hace el informe visible para cualquiera en Internet sin autenticación y no está disponible para informes que usan RLS."
+      },
+      {
+        "id": "c",
+        "text": "Exportar cada día el informe a PDF y publicarlo en la intranet",
+        "correct": false,
+        "explanation": "Un PDF es estático, pierde la interactividad y no aplica RLS por usuario."
+      },
+      {
+        "id": "d",
+        "text": "Agregar a todos los empleados al rol Miembro del área de trabajo",
+        "correct": false,
+        "explanation": "Además de no insertar nada en la intranet, el rol Miembro permite editar y RLS no se aplica a los roles Administrador, Miembro y Colaborador."
+      }
+    ],
+    "keyPoint": "Portal interno con permisos y RLS: inserción segura. Publicar en la web es público y sin RLS.",
+    "references": [
+      {
+        "title": "Insertar un informe en un portal o sitio web seguro",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-embed-secure"
+      },
+      {
+        "title": "Publicar en la web desde Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-publish-to-web"
+      },
+      {
+        "title": "Seguridad de nivel de fila (RLS) con Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/security/service-admin-row-level-security"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-distribucion-003",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "prompt": "Completa la frase con la opción correcta en cada hueco.",
+    "template": "Para que toda la organización consuma en modo de solo lectura un conjunto de informes ya terminados, publicas {{b1}}. Para que un compañero pueda editar los informes, le asignas {{b2}}. Para insertar un informe con datos públicos en la web de la empresa sin pedir inicio de sesión, usas {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "una aplicación"
+          },
+          {
+            "id": "o2",
+            "text": "un panel"
+          },
+          {
+            "id": "o3",
+            "text": "una suscripción"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "La aplicación es el método pensado para distribuir contenido terminado a audiencias amplias, incluida toda la organización."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "el rol Visor"
+          },
+          {
+            "id": "o2",
+            "text": "el rol Colaborador"
+          },
+          {
+            "id": "o3",
+            "text": "un vínculo para compartir"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "El rol Colaborador permite crear, editar y eliminar contenido del área de trabajo; el Visor solo ve e interactúa y un vínculo concede lectura."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Insertar informe > Sitio web o portal"
+          },
+          {
+            "id": "o2",
+            "text": "Publicar en la web"
+          },
+          {
+            "id": "o3",
+            "text": "la pestaña Power BI de Teams"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Publicar en la web no requiere autenticación, por eso solo es apropiado para datos públicos; la inserción segura sí pide iniciar sesión."
+      }
+    ],
+    "keyPoint": "Leer = app; editar = rol de área de trabajo; público sin inicio de sesión = Publicar en la web.",
+    "references": [
+      {
+        "title": "Compartir informes y paneles de Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-share-dashboards"
+      },
+      {
+        "title": "Publicar en la web desde Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-publish-to-web"
+      },
+      {
+        "title": "Roles en áreas de trabajo en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-roles-new-workspaces"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-suscripcion-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "scenario": "La responsable de almacén quiere recibir un correo en cuanto las unidades disponibles de un producto crítico bajen de 100. El valor se muestra en una tarjeta del informe de inventario, cuyo modelo se actualiza varias veces al día.",
+    "prompt": "¿Qué debes configurar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Una alerta de datos en un icono de tarjeta anclado a un panel",
+        "correct": true,
+        "explanation": "Las alertas de datos se configuran en iconos de panel de tipo tarjeta, KPI o medidor y avisan cuando el valor cruza el umbral que definas, con notificación y correo opcional."
+      },
+      {
+        "id": "b",
+        "text": "Una suscripción semanal al informe",
+        "correct": false,
+        "explanation": "Una suscripción envía una instantánea según una programación, tanto si el valor ha cruzado el umbral como si no."
+      },
+      {
+        "id": "c",
+        "text": "Una alerta de datos sobre el objeto visual de tabla en Power BI Desktop",
+        "correct": false,
+        "explanation": "Las alertas de datos no están disponibles en Power BI Desktop y no se basan en tablas."
+      },
+      {
+        "id": "d",
+        "text": "Un marcador con el filtro «Unidades < 100»",
+        "correct": false,
+        "explanation": "Un marcador guarda un estado de la página; no envía notificaciones."
+      }
+    ],
+    "keyPoint": "Aviso por umbral = alerta de datos (tarjeta, KPI o medidor en un panel); envío periódico = suscripción.",
+    "references": [
+      {
+        "title": "Alertas de datos en el servicio Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/service-set-data-alerts"
+      },
+      {
+        "title": "Suscribirse a informes y paneles en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/end-user-subscribe"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-suscripcion-002",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre suscripciones y alertas de datos es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puedes programar una suscripción para que se envíe después de la actualización de datos del modelo.",
+        "answer": true,
+        "explanation": "La frecuencia «Después de la actualización de datos» envía el correo tras la primera actualización programada del día."
+      },
+      {
+        "id": "s2",
+        "text": "En un modelo con RLS, la imagen de la suscripción muestra los datos según el propietario de la suscripción.",
+        "answer": true,
+        "explanation": "La imagen estática del correo se genera con los permisos del propietario; por eso hay que tener cuidado al suscribir a otras personas. Al abrir el informe, cada usuario ve sus propios datos."
+      },
+      {
+        "id": "s3",
+        "text": "El propietario de un panel puede ver las alertas que otros usuarios configuran en sus iconos.",
+        "answer": false,
+        "explanation": "Las alertas son personales: nadie más las ve, ni siquiera el propietario del panel."
+      },
+      {
+        "id": "s4",
+        "text": "Puedes crear una alerta de datos sobre un valor de texto, por ejemplo cuando el estado pase a «Bloqueado».",
+        "answer": false,
+        "explanation": "Las alertas solo funcionan con tipos de datos numéricos."
+      }
+    ],
+    "keyPoint": "Suscripciones: programación o tras la actualización; alertas: personales, numéricas y sobre iconos de panel.",
+    "references": [
+      {
+        "title": "Suscribirse a informes y paneles en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/end-user-subscribe"
+      },
+      {
+        "title": "Alertas de datos en el servicio Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/service-set-data-alerts"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-suscripcion-003",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "prompt": "Empareja cada petición con la función de Power BI que la resuelve.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "El director quiere recibir cada lunes a las 8:00 una instantánea de la página «Resumen semanal»",
+        "answerId": "c1",
+        "explanation": "Una suscripción con frecuencia semanal envía por correo una instantánea y un vínculo según la programación elegida."
+      },
+      {
+        "id": "m2",
+        "text": "Finanzas quiere el correo justo cuando el modelo haya cargado los datos del día",
+        "answerId": "c2",
+        "explanation": "La frecuencia «Después de la actualización de datos» espera a la actualización programada antes de enviar el correo."
+      },
+      {
+        "id": "m3",
+        "text": "Un jefe de tienda quiere un aviso cuando la tarjeta «Devoluciones» supere 50",
+        "answerId": "c3",
+        "explanation": "Las alertas de datos se basan en umbrales sobre iconos de tarjeta, KPI o medidor de un panel."
+      },
+      {
+        "id": "m4",
+        "text": "Cuando salte esa alerta, se debe crear automáticamente una tarea en Planner",
+        "answerId": "c4",
+        "explanation": "Las alertas de datos se pueden integrar con Power Automate para desencadenar acciones en otros servicios."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Suscripción semanal"
+      },
+      {
+        "id": "c2",
+        "text": "Suscripción después de la actualización de datos"
+      },
+      {
+        "id": "c3",
+        "text": "Alerta de datos"
+      },
+      {
+        "id": "c4",
+        "text": "Flujo de Power Automate desencadenado por la alerta"
+      },
+      {
+        "id": "c5",
+        "text": "Marcador personal"
+      }
+    ],
+    "keyPoint": "Calendario = suscripción; umbral = alerta; acción automática tras la alerta = Power Automate.",
+    "references": [
+      {
+        "title": "Suscribirse a informes y paneles en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/end-user-subscribe"
+      },
+      {
+        "title": "Alertas de datos en el servicio Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/service-set-data-alerts"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-aprobacion-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "scenario": "Carlos, con el rol Miembro en el área de trabajo «Datos corporativos», ha terminado el modelo semántico «Ventas – fuente oficial». Quiere que los analistas lo identifiquen como fiable, pero el botón Certificado aparece deshabilitado en la sección de aprobación (*endorsement*) de la configuración del modelo.",
+    "prompt": "¿Qué puede hacer Carlos?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Marcar el modelo como Promocionado y solicitar la certificación siguiendo el proceso de la organización",
+        "correct": true,
+        "explanation": "Cualquier usuario con permisos de escritura sobre el elemento puede promocionarlo. La certificación solo la aplican los revisores autorizados por el administrador de Fabric; los demás pueden solicitarla siguiendo las indicaciones de la organización."
+      },
+      {
+        "id": "b",
+        "text": "Activar la casilla Certificado desde Power BI Desktop antes de volver a publicar",
+        "correct": false,
+        "explanation": "La aprobación se configura en los ajustes del elemento en el servicio; Desktop no puede certificar contenido."
+      },
+      {
+        "id": "c",
+        "text": "Pedir el rol Administrador del área de trabajo, que permite certificar",
+        "correct": false,
+        "explanation": "El rol del área de trabajo no habilita la certificación: hay que estar entre los revisores designados por el administrador de Fabric."
+      },
+      {
+        "id": "d",
+        "text": "Aplicar la etiqueta de confidencialidad «General», que equivale a certificar",
+        "correct": false,
+        "explanation": "Las etiquetas de confidencialidad clasifican la información; no indican que el contenido sea fiable y no sustituyen a la aprobación."
+      }
+    ],
+    "keyPoint": "Promocionar: cualquiera con permisos de escritura. Certificar: solo revisores autorizados por el administrador; los demás lo solicitan.",
+    "references": [
+      {
+        "title": "Información general sobre la aprobación",
+        "url": "https://learn.microsoft.com/es-es/fabric/governance/endorsement-overview"
+      },
+      {
+        "title": "Promocionar o certificar contenido",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-endorse-content"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-aprobacion-002",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 1,
+    "prompt": "¿Qué tipos de elementos de Power BI puedes promocionar o certificar? Selecciona tres.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Modelos semánticos",
+        "correct": true,
+        "explanation": "Los modelos semánticos son el caso de uso típico de la aprobación, porque así los creadores encuentran datos fiables para reutilizar."
+      },
+      {
+        "id": "b",
+        "text": "Informes",
+        "correct": true,
+        "explanation": "Los informes también se pueden promocionar o certificar para destacar los que cumplen los estándares de calidad."
+      },
+      {
+        "id": "c",
+        "text": "Aplicaciones",
+        "correct": true,
+        "explanation": "Las aplicaciones están entre los elementos de Power BI que admiten aprobación."
+      },
+      {
+        "id": "d",
+        "text": "Paneles",
+        "correct": false,
+        "explanation": "Todos los elementos de Fabric y Power BI se pueden aprobar excepto los paneles de Power BI."
+      },
+      {
+        "id": "e",
+        "text": "Iconos individuales de un panel",
+        "correct": false,
+        "explanation": "Un icono es parte de un panel y no un elemento independiente, así que no puede aprobarse."
+      }
+    ],
+    "keyPoint": "Se pueden promocionar o certificar todos los elementos salvo los paneles.",
+    "references": [
+      {
+        "title": "Información general sobre la aprobación",
+        "url": "https://learn.microsoft.com/es-es/fabric/governance/endorsement-overview"
+      },
+      {
+        "title": "Promocionar o certificar contenido",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-endorse-content"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-gateway-001",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 3,
+    "prompt": "Empareja cada origen de datos con la opción de puerta de enlace más adecuada para que el servicio Power BI lo actualice o lo consulte.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "SQL Server en el centro de datos de la empresa, en modo DirectQuery, usado por varios analistas",
+        "answerId": "c1",
+        "explanation": "Un origen local requiere puerta de enlace, y DirectQuery y las conexiones compartidas solo se admiten en el modo estándar."
+      },
+      {
+        "id": "m2",
+        "text": "Libro de Excel almacenado en una biblioteca de SharePoint Online",
+        "answerId": "c3",
+        "explanation": "SharePoint Online es un servicio en la nube al que Power BI accede directamente, por lo que no se necesita puerta de enlace."
+      },
+      {
+        "id": "m3",
+        "text": "Azure SQL Database accesible por Internet",
+        "answerId": "c3",
+        "explanation": "Los orígenes en la nube con conexión de red directa no requieren puerta de enlace; basta con las credenciales del origen en la configuración del modelo."
+      },
+      {
+        "id": "m4",
+        "text": "Archivo de Access en el equipo de un analista que trabaja solo, solo importa datos y no tiene acceso a ninguna puerta de enlace estándar de la organización",
+        "answerId": "c2",
+        "explanation": "Si no tienes acceso a una puerta de enlace estándar y eres el único que administra tus modelos de importación, sin compartir orígenes, la documentación indica el modo personal."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Puerta de enlace de datos local (modo estándar)"
+      },
+      {
+        "id": "c2",
+        "text": "Puerta de enlace de datos local (modo personal)"
+      },
+      {
+        "id": "c3",
+        "text": "No necesita puerta de enlace"
+      }
+    ],
+    "keyPoint": "Origen local = puerta de enlace (estándar para DirectQuery o uso compartido); origen en la nube accesible = sin puerta de enlace.",
+    "references": [
+      {
+        "title": "Puertas de enlace de datos locales en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-gateway-onprem"
+      },
+      {
+        "title": "Puerta de enlace de datos local (modo personal)",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-gateway-personal-mode"
+      },
+      {
+        "title": "Actualización de datos en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/refresh-data"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-gateway-002",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 3,
+    "scenario": "Has publicado un informe cuyo modelo combina una tabla de pedidos de un SQL Server local en modo DirectQuery con una tabla de tarifas de Azure SQL Database accesible por Internet. En el servicio, los objetos visuales que usan pedidos muestran un error de conexión.",
+    "prompt": "¿Qué dos acciones son necesarias para que el informe funcione en el servicio? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Instalar una puerta de enlace de datos local en modo estándar en un servidor de la red de la empresa",
+        "correct": true,
+        "explanation": "SQL Server está en la red local y no es accesible directamente desde el servicio; además, DirectQuery requiere el modo estándar."
+      },
+      {
+        "id": "b",
+        "text": "Agregar en la puerta de enlace una conexión al SQL Server local y concederte permiso para usarla",
+        "correct": true,
+        "explanation": "Solo podrás asignar el modelo a la puerta de enlace si existe una conexión al origen (la agrega un administrador de la puerta de enlace) y tu cuenta está entre sus usuarios."
+      },
+      {
+        "id": "c",
+        "text": "Instalar la puerta de enlace en modo personal en tu propio equipo",
+        "correct": false,
+        "explanation": "El modo personal no admite DirectQuery y no se puede compartir con otros usuarios."
+      },
+      {
+        "id": "d",
+        "text": "Configurar una segunda puerta de enlace solo para Azure SQL Database",
+        "correct": false,
+        "explanation": "Azure SQL Database accesible por Internet no necesita puerta de enlace y, además, un modelo semántico solo puede usar una conexión de puerta de enlace."
+      },
+      {
+        "id": "e",
+        "text": "Abrir puertos de entrada en el cortafuegos hacia el servidor SQL",
+        "correct": false,
+        "explanation": "La puerta de enlace usa conexiones salientes, por lo que no hay que abrir puertos de entrada."
+      }
+    ],
+    "keyPoint": "DirectQuery a un origen local: puerta de enlace estándar + conexión al origen con tu cuenta autorizada.",
+    "references": [
+      {
+        "title": "Puertas de enlace de datos locales en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-gateway-onprem"
+      },
+      {
+        "title": "Puerta de enlace de datos local (modo personal)",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-gateway-personal-mode"
+      },
+      {
+        "title": "Actualización de datos en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/refresh-data"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-gateway-003",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre la puerta de enlace de datos local (*on-premises data gateway*) es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "La puerta de enlace usa conexiones salientes, así que no hace falta abrir puertos de entrada en la red.",
+        "answer": true,
+        "explanation": "Es una de sus características de diseño: el software instalado en la red local se conecta hacia el servicio."
+      },
+      {
+        "id": "s2",
+        "text": "Un mismo modelo semántico puede usar varias conexiones de puerta de enlace distintas para sus orígenes locales.",
+        "answer": false,
+        "explanation": "Un modelo semántico solo puede usar una conexión de puerta de enlace; todos los orígenes locales deben estar definidos en la misma."
+      },
+      {
+        "id": "s3",
+        "text": "Una puerta de enlace en modo personal se puede compartir con otros autores de la organización.",
+        "answer": false,
+        "explanation": "El modo personal solo da servicio a un usuario y no se puede compartir; para compartir orígenes se usa el modo estándar."
+      },
+      {
+        "id": "s4",
+        "text": "Para elegir una puerta de enlace estándar en la configuración del modelo, tu cuenta debe figurar entre los usuarios de la conexión al origen.",
+        "answer": true,
+        "explanation": "La página de configuración solo muestra puertas de enlace con un origen coincidente para el que tengas permiso de uso."
+      }
+    ],
+    "keyPoint": "Puerta de enlace: conexión saliente, una por modelo y, en modo estándar, con usuarios autorizados por conexión.",
+    "references": [
+      {
+        "title": "Puertas de enlace de datos locales en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-gateway-onprem"
+      },
+      {
+        "title": "Actualización de datos en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/refresh-data"
+      },
+      {
+        "title": "Configurar la actualización programada",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/refresh-scheduled-refresh"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-actualizacion-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "scenario": "El modelo semántico «Logística» se actualiza cuatro veces al día. Su propietario está de baja y el equipo de BI se ha enterado de dos errores de actualización por las quejas de los usuarios. Quieres que el equipo de BI reciba un correo cuando falle una actualización programada.",
+    "prompt": "¿Qué debes configurar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "En la programación de actualización del modelo, agregar el grupo de BI al cuadro de contactos que reciben un correo cuando se produce un error",
+        "correct": true,
+        "explanation": "Por defecto, los errores de actualización se notifican al propietario del modelo; puedes indicar destinatarios adicionales, que reciben el correo igual que el propietario."
+      },
+      {
+        "id": "b",
+        "text": "Una alerta de datos sobre el icono que muestra la fecha de la última actualización",
+        "correct": false,
+        "explanation": "Las alertas no se admiten en tarjetas con medidas de fecha u hora y no detectan errores de actualización."
+      },
+      {
+        "id": "c",
+        "text": "Una suscripción con frecuencia «Después de la actualización de datos»",
+        "correct": false,
+        "explanation": "Esa suscripción envía el informe cuando la actualización termina bien; no avisa de los errores."
+      },
+      {
+        "id": "d",
+        "text": "Actualizar el modelo cada mañana con Actualizar ahora para recibir el resultado",
+        "correct": false,
+        "explanation": "Las actualizaciones a petición no generan notificaciones por correo, y además no automatiza nada."
+      }
+    ],
+    "keyPoint": "Los errores de la actualización programada se notifican al propietario y a los contactos adicionales que configures.",
+    "references": [
+      {
+        "title": "Actualización de datos en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/refresh-data"
+      },
+      {
+        "title": "Configurar la actualización programada",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/refresh-scheduled-refresh"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-actualizacion-002",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 3,
+    "scenario": "Has publicado un modelo semántico en modo de importación que obtiene datos de un servidor Oracle de la red local de la empresa. Todavía no existe ninguna puerta de enlace.",
+    "prompt": "Ordena los pasos para que el modelo se actualice automáticamente cada noche.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Instalar y registrar la puerta de enlace de datos local en un servidor con acceso al servidor de Oracle",
+        "explanation": "Sin puerta de enlace, el servicio no puede llegar a un origen de la red local."
+      },
+      {
+        "id": "p2",
+        "text": "En el servicio, agregar la conexión al origen de Oracle en la puerta de enlace y conceder permiso de uso a tu cuenta",
+        "explanation": "La conexión define servidor y credenciales; la agrega un administrador de la puerta de enlace y solo puede crearse cuando esta ya está registrada."
+      },
+      {
+        "id": "p3",
+        "text": "En la configuración del modelo semántico, asignar el origen a esa conexión en Conexiones de puerta de enlace y nube",
+        "explanation": "Hay que configurar la conexión de puerta de enlace del modelo antes de habilitar una programación de actualización."
+      },
+      {
+        "id": "p4",
+        "text": "Activar Configurar una programación de actualización y definir la frecuencia, la zona horaria y la hora",
+        "explanation": "Con la conectividad resuelta ya se puede programar la actualización."
+      },
+      {
+        "id": "p5",
+        "text": "Comprobar el resultado en el historial de actualizaciones",
+        "explanation": "El historial muestra el estado, la duración y los errores de cada intento, así que se revisa al final."
+      }
+    ],
+    "keyPoint": "Puerta de enlace → conexión → asignación en el modelo → programación → historial.",
+    "references": [
+      {
+        "title": "Configurar la actualización programada",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/refresh-scheduled-refresh"
+      },
+      {
+        "title": "Actualización de datos en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/refresh-data"
+      },
+      {
+        "title": "Puertas de enlace de datos locales en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-gateway-onprem"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-roles-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "scenario": "Elena se incorpora como analista. Debe crear y modificar informes del área de trabajo «Marketing» y programar la actualización de sus modelos, pero no debe poder agregar personas al área de trabajo ni publicar la aplicación.",
+    "prompt": "¿Qué rol del área de trabajo debes asignar a Elena?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Colaborador",
+        "correct": true,
+        "explanation": "El Colaborador puede crear, editar y eliminar contenido y programar actualizaciones, pero no publicar la aplicación ni agregar personas al área de trabajo."
+      },
+      {
+        "id": "b",
+        "text": "Miembro",
+        "correct": false,
+        "explanation": "El Miembro además puede agregar usuarios con permisos iguales o inferiores y publicar la aplicación, lo que incumple los requisitos."
+      },
+      {
+        "id": "c",
+        "text": "Visor",
+        "correct": false,
+        "explanation": "El Visor solo ve e interactúa con el contenido; no puede crear ni modificar informes."
+      },
+      {
+        "id": "d",
+        "text": "Administrador",
+        "correct": false,
+        "explanation": "El Administrador tiene control total, incluido eliminar el área de trabajo y gestionar a otros administradores."
+      }
+    ],
+    "keyPoint": "Colaborador = crear y editar contenido sin gestionar personas ni publicar la app.",
+    "references": [
+      {
+        "title": "Roles en áreas de trabajo en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-roles-new-workspaces"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-roles-002",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "prompt": "Empareja cada capacidad con el rol de área de trabajo con menos privilegios que la permite (sin delegaciones especiales).",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Eliminar el área de trabajo o quitar a otro administrador",
+        "answerId": "c1",
+        "explanation": "Actualizar o eliminar el área de trabajo y agregar o quitar a cualquier usuario, incluidos administradores, es exclusivo del Administrador."
+      },
+      {
+        "id": "m2",
+        "text": "Agregar a un compañero con el rol Colaborador",
+        "answerId": "c2",
+        "explanation": "El Miembro puede agregar personas con permisos iguales o inferiores a los suyos."
+      },
+      {
+        "id": "m3",
+        "text": "Publicar la aplicación del área de trabajo por primera vez",
+        "answerId": "c2",
+        "explanation": "Publicar, anular la publicación y cambiar permisos de la aplicación corresponde a Administrador y Miembro."
+      },
+      {
+        "id": "m4",
+        "text": "Descargar el archivo .pbix de un informe",
+        "answerId": "c3",
+        "explanation": "La descarga del .pbix está permitida desde Colaborador hacia arriba; el Visor no puede."
+      },
+      {
+        "id": "m5",
+        "text": "Ver los informes e interactuar con ellos",
+        "answerId": "c4",
+        "explanation": "Ver e interactuar es la capacidad común a los cuatro roles, y el Visor se limita a ella."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Administrador"
+      },
+      {
+        "id": "c2",
+        "text": "Miembro"
+      },
+      {
+        "id": "c3",
+        "text": "Colaborador"
+      },
+      {
+        "id": "c4",
+        "text": "Visor"
+      }
+    ],
+    "keyPoint": "Administrador gestiona el área de trabajo; Miembro, personas y app; Colaborador, contenido; Visor, lectura.",
+    "references": [
+      {
+        "title": "Roles en áreas de trabajo en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-roles-new-workspaces"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-roles-003",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre los roles del área de trabajo es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Si un usuario pertenece a dos grupos con los roles Visor y Colaborador en la misma área de trabajo, obtiene los permisos de Colaborador.",
+        "answer": true,
+        "explanation": "Cuando alguien está en varios grupos, obtiene el nivel de permiso más alto de los roles asignados."
+      },
+      {
+        "id": "s2",
+        "text": "Un Visor puede descargar el archivo .pbix de los informes del área de trabajo.",
+        "answer": false,
+        "explanation": "Descargar el .pbix requiere Colaborador o superior."
+      },
+      {
+        "id": "s3",
+        "text": "Un Colaborador puede agregar nuevos usuarios al área de trabajo.",
+        "answer": false,
+        "explanation": "Agregar personas es una capacidad de Administrador y Miembro."
+      },
+      {
+        "id": "s4",
+        "text": "Un Visor puede crear suscripciones a informes para sí mismo.",
+        "answer": true,
+        "explanation": "Crear suscripciones a informes está disponible en los cuatro roles; suscribir a otras personas requiere Colaborador o superior."
+      }
+    ],
+    "keyPoint": "Se aplica el rol más alto; Visor = ver, interactuar y suscribirse a sí mismo.",
+    "references": [
+      {
+        "title": "Roles en áreas de trabajo en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-roles-new-workspaces"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-roles-004",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 3,
+    "scenario": "El modelo «Ventas» tiene un rol RLS «Delegación» con un filtro por región, al que pertenecen todas las personas de la tabla.",
+    "table": {
+      "caption": "Acceso de cada usuario al área de trabajo del modelo",
+      "headers": [
+        "Usuario",
+        "Acceso"
+      ],
+      "rows": [
+        [
+          "Ana",
+          "Rol Colaborador"
+        ],
+        [
+          "Luis",
+          "Rol Miembro"
+        ],
+        [
+          "Marta",
+          "Rol Visor"
+        ],
+        [
+          "Pedro",
+          "Usuario de la aplicación (sin rol en el área de trabajo)"
+        ],
+        [
+          "Sara",
+          "Rol Visor con permiso de compilación"
+        ]
+      ]
+    },
+    "prompt": "¿Qué dos usuarios verán todas las filas del modelo, sin el filtro de RLS? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ana",
+        "correct": true,
+        "explanation": "RLS solo restringe a los usuarios con permisos de Visor; no se aplica a Administrador, Miembro ni Colaborador, así que Ana ve todos los datos."
+      },
+      {
+        "id": "b",
+        "text": "Luis",
+        "correct": true,
+        "explanation": "Como Miembro del área de trabajo, Luis tiene permisos de edición sobre el modelo y RLS no le afecta."
+      },
+      {
+        "id": "c",
+        "text": "Marta",
+        "correct": false,
+        "explanation": "Marta es Visor y pertenece a un rol RLS, de modo que ve solo las filas que permite su rol."
+      },
+      {
+        "id": "d",
+        "text": "Pedro",
+        "correct": false,
+        "explanation": "Los usuarios de la aplicación tienen acceso de lectura, por lo que el filtro RLS se les aplica."
+      },
+      {
+        "id": "e",
+        "text": "Sara",
+        "correct": false,
+        "explanation": "El permiso de compilación no anula RLS: aunque cree informes o use Analizar en Excel, Sara ve los datos filtrados."
+      }
+    ],
+    "keyPoint": "RLS solo filtra a quien tiene acceso de lectura (Visor, usuarios de la app o de elementos compartidos); los roles con edición ven todo.",
+    "references": [
+      {
+        "title": "Seguridad de nivel de fila (RLS) con Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/security/service-admin-row-level-security"
+      },
+      {
+        "title": "Roles en áreas de trabajo en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-roles-new-workspaces"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-elemento-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "scenario": "Raúl, responsable de compras, necesita consultar el informe «Proveedores» del área de trabajo «Operaciones». El área de trabajo contiene otros informes con información de costes que Raúl no debe ver.",
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Compartir el informe con Raúl mediante un vínculo para Personas específicas",
+        "correct": true,
+        "explanation": "Compartir concede acceso a ese elemento concreto (y lectura sobre su modelo) sin dar acceso al resto del área de trabajo."
+      },
+      {
+        "id": "b",
+        "text": "Agregar a Raúl al área de trabajo con el rol Visor",
+        "correct": false,
+        "explanation": "Un rol de área de trabajo da acceso a todo el contenido del área de trabajo, no solo a un informe."
+      },
+      {
+        "id": "c",
+        "text": "Enviarle un vínculo de tipo «Personas con acceso existente»",
+        "correct": false,
+        "explanation": "Ese vínculo no concede acceso; solo sirve para quien ya tiene permisos sobre el informe."
+      },
+      {
+        "id": "d",
+        "text": "Darle permiso de compilación sobre el modelo semántico",
+        "correct": false,
+        "explanation": "El permiso de compilación permite crear contenido nuevo sobre el modelo, pero no es la forma de darle acceso al informe existente."
+      }
+    ],
+    "keyPoint": "Acceso puntual a un elemento = compartir con personas específicas; rol = acceso a todo el área de trabajo.",
+    "references": [
+      {
+        "title": "Compartir informes y paneles de Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-share-dashboards"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-elemento-002",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre el uso compartido de elementos es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Al compartir un informe, el destinatario obtiene también acceso de lectura a su modelo semántico subyacente.",
+        "answer": true,
+        "explanation": "Compartir un informe comparte el acceso al modelo: el destinatario no queda limitado a los datos visibles en el informe."
+      },
+      {
+        "id": "s2",
+        "text": "Ocultar una tabla o una página del informe impide que el destinatario acceda a esos datos.",
+        "answer": false,
+        "explanation": "Ocultar objetos no es una medida de seguridad; para restringir filas o tablas y columnas se usa RLS u OLS en el modelo."
+      },
+      {
+        "id": "s3",
+        "text": "Un vínculo para Personas con acceso existente concede acceso a quien lo recibe.",
+        "answer": false,
+        "explanation": "Ese vínculo solo genera la dirección del informe y no da permisos a nadie."
+      },
+      {
+        "id": "s4",
+        "text": "Al compartir un informe, el permiso para volver a compartir se incluye de forma predeterminada.",
+        "answer": true,
+        "explanation": "En la configuración del vínculo, «Volver a compartir» viene activado por defecto y «Compilación» desactivado; puedes cambiarlos antes de enviar."
+      }
+    ],
+    "keyPoint": "Compartir da lectura sobre el informe y su modelo; protege los datos con RLS u OLS, no ocultando objetos.",
+    "references": [
+      {
+        "title": "Compartir informes y paneles de Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-share-dashboards"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-compilacion-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "scenario": "Irene, analista de Finanzas, quiere crear en Power BI Desktop su propio informe conectado al modelo semántico certificado «Contabilidad» del área de trabajo «Corporativo». No debe poder modificar los informes que ya existen en esa área de trabajo.",
+    "prompt": "¿Qué permiso debes conceder a Irene?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Permiso de compilación (*Build*) sobre el modelo semántico",
+        "correct": true,
+        "explanation": "El permiso de compilación permite crear contenido nuevo sobre el modelo (informes en Desktop, Analizar en Excel, informes paginados) sin dar edición sobre los informes existentes."
+      },
+      {
+        "id": "b",
+        "text": "Rol Colaborador en el área de trabajo «Corporativo»",
+        "correct": false,
+        "explanation": "Colaborador incluye compilación, pero también permite editar y eliminar todo el contenido del área de trabajo, lo que incumple el requisito."
+      },
+      {
+        "id": "c",
+        "text": "Permiso para volver a compartir el informe",
+        "correct": false,
+        "explanation": "Volver a compartir permite dar acceso a otras personas, no crear informes propios sobre el modelo."
+      },
+      {
+        "id": "d",
+        "text": "Rol Visor en el área de trabajo «Corporativo»",
+        "correct": false,
+        "explanation": "El Visor solo ve e interactúa; sin compilación no puede conectar Desktop al modelo para crear su informe."
+      }
+    ],
+    "keyPoint": "Crear contenido propio sobre un modelo ajeno = permiso de compilación, sin necesidad de rol de edición.",
+    "references": [
+      {
+        "title": "Permiso de compilación para modelos semánticos",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-datasets-build-permissions"
+      },
+      {
+        "title": "Roles en áreas de trabajo en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-roles-new-workspaces"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-compilacion-002",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "prompt": "¿De qué formas puede un usuario obtener permiso de compilación sobre un modelo semántico? Selecciona tres.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Teniendo al menos el rol Colaborador en el área de trabajo del modelo",
+        "correct": true,
+        "explanation": "Colaborador, Miembro y Administrador tienen permiso de compilación sobre los modelos de su área de trabajo."
+      },
+      {
+        "id": "b",
+        "text": "Recibiéndolo del propietario del modelo en la página Administrar permisos",
+        "correct": true,
+        "explanation": "El propietario puede conceder compilación a usuarios o grupos de seguridad concretos desde Administrar permisos."
+      },
+      {
+        "id": "c",
+        "text": "Perteneciendo a una audiencia de una aplicación publicada con la opción que permite crear contenido con sus modelos semánticos",
+        "correct": true,
+        "explanation": "Al publicar la app, un Administrador o Miembro puede conceder compilación a los usuarios de la audiencia mediante la configuración avanzada."
+      },
+      {
+        "id": "d",
+        "text": "Teniendo el rol Visor en el área de trabajo",
+        "correct": false,
+        "explanation": "El Visor tiene lectura; necesita que se le conceda la compilación de forma explícita para crear contenido."
+      },
+      {
+        "id": "e",
+        "text": "Suscribiéndose a un informe basado en el modelo",
+        "correct": false,
+        "explanation": "Una suscripción solo envía instantáneas por correo; no cambia los permisos sobre el modelo."
+      }
+    ],
+    "keyPoint": "Compilación: por rol Colaborador o superior, por concesión directa del propietario o a través de la aplicación.",
+    "references": [
+      {
+        "title": "Permiso de compilación para modelos semánticos",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-datasets-build-permissions"
+      },
+      {
+        "title": "Publicar una aplicación en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-create-distribute-apps"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-compilacion-003",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "prompt": "Completa la frase con la opción correcta en cada hueco.",
+    "template": "Para usar Analizar en Excel sobre un modelo semántico, un usuario con el rol Visor necesita {{b1}}. Si después le quitas ese permiso, todavía puede {{b2}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "permiso de compilación"
+          },
+          {
+            "id": "o2",
+            "text": "permiso para volver a compartir"
+          },
+          {
+            "id": "o3",
+            "text": "una etiqueta de confidencialidad"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Analizar en Excel crea contenido nuevo sobre el modelo, y para eso hace falta el permiso de compilación."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "ver los informes basados en el modelo"
+          },
+          {
+            "id": "o2",
+            "text": "editar los informes existentes"
+          },
+          {
+            "id": "o3",
+            "text": "exportar los datos subyacentes"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Sin compilación el usuario conserva la lectura: ve los informes, pero ya no puede editarlos ni exportar datos subyacentes (sí datos resumidos)."
+      }
+    ],
+    "keyPoint": "Compilación = crear contenido y exportar datos subyacentes; lectura = ver informes.",
+    "references": [
+      {
+        "title": "Permiso de compilación para modelos semánticos",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-datasets-build-permissions"
+      },
+      {
+        "title": "Roles en áreas de trabajo en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-roles-new-workspaces"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-rls-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "scenario": "El modelo tiene la tabla Vendedor (una fila por vendedor, con la columna CorreoElectronico) relacionada uno a varios con la tabla Ventas, con filtro cruzado en una dirección. Se ha creado el rol «Vendedores» con la expresión de filtro mostrada sobre la tabla Vendedor. Laura (laura@contoso.com) tiene el rol Visor en el área de trabajo y es miembro del rol; su correo figura en la tabla Vendedor.",
+    "code": {
+      "language": "dax",
+      "content": "// Rol: Vendedores — filtro sobre la tabla Vendedor\n[CorreoElectronico] = USERPRINCIPALNAME()"
+    },
+    "prompt": "¿Qué datos de ventas verá Laura en el servicio Power BI?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Solo las ventas relacionadas con la fila de Vendedor cuyo correo coincide con su nombre principal de usuario",
+        "correct": true,
+        "explanation": "En el servicio, USERPRINCIPALNAME() devuelve el UPN de quien abre el informe. El filtro deja una fila en Vendedor y se propaga a Ventas por la relación activa de uno a varios."
+      },
+      {
+        "id": "b",
+        "text": "Todas las ventas, porque el filtro se aplica a Vendedor y no a Ventas",
+        "correct": false,
+        "explanation": "Los filtros RLS se propagan a otras tablas por las relaciones activas; por eso se recomienda filtrar dimensiones y dejar que la relación filtre los hechos."
+      },
+      {
+        "id": "c",
+        "text": "Ninguna venta, porque USERPRINCIPALNAME() devuelve DOMINIO\\usuario",
+        "correct": false,
+        "explanation": "El formato DOMINIO\\usuario lo devuelve USERNAME() en Power BI Desktop; en el servicio ambas funciones devuelven el UPN."
+      },
+      {
+        "id": "d",
+        "text": "Todas las ventas, porque las reglas dinámicas solo se aplican en Power BI Desktop",
+        "correct": false,
+        "explanation": "Las reglas se definen en Desktop y se publican con el modelo; en el servicio se aplican a los usuarios con acceso de lectura."
+      }
+    ],
+    "keyPoint": "RLS dinámica: filtra la dimensión con USERPRINCIPALNAME() y deja que la relación propague el filtro a los hechos.",
+    "references": [
+      {
+        "title": "Seguridad de nivel de fila (RLS) con Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/security/service-admin-row-level-security"
+      },
+      {
+        "title": "USERPRINCIPALNAME (DAX)",
+        "url": "https://learn.microsoft.com/es-es/dax/userprincipalname-function-dax"
+      },
+      {
+        "title": "Guía de seguridad de nivel de fila (RLS) en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/rls-guidance"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-rls-002",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 1,
+    "prompt": "Completa la frase con la opción correcta en cada hueco.",
+    "template": "Un rol con la expresión [Region] = \"Norte\" aplica una RLS {{b1}}. Para que un único rol filtre los datos según la identidad de cada usuario, usas la función DAX {{b2}}. La asignación de usuarios o grupos a los roles se hace en {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "estática"
+          },
+          {
+            "id": "o2",
+            "text": "dinámica"
+          },
+          {
+            "id": "o3",
+            "text": "de nivel de objeto"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "El valor fijo «Norte» filtra lo mismo para todos los miembros del rol: es RLS estática, que obliga a crear un rol por región."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "USERPRINCIPALNAME()"
+          },
+          {
+            "id": "o2",
+            "text": "SELECTEDVALUE()"
+          },
+          {
+            "id": "o3",
+            "text": "LOOKUPVALUE()"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "USERPRINCIPALNAME() devuelve el UPN de quien consulta el modelo, lo que permite un solo rol dinámico que se compara con una columna de correo."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Power BI Desktop"
+          },
+          {
+            "id": "o2",
+            "text": "el servicio Power BI"
+          },
+          {
+            "id": "o3",
+            "text": "el Editor de Power Query"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Los roles se definen en Desktop, pero no se pueden asignar miembros allí: se asignan en la página Seguridad del modelo en el servicio."
+      }
+    ],
+    "keyPoint": "Estática = valor fijo; dinámica = USERPRINCIPALNAME(); miembros = en el servicio.",
+    "references": [
+      {
+        "title": "Seguridad de nivel de fila (RLS) con Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/security/service-admin-row-level-security"
+      },
+      {
+        "title": "USERPRINCIPALNAME (DAX)",
+        "url": "https://learn.microsoft.com/es-es/dax/userprincipalname-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-rls-003",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "scenario": "Cada delegación tiene un único delegado comercial, que solo debe ver los datos de su delegación. Tienes un archivo con el correo del delegado de cada delegación y quieres un único rol para todos.",
+    "prompt": "Ordena los pasos para implementar la RLS dinámica.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Cargar la tabla Delegación (una fila por delegación, con el correo de su delegado) y relacionarla de uno a varios con la tabla de ventas",
+        "explanation": "La regla dinámica necesita una tabla con el UPN de cada usuario y una relación por la que el filtro llegue a los hechos; la columna debe existir antes de escribir el filtro que la usa."
+      },
+      {
+        "id": "p2",
+        "text": "En Power BI Desktop, en Modelado > Administrar roles, crear un rol con un filtro DAX sobre la tabla Delegación que compare la columna Correo con USERPRINCIPALNAME()",
+        "explanation": "Las reglas dinámicas se escriben con el editor DAX de Administrar roles; el filtro deja la fila del delegado y la relación lo propaga a las ventas."
+      },
+      {
+        "id": "p3",
+        "text": "Publicar el modelo en el área de trabajo",
+        "explanation": "Las definiciones de roles se publican junto con el modelo semántico."
+      },
+      {
+        "id": "p4",
+        "text": "En la página Seguridad del modelo, en el servicio, agregar el grupo de seguridad de los delegados como miembro del rol",
+        "explanation": "Los miembros solo se asignan en el servicio y solo a roles que ya existen en el modelo publicado."
+      }
+    ],
+    "keyPoint": "RLS dinámica: tabla con el UPN relacionada con los hechos → rol con USERPRINCIPALNAME() → publicar → asignar miembros en el servicio.",
+    "references": [
+      {
+        "title": "Seguridad de nivel de fila (RLS) con Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/security/service-admin-row-level-security"
+      },
+      {
+        "title": "Guía de seguridad de nivel de fila (RLS) en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/rls-guidance"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-rls-004",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 3,
+    "scenario": "Jorge tiene el rol Visor en el área de trabajo y el modelo define los dos roles RLS mostrados.",
+    "code": {
+      "language": "dax",
+      "content": "// Rol \"Zona Norte\" — filtro sobre la tabla Region\n[NombreRegion] = \"Norte\"\n\n// Rol \"Zona Sur\" — filtro sobre la tabla Region\n[NombreRegion] = \"Sur\""
+    },
+    "prompt": "Jorge pertenece, a través de dos grupos de seguridad, a ambos roles. ¿Qué filas de Región verá?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Las regiones Norte y Sur",
+        "correct": true,
+        "explanation": "Cuando un usuario pertenece a varios roles, los filtros RLS son aditivos: ve la unión de las filas permitidas por cada rol."
+      },
+      {
+        "id": "b",
+        "text": "Ninguna, porque los filtros se combinan como Norte Y Sur",
+        "correct": false,
+        "explanation": "Los roles no se combinan con intersección; RLS no aplica el principio de que una denegación prevalece."
+      },
+      {
+        "id": "c",
+        "text": "Solo la región del rol que se asignó primero",
+        "correct": false,
+        "explanation": "El orden de asignación no influye: se aplican todos los roles del usuario a la vez."
+      },
+      {
+        "id": "d",
+        "text": "Todas las regiones, porque pertenecer a varios roles desactiva RLS",
+        "correct": false,
+        "explanation": "Pertenecer a varios roles no desactiva RLS; amplía lo visible solo a la unión de los filtros."
+      }
+    ],
+    "keyPoint": "Varios roles RLS = unión de filtros (son aditivos). Procura que cada usuario pertenezca a un solo rol que reúna todo lo que puede ver.",
+    "references": [
+      {
+        "title": "Guía de seguridad de nivel de fila (RLS) en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/rls-guidance"
+      },
+      {
+        "title": "Seguridad de nivel de fila (RLS) con Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/security/service-admin-row-level-security"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-grupos-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "scenario": "Tu empresa tiene 120 jefes de tienda que cambian a menudo. TI mantiene el grupo de seguridad de Microsoft Entra «Jefes-Tienda» y también existe un grupo de Microsoft 365 del equipo de tiendas para Teams. Quieres que la pertenencia al rol RLS «Tiendas» se mantenga sin tocar Power BI.",
+    "prompt": "¿Qué debes agregar como miembro del rol RLS?",
+    "options": [
+      {
+        "id": "a",
+        "text": "El grupo de seguridad de Microsoft Entra «Jefes-Tienda»",
+        "correct": true,
+        "explanation": "Los grupos de seguridad (y también los de distribución y los habilitados para correo) se pueden usar como miembros de roles RLS, y es la práctica recomendada."
+      },
+      {
+        "id": "b",
+        "text": "El grupo de Microsoft 365 del equipo de tiendas",
+        "correct": false,
+        "explanation": "Los grupos de Microsoft 365 no son compatibles con la pertenencia a roles RLS y no se pueden agregar."
+      },
+      {
+        "id": "c",
+        "text": "El rol Visor del área de trabajo",
+        "correct": false,
+        "explanation": "Los roles del área de trabajo controlan el acceso al área de trabajo; no son miembros que se puedan agregar a un rol RLS."
+      },
+      {
+        "id": "d",
+        "text": "La audiencia «Tiendas» de la aplicación",
+        "correct": false,
+        "explanation": "Las audiencias deciden qué contenido de la aplicación se ve, no qué filas del modelo filtra RLS."
+      }
+    ],
+    "keyPoint": "Pertenencia a RLS: grupos de seguridad (recomendado), de distribución o habilitados para correo; nunca grupos de Microsoft 365.",
+    "references": [
+      {
+        "title": "Seguridad de nivel de fila (RLS) con Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/security/service-admin-row-level-security"
+      },
+      {
+        "title": "Guía de seguridad de nivel de fila (RLS) en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/rls-guidance"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-grupos-002",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "prompt": "Completa la frase con la opción correcta en cada hueco.",
+    "template": "Para administrar la pertenencia a un rol RLS con grupos, agregas {{b1}} como miembro del rol desde {{b2}}. Solo puedes hacerlo si el rol {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "un grupo de seguridad de Microsoft Entra"
+          },
+          {
+            "id": "o2",
+            "text": "un grupo de Microsoft 365"
+          },
+          {
+            "id": "o3",
+            "text": "un canal de Teams"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "La guía recomienda asignar grupos de seguridad para que las altas y bajas se gestionen en Microsoft Entra ID; los grupos de Microsoft 365 no se admiten."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Administrar roles en Power BI Desktop"
+          },
+          {
+            "id": "o2",
+            "text": "la página Seguridad del modelo en el servicio"
+          },
+          {
+            "id": "o3",
+            "text": "la configuración del área de trabajo"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "En Desktop no se pueden asignar usuarios a roles; se hace en Seguridad del modelo semántico en el servicio."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "ya está definido en el modelo"
+          },
+          {
+            "id": "o2",
+            "text": "tiene una etiqueta de confidencialidad"
+          },
+          {
+            "id": "o3",
+            "text": "está certificado"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Solo puedes administrar la seguridad de modelos que ya tienen roles definidos, en Desktop o al editar el modelo en el servicio."
+      }
+    ],
+    "keyPoint": "Grupo de seguridad + página Seguridad del servicio + rol ya definido en el modelo.",
+    "references": [
+      {
+        "title": "Seguridad de nivel de fila (RLS) con Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/security/service-admin-row-level-security"
+      },
+      {
+        "title": "Guía de seguridad de nivel de fila (RLS) en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/rls-guidance"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-etiquetas-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "scenario": "Has aplicado en el servicio la etiqueta de confidencialidad (*sensitivity label*) «Confidencial», que incluye cifrado, a un informe de nóminas.",
+    "prompt": "¿Qué ocurre cuando un usuario autorizado exporta los datos de un objeto visual a Excel?",
+    "options": [
+      {
+        "id": "a",
+        "text": "El archivo de Excel recibe la etiqueta «Confidencial» y su protección",
+        "correct": true,
+        "explanation": "Al exportar a Excel, PDF o PowerPoint por una ruta admitida, Power BI aplica la etiqueta al archivo y lo protege según su configuración de cifrado."
+      },
+      {
+        "id": "b",
+        "text": "La exportación se bloquea siempre, porque la etiqueta impide sacar datos",
+        "correct": false,
+        "explanation": "La etiqueta no bloquea por sí misma la exportación; acompaña a los datos y aplica su protección al archivo."
+      },
+      {
+        "id": "c",
+        "text": "El archivo se exporta sin etiqueta, porque las etiquetas solo existen dentro de Power BI",
+        "correct": false,
+        "explanation": "Las etiquetas son persistentes: viajan con el contenido cuando se exporta por las rutas admitidas."
+      },
+      {
+        "id": "d",
+        "text": "Solo los miembros del área de trabajo pueden abrir el informe en el servicio",
+        "correct": false,
+        "explanation": "En el servicio la etiqueta no afecta al acceso: el acceso lo controlan los permisos de Power BI."
+      }
+    ],
+    "keyPoint": "Etiquetas en el servicio: clasifican y viajan con los datos exportados; no cambian quién accede al informe.",
+    "references": [
+      {
+        "title": "Etiquetas de confidencialidad en Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/enterprise/powerbi/service-security-sensitivity-label-overview"
+      },
+      {
+        "title": "Aplicar etiquetas de confidencialidad en Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/enterprise/powerbi/service-security-apply-data-sensitivity-labels"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-etiquetas-002",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "prompt": "¿Qué dos afirmaciones sobre las etiquetas de confidencialidad en Power BI son correctas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un informe nuevo creado en el servicio sobre un modelo etiquetado hereda la etiqueta del modelo",
+        "correct": true,
+        "explanation": "Los informes y paneles nuevos heredan automáticamente la etiqueta del modelo o informe del que proceden."
+      },
+      {
+        "id": "b",
+        "text": "Una etiqueta aplicada en Power BI Desktop viaja al servicio al publicar el archivo",
+        "correct": true,
+        "explanation": "Al publicar, la etiqueta del .pbix se aplica al modelo semántico y al informe en el servicio."
+      },
+      {
+        "id": "c",
+        "text": "Una etiqueta aplicada a un informe en el servicio impide abrirlo a quien ya tiene permisos de Power BI",
+        "correct": false,
+        "explanation": "En el servicio el etiquetado no afecta al acceso; solo los permisos de Power BI lo controlan."
+      },
+      {
+        "id": "d",
+        "text": "Las etiquetas solo se pueden aplicar a modelos semánticos",
+        "correct": false,
+        "explanation": "En el servicio se aplican a modelos semánticos, informes, paneles y flujos de datos, y en Desktop al archivo .pbix."
+      },
+      {
+        "id": "e",
+        "text": "Una etiqueta «Extremadamente confidencial» filtra las filas que ve cada usuario",
+        "correct": false,
+        "explanation": "Filtrar filas por usuario es tarea de la seguridad de nivel de fila (RLS), no de las etiquetas."
+      }
+    ],
+    "keyPoint": "Las etiquetas se heredan y viajan con el contenido; no sustituyen a los permisos ni a RLS.",
+    "references": [
+      {
+        "title": "Etiquetas de confidencialidad en Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/enterprise/powerbi/service-security-sensitivity-label-overview"
+      },
+      {
+        "title": "Aplicar etiquetas de confidencialidad en Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/enterprise/powerbi/service-security-apply-data-sensitivity-labels"
+      },
+      {
+        "title": "Publicar modelos semánticos e informes desde Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-upload-desktop-files"
+      }
+    ]
+  }
+]

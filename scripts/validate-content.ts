@@ -107,7 +107,7 @@ for (const exam of exams.filter((e) => e.status === 'disponible')) {
       const perCase = new Map<string, number>()
       for (const [qid, where] of allIds) {
         const q = allQuestions.get(qid)
-        if (!q?.caseId) continue
+        if (!q?.caseId || q.exam !== exam.code) continue
         if (!caseIds.has(q.caseId)) errors.push(`${where} ${qid}: caso desconocido "${q.caseId}"`)
         perCase.set(q.caseId, (perCase.get(q.caseId) ?? 0) + 1)
       }
@@ -142,7 +142,7 @@ for (const exam of exams.filter((e) => e.status === 'disponible')) {
         if (!exam.domains.some((d) => d.id === t.domain)) errors.push(`glossary ${t.id}: dominio desconocido`)
       }
       console.log(`  glosario: ${g.data.length} términos`)
-      const preview = [...allQuestions.values()].filter((q) => q.tags?.includes('preview')).length
+      const preview = [...allQuestions.values()].filter((q) => q.exam === exam.code && q.tags?.includes('preview')).length
       if (preview) console.log(`  marcadas como versión preliminar: ${preview}`)
     }
   }

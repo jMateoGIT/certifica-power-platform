@@ -1,22 +1,9 @@
 import type { ExamDefinition } from './schema'
+import { pl300 } from './pl-300/exam'
 import { pl900 } from './pl-900/exam'
 
 /** Certificaciones planificadas. Solo las marcadas como «disponible» tienen banco de preguntas. */
 const upcoming: ExamDefinition[] = [
-  {
-    code: 'PL-300',
-    name: 'Analista de datos de Power BI',
-    nameEn: 'Microsoft Power BI Data Analyst',
-    level: 'Associate',
-    status: 'proximamente',
-    description: 'Preparar, modelar, visualizar y analizar datos con Power BI, y desplegar y mantener sus elementos.',
-    outlineVersion: '',
-    durationMinutes: 100,
-    questionCount: 50,
-    passingScore: 700,
-    officialUrl: 'https://learn.microsoft.com/es-es/credentials/certifications/data-analyst-associate/',
-    domains: [],
-  },
   {
     code: 'AB-410',
     name: 'Creador de aplicaciones inteligentes',
@@ -61,7 +48,7 @@ const upcoming: ExamDefinition[] = [
   },
 ]
 
-export const exams: ExamDefinition[] = [pl900, ...upcoming]
+export const exams: ExamDefinition[] = [pl900, pl300, ...upcoming]
 
 export function getExam(code: string | undefined): ExamDefinition | undefined {
   if (!code) return undefined

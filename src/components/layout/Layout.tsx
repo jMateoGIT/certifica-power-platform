@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router'
 import clsx from 'clsx'
 import { Menu, Monitor, Moon, Sun, X } from 'lucide-react'
+import { exams } from '../../content/catalog'
 import { trackPageview } from '../../lib/telemetry'
 import { useProgress, type Theme } from '../../store/progress'
 
@@ -48,10 +49,10 @@ function ThemeToggle() {
   )
 }
 
+// Una entrada por certificación disponible; el progreso está dentro de cada una.
 const links = [
   { to: '/', label: 'Inicio', end: true },
-  { to: '/pl-900', label: 'PL-900', end: false },
-  { to: '/pl-900/progreso', label: 'Mi progreso', end: true },
+  ...exams.filter((e) => e.status === 'disponible').map((e) => ({ to: `/${e.code.toLowerCase()}`, label: e.code, end: false })),
   { to: '/acerca', label: 'Acerca de', end: true },
 ]
 
@@ -102,9 +103,7 @@ export function Layout() {
                 className={({ isActive }) =>
                   clsx(
                     'rounded-lg px-3 py-1.5 text-sm font-medium transition-colors',
-                    isActive && !(l.to === '/pl-900' && pathname.endsWith('/progreso'))
-                      ? 'bg-primary-soft text-primary'
-                      : 'text-muted hover:text-text',
+                    isActive ? 'bg-primary-soft text-primary' : 'text-muted hover:text-text',
                   )
                 }
               >

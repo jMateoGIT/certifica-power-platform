@@ -21,11 +21,16 @@ declare global {
 /** ¿Está la analítica configurada en este despliegue? */
 export const telemetryConfigured = Boolean(WEBSITE_ID)
 
+/** ¿Se pueden enviar eventos ahora mismo (configurada, sin «no rastrear» y permitida)? */
+export const telemetryActive = () => allowed()
+
 const doNotTrack = () =>
   typeof navigator !== 'undefined' &&
   (navigator.doNotTrack === '1' || (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl === true)
 
-const allowed = () => telemetryConfigured && !doNotTrack() && useProgress.getState().telemetry
+function allowed() {
+  return telemetryConfigured && !doNotTrack() && useProgress.getState().telemetry
+}
 
 let loaded = false
 function load() {
@@ -73,4 +78,9 @@ export function trackAnswer(q: Question, score: number, mode: AnswerMode) {
 export function trackExam(exam: string, mode: string, scaled: number, passed: boolean) {
   // La nota se redondea a decenas: suficiente para estadísticas y menos identificable.
   send('simulacro', { examen: exam, modo: mode, nota: Math.round(scaled / 10) * 10, aprobado: passed })
+}
+
+/** La persona indica que una pregunta le ha resultado confusa. */
+export function trackConfusing(q: Question) {
+  send('pregunta-confusa', { pregunta: q.id, dominio: q.domain, tipo: q.type })
 }

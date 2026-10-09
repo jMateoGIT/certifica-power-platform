@@ -127,3 +127,26 @@ Si una pregunta trata una función que Learn marca como versión preliminar (*pr
 añade `"tags": ["preview"]`. El validador las cuenta para revisarlas cuando la función
 pase a disponibilidad general o cambie. Pregunta solo por su propósito, nunca por
 detalles de interfaz que puedan cambiar.
+
+## Anexos: código y tablas
+
+Para preguntas que analizan una fórmula o unos datos (muy habituales en PL-300):
+
+```json
+"code": { "language": "dax", "content": "Ventas YTD =\nTOTALYTD ( SUM ( Ventas[Importe] ), 'Fecha'[Fecha] )" }
+```
+
+Lenguajes: `dax`, `m` (Power Query), `powerfx`, `sql`, `json`. El código va con saltos de
+línea `\n` y debe ser **sintácticamente correcto** salvo que la pregunta trate de encontrar
+el error.
+
+```json
+"table": {
+  "caption": "Tabla Ventas (extracto)",
+  "headers": ["IdPedido", "Fecha", "Importe"],
+  "rows": [["1001", "02/01/2026", "120,50"], ["1002", "02/01/2026", ""]]
+}
+```
+
+Hasta 8 columnas y 12 filas; todas las filas con el mismo número de celdas. Usa datos
+ficticios y formatos españoles (fechas dd/mm/aaaa, coma decimal) salvo dentro del código.

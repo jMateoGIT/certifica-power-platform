@@ -1,0 +1,34 @@
+name: Informe mensual de calidad de preguntas
+
+on:
+  schedule:
+    - cron: '37 7 1 * *' # día 1 de cada mes
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Sin el secreto UMAMI_API_KEY y la variable UMAMI_WEBSITE_ID el informe se omite.
+      - run: npm run question-quality -- --days 30 --out informe.md
+        env:
+          UMAMI_API_KEY: ${{ secrets.UMAMI_API_KEY }}
+          UMAMI_WEBSITE_ID: ${{ vars.UMAMI_WEBSITE_ID }}
+      - name: Abrir incidencia con las preguntas a revisar
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -f informe.md ]; then
+            gh issue create --title "Calidad de preguntas: revisión de $(date +%Y-%m)" --label contenido --body-file informe.md \
+              || gh issue create --title "Calidad de preguntas: revisión de $(date +%Y-%m)" --body-file informe.md
+          fi

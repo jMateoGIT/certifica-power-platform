@@ -1,14 +1,17 @@
 import clsx from 'clsx'
-import { Bookmark, BookmarkCheck, CircleCheck, CircleX, ExternalLink, FlaskConical, Flag, Lightbulb, TriangleAlert } from 'lucide-react'
+import { Bookmark, BookmarkCheck, CircleCheck, CircleHelp, CircleX, ExternalLink, FlaskConical, Flag, Lightbulb, TriangleAlert } from 'lucide-react'
 import type { ExamDefinition, Question, QuestionType } from '../../content/schema'
 import { grade, requiredSelections } from '../../engine/grading'
 import type { Answer } from '../../engine/types'
 import { useProgress } from '../../store/progress'
+import { useState } from 'react'
 import { reportQuestionUrl } from '../../lib/config'
+import { telemetryActive, trackConfusing } from '../../lib/telemetry'
 import { Badge, DomainIcon } from '../ui'
 import { CaseContext } from './CaseContext'
 import { ChoiceQuestion } from './ChoiceQuestion'
 import { DropdownQuestion } from './DropdownQuestion'
+import { Exhibits } from './Exhibits'
 import { MatchQuestion } from './MatchQuestion'
 import { OrderQuestion } from './OrderQuestion'
 import { RichText } from './shared'
@@ -112,6 +115,8 @@ export function QuestionView({ exam, question: q, answer, onChange, revealed, se
         )}
       </h2>
 
+      <Exhibits question={q} />
+
       {body}
 
       {revealed && <Feedback question={q} answer={answer} />}
@@ -169,14 +174,39 @@ export function Feedback({ question: q, answer }: { question: Question; answer: 
         </ul>
       </div>
 
-      <a
-        href={reportQuestionUrl(q.id, q.prompt)}
-        target="_blank"
-        rel="noreferrer"
-        className="inline-flex items-center gap-1.5 text-xs text-muted hover:text-text"
-      >
-        <Flag size={12} /> ¿Ves un error en esta pregunta? Repórtalo
-      </a>
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+        <ConfusingButton question={q} />
+        <a
+          href={reportQuestionUrl(q.id, q.prompt)}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-1.5 text-xs text-muted hover:text-text"
+        >
+          <Flag size={12} /> ¿Ves un error en esta pregunta? Repórtalo
+        </a>
+      </div>
     </section>
+  )
+}
+
+/** Señal rápida de «pregunta confusa» (solo si la analítica está activa). */
+function ConfusingButton({ question }: { question: Question }) {
+  const [sent, setSent] = useState(false)
+  if (!telemetryActive()) return null
+  return sent ? (
+    <span className="inline-flex items-center gap-1.5 text-xs text-ok">
+      <CircleCheck size={12} /> Gracias, la revisaremos
+    </span>
+  ) : (
+    <button
+      type="button"
+      onClick={() => {
+        trackConfusing(question)
+        setSent(true)
+      }}
+      className="inline-flex items-center gap-1.5 rounded-lg border border-border px-2 py-1 text-xs text-muted hover:border-warn hover:text-warn"
+    >
+      <CircleHelp size={12} /> ¿Te ha resultado confusa?
+    </button>
   )
 }

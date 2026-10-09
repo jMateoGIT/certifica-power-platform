@@ -85,3 +85,24 @@ test('el simulacro completo termina con un caso práctico', async ({ page }) => 
   await page.getByRole('button', { name: /^Pregunta 45/ }).click()
   await expect(page.getByRole('button', { name: /Caso práctico/ })).toBeVisible()
 })
+
+test('PL-300: portada del examen, anexos de código y simulacro de 50 preguntas', async ({ page }) => {
+  await page.goto('./')
+  await page.getByRole('link', { name: 'PL-300' }).first().click()
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('PL-300')
+  await expect(page.getByRole('heading', { name: /Modelar los datos/ })).toBeVisible()
+  // Una pregunta con código DAX muestra el anexo resaltado.
+  await page.goto('./pl-300/practica?dominio=d2')
+  await page.getByRole('button', { name: 'Todas' }).last().click()
+  await page.getByRole('button', { name: /^Empezar/ }).click()
+  for (let i = 0; i < 40 && !(await page.getByText('DAX', { exact: true }).isVisible()); i++) {
+    await page.getByRole('button', { name: 'Terminar' }).click()
+    await page.goto('./pl-300/practica?dominio=d2')
+    await page.getByRole('button', { name: 'Todas' }).last().click()
+    await page.getByRole('button', { name: /^Empezar/ }).click()
+  }
+  await expect(page.getByText('DAX', { exact: true })).toBeVisible()
+  await page.goto('./pl-300/simulacro')
+  await page.getByRole('button', { name: /Empezar simulacro/ }).click()
+  await expect(page.getByText('Pregunta 1 de 50')).toBeVisible()
+})
