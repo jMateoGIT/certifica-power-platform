@@ -124,14 +124,14 @@
     "domain": "d4",
     "skill": "d4-areas",
     "difficulty": 3,
-    "scenario": "Publicaste hace meses una aplicación desde el área de trabajo «Finanzas» con dos audiencias: «Dirección» y «Controladores». Hoy has agregado al área de trabajo el informe «Previsión de tesorería», pero los directivos no lo ven en la aplicación.",
+    "scenario": "Publicaste hace meses la aplicación del área de trabajo (*workspace app*) «Finanzas» con dos audiencias: «Dirección» y «Controladores». Hoy has agregado al área de trabajo el informe «Previsión de tesorería», pero los directivos no lo ven en la aplicación.",
     "prompt": "¿Qué dos acciones debes realizar para que la audiencia «Dirección» vea el nuevo informe en la aplicación? Selecciona dos.",
     "options": [
       {
         "id": "a",
-        "text": "En Actualizar aplicación, hacer visible el informe nuevo en la audiencia «Dirección»",
+        "text": "En Actualizar aplicación, incluir el informe nuevo en el contenido y hacerlo visible para la audiencia «Dirección»",
         "correct": true,
-        "explanation": "Al actualizar una aplicación ya publicada, el contenido recién agregado se marca como oculto de forma predeterminada: debes mostrarlo manualmente en cada audiencia que deba verlo."
+        "explanation": "Al actualizar una aplicación, el contenido que agregaste después al área de trabajo no se incluye de forma predeterminada: debes agregarlo en la pestaña Contenido y mostrarlo en cada audiencia que deba verlo."
       },
       {
         "id": "b",
@@ -141,9 +141,9 @@
       },
       {
         "id": "c",
-        "text": "Crear una segunda aplicación en la misma área de trabajo solo con el informe nuevo",
+        "text": "Crear una segunda aplicación del área de trabajo solo con el informe nuevo",
         "correct": false,
-        "explanation": "Solo se puede crear una aplicación por área de trabajo; para mostrar contenido distinto a grupos distintos se usan audiencias."
+        "explanation": "Cada área de trabajo admite una sola aplicación del área de trabajo; para mostrar contenido distinto a grupos distintos se usan audiencias. Además, los directivos seguirían sin ver el informe en la aplicación que ya usan."
       },
       {
         "id": "d",
@@ -158,7 +158,7 @@
         "explanation": "La actualización programada refresca los datos; no modifica el contenido ni la visibilidad de la aplicación."
       }
     ],
-    "keyPoint": "Contenido nuevo en una app publicada = oculto por defecto: muéstralo en cada audiencia y selecciona Actualizar aplicación.",
+    "keyPoint": "Contenido nuevo en una app ya publicada: inclúyelo, muéstralo en cada audiencia que deba verlo y selecciona Actualizar aplicación.",
     "references": [
       {
         "title": "Publicar una aplicación en Power BI",
@@ -174,7 +174,7 @@
     "domain": "d4",
     "skill": "d4-areas",
     "difficulty": 2,
-    "prompt": "Ordena los pasos para publicar por primera vez una aplicación de Power BI desde un área de trabajo.",
+    "prompt": "Ordena los pasos para publicar por primera vez una aplicación del área de trabajo (*workspace app*) en Power BI.",
     "items": [
       {
         "id": "p1",
@@ -183,18 +183,18 @@
       },
       {
         "id": "p2",
-        "text": "En el área de trabajo, seleccionar Crear aplicación y completar la pestaña Configuración (nombre, descripción, logotipo)",
-        "explanation": "El asistente empieza por los metadatos de la aplicación, que por defecto toma el nombre y el icono del área de trabajo."
+        "text": "En el área de trabajo, seleccionar Crear aplicación; el asistente se abre en la pestaña Configuración (nombre, descripción, logotipo)",
+        "explanation": "Sin iniciar la creación de la aplicación no hay asistente en el que elegir contenido ni audiencias; el asistente empieza por la configuración, que por defecto toma el nombre y el icono del área de trabajo."
       },
       {
         "id": "p3",
-        "text": "En la pestaña Contenido, elegir qué elementos incluir y su orden en la navegación",
-        "explanation": "Después de la configuración se decide qué elementos forman la aplicación y cómo se muestran."
+        "text": "En la pestaña Contenido, agregar los elementos del área de trabajo y ordenarlos en la navegación",
+        "explanation": "Solo los elementos que agregas en Contenido forman parte de la aplicación y pueden después mostrarse u ocultarse a cada audiencia."
       },
       {
         "id": "p4",
         "text": "En la pestaña Audiencia, crear las audiencias, mostrar u ocultar elementos y asignar usuarios o grupos",
-        "explanation": "Con el contenido ya elegido, cada audiencia define quién accede y qué elementos ve."
+        "explanation": "Las audiencias trabajan sobre el contenido ya agregado: en cada una decides qué elementos ve y a qué usuarios o grupos se concede acceso."
       },
       {
         "id": "p5",
@@ -202,7 +202,7 @@
         "explanation": "La publicación es el último paso: hasta entonces nada es visible para los usuarios de la aplicación."
       }
     ],
-    "keyPoint": "Aplicación: contenido listo → Configuración → Contenido → Audiencia → Publicar.",
+    "keyPoint": "Aplicación: contenido listo → Crear aplicación → Contenido → Audiencia → Publicar.",
     "references": [
       {
         "title": "Publicar una aplicación en Power BI",
@@ -222,9 +222,9 @@
     "statements": [
       {
         "id": "s1",
-        "text": "Un área de trabajo puede tener una sola aplicación asociada.",
+        "text": "Para mostrar contenido distinto a distintos grupos de usuarios dentro de la misma aplicación, usas audiencias.",
         "answer": true,
-        "explanation": "La documentación lo indica como límite: se puede crear una aplicación por área de trabajo. Para segmentar contenido se usan audiencias."
+        "explanation": "Cada audiencia es un grupo de usuarios con su propia selección de elementos visibles, así que una sola aplicación puede presentar contenido distinto a cada grupo sin crear varias aplicaciones."
       },
       {
         "id": "s2",
@@ -245,7 +245,7 @@
         "explanation": "La instalación automática no es posible para toda la organización: al activarla, la opción Toda la organización se desactiva."
       }
     ],
-    "keyPoint": "Una app por área de trabajo, publicación manual de los cambios y audiencias para segmentar.",
+    "keyPoint": "Audiencias para segmentar, publicación manual de los cambios con Actualizar aplicación y actualización delegable en los Colaboradores.",
     "references": [
       {
         "title": "Publicar una aplicación en Power BI",
@@ -265,35 +265,35 @@
     "domain": "d4",
     "skill": "d4-areas",
     "difficulty": 2,
-    "scenario": "Javier publicó desde Power BI Desktop el informe «Ventas 2026» en un área de trabajo. Después, su compañera Nuria agregó dos objetos visuales al informe directamente en el servicio Power BI. Hoy Javier corrige una medida en su archivo .pbix local (que no incluye esos objetos visuales), lo publica de nuevo en la misma área de trabajo y elige Reemplazar.",
-    "prompt": "¿Qué ocurre con los cambios que Nuria hizo en el servicio?",
+    "scenario": "Javier publicó desde Power BI Desktop el informe «Ventas 2026» en un área de trabajo. Después, su compañera Nuria agregó dos objetos visuales al informe editándolo directamente en el servicio Power BI. Hoy Javier abre en Desktop su archivo .pbix local para corregir una medida.",
+    "prompt": "¿Qué debe tener en cuenta Javier antes de seguir trabajando?",
     "options": [
       {
         "id": "a",
-        "text": "Se pierden: al reemplazar el contenido, el informe publicado pasa a ser el del archivo .pbix de Javier",
+        "text": "Su .pbix local no contiene los objetos visuales de Nuria, así que debe partir de la versión del servicio (por ejemplo, descargando el .pbix)",
         "correct": true,
-        "explanation": "Los cambios hechos en el servicio no se guardan en el archivo de Power BI Desktop original, así que al volver a publicar y reemplazar se impone el contenido del .pbix."
+        "explanation": "Los cambios que se hacen en un informe en el servicio no se guardan en el archivo de Power BI Desktop original. Si Javier sigue con su copia local, trabaja sobre una versión desactualizada del informe."
       },
       {
         "id": "b",
-        "text": "Se combinan automáticamente con los cambios del archivo .pbix",
+        "text": "Power BI Desktop descarga automáticamente los cambios del servicio al abrir el archivo",
         "correct": false,
-        "explanation": "Power BI no fusiona versiones de un informe; la publicación sustituye el contenido existente con el mismo nombre."
+        "explanation": "No hay sincronización del servicio hacia el archivo local: los cambios hechos en el servicio no vuelven al .pbix de Desktop."
       },
       {
         "id": "c",
-        "text": "Se conservan, porque volver a publicar solo reemplaza el modelo semántico",
+        "text": "Los cambios de Nuria se guardaron en el modelo semántico, no en el informe, así que no le afectan",
         "correct": false,
-        "explanation": "Al volver a publicar con el mismo nombre se reemplazan tanto el modelo semántico como el informe."
+        "explanation": "Agregar objetos visuales es un cambio del informe, no del modelo semántico; y esos cambios tampoco están en su archivo local."
       },
       {
         "id": "d",
-        "text": "Se guardan en una copia del informe con el sufijo «(1)»",
+        "text": "Debe publicar primero desde Desktop para que el servicio le envíe los cambios de Nuria",
         "correct": false,
-        "explanation": "Power BI no crea una copia de seguridad del informe reemplazado; por eso conviene editar siempre en el mismo sitio."
+        "explanation": "Publicar envía el contenido de Desktop al servicio, no al revés; publicar no trae a su archivo los cambios hechos en el servicio."
       }
     ],
-    "keyPoint": "Los cambios hechos en el servicio no vuelven al .pbix: decide un único lugar de edición o descarga el .pbix antes de seguir.",
+    "keyPoint": "Los cambios hechos en el servicio no vuelven al .pbix: decide un único lugar de edición o parte de la versión publicada.",
     "references": [
       {
         "title": "Publicar modelos semánticos e informes desde Power BI Desktop",
@@ -840,14 +840,14 @@
     "domain": "d4",
     "skill": "d4-areas",
     "difficulty": 2,
-    "scenario": "Carlos, con el rol Miembro en el área de trabajo «Datos corporativos», ha terminado el modelo semántico «Ventas – fuente oficial». Quiere que los analistas lo identifiquen como fiable, pero el botón Certificado aparece deshabilitado en la sección de aprobación.",
+    "scenario": "Carlos, con el rol Miembro en el área de trabajo «Datos corporativos», ha terminado el modelo semántico «Ventas – fuente oficial». Quiere que los analistas lo identifiquen como fiable, pero el botón Certificado aparece deshabilitado en la sección de aprobación (*endorsement*) de la configuración del modelo.",
     "prompt": "¿Qué puede hacer Carlos?",
     "options": [
       {
         "id": "a",
         "text": "Marcar el modelo como Promocionado y solicitar la certificación siguiendo el proceso de la organización",
         "correct": true,
-        "explanation": "Cualquier usuario con permisos de escritura puede promocionar un elemento. La certificación solo la aplican revisores autorizados por el administrador de Fabric; los demás pueden solicitarla."
+        "explanation": "Cualquier usuario con permisos de escritura sobre el elemento puede promocionarlo. La certificación solo la aplican los revisores autorizados por el administrador de Fabric; los demás pueden solicitarla siguiendo las indicaciones de la organización."
       },
       {
         "id": "b",
@@ -868,7 +868,7 @@
         "explanation": "Las etiquetas de confidencialidad clasifican la información; no indican que el contenido sea fiable y no sustituyen a la aprobación."
       }
     ],
-    "keyPoint": "Promocionar: cualquiera con escritura. Certificar: solo revisores autorizados; los demás lo solicitan.",
+    "keyPoint": "Promocionar: cualquiera con permisos de escritura. Certificar: solo revisores autorizados por el administrador; los demás lo solicitan.",
     "references": [
       {
         "title": "Información general sobre la aprobación",
@@ -921,7 +921,7 @@
         "explanation": "Un icono es parte de un panel y no un elemento independiente, así que no puede aprobarse."
       }
     ],
-    "keyPoint": "Se pueden aprobar todos los elementos salvo los paneles.",
+    "keyPoint": "Se pueden promocionar o certificar todos los elementos salvo los paneles.",
     "references": [
       {
         "title": "Información general sobre la aprobación",
@@ -941,7 +941,7 @@
     "domain": "d4",
     "skill": "d4-areas",
     "difficulty": 3,
-    "prompt": "Empareja cada origen de datos con la puerta de enlace que necesita el servicio Power BI para actualizarlo o consultarlo.",
+    "prompt": "Empareja cada origen de datos con la opción de puerta de enlace más adecuada para que el servicio Power BI lo actualice o lo consulte.",
     "prompts": [
       {
         "id": "m1",
@@ -963,9 +963,9 @@
       },
       {
         "id": "m4",
-        "text": "Archivo de Access en el equipo de un analista que trabaja solo, importa los datos y no comparte el origen",
+        "text": "Archivo de Access en el equipo de un analista que trabaja solo, solo importa datos y no tiene acceso a ninguna puerta de enlace estándar de la organización",
         "answerId": "c2",
-        "explanation": "El modo personal sirve para que un único autor actualice sus modelos de importación desde orígenes locales sin administración centralizada."
+        "explanation": "Si no tienes acceso a una puerta de enlace estándar y eres el único que administra tus modelos de importación, sin compartir orígenes, la documentación indica el modo personal."
       }
     ],
     "choices": [
@@ -1019,7 +1019,7 @@
         "id": "b",
         "text": "Agregar en la puerta de enlace una conexión al SQL Server local y concederte permiso para usarla",
         "correct": true,
-        "explanation": "Solo podrás asignar el modelo a la puerta de enlace si existe una conexión al origen y tu cuenta está entre sus usuarios."
+        "explanation": "Solo podrás asignar el modelo a la puerta de enlace si existe una conexión al origen (la agrega un administrador de la puerta de enlace) y tu cuenta está entre sus usuarios."
       },
       {
         "id": "c",
@@ -1064,7 +1064,7 @@
     "domain": "d4",
     "skill": "d4-areas",
     "difficulty": 2,
-    "prompt": "Indica si cada afirmación sobre la puerta de enlace de datos local es verdadera.",
+    "prompt": "Indica si cada afirmación sobre la puerta de enlace de datos local (*on-premises data gateway*) es verdadera.",
     "statements": [
       {
         "id": "s1",
@@ -1174,7 +1174,7 @@
       {
         "id": "p2",
         "text": "En el servicio, agregar la conexión al origen de Oracle en la puerta de enlace y conceder permiso de uso a tu cuenta",
-        "explanation": "La conexión define servidor y credenciales; solo puede crearse cuando la puerta de enlace ya está registrada."
+        "explanation": "La conexión define servidor y credenciales; la agrega un administrador de la puerta de enlace y solo puede crearse cuando esta ya está registrada."
       },
       {
         "id": "p3",
@@ -1840,18 +1840,18 @@
     "domain": "d4",
     "skill": "d4-seguridad",
     "difficulty": 2,
-    "scenario": "Cada delegado comercial debe ver solo los datos de su delegación. Hay un archivo con el correo de cada delegado y su delegación, y quieres un único rol para todos.",
+    "scenario": "Cada delegación tiene un único delegado comercial, que solo debe ver los datos de su delegación. Tienes un archivo con el correo del delegado de cada delegación y quieres un único rol para todos.",
     "prompt": "Ordena los pasos para implementar la RLS dinámica.",
     "items": [
       {
         "id": "p1",
-        "text": "Cargar la tabla de asignación Correo–Delegación y relacionarla con la dimensión Delegación",
-        "explanation": "La regla dinámica necesita una tabla que relacione cada UPN con lo que puede ver; debe existir antes de escribir el filtro que la usa."
+        "text": "Cargar la tabla Delegación (una fila por delegación, con el correo de su delegado) y relacionarla de uno a varios con la tabla de ventas",
+        "explanation": "La regla dinámica necesita una tabla con el UPN de cada usuario y una relación por la que el filtro llegue a los hechos; la columna debe existir antes de escribir el filtro que la usa."
       },
       {
         "id": "p2",
-        "text": "En Modelado > Administrar roles, crear un rol con un filtro DAX que compare la columna Correo con USERPRINCIPALNAME()",
-        "explanation": "Las reglas dinámicas se escriben con el editor DAX de Administrar roles en Power BI Desktop."
+        "text": "En Power BI Desktop, en Modelado > Administrar roles, crear un rol con un filtro DAX sobre la tabla Delegación que compare la columna Correo con USERPRINCIPALNAME()",
+        "explanation": "Las reglas dinámicas se escriben con el editor DAX de Administrar roles; el filtro deja la fila del delegado y la relación lo propaga a las ventas."
       },
       {
         "id": "p3",
@@ -1864,7 +1864,7 @@
         "explanation": "Los miembros solo se asignan en el servicio y solo a roles que ya existen en el modelo publicado."
       }
     ],
-    "keyPoint": "RLS dinámica: tabla de asignación → rol con USERPRINCIPALNAME() → publicar → asignar miembros en el servicio.",
+    "keyPoint": "RLS dinámica: tabla con el UPN relacionada con los hechos → rol con USERPRINCIPALNAME() → publicar → asignar miembros en el servicio.",
     "references": [
       {
         "title": "Seguridad de nivel de fila (RLS) con Power BI",
@@ -1916,7 +1916,7 @@
         "explanation": "Pertenecer a varios roles no desactiva RLS; amplía lo visible solo a la unión de los filtros."
       }
     ],
-    "keyPoint": "Varios roles RLS = unión de filtros. Diseña un rol por perfil de usuario para evitar sorpresas.",
+    "keyPoint": "Varios roles RLS = unión de filtros (son aditivos). Procura que cada usuario pertenezca a un solo rol que reúna todo lo que puede ver.",
     "references": [
       {
         "title": "Guía de seguridad de nivel de fila (RLS) en Power BI Desktop",
@@ -2065,7 +2065,7 @@
     "domain": "d4",
     "skill": "d4-seguridad",
     "difficulty": 2,
-    "scenario": "Has aplicado en el servicio la etiqueta de confidencialidad «Confidencial», que incluye cifrado, a un informe de nóminas.",
+    "scenario": "Has aplicado en el servicio la etiqueta de confidencialidad (*sensitivity label*) «Confidencial», que incluye cifrado, a un informe de nóminas.",
     "prompt": "¿Qué ocurre cuando un usuario autorizado exporta los datos de un objeto visual a Excel?",
     "options": [
       {

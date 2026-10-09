@@ -63,7 +63,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Aplicar Recortar (Trim) a la columna CódigoProducto",
+        "text": "Aplicar Recortar (*Trim*) a la columna CódigoProducto",
         "correct": true,
         "explanation": "Recortar quita los espacios en blanco iniciales y finales. Así « 004512» pasa a «004512», el código coincide con el de las ventas y desaparece la fila «(En blanco)» del problema 1."
       },
@@ -75,7 +75,7 @@
       },
       {
         "id": "c",
-        "text": "Aplicar Limpiar (Clean) a la columna CódigoProducto",
+        "text": "Aplicar Limpiar (*Clean*) a la columna CódigoProducto",
         "correct": false,
         "explanation": "Limpiar quita caracteres de control, como saltos de línea, pero no los espacios. Los códigos con espacios seguirían sin coincidir."
       },
@@ -129,7 +129,7 @@
           { "id": "o3", "text": "una jerarquía Año > Mes > Día, sin más cambios" }
         ],
         "correctId": "o1",
-        "explanation": "El caso indica que el equipo usa las funciones clásicas de inteligencia de tiempo, y con ellas la tabla de fechas debe marcarse como tabla de fechas. Fecha y hora automáticas crea tablas ocultas por cada columna de fecha y no es compatible con una tabla de fechas común; una jerarquía sola no cambia el comportamiento de las funciones de tiempo."
+        "explanation": "El caso indica que el equipo usa las funciones clásicas de inteligencia de tiempo, y con ellas la tabla de fechas debe marcarse como tabla de fechas. Fecha y hora automáticas crea una tabla oculta por cada columna de fecha, que no permite un diseño con una única tabla de fechas que filtre varias tablas; y una jerarquía sola no cambia el comportamiento de las funciones de tiempo."
       },
       {
         "id": "b3",
@@ -169,7 +169,7 @@
         "id": "s2",
         "text": "Los libros de Excel de SharePoint Online requieren que instales una segunda puerta de enlace.",
         "answer": false,
-        "explanation": "SharePoint Online es un origen en la nube al que Power BI llega directamente. Además, un modelo semántico solo puede usar una conexión de puerta de enlace, así que nunca instalarías una segunda para el mismo modelo."
+        "explanation": "SharePoint Online es un origen en la nube al que Power BI puede llegar directamente. Y aunque una consulta combinara sus datos con los del SQL Server local, se usaría la misma puerta de enlace, porque un modelo semántico solo puede usar una conexión de puerta de enlace: nunca instalarías una segunda para el mismo modelo."
       },
       {
         "id": "s3",
@@ -181,7 +181,7 @@
         "id": "s4",
         "text": "En la capacidad compartida puedes programar una actualización diaria a las 5:00.",
         "answer": true,
-        "explanation": "La capacidad compartida admite hasta ocho actualizaciones programadas al día. Una diaria a las 5:00 empieza cuando el TPV ya ha terminado la carga (antes de las 4:00) y deja margen para tener los datos antes de las 7:00."
+        "explanation": "La capacidad compartida permite programar varias actualizaciones al día a horas concretas, así que una sola diaria no plantea problemas. Programada a las 5:00, empieza cuando el TPV ya ha terminado la carga (antes de las 4:00) y deja margen para tener los datos antes de las 7:00."
       }
     ],
     "keyPoint": "Origen local → puerta de enlace en modo estándar si el modelo es compartido; los orígenes en la nube, como SharePoint Online, no la necesitan.",
@@ -246,13 +246,13 @@
         "id": "a",
         "text": "DirectQuery",
         "correct": true,
-        "explanation": "Con DirectQuery cada objeto visual consulta Azure SQL Database en el momento, así que refleja los cambios continuos de la tramitación. Además, la actualización automática de páginas solo está disponible con orígenes DirectQuery (y algunos escenarios de conexión dinámica). Al ser un origen en la nube, no necesitas puerta de enlace."
+        "explanation": "Con DirectQuery cada objeto visual consulta Azure SQL Database en el momento, así que refleja los cambios continuos de la tramitación. Además, la actualización automática de páginas que pide el requisito necesita un origen DirectQuery (no está disponible para tablas importadas). Al ser un origen en la nube, no necesitas puerta de enlace."
       },
       {
         "id": "b",
         "text": "Importación, con el máximo de actualizaciones programadas que permite la capacidad",
         "correct": false,
-        "explanation": "Incluso en una capacidad de Fabric el máximo es de 48 actualizaciones programadas al día, una cada 30 minutos, lejos de los cinco minutos del requisito. Además, con importación no puedes configurar la actualización automática de páginas."
+        "explanation": "Incluso en una capacidad de Fabric, las actualizaciones programadas tienen un límite diario que queda muy lejos de una cada pocos minutos, y cada una vuelve a importar los datos. Además, con importación no puedes configurar la actualización automática de páginas."
       },
       {
         "id": "c",
@@ -262,7 +262,7 @@
       },
       {
         "id": "d",
-        "text": "Conexión dinámica (Live connection)",
+        "text": "Conexión dinámica (*Live connection*)",
         "correct": false,
         "explanation": "La conexión dinámica se usa para conectarse a un modelo semántico de Power BI o a Analysis Services ya existentes, no a una base de datos relacional como Azure SQL Database."
       }
@@ -294,7 +294,7 @@
         "id": "b",
         "text": "Crear la medida Siniestros cerrados = CALCULATE ( COUNTROWS ( Siniestros ), USERELATIONSHIP ( Siniestros[FechaCierre], 'Fecha'[Fecha] ) )",
         "correct": true,
-        "explanation": "USERELATIONSHIP activa la relación inactiva solo durante el cálculo. La medida cuenta los siniestros por fecha de cierre, mientras la de abiertos usa la relación activa; ambas responden al mismo segmentador de Fecha en el mismo objeto visual."
+        "explanation": "USERELATIONSHIP activa la relación inactiva solo durante el cálculo. La medida cuenta los siniestros por fecha de cierre, mientras la de abiertos usa la relación activa; ambas responden al mismo segmentador de Fecha en el mismo objeto visual. Como el filtro RLS del caso se define en Agentes, y no en Siniestros ni en Fecha, no te afecta la limitación de USERELATIONSHIP con la seguridad de nivel de fila."
       },
       {
         "id": "c",
@@ -912,25 +912,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Anticombinación izquierda (Left anti)",
+        "text": "Anticombinación izquierda (*Left anti*)",
         "correct": true,
         "explanation": "La anticombinación izquierda solo devuelve las filas de la tabla izquierda que no tienen coincidencia en la derecha: las ventas cuyo ISBN no está en el catálogo."
       },
       {
         "id": "b",
-        "text": "Combinación interna (Inner)",
+        "text": "Combinación interna (*Inner*)",
         "correct": false,
         "explanation": "La combinación interna devuelve solo las filas que coinciden en ambas tablas, es decir, justo las ventas que sí existen en el catálogo."
       },
       {
         "id": "c",
-        "text": "Combinación externa izquierda (Left outer)",
+        "text": "Combinación externa izquierda (*Left outer*)",
         "correct": false,
         "explanation": "Devuelve todas las ventas, coincidan o no. Tendrías que filtrar después las que tienen nulos en las columnas de Títulos, así que no te da directamente la lista."
       },
       {
         "id": "d",
-        "text": "Anticombinación derecha (Right anti)",
+        "text": "Anticombinación derecha (*Right anti*)",
         "correct": false,
         "explanation": "Devolvería los títulos del catálogo que no tienen ventas, que es la pregunta inversa a la del requisito."
       }

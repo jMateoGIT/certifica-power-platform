@@ -43,7 +43,7 @@
       },
       {
         "title": "Requisitos de informes",
-        "body": "1. La página «Siniestros abiertos» debe actualizarse sola cada cinco minutos, sin que el usuario pulse ningún botón.\n2. Un mismo objeto visual debe mostrar, por mes, los siniestros abiertos y los cerrados, filtrados con un único segmentador de la tabla Fecha.\n3. Las primas emitidas deben compararse con el mismo periodo del año anterior."
+        "body": "1. La página «Siniestros abiertos» debe actualizarse sola cada pocos minutos, sin que el usuario pulse ningún botón.\n2. Un mismo objeto visual debe mostrar, por mes, cuántos siniestros se abrieron y cuántos se cerraron, filtrados con un único segmentador de la tabla Fecha.\n3. El número de siniestros que se abren en cada periodo debe compararse con el del mismo periodo del año anterior."
       },
       {
         "title": "Requisitos de seguridad",
@@ -91,11 +91,11 @@
       },
       {
         "title": "Orígenes de datos",
-        "body": "- **Telemetría**: tablas Delta de un almacén de lago (*lakehouse*) de Fabric que los ingenieros de datos cargan cada 15 minutos con cuadernos de Spark. Contiene miles de millones de filas.\n- **Inventario de repuestos**: instantánea diaria en el mismo almacén de lago, con una fila por fecha, almacén y pieza, y la columna Unidades (existencias de ese día)."
+        "body": "- **Telemetría**: tablas Delta de un almacén de lago (*lakehouse*) de Fabric que los ingenieros de datos cargan cada 15 minutos con cuadernos de Spark. Contiene cientos de millones de filas.\n- **Inventario de repuestos**: instantánea diaria en el mismo almacén de lago, con una fila por fecha, almacén y pieza, y la columna Unidades (existencias de ese día)."
       },
       {
         "title": "Requisitos de informes",
-        "body": "1. Los datos nuevos deben estar disponibles sin copiar todo el volumen de telemetría al modelo, con un rendimiento de consulta similar al del modo de importación.\n2. Los informes deben mostrar las existencias de repuestos al cierre de cada mes ya cerrado y de cada año.\n3. Las 15 medidas de producción deben poder verse como valor del periodo, acumulado del año y mismo periodo del año anterior, eligiendo la variante en un segmentador y sin crear 45 medidas.\n4. Los técnicos deben ver una versión adaptada al teléfono en vertical."
+        "body": "1. Los datos nuevos deben estar disponibles sin copiar todo el volumen de telemetría al modelo, con un rendimiento de consulta similar al del modo de importación.\n2. Los informes deben mostrar las existencias de repuestos al cierre de cada mes y de cada año ya cerrados.\n3. Las 15 medidas de producción deben poder verse como valor del periodo, acumulado del año y mismo periodo del año anterior, eligiendo la variante en un segmentador y sin crear 45 medidas.\n4. Los técnicos deben ver una versión adaptada al teléfono en vertical."
       },
       {
         "title": "Requisitos de distribución",

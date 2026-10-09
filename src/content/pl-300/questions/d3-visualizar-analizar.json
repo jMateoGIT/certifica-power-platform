@@ -219,7 +219,7 @@
           }
         ],
         "correctId": "o1",
-        "explanation": "El campo que se usa para un título basado en expresiones debe ser de tipo texto (String); las medidas que devuelven números, fechas u otros tipos no se admiten."
+        "explanation": "El campo que se usa para un título basado en expresiones debe ser de tipo texto (*string*); las medidas que devuelven números, fechas u otros tipos no se admiten."
       },
       {
         "id": "b2",
@@ -394,7 +394,7 @@
         "id": "a",
         "text": "Valor del campo (*Field value*)",
         "correct": true,
-        "explanation": "Usa directamente el valor que devuelve el campo o la medida como color; admite códigos hexadecimales, nombres de color e incluso nombres de colores del tema como good, bad o neutral."
+        "explanation": "Usa directamente el valor que devuelve el campo o la medida como color; admite códigos hexadecimales, nombres de color e incluso nombres de colores del tema como *good*, *bad* o *neutral*."
       },
       {
         "id": "b",
@@ -914,35 +914,35 @@
     "domain": "d3",
     "skill": "d3-informes",
     "difficulty": 2,
-    "scenario": "Diseñas una página de detalle con muchos objetos visuales apilados en vertical. No caben en el lienzo 16:9 predeterminado y quieres que la página sea más alta para que el usuario se desplace hacia abajo.",
+    "scenario": "Vas a mostrar una página del informe en una pantalla vertical de la sala de operaciones, de 1080 píxeles de ancho por 1920 de alto. Quieres que el lienzo de la página tenga exactamente esas dimensiones.",
     "prompt": "¿Qué configuración de página debes cambiar?",
     "options": [
       {
         "id": "a",
-        "text": "En Configuración del lienzo, establecer Tipo en Personalizado y aumentar el alto en píxeles",
+        "text": "En Configuración del lienzo (*Canvas settings*), establecer Tipo en Personalizado e indicar el ancho y el alto en píxeles",
         "correct": true,
-        "explanation": "El tipo Personalizado permite indicar el alto y el ancho del lienzo; con un alto mayor, la página contiene todos los objetos visuales y el usuario se desplaza verticalmente."
+        "explanation": "El tipo Personalizado es el que permite especificar un alto y un ancho propios en píxeles; los demás tipos aplican relaciones de aspecto o tamaños predefinidos."
       },
       {
         "id": "b",
         "text": "Cambiar la vista de página a Tamaño real",
         "correct": false,
-        "explanation": "La vista de página controla cómo se escala el contenido en la ventana; no cambia las dimensiones del lienzo."
+        "explanation": "La vista de página solo controla cómo se escala el contenido en la ventana (ajustar a la página, al ancho o tamaño real); no cambia las dimensiones del lienzo."
       },
       {
         "id": "c",
-        "text": "Establecer Tipo en 4:3",
+        "text": "Establecer Tipo en 16:9 y elegir el tamaño más grande de la lista",
         "correct": false,
-        "explanation": "Es una relación de aspecto estándar fija; no ofrece el lienzo alto que necesitas."
+        "explanation": "16:9 es una relación de aspecto apaisada: todos sus tamaños son más anchos que altos, así que nunca darán un lienzo vertical de 1080 × 1920."
       },
       {
         "id": "d",
         "text": "Establecer Tipo en Información sobre herramientas (*Tooltip*)",
         "correct": false,
-        "explanation": "Ese tamaño está optimizado para páginas pequeñas que se muestran como información sobre herramientas, justo lo contrario de lo que buscas."
+        "explanation": "Ese tipo aplica un tamaño pequeño pensado para páginas que se muestran como información sobre herramientas, no para una pantalla completa."
       }
     ],
-    "keyPoint": "Las dimensiones del lienzo se controlan en Configuración del lienzo; «Personalizado» permite fijar alto y ancho.",
+    "keyPoint": "Vista de página = cómo se escala el contenido en la ventana; Configuración del lienzo con Tipo Personalizado = ancho y alto exactos en píxeles.",
     "references": [
       {
         "title": "Aplicación del tamaño de página y la configuración en un informe de Power BI",
@@ -964,7 +964,7 @@
         "id": "m1",
         "text": "Escalar el contenido para que ocupe el ancho de la ventana",
         "answerId": "c2",
-        "explanation": "Ajustar al ancho escala el contenido al ancho de la página, lo que permite desplazarse en vertical."
+        "explanation": "Ajustar al ancho escala el contenido para que quepa en el ancho de la página, a diferencia de Ajustar a la página, que busca que quepa entero."
       },
       {
         "id": "m2",
@@ -1230,25 +1230,25 @@
       {
         "id": "p1",
         "text": "Agrega al objeto visual los campos que necesita el cálculo, como Mes e Importe de ventas.",
-        "explanation": "Va primero porque un cálculo visual solo puede usar campos que ya están en el objeto visual."
+        "explanation": "Va primero porque un cálculo visual solo puede hacer referencia a campos que ya están en el objeto visual."
       },
       {
         "id": "p2",
         "text": "Selecciona el objeto visual y, en la pestaña Inicio, elige Nuevo cálculo visual.",
-        "explanation": "Con el objeto visual seleccionado se abre el modo de edición de cálculos visuales sobre ese objeto visual."
+        "explanation": "Abre el modo de edición de cálculos visuales sobre el objeto visual seleccionado, que ya contiene los datos que vas a usar."
       },
       {
         "id": "p3",
-        "text": "Escribe en la barra de fórmulas la expresión, por ejemplo con RUNNINGSUM.",
-        "explanation": "La expresión se escribe en el modo de edición y la matriz visual muestra el resultado mientras escribes."
+        "text": "En el modo de edición, escribe la expresión con RUNNINGSUM en la barra de fórmulas y oculta el campo Importe de ventas.",
+        "explanation": "La expresión y la ocultación de campos se hacen en el modo de edición; el campo oculto sigue en la matriz visual, así que el cálculo funciona y el gráfico muestra solo la suma acumulada."
       },
       {
         "id": "p4",
-        "text": "Oculta en el objeto visual el campo Importe de ventas y vuelve al informe.",
-        "explanation": "Al final ocultas el campo auxiliar: sigue disponible para el cálculo, pero el gráfico solo muestra el resultado."
+        "text": "Selecciona Volver al informe.",
+        "explanation": "Sales del modo de edición cuando el cálculo está listo, y el objeto visual muestra el resultado en el informe."
       }
     ],
-    "keyPoint": "Campos en el objeto visual → Nuevo cálculo visual → expresión → ocultar campos auxiliares.",
+    "keyPoint": "Campos en el objeto visual → Nuevo cálculo visual → expresión y ocultar campos auxiliares → Volver al informe.",
     "references": [
       {
         "title": "Creación de cálculos visuales",
@@ -1373,25 +1373,20 @@
       {
         "id": "p1",
         "text": "Configura la página para cada vista y crea un marcador de informe para cada una en el panel Marcadores.",
-        "explanation": "El navegador de marcadores necesita que los marcadores existan previamente."
+        "explanation": "Los marcadores deben existir antes de poder agruparlos y de que el navegador los muestre."
       },
       {
         "id": "p2",
         "text": "Selecciona los tres marcadores con Ctrl y agrúpalos en un grupo de marcadores.",
-        "explanation": "El grupo permite que el navegador muestre solo esos marcadores; debe existir antes de poder elegirlo."
+        "explanation": "Solo puedes agrupar marcadores que ya existen, y el grupo debe existir para poder elegirlo después en el navegador."
       },
       {
         "id": "p3",
-        "text": "En la pestaña Insertar, elige Botones > Navegador > Navegador de marcadores.",
-        "explanation": "Power BI crea el navegador, que por defecto muestra todos los marcadores del informe."
-      },
-      {
-        "id": "p4",
-        "text": "En el formato del navegador, en la pestaña Marcadores, selecciona el grupo que creaste.",
-        "explanation": "Así limitas los botones del navegador a los marcadores de ese grupo."
+        "text": "Inserta un navegador de marcadores y, en su formato, en la pestaña Marcadores, selecciona el grupo que creaste.",
+        "explanation": "Por defecto el navegador muestra todos los marcadores del informe; al elegir el grupo limitas sus botones a las tres vistas."
       }
     ],
-    "keyPoint": "Marcadores → grupo de marcadores → navegador de marcadores → elegir el grupo en su formato.",
+    "keyPoint": "Marcadores → grupo de marcadores → navegador de marcadores limitado a ese grupo.",
     "references": [
       {
         "title": "Creación de navegadores de páginas y marcadores",
@@ -1722,7 +1717,7 @@
       },
       {
         "id": "c6",
-        "text": "Preguntas y respuestas"
+        "text": "Borrar todas las segmentaciones"
       }
     ],
     "keyPoint": "Cada acción de botón tiene un propósito: volver, obtener detalles, cambiar de página, aplicar un estado o abrir una web.",
@@ -1972,26 +1967,21 @@
     "items": [
       {
         "id": "p1",
-        "text": "Crea la página de detalle y agrega el campo Producto al área Obtención de detalles (*drillthrough*) del panel Visualizaciones.",
-        "explanation": "Primero debe existir una página de obtención de detalles para poder elegirla después como destino."
+        "text": "Crea la página de detalle y agrega el campo Producto a los filtros de obtención de detalles (*drillthrough*) del panel Visualizaciones.",
+        "explanation": "Primero debe existir una página de obtención de detalles para poder elegirla después como destino del botón."
       },
       {
         "id": "p2",
-        "text": "En la página de resumen, inserta un botón.",
-        "explanation": "El botón es el elemento al que vas a asignar la acción."
+        "text": "En la página de resumen, inserta un botón, activa su acción, elige el tipo Obtención de detalles y selecciona como destino la página de detalle.",
+        "explanation": "El destino solo puede elegirse si la página de obtención de detalles ya existe."
       },
       {
         "id": "p3",
-        "text": "Activa la acción del botón, elige el tipo Obtención de detalles y selecciona la página de destino.",
-        "explanation": "Solo puedes configurar la acción una vez que existen el botón y la página de destino."
-      },
-      {
-        "id": "p4",
-        "text": "Selecciona un producto en un objeto visual de la página de resumen y, después, selecciona el botón.",
-        "explanation": "El botón usa la selección actual como contexto de filtro para abrir el detalle de ese producto."
+        "text": "Selecciona un producto en un objeto visual de la página de resumen y, después, el botón (en Desktop, con Ctrl + clic).",
+        "explanation": "El botón usa la selección actual como contexto de filtro, así que solo funciona cuando su acción ya está configurada."
       }
     ],
-    "keyPoint": "Página de detalle → botón → acción Obtención de detalles con destino → seleccionar un dato y pulsar el botón.",
+    "keyPoint": "Página de detalle → botón con acción Obtención de detalles y su destino → seleccionar un dato y pulsar el botón.",
     "references": [
       {
         "title": "Obtención de detalles en informes de Power BI",
@@ -2055,34 +2045,34 @@
     "skill": "d3-usabilidad",
     "difficulty": 2,
     "scenario": "Un informe de costes de personal se comparte con mandos intermedios. Deben poder exportar a Excel lo que muestran los objetos visuales, pero no las filas de detalle del modelo semántico. El portal de administración no impone ninguna restricción.",
-    "prompt": "¿Qué opción de exportación de datos debes elegir en la configuración del informe?",
+    "prompt": "¿Qué opción de exportación de datos (*export data*) debes elegir en la configuración del informe?",
     "options": [
       {
         "id": "a",
-        "text": "Permitir que los usuarios finales exporten solo datos resumidos",
+        "text": "Permitir exportar solo los datos resumidos",
         "correct": true,
-        "explanation": "Los datos resumidos contienen solo las columnas y medidas que usa el objeto visual, lo que ven los mandos intermedios, sin las filas de detalle."
+        "explanation": "Los datos resumidos contienen solo las columnas y medidas que usa el objeto visual, con sus filtros y agregaciones: lo que ven los mandos intermedios, sin las filas de detalle."
       },
       {
         "id": "b",
-        "text": "Permitir que los usuarios finales exporten datos resumidos y subyacentes",
+        "text": "Permitir exportar los datos resumidos y los subyacentes",
         "correct": false,
-        "explanation": "Los datos subyacentes incluyen el detalle del modelo, justo lo que se quiere evitar."
+        "explanation": "Los datos subyacentes quitan las agregaciones y añaden el detalle del modelo, justo lo que se quiere evitar."
       },
       {
         "id": "c",
-        "text": "No permitir que los usuarios finales exporten datos",
+        "text": "No permitir exportar ningún dato",
         "correct": false,
-        "explanation": "Es más restrictivo de lo necesario: los usuarios sí deben poder exportar lo que ven."
+        "explanation": "Es más restrictivo de lo necesario: los mandos intermedios sí deben poder exportar lo que ven."
       },
       {
         "id": "d",
-        "text": "Ocultar el encabezado de los objetos visuales",
+        "text": "Aplicar seguridad de nivel de fila (RLS) al modelo semántico",
         "correct": false,
-        "explanation": "Es un cambio de formato que no sustituye a una configuración de exportación ni controla qué datos se pueden exportar."
+        "explanation": "RLS limita qué filas ve cada usuario según su rol, pero no distingue entre exportar datos resumidos o subyacentes."
       }
     ],
-    "keyPoint": "La configuración de exportación del informe decide entre resumidos, resumidos y subyacentes, o nada; la del portal de administración prevalece.",
+    "keyPoint": "La configuración de exportación del informe permite datos resumidos, resumidos y subyacentes, o ninguno; si choca con el portal de administración, prevalece la del administrador.",
     "references": [
       {
         "title": "Exportación de datos de objetos visuales",
@@ -2114,9 +2104,9 @@
       },
       {
         "id": "m3",
-        "text": "Una página conectada por DirectQuery debe refrescarse sola cada minuto",
+        "text": "Una página conectada por DirectQuery debe volver a consultar el origen a intervalos regulares mientras está abierta",
         "answerId": "c3",
-        "explanation": "La actualización automática de páginas consulta el origen DirectQuery con la cadencia definida."
+        "explanation": "La actualización automática de páginas consulta el origen DirectQuery con la cadencia que defines, sin que el usuario recargue la página."
       },
       {
         "id": "m4",
@@ -2449,21 +2439,21 @@
       },
       {
         "id": "b",
-        "text": "La actualización automática de páginas de tipo Intervalo fijo cada segundo",
+        "text": "La actualización automática de páginas de tipo Intervalo fijo con un intervalo muy corto",
         "correct": false,
-        "explanation": "Cada intervalo, todos los objetos visuales consultan el origen aunque no haya datos nuevos, lo que aumenta la carga."
+        "explanation": "En cada intervalo todos los objetos visuales consultan el origen aunque no haya datos nuevos, lo que aumenta la carga; no responde a «solo cuando cambien los datos»."
       },
       {
         "id": "c",
-        "text": "Una actualización programada del modelo semántico ocho veces al día",
+        "text": "Una actualización programada del modelo semántico varias veces al día",
         "correct": false,
-        "explanation": "La actualización programada se aplica a datos importados; con DirectQuery las consultas ya van al origen y no refresca la página abierta."
+        "explanation": "La actualización programada se aplica a datos importados; con DirectQuery las consultas ya van al origen y no refresca la página que el usuario tiene abierta."
       },
       {
         "id": "d",
         "text": "Mover el informe a un área de trabajo de capacidad compartida",
         "correct": false,
-        "explanation": "En capacidad compartida la detección de cambios no está disponible y el intervalo fijo mínimo es de 30 minutos."
+        "explanation": "En capacidad compartida el tipo Detección de cambios no está disponible y el intervalo fijo mínimo es mucho mayor; empeoraría la situación."
       }
     ],
     "keyPoint": "Actualizar solo cuando cambian los datos en DirectQuery: actualización automática de páginas con detección de cambios.",
@@ -2483,48 +2473,29 @@
     "skill": "d3-usabilidad",
     "difficulty": 2,
     "prompt": "Completa la frase.",
-    "template": "La actualización automática de páginas (*automatic page refresh*) solo está disponible cuando el informe usa {{b1}}; en un área de trabajo de capacidad compartida, el intervalo fijo mínimo es de {{b2}} y el tipo {{b3}} no está disponible.",
+    "template": "La actualización automática de páginas (*automatic page refresh*) no está disponible si todas las tablas del modelo usan el modo {{b1}}; en un área de trabajo de capacidad compartida no puedes usar el tipo {{b2}}; y en una capacidad dedicada, {{b3}} puede deshabilitar la característica o imponer un intervalo mínimo.",
     "blanks": [
       {
         "id": "b1",
         "options": [
           {
             "id": "o1",
-            "text": "un origen DirectQuery"
+            "text": "importación"
           },
           {
             "id": "o2",
-            "text": "solo tablas en modo de importación"
+            "text": "DirectQuery"
           },
           {
             "id": "o3",
-            "text": "un archivo de Excel en OneDrive"
+            "text": "compuesto (DirectQuery e importación)"
           }
         ],
         "correctId": "o1",
-        "explanation": "La tarjeta Actualización de página solo aparece con orígenes DirectQuery (y algunos escenarios de conexión dinámica); con importación no está disponible."
+        "explanation": "Con importación la tarjeta Actualización de página no aparece: la característica consulta orígenes DirectQuery (también en modelos compuestos y algunos escenarios de conexión dinámica)."
       },
       {
         "id": "b2",
-        "options": [
-          {
-            "id": "o1",
-            "text": "30 minutos"
-          },
-          {
-            "id": "o2",
-            "text": "1 segundo"
-          },
-          {
-            "id": "o3",
-            "text": "5 segundos"
-          }
-        ],
-        "correctId": "o1",
-        "explanation": "En capacidad compartida el intervalo más bajo permitido es de 30 minutos; un segundo es el mínimo técnico en Desktop o en capacidad dedicada si el administrador lo permite."
-      },
-      {
-        "id": "b3",
         "options": [
           {
             "id": "o1",
@@ -2540,10 +2511,29 @@
           }
         ],
         "correctId": "o1",
-        "explanation": "La detección de cambios requiere una capacidad dedicada (Fabric, Premium o PPU) configurada por el administrador."
+        "explanation": "La detección de cambios requiere una capacidad dedicada (Fabric, Premium o PPU); en capacidad compartida solo hay intervalo fijo, con un mínimo más alto. La actualización programada no es un tipo de actualización de página."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "el administrador de la capacidad"
+          },
+          {
+            "id": "o2",
+            "text": "cada lector del informe"
+          },
+          {
+            "id": "o3",
+            "text": "el propietario del origen de datos"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "En capacidades dedicadas, el administrador de la capacidad activa o desactiva cada tipo y fija el intervalo mínimo; si el del informe es menor, el servicio lo sustituye por ese mínimo."
       }
     ],
-    "keyPoint": "Actualización automática de páginas = DirectQuery; en capacidad compartida, mínimo 30 minutos y sin detección de cambios.",
+    "keyPoint": "Actualización automática de páginas = DirectQuery; en capacidad compartida, sin detección de cambios; en capacidad dedicada, el administrador fija los límites.",
     "references": [
       {
         "title": "Actualización automática de páginas en Power BI",
@@ -2914,12 +2904,6 @@
         "explanation": "La detección de anomalías enriquece el gráfico de líneas con anomalías y el intervalo esperado."
       },
       {
-        "id": "m4",
-        "text": "Permitir que el usuario escriba una pregunta en lenguaje natural y obtenga un gráfico",
-        "answerId": "c4",
-        "explanation": "El objeto visual de preguntas y respuestas interpreta la pregunta y crea la visualización. Microsoft ha anunciado su retirada y recomienda Copilot para este escenario."
-      },
-      {
         "id": "m5",
         "text": "Agregar texto que resuma tendencias y conclusiones clave de la página",
         "answerId": "c5",
@@ -2940,10 +2924,6 @@
         "text": "Detección de anomalías"
       },
       {
-        "id": "c4",
-        "text": "Preguntas y respuestas (Q&A)"
-      },
-      {
         "id": "c5",
         "text": "Narración"
       },
@@ -2952,7 +2932,7 @@
         "text": "Gráfico de cintas"
       }
     ],
-    "keyPoint": "Desglosar (árbol), explicar factores (influenciadores), detectar anomalías, preguntar en lenguaje natural y resumir en texto.",
+    "keyPoint": "Desglosar (árbol de descomposición), explicar factores (influenciadores clave), marcar anomalías (gráfico de líneas) y resumir en texto (Narración).",
     "references": [
       {
         "title": "Información general sobre las visualizaciones en Power BI",
@@ -2971,8 +2951,8 @@
         "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-anomaly-detection"
       },
       {
-        "title": "Objeto visual de preguntas y respuestas en Power BI",
-        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-q-and-a"
+        "title": "Crear un objeto visual narrativo con Copilot para Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/copilot-create-narrative"
       }
     ]
   },
