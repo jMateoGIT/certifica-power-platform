@@ -12,7 +12,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Seleccionar NombreMes y, en Herramientas de columna (Column tools), usar Ordenar por columna (Sort by column) con NumMes",
+        "text": "Seleccionar NombreMes y, en Herramientas de columna (*Column tools*), usar Ordenar por columna (*Sort by column*) con NumMes",
         "correct": true,
         "explanation": "Ordenar por columna (*Sort by column*) define que una columna se ordene según los valores de otra con la misma granularidad (un NumMes por cada NombreMes), y el criterio se aplica a cualquier objeto visual que use NombreMes."
       },
@@ -100,27 +100,27 @@
     "skill": "d2-diseno",
     "difficulty": 1,
     "scenario": "La tabla Fecha tiene una columna numérica Año. Cada vez que un autor la arrastra a un objeto visual, Power BI la suma y muestra valores como 4.048.200 en lugar de los años.",
-    "prompt": "Completa la configuración en el panel Propiedades de la vista de modelo.",
-    "template": "Selecciona la columna Año y cambia la propiedad {{b1}} al valor {{b2}}.",
+    "prompt": "Completa la configuración de la columna Año en el modelo.",
+    "template": "Selecciona la columna Año y cambia su {{b1}} al valor {{b2}}.",
     "blanks": [
       {
         "id": "b1",
         "options": [
           {
             "id": "o1",
-            "text": "Resumir por"
+            "text": "agregación predeterminada (resumen)"
           },
           {
             "id": "o2",
-            "text": "Categoría de datos"
+            "text": "categoría de datos"
           },
           {
             "id": "o3",
-            "text": "Ordenar por columna"
+            "text": "columna de ordenación (ordenar por columna)"
           }
         ],
         "correctId": "o1",
-        "explanation": "Resumir por (*Summarize by*) define la agregación predeterminada que se aplica al agregar una columna numérica a un objeto visual. Categoría de datos y Ordenar por columna no controlan la agregación."
+        "explanation": "La agregación predeterminada (*summarization*) define cómo se agrega una columna numérica al añadirla a un objeto visual. La categoría de datos indica cómo interpretar los valores (ubicaciones, URL…) y la ordenación por columna solo cambia el orden; ninguna controla la agregación."
       },
       {
         "id": "b2",
@@ -142,7 +142,7 @@
         "explanation": "No resumir (*Don't summarize*) hace que cada año se muestre como un valor de agrupación. Recuento o Mínimo seguirían agregando la columna y no mostrarían la lista de años."
       }
     ],
-    "keyPoint": "Para columnas numéricas que son atributos (años, códigos, números de pedido) usa Resumir por = No resumir.",
+    "keyPoint": "Para columnas numéricas que son atributos (años, códigos, números de pedido), cambia la agregación predeterminada a No resumir.",
     "references": [
       {
         "title": "Técnicas de reducción de datos para el modelado de importación",
@@ -222,7 +222,7 @@
         "id": "m1",
         "text": "Agrupar las 40 medidas de la tabla Ventas en subcarpetas del panel Datos",
         "answerId": "c4",
-        "explanation": "Las carpetas de visualización (*display folders*) organizan columnas y medidas en carpetas dentro de una tabla sin cambiar el modelo."
+        "explanation": "Las carpetas (*display folders*) organizan columnas y medidas en carpetas dentro de una tabla sin cambiar el modelo."
       },
       {
         "id": "m2",
@@ -258,7 +258,7 @@
       },
       {
         "id": "c4",
-        "text": "Carpeta de visualización"
+        "text": "Carpetas para organizar campos (display folders)"
       },
       {
         "id": "c5",
@@ -266,10 +266,10 @@
       },
       {
         "id": "c6",
-        "text": "Resumir por"
+        "text": "Agregación predeterminada"
       }
     ],
-    "keyPoint": "Formato, categoría, descripción y carpetas de visualización mejoran la usabilidad del modelo sin tocar los datos.",
+    "keyPoint": "Formato, categoría de datos, descripción y carpetas (*display folders*) mejoran la usabilidad del modelo sin tocar los datos.",
     "references": [
       {
         "title": "Categorización de datos en Power BI Desktop",
@@ -334,13 +334,13 @@
       },
       {
         "id": "b",
-        "text": "Varios a varios (*:*), con dirección Única de Productos hacia Objetivos",
+        "text": "Varios a varios, con dirección Única de Productos hacia Objetivos",
         "correct": true,
         "explanation": "Ambas columnas contienen duplicados, así que la cardinalidad es varios a varios. La guía recomienda que propague filtros en una sola dirección, de la dimensión a la tabla de hechos con mayor granularidad."
       },
       {
         "id": "c",
-        "text": "Varios a varios (*:*), con dirección Ambos",
+        "text": "Varios a varios, con dirección Ambos",
         "correct": false,
         "explanation": "La cardinalidad es correcta, pero no hace falta que Objetivos filtre Productos; el filtrado bidireccional añade coste y posibles ambigüedades sin aportar nada."
       },
@@ -417,7 +417,7 @@
       },
       {
         "id": "d",
-        "text": "Varios a varios (*:*) con dirección Ambos",
+        "text": "Varios a varios con dirección Ambos",
         "correct": false,
         "explanation": "Varios a varios crea una relación limitada sin necesidad; aquí ambas columnas son únicas y la cardinalidad natural es uno a uno."
       }
@@ -542,31 +542,26 @@
     "items": [
       {
         "id": "p1",
-        "text": "En la cinta Modelado, selecciona Administrar relaciones (Manage relationships) y después Nuevo",
-        "explanation": "Primero abres el cuadro de diálogo de relaciones; sin él no puedes elegir tablas ni columnas."
+        "text": "En la cinta Modelado, selecciona Administrar relaciones (*Manage relationships*) y después Nuevo",
+        "explanation": "Primero abres el cuadro de diálogo Crear relación; sin él no puedes elegir tablas ni columnas."
       },
       {
         "id": "p2",
-        "text": "En la primera lista desplegable, selecciona la tabla Ventas y la columna IdProducto",
-        "explanation": "El cuadro de diálogo Crear relación pide primero una tabla y su columna."
+        "text": "Selecciona la tabla Ventas con su columna IdProducto en una lista desplegable y la tabla Productos con su columna IdProducto en la otra",
+        "explanation": "Con el cuadro de diálogo abierto eliges las dos tablas y las columnas que las relacionan; Power BI necesita ambas para proponer la configuración."
       },
       {
         "id": "p3",
-        "text": "En la segunda lista desplegable, selecciona la tabla Productos y la columna IdProducto",
-        "explanation": "Después eliges la otra tabla y la columna que se relaciona con la primera."
+        "text": "Comprueba que la cardinalidad es Varios a uno (*:1) y la dirección de filtro cruzado es Única",
+        "explanation": "Solo cuando ambas columnas están elegidas, Power BI propone cardinalidad y dirección según los datos; revisas que sean las de un esquema de estrella."
       },
       {
         "id": "p4",
-        "text": "Comprueba que la cardinalidad es Varios a uno (*:1) y la dirección de filtro cruzado es Única",
-        "explanation": "Con ambas columnas elegidas, Power BI propone cardinalidad y dirección según los datos; revisas que sean las de un esquema de estrella."
-      },
-      {
-        "id": "p5",
         "text": "Selecciona Aceptar",
-        "explanation": "Al aceptar, la relación se crea en el modelo con las opciones revisadas."
+        "explanation": "Al aceptar, la relación se crea en el modelo con las opciones revisadas; es siempre el último paso."
       }
     ],
-    "keyPoint": "Administrar relaciones > Nuevo > tabla/columna 1 > tabla/columna 2 > revisar cardinalidad y dirección > Aceptar.",
+    "keyPoint": "Administrar relaciones > Nuevo > elegir las dos tablas y columnas > revisar cardinalidad y dirección > Aceptar.",
     "references": [
       {
         "title": "Crear y administrar relaciones en Power BI Desktop",
@@ -751,13 +746,13 @@
     "options": [
       {
         "id": "a",
-        "text": "Marcar DimFecha como tabla de fechas (Mark as date table) y seleccionar la columna Fecha",
+        "text": "Marcar DimFecha como tabla de fechas (*Mark as date table*) y seleccionar la columna Fecha",
         "correct": true,
         "explanation": "Cuando la relación con la tabla de fechas usa una columna que no es de tipo fecha (como una clave suplente entera), debes marcar la tabla como tabla de fechas para que las funciones de inteligencia de tiempo clásicas funcionen."
       },
       {
         "id": "b",
-        "text": "Activar Fecha y hora automáticas (Auto date/time) en las opciones del archivo",
+        "text": "Activar Fecha y hora automáticas (*Auto date/time*) en las opciones del archivo",
         "correct": false,
         "explanation": "Fecha y hora automáticas crea tablas ocultas para columnas de fecha; no corrige una relación basada en una clave entera ni se recomienda en modelos con tabla de fechas propia."
       },
@@ -771,7 +766,7 @@
         "id": "d",
         "text": "Crear una relación varios a varios entre DimFecha[Fecha] y la tabla de hechos",
         "correct": false,
-        "explanation": "La tabla de hechos no tiene columna de fecha para esa relación, y una relación varios a varios no resuelve el requisito de la inteligencia de tiempo."
+        "explanation": "La tabla de hechos se relaciona por ClaveFecha, no por una columna de fecha; además, una relación varios a varios sería limitada y no indica al motor cuál es la tabla de fechas."
       }
     ],
     "keyPoint": "Si la relación con la tabla de fechas usa una clave entera, márcala como tabla de fechas para la inteligencia de tiempo.",
@@ -804,7 +799,7 @@
       },
       {
         "id": "p3",
-        "text": "En Herramientas de tabla (Table tools), elegir Marcar como tabla de fechas",
+        "text": "En Herramientas de tabla (*Table tools*), elegir Marcar como tabla de fechas",
         "explanation": "Con la tabla seleccionada se abre el cuadro de diálogo para marcarla."
       },
       {
@@ -873,13 +868,13 @@
         "id": "a",
         "text": "Del 01/07/2023 al 30/06/2026",
         "correct": true,
-        "explanation": "CALENDARAUTO ignora las columnas calculadas. La fecha mínima (15/03/2024) cae en el año fiscal que empieza el 01/07/2023 y la máxima (10/02/2026) en el que termina el 30/06/2026; devuelve años fiscales completos."
+        "explanation": "CALENDARAUTO ignora las columnas calculadas, así que usa como mínimo 15/03/2024 y como máximo 10/02/2026. Con fin de año en junio, el 15/03/2024 cae en el año fiscal 01/07/2023–30/06/2024 y el 10/02/2026 en el 01/07/2025–30/06/2026; devuelve años fiscales completos."
       },
       {
         "id": "b",
         "text": "Del 01/01/2024 al 31/12/2026",
         "correct": false,
-        "explanation": "Sería el resultado de CALENDARAUTO() sin argumento, con año natural; el argumento 6 hace que el año termine en junio."
+        "explanation": "Sería el resultado de CALENDARAUTO() sin argumento, que usa por defecto el mes 12 (año natural); el argumento 6 hace que el año termine en junio."
       },
       {
         "id": "c",
@@ -914,7 +909,7 @@
     "domain": "d2",
     "skill": "d2-diseno",
     "difficulty": 2,
-    "prompt": "¿Qué tres requisitos debe cumplir la columna de fecha de una tabla de fechas para usar las funciones de inteligencia de tiempo de DAX? Selecciona tres.",
+    "prompt": "¿Qué tres requisitos debe cumplir la columna de fecha de una tabla de fechas para usar las funciones de inteligencia de tiempo clásicas de DAX? Selecciona tres.",
     "options": [
       {
         "id": "a",
@@ -1207,7 +1202,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Desaconsejar medidas implícitas (Discourage implicit measures)",
+        "text": "Desaconsejar medidas implícitas (*Discourage implicit measures*)",
         "correct": true,
         "explanation": "Con esta propiedad, el panel Datos deja de mostrar el símbolo Σ junto a las columnas y bloquea que se agreguen directamente como valores; las medidas implícitas ya creadas siguen funcionando."
       },
@@ -1699,7 +1694,7 @@
         "id": "c",
         "text": "Sustituir CALCULATE por SUMX ( Ventas, [Beneficio] > 0 )",
         "correct": false,
-        "explanation": "SUMX sumaría el resultado lógico de la comparación en cada fila de Ventas, no las ventas de los meses rentables."
+        "explanation": "SUMX iteraría las filas de Ventas evaluando una comparación lógica (verdadero/falso), no el importe; nunca devolvería las ventas de los meses rentables."
       },
       {
         "id": "d",
@@ -2010,7 +2005,7 @@
         "text": "DATESMTD"
       }
     ],
-    "keyPoint": "Las funciones TOTAL* y CLOSINGBALANCE* devuelven valores; DATES*, SAMEPERIODLASTYEAR y DATEADD devuelven tablas de fechas para filtrar.",
+    "keyPoint": "TOTALYTD (y sus variantes QTD y MTD) y CLOSINGBALANCEMONTH devuelven valores; DATESYTD, DATESMTD, SAMEPERIODLASTYEAR y DATEADD devuelven tablas de fechas para filtrar.",
     "references": [
       {
         "title": "Funciones de inteligencia de tiempo",
@@ -2269,7 +2264,7 @@
         "id": "m3",
         "text": "Plazo por debajo del cual se sitúa el 90 % de las entregas",
         "answerId": "c4",
-        "explanation": "PERCENTILE.INC ( columna, 0,9 ) devuelve el percentil k, con k entre 0 y 1 incluidos."
+        "explanation": "PERCENTILE.INC devuelve el percentil k de una columna, con k entre 0 y 1 incluidos; aquí k = 0,9 (en el código, 0.9)."
       },
       {
         "id": "m4",
@@ -2466,7 +2461,7 @@
         "id": "a",
         "text": "70",
         "correct": true,
-        "explanation": "LASTNONBLANK devuelve la última fecha de enero en la que [Unidades] no está en blanco (27/01/2026). Ese día solo hay recuento de A, así que el resultado es 70."
+        "explanation": "LASTNONBLANK recorre las fechas de enero y evalúa la medida [Unidades] en cada una (la medida provoca la transición de contexto). La última con valor es el 27/01/2026; CALCULATE filtra ese día, en el que solo hay recuento de A, así que el resultado es 70."
       },
       {
         "id": "b",
@@ -2511,7 +2506,7 @@
     "domain": "d2",
     "skill": "d2-dax",
     "difficulty": 2,
-    "scenario": "La tabla Saldos guarda el saldo diario de cada cuenta bancaria. Una matriz con años y meses en filas muestra la medida del anexo, y el total anual suma todos los saldos diarios.",
+    "scenario": "La tabla Saldos guarda el saldo diario de cada cuenta bancaria. Hoy la medida es SUM ( Saldos[Importe] ) y, en una matriz con años y meses en filas, el total de cada mes y de cada año suma todos los saldos diarios. Vas a corregirla con la fórmula del anexo.",
     "code": {
       "language": "dax",
       "content": "Saldo =\nCALCULATE (\n    SUM ( Saldos[Importe] ),\n    <1> ( 'Fecha'[Fecha] )\n)"
@@ -2543,7 +2538,7 @@
         "options": [
           {
             "id": "o1",
-            "text": "LASTNONBLANK sobre las fechas, evaluando la suma del saldo"
+            "text": "LASTNONBLANK sobre las fechas, evaluando una medida con la suma del saldo"
           },
           {
             "id": "o2",
@@ -2555,7 +2550,7 @@
           }
         ],
         "correctId": "o1",
-        "explanation": "LASTNONBLANK devuelve la última fecha en la que la expresión no está en blanco, así que encuentra el último día con saldo aunque sea anterior al fin de mes. FIRSTDATE tomaría el primer día y SAMEPERIODLASTYEAR, el año anterior."
+        "explanation": "LASTNONBLANK devuelve la última fecha en la que la expresión no está en blanco; si la expresión es una medida (o va dentro de CALCULATE), se evalúa en cada fecha y encuentra el último día con saldo aunque sea anterior al fin de mes. FIRSTDATE tomaría el primer día y SAMEPERIODLASTYEAR, el año anterior."
       }
     ],
     "keyPoint": "Saldos (semiaditivos): filtra al último día del periodo con LASTDATE o al último día con datos con LASTNONBLANK.",
@@ -2636,7 +2631,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Crear una nueva medida rápida (quick measure) con el cálculo Cambio de año a año de la categoría Inteligencia de tiempo",
+        "text": "Crear una nueva medida rápida (*quick measure*) con el cálculo Cambio de año a año de la categoría Inteligencia de tiempo",
         "correct": true,
         "explanation": "Las medidas rápidas generan el DAX a partir de un cuadro de diálogo, y la fórmula queda visible en la barra de fórmulas para estudiarla o modificarla."
       },
@@ -3060,22 +3055,17 @@
       {
         "id": "p2",
         "text": "Aceptar el cuadro de diálogo que activa Desaconsejar medidas implícitas",
-        "explanation": "Si la propiedad está desactivada, Power BI pide activarla antes de crear el grupo, porque los elementos de cálculo no se aplican a medidas implícitas."
+        "explanation": "Si la propiedad está desactivada, Power BI pide activarla al crear el grupo, porque los elementos de cálculo no se aplican a medidas implícitas; hasta que aceptas no se crea el grupo."
       },
       {
         "id": "p3",
-        "text": "Escribir la expresión del primer elemento de cálculo usando SELECTEDMEASURE () y darle nombre",
-        "explanation": "Una vez creado el grupo, el primer elemento se define en la barra de fórmulas; SELECTEDMEASURE representa la medida a la que se aplica."
+        "text": "Definir los elementos de cálculo (YTD, AA, Var % AA) con expresiones que usan SELECTEDMEASURE ()",
+        "explanation": "Una vez creado el grupo, escribes la expresión del primer elemento y añades los demás con Nuevo elemento de cálculo; SELECTEDMEASURE representa la medida a la que se aplica cada uno."
       },
       {
         "id": "p4",
-        "text": "Agregar los demás elementos con Nuevo elemento de cálculo (YTD, AA, Var % AA)",
-        "explanation": "Los siguientes elementos se añaden después desde el menú contextual o el panel Propiedades del grupo."
-      },
-      {
-        "id": "p5",
         "text": "En la vista de informe, colocar la columna del grupo de cálculo en Columnas de una matriz y una medida en Valores",
-        "explanation": "Con los elementos definidos, la columna del grupo se usa en objetos visuales o segmentaciones para aplicarlos a la medida."
+        "explanation": "Solo con los elementos definidos tiene sentido usar la columna del grupo en objetos visuales o segmentaciones para aplicarlos a la medida."
       }
     ],
     "keyPoint": "Grupo de cálculo: crearlo en la vista de modelo, desaconsejar medidas implícitas, definir elementos con SELECTEDMEASURE y usar su columna en los objetos visuales.",
@@ -3299,7 +3289,7 @@
       "headers": [
         "Objeto visual",
         "Consulta DAX",
-        "Presentación del objeto visual",
+        "Visual display",
         "Otros"
       ],
       "rows": [
@@ -3335,7 +3325,7 @@
         "id": "b",
         "text": "La matriz es el cuello de botella porque tarda en dibujarse en pantalla",
         "correct": false,
-        "explanation": "Su tiempo de presentación es de solo 160 ms; el problema está en la consulta, no en el renderizado."
+        "explanation": "Su tiempo de dibujo en pantalla (*Visual display*) es de solo 160 ms; el problema está en la consulta, no en el renderizado."
       },
       {
         "id": "c",
@@ -3350,7 +3340,7 @@
         "explanation": "En un modelo de importación no hay tiempo de consulta directa; además, DirectQuery suele ser más lento que la importación."
       }
     ],
-    "keyPoint": "Si domina la Consulta DAX, optimiza medidas y modelo; si domina la presentación, simplifica el objeto visual.",
+    "keyPoint": "Si domina la Consulta DAX, optimiza medidas y modelo; si domina el dibujo del objeto visual (*Visual display*), simplifica el objeto visual.",
     "references": [
       {
         "title": "Uso del Analizador de rendimiento",
@@ -3388,7 +3378,7 @@
         "id": "m3",
         "text": "Tiempo para dibujar el objeto visual en pantalla, incluidas imágenes web o geocodificación",
         "answerId": "c3",
-        "explanation": "Es la duración de presentación del objeto visual (*Visual display*)."
+        "explanation": "Es la duración de dibujo en pantalla (*Visual display*), que mide lo que tarda el objeto visual en representarse."
       },
       {
         "id": "m4",
@@ -3400,26 +3390,26 @@
     "choices": [
       {
         "id": "c1",
-        "text": "Consulta DAX"
+        "text": "Consulta DAX (DAX query)"
       },
       {
         "id": "c2",
-        "text": "Consulta directa"
+        "text": "Consulta directa (Direct query)"
       },
       {
         "id": "c3",
-        "text": "Presentación del objeto visual"
+        "text": "Dibujo en pantalla (Visual display)"
       },
       {
         "id": "c4",
-        "text": "Otros"
+        "text": "Otros (Other)"
       },
       {
         "id": "c5",
-        "text": "Actualización de datos"
+        "text": "Actualización de datos (Data refresh)"
       }
     ],
-    "keyPoint": "El Analizador de rendimiento desglosa cada objeto visual en Consulta DAX, Consulta directa, presentación y Otros.",
+    "keyPoint": "El Analizador de rendimiento desglosa cada objeto visual en Consulta DAX, Consulta directa, dibujo en pantalla (*Visual display*) y Otros.",
     "references": [
       {
         "title": "Uso del Analizador de rendimiento",
@@ -3445,12 +3435,12 @@
       },
       {
         "id": "p2",
-        "text": "Seleccionar Iniciar grabación (Start recording)",
+        "text": "Seleccionar Iniciar grabación (*Start recording*)",
         "explanation": "El panel solo registra duraciones mientras está grabando."
       },
       {
         "id": "p3",
-        "text": "Seleccionar Actualizar objetos visuales (Refresh visuals)",
+        "text": "Seleccionar Actualizar objetos visuales (*Refresh visuals*)",
         "explanation": "Con la grabación activa, actualizar los objetos visuales registra los tiempos de todos los de la página."
       },
       {
@@ -3668,7 +3658,7 @@
     "options": [
       {
         "id": "a",
-        "text": "En Power Query, convertir FechaHora en Fecha y usar Agrupar por (Group by) Fecha, Tienda y Producto, sumando Importe y contando transacciones",
+        "text": "En Power Query, convertir FechaHora en Fecha y usar Agrupar por (*Group by*) Fecha, Tienda y Producto, sumando Importe y contando transacciones",
         "correct": true,
         "explanation": "Cargar datos resumidos al nivel que necesitan los informes es de las técnicas más eficaces: menos filas y columnas de alta cardinalidad. A cambio, se pierde el detalle por transacción."
       },
@@ -3686,9 +3676,9 @@
       },
       {
         "id": "d",
-        "text": "Establecer Resumir por = No resumir en la columna Importe",
+        "text": "Cambiar la agregación predeterminada de la columna Importe a No resumir",
         "correct": false,
-        "explanation": "Resumir por solo afecta a la agregación predeterminada en los objetos visuales, no al número de filas."
+        "explanation": "La agregación predeterminada solo decide cómo se resume la columna al añadirla a un objeto visual; no cambia el número de filas cargadas."
       }
     ],
     "keyPoint": "Reducir la granularidad (agrupar y resumir antes de cargar) reduce mucho el modelo, a cambio de perder detalle.",

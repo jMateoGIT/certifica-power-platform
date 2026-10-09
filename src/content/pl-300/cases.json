@@ -9,7 +9,7 @@
     "sections": [
       {
         "title": "Contexto",
-        "body": "**Supermercados Valdelagua** tiene 120 tiendas repartidas en cuatro regiones. Un equipo de BI de tres analistas crea y mantiene en Power BI Desktop el modelo semántico de ventas, que se publica en un área de trabajo de capacidad compartida; todos los analistas tienen licencia Power BI Pro."
+        "body": "**Supermercados Valdelagua** tiene 120 tiendas repartidas en cuatro regiones. Un equipo de BI de tres analistas crea y mantiene en Power BI Desktop el modelo semántico de ventas, que se publica en un área de trabajo de capacidad compartida."
       },
       {
         "title": "Orígenes de datos",
@@ -35,7 +35,7 @@
     "sections": [
       {
         "title": "Contexto",
-        "body": "**Seguros Atalaya** vende seguros de hogar y de automóvil a través de 250 agentes. El equipo de BI publica sus informes en un área de trabajo asignada a una capacidad de Microsoft Fabric F64, con la configuración de capacidad predeterminada. Los agentes y la dirección consumen los informes mediante una aplicación de Power BI."
+        "body": "**Seguros Atalaya** vende seguros de hogar y de automóvil a través de 250 agentes. El equipo de BI publica sus informes en un área de trabajo asignada a una capacidad de Microsoft Fabric con la configuración predeterminada. Los agentes y la dirección consumen los informes mediante una aplicación de Power BI."
       },
       {
         "title": "Orígenes de datos",

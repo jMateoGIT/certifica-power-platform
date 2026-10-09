@@ -338,7 +338,7 @@
     "statements": [
       {
         "id": "s1",
-        "text": "En un objeto visual por mes, en la fila de marzo de 2026, AperturasAA devuelve los siniestros abiertos en marzo de 2025.",
+        "text": "En un objeto visual por mes, en la fila de marzo de 2026, AperturasAA devuelve el número de siniestros que se abrieron en marzo de 2025.",
         "answer": true,
         "explanation": "SAMEPERIODLASTYEAR desplaza un año las fechas del contexto de filtro. Si el filtro es marzo de 2026, CALCULATE cuenta las filas con las fechas de marzo de 2025, que filtran Siniestros a través de la relación activa de FechaApertura."
       },
