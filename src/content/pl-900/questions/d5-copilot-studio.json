@@ -5,7 +5,7 @@
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d5",
-    "skill": "d5-capacidades",
+    "skill": "d5-casos",
     "difficulty": 1,
     "prompt": "¿Qué es Microsoft Copilot Studio?",
     "options": [
@@ -48,7 +48,7 @@
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d5",
-    "skill": "d5-capacidades",
+    "skill": "d5-casos",
     "difficulty": 1,
     "scenario": "El departamento de Recursos Humanos de Grupo Almenara recibe cada semana cientos de preguntas repetidas sobre vacaciones, permisos y nóminas. Las políticas están documentadas en un sitio de SharePoint y el equipo no tiene desarrolladores.",
     "prompt": "¿Qué solución de Power Platform permite ofrecer a los empleados respuestas automáticas en lenguaje natural basadas en esas políticas?",
@@ -96,7 +96,7 @@
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d5",
-    "skill": "d5-capacidades",
+    "skill": "d5-casos",
     "difficulty": 2,
     "prompt": "¿Qué dos necesidades de negocio encajan mejor con un agente de Copilot Studio? Selecciona dos.",
     "options": [
@@ -145,7 +145,7 @@
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d5",
-    "skill": "d5-capacidades",
+    "skill": "d5-casos",
     "difficulty": 2,
     "prompt": "Indica si cada afirmación sobre Copilot Studio es verdadera.",
     "statements": [
@@ -159,7 +159,7 @@
         "id": "s2",
         "text": "Un agente de Copilot Studio solo puede responder preguntas; no puede realizar tareas en otros sistemas.",
         "answer": false,
-        "explanation": "Además de responder, un agente puede actuar mediante herramientas (flujos de Power Automate, conectores, prompts o API), por ejemplo para crear un registro."
+        "explanation": "Además de responder, un agente puede actuar mediante herramientas (flujos de agente, conectores, indicaciones, API REST o servidores MCP), por ejemplo para crear un registro en otro sistema."
       },
       {
         "id": "s3",
@@ -169,16 +169,20 @@
       },
       {
         "id": "s4",
-        "text": "Con Copilot Studio se pueden crear agentes que amplían Microsoft 365 Copilot.",
+        "text": "Con Copilot Studio se pueden crear agentes que amplían Microsoft Copilot con conocimiento y herramientas de la organización.",
         "answer": true,
-        "explanation": "Copilot Studio permite crear agentes y publicarlos en Microsoft 365 Copilot para añadirle conocimiento y capacidades específicas de la organización."
+        "explanation": "Copilot Studio permite crear agentes y publicarlos en Microsoft Copilot para añadirle conocimiento y capacidades específicas de un área de negocio."
       }
     ],
-    "keyPoint": "Copilot Studio (antes Power Virtual Agents) crea agentes low-code que responden y actúan, incluso dentro de Microsoft 365 Copilot.",
+    "keyPoint": "Copilot Studio (antes Power Virtual Agents) crea agentes low-code que responden y actúan, incluso dentro de Microsoft Copilot.",
     "references": [
       {
         "title": "¿Qué es Microsoft Copilot Studio?",
         "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/fundamentals-what-is-copilot-studio"
+      },
+      {
+        "title": "Extender Microsoft Copilot con agentes",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/microsoft-365-copilot-extend-with-agents"
       }
     ]
   },
@@ -188,7 +192,7 @@
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d5",
-    "skill": "d5-capacidades",
+    "skill": "d5-casos",
     "difficulty": 2,
     "scenario": "Lucía, analista de una agencia de viajes corporativos, abre Copilot Studio y escribe: «Quiero un agente que ayude a los empleados a resolver dudas sobre la política de viajes y gastos».",
     "prompt": "¿Qué ocurre cuando Lucía crea el agente describiéndolo en lenguaje natural?",
@@ -232,78 +236,78 @@
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d5",
-    "skill": "d5-capacidades",
+    "skill": "d5-casos",
     "difficulty": 2,
-    "prompt": "Completa la frase sobre cómo se relacionan los agentes con Power Platform.",
-    "template": "Un agente de Copilot Studio se crea dentro de un {{b1}} de Power Platform, sus componentes se almacenan en {{b2}} y, por eso, puede incluirse en {{b3}} para moverlo entre entornos.",
+    "prompt": "Completa la frase sobre los distintos tipos de uso de un agente de Copilot Studio.",
+    "template": "Un agente que responde cuando los usuarios le escriben en un canal es un agente {{b1}}; si debe actuar por sí solo cuando ocurre algo, por ejemplo al crearse un elemento en SharePoint, le agregas un {{b2}}; y si quieres que los empleados obtengan respuestas con el conocimiento de su departamento sin salir de su asistente de IA habitual, creas un agente que {{b3}}.",
     "blanks": [
       {
         "id": "b1",
         "correctId": "o1",
-        "explanation": "Los agentes, como las aplicaciones y los flujos, se crean en un entorno de Power Platform, que delimita su seguridad y sus datos. Un grupo de recursos es un concepto de Azure y un sitio de SharePoint puede ser una fuente de conocimiento, pero no el contenedor del agente.",
+        "explanation": "Un agente conversacional mantiene un diálogo con el usuario, que es quien inicia la interacción. Un flujo de escritorio automatiza aplicaciones con RPA y un agente autónomo actúa ante eventos, sin esperar a que alguien escriba.",
         "options": [
           {
             "id": "o1",
-            "text": "entorno"
+            "text": "conversacional"
           },
           {
             "id": "o2",
-            "text": "grupo de recursos de Azure"
+            "text": "autónomo"
           },
           {
             "id": "o3",
-            "text": "sitio de SharePoint"
+            "text": "de escritorio"
           }
         ]
       },
       {
         "id": "b2",
         "correctId": "o2",
-        "explanation": "La definición del agente (temas, herramientas, configuración…) se guarda en tablas de Dataverse del entorno (o de Dataverse for Teams si se crea en Teams). OneDrive y Excel no almacenan agentes.",
+        "explanation": "Los desencadenadores de eventos permiten que el agente actúe de forma autónoma cuando sucede algo fuera de la conversación (un elemento nuevo en SharePoint, un archivo en OneDrive, una periodicidad…). Las frases desencadenantes necesitan que el usuario escriba y una variable global solo guarda valores.",
         "options": [
           {
             "id": "o1",
-            "text": "una biblioteca de OneDrive"
+            "text": "frase desencadenante"
           },
           {
             "id": "o2",
-            "text": "Dataverse"
+            "text": "desencadenador de eventos"
           },
           {
             "id": "o3",
-            "text": "un archivo de Excel"
+            "text": "variable global"
           }
         ]
       },
       {
         "id": "b3",
         "correctId": "o3",
-        "explanation": "Como sus componentes están en Dataverse, el agente se puede agregar a una solución y transportarse de desarrollo a pruebas y producción (ALM). Los paneles de Power BI y las plantillas de correo no sirven para mover componentes entre entornos.",
+        "explanation": "Copilot Studio permite ampliar Microsoft Copilot con agentes especializados, de modo que los empleados consultan el conocimiento de su área desde la experiencia de Copilot que ya usan. Un informe de Power BI no conversa y un agente no sustituye a Microsoft Entra ID, que gestiona identidades.",
         "options": [
           {
             "id": "o1",
-            "text": "paneles de Power BI"
+            "text": "genere un informe de Power BI"
           },
           {
             "id": "o2",
-            "text": "plantillas de correo"
+            "text": "sustituya a Microsoft Entra ID"
           },
           {
             "id": "o3",
-            "text": "soluciones"
+            "text": "amplíe Microsoft Copilot"
           }
         ]
       }
     ],
-    "keyPoint": "Agente = componente de un entorno, guardado en Dataverse y empaquetable en soluciones para moverlo entre entornos.",
+    "keyPoint": "Agente conversacional = responde al usuario; con desencadenadores de eventos = actúa de forma autónoma; también puede ampliar Microsoft Copilot.",
     "references": [
       {
-        "title": "¿Qué es Microsoft Copilot Studio?",
-        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/fundamentals-what-is-copilot-studio"
+        "title": "Información general sobre desencadenadores",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-triggers-about"
       },
       {
-        "title": "Información general sobre las soluciones",
-        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/solutions-overview"
+        "title": "Extender Microsoft Copilot con agentes",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/microsoft-365-copilot-extend-with-agents"
       }
     ]
   },
@@ -313,7 +317,7 @@
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d5",
-    "skill": "d5-capacidades",
+    "skill": "d5-casos",
     "difficulty": 2,
     "scenario": "Una cadena de gimnasios, FitNova, quiere un agente para sus socios y está repartiendo los requisitos entre los componentes de Copilot Studio.",
     "prompt": "Empareja cada requisito con el componente de Copilot Studio que lo cubre.",
@@ -334,13 +338,13 @@
         "id": "m3",
         "text": "Registrar la congelación de la cuota en el sistema de socios",
         "answerId": "c3",
-        "explanation": "Para actuar sobre otro sistema el agente usa una herramienta (antes «acción»), por ejemplo un flujo de Power Automate o un conector; el conocimiento solo sirve para leer y responder."
+        "explanation": "Para actuar sobre otro sistema el agente usa una herramienta (antes «acción»), por ejemplo un flujo de agente o un conector; el conocimiento solo sirve para leer y responder."
       },
       {
         "id": "m4",
         "text": "Estar disponible también para el personal de los gimnasios dentro de Microsoft Teams",
         "answerId": "c4",
-        "explanation": "Los canales determinan dónde se usa el agente; «Teams y Microsoft 365 Copilot» es uno de ellos. Ni un tema ni una herramienta deciden dónde está disponible el agente."
+        "explanation": "Los canales determinan dónde se usa el agente; «Teams y Microsoft Copilot» es uno de ellos. Ni un tema ni una herramienta deciden dónde está disponible el agente."
       }
     ],
     "choices": [
@@ -374,56 +378,10 @@
       {
         "title": "Crear y editar temas en Copilot Studio",
         "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-create-edit-topics"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d5-capacidades-008",
-    "type": "multiple",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d5",
-    "skill": "d5-capacidades",
-    "difficulty": 3,
-    "scenario": "El equipo de soporte interno de TI de Laboratorios Ébano diseña un agente. Ya ha conectado como fuente de conocimiento la base de artículos de ayuda en SharePoint.",
-    "prompt": "¿Qué dos requisitos obligan a que el agente realice acciones mediante herramientas, en lugar de limitarse a responder con conocimiento? Selecciona dos.",
-    "options": [
-      {
-        "id": "a",
-        "text": "Explicar cómo configurar la VPN según el artículo de ayuda",
-        "correct": false,
-        "explanation": "Basta con conocimiento: la respuesta generativa resume el artículo existente sin actuar en ningún sistema."
       },
       {
-        "id": "b",
-        "text": "Crear un ticket en el sistema de incidencias con la descripción del problema",
-        "correct": true,
-        "explanation": "Crear un registro en otro sistema es una acción; requiere una herramienta como un flujo de Power Automate o un conector."
-      },
-      {
-        "id": "c",
-        "text": "Indicar el horario de atención del centro de soporte",
-        "correct": false,
-        "explanation": "Es información estática que puede responderse con un mensaje en un tema o con el conocimiento disponible."
-      },
-      {
-        "id": "d",
-        "text": "Enviar una solicitud de aprobación al responsable para conceder acceso a una aplicación",
-        "correct": true,
-        "explanation": "Iniciar una aprobación es una tarea que se ejecuta fuera de la conversación, normalmente con un flujo de Power Automate llamado como herramienta."
-      },
-      {
-        "id": "e",
-        "text": "Resumir la política de contraseñas publicada en SharePoint",
-        "correct": false,
-        "explanation": "Solo hay que leer y resumir un documento ya conectado como fuente de conocimiento; no se cambia nada en otro sistema."
-      }
-    ],
-    "keyPoint": "Responder usa conocimiento; actuar (crear, actualizar, aprobar) requiere herramientas.",
-    "references": [
-      {
-        "title": "¿Qué es Microsoft Copilot Studio?",
-        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/fundamentals-what-is-copilot-studio"
+        "title": "Publicar e implementar agentes",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/publication-fundamentals-publish-channels"
       }
     ]
   },
@@ -447,7 +405,7 @@
         "id": "b",
         "text": "Un informe con las métricas de uso del agente",
         "correct": false,
-        "explanation": "Las métricas se consultan en el panel de análisis; un tema es contenido conversacional."
+        "explanation": "Las métricas se consultan en la página de supervisión (*Monitor*) del agente; un tema es contenido conversacional."
       },
       {
         "id": "c",
@@ -520,61 +478,6 @@
     ]
   },
   {
-    "id": "pl900-d5-temas-003",
-    "type": "multiple",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d5",
-    "skill": "d5-temas",
-    "difficulty": 2,
-    "prompt": "¿Cuáles de los siguientes son temas del sistema (*system topics*) que incluye de serie un agente de Copilot Studio? Selecciona tres.",
-    "options": [
-      {
-        "id": "a",
-        "text": "Consultar estado del pedido (*Order status*)",
-        "correct": false,
-        "explanation": "Es un tema personalizado típico: depende del negocio y lo crea el autor del agente; no viene incluido de serie."
-      },
-      {
-        "id": "b",
-        "text": "Escalar (*Escalate*)",
-        "correct": true,
-        "explanation": "El tema del sistema Escalar (*Escalate*) se activa cuando el usuario pide hablar con una persona y puede transferir la conversación a un agente humano."
-      },
-      {
-        "id": "c",
-        "text": "Reserva (*Fallback*)",
-        "correct": true,
-        "explanation": "El tema del sistema Reserva (*Fallback*) se activa cuando el agente no reconoce la petición del usuario: le pide que la reformule y, tras varios intentos, puede escalar."
-      },
-      {
-        "id": "d",
-        "text": "Solicitar presupuesto (*Request a quote*)",
-        "correct": false,
-        "explanation": "Es un tema personalizado de un caso de negocio concreto; el creador lo diseña según su proceso, no lo incluye el agente de serie."
-      },
-      {
-        "id": "e",
-        "text": "Fin de la conversación (*End of Conversation*)",
-        "correct": true,
-        "explanation": "El tema del sistema Fin de la conversación (*End of Conversation*) confirma si se resolvió la consulta y puede pedir la valoración de satisfacción."
-      },
-      {
-        "id": "f",
-        "text": "Solicitar vacaciones (*Request time off*)",
-        "correct": false,
-        "explanation": "Es un tema personalizado propio de un agente de RR. HH.; no viene incluido de serie."
-      }
-    ],
-    "keyPoint": "Los temas del sistema (Inicio de la conversación, Escalar, Reserva, Fin de la conversación…) gestionan comportamientos comunes y vienen de serie; los temas de negocio son personalizados.",
-    "references": [
-      {
-        "title": "Usar temas del sistema",
-        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-system-topics"
-      }
-    ]
-  },
-  {
     "id": "pl900-d5-temas-004",
     "type": "match",
     "exam": "PL-900",
@@ -610,9 +513,9 @@
       },
       {
         "id": "m5",
-        "text": "Crear el pedido en el ERP mediante un flujo de Power Automate",
+        "text": "Crear el pedido en el ERP mediante un flujo de agente",
         "answerId": "c5",
-        "explanation": "El nodo que llama a una herramienta (antes «acción») ejecuta un flujo de Power Automate, un conector u otra herramienta desde el tema."
+        "explanation": "El nodo que llama a una herramienta (antes «acción») ejecuta un flujo de agente, un conector u otra herramienta desde el tema."
       }
     ],
     "choices": [
@@ -668,9 +571,9 @@
       },
       {
         "id": "b",
-        "text": "La entidad prediseñada Correo electrónico para identificar la respuesta",
+        "text": "La entidad precompilada Correo electrónico para identificar la respuesta",
         "correct": true,
-        "explanation": "Las entidades prediseñadas (como Correo electrónico, Edad o Número) reconocen y extraen ese tipo de dato de la respuesta del usuario; si la respuesta no tiene formato de correo, el nodo vuelve a preguntar."
+        "explanation": "Las entidades precompiladas (*prebuilt entities*), como Correo electrónico, Edad o Número, reconocen y extraen ese tipo de dato de la respuesta del usuario; si la respuesta no tiene formato de correo, el nodo vuelve a preguntar."
       },
       {
         "id": "c",
@@ -685,98 +588,11 @@
         "explanation": "Una variable almacena valores, pero no reconoce si la respuesta tiene formato de correo; eso lo hace la entidad."
       }
     ],
-    "keyPoint": "Para extraer datos comunes (correo, edad, número…) usa entidades prediseñadas en el nodo de pregunta.",
+    "keyPoint": "Para extraer datos comunes (correo, edad, número…) usa entidades precompiladas en el nodo de pregunta.",
     "references": [
       {
         "title": "Usar entidades y relleno de espacios",
         "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/advanced-entities-slot-filling"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d5-temas-006",
-    "type": "single",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d5",
-    "skill": "d5-temas",
-    "difficulty": 3,
-    "scenario": "En Transportes Meridiano cada empleado se identifica con un código con el formato «EMP-» seguido de cinco dígitos (por ejemplo, EMP-04821). Hay miles de empleados y se incorporan nuevos cada semana. El agente de RR. HH. debe reconocer ese código en las respuestas de los usuarios.",
-    "prompt": "¿Qué tipo de entidad (*entity*) debes usar?",
-    "options": [
-      {
-        "id": "a",
-        "text": "Una entidad personalizada de lista cerrada con todos los códigos actuales",
-        "correct": false,
-        "explanation": "Habría que mantener manualmente miles de valores y actualizarla cada semana; la lista cerrada es para conjuntos pequeños y estables."
-      },
-      {
-        "id": "b",
-        "text": "La entidad prediseñada Número",
-        "correct": false,
-        "explanation": "Número reconocería los dígitos, pero no el prefijo «EMP-», por lo que no valida el formato completo del código."
-      },
-      {
-        "id": "c",
-        "text": "La entidad prediseñada Edad",
-        "correct": false,
-        "explanation": "Edad extrae edades expresadas por el usuario; no tiene relación con un código de empleado."
-      },
-      {
-        "id": "d",
-        "text": "Una entidad personalizada de expresión regular (regex) que describa el patrón",
-        "correct": true,
-        "explanation": "Una entidad de expresión regular reconoce cualquier valor que cumpla el patrón «EMP-» + cinco dígitos, sin enumerar los códigos."
-      }
-    ],
-    "keyPoint": "Valores con patrón fijo → entidad de expresión regular; conjunto pequeño de valores conocidos → lista cerrada.",
-    "references": [
-      {
-        "title": "Usar entidades y relleno de espacios",
-        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/advanced-entities-slot-filling"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d5-temas-007",
-    "type": "yesno",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d5",
-    "skill": "d5-temas",
-    "difficulty": 2,
-    "prompt": "Indica si cada afirmación sobre las variables en Copilot Studio es verdadera.",
-    "statements": [
-      {
-        "id": "s1",
-        "text": "De forma predeterminada, una variable de tema solo está disponible dentro del tema en el que se crea.",
-        "answer": true,
-        "explanation": "El ámbito por defecto de una variable es el tema; para usarla en otros temas hay que pasarla como parámetro o convertirla en global."
-      },
-      {
-        "id": "s2",
-        "text": "Una variable global puede leerse desde cualquier tema del agente durante la conversación.",
-        "answer": true,
-        "explanation": "Las variables globales tienen ámbito de agente, por lo que comparten su valor entre todos los temas de la misma conversación."
-      },
-      {
-        "id": "s3",
-        "text": "El nodo de pregunta guarda la respuesta del usuario en una variable.",
-        "answer": true,
-        "explanation": "Cada nodo de pregunta almacena la respuesta (o la entidad reconocida) en una variable que se puede usar después."
-      },
-      {
-        "id": "s4",
-        "text": "Las variables de tema conservan su valor automáticamente entre conversaciones distintas del mismo usuario.",
-        "answer": false,
-        "explanation": "Las variables de tema existen durante la conversación; no se guardan automáticamente para conversaciones futuras."
-      }
-    ],
-    "keyPoint": "Variable de tema = ámbito del tema; variable global = compartida por todos los temas de la conversación.",
-    "references": [
-      {
-        "title": "Trabajar con variables",
-        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-variables"
       }
     ]
   },
@@ -833,20 +649,20 @@
     "skill": "d5-temas",
     "difficulty": 1,
     "prompt": "Completa la frase con el tema del sistema (*system topic*) que corresponde a cada situación.",
-    "template": "Cuando el agente no reconoce la petición del usuario, se activa el tema {{b1}}; cuando el usuario pide hablar con una persona, el tema {{b2}}; y al terminar, el tema {{b3}} confirma si se resolvió la consulta y puede pedir una valoración de satisfacción.",
+    "template": "Cuando el agente no consigue asociar la petición del usuario a ningún tema, se activa el tema {{b1}}; cuando el usuario pide hablar con una persona, el tema {{b2}}; y al terminar, el tema {{b3}} confirma si se resolvió la consulta y puede pedir una valoración de satisfacción.",
     "blanks": [
       {
         "id": "b1",
         "correctId": "o2",
-        "explanation": "Reserva (*Fallback*) se activa cuando el agente no reconoce la intención: pide al usuario que reformule y, si sigue sin entenderlo, puede escalar. Saludo (*Greeting*) solo responde a saludos y Escalar se usa cuando se pide una persona.",
+        "explanation": "Alternativa (*Fallback*) se activa cuando el agente no puede asociar el mensaje a un tema: pide al usuario que lo reformule y, si sigue sin entenderlo, redirige a Escalar. Inicio de conversación saluda al empezar y Escalar se usa cuando se pide una persona.",
         "options": [
           {
             "id": "o1",
-            "text": "Saludo (Greeting)"
+            "text": "Inicio de conversación (Conversation Start)"
           },
           {
             "id": "o2",
-            "text": "Reserva (Fallback)"
+            "text": "Alternativa (Fallback)"
           },
           {
             "id": "o3",
@@ -857,11 +673,11 @@
       {
         "id": "b2",
         "correctId": "o3",
-        "explanation": "Escalar (*Escalate*) gestiona la petición de hablar con una persona y puede transferir la conversación a un agente humano. Inicio de la conversación da la bienvenida y Fin de la conversación cierra la sesión.",
+        "explanation": "Escalar (*Escalate*) gestiona la petición de hablar con una persona y puede transferir la conversación a un agente humano. Inicio de conversación da la bienvenida y Fin de la conversación cierra la consulta.",
         "options": [
           {
             "id": "o1",
-            "text": "Inicio de la conversación (Conversation Start)"
+            "text": "Inicio de conversación (Conversation Start)"
           },
           {
             "id": "o2",
@@ -876,7 +692,7 @@
       {
         "id": "b3",
         "correctId": "o1",
-        "explanation": "Fin de la conversación (*End of Conversation*) confirma si la consulta se resolvió y puede lanzar la encuesta de satisfacción (CSAT). Restablecer conversación reinicia la sesión y Reserva gestiona lo que no se entiende.",
+        "explanation": "Fin de la conversación (*End of Conversation*) confirma si la consulta se resolvió y presenta la encuesta de satisfacción (CSAT). Restablecer conversación reinicia la sesión y Alternativa gestiona lo que no se entiende.",
         "options": [
           {
             "id": "o1",
@@ -884,7 +700,7 @@
           },
           {
             "id": "o2",
-            "text": "Reserva (Fallback)"
+            "text": "Alternativa (Fallback)"
           },
           {
             "id": "o3",
@@ -893,7 +709,7 @@
         ]
       }
     ],
-    "keyPoint": "Reserva gestiona lo no reconocido, Escalar transfiere a una persona y Fin de la conversación cierra y mide la satisfacción.",
+    "keyPoint": "Alternativa gestiona lo no reconocido, Escalar transfiere a una persona y Fin de la conversación cierra y mide la satisfacción.",
     "references": [
       {
         "title": "Usar temas del sistema",
@@ -926,9 +742,9 @@
       },
       {
         "id": "c",
-        "text": "Modificar el tema del sistema Reserva (*Fallback*) para que pida la dirección",
+        "text": "Modificar el tema del sistema Alternativa (*Fallback*) para que pida la dirección",
         "correct": false,
-        "explanation": "Reserva (*Fallback*) gestiona las peticiones que el agente no reconoce; usarlo para un proceso de negocio concreto rompería su función."
+        "explanation": "Alternativa (*Fallback*) gestiona las peticiones que el agente no reconoce; usarlo para un proceso de negocio concreto rompería su función."
       },
       {
         "id": "d",
@@ -940,8 +756,60 @@
     "keyPoint": "Puedes crear un tema describiéndolo con Copilot y refinarlo después en el lienzo de creación.",
     "references": [
       {
+        "title": "Crear y editar temas con Copilot",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/nlu-authoring"
+      },
+      {
         "title": "Crear y editar temas en Copilot Studio",
         "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-create-edit-topics"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-conocimiento-003",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-temas",
+    "difficulty": 3,
+    "scenario": "El agente de una aseguradora usa orquestación clásica. Los clientes formulan sus peticiones de muchas formas y a menudo piden dos cosas a la vez, por ejemplo «dame el estado de mi siniestro y envíame la póliza por correo», lo que obliga a mantener largas listas de frases desencadenantes.",
+    "prompt": "¿Qué cambio mejora este comportamiento?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Añadir cientos de frases desencadenantes nuevas a cada tema",
+        "correct": false,
+        "explanation": "Más frases pueden mejorar algo el reconocimiento en orquestación clásica, pero aumentan el mantenimiento y no permiten atender dos intenciones en una sola petición."
+      },
+      {
+        "id": "b",
+        "text": "Desactivar las fuentes de conocimiento para que solo respondan los temas",
+        "correct": false,
+        "explanation": "Quitar el conocimiento reduce la capacidad de responder y no resuelve las peticiones combinadas."
+      },
+      {
+        "id": "c",
+        "text": "Convertir todos los temas en temas del sistema",
+        "correct": false,
+        "explanation": "Los temas del sistema cubren situaciones genéricas (inicio de conversación, escalado…); convertir en ellos los temas de negocio no tiene sentido."
+      },
+      {
+        "id": "d",
+        "text": "Activar la orquestación generativa y escribir buenas descripciones de los temas y las herramientas",
+        "correct": true,
+        "explanation": "Con orquestación generativa el agente elige temas, herramientas y conocimiento según sus nombres y descripciones (no solo por frases desencadenantes) y puede combinar varios para atender una petición compuesta."
+      }
+    ],
+    "keyPoint": "Orquestación generativa: el agente decide qué usar según descripciones y puede encadenar varios pasos.",
+    "references": [
+      {
+        "title": "Orquestar el comportamiento del agente con IA generativa",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/advanced-generative-actions"
+      },
+      {
+        "title": "Agregar herramientas a agentes personalizados",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/add-tools-custom-agent"
       }
     ]
   },
@@ -1038,101 +906,6 @@
     ]
   },
   {
-    "id": "pl900-d5-conocimiento-003",
-    "type": "single",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d5",
-    "skill": "d5-conocimiento",
-    "difficulty": 3,
-    "scenario": "El agente de una aseguradora usa orquestación clásica. Los clientes formulan sus peticiones de muchas formas y a menudo piden dos cosas a la vez, por ejemplo «dame el estado de mi siniestro y envíame la póliza por correo», lo que obliga a mantener largas listas de frases desencadenantes.",
-    "prompt": "¿Qué cambio mejora este comportamiento?",
-    "options": [
-      {
-        "id": "a",
-        "text": "Añadir cientos de frases desencadenantes nuevas a cada tema",
-        "correct": false,
-        "explanation": "Más frases pueden mejorar algo el reconocimiento en orquestación clásica, pero aumentan el mantenimiento y no permiten atender dos intenciones en una sola petición."
-      },
-      {
-        "id": "b",
-        "text": "Desactivar las fuentes de conocimiento para que solo respondan los temas",
-        "correct": false,
-        "explanation": "Quitar el conocimiento reduce la capacidad de responder y no resuelve las peticiones combinadas."
-      },
-      {
-        "id": "c",
-        "text": "Convertir todos los temas en temas del sistema",
-        "correct": false,
-        "explanation": "Los temas del sistema cubren situaciones genéricas (saludo, escalado…); convertir en ellos los temas de negocio no tiene sentido."
-      },
-      {
-        "id": "d",
-        "text": "Activar la orquestación generativa y escribir buenas descripciones de los temas y las herramientas",
-        "correct": true,
-        "explanation": "Con orquestación generativa el agente elige temas, herramientas y conocimiento según sus nombres y descripciones (no solo por frases desencadenantes) y puede combinar varios para atender una petición compuesta."
-      }
-    ],
-    "keyPoint": "Orquestación generativa: el agente decide qué usar según descripciones y puede encadenar varios pasos.",
-    "references": [
-      {
-        "title": "Orquestar el comportamiento del agente con IA generativa",
-        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/advanced-generative-actions"
-      },
-      {
-        "title": "¿Qué es Microsoft Copilot Studio?",
-        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/fundamentals-what-is-copilot-studio"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d5-conocimiento-004",
-    "type": "yesno",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d5",
-    "skill": "d5-conocimiento",
-    "difficulty": 3,
-    "prompt": "Indica si cada afirmación sobre la orquestación en Copilot Studio es verdadera.",
-    "statements": [
-      {
-        "id": "s1",
-        "text": "Con orquestación generativa, el agente puede elegir un tema, una herramienta o una fuente de conocimiento según sus descripciones.",
-        "answer": true,
-        "explanation": "La orquestación generativa usa IA para seleccionar los elementos más adecuados a partir de sus nombres y descripciones."
-      },
-      {
-        "id": "s2",
-        "text": "Con orquestación clásica, el agente selecciona el tema principalmente comparando la petición con las frases desencadenantes.",
-        "answer": true,
-        "explanation": "En la orquestación clásica cada tema se activa por sus frases desencadenantes; si ninguno coincide, el agente puede recurrir a respuestas generativas sobre su conocimiento (tema del sistema *Conversational boosting*) o al tema Reserva (*Fallback*)."
-      },
-      {
-        "id": "s3",
-        "text": "Con orquestación generativa, las descripciones de los temas y las herramientas no influyen en lo que hace el agente.",
-        "answer": false,
-        "explanation": "Es justo al revés: las descripciones son la información clave que usa el agente para decidir qué tema o herramienta utilizar."
-      },
-      {
-        "id": "s4",
-        "text": "Con orquestación generativa, el agente puede usar varias herramientas o temas para responder a una sola petición.",
-        "answer": true,
-        "explanation": "El orquestador puede planificar y combinar varios pasos, por ejemplo consultar conocimiento y después ejecutar una herramienta."
-      }
-    ],
-    "keyPoint": "Clásica = frases desencadenantes; generativa = descripciones y combinación de varios elementos.",
-    "references": [
-      {
-        "title": "Orquestar el comportamiento del agente con IA generativa",
-        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/advanced-generative-actions"
-      },
-      {
-        "title": "¿Qué es Microsoft Copilot Studio?",
-        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/fundamentals-what-is-copilot-studio"
-      }
-    ]
-  },
-  {
     "id": "pl900-d5-conocimiento-005",
     "type": "single",
     "exam": "PL-900",
@@ -1151,7 +924,7 @@
       },
       {
         "id": "b",
-        "text": "En las frases desencadenantes del tema Saludo",
+        "text": "En las frases desencadenantes del tema Inicio de conversación",
         "correct": false,
         "explanation": "Las frases desencadenantes solo activan un tema; no definen el tono ni los límites de todas las respuestas."
       },
@@ -1212,83 +985,6 @@
       }
     ],
     "keyPoint": "Citas, moderación de contenido y revisión humana son pilares de la IA responsable en los agentes.",
-    "references": [
-      {
-        "title": "Fuentes de conocimiento en Copilot Studio",
-        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/knowledge-copilot-studio"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d5-conocimiento-007",
-    "type": "dropdown",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d5",
-    "skill": "d5-conocimiento",
-    "difficulty": 2,
-    "prompt": "Completa la frase sobre cómo controlar las respuestas generativas de un agente.",
-    "template": "Para que el usuario sepa de qué documento sale una respuesta, el agente muestra {{b1}}; para ajustar con qué rigor se filtra el contenido dañino, configuras la {{b2}}; y para fijar el tono y los límites del agente, redactas sus {{b3}}.",
-    "blanks": [
-      {
-        "id": "b1",
-        "correctId": "o3",
-        "explanation": "Las citas enlazan la respuesta con la fuente de conocimiento usada. Las frases desencadenantes activan temas y las variables globales guardan valores; ninguna muestra el origen.",
-        "options": [
-          {
-            "id": "o1",
-            "text": "frases desencadenantes"
-          },
-          {
-            "id": "o2",
-            "text": "variables globales"
-          },
-          {
-            "id": "o3",
-            "text": "citas"
-          }
-        ]
-      },
-      {
-        "id": "b2",
-        "correctId": "o1",
-        "explanation": "La moderación de contenido determina lo estricto que es el filtrado de contenido inapropiado en las respuestas generativas. La autenticación identifica al usuario y una entidad de expresión regular extrae datos con patrón.",
-        "options": [
-          {
-            "id": "o1",
-            "text": "moderación de contenido"
-          },
-          {
-            "id": "o2",
-            "text": "autenticación"
-          },
-          {
-            "id": "o3",
-            "text": "entidad de expresión regular"
-          }
-        ]
-      },
-      {
-        "id": "b3",
-        "correctId": "o2",
-        "explanation": "Las instrucciones indican en lenguaje natural cómo debe comportarse el agente. Los canales deciden dónde se publica y las métricas de análisis solo miden su rendimiento.",
-        "options": [
-          {
-            "id": "o1",
-            "text": "canales"
-          },
-          {
-            "id": "o2",
-            "text": "instrucciones"
-          },
-          {
-            "id": "o3",
-            "text": "métricas de análisis"
-          }
-        ]
-      }
-    ],
-    "keyPoint": "Citas = origen; moderación = filtrado; instrucciones = comportamiento.",
     "references": [
       {
         "title": "Fuentes de conocimiento en Copilot Studio",
@@ -1407,6 +1103,418 @@
     ]
   },
   {
+    "id": "pl900-d5-capacidades-008",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-herramientas",
+    "difficulty": 3,
+    "scenario": "El equipo de soporte interno de TI de Laboratorios Ébano diseña un agente. Ya ha conectado como fuente de conocimiento la base de artículos de ayuda en SharePoint.",
+    "prompt": "¿Qué dos requisitos obligan a que el agente realice acciones mediante herramientas, en lugar de limitarse a responder con conocimiento? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Explicar cómo configurar la VPN según el artículo de ayuda",
+        "correct": false,
+        "explanation": "Basta con conocimiento: la respuesta generativa resume el artículo existente sin actuar en ningún sistema."
+      },
+      {
+        "id": "b",
+        "text": "Crear un ticket en el sistema de incidencias con la descripción del problema",
+        "correct": true,
+        "explanation": "Crear un registro en otro sistema es una acción; requiere una herramienta, como un flujo de agente, un conector o un servidor MCP."
+      },
+      {
+        "id": "c",
+        "text": "Indicar el horario de atención del centro de soporte",
+        "correct": false,
+        "explanation": "Es información estática que puede responderse con un mensaje en un tema o con el conocimiento disponible."
+      },
+      {
+        "id": "d",
+        "text": "Enviar una solicitud de aprobación al responsable para conceder acceso a una aplicación",
+        "correct": true,
+        "explanation": "Iniciar una aprobación es una tarea que se ejecuta fuera de la conversación; un flujo de agente (*agent flow*) puede incluir pasos de aprobación y llamarse como herramienta."
+      },
+      {
+        "id": "e",
+        "text": "Resumir la política de contraseñas publicada en SharePoint",
+        "correct": false,
+        "explanation": "Solo hay que leer y resumir un documento ya conectado como fuente de conocimiento; no se cambia nada en otro sistema."
+      }
+    ],
+    "keyPoint": "Responder usa conocimiento; actuar (crear, actualizar, aprobar) requiere herramientas.",
+    "references": [
+      {
+        "title": "Agregar herramientas a agentes personalizados",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/add-tools-custom-agent"
+      },
+      {
+        "title": "Información general sobre los flujos de agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/flows-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-publicar-004",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-herramientas",
+    "difficulty": 2,
+    "scenario": "El agente de RR. HH. de Ceres Alimentación ya responde dudas sobre vacaciones. Ahora debe registrar la solicitud de vacaciones del empleado como un nuevo elemento en una lista de SharePoint.",
+    "prompt": "¿Qué debes agregar al agente?",
+    "options": [
+      {
+        "id": "a",
+        "text": "La lista de SharePoint como fuente de conocimiento",
+        "correct": false,
+        "explanation": "Una fuente de conocimiento solo se usa para leer y responder; no crea elementos en la lista."
+      },
+      {
+        "id": "b",
+        "text": "Una entidad personalizada con los tipos de permiso",
+        "correct": false,
+        "explanation": "Una entidad ayuda a reconocer datos en la conversación, pero no escribe nada en SharePoint."
+      },
+      {
+        "id": "c",
+        "text": "Una herramienta basada en un flujo de agente (*agent flow*) que cree el elemento en la lista",
+        "correct": true,
+        "explanation": "Las herramientas (antes «acciones») permiten que el agente actúe; un flujo de agente o el conector de SharePoint puede crear el elemento con los datos recogidos en la conversación."
+      },
+      {
+        "id": "d",
+        "text": "Nuevas frases desencadenantes en el tema de vacaciones",
+        "correct": false,
+        "explanation": "Las frases desencadenantes solo mejoran la activación del tema; no realizan ninguna acción."
+      }
+    ],
+    "keyPoint": "Para que el agente realice tareas en otros sistemas, agrégale herramientas: flujos de agente, conectores, indicaciones (*prompts*), API REST o servidores MCP.",
+    "references": [
+      {
+        "title": "Agregar un flujo de agente a un agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/flow-agent"
+      },
+      {
+        "title": "Agregar herramientas a agentes personalizados",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/add-tools-custom-agent"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-publicar-007",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-herramientas",
+    "difficulty": 3,
+    "scenario": "Un agente de Servicios Técnicos Altamira debe registrar averías en un sistema externo y comunicar al usuario el número de incidencia. Para ello vas a crear un flujo de agente (*agent flow*) y usarlo como herramienta.",
+    "prompt": "Ordena los pasos para crear y usar el flujo desde el agente, teniendo en cuenta qué necesita cada paso del anterior.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Crear el flujo de agente desde el agente, como una herramienta nueva",
+        "explanation": "Sin el flujo no hay dónde definir entradas ni acciones; al crearlo desde el agente como herramienta nueva, se agregan solos el desencadenador «Cuando un agente llama al flujo» y la acción «Responder al agente»."
+      },
+      {
+        "id": "p2",
+        "text": "Definir las entradas que el agente enviará al flujo, como la descripción de la avería",
+        "explanation": "Las entradas se definen en el desencadenador; la acción de registro necesita esos datos, así que deben existir antes de poder usarlas."
+      },
+      {
+        "id": "p3",
+        "text": "Agregar la acción que registra la avería en el sistema externo usando esas entradas",
+        "explanation": "Con las entradas disponibles se añade la acción o el conector que hace el trabajo y genera el número de incidencia."
+      },
+      {
+        "id": "p4",
+        "text": "Devolver al agente, como salida, el número de incidencia generado por esa acción",
+        "explanation": "La salida se configura en la acción «Responder al agente» y depende del resultado de la acción anterior; el agente la usa para informar al usuario."
+      },
+      {
+        "id": "p5",
+        "text": "Publicar el flujo y probar la herramienta desde el panel de prueba del agente",
+        "explanation": "Solo con el flujo completo y publicado se puede comprobar que el agente lo llama y recibe la salida correctamente."
+      }
+    ],
+    "keyPoint": "Flujo de agente: crear → entradas → acción que las usa → devolver salidas → publicar y probar.",
+    "references": [
+      {
+        "title": "Crear un flujo para usarlo en el agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/advanced-flow-create"
+      },
+      {
+        "title": "Agregar un flujo de agente a un agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/flow-agent"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-herramientas-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-herramientas",
+    "difficulty": 1,
+    "prompt": "¿Para qué sirve conectar un agente de Copilot Studio a un servidor MCP (*Model Context Protocol*)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Para que el agente use las herramientas y los recursos que publica ese servidor",
+        "correct": true,
+        "explanation": "MCP conecta el agente con servidores existentes: cada herramienta (función que realiza una acción) o recurso (datos que aportan contexto) que publica el servidor queda disponible para el agente, con el nombre, la descripción, las entradas y las salidas que define el propio servidor."
+      },
+      {
+        "id": "b",
+        "text": "Para publicar el agente en Microsoft Teams y en un sitio web",
+        "correct": false,
+        "explanation": "Publicar en Teams o en un sitio web se hace configurando los canales del agente; conectar un servidor MCP no publica el agente en ellos, sino que le añade herramientas."
+      },
+      {
+        "id": "c",
+        "text": "Para entrenar desde cero el modelo de lenguaje del agente con los datos del servidor",
+        "correct": false,
+        "explanation": "Copilot Studio no entrena modelos desde cero; el agente invoca las herramientas y recursos del servidor cuando los necesita para responder o actuar."
+      },
+      {
+        "id": "d",
+        "text": "Para contar cuántos usuarios activos tiene el agente cada mes",
+        "correct": false,
+        "explanation": "Las métricas de uso y adopción se consultan en la página de supervisión (*Monitor*) del agente; MCP sirve para ampliar sus capacidades."
+      }
+    ],
+    "keyPoint": "Un servidor MCP aporta al agente herramientas (acciones) y recursos (datos de contexto) que se mantienen en el propio servidor.",
+    "references": [
+      {
+        "title": "Ampliar el agente con el Protocolo de contexto de modelo (MCP)",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/agent-extend-action-mcp"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-herramientas-002",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-herramientas",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre el uso de servidores MCP (*Model Context Protocol*) en Copilot Studio es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Si el propietario del servidor MCP agrega o quita herramientas, Copilot Studio refleja esos cambios en el agente de forma dinámica.",
+        "answer": true,
+        "explanation": "El servidor proporciona el nombre, la descripción, las entradas y las salidas de cada herramienta; cuando cambian en el servidor, Copilot Studio los actualiza sin que tengas que volver a definirlas."
+      },
+      {
+        "id": "s2",
+        "text": "Para que el agente use un servidor MCP, debe tener activada la orquestación generativa.",
+        "answer": true,
+        "explanation": "La documentación indica que la orquestación generativa es necesaria para usar MCP: el orquestador decide cuándo llamar a las herramientas del servidor a partir de sus descripciones."
+      },
+      {
+        "id": "s3",
+        "text": "Al agregar un servidor MCP, el agente queda obligado a usar todas las herramientas que ofrece el servidor.",
+        "answer": false,
+        "explanation": "Todas las herramientas se activan de forma predeterminada, pero puedes desactivar «Permitir todo» y apagar una a una las que el agente no necesite."
+      },
+      {
+        "id": "s4",
+        "text": "Las directivas de datos de Power Platform no afectan a los servidores MCP porque no usan conectores.",
+        "answer": false,
+        "explanation": "El acceso a los servidores MCP desde Copilot Studio se basa en conectores de Power Platform; por eso, si una directiva de datos regula esos conectores, también regula el acceso del agente al servidor y a sus herramientas."
+      }
+    ],
+    "keyPoint": "MCP: herramientas sincronizadas desde el servidor, orquestación generativa obligatoria, selección de herramientas y control con directivas de datos.",
+    "references": [
+      {
+        "title": "Ampliar el agente con el Protocolo de contexto de modelo (MCP)",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/agent-extend-action-mcp"
+      },
+      {
+        "title": "Agregar herramientas y recursos de un servidor MCP al agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/mcp-add-components-to-agent"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-herramientas-003",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-herramientas",
+    "difficulty": 3,
+    "scenario": "El equipo de desarrollo de Grupo Altamar mantiene un servidor MCP (*Model Context Protocol*) con varias herramientas para consultar y actualizar oportunidades de venta. El equipo comercial quiere que su agente de Copilot Studio use esas herramientas sin volver a definir cada operación y que reciba automáticamente las herramientas nuevas que se publiquen en el servidor.",
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crear un tema por cada operación del servidor, con sus frases desencadenantes",
+        "correct": false,
+        "explanation": "Obligaría a reproducir a mano cada operación y a mantenerla cuando cambie el servidor; además, un tema guía una conversación, no expone las herramientas del servidor."
+      },
+      {
+        "id": "b",
+        "text": "Agregar la dirección del servidor como fuente de conocimiento de sitio web público",
+        "correct": false,
+        "explanation": "Una fuente de conocimiento solo sirve para leer contenido y generar respuestas; no permite invocar las herramientas del servidor para actualizar oportunidades."
+      },
+      {
+        "id": "c",
+        "text": "Agregar el servidor como herramienta desde la página Herramientas del agente, con una descripción clara de lo que hace",
+        "correct": true,
+        "explanation": "El asistente de incorporación de MCP conecta el agente a un servidor existente (nombre, descripción y URL); el orquestador usa la descripción para decidir cuándo llamarlo y las herramientas del servidor se sincronizan solas."
+      },
+      {
+        "id": "d",
+        "text": "Crear un flujo de agente distinto para cada herramienta del servidor",
+        "correct": false,
+        "explanation": "Supone volver a definir cada operación en un flujo y no incorpora automáticamente las herramientas nuevas del servidor, justo lo que el equipo quiere evitar."
+      }
+    ],
+    "keyPoint": "Si ya existe un servidor MCP, agrégalo como herramienta del agente: sus herramientas se incorporan y se actualizan solas.",
+    "references": [
+      {
+        "title": "Conectar el agente a un servidor MCP existente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/mcp-add-existing-server-to-agent"
+      },
+      {
+        "title": "Ampliar el agente con el Protocolo de contexto de modelo (MCP)",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/agent-extend-action-mcp"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-herramientas-004",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-herramientas",
+    "difficulty": 2,
+    "prompt": "¿Qué tres requisitos debe cumplir un flujo de agente (*agent flow*) para poder agregarlo como herramienta a un agente? Selecciona tres.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Usar el desencadenador Cuando un agente llama al flujo (*When an agent calls the flow*)",
+        "correct": true,
+        "explanation": "Este desencadenador permite que el agente inicie el flujo y le pase los parámetros de entrada definidos en él; sin él, el flujo no aparece en la lista de flujos que se pueden agregar como herramienta."
+      },
+      {
+        "id": "b",
+        "text": "Incluir la acción Responder al agente (*Respond to the agent*)",
+        "correct": true,
+        "explanation": "Esta acción devuelve al agente los parámetros de salida, que el agente usa para continuar la conversación o informar al usuario."
+      },
+      {
+        "id": "c",
+        "text": "Estar publicado",
+        "correct": true,
+        "explanation": "Solo un flujo publicado se puede agregar como herramienta y ejecutarse desde el agente; por eso el último paso al crearlo es publicarlo."
+      },
+      {
+        "id": "d",
+        "text": "Ejecutarse según una programación periódica",
+        "correct": false,
+        "explanation": "Un desencadenador de periodicidad inicia el flujo por tiempo, no cuando lo llama el agente; para usarlo como herramienta se necesita el desencadenador del agente."
+      },
+      {
+        "id": "e",
+        "text": "Crearse dentro de una aplicación de lienzo de Power Apps",
+        "correct": false,
+        "explanation": "Los flujos de agente se crean en Copilot Studio, con lenguaje natural o con el diseñador; una aplicación de lienzo no es donde se crean."
+      }
+    ],
+    "keyPoint": "Flujo de agente como herramienta: desencadenador «Cuando un agente llama al flujo» + acción «Responder al agente» + flujo publicado.",
+    "references": [
+      {
+        "title": "Agregar un flujo de agente a un agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/flow-agent"
+      },
+      {
+        "title": "Crear un flujo para usarlo en el agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/advanced-flow-create"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-herramientas-005",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-herramientas",
+    "difficulty": 2,
+    "scenario": "Construcciones Duero está ampliando el agente que usan sus jefes de obra y debe decidir qué tipo de herramienta usar para cada necesidad.",
+    "prompt": "Empareja cada necesidad con la herramienta (*tool*) más adecuada.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Ejecutar un proceso de varios pasos, con una aprobación y acciones de varios conectores, que siempre se comporte igual y devuelva el resultado al agente",
+        "answerId": "c1",
+        "explanation": "Los flujos de agente son deterministas (la misma entrada produce el mismo resultado), combinan acciones de conectores con pasos de intervención humana, como aprobaciones, y devuelven salidas al agente."
+      },
+      {
+        "id": "m2",
+        "text": "Usar las herramientas que el proveedor de maquinaria ya expone mediante el protocolo Model Context Protocol",
+        "answerId": "c2",
+        "explanation": "Si las herramientas ya están publicadas en un servidor MCP, basta con agregar ese servidor como herramienta del agente para usarlas todas sin volver a definirlas."
+      },
+      {
+        "id": "m3",
+        "text": "Enviar un correo con una sola acción del servicio Office 365 Outlook",
+        "answerId": "c3",
+        "explanation": "Un conector de Power Platform se puede agregar directamente como herramienta para realizar una acción concreta en un servicio, como enviar un correo con Office 365 Outlook."
+      },
+      {
+        "id": "m4",
+        "text": "Resumir el parte diario de obra siguiendo unas instrucciones en lenguaje natural para el modelo de IA",
+        "answerId": "c4",
+        "explanation": "Una indicación (*prompt*) es una herramienta basada en un modelo de IA que sigue tus instrucciones en lenguaje natural, por ejemplo para resumir o clasificar un texto."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Flujo de agente (agent flow)"
+      },
+      {
+        "id": "c2",
+        "text": "Servidor MCP"
+      },
+      {
+        "id": "c3",
+        "text": "Conector"
+      },
+      {
+        "id": "c4",
+        "text": "Indicación (prompt)"
+      },
+      {
+        "id": "c5",
+        "text": "Fuente de conocimiento"
+      }
+    ],
+    "keyPoint": "Flujo de agente = proceso determinista de varios pasos; servidor MCP = herramientas ya publicadas; conector = acción concreta; indicación = tarea de IA con instrucciones.",
+    "references": [
+      {
+        "title": "Agregar herramientas a agentes personalizados",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/add-tools-custom-agent"
+      },
+      {
+        "title": "Información general sobre los flujos de agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/flows-overview"
+      }
+    ]
+  },
+  {
     "id": "pl900-d5-publicar-001",
     "type": "single",
     "exam": "PL-900",
@@ -1427,7 +1535,7 @@
         "id": "b",
         "text": "Publicar el agente",
         "correct": true,
-        "explanation": "Los cambios guardados solo se ven en el panel de prueba hasta que se publica el agente; al publicar, la nueva versión llega a los canales."
+        "explanation": "Los cambios guardados solo se ven en el panel de prueba hasta que se publica el agente; al publicar, la nueva versión se aplica a todos los canales conectados."
       },
       {
         "id": "c",
@@ -1437,9 +1545,9 @@
       },
       {
         "id": "d",
-        "text": "Desactivar y reactivar el tema Saludo",
+        "text": "Desactivar y reactivar el tema Inicio de conversación",
         "correct": false,
-        "explanation": "Desactivar temas no publica nada y podría romper la conversación inicial."
+        "explanation": "Desactivar temas no publica nada y podría romper el saludo inicial de la conversación."
       }
     ],
     "keyPoint": "Guardar y probar no basta: hay que publicar para que los usuarios vean los cambios.",
@@ -1468,9 +1576,9 @@
       },
       {
         "id": "b",
-        "text": "Microsoft Teams y Microsoft 365 Copilot",
+        "text": "Microsoft Teams y Microsoft Copilot",
         "correct": true,
-        "explanation": "Es uno de los canales principales («Teams y Microsoft 365 Copilot»): los empleados conversan con el agente dentro de Teams o desde Microsoft 365 Copilot."
+        "explanation": "Es uno de los canales principales («Teams y Microsoft Copilot»): los empleados conversan con el agente dentro de Teams o desde Microsoft Copilot."
       },
       {
         "id": "c",
@@ -1491,7 +1599,7 @@
         "explanation": "Copilot Studio ofrece un canal de aplicación móvil para integrar el agente en una aplicación propia de la organización."
       }
     ],
-    "keyPoint": "Canales habituales: Teams y Microsoft 365 Copilot, sitios web, aplicaciones móviles, SharePoint y otros mediante Azure Bot Service.",
+    "keyPoint": "Canales habituales: Teams y Microsoft Copilot, sitios web, aplicaciones móviles, SharePoint, WhatsApp y otros mediante Azure Bot Service.",
     "references": [
       {
         "title": "Publicar y configurar canales en Copilot Studio",
@@ -1527,110 +1635,19 @@
       },
       {
         "id": "p4",
-        "text": "Revisar el panel de análisis para detectar temas mejorables",
-        "explanation": "El análisis necesita conversaciones reales: cuando los usuarios ya lo usan, muestra resolución, escalado y abandono para mejorar el agente."
+        "text": "Revisar la página de supervisión (*Monitor*) para detectar temas mejorables",
+        "explanation": "La supervisión necesita conversaciones reales: cuando los usuarios ya usan el agente, muestra sesiones resueltas, escaladas y abandonadas para mejorarlo."
       }
     ],
-    "keyPoint": "Probar → publicar → ponerlo a disposición en el canal → analizar y mejorar.",
+    "keyPoint": "Probar → publicar → ponerlo a disposición en el canal → supervisar y mejorar.",
     "references": [
       {
         "title": "Publicar y configurar canales en Copilot Studio",
         "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/publication-fundamentals-publish-channels"
       },
       {
-        "title": "Análisis de agentes en Copilot Studio",
+        "title": "Conceptos clave de la supervisión de agentes",
         "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/analytics-overview"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d5-publicar-004",
-    "type": "single",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d5",
-    "skill": "d5-publicar",
-    "difficulty": 2,
-    "scenario": "El agente de RR. HH. de Ceres Alimentación ya responde dudas sobre vacaciones. Ahora debe registrar la solicitud de vacaciones del empleado como un nuevo elemento en una lista de SharePoint.",
-    "prompt": "¿Qué debes agregar al agente?",
-    "options": [
-      {
-        "id": "a",
-        "text": "La lista de SharePoint como fuente de conocimiento",
-        "correct": false,
-        "explanation": "Una fuente de conocimiento solo se usa para leer y responder; no crea elementos en la lista."
-      },
-      {
-        "id": "b",
-        "text": "Una entidad personalizada con los tipos de permiso",
-        "correct": false,
-        "explanation": "Una entidad ayuda a reconocer datos en la conversación, pero no escribe nada en SharePoint."
-      },
-      {
-        "id": "c",
-        "text": "Una herramienta que llame a un flujo de agente (*agent flow*) de Power Automate que cree el elemento en la lista",
-        "correct": true,
-        "explanation": "Las herramientas (antes «acciones») permiten que el agente actúe; un flujo de agente o el conector de SharePoint puede crear el elemento con los datos recogidos en la conversación."
-      },
-      {
-        "id": "d",
-        "text": "Nuevas frases desencadenantes en el tema de vacaciones",
-        "correct": false,
-        "explanation": "Las frases desencadenantes solo mejoran la activación del tema; no realizan ninguna acción."
-      }
-    ],
-    "keyPoint": "Para que el agente realice tareas en otros sistemas, agrégale herramientas: flujos, conectores, *prompts* o API.",
-    "references": [
-      {
-        "title": "¿Qué es Microsoft Copilot Studio?",
-        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/fundamentals-what-is-copilot-studio"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d5-publicar-005",
-    "type": "yesno",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d5",
-    "skill": "d5-publicar",
-    "difficulty": 2,
-    "prompt": "Indica si cada afirmación sobre el análisis y la transferencia a agentes humanos es verdadera.",
-    "statements": [
-      {
-        "id": "s1",
-        "text": "El panel de análisis muestra métricas como la tasa de resolución, la tasa de escalado y la tasa de abandono.",
-        "answer": true,
-        "explanation": "Estas métricas indican cuántas sesiones se resuelven, cuántas se transfieren a una persona y cuántas se abandonan."
-      },
-      {
-        "id": "s2",
-        "text": "La puntuación de satisfacción (CSAT) se basa en las valoraciones que dan los usuarios al final de la conversación.",
-        "answer": true,
-        "explanation": "La encuesta de satisfacción del final de la conversación alimenta la métrica CSAT del análisis."
-      },
-      {
-        "id": "s3",
-        "text": "Una tasa de abandono alta indica que el agente resuelve las consultas mejor de lo esperado.",
-        "answer": false,
-        "explanation": "El abandono indica sesiones que terminan sin resolverse ni escalarse; una tasa alta suele señalar temas que hay que mejorar."
-      },
-      {
-        "id": "s4",
-        "text": "El agente puede transferir la conversación a un agente humano de un centro de contacto, como Dynamics 365 Customer Service.",
-        "answer": true,
-        "explanation": "La transferencia (*hand-off*), normalmente desde el tema Escalar (*Escalate*), pasa la conversación y su contexto a un agente humano de un centro de contacto."
-      }
-    ],
-    "keyPoint": "Analiza resolución, escalado, abandono y CSAT; escala a una persona cuando el agente no puede resolver.",
-    "references": [
-      {
-        "title": "Análisis de agentes en Copilot Studio",
-        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/analytics-overview"
-      },
-      {
-        "title": "Transferir conversaciones a agentes humanos",
-        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/advanced-hand-off"
       }
     ]
   },
@@ -1649,7 +1666,7 @@
         "id": "a",
         "text": "Autenticar con Microsoft",
         "correct": false,
-        "explanation": "«Autenticar con Microsoft» (*Authenticate with Microsoft*) identifica automáticamente al usuario con Microsoft Entra ID y está pensada para empleados en canales como Teams o Microsoft 365 Copilot; no sirve para visitantes anónimos de un sitio web público."
+        "explanation": "«Autenticar con Microsoft» (*Authenticate with Microsoft*) identifica automáticamente al usuario con Microsoft Entra ID y está pensada para canales como Teams y Microsoft Copilot; no sirve para visitantes anónimos de un sitio web público."
       },
       {
         "id": "b",
@@ -1679,51 +1696,490 @@
     ]
   },
   {
-    "id": "pl900-d5-publicar-007",
-    "type": "order",
+    "id": "pl900-d5-publicar-005",
+    "type": "yesno",
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d5",
-    "skill": "d5-publicar",
-    "difficulty": 3,
-    "scenario": "Un agente de Servicios Técnicos Altamira debe registrar averías en un sistema externo y comunicar al usuario el número de incidencia. Para ello vas a crear un flujo de agente (*agent flow*) de Power Automate y usarlo como herramienta.",
-    "prompt": "Ordena los pasos para crear y usar el flujo desde el agente, teniendo en cuenta qué necesita cada paso del anterior.",
-    "items": [
+    "skill": "d5-gestion",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre la supervisión de un agente publicado es verdadera.",
+    "statements": [
       {
-        "id": "p1",
-        "text": "Crear el flujo de agente desde el agente, como una herramienta nueva",
-        "explanation": "Sin el flujo no hay dónde definir entradas ni acciones; crearlo desde el agente lo deja disponible como herramienta."
+        "id": "s1",
+        "text": "La página de supervisión (*Monitor*) muestra cuántas sesiones terminan resueltas, escaladas o abandonadas.",
+        "answer": true,
+        "explanation": "La sección de resultados de la conversación clasifica las sesiones en resueltas, escaladas y abandonadas, lo que indica dónde funciona bien el agente y dónde necesita mejoras."
       },
       {
-        "id": "p2",
-        "text": "Definir las entradas que el agente enviará al flujo, como la descripción de la avería",
-        "explanation": "La acción de registro necesita esos datos, así que las entradas deben existir antes de poder usarlas."
+        "id": "s2",
+        "text": "La puntuación de satisfacción (CSAT) se basa en las valoraciones que dan los usuarios al final de la conversación.",
+        "answer": true,
+        "explanation": "La encuesta de satisfacción que presenta el tema Fin de la conversación alimenta la puntuación de satisfacción (CSAT) de la página de supervisión."
       },
       {
-        "id": "p3",
-        "text": "Agregar la acción que registra la avería en el sistema externo usando esas entradas",
-        "explanation": "Con las entradas disponibles se añade la acción o el conector que hace el trabajo y genera el número de incidencia."
+        "id": "s3",
+        "text": "Una tasa de abandono alta indica que el agente resuelve las consultas mejor de lo esperado.",
+        "answer": false,
+        "explanation": "Una sesión abandonada es la que se agota sin resolverse ni escalarse; una tasa alta suele señalar temas o respuestas que hay que mejorar."
       },
       {
-        "id": "p4",
-        "text": "Devolver al agente, como salida, el número de incidencia generado por esa acción",
-        "explanation": "La salida depende del resultado de la acción anterior; el agente la usa para informar al usuario."
-      },
-      {
-        "id": "p5",
-        "text": "Publicar el flujo y probar la herramienta desde el panel de prueba del agente",
-        "explanation": "Solo con el flujo completo y publicado se puede comprobar que el agente lo llama y recibe la salida correctamente."
+        "id": "s4",
+        "text": "Las conversaciones que mantienes al probar el agente en el panel de prueba se incluyen en las métricas de la página de supervisión.",
+        "answer": false,
+        "explanation": "La página de supervisión no muestra la actividad del panel de prueba; sus métricas reflejan el uso real del agente por parte de los usuarios."
       }
     ],
-    "keyPoint": "Flujo de agente: crear → entradas → acción que las usa → devolver salidas → publicar y probar.",
+    "keyPoint": "Supervisa resultados (resueltas, escaladas, abandonadas) y CSAT del uso real; las pruebas del creador no cuentan.",
     "references": [
       {
-        "title": "¿Qué es Microsoft Copilot Studio?",
-        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/fundamentals-what-is-copilot-studio"
+        "title": "Conceptos clave de la supervisión de agentes",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/analytics-overview"
       },
       {
-        "title": "Introducción a Power Automate",
-        "url": "https://learn.microsoft.com/es-es/power-automate/getting-started"
+        "title": "Supervisar agentes conversacionales",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/analytics-improve-agent-effectiveness"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-gestion-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-gestion",
+    "difficulty": 1,
+    "prompt": "¿Cuál es el propósito principal de Microsoft Agent 365?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crear agentes conversacionales diseñando temas y nodos en un lienzo",
+        "correct": false,
+        "explanation": "Eso se hace en Copilot Studio; Agent 365 no es un diseñador de agentes, sino la capa para administrarlos a escala."
+      },
+      {
+        "id": "b",
+        "text": "Observar, gobernar y proteger de forma centralizada los agentes que se usan en la organización",
+        "correct": true,
+        "explanation": "Agent 365 ofrece un plano de control para los agentes: visibilidad (registro, actividad y estado), gobierno del ciclo de vida y del acceso, y seguridad apoyada en Microsoft Entra, Microsoft Purview y Microsoft Defender."
+      },
+      {
+        "id": "c",
+        "text": "Medir la calidad de las respuestas de un agente con conjuntos de pruebas antes de publicarlo",
+        "correct": false,
+        "explanation": "Eso describe las evaluaciones de agentes (*agent evaluations*) de Copilot Studio, no Agent 365."
+      },
+      {
+        "id": "d",
+        "text": "Ejecutar flujos de nube programados en lugar de Power Automate",
+        "correct": false,
+        "explanation": "Agent 365 no ejecuta automatizaciones; los flujos programados se crean en Power Automate o como flujos de agente en Copilot Studio."
+      }
+    ],
+    "keyPoint": "Microsoft Agent 365 es el plano de control de los agentes de la organización: observar, gobernar y proteger.",
+    "references": [
+      {
+        "title": "Información general de Microsoft Agent 365",
+        "url": "https://learn.microsoft.com/es-es/microsoft-agent-365/overview"
+      },
+      {
+        "title": "¿Por qué una empresa necesita Agent 365?",
+        "url": "https://learn.microsoft.com/es-es/microsoft-agent-365/guidance/why-agent-365-for-enterprise"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-gestion-002",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-gestion",
+    "difficulty": 2,
+    "scenario": "En Seguros Bética, varios departamentos han creado decenas de agentes en distintos entornos y el equipo de seguridad no sabe cuántos hay, quién es su propietario ni qué hacen. La dirección de TI quiere acabar con esta proliferación descontrolada de agentes (*agent sprawl*) usando Microsoft Agent 365.",
+    "prompt": "¿Qué dos capacidades de Microsoft Agent 365 responden directamente a esta necesidad? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un registro de agentes que ofrece una vista unificada de los agentes de la organización, su actividad y su estado",
+        "correct": true,
+        "explanation": "El registro de agentes centraliza la visibilidad: los administradores ven en un único lugar todos los agentes, sus metadatos (nombre, editor, conectores, entorno) y cómo se usan."
+      },
+      {
+        "id": "b",
+        "text": "Acciones de gobierno, como bloquear un agente para toda la organización o reasignar su propiedad",
+        "correct": true,
+        "explanation": "Desde el registro, en el Centro de administración de Microsoft 365, los administradores pueden bloquear agentes, transferir su propiedad a otra persona o equipo y auditar esas acciones en Microsoft Purview."
+      },
+      {
+        "id": "c",
+        "text": "Un lienzo para diseñar las ramas de conversación de cada agente",
+        "correct": false,
+        "explanation": "Las rutas de conversación se diseñan con temas en Copilot Studio; Agent 365 administra los agentes, no los construye."
+      },
+      {
+        "id": "d",
+        "text": "La generación automática de casos de prueba a partir de las fuentes de conocimiento",
+        "correct": false,
+        "explanation": "Generar casos de prueba es parte de las evaluaciones de agentes de Copilot Studio y mide la calidad de un agente, no cuántos agentes hay ni quién los controla."
+      },
+      {
+        "id": "e",
+        "text": "La carga de archivos PDF como fuente de conocimiento",
+        "correct": false,
+        "explanation": "Cargar archivos es una forma de dar conocimiento a un agente concreto; no aporta visibilidad ni control sobre el conjunto de agentes de la organización."
+      }
+    ],
+    "keyPoint": "Agent 365 frena la proliferación de agentes con un registro centralizado y controles de gobierno.",
+    "references": [
+      {
+        "title": "Información general de Microsoft Agent 365",
+        "url": "https://learn.microsoft.com/es-es/microsoft-agent-365/overview"
+      },
+      {
+        "title": "Agentes de Copilot Studio y Agent 365",
+        "url": "https://learn.microsoft.com/es-es/microsoft-agent-365/builder/overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-gestion-003",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-gestion",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre Microsoft Agent 365 y los agentes de Copilot Studio es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Los agentes creados en Copilot Studio aparecen automáticamente en el registro de agentes de Agent 365, sin registrarlos a mano.",
+        "answer": true,
+        "explanation": "Al crear un agente en Copilot Studio, este se registra automáticamente en el registro de agentes con su nombre, descripción, editor, conectores y entorno."
+      },
+      {
+        "id": "s2",
+        "text": "Para que Agent 365 reciba la telemetría de un agente de Copilot Studio, el creador debe instrumentarlo con un SDK.",
+        "answer": false,
+        "explanation": "Copilot Studio envía la telemetría automáticamente (invocaciones del agente y de sus herramientas); la instrumentación con SDK la necesitan los agentes creados con código profesional."
+      },
+      {
+        "id": "s3",
+        "text": "Agent 365 se apoya en Microsoft Entra, Microsoft Purview y Microsoft Defender para proteger los agentes y los datos a los que acceden.",
+        "answer": true,
+        "explanation": "Entra aplica controles de acceso, Purview aporta protección de la información y prevención de pérdida de datos, y Defender detecta amenazas y comportamientos no seguros."
+      },
+      {
+        "id": "s4",
+        "text": "Agent 365 sustituye a Copilot Studio como herramienta para crear temas y conectar fuentes de conocimiento.",
+        "answer": false,
+        "explanation": "Los agentes se siguen construyendo en Copilot Studio; Agent 365 es el plano de control para observarlos, gobernarlos y protegerlos en toda la organización."
+      }
+    ],
+    "keyPoint": "Los agentes de Copilot Studio se integran solos en Agent 365 (registro y telemetría); Agent 365 gobierna y protege, Copilot Studio construye.",
+    "references": [
+      {
+        "title": "Agentes de Copilot Studio y Agent 365",
+        "url": "https://learn.microsoft.com/es-es/microsoft-agent-365/builder/overview"
+      },
+      {
+        "title": "Información general de Microsoft Agent 365",
+        "url": "https://learn.microsoft.com/es-es/microsoft-agent-365/overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-gestion-004",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-gestion",
+    "difficulty": 2,
+    "scenario": "Hace dos meses, Farmacias Lumen publicó en Teams un agente para su personal, que autentica a los usuarios con Microsoft Entra ID. La directora del proyecto quiere saber cuántos empleados usan realmente el agente y cómo evoluciona esa adopción de un mes a otro.",
+    "prompt": "¿Qué información de la página de supervisión (*Monitor*) del agente debe revisar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "El número de frases desencadenantes configuradas en cada tema",
+        "correct": false,
+        "explanation": "Las frases desencadenantes forman parte del diseño del agente; no dicen nada de cuántas personas lo usan."
+      },
+      {
+        "id": "b",
+        "text": "Los resultados de la última evaluación del agente",
+        "correct": false,
+        "explanation": "Las evaluaciones miden la calidad de las respuestas con conjuntos de pruebas; no reflejan cuántos empleados usan el agente."
+      },
+      {
+        "id": "c",
+        "text": "Las métricas de usuarios activos diarios y mensuales",
+        "correct": true,
+        "explanation": "Los usuarios activos cuentan los usuarios únicos que interactuaron con el agente en cada periodo y muestran cómo evoluciona su adopción; requieren que el agente autentique a los usuarios, como ocurre aquí."
+      },
+      {
+        "id": "d",
+        "text": "Las conversaciones que ella misma mantuvo en el panel de prueba",
+        "correct": false,
+        "explanation": "La actividad del panel de prueba no se incluye en la página de supervisión y, además, no mide el uso por parte de los empleados."
+      }
+    ],
+    "keyPoint": "Para medir la adopción, revisa los usuarios activos (diarios y mensuales); esta métrica requiere que el agente autentique a los usuarios.",
+    "references": [
+      {
+        "title": "Conceptos clave de la supervisión de agentes",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/analytics-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-gestion-005",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-gestion",
+    "difficulty": 2,
+    "prompt": "Empareja cada pregunta sobre un agente publicado con el área de la página de supervisión (*Monitor*) que la responde.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "¿Cuántas sesiones terminan resueltas, escaladas o abandonadas?",
+        "answerId": "c1",
+        "explanation": "Los resultados de la conversación clasifican cada sesión como resuelta, escalada o abandonada y muestran los temas que más influyen en cada resultado."
+      },
+      {
+        "id": "m2",
+        "text": "¿Qué valoración dan los usuarios en la encuesta del final de la conversación?",
+        "answerId": "c2",
+        "explanation": "La satisfacción del cliente (CSAT) se calcula con las respuestas a la encuesta que se presenta al final de la conversación."
+      },
+      {
+        "id": "m3",
+        "text": "¿Con qué frecuencia el agente llama a cada herramienta y cuántas llamadas terminan correctamente?",
+        "answerId": "c3",
+        "explanation": "El uso de herramientas muestra cuántas veces se inicia cada herramienta y qué porcentaje de llamadas se completa correctamente."
+      },
+      {
+        "id": "m4",
+        "text": "¿Qué fuentes de conocimiento se usan más y cuáles devuelven errores?",
+        "answerId": "c4",
+        "explanation": "El uso de las fuentes de conocimiento indica con qué frecuencia se usa cada fuente y cuántas veces falla, para mejorar la cobertura de las respuestas."
+      },
+      {
+        "id": "m5",
+        "text": "¿Cuántos usuarios distintos usan el agente cada día y cada mes?",
+        "answerId": "c5",
+        "explanation": "Los usuarios activos diarios y mensuales miden la adopción del agente a lo largo del tiempo."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Resultados de la conversación"
+      },
+      {
+        "id": "c2",
+        "text": "Satisfacción del cliente (CSAT)"
+      },
+      {
+        "id": "c3",
+        "text": "Uso de herramientas"
+      },
+      {
+        "id": "c4",
+        "text": "Uso de fuentes de conocimiento"
+      },
+      {
+        "id": "c5",
+        "text": "Usuarios activos"
+      },
+      {
+        "id": "c6",
+        "text": "Conjunto de pruebas"
+      }
+    ],
+    "keyPoint": "Resultados = cómo terminan las sesiones; CSAT = satisfacción; uso de herramientas y de conocimiento = fiabilidad; usuarios activos = adopción.",
+    "references": [
+      {
+        "title": "Supervisar agentes conversacionales",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/analytics-improve-agent-effectiveness"
+      },
+      {
+        "title": "Conceptos clave de la supervisión de agentes",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/analytics-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-gestion-006",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-gestion",
+    "difficulty": 1,
+    "prompt": "En la evaluación de agentes (*agent evaluation*) de Copilot Studio, ¿qué es un conjunto de pruebas (*test set*)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un entorno de Power Platform reservado para probar los agentes antes de pasarlos a producción",
+        "correct": false,
+        "explanation": "Un entorno de pruebas forma parte de la gestión del ciclo de vida, pero no es un conjunto de pruebas: la evaluación ejecuta casos de prueba contra el agente."
+      },
+      {
+        "id": "b",
+        "text": "La lista de canales en los que se ha publicado el agente",
+        "correct": false,
+        "explanation": "Los canales indican dónde está disponible el agente; no contienen preguntas ni respuestas para medir su calidad."
+      },
+      {
+        "id": "c",
+        "text": "Las transcripciones de conversaciones reales que se descargan para revisarlas",
+        "correct": false,
+        "explanation": "Las transcripciones registran el uso real para analizarlo; un conjunto de pruebas es una colección de casos que se ejecutan contra el agente de forma repetible."
+      },
+      {
+        "id": "d",
+        "text": "Un grupo de casos de prueba (preguntas o conversaciones, con o sin respuesta esperada) que se ejecutan contra el agente para puntuar sus respuestas",
+        "correct": true,
+        "explanation": "Cada caso de prueba simula una interacción de un usuario; al ejecutar el conjunto, Copilot Studio envía las preguntas, registra las respuestas, las compara con lo esperado o con un estándar de calidad y asigna una puntuación."
+      }
+    ],
+    "keyPoint": "Conjunto de pruebas = grupo de casos de prueba que se ejecutan a la vez contra el agente y se puntúan.",
+    "references": [
+      {
+        "title": "Acerca de la evaluación de agentes",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/analytics-agent-evaluation-intro"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-gestion-007",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-gestion",
+    "difficulty": 2,
+    "prompt": "Completa la frase sobre los métodos de prueba de la evaluación de agentes (*agent evaluation*).",
+    "template": "Si no tienes una respuesta esperada y quieres valorar si las respuestas son relevantes, fundamentadas y completas, usas el método {{b1}}; si la respuesta puede redactarse de muchas formas pero debe transmitir la misma idea que la esperada, usas {{b2}}; y si quieres comprobar que el agente llamó a una herramienta concreta, usas {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "correctId": "o1",
+        "explanation": "Calidad general usa un modelo de lenguaje para valorar relevancia, fundamentación e integridad, y no necesita respuestas esperadas. Coincidencia exacta y Coincidencia de palabras clave sí requieren definir lo que se espera.",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Calidad general"
+          },
+          {
+            "id": "o2",
+            "text": "Coincidencia exacta"
+          },
+          {
+            "id": "o3",
+            "text": "Coincidencia de palabras clave"
+          }
+        ]
+      },
+      {
+        "id": "b2",
+        "correctId": "o3",
+        "explanation": "Comparar significado evalúa si la respuesta transmite la intención de la respuesta esperada aunque use otras palabras. Coincidencia exacta exige el mismo texto y Uso de herramientas no mira el contenido.",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Coincidencia exacta"
+          },
+          {
+            "id": "o2",
+            "text": "Uso de herramientas"
+          },
+          {
+            "id": "o3",
+            "text": "Comparar significado"
+          }
+        ]
+      },
+      {
+        "id": "b3",
+        "correctId": "o2",
+        "explanation": "Uso de herramientas comprueba si el agente usó las herramientas o temas esperados para generar la respuesta. Similitud de texto y Calidad general valoran el texto de la respuesta, no qué se llamó.",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Similitud de texto"
+          },
+          {
+            "id": "o2",
+            "text": "Uso de herramientas"
+          },
+          {
+            "id": "o3",
+            "text": "Calidad general"
+          }
+        ]
+      }
+    ],
+    "keyPoint": "Calidad general = sin respuesta esperada; Comparar significado = misma idea con otras palabras; Uso de herramientas = se llamó a la herramienta esperada.",
+    "references": [
+      {
+        "title": "Elegir métodos de evaluación",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/analytics-agent-evaluation-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-gestion-008",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-gestion",
+    "difficulty": 3,
+    "scenario": "Antes de cada cambio importante, el equipo de Energía Solana prueba su agente de atención al cliente escribiendo preguntas una a una en el chat de prueba. Es lento, cada persona prueba cosas distintas y no consiguen saber si un cambio mejora o empeora las respuestas.",
+    "prompt": "¿Qué dos ventajas les aporta la evaluación de agentes (*agent evaluation*) frente a probar solo con el chat de prueba? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ejecutar muchos casos de prueba a la vez y obtener una puntuación global, además del detalle de cada caso",
+        "correct": true,
+        "explanation": "Un conjunto de pruebas cubre muchas preguntas en una sola ejecución, con una puntuación agregada fácil de interpretar y la posibilidad de revisar cada caso, su transcripción y los recursos usados."
+      },
+      {
+        "id": "b",
+        "text": "Repetir la evaluación con el mismo conjunto de pruebas tras cada cambio para compararlos con un estándar objetivo",
+        "correct": true,
+        "explanation": "Usar siempre el mismo conjunto de pruebas da una referencia objetiva para medir si un cambio mejora o empeora el agente."
+      },
+      {
+        "id": "c",
+        "text": "Garantizar que el agente nunca generará contenido dañino una vez publicado",
+        "correct": false,
+        "explanation": "Las evaluaciones incluyen métodos de seguridad del contenido, pero la documentación aclara que no garantizan que un agente sea seguro en todos los escenarios; siguen siendo necesarios otros controles de IA responsable."
+      },
+      {
+        "id": "d",
+        "text": "Publicar automáticamente el agente en todos sus canales cuando supera la evaluación",
+        "correct": false,
+        "explanation": "La evaluación mide la calidad; publicar sigue siendo una acción explícita del creador."
+      },
+      {
+        "id": "e",
+        "text": "Saber cuántos clientes reales usan el agente cada mes",
+        "correct": false,
+        "explanation": "Eso lo indican las métricas de usuarios activos de la página de supervisión; las evaluaciones trabajan con casos de prueba, no con el uso real."
+      }
+    ],
+    "keyPoint": "La evaluación de agentes aporta pruebas automatizadas, repetibles y comparables; complementa al chat de prueba, no lo sustituye.",
+    "references": [
+      {
+        "title": "Acerca de la evaluación de agentes",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/analytics-agent-evaluation-intro"
       }
     ]
   }

@@ -1,77 +1,785 @@
 [
-  { "id": "power-platform", "term": "Microsoft Power Platform", "en": "Microsoft Power Platform", "definition": "Conjunto de servicios low-code de Microsoft para crear aplicaciones, automatizar procesos, analizar datos, crear sitios web y agentes. Incluye Power Apps, Power Automate, Power BI, Power Pages y Copilot Studio, con Dataverse como plataforma de datos.", "domain": "d1", "reference": { "title": "Documentación de Microsoft Power Platform", "url": "https://learn.microsoft.com/es-es/power-platform/" } },
-  { "id": "power-apps", "term": "Power Apps", "en": "Power Apps", "definition": "Servicio para crear aplicaciones empresariales web y móviles con poco o ningún código. Permite crear aplicaciones de lienzo y aplicaciones basadas en modelos conectadas a datos.", "domain": "d1", "reference": { "title": "¿Qué es Power Apps?", "url": "https://learn.microsoft.com/es-es/power-apps/powerapps-overview" } },
-  { "id": "power-automate", "term": "Power Automate", "en": "Power Automate", "definition": "Servicio para automatizar procesos y tareas repetitivas mediante flujos de nube, flujos de escritorio (RPA) y minería de procesos.", "domain": "d1", "reference": { "title": "Introducción a Power Automate", "url": "https://learn.microsoft.com/es-es/power-automate/getting-started" } },
-  { "id": "power-bi", "term": "Power BI", "en": "Power BI", "definition": "Servicio de análisis empresarial que conecta con orígenes de datos, los modela y los presenta en informes y paneles interactivos que se pueden compartir.", "domain": "d1", "reference": { "title": "¿Qué es Power BI?", "url": "https://learn.microsoft.com/es-es/power-bi/fundamentals/power-bi-overview" } },
-  { "id": "power-pages", "term": "Power Pages", "en": "Power Pages", "definition": "Plataforma para crear sitios web empresariales seguros orientados a usuarios externos, con autenticación y acceso a datos de Dataverse. Antes se llamaba portales de Power Apps.", "domain": "d1", "reference": { "title": "¿Qué es Power Pages?", "url": "https://learn.microsoft.com/es-es/power-pages/introduction" } },
-  { "id": "copilot-studio", "term": "Microsoft Copilot Studio", "en": "Microsoft Copilot Studio", "definition": "Herramienta low-code de Power Platform para crear, probar y publicar agentes con IA generativa que conversan con los usuarios y pueden realizar tareas. Antes se llamaba Power Virtual Agents.", "domain": "d1", "reference": { "title": "Información general sobre Copilot Studio", "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/fundamentals-what-is-copilot-studio" } },
-  { "id": "copilot", "term": "Copilot", "en": "Copilot", "definition": "Asistente de IA generativa integrado en los servicios de Power Platform que permite crear aplicaciones, flujos, informes y agentes describiéndolos en lenguaje natural. El resultado siempre debe revisarlo una persona.", "domain": "d1", "reference": { "title": "Documentación de Microsoft Power Platform", "url": "https://learn.microsoft.com/es-es/power-platform/" } },
-  { "id": "ai-builder", "term": "AI Builder", "en": "AI Builder", "definition": "Capacidad de Power Platform que añade IA a aplicaciones y flujos sin programar, mediante modelos prediseñados o modelos personalizados entrenados con datos propios.", "domain": "d1", "reference": { "title": "Información general de AI Builder", "url": "https://learn.microsoft.com/es-es/ai-builder/overview" } },
-  { "id": "modelo-predisenado", "term": "Modelo prediseñado", "en": "Prebuilt model", "definition": "Modelo de AI Builder listo para usar sin entrenamiento, como el procesamiento de facturas, el reconocimiento de texto (OCR) o el análisis de sentimiento.", "domain": "d1", "reference": { "title": "Información general de AI Builder", "url": "https://learn.microsoft.com/es-es/ai-builder/overview" } },
-  { "id": "modelo-personalizado", "term": "Modelo personalizado", "en": "Custom model", "definition": "Modelo de AI Builder que se entrena con datos de la propia organización, como un modelo de procesamiento de documentos para formularios con formato propio.", "domain": "d1", "reference": { "title": "Información general de AI Builder", "url": "https://learn.microsoft.com/es-es/ai-builder/overview" } },
-  { "id": "low-code", "term": "Low-code (poco código)", "en": "Low-code", "definition": "Enfoque de desarrollo que usa diseñadores visuales, plantillas y fórmulas sencillas en lugar de programación tradicional, para crear soluciones más rápido.", "domain": "d1" },
-  { "id": "desarrollador-ciudadano", "term": "Desarrollador ciudadano", "en": "Citizen developer", "definition": "Usuario de negocio sin formación de programador que crea aplicaciones, flujos o agentes con herramientas low-code para resolver necesidades de su área.", "domain": "d1" },
-  { "id": "equipo-fusion", "term": "Equipo de fusión", "en": "Fusion team", "definition": "Equipo que combina usuarios de negocio, desarrolladores profesionales y TI para crear soluciones juntos, aportando cada perfil su conocimiento.", "domain": "d1" },
-  { "id": "dataverse-for-teams", "term": "Dataverse for Teams", "en": "Dataverse for Teams", "definition": "Plataforma de datos de bajo código integrada en Microsoft Teams, con un subconjunto de las capacidades de Dataverse, para crear apps, flujos y agentes dentro de un equipo.", "domain": "d1", "reference": { "title": "Información sobre Microsoft Dataverse for Teams", "url": "https://learn.microsoft.com/es-es/power-apps/teams/overview-data-platform" } },
-  { "id": "microsoft-foundry", "term": "Microsoft Foundry", "en": "Microsoft Foundry", "definition": "Plataforma de Azure (antes Azure AI Foundry) para crear, personalizar y desplegar modelos y agentes de IA a nivel profesional, que puede ampliar soluciones de Power Platform.", "domain": "d1" },
-  { "id": "ia-responsable", "term": "IA responsable", "en": "Responsible AI", "definition": "Principios de Microsoft para diseñar y usar la IA: equidad, confiabilidad y seguridad, privacidad y protección, inclusión, transparencia y responsabilidad.", "domain": "d1" },
-
-  { "id": "entorno", "term": "Entorno", "en": "Environment", "definition": "Contenedor para almacenar, administrar y compartir los datos, aplicaciones, flujos y agentes de una organización. Se usan para separar, por ejemplo, desarrollo, pruebas y producción.", "domain": "d2", "reference": { "title": "Información general sobre los entornos", "url": "https://learn.microsoft.com/es-es/power-platform/admin/environments-overview" } },
-  { "id": "solucion", "term": "Solución", "en": "Solution", "definition": "Paquete que agrupa componentes (tablas, aplicaciones, flujos, agentes…) para transportarlos entre entornos y gestionar su ciclo de vida.", "domain": "d2", "reference": { "title": "Información general sobre las soluciones", "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/solutions-overview" } },
-  { "id": "solucion-administrada", "term": "Solución administrada", "en": "Managed solution", "definition": "Solución completada que se importa en entornos de prueba o producción y cuyos componentes no se editan directamente. La solución no administrada se usa durante el desarrollo.", "domain": "d2", "reference": { "title": "Información general sobre las soluciones", "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/solutions-overview" } },
-  { "id": "dataverse", "term": "Microsoft Dataverse", "en": "Microsoft Dataverse", "definition": "Plataforma de datos de Power Platform que almacena datos en tablas con relaciones, lógica de negocio, seguridad basada en roles y auditoría.", "domain": "d2", "reference": { "title": "¿Qué es Microsoft Dataverse?", "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/data-platform-intro" } },
-  { "id": "tabla", "term": "Tabla", "en": "Table", "definition": "Estructura de Dataverse que almacena las filas (registros) de un tipo de dato, como Cuenta o Pedido. Antes se llamaba «entidad».", "domain": "d2", "reference": { "title": "Tablas en Dataverse", "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/entity-overview" } },
-  { "id": "tabla-estandar", "term": "Tabla estándar", "en": "Standard table", "definition": "Tabla incluida de serie en Dataverse, como Cuenta o Contacto. Forma parte del Common Data Model y se puede personalizar.", "domain": "d2", "reference": { "title": "Tablas en Dataverse", "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/entity-overview" } },
-  { "id": "columna", "term": "Columna", "en": "Column", "definition": "Elemento de una tabla de Dataverse que almacena un dato concreto de cada fila, con un tipo de datos como texto, número, fecha u opción. Antes se llamaba «campo» o «atributo».", "domain": "d2", "reference": { "title": "Tablas en Dataverse", "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/entity-overview" } },
-  { "id": "fila", "term": "Fila", "en": "Row", "definition": "Cada elemento individual almacenado en una tabla de Dataverse, por ejemplo un cliente o un pedido concreto, con un valor para cada columna. Es el nuevo nombre de lo que antes se llamaba «registro», término que se sigue usando.", "domain": "d2", "reference": { "title": "Tablas en Dataverse", "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/entity-overview" } },
-  { "id": "relacion", "term": "Relación", "en": "Relationship", "definition": "Vínculo entre dos tablas de Dataverse. Puede ser de uno a varios, de varios a uno o de varios a varios.", "domain": "d2", "reference": { "title": "Tablas en Dataverse", "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/entity-overview" } },
-  { "id": "regla-negocio", "term": "Regla de negocio", "en": "Business rule", "definition": "Lógica sin código definida en una tabla de Dataverse para validar datos, establecer valores, mostrar mensajes de error o hacer columnas obligatorias.", "domain": "d2", "reference": { "title": "Crear una regla de negocio", "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/data-platform-create-business-rule" } },
-  { "id": "rol-seguridad", "term": "Rol de seguridad", "en": "Security role", "definition": "Conjunto de privilegios (crear, leer, escribir, eliminar, etc.) y niveles de acceso que determina qué puede hacer un usuario con los datos de Dataverse.", "domain": "d2", "reference": { "title": "Roles de seguridad y privilegios", "url": "https://learn.microsoft.com/es-es/power-platform/admin/security-roles-privileges" } },
-  { "id": "unidad-negocio", "term": "Unidad de negocio", "en": "Business unit", "definition": "Agrupación jerárquica de usuarios y equipos en Dataverse que, junto con los roles de seguridad, delimita a qué datos pueden acceder.", "domain": "d2" },
-  { "id": "conector", "term": "Conector", "en": "Connector", "definition": "Contenedor de una API que permite a aplicaciones, flujos y agentes comunicarse con un servicio, como SharePoint, Outlook o SQL Server, mediante desencadenadores y acciones.", "domain": "d2", "reference": { "title": "Información general sobre los conectores", "url": "https://learn.microsoft.com/es-es/connectors/connectors" } },
-  { "id": "conector-estandar", "term": "Conector estándar", "en": "Standard connector", "definition": "Conector incluido sin coste adicional en las licencias de Microsoft 365 que dan acceso a Power Apps y Power Automate, como los de SharePoint u Office 365 Outlook.", "domain": "d2", "reference": { "title": "Información general sobre los conectores", "url": "https://learn.microsoft.com/es-es/connectors/connectors" } },
-  { "id": "conector-premium", "term": "Conector premium", "en": "Premium connector", "definition": "Conector que requiere una licencia premium (independiente) de Power Apps o Power Automate, como los de SQL Server o Dataverse (fuera de Dataverse for Teams).", "domain": "d2", "reference": { "title": "Información general sobre los conectores", "url": "https://learn.microsoft.com/es-es/connectors/connectors" } },
-  { "id": "conector-personalizado", "term": "Conector personalizado", "en": "Custom connector", "definition": "Conector creado por la organización para comunicarse con una API propia o que no tiene conector disponible.", "domain": "d2", "reference": { "title": "Conectores personalizados", "url": "https://learn.microsoft.com/es-es/connectors/custom-connectors/" } },
-  { "id": "directiva-dlp", "term": "Directiva de datos (DLP)", "en": "Data policy (DLP)", "definition": "Directiva de prevención de pérdida de datos que clasifica los conectores en tres grupos: Empresarial, No empresarial y Bloqueado. Una aplicación, flujo o agente no puede combinar conectores de los grupos Empresarial y No empresarial, y no puede usar los conectores bloqueados.", "domain": "d2", "reference": { "title": "Directivas de prevención de pérdida de datos", "url": "https://learn.microsoft.com/es-es/power-platform/admin/wp-data-loss-prevention" } },
-  { "id": "centro-administracion", "term": "Centro de administración de Power Platform", "en": "Power Platform admin center", "definition": "Portal unificado donde los administradores gestionan entornos, directivas de datos, capacidad, análisis y configuración de Power Platform.", "domain": "d2", "reference": { "title": "Administración de Power Platform", "url": "https://learn.microsoft.com/es-es/power-platform/admin/admin-documentation" } },
-  { "id": "entornos-administrados", "term": "Entornos administrados", "en": "Managed Environments", "definition": "Conjunto de funciones de gobierno premium que los administradores activan en un entorno para gestionar Power Platform a escala con más visibilidad y control.", "domain": "d2", "reference": { "title": "Información general sobre los entornos administrados", "url": "https://learn.microsoft.com/es-es/power-platform/admin/managed-environment-overview" } },
-
-  { "id": "aplicacion-lienzo", "term": "Aplicación de lienzo", "en": "Canvas app", "definition": "Aplicación de Power Apps en la que el creador diseña libremente la interfaz arrastrando controles y conecta con cientos de orígenes de datos.", "domain": "d3", "reference": { "title": "Información general sobre las aplicaciones de lienzo", "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/getting-started" } },
-  { "id": "aplicacion-basada-modelos", "term": "Aplicación basada en modelos", "en": "Model-driven app", "definition": "Aplicación de Power Apps construida sobre Dataverse cuya interfaz se genera a partir del modelo de datos, mediante formularios, vistas y paneles.", "domain": "d3", "reference": { "title": "Información general sobre las aplicaciones basadas en modelos", "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/model-driven-app-overview" } },
-  { "id": "power-fx", "term": "Power Fx", "en": "Power Fx", "definition": "Lenguaje de fórmulas low-code de Power Platform, basado en las fórmulas de Excel. Se usa sobre todo para definir la lógica de las aplicaciones de lienzo y también en otros servicios, como Copilot Studio o las columnas de fórmula de Dataverse.", "domain": "d3", "reference": { "title": "Información general de Power Fx", "url": "https://learn.microsoft.com/es-es/power-platform/power-fx/overview" } },
-  { "id": "control", "term": "Control", "en": "Control", "definition": "Elemento de interfaz de una aplicación de lienzo, como un botón, una etiqueta, un cuadro de texto o una galería, con propiedades configurables.", "domain": "d3" },
-  { "id": "galeria", "term": "Galería", "en": "Gallery", "definition": "Control de las aplicaciones de lienzo que muestra una lista de registros de un origen de datos, repitiendo la misma plantilla para cada elemento.", "domain": "d3" },
-  { "id": "pantalla", "term": "Pantalla", "en": "Screen", "definition": "Cada una de las vistas de una aplicación de lienzo, que contiene controles; el usuario navega entre ellas.", "domain": "d3" },
-  { "id": "origen-datos", "term": "Origen de datos", "en": "Data source", "definition": "Lugar del que una aplicación lee y en el que escribe datos, como una tabla de Dataverse, una lista de SharePoint o una base de datos SQL, normalmente a través de un conector.", "domain": "d3" },
-  { "id": "formulario", "term": "Formulario", "en": "Form", "definition": "Interfaz para ver y editar los datos de un registro. En las aplicaciones basadas en modelos se define sobre una tabla de Dataverse.", "domain": "d3" },
-  { "id": "vista", "term": "Vista", "en": "View", "definition": "Definición de qué filas, columnas y orden se muestran en una lista de registros de una tabla en una aplicación basada en modelos.", "domain": "d3" },
-  { "id": "panel", "term": "Panel", "en": "Dashboard", "definition": "Página de una aplicación basada en modelos que reúne gráficos, listas y otros componentes para ofrecer una visión general de los datos.", "domain": "d3" },
-  { "id": "mapa-sitio", "term": "Mapa del sitio", "en": "Site map", "definition": "Componente de una aplicación basada en modelos que define la navegación: áreas, grupos y subáreas que el usuario ve en el menú.", "domain": "d3" },
-
-  { "id": "flujo-nube", "term": "Flujo de nube", "en": "Cloud flow", "definition": "Flujo de Power Automate que se ejecuta en la nube y automatiza tareas entre servicios mediante un desencadenador y una o varias acciones.", "domain": "d4", "reference": { "title": "Introducción a Power Automate", "url": "https://learn.microsoft.com/es-es/power-automate/getting-started" } },
-  { "id": "flujo-automatizado", "term": "Flujo de nube automatizado", "en": "Automated cloud flow", "definition": "Flujo que se ejecuta cuando ocurre un evento, por ejemplo al llegar un correo o al crearse una fila en Dataverse.", "domain": "d4" },
-  { "id": "flujo-instantaneo", "term": "Flujo de nube instantáneo", "en": "Instant cloud flow", "definition": "Flujo que el usuario inicia manualmente, por ejemplo con un botón en una aplicación, en Teams o en la aplicación móvil de Power Automate.", "domain": "d4" },
-  { "id": "flujo-programado", "term": "Flujo de nube programado", "en": "Scheduled cloud flow", "definition": "Flujo que se ejecuta en una fecha y hora definidas o con una periodicidad, como cada día a las 8:00.", "domain": "d4" },
-  { "id": "desencadenador", "term": "Desencadenador", "en": "Trigger", "definition": "Evento que inicia la ejecución de un flujo. Cada flujo de nube tiene exactamente un desencadenador.", "domain": "d4", "reference": { "title": "Introducción a los desencadenadores", "url": "https://learn.microsoft.com/es-es/power-automate/triggers-introduction" } },
-  { "id": "accion", "term": "Acción", "en": "Action", "definition": "Operación que realiza un flujo después del desencadenador, como enviar un correo, crear una fila o pedir una aprobación.", "domain": "d4" },
-  { "id": "expresion", "term": "Expresión", "en": "Expression", "definition": "Fórmula de Power Automate que transforma o calcula valores dentro de un flujo, por ejemplo para dar formato a fechas o concatenar texto.", "domain": "d4" },
-  { "id": "aprobacion", "term": "Aprobación", "en": "Approval", "definition": "Acción de Power Automate que envía una solicitud a una o varias personas y espera su respuesta (aprobar o rechazar) antes de continuar el flujo.", "domain": "d4", "reference": { "title": "Introducción a las aprobaciones", "url": "https://learn.microsoft.com/es-es/power-automate/get-started-approvals" } },
-  { "id": "flujo-escritorio", "term": "Flujo de escritorio", "en": "Desktop flow", "definition": "Automatización creada con Power Automate para escritorio que reproduce acciones en aplicaciones de Windows y sitios web, incluidas aplicaciones heredadas sin API.", "domain": "d4", "reference": { "title": "Introducción a Power Automate para escritorio", "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/introduction" } },
-  { "id": "rpa", "term": "Automatización robótica de procesos (RPA)", "en": "Robotic process automation (RPA)", "definition": "Técnica que automatiza tareas repetitivas imitando las acciones de una persona en la interfaz de usuario de las aplicaciones.", "domain": "d4" },
-  { "id": "rpa-atendido", "term": "RPA atendido", "en": "Attended RPA", "definition": "Ejecución de un flujo de escritorio mientras el usuario ha iniciado sesión en el equipo y puede supervisarlo o interactuar con él.", "domain": "d4" },
-  { "id": "rpa-desatendido", "term": "RPA desatendido", "en": "Unattended RPA", "definition": "Ejecución de un flujo de escritorio sin ninguna persona presente, en un equipo sin sesión de usuario activa, normalmente iniciada desde un flujo de nube.", "domain": "d4" },
-  { "id": "mineria-procesos", "term": "Minería de procesos", "en": "Process mining", "definition": "Capacidad de Power Automate que analiza los registros de eventos de los sistemas para descubrir cómo se ejecutan realmente los procesos y dónde hay cuellos de botella.", "domain": "d4", "reference": { "title": "Información general sobre la minería de procesos", "url": "https://learn.microsoft.com/es-es/power-automate/process-mining-overview" } },
-  { "id": "plantilla-flujo", "term": "Plantilla", "en": "Template", "definition": "Flujo prediseñado para un escenario habitual que sirve como punto de partida y se completa configurando las conexiones.", "domain": "d4" },
-
-  { "id": "agente", "term": "Agente", "en": "Agent", "definition": "Asistente con IA creado en Copilot Studio que conversa con los usuarios, responde preguntas a partir de su conocimiento y puede ejecutar tareas mediante herramientas. Antes se llamaba «bot» (y después «copiloto»).", "domain": "d5", "reference": { "title": "Información general sobre Copilot Studio", "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/fundamentals-what-is-copilot-studio" } },
-  { "id": "tema", "term": "Tema", "en": "Topic", "definition": "Parte de un agente que define cómo transcurre una conversación sobre un asunto concreto: un desencadenador (frases o descripción) que indica cuándo se activa y un conjunto de nodos con la conversación.", "domain": "d5", "reference": { "title": "Crear y editar temas", "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-create-edit-topics" } },
-  { "id": "tema-sistema", "term": "Tema del sistema", "en": "System topic", "definition": "Tema incluido de serie en un agente para comportamientos comunes, como Inicio de la conversación, Escalar (transferir a una persona), Reserva (cuando no se reconoce la petición) o Fin de la conversación.", "domain": "d5", "reference": { "title": "Usar temas del sistema", "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-system-topics" } },
-  { "id": "frase-desencadenante", "term": "Frase desencadenante", "en": "Trigger phrase", "definition": "Ejemplo de lo que podría escribir un usuario que ayuda al agente a reconocer cuándo debe iniciar un tema.", "domain": "d5" },
-  { "id": "entidad-copilot", "term": "Entidad", "en": "Entity", "definition": "En Copilot Studio, tipo de información que el agente reconoce y extrae de lo que escribe el usuario, como una fecha, un correo o un número. Puede ser prediseñada o personalizada (lista cerrada o expresión regular).", "domain": "d5" },
-  { "id": "variable", "term": "Variable", "en": "Variable", "definition": "En Copilot Studio, elemento que almacena un valor durante la conversación, como la respuesta del usuario. Por defecto su ámbito es el tema; una variable global está disponible en todos los temas del agente.", "domain": "d5" },
-  { "id": "nodo", "term": "Nodo", "en": "Node", "definition": "Cada paso de un tema en el lienzo de creación, como enviar un mensaje, hacer una pregunta, añadir una condición o llamar a una herramienta.", "domain": "d5" },
-  { "id": "orquestacion-generativa", "term": "Orquestación generativa", "en": "Generative orchestration", "definition": "Modo en que el agente usa IA generativa para elegir, según sus nombres y descripciones, qué temas, herramientas y fuentes de conocimiento usar, y puede combinar varios en una misma petición. En la orquestación clásica, los temas se eligen por sus frases desencadenantes.", "domain": "d5" },
-  { "id": "fuente-conocimiento", "term": "Fuente de conocimiento", "en": "Knowledge source", "definition": "Contenido que el agente consulta para generar respuestas, como sitios web públicos, sitios de SharePoint (requiere autenticación con Microsoft Entra ID), archivos cargados o tablas de Dataverse.", "domain": "d5", "reference": { "title": "Conocimiento en Copilot Studio", "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/knowledge-copilot-studio" } },
-  { "id": "herramienta", "term": "Herramienta", "en": "Tool", "definition": "Capacidad que se añade a un agente para que realice tareas o consulte otros sistemas, como un flujo de agente de Power Automate, un conector, un *prompt* o una API. Antes se llamaban «acciones».", "domain": "d5", "reference": { "title": "¿Qué es Microsoft Copilot Studio?", "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/fundamentals-what-is-copilot-studio" } },
-  { "id": "canal", "term": "Canal", "en": "Channel", "definition": "Lugar donde se pone a disposición un agente publicado para que lo usen las personas, como Microsoft Teams y Microsoft 365 Copilot, un sitio web o una aplicación móvil.", "domain": "d5", "reference": { "title": "Publicar en canales", "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/publication-fundamentals-publish-channels" } }
+  {
+    "id": "power-platform",
+    "term": "Microsoft Power Platform",
+    "en": "Microsoft Power Platform",
+    "definition": "Conjunto de servicios de poco código (low-code) de Microsoft para crear aplicaciones (Power Apps), automatizar procesos (Power Automate), crear sitios web (Power Pages) y crear agentes (Copilot Studio), con Dataverse como plataforma de datos y conectores para integrar otros servicios. Power BI, para el análisis de datos, también forma parte de la familia.",
+    "domain": "d1",
+    "reference": {
+      "title": "Documentación de Microsoft Power Platform",
+      "url": "https://learn.microsoft.com/es-es/power-platform/"
+    }
+  },
+  {
+    "id": "power-apps",
+    "term": "Power Apps",
+    "en": "Power Apps",
+    "definition": "Servicio para crear aplicaciones empresariales web y móviles con poco o ningún código, conectadas a Dataverse o a otros orígenes mediante conectores. Ofrece aplicaciones de lienzo y basadas en modelos, el diseñador de planes y las aplicaciones de código para desarrolladores.",
+    "domain": "d1",
+    "reference": {
+      "title": "¿Qué es Power Apps?",
+      "url": "https://learn.microsoft.com/es-es/power-apps/powerapps-overview"
+    }
+  },
+  {
+    "id": "power-automate",
+    "term": "Power Automate",
+    "en": "Power Automate",
+    "definition": "Servicio para automatizar procesos y tareas repetitivas mediante flujos de nube, que trabajan con servicios a través de conectores, y flujos de escritorio (RPA), que automatizan aplicaciones sin API. Copilot permite crear y modificar flujos describiéndolos en lenguaje natural.",
+    "domain": "d1",
+    "reference": {
+      "title": "Introducción a Power Automate",
+      "url": "https://learn.microsoft.com/es-es/power-automate/getting-started"
+    }
+  },
+  {
+    "id": "power-bi",
+    "term": "Power BI",
+    "en": "Power BI",
+    "definition": "Servicio de análisis empresarial que conecta con orígenes de datos, los modela y los presenta en informes y paneles interactivos que se pueden compartir.",
+    "domain": "d1",
+    "reference": {
+      "title": "¿Qué es Power BI?",
+      "url": "https://learn.microsoft.com/es-es/power-bi/fundamentals/power-bi-overview"
+    }
+  },
+  {
+    "id": "power-pages",
+    "term": "Power Pages",
+    "en": "Power Pages",
+    "definition": "Plataforma para crear sitios web empresariales seguros orientados a usuarios externos, con autenticación y acceso a datos de Dataverse. Antes se llamaba portales de Power Apps.",
+    "domain": "d1",
+    "reference": {
+      "title": "¿Qué es Power Pages?",
+      "url": "https://learn.microsoft.com/es-es/power-pages/introduction"
+    }
+  },
+  {
+    "id": "copilot-studio",
+    "term": "Microsoft Copilot Studio",
+    "en": "Microsoft Copilot Studio",
+    "definition": "Herramienta low-code de Power Platform para crear, probar y publicar agentes con IA generativa que conversan con los usuarios y pueden realizar tareas. Antes se llamaba Power Virtual Agents.",
+    "domain": "d1",
+    "reference": {
+      "title": "Información general sobre Copilot Studio",
+      "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/fundamentals-what-is-copilot-studio"
+    }
+  },
+  {
+    "id": "copilot",
+    "term": "Copilot",
+    "en": "Copilot",
+    "definition": "Asistente de IA generativa integrado en los servicios de Power Platform que permite crear tablas, aplicaciones, flujos, sitios de Power Pages y agentes describiéndolos en lenguaje natural. El resultado siempre debe revisarlo una persona.",
+    "domain": "d1",
+    "reference": {
+      "title": "Documentación de Microsoft Power Platform",
+      "url": "https://learn.microsoft.com/es-es/power-platform/"
+    }
+  },
+  {
+    "id": "low-code",
+    "term": "Low-code (poco código)",
+    "en": "Low-code",
+    "definition": "Enfoque de desarrollo que usa diseñadores visuales, plantillas y fórmulas sencillas en lugar de programación tradicional, para crear soluciones más rápido.",
+    "domain": "d1"
+  },
+  {
+    "id": "desarrollador-ciudadano",
+    "term": "Desarrollador ciudadano",
+    "en": "Citizen developer",
+    "definition": "Usuario de negocio sin formación de programador que crea aplicaciones, flujos o agentes con herramientas low-code para resolver necesidades de su área.",
+    "domain": "d1"
+  },
+  {
+    "id": "equipo-fusion",
+    "term": "Equipo de fusión",
+    "en": "Fusion team",
+    "definition": "Equipo que combina usuarios de negocio, desarrolladores profesionales y TI para crear soluciones juntos, aportando cada perfil su conocimiento.",
+    "domain": "d1"
+  },
+  {
+    "id": "dataverse-for-teams",
+    "term": "Dataverse for Teams",
+    "en": "Dataverse for Teams",
+    "definition": "Plataforma de datos de bajo código integrada en Microsoft Teams, con un subconjunto de las capacidades de Dataverse, para crear apps, flujos y agentes dentro de un equipo.",
+    "domain": "d1",
+    "reference": {
+      "title": "Información sobre Microsoft Dataverse for Teams",
+      "url": "https://learn.microsoft.com/es-es/power-apps/teams/overview-data-platform"
+    }
+  },
+  {
+    "id": "ia-responsable",
+    "term": "IA responsable",
+    "en": "Responsible AI",
+    "definition": "Principios de Microsoft para diseñar y usar la IA: equidad, confiabilidad y seguridad, privacidad y protección, inclusión, transparencia y responsabilidad.",
+    "domain": "d1"
+  },
+  {
+    "id": "conector",
+    "term": "Conector",
+    "en": "Connector",
+    "definition": "Contenedor de una API que permite a aplicaciones, flujos y agentes comunicarse con un servicio, como SharePoint, Outlook o SQL Server, exponiendo sus operaciones como desencadenadores y acciones. El mismo conector se usa en Power Apps, Power Automate y Copilot Studio.",
+    "domain": "d1",
+    "reference": {
+      "title": "Introducción a los conectores",
+      "url": "https://learn.microsoft.com/es-es/connectors/overview"
+    }
+  },
+  {
+    "id": "conector-estandar",
+    "term": "Conector estándar",
+    "en": "Standard connector",
+    "definition": "Conector incluido sin coste adicional en las licencias de Microsoft 365 que dan acceso a Power Apps y Power Automate, como los de SharePoint u Office 365 Outlook.",
+    "domain": "d1",
+    "reference": {
+      "title": "Información general sobre los conectores",
+      "url": "https://learn.microsoft.com/es-es/connectors/connectors"
+    }
+  },
+  {
+    "id": "conector-premium",
+    "term": "Conector premium",
+    "en": "Premium connector",
+    "definition": "Conector que requiere una licencia premium (independiente) de Power Apps o Power Automate, como los de SQL Server o Dataverse (fuera de Dataverse for Teams).",
+    "domain": "d1",
+    "reference": {
+      "title": "Información general sobre los conectores",
+      "url": "https://learn.microsoft.com/es-es/connectors/connectors"
+    }
+  },
+  {
+    "id": "conector-personalizado",
+    "term": "Conector personalizado",
+    "en": "Custom connector",
+    "definition": "Conector creado por la organización, por ejemplo a partir de una definición OpenAPI, para comunicarse con una API propia o con un servicio que no tiene conector prediseñado.",
+    "domain": "d1",
+    "reference": {
+      "title": "Conectores personalizados",
+      "url": "https://learn.microsoft.com/es-es/connectors/custom-connectors/"
+    }
+  },
+  {
+    "id": "indicacion-prompt",
+    "term": "Indicación",
+    "en": "Prompt",
+    "definition": "Instrucción en lenguaje natural que indica a un modelo de IA generativa qué tarea realizar, como resumir, clasificar, extraer información o redactar una respuesta. Se crea, se prueba y se guarda para reutilizarla en agentes, flujos y aplicaciones.",
+    "domain": "d1",
+    "reference": {
+      "title": "Descripción general de las indicaciones",
+      "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/prompts-overview"
+    }
+  },
+  {
+    "id": "puerta-enlace-datos",
+    "term": "Puerta de enlace de datos local",
+    "en": "On-premises data gateway",
+    "definition": "Software que se instala en la red de la organización y actúa como puente seguro entre los servicios en la nube, como Power Apps o Power Automate, y los orígenes de datos locales no expuestos a Internet, como un SQL Server interno.",
+    "domain": "d1",
+    "reference": {
+      "title": "¿Qué es una puerta de enlace de datos local?",
+      "url": "https://learn.microsoft.com/es-es/data-integration/gateway/service-gateway-onprem"
+    }
+  },
+  {
+    "id": "entorno",
+    "term": "Entorno",
+    "en": "Environment",
+    "definition": "Contenedor para almacenar, administrar y compartir los datos, aplicaciones, flujos y agentes de una organización. Se usan para separar, por ejemplo, desarrollo, pruebas y producción.",
+    "domain": "d2",
+    "reference": {
+      "title": "Información general sobre los entornos",
+      "url": "https://learn.microsoft.com/es-es/power-platform/admin/environments-overview"
+    }
+  },
+  {
+    "id": "solucion",
+    "term": "Solución",
+    "en": "Solution",
+    "definition": "Paquete que agrupa componentes (tablas, aplicaciones, flujos, agentes…) para transportarlos entre entornos y gestionar su ciclo de vida.",
+    "domain": "d2",
+    "reference": {
+      "title": "Información general sobre las soluciones",
+      "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/solutions-overview"
+    }
+  },
+  {
+    "id": "solucion-administrada",
+    "term": "Solución administrada",
+    "en": "Managed solution",
+    "definition": "Solución completada que se importa en entornos de prueba o producción y cuyos componentes no se editan directamente. La solución no administrada se usa durante el desarrollo.",
+    "domain": "d2",
+    "reference": {
+      "title": "Información general sobre las soluciones",
+      "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/solutions-overview"
+    }
+  },
+  {
+    "id": "dataverse",
+    "term": "Microsoft Dataverse",
+    "en": "Microsoft Dataverse",
+    "definition": "Plataforma de datos de Power Platform que almacena datos en tablas con relaciones, lógica de negocio, seguridad basada en roles y auditoría.",
+    "domain": "d2",
+    "reference": {
+      "title": "¿Qué es Microsoft Dataverse?",
+      "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/data-platform-intro"
+    }
+  },
+  {
+    "id": "tabla",
+    "term": "Tabla",
+    "en": "Table",
+    "definition": "Estructura de Dataverse que almacena las filas (registros) de un tipo de dato, como Cuenta o Pedido. Antes se llamaba «entidad».",
+    "domain": "d2",
+    "reference": {
+      "title": "Tablas en Dataverse",
+      "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/entity-overview"
+    }
+  },
+  {
+    "id": "tabla-estandar",
+    "term": "Tabla estándar",
+    "en": "Standard table",
+    "definition": "Tabla incluida de serie en Dataverse, como Cuenta o Contacto. Forma parte del Common Data Model y se puede personalizar.",
+    "domain": "d2",
+    "reference": {
+      "title": "Tablas en Dataverse",
+      "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/entity-overview"
+    }
+  },
+  {
+    "id": "columna",
+    "term": "Columna",
+    "en": "Column",
+    "definition": "Elemento de una tabla de Dataverse que almacena un dato concreto de cada fila, con un tipo de datos como texto, número, fecha u opción. Antes se llamaba «campo» o «atributo».",
+    "domain": "d2",
+    "reference": {
+      "title": "Tablas en Dataverse",
+      "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/entity-overview"
+    }
+  },
+  {
+    "id": "fila",
+    "term": "Fila",
+    "en": "Row",
+    "definition": "Cada elemento individual almacenado en una tabla de Dataverse, por ejemplo un cliente o un pedido concreto, con un valor para cada columna. Es el nuevo nombre de lo que antes se llamaba «registro», término que se sigue usando.",
+    "domain": "d2",
+    "reference": {
+      "title": "Tablas en Dataverse",
+      "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/entity-overview"
+    }
+  },
+  {
+    "id": "relacion",
+    "term": "Relación",
+    "en": "Relationship",
+    "definition": "Vínculo entre dos tablas de Dataverse. Puede ser de uno a varios, de varios a uno o de varios a varios.",
+    "domain": "d2",
+    "reference": {
+      "title": "Tablas en Dataverse",
+      "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/entity-overview"
+    }
+  },
+  {
+    "id": "regla-negocio",
+    "term": "Regla de negocio",
+    "en": "Business rule",
+    "definition": "Lógica sin código definida en una tabla de Dataverse para validar datos, establecer valores, mostrar mensajes de error o hacer columnas obligatorias.",
+    "domain": "d2",
+    "reference": {
+      "title": "Crear una regla de negocio",
+      "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/data-platform-create-business-rule"
+    }
+  },
+  {
+    "id": "rol-seguridad",
+    "term": "Rol de seguridad",
+    "en": "Security role",
+    "definition": "Conjunto de privilegios (crear, leer, escribir, eliminar, etc.) y niveles de acceso que determina qué puede hacer un usuario con los datos de Dataverse.",
+    "domain": "d2",
+    "reference": {
+      "title": "Roles de seguridad y privilegios",
+      "url": "https://learn.microsoft.com/es-es/power-platform/admin/security-roles-privileges"
+    }
+  },
+  {
+    "id": "unidad-negocio",
+    "term": "Unidad de negocio",
+    "en": "Business unit",
+    "definition": "Agrupación jerárquica de usuarios y equipos en Dataverse que, junto con los roles de seguridad, delimita a qué datos pueden acceder.",
+    "domain": "d2"
+  },
+  {
+    "id": "directiva-dlp",
+    "term": "Directiva de datos (DLP)",
+    "en": "Data policy (DLP)",
+    "definition": "Directiva de prevención de pérdida de datos que clasifica los conectores en tres grupos: Empresarial, No empresarial y Bloqueado. Una aplicación, flujo o agente no puede combinar conectores de los grupos Empresarial y No empresarial, y no puede usar los conectores bloqueados.",
+    "domain": "d2",
+    "reference": {
+      "title": "Directivas de prevención de pérdida de datos",
+      "url": "https://learn.microsoft.com/es-es/power-platform/admin/wp-data-loss-prevention"
+    }
+  },
+  {
+    "id": "centro-administracion",
+    "term": "Centro de administración de Power Platform",
+    "en": "Power Platform admin center",
+    "definition": "Portal unificado donde los administradores gestionan entornos, directivas de datos, capacidad, análisis y configuración de Power Platform.",
+    "domain": "d2",
+    "reference": {
+      "title": "Administración de Power Platform",
+      "url": "https://learn.microsoft.com/es-es/power-platform/admin/admin-documentation"
+    }
+  },
+  {
+    "id": "entornos-administrados",
+    "term": "Entornos administrados",
+    "en": "Managed Environments",
+    "definition": "Conjunto de funciones de gobierno premium que los administradores activan en un entorno para gestionar Power Platform a escala con más visibilidad y control.",
+    "domain": "d2",
+    "reference": {
+      "title": "Información general sobre los entornos administrados",
+      "url": "https://learn.microsoft.com/es-es/power-platform/admin/managed-environment-overview"
+    }
+  },
+  {
+    "id": "canalizaciones",
+    "term": "Canalizaciones de Power Platform",
+    "en": "Pipelines in Power Platform",
+    "definition": "Funcionalidad de administración del ciclo de vida de las aplicaciones (ALM) integrada en Power Platform que automatiza la implementación de soluciones entre entornos, por ejemplo de desarrollo a prueba y producción (CI/CD). Los administradores las configuran y gobiernan de forma centralizada y los creadores implementan sus soluciones con una experiencia guiada.",
+    "domain": "d2",
+    "reference": {
+      "title": "Información general sobre las canalizaciones en Power Platform",
+      "url": "https://learn.microsoft.com/es-es/power-platform/alm/pipelines"
+    }
+  },
+  {
+    "id": "aplicacion-lienzo",
+    "term": "Aplicación de lienzo",
+    "en": "Canvas app",
+    "definition": "Aplicación de Power Apps en la que el creador diseña libremente la interfaz arrastrando controles y conecta con cientos de orígenes de datos.",
+    "domain": "d3",
+    "reference": {
+      "title": "Información general sobre las aplicaciones de lienzo",
+      "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/getting-started"
+    }
+  },
+  {
+    "id": "aplicacion-basada-modelos",
+    "term": "Aplicación basada en modelos",
+    "en": "Model-driven app",
+    "definition": "Aplicación de Power Apps construida sobre Dataverse cuya interfaz se genera a partir del modelo de datos, mediante formularios, vistas y paneles.",
+    "domain": "d3",
+    "reference": {
+      "title": "Información general sobre las aplicaciones basadas en modelos",
+      "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/model-driven-app-overview"
+    }
+  },
+  {
+    "id": "power-fx",
+    "term": "Power Fx",
+    "en": "Power Fx",
+    "definition": "Lenguaje de fórmulas low-code de Power Platform, basado en las fórmulas de Excel. Se usa sobre todo para definir la lógica de las aplicaciones de lienzo y también en otros servicios, como Copilot Studio o las columnas de fórmula de Dataverse.",
+    "domain": "d3",
+    "reference": {
+      "title": "Información general de Power Fx",
+      "url": "https://learn.microsoft.com/es-es/power-platform/power-fx/overview"
+    }
+  },
+  {
+    "id": "control",
+    "term": "Control",
+    "en": "Control",
+    "definition": "Elemento de interfaz de una aplicación de lienzo, como un botón, una etiqueta, un cuadro de texto o una galería, con propiedades configurables.",
+    "domain": "d3"
+  },
+  {
+    "id": "galeria",
+    "term": "Galería",
+    "en": "Gallery",
+    "definition": "Control de las aplicaciones de lienzo que muestra una lista de registros de un origen de datos, repitiendo la misma plantilla para cada elemento.",
+    "domain": "d3"
+  },
+  {
+    "id": "pantalla",
+    "term": "Pantalla",
+    "en": "Screen",
+    "definition": "Cada una de las vistas de una aplicación de lienzo, que contiene controles; el usuario navega entre ellas.",
+    "domain": "d3"
+  },
+  {
+    "id": "origen-datos",
+    "term": "Origen de datos",
+    "en": "Data source",
+    "definition": "Lugar del que una aplicación lee y en el que escribe datos, como una tabla de Dataverse, una lista de SharePoint o una base de datos SQL, normalmente a través de un conector.",
+    "domain": "d3"
+  },
+  {
+    "id": "formulario",
+    "term": "Formulario",
+    "en": "Form",
+    "definition": "Interfaz para ver y editar los datos de un registro. En las aplicaciones basadas en modelos se define sobre una tabla de Dataverse.",
+    "domain": "d3"
+  },
+  {
+    "id": "vista",
+    "term": "Vista",
+    "en": "View",
+    "definition": "Definición de qué filas, columnas y orden se muestran en una lista de registros de una tabla en una aplicación basada en modelos.",
+    "domain": "d3"
+  },
+  {
+    "id": "panel",
+    "term": "Panel",
+    "en": "Dashboard",
+    "definition": "Página de una aplicación basada en modelos que reúne gráficos, listas y otros componentes para ofrecer una visión general de los datos.",
+    "domain": "d3"
+  },
+  {
+    "id": "mapa-sitio",
+    "term": "Mapa del sitio",
+    "en": "Site map",
+    "definition": "Componente de una aplicación basada en modelos que define la navegación: áreas, grupos y subáreas que el usuario ve en el menú.",
+    "domain": "d3"
+  },
+  {
+    "id": "disenador-planes",
+    "term": "Diseñador de planes (planes en Power Apps)",
+    "en": "Plan designer",
+    "definition": "Herramienta de Power Apps que parte de Copilot: describes en lenguaje natural un proceso de negocio, y puedes añadir imágenes como diagramas o capturas de aplicaciones heredadas, y propone una solución completa con tablas de Dataverse, aplicaciones de lienzo y basadas en modelos, sitios de Power Pages, flujos de Power Automate y agentes de Copilot Studio.",
+    "domain": "d3",
+    "reference": {
+      "title": "Información general sobre los planes",
+      "url": "https://learn.microsoft.com/es-es/power-apps/maker/plan-designer/plan-designer"
+    }
+  },
+  {
+    "id": "aplicacion-codigo",
+    "term": "Aplicación de código",
+    "en": "Code app",
+    "definition": "Aplicación web que los desarrolladores crean en un entorno orientado al código, como Visual Studio Code, con marcos como React o Vue, y que se publica y ejecuta en Power Platform con autenticación de Microsoft Entra, acceso a los conectores y cumplimiento de las directivas de la organización, como las de prevención de pérdida de datos.",
+    "domain": "d3",
+    "reference": {
+      "title": "Información general sobre las aplicaciones de código de Power Apps",
+      "url": "https://learn.microsoft.com/es-es/power-apps/developer/code-apps/overview"
+    }
+  },
+  {
+    "id": "experiencia-vibe",
+    "term": "Experiencia vibe de Power Apps",
+    "en": "Power Apps vibe experience",
+    "definition": "Experiencia de Power Apps nativa de IA en la que describes una necesidad de negocio en lenguaje natural y la IA genera, en un mismo espacio de trabajo, el plan, el modelo de datos y una aplicación completa con código generado; los cambios en una parte se reflejan en las demás.",
+    "domain": "d3",
+    "reference": {
+      "title": "Información general sobre la experiencia vibe de Power Apps",
+      "url": "https://learn.microsoft.com/es-es/power-apps/vibe/overview"
+    }
+  },
+  {
+    "id": "ai-builder",
+    "term": "AI Builder",
+    "en": "AI Builder",
+    "definition": "Capacidad de Power Platform que añade IA a aplicaciones y flujos sin programar, mediante modelos prediseñados o modelos personalizados entrenados con datos propios, por ejemplo para procesar documentos en Power Automate.",
+    "domain": "d4",
+    "reference": {
+      "title": "Información general de AI Builder",
+      "url": "https://learn.microsoft.com/es-es/ai-builder/overview"
+    }
+  },
+  {
+    "id": "modelo-predisenado",
+    "term": "Modelo prediseñado",
+    "en": "Prebuilt model",
+    "definition": "Modelo de AI Builder listo para usar sin entrenamiento, como el procesamiento de facturas, el reconocimiento de texto (OCR) o el análisis de sentimiento.",
+    "domain": "d4",
+    "reference": {
+      "title": "Información general de AI Builder",
+      "url": "https://learn.microsoft.com/es-es/ai-builder/overview"
+    }
+  },
+  {
+    "id": "modelo-personalizado",
+    "term": "Modelo personalizado",
+    "en": "Custom model",
+    "definition": "Modelo de AI Builder que se entrena con datos de la propia organización, como un modelo de procesamiento de documentos para formularios con formato propio.",
+    "domain": "d4",
+    "reference": {
+      "title": "Información general de AI Builder",
+      "url": "https://learn.microsoft.com/es-es/ai-builder/overview"
+    }
+  },
+  {
+    "id": "flujo-nube",
+    "term": "Flujo de nube",
+    "en": "Cloud flow",
+    "definition": "Flujo de Power Automate que se ejecuta en la nube y automatiza tareas entre servicios mediante un desencadenador y una o varias acciones.",
+    "domain": "d4",
+    "reference": {
+      "title": "Introducción a Power Automate",
+      "url": "https://learn.microsoft.com/es-es/power-automate/getting-started"
+    }
+  },
+  {
+    "id": "flujo-automatizado",
+    "term": "Flujo de nube automatizado",
+    "en": "Automated cloud flow",
+    "definition": "Flujo que se ejecuta cuando ocurre un evento, por ejemplo al llegar un correo o al crearse una fila en Dataverse.",
+    "domain": "d4"
+  },
+  {
+    "id": "flujo-instantaneo",
+    "term": "Flujo de nube instantáneo",
+    "en": "Instant cloud flow",
+    "definition": "Flujo que el usuario inicia manualmente, por ejemplo con un botón en una aplicación, en Teams o en la aplicación móvil de Power Automate.",
+    "domain": "d4"
+  },
+  {
+    "id": "flujo-programado",
+    "term": "Flujo de nube programado",
+    "en": "Scheduled cloud flow",
+    "definition": "Flujo que se ejecuta en una fecha y hora definidas o con una periodicidad, como cada día a las 8:00.",
+    "domain": "d4"
+  },
+  {
+    "id": "desencadenador",
+    "term": "Desencadenador",
+    "en": "Trigger",
+    "definition": "Evento que inicia la ejecución de un flujo. Cada flujo de nube tiene exactamente un desencadenador.",
+    "domain": "d4",
+    "reference": {
+      "title": "Introducción a los desencadenadores",
+      "url": "https://learn.microsoft.com/es-es/power-automate/triggers-introduction"
+    }
+  },
+  {
+    "id": "accion",
+    "term": "Acción",
+    "en": "Action",
+    "definition": "Operación que realiza un flujo después del desencadenador, como enviar un correo, crear una fila o pedir una aprobación.",
+    "domain": "d4"
+  },
+  {
+    "id": "expresion",
+    "term": "Expresión",
+    "en": "Expression",
+    "definition": "Fórmula de Power Automate que transforma o calcula valores dentro de un flujo, por ejemplo para dar formato a fechas o concatenar texto.",
+    "domain": "d4"
+  },
+  {
+    "id": "aprobacion",
+    "term": "Aprobación",
+    "en": "Approval",
+    "definition": "Acción de Power Automate que envía una solicitud a una o varias personas y espera su respuesta (aprobar o rechazar) antes de continuar el flujo.",
+    "domain": "d4",
+    "reference": {
+      "title": "Introducción a las aprobaciones",
+      "url": "https://learn.microsoft.com/es-es/power-automate/get-started-approvals"
+    }
+  },
+  {
+    "id": "flujo-escritorio",
+    "term": "Flujo de escritorio",
+    "en": "Desktop flow",
+    "definition": "Automatización creada con Power Automate para escritorio que reproduce acciones en aplicaciones de Windows y sitios web, incluidas aplicaciones heredadas sin API.",
+    "domain": "d4",
+    "reference": {
+      "title": "Introducción a Power Automate para escritorio",
+      "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/introduction"
+    }
+  },
+  {
+    "id": "rpa",
+    "term": "Automatización robótica de procesos (RPA)",
+    "en": "Robotic process automation (RPA)",
+    "definition": "Técnica que automatiza tareas repetitivas imitando las acciones de una persona en la interfaz de usuario de las aplicaciones.",
+    "domain": "d4"
+  },
+  {
+    "id": "rpa-atendido",
+    "term": "RPA atendido",
+    "en": "Attended RPA",
+    "definition": "Ejecución de un flujo de escritorio mientras el usuario ha iniciado sesión en el equipo y puede supervisarlo o interactuar con él.",
+    "domain": "d4"
+  },
+  {
+    "id": "rpa-desatendido",
+    "term": "RPA desatendido",
+    "en": "Unattended RPA",
+    "definition": "Ejecución de un flujo de escritorio sin ninguna persona presente, en un equipo sin sesión de usuario activa, normalmente iniciada desde un flujo de nube.",
+    "domain": "d4"
+  },
+  {
+    "id": "plantilla-flujo",
+    "term": "Plantilla",
+    "en": "Template",
+    "definition": "Flujo prediseñado para un escenario habitual que sirve como punto de partida y se completa configurando las conexiones.",
+    "domain": "d4"
+  },
+  {
+    "id": "automatizacion-documentos",
+    "term": "Automatización de documentos",
+    "en": "Document automation",
+    "definition": "Procesamiento automático de documentos, como facturas o formularios, en el que Power Automate orquesta el proceso y la IA (por ejemplo, un modelo de procesamiento de documentos de AI Builder) extrae la información. El kit de automatización de documentos añade Power Apps para la revisión manual y Dataverse para la cola de documentos y los datos.",
+    "domain": "d4",
+    "reference": {
+      "title": "Kit de herramientas de automatización de documentos",
+      "url": "https://learn.microsoft.com/es-es/ai-builder/doc-automation"
+    }
+  },
+  {
+    "id": "agente",
+    "term": "Agente",
+    "en": "Agent",
+    "definition": "Asistente con IA creado en Copilot Studio que conversa con los usuarios, responde preguntas a partir de su conocimiento y puede ejecutar tareas mediante herramientas. Antes se llamaba «bot» (y después «copiloto»).",
+    "domain": "d5",
+    "reference": {
+      "title": "Información general sobre Copilot Studio",
+      "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/fundamentals-what-is-copilot-studio"
+    }
+  },
+  {
+    "id": "tema",
+    "term": "Tema",
+    "en": "Topic",
+    "definition": "Parte de un agente que define cómo transcurre una conversación sobre un asunto concreto: un desencadenador (frases o descripción) que indica cuándo se activa y un conjunto de nodos con la conversación.",
+    "domain": "d5",
+    "reference": {
+      "title": "Crear y editar temas",
+      "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-create-edit-topics"
+    }
+  },
+  {
+    "id": "tema-sistema",
+    "term": "Tema del sistema",
+    "en": "System topic",
+    "definition": "Tema incluido de serie en un agente para comportamientos comunes, como Inicio de la conversación, Escalar (transferir a una persona), Alternativa (cuando no se reconoce la petición) o Fin de la conversación.",
+    "domain": "d5",
+    "reference": {
+      "title": "Usar temas del sistema",
+      "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-system-topics"
+    }
+  },
+  {
+    "id": "frase-desencadenante",
+    "term": "Frase desencadenante",
+    "en": "Trigger phrase",
+    "definition": "Ejemplo de lo que podría escribir un usuario que ayuda al agente a reconocer cuándo debe iniciar un tema.",
+    "domain": "d5"
+  },
+  {
+    "id": "entidad-copilot",
+    "term": "Entidad",
+    "en": "Entity",
+    "definition": "En Copilot Studio, tipo de información que el agente reconoce y extrae de lo que escribe el usuario, como una fecha, un correo o un número. Puede ser precompilada o personalizada (lista cerrada o expresión regular).",
+    "domain": "d5"
+  },
+  {
+    "id": "variable",
+    "term": "Variable",
+    "en": "Variable",
+    "definition": "En Copilot Studio, elemento que almacena un valor durante la conversación, como la respuesta del usuario. Por defecto su ámbito es el tema; una variable global está disponible en todos los temas del agente.",
+    "domain": "d5"
+  },
+  {
+    "id": "nodo",
+    "term": "Nodo",
+    "en": "Node",
+    "definition": "Cada paso de un tema en el lienzo de creación, como enviar un mensaje, hacer una pregunta, añadir una condición o llamar a una herramienta.",
+    "domain": "d5"
+  },
+  {
+    "id": "orquestacion-generativa",
+    "term": "Orquestación generativa",
+    "en": "Generative orchestration",
+    "definition": "Modo en que el agente usa IA generativa para elegir, según sus nombres y descripciones, qué temas, herramientas y fuentes de conocimiento usar, y puede combinar varios en una misma petición. En la orquestación clásica, los temas se eligen por sus frases desencadenantes.",
+    "domain": "d5"
+  },
+  {
+    "id": "fuente-conocimiento",
+    "term": "Fuente de conocimiento",
+    "en": "Knowledge source",
+    "definition": "Contenido que el agente consulta para generar respuestas, como sitios web públicos, sitios de SharePoint (requiere autenticación con Microsoft Entra ID), archivos cargados o tablas de Dataverse.",
+    "domain": "d5",
+    "reference": {
+      "title": "Conocimiento en Copilot Studio",
+      "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/knowledge-copilot-studio"
+    }
+  },
+  {
+    "id": "herramienta",
+    "term": "Herramienta",
+    "en": "Tool",
+    "definition": "Capacidad que se añade a un agente para que realice tareas o consulte otros sistemas, como un flujo de agente de Power Automate, un conector, un *prompt* o una API. Antes se llamaban «acciones».",
+    "domain": "d5",
+    "reference": {
+      "title": "¿Qué es Microsoft Copilot Studio?",
+      "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/fundamentals-what-is-copilot-studio"
+    }
+  },
+  {
+    "id": "canal",
+    "term": "Canal",
+    "en": "Channel",
+    "definition": "Lugar donde se pone a disposición un agente publicado para que lo usen las personas, como Teams y Microsoft Copilot, un sitio web o una aplicación móvil.",
+    "domain": "d5",
+    "reference": {
+      "title": "Publicar en canales",
+      "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/publication-fundamentals-publish-channels"
+    }
+  },
+  {
+    "id": "servidor-mcp",
+    "term": "Servidor MCP",
+    "en": "Model Context Protocol (MCP) server",
+    "definition": "Servidor que implementa el Protocolo de contexto de modelo (MCP), un protocolo abierto para conectar modelos de IA con datos y herramientas externos. Al conectar un agente de Copilot Studio a un servidor MCP, sus herramientas y recursos quedan disponibles para el agente y se actualizan solos cuando cambian en el servidor. Requiere la orquestación generativa.",
+    "domain": "d5",
+    "reference": {
+      "title": "Ampliar un agente con el Protocolo de contexto de modelo",
+      "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/agent-extend-action-mcp"
+    }
+  },
+  {
+    "id": "flujo-agente",
+    "term": "Flujo de agente",
+    "en": "Agent flow",
+    "definition": "Automatización determinista creada en Copilot Studio, con una experiencia similar a la de Power Automate, formada por un desencadenador y al menos una acción. Puede ejecutarse de forma independiente o añadirse a un agente como herramienta que le devuelve resultados.",
+    "domain": "d5",
+    "reference": {
+      "title": "Información general sobre los flujos de agente",
+      "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/flows-overview"
+    }
+  },
+  {
+    "id": "agent-365",
+    "term": "Microsoft Agent 365",
+    "en": "Microsoft Agent 365",
+    "definition": "Solución de Microsoft para observar, gobernar y proteger los agentes de una organización: ofrece un registro centralizado con la adopción, la actividad y el estado de los agentes, y aplica controles de identidad, datos y amenazas con Microsoft Entra, Microsoft Purview y Microsoft Defender.",
+    "domain": "d5",
+    "reference": {
+      "title": "Información general sobre Microsoft Agent 365",
+      "url": "https://learn.microsoft.com/es-es/microsoft-agent-365/overview"
+    }
+  },
+  {
+    "id": "evaluacion-agentes",
+    "term": "Evaluación de agentes",
+    "en": "Agent evaluation",
+    "definition": "Capacidad de Copilot Studio para probar un agente de forma automatizada y repetible con conjuntos de pruebas que simulan escenarios reales, y medir la precisión, la relevancia y la calidad de sus respuestas. Complementa las pruebas manuales en el panel de prueba.",
+    "domain": "d5",
+    "reference": {
+      "title": "Acerca de la evaluación de agentes",
+      "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/analytics-agent-evaluation-intro"
+    }
+  },
+  {
+    "id": "supervision-agentes",
+    "term": "Supervisión de agentes (análisis)",
+    "en": "Analytics (Monitor)",
+    "definition": "Página de Copilot Studio que muestra métricas del agente, desde una visión general hasta el uso de cada componente, para medir su uso y adopción e identificar mejoras. No incluye la actividad generada al probar el agente en el panel de prueba.",
+    "domain": "d5",
+    "reference": {
+      "title": "Información general de supervisión",
+      "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/analytics-overview"
+    }
+  }
 ]

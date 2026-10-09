@@ -7,14 +7,14 @@ Empieza por **PL-900** (temario vigente desde el 24/07/2026) y está diseñada p
 
 ## Qué ofrece
 
-- **150 preguntas originales de PL-900**, repartidas según el peso oficial de cada dominio y revisadas técnicamente.
+- **181 preguntas originales de PL-900** alineadas con el [temario oficial del 24/07/2026](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/pl-900): cada sub-habilidad oficial tiene al menos 3 preguntas, verificadas con la documentación de Microsoft Learn.
 - **Explicación de cada opción**: por qué es correcta o incorrecta, una idea clave y enlaces a Microsoft Learn.
 - **6 tipos de pregunta** como en el examen: respuesta única, múltiple, Sí/No, ordenar, emparejar y completar frases.
 - **Modo práctica** con filtros por dominio, sub-habilidad, preguntas no vistas, falladas o guardadas.
 - **Simulacro cronometrado** (45 preguntas / 45 min o rápido de 20), navegador de preguntas, marcar para revisar, nota sobre 1000 e informe por dominio.
 - **Repaso inteligente** con repetición espaciada (sistema Leitner de 5 cajas).
 - **Panel de progreso**: índice de preparación ponderado, radar por dominio, evolución de simulacros y racha.
-- **Glosario** de ~70 términos en español e inglés, con modo de tarjetas.
+- **Glosario** de 81 términos en español e inglés, con modo de tarjetas.
 - Modo claro y oscuro, diseño para móvil, accesible por teclado e instalable como **PWA** (funciona sin conexión).
 - Sin cuentas ni servidor: el progreso se guarda en el navegador y se puede exportar o importar.
 
@@ -32,6 +32,7 @@ npm run typecheck    # TypeScript
 npm test             # tests unitarios (Vitest)
 npm run build        # build de producción en dist/
 npm run test:e2e     # tests de extremo a extremo (Playwright, tras el build)
+npm run check-links  # comprueba los enlaces a Microsoft Learn (también cada lunes en CI)
 ```
 
 Stack: Vite, React 19, TypeScript, Tailwind CSS 4, React Router 7, Zustand, Zod, Recharts y vite-plugin-pwa.

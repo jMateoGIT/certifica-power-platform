@@ -5,7 +5,7 @@ import { REPO_URL } from '../lib/config'
 const officialLinks = [
   { title: 'Guía de estudio oficial de PL-900', url: 'https://learn.microsoft.com/es-es/credentials/certifications/resources/study-guides/pl-900' },
   { title: 'Certificación Power Platform Fundamentals', url: 'https://learn.microsoft.com/es-es/credentials/certifications/power-platform-fundamentals/' },
-  { title: 'Ruta de aprendizaje gratuita de PL-900', url: 'https://learn.microsoft.com/es-es/training/paths/power-plat-fundamentals/' },
+  { title: 'Ruta de aprendizaje gratuita de PL-900', url: 'https://learn.microsoft.com/es-es/training/paths/describe-business-value-microsoft-power-platform/' },
   { title: 'Entorno de demostración del examen (exam sandbox)', url: 'https://learn.microsoft.com/es-es/credentials/support/exam-duration-exam-experience' },
 ]
 

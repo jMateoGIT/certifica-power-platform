@@ -8,9 +8,11 @@ Se empieza por **PL-900** con una arquitectura preparada para el resto de certif
 
 ## Contexto (octubre de 2026)
 
-- PL-900 se reescribió el **24/07/2026**: valor de negocio (5–10 %), gestión del entorno con Dataverse (20–25 %),
-  Power Apps (20–25 %), Power Automate (20–25 %) y agentes de Copilot Studio (20–25 %, según fuentes secundarias).
-  Power BI y Power Pages dejan de ser dominios propios.
+- PL-900 se reescribió el **24/07/2026** (verificado en la guía oficial en inglés; la española sigue con el temario
+  de 2025): valor de negocio (5–10 %), administración del entorno y Dataverse (20–25 %), Power Apps (20–25 %),
+  Power Automate (20–25 %) y agentes de Copilot Studio (20–25 %). Power BI y la minería de procesos salen del temario;
+  entran el diseñador de planes, las aplicaciones de código, las canalizaciones de ALM, los servidores MCP,
+  Microsoft Agent 365 y las evaluaciones de agentes.
 - PL-200 se retiró (31/08/2026) → **AB-410**. PL-400 pasa a examen **AB-400** (16/10/2026). PL-500 y PL-600 se retiraron.
 - PL-300 y DP-600 siguen vigentes.
 
@@ -33,8 +35,9 @@ Se empieza por **PL-900** con una arquitectura preparada para el resto de certif
 - [x] **F4** Simulacro cronometrado con informe por dominio
 - [x] **F5** Progreso, repaso inteligente, exportar/importar
 - [x] **F6** PWA, accesibilidad, tests e2e
-- [ ] Verificar sub-habilidades y referencias contra la guía oficial de Microsoft Learn
-- [ ] Ampliar PL-900 a 250+ preguntas
+- [x] Verificar sub-habilidades y referencias contra la guía oficial de Microsoft Learn (181 preguntas, 136 enlaces comprobados)
+- [ ] Ampliar PL-900 a 300 preguntas e incluir casos prácticos
+- [ ] Revisar las funciones en versión preliminar (experiencia vibe, Copilot en Power Automate para escritorio) cuando cambie su estado
 - [ ] PL-300 (Power BI), después AB-410, AB-400 y DP-600
 
 ## Ideas futuras
