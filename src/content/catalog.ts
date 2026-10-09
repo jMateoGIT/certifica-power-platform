@@ -14,7 +14,7 @@ const upcoming: ExamDefinition[] = [
     durationMinutes: 100,
     questionCount: 50,
     passingScore: 700,
-    officialUrl: 'https://learn.microsoft.com/es-es/credentials/certifications/power-bi-data-analyst-associate/',
+    officialUrl: 'https://learn.microsoft.com/es-es/credentials/certifications/data-analyst-associate/',
     domains: [],
   },
   {
