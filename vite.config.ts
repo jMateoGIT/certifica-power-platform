@@ -14,6 +14,8 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
+      // El registro se hace en main.tsx para recargar en cuanto hay una versión nueva.
+      injectRegister: false,
       includeAssets: ['favicon.svg'],
       manifest: {
         name: 'Certifica Power Platform',
