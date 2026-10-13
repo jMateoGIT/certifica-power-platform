@@ -41,6 +41,7 @@ Se empieza por **PL-900** con una arquitectura preparada para el resto de certif
 - [ ] Activar la analítica (crear cuenta de Umami y la variable `UMAMI_WEBSITE_ID`)
 - [ ] Revisar las funciones en versión preliminar (experiencia vibe, Copilot en Power Automate para escritorio) cuando cambie su estado
 - [x] PL-300 (Power BI): 250 preguntas con 5 casos prácticos, anexos de código DAX/M y tablas, glosario de 74 términos
+- [x] Segunda tanda: +200 preguntas por certificación (PL-900 501, PL-300 450) sin duplicados, con detector automático en CI y revisión independiente
 - [ ] AB-410, AB-400 y DP-600
 
 ## Ideas futuras
