@@ -7,43 +7,43 @@
     "domain": "d4",
     "skill": "d4-casos",
     "difficulty": 2,
-    "scenario": "En el centro de atención telefónica de Seguros Mistral, cada agente consulta los datos del cliente en un CRM web y después los copia a mano en una aplicación de Windows antigua, sin API, instalada en su propio equipo. Quieren que el agente, durante la llamada, lance la copia con un clic y vea en pantalla cómo se completa.",
-    "prompt": "¿Qué solución de Power Automate se ajusta a este requisito?",
+    "scenario": "Lucas, administrativo de Seguros Mistral, inicia sesión en Power Automate para escritorio con su cuenta profesional, que no tiene ninguna licencia premium de Power Automate. Ha creado varios flujos de escritorio y los ejecuta a mano desde la consola en su equipo con Windows 11 Pro. Ahora quiere que un flujo de nube los lance cada noche y compartirlos con su equipo.",
+    "prompt": "¿Qué le falta a Lucas para conseguirlo?",
     "options": [
       {
         "id": "a",
-        "text": "Un flujo de escritorio ejecutado en modo desatendido en el equipo del agente",
+        "text": "Iniciar sesión con una cuenta Microsoft personal",
         "correct": false,
-        "explanation": "El modo desatendido necesita una máquina sin ninguna sesión de Windows activa; aquí el agente está trabajando con su sesión iniciada, así que la ejecución no podría arrancar."
+        "explanation": "Con una cuenta Microsoft los flujos se guardan en OneDrive personal y tampoco se pueden compartir ni desencadenar desde flujos de nube."
       },
       {
         "id": "b",
-        "text": "Un flujo de nube programado que copie los datos cada quince minutos",
+        "text": "Instalar una puerta de enlace de datos local en su equipo",
         "correct": false,
-        "explanation": "Un flujo programado se ejecuta por horario, no cuando el agente lo necesita durante la llamada, y por sí solo no puede escribir en la interfaz de una aplicación sin API."
+        "explanation": "La puerta de enlace da acceso a datos locales a los conectores; no habilita la conexión de los flujos de escritorio con los flujos de nube."
       },
       {
         "id": "c",
-        "text": "Un flujo de escritorio ejecutado en modo asistido (attended) en el equipo del agente",
+        "text": "Una licencia premium de Power Automate asignada a su cuenta profesional",
         "correct": true,
-        "explanation": "La RPA asistida se ejecuta en la sesión del usuario que está usando el equipo: el agente la inicia cuando quiere y ve cómo el flujo rellena la aplicación heredada."
+        "explanation": "Con una cuenta de organización premium, los flujos de escritorio se guardan en Dataverse en cualquier entorno, se pueden compartir y se pueden desencadenar o programar desde flujos de nube. Sin premium solo se crean y ejecutan en local."
       },
       {
         "id": "d",
-        "text": "Un grupo de máquinas hospedadas que ejecute el flujo en Azure",
+        "text": "Cambiar su equipo de Windows 11 Pro a Windows 11 Enterprise",
         "correct": false,
-        "explanation": "Los grupos de máquinas hospedadas solo admiten ejecuciones desatendidas en máquinas virtuales de Azure, no en el equipo del agente donde está instalada la aplicación."
+        "explanation": "Windows 11 Pro ya admite ejecutar flujos de escritorio desde la nube (no así Windows Home). Lo que limita a Lucas es el tipo de cuenta, no la edición de Windows."
       }
     ],
-    "keyPoint": "Persona delante del equipo que lanza y ve la automatización = RPA asistida; nadie con sesión iniciada = RPA desatendida.",
+    "keyPoint": "Cuenta Microsoft o profesional sin premium: crear y ejecutar flujos de escritorio en local. Para compartirlos y lanzarlos desde flujos de nube hace falta una cuenta de organización premium.",
     "references": [
       {
-        "title": "Desencadenar flujos de escritorio desde flujos de nube",
-        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/trigger-desktop-flows"
+        "title": "Requisitos previos y limitaciones (comparación de cuentas de inicio de sesión)",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/requirements"
       },
       {
-        "title": "Ejecutar flujos de escritorio desatendidos",
-        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/run-unattended-desktop-flows"
+        "title": "Introducción a los flujos de escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/introduction"
       }
     ]
   },
@@ -113,15 +113,15 @@
       },
       {
         "id": "s2",
-        "text": "Los grupos de máquinas hospedadas admiten ejecuciones asistidas y acceso por Escritorio remoto a sus bots.",
-        "answer": false,
-        "explanation": "Los grupos de máquinas hospedadas están destinados solo a ejecuciones desatendidas y no admiten Escritorio remoto."
+        "text": "Puedes conectar una máquina hospedada a tu propia red virtual para que se comunique con los recursos de tu red local.",
+        "answer": true,
+        "explanation": "De forma predeterminada se conecta a la red hospedada por Microsoft, pero puedes aprovisionarla con una conexión de red personalizada a tu red virtual."
       },
       {
         "id": "s3",
-        "text": "Puedes usar tu propia imagen de Windows, con tus aplicaciones ya instaladas, a través de Azure Compute Gallery.",
-        "answer": true,
-        "explanation": "Además de la imagen estándar de Microsoft, puedes aportar una imagen personalizada desde Azure Compute Gallery para que las máquinas tengan tus aplicaciones."
+        "text": "Las máquinas hospedadas solo pueden usar la imagen de Windows que proporciona Microsoft, sin aplicaciones adicionales.",
+        "answer": false,
+        "explanation": "Además de la imagen predeterminada de Microsoft, puedes usar tu propia imagen de Windows desde Azure Compute Gallery, con tus aplicaciones ya instaladas."
       },
       {
         "id": "s4",
@@ -130,15 +130,15 @@
         "explanation": "La máquina hospedada se crea desde el portal de Power Automate, que la aprovisiona y la registra en el entorno automáticamente; no hay que instalar ni registrar hardware propio."
       }
     ],
-    "keyPoint": "Máquina hospedada: desarrollo y ejecución asistida o desatendida sin hardware. Grupo de máquinas hospedadas: solo desatendido, a escala.",
+    "keyPoint": "Máquina hospedada: Power Automate aprovisiona y registra por ti una máquina Windows en la nube para crear, probar y ejecutar flujos de escritorio, con la imagen de Microsoft o con la tuya.",
     "references": [
       {
         "title": "Máquinas hospedadas",
         "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/hosted-machines"
       },
       {
-        "title": "Grupos de máquinas hospedadas",
-        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/hosted-machine-groups"
+        "title": "Introducción a la RPA hospedada de Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/hosted-rpa-overview"
       }
     ]
   },
@@ -325,7 +325,7 @@
         "id": "s3",
         "text": "Un flujo de escritorio puede organizar archivos y carpetas del propio equipo.",
         "answer": true,
-        "explanation": "Ordenar documentos con las acciones de archivos y carpetas es uno de los ejemplos típicos de flujos de escritorio que cita Microsoft Learn."
+        "explanation": "Organizar documentos con las acciones de archivos y carpetas es uno de los ejemplos de tareas para flujos de escritorio que propone Microsoft Learn."
       },
       {
         "id": "s4",
@@ -337,8 +337,12 @@
     "keyPoint": "Flujo de nube = servicios con conectores, sin depender de un PC. Flujo de escritorio = interfaz y archivos de una máquina Windows.",
     "references": [
       {
-        "title": "Tipos de flujos en Power Automate",
+        "title": "¿Qué es Power Automate?",
         "url": "https://learn.microsoft.com/es-es/power-automate/flow-types"
+      },
+      {
+        "title": "Introducción a los flujos de escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/introduction"
       },
       {
         "title": "Requisitos previos y limitaciones de Power Automate para escritorio",
@@ -625,39 +629,39 @@
     "domain": "d4",
     "skill": "d4-escenarios",
     "difficulty": 2,
-    "scenario": "En Talleres Navarro, las horas extra que pide un operario las puede autorizar cualquiera de los tres jefes de turno. En cuanto uno de ellos responda, la solicitud debe quedar resuelta y el flujo debe continuar, sin esperar a los demás.",
-    "prompt": "¿Qué tipo de aprobación debes elegir en la acción «Iniciar y esperar una aprobación» (Start and wait for an approval)?",
+    "scenario": "En Talleres Navarro, los operarios comentan las incidencias de la planta en el canal Producción de Microsoft Teams. El jefe de mantenimiento quiere que, cada vez que alguien escriba la palabra «avería» en un mensaje de ese canal, se cree automáticamente una tarea en Planner, sin que nadie tenga que lanzar el flujo.",
+    "prompt": "¿Qué desencadenador del conector de Microsoft Teams debe usar el flujo de nube?",
     "options": [
       {
         "id": "a",
-        "text": "Aprobar/Rechazar: todos deben aprobar",
+        "text": "«Para un mensaje seleccionado» (*For a selected message*)",
         "correct": false,
-        "explanation": "Este tipo necesita la respuesta de cada aprobador (o un rechazo) antes de continuar, así que obligaría a esperar a los tres jefes."
+        "explanation": "Inicia un flujo instantáneo cuando una persona lo lanza desde un mensaje concreto; aquí el flujo debe ejecutarse solo."
       },
       {
         "id": "b",
-        "text": "Aprobación secuencial",
+        "text": "«Cuando me mencionan en un mensaje de canal»",
         "correct": false,
-        "explanation": "La aprobación secuencial envía la solicitud a un aprobador tras otro en un orden fijo; no se resuelve con la primera respuesta."
+        "explanation": "Solo se activa cuando se menciona (@) al usuario de la conexión, no cuando aparece una palabra determinada en el mensaje."
       },
       {
         "id": "c",
-        "text": "Aprobar/Rechazar: el primero en responder",
+        "text": "«Cuando se mencionan palabras clave» (*When keywords are mentioned*)",
         "correct": true,
-        "explanation": "La aprobación o el rechazo de cualquiera de los aprobadores asignados completa la solicitud, y el flujo continúa con esa decisión."
+        "explanation": "Se activa cuando una palabra clave aparece en un chat o canal concreto. Admite palabras sueltas, como «avería», y no se vuelve a activar si se edita el mensaje."
       },
       {
         "id": "d",
-        "text": "Respuestas personalizadas: esperar todas las respuestas",
+        "text": "«Cuando se agrega un nuevo miembro del equipo»",
         "correct": false,
-        "explanation": "Además de exigir que respondan todos, sirve para definir opciones propias; aquí bastan Aprobar o Rechazar."
+        "explanation": "Se activa cuando cambia la pertenencia al equipo, no cuando se publican mensajes en un canal."
       }
     ],
-    "keyPoint": "Varios aprobadores posibles y basta uno = «Aprobar/Rechazar: el primero en responder».",
+    "keyPoint": "Reaccionar automáticamente a una palabra escrita en un canal o chat de Teams = desencadenador «Cuando se mencionan palabras clave» (solo palabras sueltas).",
     "references": [
       {
-        "title": "Introducción a las aprobaciones",
-        "url": "https://learn.microsoft.com/es-es/power-automate/get-started-approvals"
+        "title": "Conector de Microsoft Teams",
+        "url": "https://learn.microsoft.com/es-es/connectors/teams/"
       }
     ]
   },
@@ -800,14 +804,18 @@
         "id": "d",
         "text": "La aplicación Flujos de trabajo (Workflows) de Teams",
         "correct": true,
-        "explanation": "La aplicación Flujos de trabajo, antes llamada Power Automate en Teams, permite crear y administrar flujos desde Teams; los flujos que crea se guardan en el entorno predeterminado."
+        "explanation": "La aplicación Flujos de trabajo, antes llamada Power Automate en Teams, permite crear flujos a partir de plantillas pensadas para Teams o desde cero, y administrarlos sin salir de Teams."
       }
     ],
-    "keyPoint": "Crear flujos sin salir de Teams = aplicación Flujos de trabajo (antes Power Automate), que trabaja en el entorno predeterminado.",
+    "keyPoint": "Crear y administrar flujos sin salir de Teams = aplicación Flujos de trabajo (antes Power Automate).",
     "references": [
       {
         "title": "Instalar la aplicación Flujos de trabajo en Microsoft Teams",
         "url": "https://learn.microsoft.com/es-es/power-automate/teams/install-teams-app"
+      },
+      {
+        "title": "Crear flujos en Microsoft Teams",
+        "url": "https://learn.microsoft.com/es-es/power-automate/teams/teams-app-create"
       }
     ]
   },
@@ -958,26 +966,26 @@
     "domain": "d4",
     "skill": "d4-escenarios",
     "difficulty": 2,
-    "scenario": "Grupo Vetón quiere automatizar con flujos de nube el procesamiento de varios tipos de documentos usando modelos de AI Builder.",
-    "prompt": "Empareja cada tipo de documento con el modelo de AI Builder más adecuado. Dos de las opciones no se usan.",
+    "scenario": "Hoteles Vetón quiere automatizar con flujos de nube la lectura de varios tipos de documentos usando modelos precompilados de AI Builder, sin entrenar ningún modelo propio.",
+    "prompt": "Empareja cada tipo de documento con el modelo precompilado de AI Builder más adecuado. Dos de las opciones no se usan.",
     "prompts": [
       {
         "id": "m1",
         "text": "Tiques de restaurante y de taxi que los comerciales fotografían para sus notas de gastos",
         "answerId": "c1",
-        "explanation": "El modelo precompilado de procesamiento de recibos extrae del tique el comercio, la fecha y los importes; Microsoft lo recomienda para automatizar informes de gastos."
+        "explanation": "El procesamiento de recibos usa OCR para detectar texto impreso y manuscrito y extraer la información clave de los tiques; Microsoft lo propone para automatizar los informes de gastos."
       },
       {
         "id": "m2",
-        "text": "Facturas de proveedores de las que necesitas el número, la fecha y el importe total",
+        "text": "Pasaportes de los huéspedes extranjeros, de los que necesitas el nombre y la fecha de nacimiento",
         "answerId": "c2",
-        "explanation": "El procesamiento de facturas es un modelo precompilado que reconoce los campos habituales de una factura sin entrenarlo."
+        "explanation": "El lector de documentos de identidad extrae datos como el nombre o la fecha de nacimiento de pasaportes y otros documentos admitidos. Conviene verificar el resultado."
       },
       {
         "id": "m3",
-        "text": "Partes de trabajo con un diseño propio de la empresa, de los que necesitas campos concretos como el técnico, el cliente y las horas",
+        "text": "Tarjetas de visita en inglés que el equipo comercial recoge en ferias internacionales",
         "answerId": "c3",
-        "explanation": "Para extraer campos concretos de documentos con un formato propio entrenas un modelo personalizado de procesamiento de documentos con ejemplos de ese diseño."
+        "explanation": "El lector de tarjetas de presentación extrae el nombre, el cargo, la empresa, la dirección, el correo y los teléfonos; admite tarjetas en inglés y en japonés."
       }
     ],
     "choices": [
@@ -987,30 +995,38 @@
       },
       {
         "id": "c2",
-        "text": "Procesamiento de facturas"
+        "text": "Lector de documentos de identidad"
       },
       {
         "id": "c3",
-        "text": "Procesamiento de documentos (modelo personalizado)"
+        "text": "Lector de tarjetas de presentación"
       },
       {
         "id": "c4",
-        "text": "Reconocimiento de texto"
+        "text": "Procesamiento de facturas"
       },
       {
         "id": "c5",
         "text": "Análisis de sentimiento"
       }
     ],
-    "keyPoint": "Recibos y facturas tienen modelos precompilados; para extraer campos de documentos con diseño propio entrenas un modelo personalizado de procesamiento de documentos.",
+    "keyPoint": "AI Builder ofrece modelos precompilados para documentos habituales (recibos, documentos de identidad, tarjetas de presentación, facturas) que se usan en los flujos sin entrenarlos.",
     "references": [
       {
         "title": "Tipos de modelos de AI Builder",
         "url": "https://learn.microsoft.com/es-es/ai-builder/model-types"
       },
       {
-        "title": "Información general sobre el procesamiento de documentos",
-        "url": "https://learn.microsoft.com/es-es/ai-builder/form-processing-model-overview"
+        "title": "Modelo precompilado de procesamiento de recibos",
+        "url": "https://learn.microsoft.com/es-es/ai-builder/prebuilt-receipt-processing"
+      },
+      {
+        "title": "Modelo precompilado del lector de documentos de identidad",
+        "url": "https://learn.microsoft.com/es-es/ai-builder/prebuilt-id-reader"
+      },
+      {
+        "title": "Modelo precompilado de tarjetas de presentación",
+        "url": "https://learn.microsoft.com/es-es/ai-builder/prebuilt-business-card"
       }
     ]
   },

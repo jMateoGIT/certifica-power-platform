@@ -207,51 +207,59 @@
     "domain": "d3",
     "skill": "d3-lienzo",
     "difficulty": 2,
-    "scenario": "Los repartidores de Wide World Importers van a usar una aplicación de lienzo en sus teléfonos Android e iOS durante las entregas.",
-    "prompt": "Empareja cada necesidad con el control o la señal de la aplicación de lienzo que la resuelve. Cada opción puede usarse una vez o ninguna.",
+    "scenario": "Los técnicos de mantenimiento de Wide World Importers registran las averías en una aplicación de lienzo conectada a una lista de Microsoft Lists. La usan en sus teléfonos Android e iOS.",
+    "prompt": "Empareja cada necesidad con el control de la aplicación de lienzo que la resuelve. Cada opción puede usarse una vez o ninguna.",
     "prompts": [
       {
         "id": "m1",
-        "text": "Leer el código QR de la etiqueta de cada paquete",
+        "text": "Grabar una nota de voz con la descripción de la avería",
         "answerId": "c1",
-        "explanation": "El lector de códigos de barras abre un escáner nativo en Android, iOS y Windows y lee códigos de barras, códigos QR y códigos de matriz de datos."
+        "explanation": "El control Micrófono captura audio con el micrófono del dispositivo, si el usuario lo autoriza. La última grabación queda en su propiedad Audio, que puede reproducirse con el control Audio o guardarse."
       },
       {
         "id": "m2",
-        "text": "Recoger en la pantalla la firma del cliente al entregar",
+        "text": "Subir el manual del equipo en PDF al elemento de la lista y descargar los archivos que ya tiene",
         "answerId": "c2",
-        "explanation": "El control de entrada de lápiz permite dibujar y escribir sobre la pantalla, por lo que se usa para capturar firmas. Conviene ofrecer también una alternativa accesible por teclado."
+        "explanation": "El control Datos adjuntos permite abrir, agregar y eliminar archivos de un elemento de Microsoft Lists o de una fila de Dataverse. El control clásico se usa dentro de un formulario."
       },
       {
         "id": "m3",
-        "text": "Registrar la latitud y la longitud del punto de entrega",
+        "text": "Reproducir dentro de la app el vídeo de formación que explica la reparación",
         "answerId": "c3",
-        "explanation": "La señal Location devuelve la ubicación del dispositivo (Latitude, Longitude…) a partir del GPS y de otra información del dispositivo."
+        "explanation": "El control Vídeo reproduce un archivo de vídeo, un vídeo de YouTube u otro origen externo, y puede mostrar subtítulos."
       },
       {
         "id": "m4",
-        "text": "Adjuntar la foto de un albarán que el repartidor ya tiene guardada en el teléfono",
+        "text": "Adjuntar una foto de la avería que el técnico ya tiene guardada en el teléfono",
         "answerId": "c4",
-        "explanation": "El control Agregar imagen permite tomar una foto o elegir una imagen ya guardada en el dispositivo. El control Cámara solo captura fotos nuevas."
+        "explanation": "Agregar imagen permite tomar una foto o elegir una imagen ya guardada en el dispositivo. El control Cámara solo captura fotos nuevas y el control Imagen solo muestra imágenes."
       }
     ],
     "choices": [
-      { "id": "c1", "text": "Lector de códigos de barras (*Barcode reader*)" },
-      { "id": "c2", "text": "Entrada de lápiz (*Pen input*)" },
-      { "id": "c3", "text": "Señal Location (ubicación)" },
+      { "id": "c1", "text": "Micrófono (*Microphone*)" },
+      { "id": "c2", "text": "Datos adjuntos (*Attachments*)" },
+      { "id": "c3", "text": "Vídeo (*Video*)" },
       { "id": "c4", "text": "Agregar imagen (*Add picture*)" },
       { "id": "c5", "text": "Cámara (*Camera*)" },
-      { "id": "c6", "text": "Temporizador (*Timer*)" }
+      { "id": "c6", "text": "Imagen (*Image*)" }
     ],
-    "keyPoint": "Las apps de lienzo aprovechan el dispositivo: lector de códigos de barras, entrada de lápiz para firmas, Location para el GPS y Agregar imagen para fotos nuevas o guardadas.",
+    "keyPoint": "Controles multimedia de lienzo: Micrófono graba audio, Datos adjuntos sube y descarga archivos de una lista o tabla, Vídeo reproduce vídeos y Agregar imagen toma o elige fotos.",
     "references": [
       {
-        "title": "Control lector de códigos de barras en Power Apps",
-        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/controls/control-barcodereader"
+        "title": "Control Micrófono en Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/controls/control-microphone"
       },
       {
-        "title": "Señales Acceleration, App, Compass, Connection y Location",
-        "url": "https://learn.microsoft.com/es-es/power-platform/power-fx/reference/signals"
+        "title": "Control Datos adjuntos en Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/controls/control-attachments"
+      },
+      {
+        "title": "Control Agregar imagen en aplicaciones de lienzo",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/controls/control-add-picture"
+      },
+      {
+        "title": "Controles Audio y Vídeo en Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/controls/control-audio-video"
       }
     ]
   },
@@ -387,7 +395,7 @@
     "references": [
       {
         "title": "Crear una aplicación de lienzo basada en datos de Excel",
-        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/connections/connection-excel"
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/get-started-create-from-blank"
       }
     ]
   },
@@ -671,52 +679,45 @@
   },
   {
     "id": "pl900-d3-modelos-102",
-    "type": "match",
+    "type": "single",
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d3",
     "skill": "d3-modelos",
-    "difficulty": 3,
-    "prompt": "En una aplicación basada en modelos, empareja cada descripción con el tipo de vista al que corresponde. Cada opción puede usarse una vez o ninguna.",
-    "prompts": [
+    "difficulty": 2,
+    "scenario": "El equipo de Proseware ha creado sin código una aplicación basada en modelos para gestionar sus equipos industriales. Ahora quiere que, en el formulario de cada equipo, la columna numérica Nivel de carga se muestre como un dial interactivo que el usuario pueda girar, en lugar del cuadro numérico estándar. Se encargará un desarrollador profesional, que quiere reutilizar el dial en otras tablas y también en aplicaciones de lienzo.",
+    "prompt": "¿Qué debe crear el desarrollador?",
+    "options": [
       {
-        "id": "m1",
-        "text": "Define en qué columnas se busca cuando el usuario escribe en el cuadro de búsqueda de la cuadrícula",
-        "answerId": "c1",
-        "explanation": "La vista de búsqueda rápida (*Quick Find*) es la que se usa al buscar y define las columnas en las que se busca."
+        "id": "a",
+        "text": "Un componente de código con Power Apps component framework (PCF)",
+        "correct": true,
+        "explanation": "Los componentes de código permiten, por ejemplo, sustituir una columna numérica de un formulario por un dial o un control deslizante. Se reutilizan en distintas tablas y formularios, y también en aplicaciones de lienzo."
       },
       {
-        "id": "m2",
-        "text": "Muestra las filas entre las que el usuario elige al rellenar una columna de búsqueda (*lookup*)",
-        "answerId": "c2",
-        "explanation": "La vista de búsqueda (*Lookup*) es la que aparece al seleccionar un registro para una columna de búsqueda, como el cliente de un pedido."
+        "id": "b",
+        "text": "Una regla de negocio que cambie la forma de mostrar la columna",
+        "correct": false,
+        "explanation": "Las reglas de negocio establecen valores, validan datos o muestran y ocultan columnas; no cambian el control visual con el que se muestra una columna."
       },
       {
-        "id": "m3",
-        "text": "Muestra las filas relacionadas de un registro, por ejemplo los contactos de una cuenta",
-        "answerId": "c3",
-        "explanation": "La vista asociada es la vista predeterminada que muestra la lista de filas relacionadas de un registro."
+        "id": "c",
+        "text": "Un componente de una biblioteca de componentes de lienzo",
+        "correct": false,
+        "explanation": "Las bibliotecas de componentes reutilizan componentes creados con Power Fx entre aplicaciones de lienzo; no sustituyen el control de una columna en el formulario de una app basada en modelos."
       },
       {
-        "id": "m4",
-        "text": "Aparece en el selector de vistas para todos los usuarios y puede usarse en subcuadrículas y paneles",
-        "answerId": "c4",
-        "explanation": "Las vistas públicas son de uso general: todos los usuarios las ven en el selector de vistas y se pueden usar en subcuadrículas o como listas en un panel. Las vistas del sistema no."
+        "id": "d",
+        "text": "Una columna de fórmula de Power Fx para el Nivel de carga",
+        "correct": false,
+        "explanation": "Una columna de fórmula calcula su valor a partir de otras columnas; no cambia cómo ve o edita el usuario el dato."
       }
     ],
-    "choices": [
-      { "id": "c1", "text": "Vista de búsqueda rápida" },
-      { "id": "c2", "text": "Vista de búsqueda" },
-      { "id": "c3", "text": "Vista asociada" },
-      { "id": "c4", "text": "Vista pública" },
-      { "id": "c5", "text": "Vista personal" },
-      { "id": "c6", "text": "Vista de búsqueda avanzada" }
-    ],
-    "keyPoint": "Vistas del sistema con fines concretos (búsqueda rápida, búsqueda, asociada, búsqueda avanzada) frente a vistas públicas, que todos eligen en el selector, y personales.",
+    "keyPoint": "Para ampliar con código la interfaz de las apps basadas en modelos y de lienzo con controles propios y reutilizables, los desarrolladores crean componentes de código con Power Apps component framework.",
     "references": [
       {
-        "title": "Comprender las vistas de aplicaciones basadas en modelos",
-        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/create-edit-views"
+        "title": "Información general de Power Apps component framework",
+        "url": "https://learn.microsoft.com/es-es/power-apps/developer/component-framework/overview"
       }
     ]
   },
@@ -1006,55 +1007,49 @@
   },
   {
     "id": "pl900-d3-modelos-109",
-    "type": "multiple",
+    "type": "yesno",
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d3",
     "skill": "d3-modelos",
     "difficulty": 2,
-    "scenario": "Una comercial de Tailspin Toys usa una aplicación basada en modelos. No es creadora ni administradora, pero su rol de seguridad le permite leer y crear filas de la tabla Cliente. Quiere trabajar con esos datos en Excel.",
-    "prompt": "¿Qué dos acciones puede hacer ella misma desde la barra de comandos de la cuadrícula de Clientes? Selecciona dos.",
-    "options": [
+    "scenario": "Los comerciales de Tailspin Toys usan una aplicación basada en modelos. No son creadores ni administradores, pero quieren seguir sus oportunidades con gráficos y paneles.",
+    "prompt": "Indica si cada afirmación es verdadera.",
+    "statements": [
       {
-        "id": "a",
-        "text": "Exportar las filas de la vista a un libro de Excel",
-        "correct": true,
-        "explanation": "El comando Exportar a Excel descarga las filas de la vista actual en un libro, con el mismo formato que se ve en la app."
+        "id": "s1",
+        "text": "Cada comercial puede crear sus propios paneles personales (Mis paneles) con gráficos, sin que intervenga un creador.",
+        "answer": true,
+        "explanation": "Los paneles personales los crea el propio usuario desde la app y solo los ve él, salvo que los comparta, si su rol de seguridad le permite compartir."
       },
       {
-        "id": "b",
-        "text": "Agregar una columna nueva a la tabla Cliente de Dataverse",
-        "correct": false,
-        "explanation": "Cambiar el esquema de una tabla es tarea de un creador o personalizador en Power Apps, no algo que se haga desde la cuadrícula de la app."
+        "id": "s2",
+        "text": "Los gráficos y paneles del sistema solo los ve quien los creó hasta que los comparte con cada usuario.",
+        "answer": false,
+        "explanation": "Los gráficos y paneles del sistema los crea un administrador o un creador y, de forma predeterminada, están disponibles para todos los usuarios."
       },
       {
-        "id": "c",
-        "text": "Cambiar la vista pública predeterminada para todos los usuarios",
-        "correct": false,
-        "explanation": "Las vistas públicas las crea y edita el creador o personalizador. La usuaria puede crear vistas personales, pero no cambiar las de todos."
+        "id": "s3",
+        "text": "Si muestras un gráfico junto a la cuadrícula de una vista, los filtros que apliques a la cuadrícula también filtran el gráfico.",
+        "answer": true,
+        "explanation": "Cuando el gráfico se muestra junto a la cuadrícula, el filtro que eliges en la cuadrícula se aplica a la vez a la cuadrícula y al gráfico."
       },
       {
-        "id": "d",
-        "text": "Importar clientes nuevos desde una plantilla de Excel descargada de la app",
-        "correct": true,
-        "explanation": "Desde la barra de comandos puede descargar una plantilla de Excel, rellenarla y usar Importar desde Excel para crear filas, siempre que su rol se lo permita."
-      },
-      {
-        "id": "e",
-        "text": "Modificar el mapa del sitio para añadir otra tabla al menú",
-        "correct": false,
-        "explanation": "El mapa del sitio se edita en el diseñador de aplicaciones, que requiere permisos de creador o personalizador."
+        "id": "s4",
+        "text": "Al compartir un panel personal, los gráficos personales que contiene se comparten automáticamente con él.",
+        "answer": false,
+        "explanation": "Los gráficos y las vistas personales tienen sus propios permisos, así que el propietario debe compartirlos de forma explícita."
       }
     ],
-    "keyPoint": "Desde la cuadrícula de una app basada en modelos, los usuarios pueden exportar datos a Excel e importarlos desde una plantilla, si su rol lo permite.",
+    "keyPoint": "Gráficos y paneles del sistema: los crea un administrador o creador para todos. Personales: los crea cada usuario y los comparte si quiere, con sus gráficos y vistas por separado.",
     "references": [
       {
-        "title": "Exportar datos a Excel",
-        "url": "https://learn.microsoft.com/es-es/power-apps/user/export-data-excel"
+        "title": "Seguimiento del progreso con paneles y gráficos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/user/track-your-progress-with-dashboard-and-charts"
       },
       {
-        "title": "Cómo importar datos",
-        "url": "https://learn.microsoft.com/es-es/power-apps/user/import-data"
+        "title": "Ver gráficos en una página o en una fila",
+        "url": "https://learn.microsoft.com/es-es/power-apps/user/chart_on_form"
       }
     ]
   },
