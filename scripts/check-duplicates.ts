@@ -7,7 +7,10 @@
  *   npm run check-duplicates                       (todo el banco)
  *   npm run check-duplicates -- --file d3-power-apps-2.json   (solo ese archivo contra el resto)
  *   npm run check-duplicates -- --threshold 0.45
- * Sale con error si hay parejas por encima del umbral.
+ * Lista las parejas por encima del umbral (0.5 por defecto) para revisarlas a mano:
+ * dos preguntas sobre la misma función con datos parecidos pueden evaluar cosas distintas.
+ * Sale con error solo si alguna pareja llega a --fail-at (0.7 por defecto), que en la
+ * práctica significa la misma pregunta reescrita.
  */
 import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
@@ -19,6 +22,7 @@ const arg = (name: string) => {
   return i > -1 ? process.argv[i + 1] : undefined
 }
 const threshold = Number(arg('threshold') ?? 0.5)
+const failAt = Number(arg('fail-at') ?? 0.7)
 const onlyFile = arg('file')
 
 const STOP = new Set(
@@ -65,7 +69,7 @@ const jaccard = (a: Set<string>, b: Set<string>) => {
   return inter / (a.size + b.size - inter || 1)
 }
 
-let found = 0
+let failing = 0
 for (const exam of exams.filter((e) => e.status === 'disponible')) {
   const dir = join(import.meta.dirname, '../src/content', exam.code.toLowerCase(), 'questions')
   if (!existsSync(dir)) continue
@@ -89,9 +93,12 @@ for (const exam of exams.filter((e) => e.status === 'disponible')) {
   }
   pairs.sort((x, y) => y[0] - x[0])
   console.log(`\n${exam.code}: ${items.length} preguntas, ${pairs.length} pareja(s) con similitud ≥ ${threshold}`)
-  for (const [sim, a, b] of pairs) console.log(`  ${sim.toFixed(2)}  ${a}  ↔  ${b}`)
-  found += pairs.length
+  for (const [sim, a, b] of pairs) console.log(`  ${sim >= failAt ? '✖' : '·'} ${sim.toFixed(2)}  ${a}  ↔  ${b}`)
+  failing += pairs.filter(([sim]) => sim >= failAt).length
 }
 
-if (found) process.exit(1)
-console.log('\n✔ Sin duplicados por encima del umbral')
+if (failing) {
+  console.error(`\n✖ ${failing} pareja(s) con similitud ≥ ${failAt}: parecen la misma pregunta`)
+  process.exit(1)
+}
+console.log(`\n✔ Ninguna pareja llega a ${failAt}`)

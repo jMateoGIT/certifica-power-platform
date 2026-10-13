@@ -23,8 +23,9 @@ valida automáticamente con `npm run validate` (esquema en `src/content/schema.t
 6. **Sin duplicados.** Cada pregunta evalúa un concepto o una decisión distinta. Cambiar
    la redacción o el nombre de la empresa no la convierte en otra pregunta.
    `npm run check-duplicates` compara el escenario, el enunciado y las respuestas correctas
-   de cada pareja de preguntas del mismo examen y falla en CI si se parecen demasiado
-   (`-- --file archivo.json --threshold 0.4` para revisar un archivo nuevo con más rigor).
+   de cada pareja de preguntas del mismo examen. Lista las parejas parecidas (≥ 0,5) para
+   revisarlas a mano y falla en CI si alguna llega a 0,7, es decir, la misma pregunta
+   reescrita (`-- --file archivo.json --threshold 0.4` para revisar un archivo nuevo con más rigor).
 
 ## Estilo
 
