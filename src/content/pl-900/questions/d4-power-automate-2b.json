@@ -1,0 +1,1033 @@
+[
+  {
+    "id": "pl900-d4-conectores-101",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "difficulty": 2,
+    "scenario": "En Distribuciones Turia los empleados registran sus gastos en una lista de SharePoint. Un flujo de nube automatizado con el desencadenador «Cuando se crea un elemento» empieza con una condición que comprueba si el importe supera 1.000 €; si no lo supera, no hace nada. El historial de ejecuciones está lleno de ejecuciones que no realizan ninguna acción y el responsable quiere que el flujo ni siquiera se inicie con los gastos pequeños.",
+    "prompt": "¿Qué debes configurar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "El control de simultaneidad del desencadenador, limitado a una ejecución a la vez",
+        "correct": false,
+        "explanation": "El control de simultaneidad solo limita cuántas ejecuciones se procesan a la vez y pone el resto en cola; el flujo se seguiría ejecutando con cada gasto."
+      },
+      {
+        "id": "b",
+        "text": "Una condición del desencadenador (*trigger condition*) en su configuración que compruebe que el importe es mayor que 1.000",
+        "correct": true,
+        "explanation": "La condición del desencadenador se evalúa antes de iniciar el flujo: si no se cumple, no se crea ninguna ejecución, lo que evita ejecuciones innecesarias."
+      },
+      {
+        "id": "c",
+        "text": "Una directiva de reintentos exponencial en la primera acción del flujo",
+        "correct": false,
+        "explanation": "La directiva de reintentos sirve para recuperarse de errores transitorios de una acción; no decide si el flujo debe iniciarse."
+      },
+      {
+        "id": "d",
+        "text": "Mover la condición actual dentro de un ámbito (*scope*) al principio del flujo",
+        "correct": false,
+        "explanation": "Un ámbito solo agrupa acciones; la condición seguiría evaluándose después de que el flujo ya se haya iniciado y contaría como ejecución."
+      }
+    ],
+    "keyPoint": "Una condición de acción decide qué hace el flujo una vez iniciado; una condición del desencadenador evita que el flujo se inicie.",
+    "references": [
+      {
+        "title": "Optimizar los desencadenadores de Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/guidance/coding-guidelines/optimize-power-automate-triggers"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-conectores-102",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "difficulty": 3,
+    "prompt": "Los desencadenadores de los conectores pueden ser de sondeo (*polling*) o de webhook. Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Un desencadenador de sondeo consulta periódicamente el servicio para comprobar si se ha producido el evento, como un registro nuevo en SQL Server.",
+        "answer": true,
+        "explanation": "El desencadenador de sondeo comprueba el servicio cada cierto intervalo y recupera los registros nuevos o modificados desde la última comprobación."
+      },
+      {
+        "id": "s2",
+        "text": "Un desencadenador de webhook también comprueba el servicio cada pocos minutos, por eso el flujo tarda en iniciarse después del evento.",
+        "answer": false,
+        "explanation": "El desencadenador de webhook se registra en el servicio y es este quien avisa a Power Automate en cuanto ocurre el evento, sin consultas periódicas."
+      },
+      {
+        "id": "s3",
+        "text": "Si reactivas un flujo con desencadenador de sondeo que estuvo desactivado, procesa los eventos pendientes que se produjeron mientras estaba desactivado.",
+        "answer": true,
+        "explanation": "Desactivar el flujo solo pausa el sondeo; al reactivarlo, el desencadenador consulta todo lo ocurrido desde la marca de tiempo del último sondeo."
+      },
+      {
+        "id": "s4",
+        "text": "Si reactivas un flujo con desencadenador de webhook, también procesa los eventos que se produjeron mientras estaba desactivado.",
+        "answer": false,
+        "explanation": "Con un desencadenador de webhook, al reactivar el flujo solo se procesan los eventos nuevos que se generan a partir de ese momento."
+      }
+    ],
+    "keyPoint": "Sondeo: Power Automate pregunta cada cierto tiempo y recupera lo pendiente. Webhook: el servicio avisa al instante y solo cuentan los eventos nuevos.",
+    "references": [
+      {
+        "title": "Optimizar los desencadenadores de Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/guidance/coding-guidelines/optimize-power-automate-triggers"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-conectores-103",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "difficulty": 2,
+    "scenario": "Traducciones Atlas envía cada documento nuevo a un servicio externo de traducción mediante un conector. El servicio tarda un tiempo variable y ofrece una acción que devuelve el estado del trabajo. Dentro del mismo flujo de nube, hay que consultar el estado cada diez minutos y, solo cuando sea «Completado», descargar la traducción.",
+    "prompt": "¿Qué elemento de control debes usar para repetir la consulta?",
+    "options": [
+      {
+        "id": "a",
+        "text": "«Aplicar a cada uno» (*Apply to each*) sobre la salida de la acción de estado",
+        "correct": false,
+        "explanation": "«Aplicar a cada uno» recorre una vez cada elemento de una matriz que ya existe; no repite pasos mientras se espera a que cambie un valor."
+      },
+      {
+        "id": "b",
+        "text": "Una condición que compruebe si el estado es «Completado»",
+        "correct": false,
+        "explanation": "Una condición evalúa el valor una sola vez: si el trabajo aún no ha terminado, el flujo no vuelve a comprobarlo."
+      },
+      {
+        "id": "c",
+        "text": "Un bucle *Do until* (Hasta) con la acción de estado y un retraso de diez minutos, que termina cuando el estado es «Completado»",
+        "correct": true,
+        "explanation": "*Do until* repite sus acciones hasta que se cumple la condición indicada, con un límite de iteraciones y de tiempo para no quedarse en bucle indefinidamente."
+      },
+      {
+        "id": "d",
+        "text": "Una condición del desencadenador que espere a que el estado sea «Completado»",
+        "correct": false,
+        "explanation": "La condición del desencadenador solo decide si el flujo se inicia; no puede esperar a que cambie el estado de un trabajo ya enviado."
+      }
+    ],
+    "keyPoint": "«Aplicar a cada uno» recorre una lista; *Do until* repite pasos hasta que se cumple una condición, como esperar a que cambie un estado.",
+    "references": [
+      {
+        "title": "Agregar bucles para repetir acciones (For each y Until)",
+        "url": "https://learn.microsoft.com/es-es/azure/logic-apps/logic-apps-control-flow-loops"
+      },
+      {
+        "title": "Límites de los flujos de nube",
+        "url": "https://learn.microsoft.com/es-es/power-automate/limits-and-config"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-conectores-104",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "difficulty": 2,
+    "scenario": "Un flujo de nube de Mutua Cierzo debe enviar cada solicitud a un equipo distinto según el valor de la columna Departamento (Compras, Recursos Humanos o TI). Además, las solicitudes de más de 5.000 € necesitan una revisión adicional.",
+    "prompt": "Completa la frase.",
+    "template": "Para ejecutar una ruta distinta según el valor de Departamento usas {{b1}}; las solicitudes cuyo departamento no coincide con ninguno de los valores previstos siguen {{b2}}; y para comprobar si el importe es mayor que 5.000 € usas {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "la acción de control *Switch*, con un caso por departamento" },
+          { "id": "o2", "text": "un bucle «Aplicar a cada uno» sobre los departamentos" },
+          { "id": "o3", "text": "un ámbito (*scope*) por departamento" }
+        ],
+        "correctId": "o1",
+        "explanation": "*Switch* evalúa un valor y ejecuta solo el caso que coincide, lo que evita anidar varias condiciones. Un bucle o un ámbito no eligen una ruta según un valor."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "la rama «Si no» de cada caso" },
+          { "id": "o2", "text": "el caso predeterminado (*Default*) del *Switch*" },
+          { "id": "o3", "text": "ninguna ruta, porque el flujo termina con error" }
+        ],
+        "correctId": "o2",
+        "explanation": "El caso predeterminado se ejecuta cuando el valor no coincide con ningún caso; los casos de *Switch* no tienen rama «Si no» y el flujo no falla por no coincidir."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "otro caso del *Switch* con el valor «> 5000»" },
+          { "id": "o2", "text": "una acción «Inicializar variable»" },
+          { "id": "o3", "text": "una condición (*Condition*) con el operador «es mayor que»" }
+        ],
+        "correctId": "o3",
+        "explanation": "*Switch* solo compara por igualdad con valores fijos; para comparaciones como «mayor que» necesitas una condición. Una variable solo guarda valores."
+      }
+    ],
+    "keyPoint": "*Switch* = varias rutas según un valor exacto, con caso predeterminado; condición = comparaciones como «mayor que» con rama Sí/No.",
+    "references": [
+      {
+        "title": "Agregar acciones switch a flujos de trabajo",
+        "url": "https://learn.microsoft.com/es-es/azure/logic-apps/logic-apps-control-flow-switch-statement"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-conectores-105",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "difficulty": 1,
+    "prompt": "Empareja cada necesidad de un flujo de nube con la acción de operación de datos (*Data operation*) que la resuelve. Una de las opciones no se usa.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Guardar el resultado de una expresión para reutilizarlo en varias acciones posteriores",
+        "answerId": "c1",
+        "explanation": "«Redactar» (*Compose*) crea una salida a partir de una o varias entradas, incluidas expresiones, y esa salida se puede reutilizar sin repetir la expresión."
+      },
+      {
+        "id": "m2",
+        "text": "Quedarte solo con los pedidos de una matriz cuyo importe supera 1.000 €",
+        "answerId": "c2",
+        "explanation": "«Filtrar matriz» (*Filter array*) reduce la matriz a los objetos que cumplen un criterio, sin cambiar la forma de cada objeto."
+      },
+      {
+        "id": "m3",
+        "text": "Transformar cada objeto de una matriz de empleados para conservar solo el nombre y el correo",
+        "answerId": "c3",
+        "explanation": "«Seleccionar» (*Select*) cambia la forma de cada objeto de la matriz; puede quitar o añadir propiedades, pero no cambia el número de objetos."
+      },
+      {
+        "id": "m4",
+        "text": "Convertir una matriz de pedidos en una tabla para incluirla en el cuerpo de un correo",
+        "answerId": "c4",
+        "explanation": "«Crear tabla HTML» (*Create HTML table*) convierte una matriz en una tabla HTML con encabezados, lista para el cuerpo de un correo."
+      },
+      {
+        "id": "m5",
+        "text": "Convertir una matriz de direcciones de correo en una sola cadena separada por punto y coma",
+        "answerId": "c5",
+        "explanation": "«Unir» (*Join*) junta todos los elementos de una matriz en una cadena con el separador que elijas, como el punto y coma."
+      }
+    ],
+    "choices": [
+      { "id": "c1", "text": "Redactar (*Compose*)" },
+      { "id": "c2", "text": "Filtrar matriz (*Filter array*)" },
+      { "id": "c3", "text": "Seleccionar (*Select*)" },
+      { "id": "c4", "text": "Crear tabla HTML (*Create HTML table*)" },
+      { "id": "c5", "text": "Unir (*Join*)" },
+      { "id": "c6", "text": "Analizar JSON (*Parse JSON*)" }
+    ],
+    "keyPoint": "Operaciones de datos: Redactar guarda un valor, Filtrar matriz quita elementos, Seleccionar cambia su forma, Unir los junta en un texto y Crear tabla HTML los presenta en una tabla.",
+    "references": [
+      {
+        "title": "Usar operaciones de datos",
+        "url": "https://learn.microsoft.com/es-es/power-automate/data-operations"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-conectores-106",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "difficulty": 2,
+    "scenario": "Un flujo programado de Hierros del Bierzo recorre con «Aplicar a cada uno» las facturas de una lista y debe enviar al final un correo con el número de facturas vencidas que ha encontrado. Para contarlas, quieres usar una variable.",
+    "prompt": "¿Qué dos afirmaciones sobre las variables en este flujo son correctas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Debes agregar «Inicializar variable» en el nivel superior del flujo, fuera del bucle, las condiciones y los ámbitos",
+        "correct": true,
+        "explanation": "Las variables solo pueden declararse a nivel global del flujo; «Inicializar variable» no se puede colocar dentro de bucles, condiciones ni ámbitos."
+      },
+      {
+        "id": "b",
+        "text": "Una vez creada, la variable está disponible en los demás flujos del mismo entorno",
+        "correct": false,
+        "explanation": "Las variables son globales solo dentro del flujo que las crea; otros flujos no pueden leerlas."
+      },
+      {
+        "id": "c",
+        "text": "La variable conserva su valor entre iteraciones, así que puedes usar «Incrementar variable» dentro del bucle para contar",
+        "correct": true,
+        "explanation": "El valor persiste en todas las iteraciones del bucle, por lo que «Incrementar variable» va sumando en cada factura vencida."
+      },
+      {
+        "id": "d",
+        "text": "Si activas las iteraciones en paralelo del bucle, el recuento será más rápido y siempre igual de exacto",
+        "correct": false,
+        "explanation": "Con iteraciones en paralelo, las variables del bucle pueden dar resultados impredecibles; si importa el resultado, el bucle debe ejecutarse de forma secuencial."
+      },
+      {
+        "id": "e",
+        "text": "Puedes cambiar el tipo de la variable de entero a cadena con «Establecer variable»",
+        "correct": false,
+        "explanation": "El tipo de datos se declara al inicializar la variable; «Establecer variable» asigna un valor nuevo del mismo tipo, no cambia el tipo."
+      }
+    ],
+    "keyPoint": "Variables de un flujo de nube: se inicializan a nivel global, viven solo en ese flujo y mantienen su valor entre iteraciones (cuidado con los bucles en paralelo).",
+    "references": [
+      {
+        "title": "Almacenar y administrar valores en variables",
+        "url": "https://learn.microsoft.com/es-es/power-automate/create-variable-store-values"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-conectores-107",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "difficulty": 3,
+    "scenario": "Un flujo de nube de Laboratorios Duna actualiza varias filas de Dataverse. Si cualquiera de esas acciones falla, hay que avisar al equipo de soporte con el nombre del flujo y el identificador de la ejecución, y la ejecución debe quedar marcada como errónea en el historial. Para ello usas el patrón *try-catch* con ámbitos.",
+    "prompt": "Ordena los elementos del flujo en el orden en que se ejecutan cuando una de las actualizaciones falla.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Ámbito «Intentar» (*Try*), que agrupa las acciones de actualización de Dataverse",
+        "explanation": "Primero se ejecutan las acciones principales agrupadas en un ámbito; si una de ellas falla, el ámbito completo termina con error."
+      },
+      {
+        "id": "p2",
+        "text": "Ámbito «Capturar» (*Catch*), configurado en «Ejecutar después» (*Run after*) para ejecutarse solo si «Intentar» ha fallado o ha agotado el tiempo de espera",
+        "explanation": "La configuración «Ejecutar después» hace que este ámbito se ejecute únicamente cuando el anterior falla, en lugar de cuando termina correctamente."
+      },
+      {
+        "id": "p3",
+        "text": "Acción de correo, dentro de «Capturar», que envía al soporte el nombre del flujo y el identificador de ejecución obtenidos con la función workflow()",
+        "explanation": "Dentro del ámbito de captura se registra o notifica el error; workflow() devuelve datos de la ejecución, como el nombre del flujo y el identificador de ejecución."
+      },
+      {
+        "id": "p4",
+        "text": "Acción «Terminar» (*Terminate*) con el estado «Con errores» (*Failed*)",
+        "explanation": "Va al final porque detiene el flujo: marca la ejecución como errónea para que el fallo se vea en el historial aunque el error se haya gestionado."
+      }
+    ],
+    "keyPoint": "Patrón try-catch: ámbito Intentar → ámbito Capturar con «Ejecutar después» en caso de error → notificar → Terminar con estado de error.",
+    "references": [
+      {
+        "title": "Emplear un control de errores sólido",
+        "url": "https://learn.microsoft.com/es-es/power-automate/guidance/coding-guidelines/error-handling"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-conectores-108",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "difficulty": 2,
+    "scenario": "Un flujo de nube crea una tarea de revisión cada vez que se firma un contrato. La columna Vencimiento de la tarea debe contener la fecha de dentro de 30 días con el formato dd/MM/yyyy.",
+    "prompt": "¿Qué expresión debes escribir en el editor de expresiones (*fx*) del campo Vencimiento?",
+    "options": [
+      {
+        "id": "a",
+        "text": "formatDateTime(utcNow(), 'dd/MM/yyyy') + 30",
+        "correct": false,
+        "explanation": "El lenguaje de expresiones de los flujos no usa el operador + para sumar días a una fecha; las operaciones se hacen con funciones como addDays()."
+      },
+      {
+        "id": "b",
+        "text": "addDays(utcNow(), -30, 'dd/MM/yyyy')",
+        "correct": false,
+        "explanation": "Con un número negativo, addDays() resta días: devolvería la fecha de hace 30 días, no la de dentro de 30 días."
+      },
+      {
+        "id": "c",
+        "text": "formatDateTime(addHours(utcNow(), 30), 'dd/MM/yyyy')",
+        "correct": false,
+        "explanation": "addHours() suma horas, no días: el resultado sería la fecha de dentro de 30 horas (mañana o pasado mañana)."
+      },
+      {
+        "id": "d",
+        "text": "formatDateTime(addDays(utcNow(), 30), 'dd/MM/yyyy')",
+        "correct": true,
+        "explanation": "utcNow() devuelve la fecha y hora actual (en UTC), addDays() le suma 30 días y formatDateTime() aplica el formato dd/MM/yyyy."
+      }
+    ],
+    "keyPoint": "Fechas en expresiones: utcNow() da el momento actual en UTC, addDays() suma o resta días y formatDateTime() aplica el formato.",
+    "references": [
+      {
+        "title": "Guía de referencia de las funciones de expresión",
+        "url": "https://learn.microsoft.com/es-es/azure/logic-apps/expression-functions-reference"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-conectores-109",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "difficulty": 2,
+    "scenario": "Elena ha creado en Viajes Meridiano un flujo instantáneo que los 30 comerciales lanzan sobre un elemento de una lista de SharePoint para enviar la oferta al cliente por correo. Cada correo debe salir del buzón del comercial que lanza el flujo, no del de Elena. Los comerciales no deben poder editar el flujo y Elena no quiere mantener 30 copias.",
+    "prompt": "¿Qué debe hacer Elena?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agregar a los comerciales como copropietarios del flujo",
+        "correct": false,
+        "explanation": "Los copropietarios pueden editar el flujo, algo que no se quiere, y el flujo seguiría usando las conexiones ya insertadas en él."
+      },
+      {
+        "id": "b",
+        "text": "Compartirlo con permisos de solo ejecución e indicar que la conexión de Outlook la proporcione cada usuario que lo ejecuta",
+        "correct": true,
+        "explanation": "En los flujos instantáneos, el propietario elige para cada conexión si los usuarios de solo ejecución aportan la suya o usan la del flujo; así cada correo sale del buzón de quien lo lanza."
+      },
+      {
+        "id": "c",
+        "text": "Compartirlo con permisos de solo ejecución manteniendo la conexión de Outlook que ya usa el flujo",
+        "correct": false,
+        "explanation": "Si se usa la conexión definida en el flujo, todos los correos se enviarían con la cuenta de Elena, que es justo lo que se quiere evitar."
+      },
+      {
+        "id": "d",
+        "text": "Enviar una copia del flujo a cada comercial para que la use como plantilla",
+        "correct": false,
+        "explanation": "Enviar una copia crea flujos independientes que cada comercial podría editar y que habría que mantener por separado."
+      }
+    ],
+    "keyPoint": "Flujos instantáneos compartidos con solo ejecución: el propietario decide si cada conexión es la del flujo o la que aporta el usuario que lo ejecuta.",
+    "references": [
+      {
+        "title": "Compartir un flujo de nube",
+        "url": "https://learn.microsoft.com/es-es/power-automate/create-team-flows"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-conectores-110",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "difficulty": 3,
+    "prompt": "Indica si cada afirmación sobre las licencias que necesitan los flujos de nube que usan conectores es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Si un flujo programado usa un conector premium, solo su propietario necesita una licencia que incluya conectores premium.",
+        "answer": true,
+        "explanation": "Los flujos automatizados y programados se ejecutan siempre en el contexto del propietario, así que la licencia premium la necesita él."
+      },
+      {
+        "id": "s2",
+        "text": "Si un flujo automatizado con un conector premium se inicia cuando un compañero crea un elemento en SharePoint, ese compañero también necesita una licencia premium.",
+        "answer": false,
+        "explanation": "Quien provoca el evento no ejecuta el flujo: un flujo automatizado se ejecuta en el contexto del propietario, sin importar quién lo desencadene."
+      },
+      {
+        "id": "s3",
+        "text": "Si un flujo instantáneo con un conector premium lo ejecutan varios usuarios, cada uno necesita una licencia premium, salvo que el flujo tenga asignada una licencia de proceso (*Process*).",
+        "answer": true,
+        "explanation": "Los flujos instantáneos se ejecutan en el contexto de quien los invoca; la alternativa a licenciar a cada usuario es asignar una licencia de proceso al flujo."
+      },
+      {
+        "id": "s4",
+        "text": "Un flujo que solo usa los conectores de SharePoint, Office 365 Outlook y Microsoft Teams necesita una licencia Power Automate Premium.",
+        "answer": false,
+        "explanation": "Son conectores estándar: si el flujo no usa ningún conector premium, basta con los derechos de uso que incluye una licencia de Microsoft 365."
+      }
+    ],
+    "keyPoint": "Conector premium: en flujos automatizados y programados lo licencia el propietario; en instantáneos, cada usuario que los ejecuta (o una licencia de proceso para el flujo).",
+    "references": [
+      {
+        "title": "Preguntas frecuentes sobre las licencias de Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/power-automate-licensing/faqs"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-conectores-111",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "difficulty": 3,
+    "scenario": "La lista de SharePoint Incidencias de Ópticas Galicia tiene miles de elementos. Un flujo programado debe enviar cada mañana un recordatorio por cada incidencia cuyo Estado sea «Pendiente», que son solo unas pocas decenas.",
+    "prompt": "¿Cuál es la forma más eficiente de obtener solo esas incidencias?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Usar «Obtener elementos» sin filtro y, dentro de «Aplicar a cada uno», una condición que compruebe el Estado",
+        "correct": false,
+        "explanation": "Funciona, pero trae todos los elementos y ejecuta una condición por cada uno: muchas más acciones y más tiempo de ejecución de lo necesario."
+      },
+      {
+        "id": "b",
+        "text": "Usar «Obtener elementos» y, después, «Filtrar matriz» con el criterio Estado igual a Pendiente",
+        "correct": false,
+        "explanation": "Reduce el bucle posterior, pero el flujo sigue descargando todos los elementos de la lista antes de filtrarlos."
+      },
+      {
+        "id": "c",
+        "text": "Agregar una condición del desencadenador «Periodicidad» que compruebe el Estado",
+        "correct": false,
+        "explanation": "El desencadenador de periodicidad no recibe elementos de la lista, así que no hay ningún Estado que evaluar al iniciarse el flujo."
+      },
+      {
+        "id": "d",
+        "text": "Escribir en la propiedad «Consulta de filtro» (*Filter Query*) de «Obtener elementos» la expresión OData Estado eq 'Pendiente'",
+        "correct": true,
+        "explanation": "La consulta de filtro OData hace que SharePoint devuelva solo los elementos que cumplen el criterio, así el flujo recibe y recorre únicamente las incidencias pendientes."
+      }
+    ],
+    "keyPoint": "Filtra en el origen: la «Consulta de filtro» de «Obtener elementos» evita descargar y recorrer elementos que no necesitas.",
+    "references": [
+      {
+        "title": "Referencia del conector SharePoint",
+        "url": "https://learn.microsoft.com/es-es/connectors/sharepointonline/"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-ia-101",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-ia",
+    "difficulty": 1,
+    "prompt": "Además de crear y modificar flujos, ¿qué dos tareas puede realizar Copilot en los flujos de nube de Power Automate? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Aprobar en tu nombre las solicitudes de aprobación que tienes pendientes",
+        "correct": false,
+        "explanation": "Copilot ayuda a diseñar el flujo; las respuestas a las aprobaciones las da siempre el aprobador desde Teams, Outlook o el centro de aprobaciones."
+      },
+      {
+        "id": "b",
+        "text": "Sugerir una descripción para el flujo cuando editas sus detalles",
+        "correct": true,
+        "explanation": "Al editar la información del flujo, Copilot puede proponer una descripción de lo que hace, lo que facilita documentarlo."
+      },
+      {
+        "id": "c",
+        "text": "Asignar licencias premium a los usuarios que ejecutan el flujo",
+        "correct": false,
+        "explanation": "Las licencias se asignan desde el centro de administración de Microsoft 365 o de Power Platform, no desde Copilot."
+      },
+      {
+        "id": "d",
+        "text": "Responder preguntas sobre el producto, como «¿Cómo accedo a los flujos secundarios?»",
+        "correct": true,
+        "explanation": "Copilot responde tanto preguntas sobre tu flujo como preguntas generales sobre Power Automate, por ejemplo sobre flujos secundarios o licencias."
+      },
+      {
+        "id": "e",
+        "text": "Convertir el flujo de nube en un flujo de escritorio que se ejecute en tu equipo",
+        "correct": false,
+        "explanation": "Copilot no convierte un tipo de flujo en otro; los flujos de escritorio se crean en Power Automate para escritorio."
+      }
+    ],
+    "keyPoint": "Copilot en flujos de nube crea y edita flujos, explica lo que hacen, sugiere su descripción y responde preguntas sobre el producto.",
+    "references": [
+      {
+        "title": "Crear un flujo de nube con Copilot",
+        "url": "https://learn.microsoft.com/es-es/power-automate/create-cloud-flow-using-copilot"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-ia-102",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-ia",
+    "difficulty": 2,
+    "tags": ["preview"],
+    "prompt": "Completa la frase sobre el panel de Copilot del diseñador de Power Automate para escritorio.",
+    "template": "Para preguntar «¿Cómo leo datos de un archivo de Excel?» eliges la habilidad {{b1}}; para que Copilot añada acciones a tu flujo eliges {{b2}}, y Copilot las inserta {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "«Resumir acciones y subflujos»" },
+          { "id": "o2", "text": "«Ayúdame a entender»" },
+          { "id": "o3", "text": "«Agregar un paso»" }
+        ],
+        "correctId": "o2",
+        "explanation": "«Ayúdame a entender» activa las respuestas generativas a preguntas sobre el producto, con un vínculo a la documentación. Resumir explica acciones existentes y Agregar un paso genera acciones."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "«Agregar un paso»" },
+          { "id": "o2", "text": "«Reparar con Copilot»" },
+          { "id": "o3", "text": "«Ayúdame a entender»" }
+        ],
+        "correctId": "o1",
+        "explanation": "Con «Agregar un paso» describes en lenguaje natural lo que falta y Copilot genera las acciones. Reparar con Copilot corrige selectores de interfaz que fallan en ejecución."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "siempre al principio del subflujo Main" },
+          { "id": "o2", "text": "en un flujo nuevo, separado del que estás editando" },
+          { "id": "o3", "text": "al final del flujo o debajo de la acción que tengas seleccionada" }
+        ],
+        "correctId": "o3",
+        "explanation": "Copilot agrega las acciones al final del flujo o justo debajo de la acción seleccionada, dentro del flujo que estás editando."
+      }
+    ],
+    "keyPoint": "Copilot en Power Automate para escritorio tiene habilidades distintas: Ayúdame a entender (preguntas), Agregar un paso (generar acciones) y Resumir acciones y subflujos.",
+    "references": [
+      {
+        "title": "Copilot en Power Automate para escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/copilot-in-power-automate-for-desktop"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-ia-103",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-ia",
+    "difficulty": 2,
+    "tags": ["preview"],
+    "scenario": "Óscar ha descrito a Copilot en Power Automate para escritorio un flujo que busca archivos de Excel en una carpeta, los comprime y los envía por Outlook. El diseñador se abre con el flujo generado y Óscar quiere localizar rápidamente qué acciones ha añadido Copilot para revisarlas antes de ejecutar nada.",
+    "prompt": "¿Cómo identifica esas acciones en el diseñador?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Aparecen en un subflujo nuevo llamado Copilot, separado del subflujo Main",
+        "correct": false,
+        "explanation": "Copilot no crea un subflujo aparte para sus acciones; las coloca en el flujo que se está editando."
+      },
+      {
+        "id": "b",
+        "text": "Solo se ven en el historial de ejecuciones del portal después de ejecutar el flujo por primera vez",
+        "correct": false,
+        "explanation": "Las acciones generadas se ven en el diseñador desde el primer momento, precisamente para que las revises antes de ejecutar el flujo."
+      },
+      {
+        "id": "c",
+        "text": "Están entre dos comentarios que marcan su inicio y su final, agrupadas en regiones según su función",
+        "correct": true,
+        "explanation": "Copilot marca el inicio y el final de lo que genera con comentarios y agrupa las acciones por funcionalidad en regiones, que también se listan en su panel lateral."
+      },
+      {
+        "id": "d",
+        "text": "Quedan desactivadas hasta que las aceptas una a una desde el panel de Copilot",
+        "correct": false,
+        "explanation": "Las acciones generadas no quedan desactivadas a la espera de aprobación; las revisas y ajustas directamente en el diseñador."
+      }
+    ],
+    "keyPoint": "En Power Automate para escritorio, lo que genera Copilot queda delimitado por comentarios de inicio y fin y agrupado en regiones para revisarlo fácilmente.",
+    "references": [
+      {
+        "title": "Copilot en Power Automate para escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/copilot-in-power-automate-for-desktop"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-ia-104",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-ia",
+    "difficulty": 3,
+    "prompt": "Indica si cada afirmación sobre Copilot en el centro de automatización (*automation center*) de Power Automate es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puede responder preguntas en lenguaje natural sobre los elementos de las colas de trabajo, como cuántos incumplen el acuerdo de nivel de servicio (SLA).",
+        "answer": true,
+        "explanation": "Además de los registros de ejecución de flujos de nube y de escritorio, Copilot en el centro de automatización puede consultar los datos de las colas de trabajo."
+      },
+      {
+        "id": "s2",
+        "text": "Convierte la pregunta en una consulta FetchXML sobre Dataverse que se ejecuta con los permisos del usuario, así que solo devuelve datos a los que ya tiene acceso.",
+        "answer": true,
+        "explanation": "La consulta se ejecuta en el contexto de seguridad del usuario actual, de modo que Copilot no expone ejecuciones ni colas que el usuario no podría ver."
+      },
+      {
+        "id": "s3",
+        "text": "Cuando detecta ejecuciones con errores, corrige automáticamente los flujos afectados.",
+        "answer": false,
+        "explanation": "Esta experiencia sirve para recuperar información y analizar la actividad; no modifica los flujos."
+      },
+      {
+        "id": "s4",
+        "text": "Siempre devuelve el resultado como texto; para ver un gráfico tienes que exportar los datos a Power BI.",
+        "answer": false,
+        "explanation": "Copilot elige la visualización más adecuada para el resultado, como una tabla o un gráfico circular, de barras o de líneas."
+      }
+    ],
+    "keyPoint": "Copilot en el centro de automatización responde preguntas sobre ejecuciones y colas de trabajo con datos de Dataverse, respetando los permisos del usuario.",
+    "references": [
+      {
+        "title": "Usar Copilot para analizar la actividad de automatización",
+        "url": "https://learn.microsoft.com/es-es/power-automate/automation-center-copilot"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-ia-105",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-ia",
+    "difficulty": 3,
+    "scenario": "Electrodomésticos Brisa tiene publicado un agente de Copilot Studio que responde dudas sobre sus condiciones de garantía. Quiere un flujo de nube que, al llegar al buzón de soporte un correo con una consulta de garantía, envíe el texto del correo al agente y responda al cliente con la respuesta que este genere.",
+    "prompt": "¿Qué debes agregar al flujo de nube?",
+    "options": [
+      {
+        "id": "a",
+        "text": "La acción «Ejecutar agente» del conector Microsoft Copilot Studio y, a continuación, la respuesta por correo",
+        "correct": false,
+        "explanation": "«Ejecutar agente» envía el mensaje y devuelve solo el identificador de conversación, sin esperar la respuesta del agente que se necesita para contestar al cliente."
+      },
+      {
+        "id": "b",
+        "text": "La acción «Ejecutar agente y esperar» del conector Microsoft Copilot Studio, con el cuerpo del correo como mensaje",
+        "correct": true,
+        "explanation": "Esta acción espera a que el agente conteste y ofrece su última respuesta como contenido dinámico para usarla en la acción de correo siguiente."
+      },
+      {
+        "id": "c",
+        "text": "Una indicación en el panel de Copilot del diseñador que le pida responder cada consulta de garantía",
+        "correct": false,
+        "explanation": "Copilot en el diseñador ayuda a crear y editar el flujo, pero no se ejecuta cuando el flujo procesa cada correo."
+      },
+      {
+        "id": "d",
+        "text": "Un flujo de escritorio que abra Microsoft Teams, escriba la consulta al agente y copie su respuesta",
+        "correct": false,
+        "explanation": "Automatizar la interfaz de Teams sería frágil e innecesario: el conector de Copilot Studio permite llamar al agente directamente desde el flujo de nube."
+      }
+    ],
+    "keyPoint": "Para usar la respuesta de un agente de Copilot Studio en un flujo de nube, llama al agente con «Ejecutar agente y esperar».",
+    "references": [
+      {
+        "title": "Llamar a agentes de Copilot Studio desde Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/call-copilot-studio-agent"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-ia-106",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-ia",
+    "difficulty": 3,
+    "scenario": "Mutua Cierzo usa en un flujo de nube una solicitud (*prompt*) que analiza cada correo de un cliente y devuelve su categoría, su urgencia y un resumen. Ahora la salida es un párrafo de texto, pero el flujo necesita usar la urgencia en una condición y la categoría para elegir el canal de Teams.",
+    "prompt": "¿Qué cambio te permite usar cada dato por separado en el flujo con una sola ejecución de la solicitud?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cambiar la salida de la solicitud a JSON, con un ejemplo que tenga los campos categoría, urgencia y resumen",
+        "correct": true,
+        "explanation": "Con la salida JSON, la solicitud devuelve una estructura con campos fijos y el flujo puede usar cada uno como contenido dinámico independiente."
+      },
+      {
+        "id": "b",
+        "text": "Agregar la acción «Analizar JSON» sobre la salida de texto, sin cambiar la solicitud",
+        "correct": false,
+        "explanation": "La salida de texto es libre y no garantiza un formato JSON válido ni unos campos fijos, así que el análisis fallaría o daría resultados inestables."
+      },
+      {
+        "id": "c",
+        "text": "Sustituir la solicitud por el modelo precompilado de análisis de sentimiento de AI Builder",
+        "correct": false,
+        "explanation": "El análisis de sentimiento indica si un texto es positivo o negativo; no devuelve categoría, urgencia ni resumen."
+      },
+      {
+        "id": "d",
+        "text": "Pedir al panel de Copilot del diseñador que divida el texto en tres variables",
+        "correct": false,
+        "explanation": "Copilot en el diseñador modifica la definición del flujo, pero no cambia el formato de salida de la solicitud ni garantiza separar un texto libre."
+      }
+    ],
+    "keyPoint": "Si necesitas varios datos de una solicitud, elige salida JSON: cada campo llega al flujo como contenido dinámico.",
+    "references": [
+      {
+        "title": "Procesar respuestas con salida JSON",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/process-responses-json-output"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-ia-107",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-ia",
+    "difficulty": 2,
+    "scenario": "Nuria, de Consultora Prisma, quiere que un flujo de nube detecte las tareas pendientes de cada acta de reunión que llega por correo y las publique en un canal de Teams. Todavía no tiene ninguna solicitud (*prompt*) creada y quiere crearla desde el propio diseñador del flujo.",
+    "prompt": "Ordena los pasos que debe seguir en el diseñador.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Agregar la acción «Ejecutar una solicitud» (*Run a prompt*) después del desencadenador",
+        "explanation": "La acción que ejecuta solicitudes (antes «Crear texto con GPT mediante una solicitud») es el punto de partida para usar o crear una solicitud en el flujo."
+      },
+      {
+        "id": "p2",
+        "text": "En el campo Solicitud, elegir «Nueva solicitud personalizada»",
+        "explanation": "Desde el desplegable de la acción se puede crear una solicitud nueva sin salir del diseñador del flujo."
+      },
+      {
+        "id": "p3",
+        "text": "Escribir las instrucciones con una entrada de texto para el acta, probarla con un valor de ejemplo y guardarla",
+        "explanation": "La entrada permite pasar contenido distinto en cada ejecución; probar con un ejemplo antes de guardar permite validar la respuesta."
+      },
+      {
+        "id": "p4",
+        "text": "Rellenar la entrada de la solicitud con el cuerpo del correo, desde el contenido dinámico",
+        "explanation": "Una vez seleccionada la solicitud, sus entradas aparecen en la acción y se rellenan con salidas de pasos anteriores."
+      },
+      {
+        "id": "p5",
+        "text": "Agregar la acción de Teams que publica en el canal el texto que devuelve la solicitud",
+        "explanation": "La salida de la acción de solicitud queda disponible como contenido dinámico para las acciones posteriores."
+      }
+    ],
+    "keyPoint": "Solicitud en un flujo: acción «Ejecutar una solicitud» → crear o elegir la solicitud con sus entradas → mapear las entradas → usar la salida en los pasos siguientes.",
+    "references": [
+      {
+        "title": "Usar una solicitud en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/ai-builder/use-a-custom-prompt-in-flow"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-ia-108",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-ia",
+    "difficulty": 2,
+    "prompt": "Quieres añadir IA de AI Builder a varios flujos de nube. Empareja cada necesidad con el modelo más adecuado. Una de las opciones no se usa.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Obtener el texto de las fotos de albaranes escaneados que llegan por correo",
+        "answerId": "c1",
+        "explanation": "El modelo precompilado de reconocimiento de texto extrae el texto impreso o manuscrito de imágenes y documentos, sin necesidad de entrenarlo."
+      },
+      {
+        "id": "m2",
+        "text": "Saber en qué idioma está escrito cada mensaje de clientes para enviarlo al equipo correcto",
+        "answerId": "c2",
+        "explanation": "La detección de idioma es un modelo precompilado que identifica el idioma predominante de un texto."
+      },
+      {
+        "id": "m3",
+        "text": "Contar cuántas unidades de cada producto aparecen en las fotos de las estanterías de las tiendas",
+        "answerId": "c3",
+        "explanation": "La detección de objetos es un modelo personalizado que entrenas con imágenes de tus productos para localizarlos y contarlos."
+      },
+      {
+        "id": "m4",
+        "text": "Estimar, a partir del histórico de pedidos en Dataverse, si un cliente pagará con retraso",
+        "answerId": "c4",
+        "explanation": "El modelo personalizado de predicción aprende de datos históricos de Dataverse para predecir un resultado, como si una factura se pagará tarde."
+      },
+      {
+        "id": "m5",
+        "text": "Obtener los temas principales que mencionan los comentarios de una encuesta",
+        "answerId": "c5",
+        "explanation": "La extracción de frases clave identifica los puntos principales de un texto, útil para resumir de qué hablan los comentarios."
+      }
+    ],
+    "choices": [
+      { "id": "c1", "text": "Reconocimiento de texto (precompilado)" },
+      { "id": "c2", "text": "Detección de idioma (precompilado)" },
+      { "id": "c3", "text": "Detección de objetos (personalizado)" },
+      { "id": "c4", "text": "Predicción (personalizado)" },
+      { "id": "c5", "text": "Extracción de frases clave (precompilado)" },
+      { "id": "c6", "text": "Procesamiento de facturas (precompilado)" }
+    ],
+    "keyPoint": "AI Builder ofrece modelos precompilados listos para usar (texto, idioma, frases clave…) y personalizados que entrenas con tus datos (detección de objetos, predicción…).",
+    "references": [
+      {
+        "title": "AI Builder en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/ai-builder/use-in-flow-overview"
+      },
+      {
+        "title": "Tipos de modelos de AI Builder",
+        "url": "https://learn.microsoft.com/es-es/ai-builder/model-types"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-ia-109",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-ia",
+    "difficulty": 2,
+    "prompt": "Estás creando una solicitud (*prompt*) que usarás en un flujo de nube. ¿Qué dos elementos puedes agregar a sus instrucciones para que trabaje con datos que cambian en cada ejecución o con datos de tu organización? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Variables del flujo que la solicitud lee automáticamente sin haberlas declarado como entradas",
+        "correct": false,
+        "explanation": "La solicitud solo recibe del flujo los valores que se pasan a través de las entradas que tiene definidas."
+      },
+      {
+        "id": "b",
+        "text": "Entradas de tipo texto, o imagen o documento, que el flujo rellena en cada ejecución",
+        "correct": true,
+        "explanation": "Las entradas incorporan contenido dinámico a la solicitud en tiempo de ejecución, como el cuerpo de un correo o un archivo adjunto."
+      },
+      {
+        "id": "c",
+        "text": "Una acción de SharePoint dentro de la solicitud para que guarde ella misma su respuesta en una lista",
+        "correct": false,
+        "explanation": "La solicitud genera una respuesta; guardarla en SharePoint es tarea de una acción posterior del flujo."
+      },
+      {
+        "id": "d",
+        "text": "Conocimiento procedente de Dataverse, para que la respuesta se base en datos de la organización",
+        "correct": true,
+        "explanation": "Un objeto de conocimiento recupera datos de un origen como Dataverse para que la solicitud responda con información de la empresa."
+      },
+      {
+        "id": "e",
+        "text": "Un modelo de detección de objetos que la solicitud vuelve a entrenar en cada ejecución",
+        "correct": false,
+        "explanation": "Las solicitudes no entrenan modelos; la detección de objetos es un modelo personalizado de AI Builder que se entrena por separado."
+      }
+    ],
+    "keyPoint": "Una solicitud recibe datos variables mediante entradas (texto, imagen o documento) y puede basarse en datos de la organización mediante conocimiento, como Dataverse.",
+    "references": [
+      {
+        "title": "Crear una solicitud",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/create-custom-prompt"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-ia-110",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-ia",
+    "difficulty": 2,
+    "tags": ["preview"],
+    "scenario": "Pilar describe a Copilot en Power Automate para escritorio un flujo que debe entrar en el portal web de un proveedor, descargar el informe diario y guardarlo en una carpeta. Copilot genera el flujo, pero donde deberían ir los pasos del navegador aparece una acción marcada con un error de diseño.",
+    "prompt": "¿Qué debe hacer Pilar con esa acción?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ejecutar el flujo igualmente, porque esa acción se completa con IA durante la ejecución",
+        "correct": false,
+        "explanation": "La acción es un marcador de posición: el error indica que falta una parte importante del flujo y no se resuelve sola al ejecutarlo."
+      },
+      {
+        "id": "b",
+        "text": "Usar «Reparar con Copilot» para que genere ahora los selectores de la página",
+        "correct": false,
+        "explanation": "Reparar con Copilot actúa en tiempo de ejecución cuando un selector existente deja de encontrar un elemento; no crea los pasos que faltan."
+      },
+      {
+        "id": "c",
+        "text": "Iniciar la grabadora desde esa acción y realizar los pasos; las acciones grabadas la sustituyen",
+        "correct": true,
+        "explanation": "Cuando Copilot detecta que hay que automatizar la interfaz o el navegador, inserta un marcador para iniciar la grabadora; al grabar, se sustituye por las acciones capturadas."
+      },
+      {
+        "id": "d",
+        "text": "Repetir la misma indicación hasta que Copilot genere todos los clics del navegador",
+        "correct": false,
+        "explanation": "Copilot no genera los pasos de automatización de la interfaz a partir del texto; repetir la indicación volverá a producir el marcador de posición."
+      }
+    ],
+    "keyPoint": "Si Copilot detecta automatización de interfaz o navegador, deja un marcador de posición: graba esos pasos (o añádelos a mano) para completar el flujo.",
+    "references": [
+      {
+        "title": "Copilot en Power Automate para escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/copilot-in-power-automate-for-desktop"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-ia-111",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-ia",
+    "difficulty": 1,
+    "prompt": "Indica si cada afirmación sobre el uso de Copilot en Power Automate es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Copilot está optimizado para el inglés, así que parte de sus respuestas pueden aparecer en inglés aunque escribas en español.",
+        "answer": true,
+        "explanation": "Microsoft Learn indica que Copilot está optimizado para el inglés y tiene compatibilidad limitada con otros idiomas."
+      },
+      {
+        "id": "s2",
+        "text": "Puedes usar Copilot en Power Automate para escritorio iniciando sesión con una cuenta Microsoft personal, como una de outlook.com.",
+        "answer": false,
+        "explanation": "Copilot en Power Automate para escritorio solo está disponible con una cuenta profesional o educativa."
+      },
+      {
+        "id": "s3",
+        "text": "Cuando Copilot en Power Automate para escritorio responde una pregunta sobre el producto, incluye un vínculo a la documentación para ampliar la información.",
+        "answer": true,
+        "explanation": "Las respuestas generativas incluyen un vínculo a la página de documentación; aun así, conviene revisar siempre el contenido generado por IA."
+      },
+      {
+        "id": "s4",
+        "text": "Como el flujo de nube lo ha generado Copilot, no hace falta probarlo después de guardarlo.",
+        "answer": false,
+        "explanation": "Learn recomienda probar el flujo una vez guardado: el contenido generado por IA puede contener errores y debe revisarse."
+      }
+    ],
+    "keyPoint": "Copilot acelera la creación, pero está optimizado para inglés, en escritorio exige cuenta profesional o educativa y lo que genera debe revisarse y probarse.",
+    "references": [
+      {
+        "title": "Crear un flujo de nube con Copilot",
+        "url": "https://learn.microsoft.com/es-es/power-automate/create-cloud-flow-using-copilot"
+      },
+      {
+        "title": "Copilot en Power Automate para escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/copilot-in-power-automate-for-desktop"
+      }
+    ]
+  }
+]
