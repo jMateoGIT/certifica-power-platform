@@ -476,7 +476,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Una línea de tendencia",
+        "text": "Una línea de tendencia (*trend line*)",
         "correct": false,
         "explanation": "La línea de tendencia indica la dirección general de los datos, no la frontera en la que X e Y son iguales."
       },
@@ -488,13 +488,13 @@
       },
       {
         "id": "c",
-        "text": "Una línea promedio del eje Y",
+        "text": "Una línea promedio (*average line*) del eje Y",
         "correct": false,
         "explanation": "Marca la media de las ventas del año actual; no compara cada tienda con su propio valor del año anterior."
       },
       {
         "id": "d",
-        "text": "Una línea constante del eje X",
+        "text": "Una línea constante (*constant line*) del eje X",
         "correct": false,
         "explanation": "Traza una línea vertical en un valor fijo de X; no separa las tiendas que crecen de las que caen."
       }

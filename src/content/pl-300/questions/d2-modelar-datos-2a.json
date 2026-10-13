@@ -450,25 +450,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Cambiar el formato de FechaHoraPedido a dd/mm/aaaa en Herramientas de columna",
+        "text": "Cambiar el formato de FechaHoraPedido a dd/mm/aaaa (sin hora) en Herramientas de columna",
         "correct": false,
         "explanation": "El formato solo cambia cómo se presentan los valores; el motor sigue comparando la parte de hora y las filas siguen sin coincidir."
       },
       {
         "id": "b",
-        "text": "En Power Query, crear una columna de tipo Fecha a partir de FechaHoraPedido y relacionar esa columna con 'Fecha'[Fecha]",
+        "text": "Crear en Power Query una columna de tipo Fecha a partir de FechaHoraPedido y usarla en la relación",
         "correct": true,
-        "explanation": "Las relaciones comparan valores exactos y el motor almacena fecha y hora. Al truncar la hora antes de cargar, cada venta coincide con su día y además baja la cardinalidad de la columna."
+        "explanation": "Las relaciones comparan valores exactos y el motor almacena fecha y hora. Al truncar la hora antes de cargar y relacionar esa nueva columna con 'Fecha'[Fecha], cada venta coincide con su día y además baja la cardinalidad de la columna."
       },
       {
         "id": "c",
-        "text": "Cambiar la relación a varios a varios con dirección Ambos",
+        "text": "Cambiar la relación a varios a varios con dirección de filtro cruzado Ambos",
         "correct": false,
         "explanation": "La cardinalidad no resuelve que 03/02/2026 10:15 y 03/02/2026 00:00 sean valores distintos; además crearía una relación limitada sin necesidad."
       },
       {
         "id": "d",
-        "text": "Marcar la tabla Ventas como tabla de fechas eligiendo FechaHoraPedido",
+        "text": "Marcar la tabla Ventas como tabla de fechas eligiendo la columna FechaHoraPedido",
         "correct": false,
         "explanation": "Solo se marca la tabla de calendario, y la columna elegida debe tener valores únicos y contiguos, cosa que no cumple una columna de hechos."
       }
@@ -837,25 +837,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Cambiar la cardinalidad de la relación a varios a varios",
+        "text": "Cambiar la cardinalidad de la relación entre Productos y Ventas a varios a varios",
         "correct": false,
         "explanation": "La actualización funcionaría, pero la relación sería limitada, la dimensión dejaría de tener un identificador único y las ventas de P-100 se duplicarían al agrupar por precio."
       },
       {
         "id": "b",
-        "text": "En Power Query, dejar solo la fila vigente de cada producto (por ejemplo, filtrando Vigente = Sí) para que IdProducto sea único",
+        "text": "En Power Query, filtrar Vigente = Sí en Productos para que IdProducto sea único",
         "correct": true,
-        "explanation": "La columna del lado uno debe contener valores únicos. Filtrar la versión vigente en la consulta de la dimensión (o corregir el origen) elimina el duplicado y mantiene la relación uno a varios."
+        "explanation": "La columna del lado uno debe contener valores únicos. Dejar solo la fila vigente de cada producto en la consulta de la dimensión (o corregir el origen) elimina el duplicado y mantiene la relación uno a varios."
       },
       {
         "id": "c",
-        "text": "Cambiar la dirección de filtro cruzado a Ambos",
+        "text": "Cambiar a Ambos la dirección de filtro cruzado de la relación entre Productos y Ventas",
         "correct": false,
         "explanation": "La dirección de filtro no tiene nada que ver con la unicidad de la columna; el error de actualización seguiría apareciendo."
       },
       {
         "id": "d",
-        "text": "Desactivar la relación para que la actualización termine",
+        "text": "Desactivar la relación entre Productos y Ventas para que la actualización termine",
         "correct": false,
         "explanation": "Una relación inactiva también exige un lado uno con valores únicos, y además Productos dejaría de filtrar Ventas en los objetos visuales."
       }
@@ -932,25 +932,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Cambiar a Ambos la relación entre Productos y Ventas",
+        "text": "Cambiar a Ambos la dirección de filtro cruzado de la relación entre Productos y Ventas",
         "correct": false,
         "explanation": "Funciona, pero la guía lo desaconseja: las relaciones bidireccionales requieren más procesamiento y afectan al rendimiento, sobre todo cuando se multiplican."
       },
       {
         "id": "b",
-        "text": "Usar CROSSFILTER ( ..., BOTH ) dentro de la medida Unidades",
+        "text": "Usar CROSSFILTER ( ..., BOTH ) dentro de la medida Unidades y dejar Única la relación",
         "correct": false,
         "explanation": "CROSSFILTER solo cambia la propagación mientras se evalúa la medida; la lista de valores de la segmentación no depende de esa medida."
       },
       {
         "id": "c",
-        "text": "Agregar a la segmentación de productos un filtro de nivel de objeto visual: Unidades no está en blanco",
+        "text": "Aplicar a la segmentación de productos un filtro visual: Unidades no está en blanco",
         "correct": true,
-        "explanation": "La segmentación solo muestra productos con unidades en el contexto del país seleccionado, y las relaciones pueden seguir con dirección Única."
+        "explanation": "Con un filtro de nivel de objeto visual «Unidades no está en blanco», la segmentación solo muestra productos con unidades en el contexto del país seleccionado, y las relaciones pueden seguir con dirección Única."
       },
       {
         "id": "d",
-        "text": "Crear una relación varios a varios entre Clientes y Productos",
+        "text": "Crear una relación varios a varios entre las dimensiones Clientes y Productos",
         "correct": false,
         "explanation": "No hay columna común entre las dos dimensiones, y relacionar dimensiones directamente rompe el diseño de estrella."
       }
@@ -1495,25 +1495,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Reescribir las 18 medidas con variables para acelerar la consulta DAX",
+        "text": "Reescribir las 18 medidas con variables para acelerar la consulta DAX del objeto visual",
         "correct": false,
         "explanation": "La consulta tarda unos 150 ms; optimizar las medidas apenas cambiaría el tiempo total, que está en el dibujo."
       },
       {
         "id": "b",
-        "text": "Reducir los datos que dibuja la tabla: aplicar un filtro N principales, quitar medidas o mover el detalle a una página de obtención de detalles",
+        "text": "Reducir los datos que dibuja la tabla, por ejemplo con un filtro N principales o menos medidas",
         "correct": true,
-        "explanation": "El tiempo está en Dibujo en pantalla (*Visual display*): el objeto visual representa demasiadas filas y medidas. Limitar los puntos de datos o repartir la información reduce ese tiempo."
+        "explanation": "El tiempo está en Dibujo en pantalla (*Visual display*): el objeto visual representa demasiadas filas y medidas. Limitar los puntos de datos (filtro N principales, quitar medidas) o mover el detalle a una página de obtención de detalles reduce ese tiempo."
       },
       {
         "id": "c",
-        "text": "Cambiar la tabla de hechos al modo DirectQuery",
+        "text": "Cambiar la tabla de hechos al modo DirectQuery para no cargar el detalle en memoria",
         "correct": false,
         "explanation": "El modelo responde rápido; DirectQuery añadiría el tiempo de ida y vuelta al origen y no reduciría el dibujo."
       },
       {
         "id": "d",
-        "text": "Activar Asumir integridad referencial en las relaciones del modelo",
+        "text": "Activar Asumir integridad referencial en todas las relaciones del modelo semántico",
         "correct": false,
         "explanation": "Es una propiedad de DirectQuery que mejora las consultas al origen; aquí ni hay DirectQuery ni el cuello de botella está en la consulta."
       }
@@ -1699,25 +1699,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Ocultar IdClienteGuid en ambas tablas",
+        "text": "Ocultar la columna IdClienteGuid en Ventas y en Clientes desde la vista de modelo",
         "correct": false,
         "explanation": "Ocultar solo afecta al panel Datos; la columna sigue cargada, ocupa la misma memoria y la relación sigue siendo igual de costosa."
       },
       {
         "id": "b",
-        "text": "Cambiar la dirección de filtro de la relación a Ambos",
+        "text": "Cambiar a Ambos la dirección de filtro cruzado de la relación con Clientes",
         "correct": false,
         "explanation": "La relación bidireccional añade trabajo a la propagación de filtros; no reduce el coste de la columna."
       },
       {
         "id": "c",
-        "text": "Usar en ambas tablas una clave suplente de número entero, generada en el origen o en Power Query, y quitar el GUID de Ventas",
+        "text": "Sustituir el GUID por una clave suplente de número entero en Ventas y en Clientes",
         "correct": true,
-        "explanation": "Las columnas numéricas usan codificación por valor y comprimen mejor que el texto. Una clave entera hace la relación más barata de recorrer y reduce el tamaño de la tabla de hechos."
+        "explanation": "Las columnas numéricas usan codificación por valor y comprimen mejor que el texto. Una clave entera, generada en el origen o en Power Query, hace la relación más barata de recorrer y, al quitar el GUID de Ventas, reduce el tamaño de la tabla de hechos."
       },
       {
         "id": "d",
-        "text": "Cambiar la cardinalidad a varios a varios",
+        "text": "Cambiar la cardinalidad de la relación entre Ventas y Clientes a varios a varios",
         "correct": false,
         "explanation": "Una relación varios a varios es limitada y se resuelve en el momento de la consulta, lo que no mejora el rendimiento y oculta problemas de integridad."
       }

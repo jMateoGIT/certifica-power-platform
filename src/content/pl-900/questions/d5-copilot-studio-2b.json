@@ -645,15 +645,15 @@
     "options": [
       {
         "id": "a",
-        "text": "Sin autenticación, y compartir el agente con el grupo de seguridad",
+        "text": "Sin autenticación, y compartir el agente con el grupo de seguridad «Mandos intermedios»",
         "correct": false,
         "explanation": "Sin autenticación, cualquier persona que tenga el vínculo puede chatear con el agente, y no puedes controlar qué usuarios de la organización lo usan."
       },
       {
         "id": "b",
-        "text": "Autenticar manualmente con Microsoft Entra ID, activar Requerir que los usuarios inicien sesión y compartir el agente con el grupo",
+        "text": "Autenticar manualmente con Entra ID, exigir inicio de sesión y compartir el agente con el grupo",
         "correct": true,
-        "explanation": "Con Entra ID como proveedor y el inicio de sesión obligatorio, el uso compartido del agente determina qué usuarios de la organización pueden chatear con él."
+        "explanation": "Con Microsoft Entra ID como proveedor de autenticación manual y la opción Requerir que los usuarios inicien sesión activada, el uso compartido del agente determina qué usuarios de la organización pueden chatear con él."
       },
       {
         "id": "c",
@@ -663,7 +663,7 @@
       },
       {
         "id": "d",
-        "text": "Autenticar con Microsoft, y compartir el agente con el grupo",
+        "text": "Autenticar con Microsoft, y compartir el agente con el grupo de seguridad «Mandos intermedios»",
         "correct": false,
         "explanation": "Con esta opción el agente solo funciona en los canales de Teams y Microsoft 365, no en el sitio web de la intranet."
       }

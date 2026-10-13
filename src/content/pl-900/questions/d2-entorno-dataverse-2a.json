@@ -681,27 +681,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Pedir a cada comercial que cree una vista personal con ese filtro",
+        "text": "Pedir a cada comercial que cree una vista personal de Pedido con ese filtro",
         "correct": false,
         "explanation": "Las vistas personales pertenecen a quien las crea y solo las ve esa persona salvo que las comparta; no son la forma de dar una vista común a todos."
       },
       {
         "id": "b",
-        "text": "Agregar Segmento a Pedido y copiar el valor con una regla de negocio",
+        "text": "Agregar Segmento a Pedido y copiar su valor desde Cuenta con una regla de negocio",
         "correct": false,
         "explanation": "No hace falta duplicar datos: el filtro de una vista puede usar columnas de tablas relacionadas."
       },
       {
         "id": "c",
-        "text": "Editar la vista de búsqueda rápida de Pedido para incluir Segmento",
+        "text": "Editar la vista de búsqueda rápida de Pedido para incluir la columna Segmento",
         "correct": false,
         "explanation": "La vista de búsqueda rápida define en qué columnas se busca y no aparece en el selector de vistas."
       },
       {
         "id": "d",
-        "text": "Crear una vista pública de Pedido con un filtro sobre la tabla relacionada Cuenta: Segmento igual a Premium",
+        "text": "Crear una vista pública de Pedido filtrada por la tabla relacionada Cuenta: Segmento = Premium",
         "correct": true,
-        "explanation": "El generador de expresiones del diseñador de vistas permite agregar una tabla relacionada a una condición. Una vista pública está disponible para todos en el selector de vistas."
+        "explanation": "El generador de expresiones del diseñador de vistas permite agregar una tabla relacionada a una condición, como Cuenta: Segmento igual a Premium. Una vista pública está disponible para todos en el selector de vistas."
       }
     ],
     "keyPoint": "Los filtros de una vista pueden usar columnas de tablas relacionadas; las vistas públicas son las que comparten todos los usuarios.",

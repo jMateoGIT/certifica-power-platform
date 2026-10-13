@@ -604,13 +604,13 @@
       },
       {
         "id": "b",
-        "text": "Se crea un registro en Incidencias con el título escrito y prioridad Alta; el resto de columnas toman su valor predeterminado",
+        "text": "Se crea un registro nuevo en Incidencias con el título escrito y prioridad Alta",
         "correct": true,
-        "explanation": "Defaults devuelve un registro base con los valores predeterminados del origen de datos. Patch con ese registro crea uno nuevo y aplica los valores indicados."
+        "explanation": "Defaults devuelve un registro base con los valores predeterminados del origen de datos. Patch con ese registro crea uno nuevo y aplica los valores indicados; el resto de columnas toman su valor predeterminado."
       },
       {
         "id": "c",
-        "text": "Se cambia a Alta la prioridad de todos los registros de Incidencias",
+        "text": "Se cambia a Alta la prioridad de todos los registros existentes de Incidencias",
         "correct": false,
         "explanation": "Patch no actúa sobre todos los registros. Para modificar varios registros según una condición se usa UpdateIf."
       },
@@ -642,27 +642,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Un panel estándar con varios gráficos y listas",
+        "text": "Un panel estándar con varios gráficos y listas de casos",
         "correct": false,
         "explanation": "Un panel estándar reúne gráficos o listas independientes para dar una visión general, pero no ofrece secuencias en tiempo real con filtros visuales para trabajar sobre cada fila."
       },
       {
         "id": "b",
-        "text": "Una vista personal por cada cola de casos",
+        "text": "Una vista personal de casos por cada cola de soporte",
         "correct": false,
         "explanation": "Una vista personal es una lista guardada de una tabla. No combina varias listas y gráficos interactivos en una misma página de trabajo."
       },
       {
         "id": "c",
-        "text": "Un panel de Power BI incrustado con los casos",
+        "text": "Un panel de Power BI incrustado con los casos activos",
         "correct": false,
         "explanation": "Power BI sirve para analizar los datos, no para trabajar sobre cada caso (asignarlo, resolverlo…) desde la propia página."
       },
       {
         "id": "d",
-        "text": "Un panel de experiencia interactiva con secuencias y filtros visuales",
+        "text": "Un panel interactivo con secuencias y filtros visuales",
         "correct": true,
-        "explanation": "Los paneles interactivos muestran secuencias de datos en tiempo real, gráficos que actúan como filtros visuales y permiten actuar sobre una fila directamente desde el panel."
+        "explanation": "Los paneles de experiencia interactiva muestran secuencias de datos en tiempo real, gráficos que actúan como filtros visuales y permiten actuar sobre una fila directamente desde el panel."
       }
     ],
     "keyPoint": "Panel estándar = visión general; panel interactivo = área de trabajo con secuencias en tiempo real, filtros visuales y acciones sobre cada fila.",
@@ -1164,25 +1164,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Un comando moderno del diseñador de comandos, con fórmulas de Power Fx para la acción y la visibilidad",
+        "text": "Un comando moderno del diseñador de comandos, con Power Fx para la acción y la visibilidad",
         "correct": true,
         "explanation": "El diseñador de comandos permite agregar botones a la barra de comandos y usar Power Fx tanto para lo que hace el botón como para decidir cuándo es visible."
       },
       {
         "id": "b",
-        "text": "Una regla de negocio que muestre el botón cuando el estado sea Pendiente",
+        "text": "Una regla de negocio que muestre el botón en la cuadrícula cuando el estado sea Pendiente",
         "correct": false,
         "explanation": "Las reglas de negocio actúan sobre las columnas de los formularios (requerir, ocultar, validar…); no crean botones en la barra de comandos."
       },
       {
         "id": "c",
-        "text": "Un flujo de proceso de negocio con una fase final llamada Enviado",
+        "text": "Un flujo de proceso de negocio de Pedidos con una fase final llamada Enviado",
         "correct": false,
         "explanation": "Un flujo de proceso de negocio guía al usuario por fases en el formulario; no agrega comandos a la cuadrícula."
       },
       {
         "id": "d",
-        "text": "Una página personalizada con un botón, agregada a la navegación",
+        "text": "Una página personalizada con un botón «Marcar como enviado», agregada a la navegación",
         "correct": false,
         "explanation": "La página personalizada sería una pantalla aparte en el menú, no un botón en la barra de comandos de la cuadrícula de Pedidos."
       }

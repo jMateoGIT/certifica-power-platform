@@ -754,9 +754,9 @@
     "options": [
       {
         "id": "a",
-        "text": "En la configuración del modelo semántico, activar el inicio de sesión único (SSO) en las credenciales del origen de datos",
+        "text": "Activar el inicio de sesión único (SSO) en las credenciales del origen de datos",
         "correct": true,
-        "explanation": "Con SSO (OAuth2 de Microsoft Entra), Power BI envía la identidad de cada lector en las consultas DirectQuery y la base de datos aplica su propia seguridad."
+        "explanation": "En la configuración del modelo semántico, al activar SSO (OAuth2 de Microsoft Entra) en las credenciales del origen, Power BI envía la identidad de cada lector en las consultas DirectQuery y la base de datos aplica su propia seguridad."
       },
       {
         "id": "b",
