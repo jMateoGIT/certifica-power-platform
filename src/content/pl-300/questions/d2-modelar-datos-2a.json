@@ -44,7 +44,7 @@
     "keyPoint": "Copo de nieve → normalmente conviene desnormalizar en una sola tabla de dimensión: menos tablas, filtros más cortos y jerarquías completas.",
     "references": [
       {
-        "title": "Descripción de un esquema de estrella e importancia para Power BI",
+        "title": "Comprender el esquema de estrella y su importancia para Power BI",
         "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
       },
       {
@@ -161,7 +161,7 @@
     "keyPoint": "Parámetro de campos: Modelado > Nuevo parámetro > Campos; se usa en el eje o en los valores del objeto visual y se controla con una segmentación.",
     "references": [
       {
-        "title": "Uso de parámetros de campo para permitir que los lectores cambien los objetos visuales",
+        "title": "Usar parámetros de campo en informes de Power BI",
         "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/power-bi-field-parameters"
       },
       {
@@ -212,7 +212,7 @@
         "url": "https://learn.microsoft.com/es-es/training/modules/configure-semantic-model-power-bi/5-hierarchies"
       },
       {
-        "title": "Descripción de un esquema de estrella e importancia para Power BI",
+        "title": "Comprender el esquema de estrella y su importancia para Power BI",
         "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
       }
     ]
@@ -235,9 +235,9 @@
       },
       {
         "id": "m2",
-        "text": "Que el lector cambie la medida (Ventas, Margen o Unidades) que muestra un gráfico de líneas",
-        "answerId": "c1",
-        "explanation": "Un parámetro de campos también puede contener medidas; se coloca en el área de valores del objeto visual."
+        "text": "Clasificar cada producto en un tramo de precio (Bajo, Medio o Alto) para usarlo en una segmentación",
+        "answerId": "c4",
+        "explanation": "Una segmentación necesita valores almacenados en una columna; una columna calculada guarda el tramo de cada producto al actualizar el modelo."
       },
       {
         "id": "m3",
@@ -280,14 +280,14 @@
         "text": "Jerarquía"
       }
     ],
-    "keyPoint": "Parámetro de campos = elegir qué columna o medida muestra un objeto visual; intervalo numérico = valor hipotético; grupo de cálculo = misma lógica para muchas medidas.",
+    "keyPoint": "Parámetro de campos = elegir qué columna o medida muestra un objeto visual; intervalo numérico = valor hipotético; grupo de cálculo = misma lógica para muchas medidas; columna calculada = valor por fila para segmentar.",
     "references": [
       {
         "title": "Configurar parámetros (módulo de formación)",
         "url": "https://learn.microsoft.com/es-es/training/modules/configure-semantic-model-power-bi/7-parameters"
       },
       {
-        "title": "Crear grupos de cálculo",
+        "title": "Creación de grupos de cálculo en Power BI",
         "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/calculation-groups"
       }
     ]
@@ -298,7 +298,7 @@
     "exam": "PL-300",
     "outlineVersion": "2026-04-20",
     "domain": "d2",
-    "skill": "d2-diseno",
+    "skill": "d2-dax",
     "difficulty": 3,
     "scenario": "El grupo de cálculo Inteligencia de tiempo tiene el elemento Var % AA del anexo. Al aplicarlo a la medida Ventas (formato moneda), la matriz muestra «0,12 €» en lugar de «12 %». Además, vas a añadir un segundo grupo de cálculo, Conversión de divisa.",
     "code": {
@@ -325,7 +325,7 @@
           }
         ],
         "correctId": "o2",
-        "explanation": "Los elementos de cálculo heredan por defecto el formato de la medida; con una cadena de formato dinámico (por ejemplo, «#,##0.00 %») el elemento impone su propio formato sin cambiar la medida base."
+        "explanation": "Los elementos de cálculo usan por defecto el formato de la medida; al activar Cadena de formato dinámico escribes una expresión de formato (por ejemplo, \"#,##0.00%\") que se aplica solo cuando el elemento está activo, sin cambiar la medida base."
       },
       {
         "id": "b2",
@@ -350,7 +350,7 @@
     "keyPoint": "Formato de un elemento de cálculo → Cadena de formato dinámico; orden entre varios grupos de cálculo → Precedencia.",
     "references": [
       {
-        "title": "Crear grupos de cálculo",
+        "title": "Creación de grupos de cálculo en Power BI",
         "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/calculation-groups"
       }
     ]
@@ -553,7 +553,7 @@
     "keyPoint": "Ordenar por columna exige la misma granularidad: cada valor de la columna ordenada debe tener exactamente un valor en la columna de ordenación.",
     "references": [
       {
-        "title": "Ordenar por columna en Power BI",
+        "title": "Ordenar una columna por otra columna en Power BI",
         "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-sort-by-column"
       },
       {
@@ -576,13 +576,13 @@
         "id": "s1",
         "text": "Una relación con cardinalidad varios a varios es siempre limitada, aunque ambas columnas tengan valores únicos.",
         "answer": true,
-        "explanation": "La evaluación limitada se deduce de la cardinalidad: si no hay un lado uno garantizado, la relación es limitada."
+        "explanation": "El tipo de evaluación no se configura: se deduce de la cardinalidad y del origen. Una relación varios a varios no tiene un lado uno garantizado, así que siempre es limitada, igual que una relación entre grupos de origen distintos."
       },
       {
         "id": "s2",
         "text": "En una relación limitada, los valores del lado varios sin correspondencia se agrupan en una fila virtual en blanco.",
         "answer": false,
-        "explanation": "Las relaciones limitadas usan combinación interna y no expanden tablas; esas filas no aparecen en ninguna fila en blanco."
+        "explanation": "Las relaciones limitadas no expanden tablas y combinan con semántica INNER JOIN, así que no se añade la fila virtual en blanco: los valores sin correspondencia simplemente no se asocian a ninguna fila del otro lado."
       },
       {
         "id": "s3",
@@ -643,7 +643,7 @@
         "id": "m5",
         "text": "Tabla Fecha que puede filtrar Ventas por fecha de pedido, de envío o de entrega",
         "answerId": "c5",
-        "explanation": "Una dimensión de rol (*role-playing*) filtra los mismos hechos de formas distintas según la columna con la que se relaciona."
+        "explanation": "Una dimensión de juego de roles filtra los mismos hechos de formas distintas según la columna con la que se relaciona."
       }
     ],
     "choices": [
@@ -665,7 +665,7 @@
       },
       {
         "id": "c5",
-        "text": "Dimensión de rol"
+        "text": "Dimensión de juego de roles (*role-playing*)"
       },
       {
         "id": "c6",
@@ -675,7 +675,7 @@
     "keyPoint": "Degenerada = atributo en el hecho; no deseada (junk) = varias marcas pequeñas en una tabla; sin hechos = solo claves; SCD tipo 2 = versiones; rol = una dimensión con varios significados.",
     "references": [
       {
-        "title": "Descripción de un esquema de estrella e importancia para Power BI",
+        "title": "Comprender el esquema de estrella y su importancia para Power BI",
         "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
       }
     ]
@@ -723,7 +723,7 @@
         "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-many-to-many"
       },
       {
-        "title": "Descripción de un esquema de estrella e importancia para Power BI",
+        "title": "Comprender el esquema de estrella y su importancia para Power BI",
         "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
       }
     ]
@@ -736,13 +736,13 @@
     "domain": "d2",
     "skill": "d2-diseno",
     "difficulty": 2,
-    "scenario": "Ventas y Presupuesto tienen la columna CodigoRegion, pero el modelo no tiene una tabla de regiones. Algunas regiones nuevas tienen presupuesto pero todavía no tienen ventas. Quieres una segmentación de región que filtre las dos tablas y creas la tabla calculada del anexo.",
+    "scenario": "Ventas y Presupuesto tienen la columna CodigoRegion, pero el modelo no tiene una tabla de regiones. Algunas regiones nuevas tienen presupuesto pero todavía no tienen ventas. Quieres una dimensión Regiones que relacionarás uno a varios con ambas tablas, y creas la tabla calculada del anexo.",
     "code": {
       "language": "dax",
       "content": "Regiones =\nDISTINCT (\n    ??? (\n        DISTINCT ( Ventas[CodigoRegion] ),\n        DISTINCT ( Presupuesto[CodigoRegion] )\n    )\n)"
     },
     "prompt": "Completa la frase.",
-    "template": "Debes sustituir ??? por {{b1}} y después crear {{b2}}.",
+    "template": "Debes sustituir ??? por {{b1}}. El DISTINCT exterior es necesario porque {{b2}}.",
     "blanks": [
       {
         "id": "b1",
@@ -768,30 +768,30 @@
         "options": [
           {
             "id": "o1",
-            "text": "una relación uno a varios de Regiones a Ventas y otra de Regiones a Presupuesto, ambas con dirección Única"
+            "text": "la función conserva las filas duplicadas y el lado uno de una relación necesita valores únicos"
           },
           {
             "id": "o2",
-            "text": "una relación varios a varios entre Ventas y Presupuesto por CodigoRegion"
+            "text": "la función solo combina tablas que tienen el mismo número de filas"
           },
           {
             "id": "o3",
-            "text": "una relación uno a uno de Regiones a Ventas y otra uno a uno de Regiones a Presupuesto"
+            "text": "sin él, la tabla calculada no se recalcularía al actualizar el modelo"
           }
         ],
         "correctId": "o1",
-        "explanation": "La nueva tabla tiene un valor por región, así que actúa como lado uno de dos relaciones normales y filtra ambas tablas de hechos. Relacionar hechos entre sí no es recomendable, y uno a uno no es válido porque las regiones se repiten en los hechos."
+        "explanation": "UNION no elimina duplicados: una región con ventas y presupuesto aparecería dos veces. DISTINCT deja un valor por región para que Regiones pueda ser el lado uno de las dos relaciones. UNION exige el mismo número de columnas, no de filas, y las tablas calculadas se recalculan en cada actualización."
       }
     ],
-    "keyPoint": "Si dos tablas de hechos comparten un código sin dimensión, crea una dimensión común con valores únicos y relaciónala uno a varios con ambas.",
+    "keyPoint": "UNION ( tabla1, tabla2 ) combina filas y conserva los duplicados; envuélvela en DISTINCT para obtener una dimensión común con valores únicos.",
     "references": [
       {
-        "title": "Crear tablas calculadas en Power BI Desktop",
-        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-calculated-tables"
+        "title": "Función UNION",
+        "url": "https://learn.microsoft.com/es-es/dax/union-function-dax"
       },
       {
-        "title": "Descripción de un esquema de estrella e importancia para Power BI",
-        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
+        "title": "Uso de tablas calculadas en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-calculated-tables"
       }
     ]
   },
@@ -1031,7 +1031,7 @@
       },
       {
         "id": "p2",
-        "text": "Cambia el nombre de la nueva consulta a Aeropuerto llegada y el de sus columnas, por ejemplo Ciudad llegada",
+        "text": "En el Editor de Power Query, cambia el nombre de la nueva consulta a Aeropuerto llegada y el de sus columnas, por ejemplo Ciudad llegada",
         "explanation": "Los nombres de columna deben describir el rol, porque los títulos predeterminados de los objetos visuales solo muestran el nombre de la columna."
       },
       {
@@ -1048,7 +1048,7 @@
     "keyPoint": "Dimensión de rol con tablas separadas: copia por referencia (o tabla calculada), columnas con nombres que indiquen el rol y una relación activa por rol.",
     "references": [
       {
-        "title": "Descripción de un esquema de estrella e importancia para Power BI",
+        "title": "Comprender el esquema de estrella y su importancia para Power BI",
         "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
       },
       {
@@ -1092,7 +1092,7 @@
     "keyPoint": "Pausar objetos visuales (cinta Optimizar) deja los cambios pendientes sin consultar el origen hasta que actualizas o reanudas.",
     "references": [
       {
-        "title": "Optimizar la cinta de opciones en Power BI Desktop",
+        "title": "Optimización de la cinta de opciones en Power BI Desktop",
         "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-optimize-ribbon"
       }
     ]
@@ -1169,7 +1169,7 @@
     "keyPoint": "Reducción de consultas = sin resaltado ni filtrado cruzado y con botón Aplicar (ideal para DirectQuery); Interactividad = predeterminado (importación).",
     "references": [
       {
-        "title": "Optimizar la cinta de opciones en Power BI Desktop",
+        "title": "Optimización de la cinta de opciones en Power BI Desktop",
         "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-optimize-ribbon"
       }
     ]
@@ -1242,7 +1242,7 @@
     "keyPoint": "Asumir integridad referencial (solo DirectQuery) usa INNER JOIN: actívala solo si el lado varios no tiene nulos y todos sus valores existen en el lado uno.",
     "references": [
       {
-        "title": "Aplicar la configuración Asumir integridad referencial en Power BI Desktop",
+        "title": "Asumir la configuración de integridad referencial en Power BI Desktop",
         "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/desktop-assume-referential-integrity"
       },
       {
@@ -1290,7 +1290,7 @@
     "keyPoint": "Agregaciones: tabla de detalle en DirectQuery, tabla agregada en Importar (oculta) y dimensiones relacionadas en Dual.",
     "references": [
       {
-        "title": "Administrar y usar agregaciones en Power BI Desktop",
+        "title": "Agregaciones definidas por el usuario",
         "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/aggregations-advanced"
       },
       {
@@ -1337,7 +1337,7 @@
     "keyPoint": "Analizador de rendimiento: también en el servicio al editar; Ejecutar en la vista de consulta DAX solo en Desktop; Exportar guarda un .json; mide sin caché y repite las pruebas.",
     "references": [
       {
-        "title": "Uso del Analizador de rendimiento",
+        "title": "Uso del Analizador de rendimiento para examinar el rendimiento del informe",
         "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/performance-analyzer"
       },
       {
@@ -1385,7 +1385,7 @@
     "keyPoint": "Filtrado horizontal por entidad: modelos más pequeños y quizá sin RLS, a cambio de más modelos, permisos e informes que mantener.",
     "references": [
       {
-        "title": "Técnicas de reducción de datos para el modelado de importación",
+        "title": "Técnicas de reducción de datos para modelos de importación",
         "url": "https://learn.microsoft.com/es-es/power-bi/guidance/import-modeling-data-reduction"
       }
     ]
@@ -1454,7 +1454,7 @@
     "keyPoint": "Consultas rápidas: Definir todas las medidas del modelo, Mostrar estadísticas de columna, Mostrar vista previa de datos y Mostrar las 100 primeras filas.",
     "references": [
       {
-        "title": "Trabajar con la vista de consulta DAX",
+        "title": "Vista de consulta DAX",
         "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/dax-query-view"
       }
     ]
@@ -1521,7 +1521,7 @@
     "keyPoint": "Si la consulta es rápida en la vista de consulta DAX pero el objeto visual tarda, el problema es la representación: reduce los datos que dibuja.",
     "references": [
       {
-        "title": "Solución de problemas de rendimiento habituales (módulo de formación)",
+        "title": "Solución de problemas comunes de rendimiento (módulo de formación)",
         "url": "https://learn.microsoft.com/es-es/training/modules/optimize-semantic-model-performance/6-troubleshoot"
       },
       {
@@ -1556,7 +1556,7 @@
         "id": "m3",
         "text": "Revisar todo el modelo con un conjunto de reglas (columnas sin usar, claves de alta cardinalidad, descripciones que faltan)",
         "answerId": "c3",
-        "explanation": "El Analizador de procedimientos recomendados (BPA) aplica más de 60 reglas; en Fabric se ejecuta con un cuaderno desde el modelo semántico o, sin Fabric, con Tabular Editor."
+        "explanation": "El Analizador de procedimientos recomendados (BPA) revisa el modelo con un conjunto de reglas; en Fabric se ejecuta con un cuaderno desde el modelo semántico o, sin Fabric, con Tabular Editor."
       },
       {
         "id": "m4",
@@ -1600,7 +1600,7 @@
     "keyPoint": "Analizador de rendimiento = tiempos por objeto visual; vista de consulta DAX = ejecutar y reescribir; BPA = reglas; Analizador de memoria = tamaños; DAX Studio = tiempos del servidor y plan.",
     "references": [
       {
-        "title": "Solución de problemas de rendimiento habituales (módulo de formación)",
+        "title": "Solución de problemas comunes de rendimiento (módulo de formación)",
         "url": "https://learn.microsoft.com/es-es/training/modules/optimize-semantic-model-performance/6-troubleshoot"
       },
       {
@@ -1677,7 +1677,7 @@
     "keyPoint": "Una columna se queda si sirve para informes o para la estructura del modelo (relaciones, cálculos, RLS, formato condicional); si no, quítala.",
     "references": [
       {
-        "title": "Técnicas de reducción de datos para el modelado de importación",
+        "title": "Técnicas de reducción de datos para modelos de importación",
         "url": "https://learn.microsoft.com/es-es/power-bi/guidance/import-modeling-data-reduction"
       },
       {
@@ -1725,11 +1725,11 @@
     "keyPoint": "Evita relaciones sobre columnas de texto de alta cardinalidad como GUID: usa claves suplentes de número entero.",
     "references": [
       {
-        "title": "Solución de problemas de rendimiento habituales (módulo de formación)",
+        "title": "Solución de problemas comunes de rendimiento (módulo de formación)",
         "url": "https://learn.microsoft.com/es-es/training/modules/optimize-semantic-model-performance/6-troubleshoot"
       },
       {
-        "title": "Técnicas de reducción de datos para el modelado de importación",
+        "title": "Técnicas de reducción de datos para modelos de importación",
         "url": "https://learn.microsoft.com/es-es/power-bi/guidance/import-modeling-data-reduction"
       }
     ]
@@ -1779,7 +1779,7 @@
     "keyPoint": "Menos objetos visuales por página y menos puntos de datos por objeto visual = menos consultas y menos tiempo de dibujo.",
     "references": [
       {
-        "title": "Solución de problemas de rendimiento habituales (módulo de formación)",
+        "title": "Solución de problemas comunes de rendimiento (módulo de formación)",
         "url": "https://learn.microsoft.com/es-es/training/modules/optimize-semantic-model-performance/6-troubleshoot"
       }
     ]

@@ -61,7 +61,7 @@
         "id": "d",
         "text": "50 %",
         "correct": false,
-        "explanation": "50 % es el peso de las tres categorías seleccionadas sobre el total sin filtros (1.000 / 2.000), no el de Componentes."
+        "explanation": "50 % es lo que muestra la fila Bicicletas (500 / 1.000); en la fila Componentes el numerador es 300."
       }
     ],
     "keyPoint": "ALL ignora todos los filtros de la columna; ALLSELECTED ignora los del objeto visual pero respeta las segmentaciones y filtros externos (total visible).",
@@ -166,72 +166,64 @@
     "domain": "d2",
     "skill": "d2-dax",
     "difficulty": 2,
-    "scenario": "Un objeto visual de tabla muestra Productos[Color], la medida [Ventas] y la fila de total. Agregas la medida del anexo.",
+    "scenario": "Un objeto visual de tabla muestra Productos[Producto], la medida [Margen %] y la medida Tramo margen del anexo, que debe clasificar cada producto como «Alto» (30 % o más), «Medio» (entre el 10 % y el 30 %) o «Bajo».",
     "code": {
       "language": "dax",
-      "content": "Ventas rojo y azul =\nCALCULATE (\n    [Ventas],\n    KEEPFILTERS ( Productos[Color] IN { \"Rojo\", \"Azul\" } )\n)"
+      "content": "Tramo margen =\nSWITCH (\n    TRUE (),\n    [Margen %] >= 0.1, \"Medio\",\n    [Margen %] >= 0.3, \"Alto\",\n    \"Bajo\"\n)"
     },
     "table": {
-      "caption": "Ventas por color",
+      "caption": "Margen por producto",
       "headers": [
-        "Color",
-        "Ventas"
+        "Producto",
+        "Margen %"
       ],
       "rows": [
         [
-          "Azul",
-          "50"
+          "Sillín",
+          "35 %"
         ],
         [
-          "Rojo",
-          "130"
+          "Pedal",
+          "18 %"
         ],
         [
-          "Verde",
-          "20"
-        ],
-        [
-          "Total",
-          "200"
+          "Cadena",
+          "6 %"
         ]
       ]
     },
-    "prompt": "Indica si cada afirmación sobre la medida Ventas rojo y azul es correcta.",
+    "prompt": "Indica si cada afirmación sobre la medida Tramo margen es correcta.",
     "statements": [
       {
         "id": "s1",
-        "text": "En la fila Verde, la medida aparece en blanco.",
-        "answer": true,
-        "explanation": "KEEPFILTERS combina el filtro de la fila (Verde) con el del argumento (Rojo o Azul); la intersección está vacía y la medida devuelve BLANK."
+        "text": "En la fila Sillín, la medida muestra «Alto».",
+        "answer": false,
+        "explanation": "SWITCH devuelve el resultado de la primera condición que se cumple y no evalúa las siguientes: 0,35 >= 0,1 ya es verdadero, así que muestra «Medio»."
       },
       {
         "id": "s2",
-        "text": "En la fila Azul, la medida muestra 180.",
-        "answer": false,
-        "explanation": "La intersección de Azul con {Rojo, Azul} es solo Azul, así que muestra 50. Mostraría 180 sin KEEPFILTERS, porque el filtro reemplazaría al de la fila."
+        "text": "En la fila Cadena, la medida muestra «Bajo».",
+        "answer": true,
+        "explanation": "0,06 no cumple ninguna de las dos condiciones, así que SWITCH devuelve el último argumento, el valor alternativo (else)."
       },
       {
         "id": "s3",
-        "text": "En la fila de total, la medida muestra 180.",
+        "text": "Para que Sillín muestre «Alto», basta con colocar la condición [Margen %] >= 0.3 antes que [Margen %] >= 0.1.",
         "answer": true,
-        "explanation": "En el total no hay filtro de color que combinar, así que se aplica solo {Rojo, Azul}: 130 + 50 = 180."
+        "explanation": "El orden de las condiciones importa: hay que evaluar primero la más restrictiva. Con ese cambio, Sillín cumple la primera condición y Pedal sigue en «Medio»."
       },
       {
         "id": "s4",
-        "text": "Si quitas KEEPFILTERS y dejas solo el filtro con IN, la fila Verde muestra 20.",
+        "text": "Si quitas el último argumento («Bajo»), la fila Cadena muestra un error.",
         "answer": false,
-        "explanation": "Sin KEEPFILTERS, el filtro sobre Color sustituye al de la fila, así que todas las filas, también Verde, muestran 180."
+        "explanation": "Si ninguna condición se cumple y no hay valor alternativo, SWITCH devuelve BLANK, no un error."
       }
     ],
-    "keyPoint": "KEEPFILTERS hace la intersección con los filtros existentes de la columna; sin él, el filtro de CALCULATE los reemplaza.",
+    "keyPoint": "SWITCH ( TRUE (), condición1, resultado1, … , alternativo ) devuelve el resultado de la primera condición verdadera: escribe primero las más restrictivas.",
     "references": [
       {
-        "title": "Función KEEPFILTERS",
-        "url": "https://learn.microsoft.com/es-es/dax/keepfilters-function-dax"
-      },
-      {
-        "title": "Función CALCULATE",
-        "url": "https://learn.microsoft.com/es-es/dax/calculate-function-dax"
+        "title": "Función SWITCH",
+        "url": "https://learn.microsoft.com/es-es/dax/switch-function-dax"
       }
     ]
   },
@@ -299,11 +291,11 @@
     "keyPoint": "Una variable se calcula una vez en el contexto donde se define; los filtros de un CALCULATE posterior no la recalculan.",
     "references": [
       {
-        "title": "VAR (palabra clave de DAX)",
+        "title": "Palabra clave VAR",
         "url": "https://learn.microsoft.com/es-es/dax/var-dax"
       },
       {
-        "title": "Uso de variables para mejorar las fórmulas DAX",
+        "title": "Usar variables para mejorar las fórmulas DAX",
         "url": "https://learn.microsoft.com/es-es/dax/best-practices/dax-variables"
       }
     ]
@@ -535,7 +527,7 @@
         "id": "a",
         "text": "ISFILTERED",
         "correct": false,
-        "explanation": "La segmentación filtra Subcategoría directamente, así que ISFILTERED también es TRUE en las filas de categoría y del total."
+        "explanation": "En cuanto la segmentación tiene alguna subcategoría seleccionada, filtra Subcategoría directamente, así que ISFILTERED también devuelve TRUE en las filas de categoría y en el total."
       },
       {
         "id": "b",
@@ -688,7 +680,7 @@
     "keyPoint": "Los cocientes (márgenes, porcentajes) no son aditivos: calcúlalos con una medida que divida totales, no con una columna calculada que luego se suma.",
     "references": [
       {
-        "title": "Columnas calculadas en Power BI Desktop",
+        "title": "Uso de columnas calculadas en Power BI Desktop",
         "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-calculated-columns"
       },
       {
@@ -705,13 +697,13 @@
     "domain": "d2",
     "skill": "d2-dax",
     "difficulty": 2,
-    "scenario": "Una matriz muestra Fecha[Año] y Fecha[Mes] en filas. La tabla Fecha está marcada como tabla de fechas y contiene todos los días. Las ventas mensuales son las del anexo.",
+    "scenario": "Compras quiere seguir la tendencia con un total móvil de tres meses. La tabla Fecha, marcada como tabla de fechas, tiene una fila por día, y la matriz muestra Fecha[Año] y Fecha[Mes] en filas.",
     "code": {
       "language": "dax",
       "content": "Ventas 3 meses =\nCALCULATE (\n    [Ventas],\n    DATESINPERIOD ( 'Fecha'[Fecha], MAX ( 'Fecha'[Fecha] ), -3, MONTH )\n)"
     },
     "table": {
-      "caption": "Ventas mensuales",
+      "caption": "Ventas de cada mes",
       "headers": [
         "Mes",
         "Ventas"
@@ -739,31 +731,31 @@
         ]
       ]
     },
-    "prompt": "¿Qué valor muestra Ventas 3 meses en la fila Marzo 2026?",
+    "prompt": "¿Qué devuelve la medida para abril de 2026?",
     "options": [
       {
         "id": "a",
-        "text": "300",
+        "text": "350",
         "correct": true,
-        "explanation": "MAX devuelve el 31/03/2026 y DATESINPERIOD devuelve las fechas del 01/01/2026 al 31/03/2026: 100 + 120 + 80 = 300."
+        "explanation": "MAX devuelve el 30/04/2026 y DATESINPERIOD devuelve las fechas del 01/02/2026 al 30/04/2026: 120 + 80 + 150 = 350."
       },
       {
         "id": "b",
-        "text": "390",
+        "text": "450",
         "correct": false,
-        "explanation": "Incluiría diciembre; el intervalo de tres meses que termina el 31/03/2026 empieza el 01/01/2026."
+        "explanation": "Incluiría enero; el intervalo de tres meses que termina el 30/04/2026 empieza el 01/02/2026."
       },
       {
         "id": "c",
-        "text": "200",
+        "text": "230",
         "correct": false,
-        "explanation": "Solo suma febrero y marzo; DATESINPERIOD con -3 MONTH abarca tres meses completos, incluido el actual."
+        "explanation": "Solo suma marzo y abril; DATESINPERIOD con -3 y MONTH abarca tres meses completos, incluido el de la fila."
       },
       {
         "id": "d",
-        "text": "80",
+        "text": "150",
         "correct": false,
-        "explanation": "Son las ventas de marzo; la medida sustituye el filtro del mes por un intervalo de tres meses."
+        "explanation": "Son las ventas de abril; la medida sustituye el filtro del mes por un intervalo de tres meses."
       }
     ],
     "keyPoint": "DATESINPERIOD ( fechas, MAX ( fechas ), -N, MONTH ) devuelve los N meses que terminan en la última fecha del contexto: base de los totales móviles.",
@@ -781,81 +773,77 @@
     "outlineVersion": "2026-04-20",
     "domain": "d2",
     "skill": "d2-dax",
-    "difficulty": 2,
-    "scenario": "El año fiscal de la empresa termina el 30 de junio. Una matriz muestra los meses en filas y la medida del anexo. La tabla Fecha está marcada como tabla de fechas.",
+    "difficulty": 3,
+    "scenario": "Las ventas empezaron en noviembre de 2025. Dirección quiere ver en una matriz por mes el total acumulado desde el primer día de actividad, sin que vuelva a cero al empezar cada año. Creas la medida del anexo.",
     "code": {
       "language": "dax",
-      "content": "Ventas YTD fiscal =\nTOTALYTD ( [Ventas], 'Fecha'[Fecha], \"6/30\" )"
+      "content": "Ventas acumuladas =\nCALCULATE (\n    [Ventas],\n    FILTER (\n        ALL ( 'Fecha' ),\n        'Fecha'[Fecha] <= MAX ( 'Fecha'[Fecha] )\n    )\n)"
     },
     "table": {
-      "caption": "Ventas mensuales",
+      "caption": "Ventas por mes",
       "headers": [
-        "Periodo",
+        "Mes",
         "Ventas"
       ],
       "rows": [
         [
-          "Enero–abril 2025",
-          "200"
+          "Noviembre 2025",
+          "90"
         ],
         [
-          "Mayo 2025",
-          "60"
-        ],
-        [
-          "Junio 2025",
+          "Diciembre 2025",
           "80"
         ],
         [
-          "Julio 2025",
+          "Enero 2026",
           "100"
         ],
         [
-          "Agosto 2025",
-          "40"
+          "Febrero 2026",
+          "120"
         ],
         [
-          "Septiembre 2025",
-          "70"
-        ],
-        [
-          "Octubre 2025",
-          "90"
+          "Marzo 2026",
+          "50"
         ]
       ]
     },
-    "prompt": "¿Qué valor muestra Ventas YTD fiscal en la fila Septiembre 2025?",
+    "prompt": "¿Qué valor muestra Ventas acumuladas en la fila Febrero 2026?",
     "options": [
       {
         "id": "a",
-        "text": "550",
-        "correct": false,
-        "explanation": "Es el acumulado del año natural (enero a septiembre); el argumento \"6/30\" cambia el fin del año al 30 de junio."
+        "text": "390",
+        "correct": true,
+        "explanation": "ALL quita los filtros de la tabla Fecha y la condición conserva las fechas hasta MAX, que se evalúa en el contexto de la celda (28/02/2026): 90 + 80 + 100 + 120 = 390."
       },
       {
         "id": "b",
-        "text": "210",
-        "correct": true,
-        "explanation": "El año fiscal empieza el 1 de julio de 2025, así que el acumulado a septiembre es julio + agosto + septiembre: 100 + 40 + 70 = 210."
+        "text": "220",
+        "correct": false,
+        "explanation": "Es el acumulado del año (100 + 120), el que daría TOTALYTD o DATESYTD, que vuelven a empezar cada 1 de enero."
       },
       {
         "id": "c",
-        "text": "290",
+        "text": "440",
         "correct": false,
-        "explanation": "Incluye junio, que pertenece al año fiscal anterior porque este termina el 30 de junio."
+        "explanation": "Es el total de todos los meses. La condición con MAX limita las fechas a las anteriores o iguales a la última fecha de la celda, así que marzo no se incluye."
       },
       {
         "id": "d",
-        "text": "70",
+        "text": "120",
         "correct": false,
-        "explanation": "Son solo las ventas de septiembre; TOTALYTD acumula desde el inicio del año fiscal."
+        "explanation": "Son solo las ventas de febrero; sería el resultado si FILTER recorriera VALUES ( 'Fecha' ), que conserva el filtro del mes, en lugar de ALL ( 'Fecha' )."
       }
     ],
-    "keyPoint": "El argumento year_end_date de TOTALYTD (p. ej. \"6/30\") define el fin del año fiscal; por defecto es el 31 de diciembre.",
+    "keyPoint": "Acumulado sin reinicio: CALCULATE ( [medida], FILTER ( ALL ( 'Fecha' ), 'Fecha'[Fecha] <= MAX ( 'Fecha'[Fecha] ) ) ); TOTALYTD, en cambio, se reinicia al inicio de cada año.",
     "references": [
       {
-        "title": "Función TOTALYTD",
-        "url": "https://learn.microsoft.com/es-es/dax/totalytd-function-dax"
+        "title": "Función FILTER",
+        "url": "https://learn.microsoft.com/es-es/dax/filter-function-dax"
+      },
+      {
+        "title": "Función ALL",
+        "url": "https://learn.microsoft.com/es-es/dax/all-function-dax"
       }
     ]
   },
@@ -946,70 +934,104 @@
   },
   {
     "id": "pl300-d2-dax-114",
-    "type": "match",
+    "type": "single",
     "exam": "PL-300",
     "outlineVersion": "2026-04-20",
     "domain": "d2",
     "skill": "d2-dax",
-    "difficulty": 1,
-    "prompt": "Agregas cálculos visuales (*visual calculations*) a una matriz de ventas por mes. Empareja cada necesidad con la función de cálculo visual que la resuelve.",
-    "prompts": [
+    "difficulty": 2,
+    "scenario": "Una matriz muestra Fecha[Mes] en filas y la medida Clientes activos = DISTINCTCOUNT ( Ventas[IdCliente] ), con la fila de total activada. El anexo muestra las ventas del primer trimestre de 2026.",
+    "table": {
+      "caption": "Tabla Ventas (primer trimestre de 2026)",
+      "headers": [
+        "Mes",
+        "IdCliente",
+        "Importe"
+      ],
+      "rows": [
+        [
+          "Enero",
+          "C1",
+          "120"
+        ],
+        [
+          "Enero",
+          "C2",
+          "80"
+        ],
+        [
+          "Enero",
+          "C1",
+          "60"
+        ],
+        [
+          "Enero",
+          "C3",
+          "90"
+        ],
+        [
+          "Febrero",
+          "C2",
+          "150"
+        ],
+        [
+          "Febrero",
+          "C3",
+          "40"
+        ],
+        [
+          "Febrero",
+          "C4",
+          "70"
+        ],
+        [
+          "Marzo",
+          "C1",
+          "110"
+        ],
+        [
+          "Marzo",
+          "C4",
+          "30"
+        ]
+      ]
+    },
+    "prompt": "¿Qué valor muestra la fila de total?",
+    "options": [
       {
-        "id": "m1",
-        "text": "Diferencia entre las ventas de cada mes y las del mes anterior del objeto visual",
-        "answerId": "c1",
-        "explanation": "PREVIOUS hace referencia a la fila anterior del eje (equivale a OFFSET con -1): [Ventas] - PREVIOUS ( [Ventas] )."
+        "id": "a",
+        "text": "8",
+        "correct": false,
+        "explanation": "Es la suma de las filas (3 + 3 + 2). La fila de total no suma los valores de las filas: evalúa la medida otra vez con el filtro de todo el trimestre."
       },
       {
-        "id": "m2",
-        "text": "Media de las ventas de los últimos tres meses en cada fila",
-        "answerId": "c2",
-        "explanation": "MOVINGAVERAGE agrega una media móvil sobre el eje con el tamaño de ventana que indiques."
+        "id": "b",
+        "text": "4",
+        "correct": true,
+        "explanation": "En el total el contexto de filtro incluye los tres meses y DISTINCTCOUNT cuenta una vez cada cliente distinto: C1, C2, C3 y C4."
       },
       {
-        "id": "m3",
-        "text": "Diferencia de cada mes respecto al primer mes que muestra el objeto visual",
-        "answerId": "c3",
-        "explanation": "FIRST hace referencia a la primera fila del eje (equivale a INDEX con 1)."
+        "id": "c",
+        "text": "9",
+        "correct": false,
+        "explanation": "Es el número de filas de Ventas, que devolverían COUNTROWS ( Ventas ) o COUNT ( Ventas[IdCliente] ); DISTINCTCOUNT no cuenta los clientes repetidos."
       },
       {
-        "id": "m4",
-        "text": "Porcentaje de cada mes sobre el valor de su año, el nivel superior de la jerarquía de filas",
-        "answerId": "c4",
-        "explanation": "COLLAPSE evalúa la expresión un nivel por encima en el eje; COLLAPSEALL lo haría en el nivel del total general."
+        "id": "d",
+        "text": "3",
+        "correct": false,
+        "explanation": "Es el máximo de las filas; la fila de total no toma el máximo ni ningún otro valor de las filas, sino que recalcula la medida."
       }
     ],
-    "choices": [
-      {
-        "id": "c1",
-        "text": "PREVIOUS"
-      },
-      {
-        "id": "c2",
-        "text": "MOVINGAVERAGE"
-      },
-      {
-        "id": "c3",
-        "text": "FIRST"
-      },
-      {
-        "id": "c4",
-        "text": "COLLAPSE"
-      },
-      {
-        "id": "c5",
-        "text": "RUNNINGSUM"
-      },
-      {
-        "id": "c6",
-        "text": "EXPAND"
-      }
-    ],
-    "keyPoint": "Los cálculos visuales tienen funciones propias que recorren la matriz del objeto visual: PREVIOUS/NEXT, FIRST/LAST, MOVINGAVERAGE, RUNNINGSUM, COLLAPSE/EXPAND.",
+    "keyPoint": "Los totales se calculan evaluando la medida en el contexto del total, no sumando filas: un recuento distinto no es aditivo y su total puede ser menor que la suma de las filas.",
     "references": [
       {
-        "title": "Cálculos visuales",
-        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-visual-calculations-overview"
+        "title": "Función DISTINCTCOUNT",
+        "url": "https://learn.microsoft.com/es-es/dax/distinctcount-function-dax"
+      },
+      {
+        "title": "Medidas en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-measures"
       }
     ]
   },
@@ -1254,7 +1276,7 @@
         "url": "https://learn.microsoft.com/es-es/dax/summarizecolumns-function-dax"
       },
       {
-        "title": "Tablas calculadas en Power BI Desktop",
+        "title": "Uso de tablas calculadas en Power BI Desktop",
         "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-calculated-tables"
       }
     ]
@@ -1298,11 +1320,11 @@
     "keyPoint": "Estructura de variables: VAR … (en orden de dependencia) y RETURN con la expresión final.",
     "references": [
       {
-        "title": "VAR (palabra clave de DAX)",
+        "title": "Palabra clave VAR",
         "url": "https://learn.microsoft.com/es-es/dax/var-dax"
       },
       {
-        "title": "Uso de variables para mejorar las fórmulas DAX",
+        "title": "Usar variables para mejorar las fórmulas DAX",
         "url": "https://learn.microsoft.com/es-es/dax/best-practices/dax-variables"
       }
     ]
@@ -1455,31 +1477,31 @@
     "options": [
       {
         "id": "a",
-        "text": "Importe = SUMX ( Ventas, Ventas[Cantidad] * RELATED ( Productos[Precio] ) )",
+        "text": "Total = SUMX ( Ventas, Ventas[Cantidad] * RELATED ( Productos[Precio] ) )",
         "correct": false,
         "explanation": "Es válida: SUMX crea un contexto de fila sobre Ventas, en el que RELATED puede leer el precio del producto relacionado."
       },
       {
         "id": "b",
-        "text": "Importe = SUM ( Ventas[Cantidad] * Ventas[Precio] )",
+        "text": "Total = SUM ( Ventas[Cantidad] * Ventas[Precio] )",
         "correct": true,
         "explanation": "SUM solo admite una referencia a una columna, no una expresión; para multiplicar fila a fila necesitas un iterador como SUMX."
       },
       {
         "id": "c",
-        "text": "Importe = CALCULATE ( SUM ( Ventas[Importe] ), Ventas[Canal] = \"Web\" )",
+        "text": "Total web = CALCULATE ( SUM ( Ventas[Importe] ), Ventas[Canal] = \"Web\" )",
         "correct": false,
         "explanation": "Es válida: el filtro booleano usa una sola columna de una tabla y no hace referencia a medidas."
       },
       {
         "id": "d",
-        "text": "Importe = Ventas[Importe]",
+        "text": "Total = Ventas[Importe]",
         "correct": true,
         "explanation": "Una medida no tiene contexto de fila, así que no puede leer una columna sin agregarla; debes usar SUM u otra agregación."
       },
       {
         "id": "e",
-        "text": "Importe = SUMX ( Ventas, Ventas[Cantidad] * Ventas[Precio] )",
+        "text": "Total = SUMX ( Ventas, Ventas[Cantidad] * Ventas[Precio] )",
         "correct": false,
         "explanation": "Es válida: es el patrón correcto para calcular un importe fila a fila y sumarlo."
       }
@@ -1538,7 +1560,7 @@
         "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-measures"
       },
       {
-        "title": "Columnas calculadas en Power BI Desktop",
+        "title": "Uso de columnas calculadas en Power BI Desktop",
         "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-calculated-columns"
       }
     ]
