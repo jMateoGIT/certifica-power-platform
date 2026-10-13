@@ -174,7 +174,7 @@
         "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/create-edit-nn-relationships"
       },
       {
-        "title": "Crear una relación entre tablas",
+        "title": "Relaciones de tabla de Microsoft Dataverse",
         "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/create-edit-entity-relationships"
       }
     ]
@@ -276,7 +276,7 @@
     "keyPoint": "Elección global = una lista de valores definida una vez y reutilizada por columnas de elección de varias tablas.",
     "references": [
       {
-        "title": "Crear una columna de opciones",
+        "title": "Crear una elección",
         "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/custom-picklists"
       }
     ]
@@ -367,10 +367,10 @@
           { "id": "o3", "text": "registro" }
         ],
         "correctId": "o3",
-        "explanation": "Las tablas de auditoría y los registros de seguimiento de complementos cuentan en la capacidad de registro, que se controla por separado."
+        "explanation": "Los registros de auditoría (y otros registros del sistema) cuentan en la capacidad de registro, que se mide aparte de la de base de datos."
       }
     ],
-    "keyPoint": "Dataverse separa la capacidad en base de datos (filas), archivo (adjuntos, archivos e imágenes) y registro (auditoría).",
+    "keyPoint": "Dataverse no guarda todo igual que una base de datos tradicional: filas en base de datos, adjuntos, archivos e imágenes en almacenamiento de archivos y auditoría en registro, cada uno con su propia capacidad.",
     "references": [
       {
         "title": "Detalles del almacenamiento basado en la capacidad de Dataverse",
@@ -659,7 +659,7 @@
     "keyPoint": "Formulario principal: encabezado (datos clave) > pestañas (páginas) > secciones (grupos de columnas), más controles como la escala de tiempo.",
     "references": [
       {
-        "title": "Agregar, mover o eliminar pestañas en un formulario",
+        "title": "Agregar, configurar, mover o eliminar pestañas en un formulario",
         "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/add-move-or-delete-tabs-on-form"
       },
       {
@@ -707,11 +707,11 @@
     "keyPoint": "Los filtros de una vista pueden usar columnas de tablas relacionadas; las vistas públicas son las que comparten todos los usuarios.",
     "references": [
       {
-        "title": "Edición de criterios de filtro en vistas de aplicaciones basadas en modelos",
+        "title": "Editar criterios de filtro para una vista de tabla",
         "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/edit-filter-criteria"
       },
       {
-        "title": "Crear o editar una vista de aplicación basada en modelos",
+        "title": "Comprender las vistas de las aplicaciones basadas en modelos",
         "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/create-edit-views"
       }
     ]

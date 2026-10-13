@@ -8,94 +8,90 @@
     "skill": "d2-dataverse",
     "caseId": "caso-7",
     "difficulty": 2,
-    "prompt": "¿Qué debes agregar a la tabla Entrada para cumplir el requisito 1?",
+    "prompt": "¿Cómo debes crear la tabla *Visita de campo* para cumplir el requisito 1?",
     "options": [
       {
         "id": "a",
-        "text": "Una columna de fórmula de Power Fx que sume 1 al número de la última entrada registrada",
+        "text": "Como tabla estándar con propiedad Organización y una columna de búsqueda a Contacto",
         "correct": false,
-        "explanation": "Una columna de fórmula calcula su valor a partir de las columnas de la propia fila o de filas relacionadas; no lleva un contador secuencial de toda la tabla, así que no puede generar ENT-1000, ENT-1001…"
+        "explanation": "La búsqueda vincularía la visita con el socio, pero una tabla estándar no es una actividad: no aparece en la escala de tiempo junto con las llamadas y las citas. Además, las filas de una tabla de la organización no se pueden asignar a cada técnico."
       },
       {
         "id": "b",
-        "text": "Una clave alternativa (*key*) sobre una columna de texto Número de entrada",
-        "correct": false,
-        "explanation": "Una clave alternativa impide que se repita un valor, pero no lo genera: el operario seguiría teniendo que escribir el número, que es justo lo que el requisito quiere evitar."
+        "text": "Como tabla de tipo Actividad, eligiendo ese tipo en las opciones avanzadas al crearla",
+        "correct": true,
+        "explanation": "Las tablas de actividad están pensadas para acciones con fechas y duración que se abren, completan o cancelan. Solo las puede poseer un usuario o un equipo, comparten las columnas comunes de las actividades (como Asunto y Referente a) y se muestran en la escala de tiempo con el resto de actividades del registro."
       },
       {
         "id": "c",
-        "text": "Una columna de numeración automática (*autonumber*) con el tipo número predefinido de cadena y el prefijo ENT",
-        "correct": true,
-        "explanation": "La numeración automática es un tipo de columna de texto cuyo valor rellena Dataverse al crear la fila: con el tipo número predefinido de cadena genera un número que se incrementa con un prefijo fijo (ENT-1000, ENT-1001…), el mismo para las entradas de los tres centros."
+        "text": "Como tabla estándar, para convertirla en tabla de actividad cuando la aplicación esté terminada",
+        "correct": false,
+        "explanation": "El tipo Actividad se elige al crear la tabla y no se puede cambiar después de guardarla, así que tendrías que crear otra tabla y migrar los datos."
       },
       {
         "id": "d",
-        "text": "Una regla de negocio que rellene la columna Número de entrada al guardar el formulario",
+        "text": "Como tabla elástica, para que admita el volumen de visitas de todas las campañas",
         "correct": false,
-        "explanation": "Una regla de negocio puede establecer un valor fijo o copiarlo de otra columna, pero no sabe cuál es el siguiente número de la secuencia en toda la tabla, así que no garantiza un identificador correlativo y único."
+        "explanation": "Las tablas elásticas están pensadas para volúmenes enormes, como millones de lecturas por hora, y no se comportan como actividades. Unas pocas visitas diarias no lo justifican."
       }
     ],
-    "keyPoint": "Identificador correlativo generado por el sistema, con prefijo o fecha = columna de numeración automática de Dataverse.",
+    "keyPoint": "Registros con fechas y estado que deben verse junto a las llamadas, los correos y las citas en la escala de tiempo → tabla de actividad, un tipo que se elige al crear la tabla.",
     "references": [
       {
-        "title": "Columnas de autonumeración",
-        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/autonumber-fields"
+        "title": "Tipos de tablas",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/types-of-entities"
+      },
+      {
+        "title": "Configurar el control de escala de tiempo",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/set-up-timeline-control"
       }
     ]
   },
   {
     "id": "pl900-caso-7-002",
-    "type": "match",
+    "type": "single",
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d3",
     "skill": "d3-lienzo",
     "caseId": "caso-7",
-    "difficulty": 1,
-    "prompt": "Empareja cada necesidad del requisito 2 con el control o la señal de la aplicación de lienzo que la cubre. Cada opción puede usarse una vez o ninguna.",
-    "prompts": [
+    "difficulty": 2,
+    "prompt": "¿Qué debes agregar a la aplicación de lienzo para mostrar las parcelas como pide el requisito 2?",
+    "options": [
       {
-        "id": "m1",
-        "text": "Identificar la parcela leyendo el código QR de la etiqueta de la caja",
-        "answerId": "c1",
-        "explanation": "El control Lector de códigos de barras abre el escáner nativo del dispositivo y lee códigos de barras, códigos QR y códigos de matriz de datos; su propiedad Barcodes devuelve el valor leído."
+        "id": "a",
+        "text": "Una etiqueta que muestre los valores de latitud y longitud de la señal Location",
+        "correct": false,
+        "explanation": "La señal Location solo devuelve la posición del dispositivo. Mostrarla en una etiqueta no sitúa las parcelas en un mapa ni ayuda a planificar el recorrido."
       },
       {
-        "id": "m2",
-        "text": "Guardar la latitud y la longitud del lugar donde se hace la visita",
-        "answerId": "c2",
-        "explanation": "La señal Location devuelve la posición del dispositivo (latitud, longitud y altitud) a partir del GPS y de otra información del dispositivo; el técnico solo tiene que permitir el acceso a la ubicación."
+        "id": "b",
+        "text": "Un control Imagen con el plano escaneado de las parcelas de cada técnico",
+        "correct": false,
+        "explanation": "Una imagen es estática: no cambia con las parcelas que toca visitar cada día ni muestra dónde está el técnico."
       },
       {
-        "id": "m3",
-        "text": "Fotografiar los daños de plagas desde la propia aplicación",
-        "answerId": "c3",
-        "explanation": "El control Cámara captura imágenes con la cámara del dispositivo y deja la última foto en su propiedad Photo, desde donde puede guardarse junto con la visita."
+        "id": "c",
+        "text": "El control Mapa, con la tabla Parcela en Items y sus columnas de latitud y longitud",
+        "correct": true,
+        "explanation": "El control de mapa interactivo traza marcadores a partir de un origen de datos con direcciones o con pares de latitud y longitud, puede mostrar la posición actual del usuario y calcular rutas. Antes, un administrador debe habilitar las características geoespaciales del entorno."
       },
       {
-        "id": "m4",
-        "text": "Recoger la firma del socio al terminar la visita",
-        "answerId": "c4",
-        "explanation": "El control Entrada de lápiz (*Pen input*) es una superficie en la que el usuario dibuja o escribe con el dedo o con un lápiz; es el control habitual para capturar firmas en una aplicación de lienzo."
+        "id": "d",
+        "text": "El control Entrada de dirección, para que el técnico busque cada parcela",
+        "correct": false,
+        "explanation": "La entrada de dirección sugiere direcciones mientras el usuario escribe y devuelve sus datos; no muestra varias parcelas sobre un mapa ni la posición del técnico."
       }
     ],
-    "choices": [
-      { "id": "c1", "text": "Control Lector de códigos de barras (*Barcode reader*)" },
-      { "id": "c2", "text": "Señal Location" },
-      { "id": "c3", "text": "Control Cámara" },
-      { "id": "c4", "text": "Control Entrada de lápiz (*Pen input*)" },
-      { "id": "c5", "text": "Control Temporizador (*Timer*)" },
-      { "id": "c6", "text": "Control Galería (*Gallery*)" }
-    ],
-    "keyPoint": "Las aplicaciones de lienzo aprovechan el hardware del móvil: lector de códigos de barras, Location (GPS), Cámara y Entrada de lápiz.",
+    "keyPoint": "Para situar datos en un mapa dentro de una aplicación de lienzo, usa el control Mapa: marcadores desde un origen de datos, posición actual y rutas.",
     "references": [
       {
-        "title": "Control lector de códigos de barras en Power Apps",
-        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/controls/control-barcodereader"
+        "title": "Control de mapa interactivo",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/geospatial-component-map"
       },
       {
-        "title": "Señales Acceleration, App, Compass, Connection y Location en Power Apps",
-        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/functions/signals"
+        "title": "Agregar controles geoespaciales a aplicaciones de lienzo",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/geospatial-overview"
       }
     ]
   },
@@ -145,93 +141,99 @@
   },
   {
     "id": "pl900-caso-7-004",
-    "type": "yesno",
+    "type": "single",
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d5",
-    "skill": "d5-casos",
+    "skill": "d5-gestion",
     "caseId": "caso-7",
     "difficulty": 2,
-    "prompt": "Sobre el agente del requisito 4, indica si cada afirmación es verdadera.",
-    "statements": [
+    "prompt": "¿Dónde debe revisar Lucía lo que pide el requisito 4?",
+    "options": [
       {
-        "id": "s1",
-        "text": "Debes agregar al agente un desencadenador de eventos (*event trigger*) que se active cuando se cree un archivo en la biblioteca Informes de campo.",
-        "answer": true,
-        "explanation": "A diferencia de los desencadenadores de temas, que necesitan que alguien escriba al agente, un desencadenador de eventos envía al agente una carga útil cuando ocurre algo, como la creación de un archivo, para que actúe de forma autónoma."
+        "id": "a",
+        "text": "En el panel Probar el agente, volviendo a enviar cada informe como mensaje de prueba",
+        "correct": false,
+        "explanation": "El panel de prueba muestra el mapa de actividad de las pruebas que haces en ese momento; no recoge las ejecuciones reales que el desencadenador inició antes."
       },
       {
-        "id": "s2",
-        "text": "El agente debe tener activada la orquestación generativa.",
-        "answer": true,
-        "explanation": "Los desencadenadores de eventos solo están disponibles en agentes con orquestación generativa, que es la que decide, a partir de la carga útil y de las instrucciones, qué herramienta o tema usar, como crear la tarea en Planner."
+        "id": "b",
+        "text": "En la página Actividad del agente en Copilot Studio, con el mapa de cada actividad",
+        "correct": true,
+        "explanation": "La página Actividad registra cada actividad del agente, también las que inicia un desencadenador autónomo, y su mapa muestra las entradas, las decisiones, las herramientas usadas, el tiempo de cada paso y los errores. Está disponible en agentes con orquestación generativa."
       },
       {
-        "id": "s3",
-        "text": "Al activarse, el desencadenador se autentica con las credenciales del técnico que ha subido el informe.",
-        "answer": false,
-        "explanation": "Los desencadenadores de eventos solo pueden usar las credenciales del autor del agente, las que usó para autorizar las conexiones. Por eso conviene revisar a qué datos se puede llegar a través de un agente con desencadenadores."
+        "id": "c",
+        "text": "En la página Supervisar (*Monitor*) del agente, con las métricas de sesiones y desencadenadores",
+        "correct": false,
+        "explanation": "La supervisión ofrece métricas agregadas, como el número de sesiones o el uso de los desencadenadores, pero no el detalle de lo que decidió el agente en cada ejecución."
       },
       {
-        "id": "s4",
-        "text": "En cuanto agregas el desencadenador, el agente empieza a reaccionar a los informes reales, aunque todavía no lo hayas publicado.",
-        "answer": false,
-        "explanation": "Hasta que publicas el agente con el nuevo desencadenador, no reacciona automáticamente a los eventos. Por eso debes probarlo a fondo antes de publicarlo: a partir de ese momento reaccionará cada vez que se active."
+        "id": "d",
+        "text": "En el historial de ejecuciones del flujo de Power Automate que implementa el desencadenador",
+        "correct": false,
+        "explanation": "Ese historial indica cuándo se activó el desencadenador y qué carga útil envió al agente, pero no qué decidió el agente después ni qué herramientas usó."
       }
     ],
-    "keyPoint": "Agente autónomo = desencadenador de eventos + orquestación generativa; usa las credenciales del autor y solo reacciona tras publicarlo.",
+    "keyPoint": "Para revisar qué hizo un agente en cada ejecución, incluidas las autónomas, usa la página Actividad de Copilot Studio y su mapa de actividad.",
     "references": [
+      {
+        "title": "Revisar la actividad del agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-review-activity"
+      },
       {
         "title": "Información general sobre desencadenadores de eventos",
         "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-triggers-about"
-      },
-      {
-        "title": "Agregar un desencadenador de eventos",
-        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-trigger-event"
       }
     ]
   },
   {
     "id": "pl900-caso-7-005",
-    "type": "single",
+    "type": "multiple",
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d1",
     "skill": "d1-apps-automate",
     "caseId": "caso-7",
     "difficulty": 2,
-    "prompt": "¿Qué capacidad de Power Automate aporta el valor que busca la gerente en el requisito 5?",
+    "prompt": "¿Qué dos beneficios puede presentar la gerente para cumplir el requisito 5? Selecciona dos.",
     "options": [
       {
         "id": "a",
-        "text": "Copilot en Power Automate, para generar un flujo de nube a partir de la descripción del proceso de liquidación",
-        "correct": false,
-        "explanation": "Copilot ayuda a crear y modificar automatizaciones, pero no analiza cómo se ejecuta hoy el proceso. La gerente quiere diagnosticar el proceso real antes de automatizar."
+        "text": "Cada visita se registra una sola vez, en la propia parcela, y la oficina la tiene disponible al momento",
+        "correct": true,
+        "explanation": "Es el valor típico de una aplicación para trabajadores de campo: los datos se capturan en origen y en tiempo real, y desaparecen el papel y los errores de transcripción."
       },
       {
         "id": "b",
-        "text": "La minería de procesos (*process mining*), que usa los registros de eventos del programa de gestión",
-        "correct": true,
-        "explanation": "La minería de procesos extrae los datos de eventos del sistema que registra el proceso (cada paso de cada liquidación con su fecha y hora), visualiza cómo transcurre realmente e identifica cuellos de botella y oportunidades de automatización."
+        "text": "La aplicación garantiza que los datos no tengan errores, así que ya no hará falta revisar las visitas",
+        "correct": false,
+        "explanation": "La aplicación reduce los errores de transcripción y puede validar datos, pero no garantiza que todo sea correcto; seguirá habiendo que revisar la información."
       },
       {
         "id": "c",
-        "text": "Los análisis de Power Automate del centro de administración, con las ejecuciones y errores de los flujos",
-        "correct": false,
-        "explanation": "Estos análisis muestran el uso y los errores de los flujos que ya existen en un entorno. La liquidación todavía no está automatizada, así que no hay ejecuciones de flujos que analizar."
+        "text": "Las visitas quedan documentadas con fotos tomadas en la parcela, de forma más completa que en una libreta",
+        "correct": true,
+        "explanation": "Las aplicaciones de lienzo aprovechan la cámara y la ubicación del dispositivo, así que cada visita queda documentada con datos que en papel se perdían o se anotaban mal."
       },
       {
         "id": "d",
-        "text": "Un flujo de proceso de negocio que guíe al equipo de administración por las fases de la liquidación",
+        "text": "Al ser una solución de poco código, la aplicación no necesitará mantenimiento ni gobierno por parte de nadie",
         "correct": false,
-        "explanation": "Un flujo de proceso de negocio guía a los usuarios por unas fases a partir de ahora, pero no analiza los datos históricos para descubrir dónde se atasca el proceso."
+        "explanation": "El poco código acelera el desarrollo, pero las aplicaciones siguen necesitando mantenimiento, seguridad y gobierno, por ejemplo con entornos y directivas de datos."
+      },
+      {
+        "id": "e",
+        "text": "Los técnicos podrán usarla sin cuenta de Microsoft 365 ni licencia, porque se ejecuta en la tableta",
+        "correct": false,
+        "explanation": "Las aplicaciones de lienzo exigen iniciar sesión con Microsoft Entra ID y que el usuario tenga la licencia adecuada, aunque se ejecuten en una tableta."
       }
     ],
-    "keyPoint": "Para entender el proceso real y sus cuellos de botella a partir de los datos de eventos, antes de automatizar = minería de procesos.",
+    "keyPoint": "Valor de Power Apps para el trabajo de campo: datos capturados una sola vez, en origen y al momento, y más completos (fotos, ubicación), sin papel ni transcripciones.",
     "references": [
       {
-        "title": "Información general de la minería de procesos",
-        "url": "https://learn.microsoft.com/es-es/power-automate/process-mining-overview"
+        "title": "Describir el valor de Microsoft Power Platform (Power Apps para técnicos de campo)",
+        "url": "https://learn.microsoft.com/es-es/training/modules/describe-business-value-microsoft-power-platform-services/3-describe-business-value-microsoft-power-apps-build-applications"
       }
     ]
   },
@@ -377,7 +379,7 @@
         "url": "https://learn.microsoft.com/es-es/power-automate/create-approval-response-options"
       },
       {
-        "title": "Comience a trabajar con las aprobaciones de Power Automate",
+        "title": "Comience con las aprobaciones",
         "url": "https://learn.microsoft.com/es-es/power-automate/get-started-approvals"
       }
     ]
@@ -438,50 +440,45 @@
   },
   {
     "id": "pl900-caso-8-005",
-    "type": "order",
+    "type": "yesno",
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d3",
     "skill": "d3-lienzo",
     "caseId": "caso-8",
     "difficulty": 2,
-    "prompt": "Vas a cumplir el requisito 5 con una biblioteca de componentes. Ordena los pasos teniendo en cuenta qué necesita cada uno del anterior.",
-    "items": [
+    "prompt": "Para cumplir el requisito 5, Nerea va a compartir la aplicación *Reparto* con usuarios invitados. Indica si cada afirmación es verdadera.",
+    "statements": [
       {
-        "id": "p1",
-        "text": "Crear una biblioteca de componentes y diseñar en ella el componente Cabecera con el logotipo y el menú",
-        "explanation": "Una biblioteca de componentes es un contenedor centralizado de componentes reutilizables; primero hay que crearla y diseñar en ella la cabecera común."
+        "id": "s1",
+        "text": "Debe invitar a esos voluntarios como usuarios invitados en el Microsoft Entra ID de la fundación y después compartir con ellos la aplicación.",
+        "answer": true,
+        "explanation": "Las aplicaciones de lienzo se pueden compartir con usuarios invitados de Microsoft Entra (B2B): se les invita al inquilino de la fundación, donde está la app, y siguen iniciando sesión con la cuenta de su propia organización."
       },
       {
-        "id": "p2",
-        "text": "Guardar y publicar la biblioteca de componentes",
-        "explanation": "Solo las versiones publicadas de la biblioteca están disponibles para las aplicaciones; sin publicarla, Almacén, Reparto y Acogida no podrían usar la cabecera."
+        "id": "s2",
+        "text": "Como Reparto usa Dataverse, cada voluntario invitado necesita una licencia con derechos de uso de Power Apps.",
+        "answer": true,
+        "explanation": "Para usar una aplicación que se conecta a Dataverse, el invitado necesita una licencia con derechos de uso de Power Apps adecuados para la app; si no la tiene en su propia organización, se la puede asignar la fundación."
       },
       {
-        "id": "p3",
-        "text": "En cada aplicación, importar la cabecera desde Insertar > Obtener más componentes",
-        "explanation": "Una vez publicada, cada aplicación importa el componente desde la biblioteca y queda vinculada a ella, en lugar de tener una copia propia de la cabecera."
+        "id": "s3",
+        "text": "Las aplicaciones de lienzo solo se pueden compartir con usuarios de la propia organización, así que habría que rehacer Reparto como sitio de Power Pages.",
+        "answer": false,
+        "explanation": "Las aplicaciones de lienzo admiten el acceso de invitados mediante Microsoft Entra B2B. Power Pages es la opción para sitios web con usuarios externos, incluso anónimos, pero aquí no hace falta rehacer la app."
       },
       {
-        "id": "p4",
-        "text": "Cuando cambia la imagen corporativa, modificar la cabecera en la biblioteca y publicar la nueva versión",
-        "explanation": "Los cambios se hacen una sola vez, en la biblioteca, y deben publicarse (si quieres, con notas de versión) para que las aplicaciones que la usan puedan recibirlos."
-      },
-      {
-        "id": "p5",
-        "text": "Al editar cada aplicación, revisar el aviso de componentes actualizados y seleccionar Actualizar",
-        "explanation": "Las aplicaciones que dependen de la biblioteca avisan al creador cuando hay una versión nueva de sus componentes; al aceptar la actualización, la cabecera nueva llega a la app sin rehacerla."
+        "id": "s4",
+        "text": "Los voluntarios invitados podrán abrir la aplicación sin iniciar sesión, como en un sitio web público.",
+        "answer": false,
+        "explanation": "Las aplicaciones de lienzo siempre exigen autenticación con Microsoft Entra ID; el acceso anónimo solo es posible en sitios como los de Power Pages."
       }
     ],
-    "keyPoint": "Biblioteca de componentes: diseñas una vez, publicas, las apps importan el componente y reciben las nuevas versiones publicadas.",
+    "keyPoint": "Una aplicación de lienzo puede compartirse con usuarios invitados de Microsoft Entra (B2B), que inician sesión con su propia cuenta y necesitan la licencia adecuada; el acceso anónimo es propio de Power Pages.",
     "references": [
       {
-        "title": "Biblioteca de componentes",
-        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/component-library"
-      },
-      {
-        "title": "Información general del componente de lienzo",
-        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/create-component"
+        "title": "Compartir una aplicación de lienzo con usuarios invitados",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/share-app-guests"
       }
     ]
   }

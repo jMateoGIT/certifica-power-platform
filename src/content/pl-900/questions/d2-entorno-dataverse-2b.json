@@ -38,7 +38,7 @@
     "keyPoint": "En el entorno predeterminado todos los usuarios con licencia son creadores (Creador de entornos); por eso conviene gobernarlo y no usarlo para cargas de producción.",
     "references": [
       {
-        "title": "Información general sobre entornos",
+        "title": "Información general sobre entornos de Power Platform",
         "url": "https://learn.microsoft.com/es-es/power-platform/admin/environments-overview"
       }
     ]
@@ -131,7 +131,7 @@
     "keyPoint": "Copias del sistema = automáticas (no en entornos de prueba y sin consumir capacidad); copias manuales = antes de cambios importantes (no en el entorno predeterminado).",
     "references": [
       {
-        "title": "Copia de seguridad y restauración de entornos",
+        "title": "Realizar copias de seguridad y restaurar entornos",
         "url": "https://learn.microsoft.com/es-es/power-platform/admin/backup-restore-environments"
       }
     ]
@@ -175,7 +175,7 @@
     "keyPoint": "Valores que cambian entre desarrollo, prueba y producción (sitio, lista, URL…) → variables de entorno dentro de la solución.",
     "references": [
       {
-        "title": "Información general de las variables de entorno",
+        "title": "Información general sobre las variables de entorno de Power Platform",
         "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/environmentvariables"
       }
     ]
@@ -289,19 +289,19 @@
       },
       {
         "id": "p4",
-        "text": "Dar a los usuarios los roles de seguridad necesarios en el entorno de destino, por ejemplo, mediante un grupo de seguridad",
-        "explanation": "Quienes usaban la aplicación en el entorno predeterminado necesitan acceso y roles en el nuevo entorno antes de empezar a usarla allí."
+        "text": "Migrar al entorno de destino la configuración y los datos de la aplicación",
+        "explanation": "La solución lleva los componentes, no los datos: después de importarla hay que trasladar la configuración y los datos para que la aplicación funcione igual en el nuevo entorno."
       },
       {
         "id": "p5",
         "text": "Eliminar la aplicación y sus componentes del entorno predeterminado",
-        "explanation": "Solo cuando la aplicación funciona en el destino y los usuarios tienen acceso se retira del predeterminado, para no dejar dos versiones en uso."
+        "explanation": "Solo cuando la aplicación funciona en el destino con sus datos se retira del predeterminado, sin eliminar recursos que usen otras aplicaciones o flujos, como una tabla compartida."
       }
     ],
-    "keyPoint": "Para sacar una aplicación crítica del entorno predeterminado: solución → exportar → importar en el destino → dar acceso → eliminarla del predeterminado.",
+    "keyPoint": "Para sacar una aplicación crítica del entorno predeterminado: solución → exportar → importar en el destino → migrar configuración y datos → eliminarla del predeterminado.",
     "references": [
       {
-        "title": "Administrar y gobernar el entorno predeterminado",
+        "title": "Administrar y gobernar el entorno predeterminado de Power Platform",
         "url": "https://learn.microsoft.com/es-es/power-platform/guidance/adoption/manage-default-environment"
       }
     ]
@@ -454,7 +454,7 @@
     "keyPoint": "Propietario = posee filas y tiene roles (miembros manuales); de acceso = solo recibe filas compartidas; de grupo de Microsoft Entra = como el propietario, pero con los miembros sincronizados desde el grupo.",
     "references": [
       {
-        "title": "Administrar equipos",
+        "title": "Administrar equipos de Microsoft Dataverse",
         "url": "https://learn.microsoft.com/es-es/power-platform/admin/manage-teams"
       }
     ]
@@ -467,39 +467,43 @@
     "domain": "d2",
     "skill": "d2-seguridad",
     "difficulty": 2,
-    "scenario": "Vas a crear en Dataverse la tabla Tarifa, con los precios de catálogo de una empresa de transporte. Todos los empleados deben poder leerla y no tiene sentido que cada fila pertenezca a un usuario o a un equipo concreto.",
-    "prompt": "¿Qué tipo de propiedad (*ownership*) debes elegir al crear la tabla?",
+    "scenario": "El responsable de seguridad de una aseguradora ha descubierto que algunos creadores han conectado flujos de nube con el SharePoint y el Outlook de otras empresas, iniciando sesión con cuentas de Microsoft Entra de esas organizaciones. Quiere bloquear en Power Platform las conexiones con otros inquilinos de Microsoft Entra, salvo con un proveedor concreto con el que colabora.",
+    "prompt": "¿Qué debe configurar el administrador?",
     "options": [
       {
         "id": "a",
-        "text": "Usuario o equipo",
+        "text": "Una directiva de datos que clasifique SharePoint y Office 365 Outlook como conectores Empresariales",
         "correct": false,
-        "explanation": "Con esta propiedad cada fila tiene un propietario y el acceso se puede controlar por usuario o por unidad de negocio; no hace falta para un catálogo común que todos leen."
+        "explanation": "Las directivas de datos deciden qué conectores pueden usarse juntos o quedan bloqueados, pero no distinguen a qué inquilino se conecta cada conexión."
       },
       {
         "id": "b",
-        "text": "Organización",
+        "text": "El aislamiento de inquilinos (*tenant isolation*), con una regla de excepción para el inquilino del proveedor",
         "correct": true,
-        "explanation": "En las tablas de propiedad de la organización los datos pertenecen a la organización y el acceso se controla en ese nivel, algo adecuado para datos de referencia comunes como un catálogo de tarifas."
+        "explanation": "Con el aislamiento de inquilinos activado, Power Platform bloquea las conexiones entrantes y salientes con otros inquilinos en los conectores que se autentican con Microsoft Entra ID, como SharePoint u Office 365 Outlook. Una lista de permitidos admite excepciones."
       },
       {
         "id": "c",
-        "text": "Unidad de negocio",
+        "text": "Un grupo de seguridad de Microsoft Entra ID asociado a cada uno de los entornos",
         "correct": false,
-        "explanation": "La propiedad de unidad de negocio solo la tienen algunas tablas del sistema, como Equipo o Rol de seguridad; no se ofrece al crear una tabla personalizada."
+        "explanation": "El grupo de seguridad de un entorno decide qué usuarios de tu inquilino pueden ser miembros de él; no impide conectarse a datos de otros inquilinos."
       },
       {
         "id": "d",
-        "text": "Usuario o equipo, y cambiarla a Organización cuando la tabla tenga datos",
+        "text": "El firewall de IP de los entornos administrados, con las direcciones de la oficina",
         "correct": false,
-        "explanation": "El tipo de propiedad se elige al crear la tabla y después no se puede cambiar; habría que eliminar la tabla y crear otra."
+        "explanation": "El firewall de IP limita desde qué direcciones IP se accede a un entorno; no controla a qué inquilinos se conectan las aplicaciones y los flujos."
       }
     ],
-    "keyPoint": "Datos comunes de referencia → tabla de propiedad de la organización; el tipo de propiedad no se puede cambiar después de crear la tabla.",
+    "keyPoint": "Para impedir que los datos salgan hacia otros inquilinos de Microsoft Entra (o entren desde ellos) a través de los conectores → aislamiento de inquilinos, con excepciones en una lista de permitidos.",
     "references": [
       {
-        "title": "Tipos de tablas",
-        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/types-of-entities"
+        "title": "Restricciones cruzadas entrantes y salientes de inquilinos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/cross-tenant-restrictions"
+      },
+      {
+        "title": "Administración de identidades y acceso",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/security/identity-access-management"
       }
     ]
   },
@@ -669,7 +673,7 @@
     "keyPoint": "Asignar = cambiar el propietario; Compartir = dar acceso sin perder el tuyo; Anexar = asociar este registro a otro; Anexar a = permitir que otros se asocien a este.",
     "references": [
       {
-        "title": "Roles de seguridad y privilegios",
+        "title": "Roles y privilegios de seguridad para Dataverse",
         "url": "https://learn.microsoft.com/es-es/power-platform/admin/security-roles-privileges"
       }
     ]
@@ -804,7 +808,7 @@
     "keyPoint": "Creador de entornos = crear aplicaciones y flujos; Personalizador del sistema = además, crear y modificar tablas; Administrador del sistema = control total.",
     "references": [
       {
-        "title": "Configurar la seguridad en un entorno",
+        "title": "Roles de seguridad predefinidos para Dataverse",
         "url": "https://learn.microsoft.com/es-es/power-platform/admin/database-security"
       }
     ]
@@ -881,7 +885,7 @@
     "keyPoint": "Región activa = control Etiqueta con la propiedad Live: Asertivo para lo crítico, Educado para lo no crítico.",
     "references": [
       {
-        "title": "Regiones activas en aplicaciones de lienzo",
+        "title": "Anunciar cambios dinámicos con regiones activas en aplicaciones de lienzo",
         "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/accessible-apps-live-regions"
       }
     ]
@@ -1037,26 +1041,26 @@
     "skill": "d2-supervision",
     "difficulty": 2,
     "prompt": "Completa la frase sobre el análisis en el nivel de inquilino (*tenant-level analytics*).",
-    "template": "Cuando se activa el análisis en el nivel de inquilino, la telemetría de los entornos de todas las regiones se copia en {{b1}} para generar los informes; con ellos, un administrador de Power Platform ve los datos de {{b2}}; y si no se activa, {{b3}} no muestra datos.",
+    "template": "El análisis en el nivel de inquilino lo activa {{b1}}; una vez activado, un administrador de Power Platform ve los informes de {{b2}}; y si no se activa, {{b3}} no muestra datos.",
     "blanks": [
       {
         "id": "b1",
         "options": [
           {
             "id": "o1",
-            "text": "la región del entorno predeterminado"
+            "text": "cada creador, en la configuración de sus aplicaciones"
           },
           {
             "id": "o2",
-            "text": "una suscripción de Azure de la organización"
+            "text": "un administrador, en la configuración del inquilino del centro de administración"
           },
           {
             "id": "o3",
-            "text": "la región de cada entorno, sin moverla"
+            "text": "Microsoft, automáticamente, en todos los inquilinos"
           }
         ],
-        "correctId": "o1",
-        "explanation": "Para los informes de inquilino, los datos de los entornos de todas las regiones se agregan y se copian en la región del entorno predeterminado, algo a tener en cuenta por motivos de residencia de datos."
+        "correctId": "o2",
+        "explanation": "Lo activa un administrador de Power Platform (o un administrador global) en Configuración de inquilino > Análisis del centro de administración. No es una opción de cada aplicación ni está activo por sí solo; los informes aparecen al cabo de uno o dos días."
       },
       {
         "id": "b2",
@@ -1097,7 +1101,7 @@
         "explanation": "El análisis en el nivel de inquilino es requisito para que el área Supervisar tenga datos; Monitor en directo y el historial de auditoría funcionan sin él."
       }
     ],
-    "keyPoint": "Análisis en el nivel de inquilino: copia la telemetría a la región del entorno predeterminado, da a los administradores de Power Platform la vista de todos los entornos y es requisito del área Supervisar.",
+    "keyPoint": "Análisis en el nivel de inquilino: lo activa un administrador, da a los administradores de Power Platform la vista de todos los entornos y es requisito para que el área Supervisar tenga datos.",
     "references": [
       {
         "title": "Análisis en el nivel de inquilino",
@@ -1194,7 +1198,7 @@
     "keyPoint": "Contenido de bienvenida del creador: guía propia (texto o Markdown) al entrar y, si se quiere, aceptación de condiciones registrada en Microsoft Purview.",
     "references": [
       {
-        "title": "Mostrar contenido de bienvenida a los creadores",
+        "title": "Habilitar contenido de bienvenida del creador",
         "url": "https://learn.microsoft.com/es-es/power-platform/admin/welcome-content"
       }
     ]
@@ -1217,9 +1221,9 @@
       },
       {
         "id": "s2",
-        "text": "Un entorno de desarrollador necesita una base de datos de Dataverse para poder habilitarse como administrado.",
+        "text": "Solo puedes habilitar Entornos administrados en entornos de tipo producción.",
         "answer": false,
-        "explanation": "Dataverse es necesario para habilitar Entornos administrados en entornos de producción, espacio aislado o prueba, pero los entornos de desarrollador no lo requieren."
+        "explanation": "Entornos administrados es un conjunto de funciones premium de gobierno que se puede usar con cualquier tipo de entorno: producción, espacio aislado, prueba o desarrollador."
       },
       {
         "id": "s3",
@@ -1234,10 +1238,14 @@
         "explanation": "Las reglas se aplican cuando alguien intenta compartir y no afectan a quien ya tenía acceso; si la aplicación las incumple, solo se permite dejar de compartirla hasta que las cumpla."
       }
     ],
-    "keyPoint": "Entornos administrados: los habilita un administrador de Power Platform o de Dynamics 365, desbloquean todas las recomendaciones de Acciones y sus reglas de uso compartido no son retroactivas.",
+    "keyPoint": "Entornos administrados: funciones premium de gobierno para cualquier tipo de entorno, que habilita un administrador de Power Platform o de Dynamics 365; desbloquean todas las recomendaciones de Acciones y sus reglas de uso compartido no son retroactivas.",
     "references": [
       {
-        "title": "Habilitar entornos administrados",
+        "title": "Introducción a los entornos administrados",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/managed-environment-overview"
+      },
+      {
+        "title": "Habilitar entorno administrado",
         "url": "https://learn.microsoft.com/es-es/power-platform/admin/managed-environment-enable"
       },
       {
@@ -1289,7 +1297,7 @@
         "url": "https://learn.microsoft.com/es-es/power-platform/admin/manage-dataverse-auditing"
       },
       {
-        "title": "Ver los registros de actividad de Dataverse en Microsoft Purview",
+        "title": "Ver los registros de actividad de las aplicaciones basadas en modelos y de Dataverse en Microsoft Purview",
         "url": "https://learn.microsoft.com/es-es/power-platform/admin/enable-use-comprehensive-auditing"
       }
     ]

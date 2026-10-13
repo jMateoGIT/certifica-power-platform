@@ -1,45 +1,59 @@
 [
   {
     "id": "pl900-d1-apps-101",
-    "type": "single",
+    "type": "multiple",
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d1",
     "skill": "d1-apps-automate",
     "difficulty": 2,
-    "scenario": "Una aseguradora no sabe por qué la tramitación de reclamaciones tarda tanto. Su sistema de gestión registra cada paso con el identificador de la reclamación, la actividad realizada y la fecha y hora. Antes de automatizar nada, la dirección quiere ver cómo fluye realmente el proceso, qué variantes existen y dónde se producen los cuellos de botella.",
-    "prompt": "¿Qué capacidad de Power Automate debes recomendar?",
+    "scenario": "Una aseguradora ha formado a un grupo de usuarios avanzados en las fórmulas de Power Fx de sus aplicaciones de lienzo. La dirección quiere saber en qué otras partes de Power Platform podrán aprovechar ese mismo conocimiento sin aprender otro lenguaje.",
+    "prompt": "¿En qué tres casos pueden usar Power Fx? Selecciona tres.",
     "options": [
       {
         "id": "a",
-        "text": "Copilot en Power Automate, para crear un flujo de nube a partir de una descripción",
-        "correct": false,
-        "explanation": "Copilot ayuda a construir flujos describiéndolos en lenguaje natural, pero no analiza los registros de un sistema para descubrir cómo se ejecuta el proceso real."
+        "text": "Para calcular el valor de una columna de fórmula en una tabla de Dataverse",
+        "correct": true,
+        "explanation": "Las columnas de fórmula de Dataverse se definen con Power Fx. La lógica queda en la capa de datos y se aplica igual en todas las aplicaciones y flujos que usan la tabla."
       },
       {
         "id": "b",
-        "text": "La minería de procesos (*process mining*), que analiza los registros de eventos del sistema",
-        "correct": true,
-        "explanation": "La minería de procesos usa los registros de eventos (identificador de caso, actividad y marca de tiempo) para dibujar el mapa del proceso real, mostrar sus variantes y detectar cuellos de botella y oportunidades de automatización."
+        "text": "Para escribir las medidas de cálculo de un informe de Power BI",
+        "correct": false,
+        "explanation": "Las medidas de Power BI se escriben en DAX, un lenguaje distinto pensado para el análisis de datos."
       },
       {
         "id": "c",
-        "text": "Un flujo de escritorio grabado con la grabadora de Power Automate para escritorio",
-        "correct": false,
-        "explanation": "La grabadora sirve para automatizar acciones en la interfaz de usuario; no descubre ni mide cómo se comporta un proceso de negocio a partir de sus datos."
+        "text": "Para definir qué hace un botón de comando de una aplicación basada en modelos y cuándo se muestra",
+        "correct": true,
+        "explanation": "Los comandos modernos de las aplicaciones basadas en modelos usan fórmulas de Power Fx tanto para la acción (OnSelect) como para la visibilidad (Visible) del botón."
       },
       {
         "id": "d",
-        "text": "El historial de ejecuciones de los flujos de nube del entorno",
+        "text": "Para transformar los datos de un flujo de datos con Power Query",
         "correct": false,
-        "explanation": "El historial de ejecuciones solo muestra cómo se han ejecutado flujos que ya existen; el proceso de reclamaciones todavía no está automatizado y sus pasos viven en otro sistema."
+        "explanation": "Las transformaciones de Power Query se expresan en el lenguaje M (o con su editor visual), no con Power Fx."
+      },
+      {
+        "id": "e",
+        "text": "Para crear expresiones en los temas de un agente de Copilot Studio, por ejemplo para transformar una variable",
+        "correct": true,
+        "explanation": "Copilot Studio permite usar fórmulas de Power Fx en los temas para establecer variables, analizar cadenas o crear condiciones."
       }
     ],
-    "keyPoint": "Para descubrir cómo funciona realmente un proceso y decidir qué automatizar, usa la minería de procesos de Power Automate sobre los registros de eventos del sistema.",
+    "keyPoint": "Power Fx es el lenguaje de poco código de Power Platform, con fórmulas tipo Excel: el mismo conocimiento sirve en aplicaciones de lienzo, columnas de fórmula de Dataverse, comandos de aplicaciones basadas en modelos y agentes de Copilot Studio.",
     "references": [
       {
-        "title": "Información general de la minería de procesos en Power Automate",
-        "url": "https://learn.microsoft.com/es-es/power-automate/process-mining-overview"
+        "title": "Describir el valor de Power Fx como solución con poco código",
+        "url": "https://learn.microsoft.com/es-es/training/modules/describe-business-value-microsoft-power-platform-services/6-describe-value-power-fx-low-code-solution"
+      },
+      {
+        "title": "Crear expresiones con Power Fx (Copilot Studio)",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/advanced-power-fx"
+      },
+      {
+        "title": "Uso de Power Fx con comandos con Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/commanding-use-powerfx"
       }
     ]
   },
@@ -82,8 +96,12 @@
     "keyPoint": "Los mejores candidatos para automatizar son procesos repetitivos, frecuentes, basados en reglas y con datos digitales estructurados.",
     "references": [
       {
-        "title": "Introducción a Power Automate",
-        "url": "https://learn.microsoft.com/es-es/power-automate/getting-started"
+        "title": "¿Qué es Power Automate?",
+        "url": "https://learn.microsoft.com/es-es/power-automate/flow-types"
+      },
+      {
+        "title": "Explorar Microsoft Power Platform",
+        "url": "https://learn.microsoft.com/es-es/training/modules/describe-business-value-microsoft-power-platform-services/2-explore-microsoft-power-platform"
       }
     ]
   },
@@ -94,40 +112,44 @@
     "outlineVersion": "2026-07-24",
     "domain": "d1",
     "skill": "d1-apps-automate",
-    "difficulty": 3,
-    "scenario": "El departamento de compras registra las solicitudes de material en una lista de Microsoft Lists en SharePoint. Los usuarios se quejan del formulario estándar: quieren que algunos campos aparezcan solo según el tipo de material, que se valide el importe antes de guardar y que se vea el logotipo de la empresa. Quieren seguir trabajando desde la propia lista.",
-    "prompt": "¿Qué solución cumple el requisito con menos esfuerzo?",
+    "difficulty": 2,
+    "scenario": "La directora de operaciones de una cadena de supermercados consulta cada mañana un panel de Power BI con las existencias de los productos frescos. Quiere que, en cuanto el indicador de un producto baje de un umbral, se avise al responsable de compras en Microsoft Teams y se le cree una tarea en Planner, sin que nadie tenga que estar pendiente del panel.",
+    "prompt": "¿Qué solución aprovecha mejor el valor de Power Automate junto con Power BI?",
     "options": [
       {
         "id": "a",
-        "text": "Crear un flujo de nube automatizado que revise cada elemento después de guardarlo",
+        "text": "Agregar al informe el objeto visual de Power Apps para que la directora cree la tarea desde el propio informe",
         "correct": false,
-        "explanation": "Un flujo actúa cuando el elemento ya se ha creado; no cambia el aspecto del formulario ni muestra u oculta campos mientras el usuario lo rellena."
+        "explanation": "El objeto visual de Power Apps permite actuar sobre los datos desde el informe, pero alguien tendría que estar mirándolo y crear la tarea a mano, que es justo lo que se quiere evitar."
       },
       {
         "id": "b",
-        "text": "Crear una aplicación basada en modelos sobre la lista de SharePoint",
-        "correct": false,
-        "explanation": "Las aplicaciones basadas en modelos se construyen sobre tablas de Dataverse, no sobre listas de SharePoint, y obligarían a trabajar fuera de la lista."
+        "text": "Configurar una alerta de datos en el icono del panel y un flujo de nube que se inicie con ella y avise en Teams y cree la tarea",
+        "correct": true,
+        "explanation": "Power BI detecta la situación y Power Automate actúa: el conector de Power BI tiene un desencadenador que se activa con una alerta de datos, y el flujo usa después los conectores de Microsoft Teams y Planner."
       },
       {
         "id": "c",
-        "text": "Crear un sitio de Power Pages con un formulario para las solicitudes",
+        "text": "Crear un flujo de escritorio que abra el panel cada hora en el navegador y lea en la pantalla el valor del indicador",
         "correct": false,
-        "explanation": "Power Pages está pensado para sitios web, sobre todo para usuarios externos, y trabaja con Dataverse; es excesivo para mejorar el formulario de una lista interna."
+        "explanation": "Los flujos de escritorio están pensados para aplicaciones sin API ni conector. Leer la pantalla de un panel es frágil cuando Power BI ya ofrece alertas de datos que pueden iniciar un flujo de nube."
       },
       {
         "id": "d",
-        "text": "Personalizar el formulario de la lista con Power Apps desde la opción Integrar de la propia lista",
-        "correct": true,
-        "explanation": "Power Apps permite sustituir el formulario predeterminado de una lista de SharePoint por un formulario de lienzo con lógica condicional, validaciones y diseño propio, que los usuarios siguen abriendo desde la lista."
+        "text": "Suscribir al responsable de compras al panel para que reciba cada mañana por correo una instantánea de los indicadores",
+        "correct": false,
+        "explanation": "Una suscripción envía el panel según una programación, haya o no un problema, y no crea tareas ni avisa en Teams cuando se cruza el umbral."
       }
     ],
-    "keyPoint": "Power Apps amplía Microsoft 365: puedes personalizar el formulario de una lista de SharePoint sin crear una aplicación aparte.",
+    "keyPoint": "Los servicios de Power Platform se complementan: Power BI detecta la situación con una alerta de datos y Power Automate actúa automáticamente con un flujo de nube.",
     "references": [
       {
-        "title": "Personalizar un formulario de lista de SharePoint con Power Apps",
-        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/customize-list-form"
+        "title": "Integración de alertas de datos de Power BI con Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-flow-integration"
+      },
+      {
+        "title": "Describir cómo funcionan juntos los servicios de Power Platform",
+        "url": "https://learn.microsoft.com/es-es/training/modules/describe-business-value-microsoft-power-platform-services/7-describe-how-power-platform-services-work-together"
       }
     ]
   },
@@ -169,12 +191,12 @@
     "keyPoint": "Power Automate ahorra tiempo y reduce errores conectando servicios de Microsoft y de terceros, sin eliminar a las personas de las decisiones que les corresponden.",
     "references": [
       {
-        "title": "Información general sobre los flujos de nube",
+        "title": "Descripción general de los flujos de nube",
         "url": "https://learn.microsoft.com/es-es/power-automate/overview-cloud"
       },
       {
-        "title": "Introducción a Power Automate",
-        "url": "https://learn.microsoft.com/es-es/power-automate/getting-started"
+        "title": "¿Qué es Power Automate?",
+        "url": "https://learn.microsoft.com/es-es/power-automate/flow-types"
       }
     ]
   },
@@ -186,7 +208,7 @@
     "domain": "d1",
     "skill": "d1-apps-automate",
     "difficulty": 2,
-    "scenario": "Un ayuntamiento usa en SharePoint Online formularios antiguos creados con InfoPath y flujos de trabajo de SharePoint 2013 para aprobar las solicitudes de sus empleados. Quiere sustituirlos por tecnologías actuales de Microsoft, sin un gran proyecto de desarrollo y manteniendo los datos en las mismas listas.",
+    "scenario": "Un ayuntamiento aprobaba las solicitudes de sus empleados en SharePoint Online con formularios de InfoPath y flujos de trabajo de SharePoint 2013. Microsoft ha retirado esos flujos de trabajo de SharePoint Online y ha terminado el soporte de InfoPath 2013, así que el ayuntamiento quiere sustituirlos por tecnologías actuales de Microsoft, sin un gran proyecto de desarrollo y manteniendo los datos en las mismas listas.",
     "prompt": "Completa la frase sobre la modernización que debes proponer.",
     "template": "Para sustituir los formularios de InfoPath usas {{b1}}; para sustituir los flujos de trabajo de SharePoint 2013 usas {{b2}}; y ambas soluciones siguen trabajando con las mismas listas gracias a {{b3}}.",
     "blanks": [
@@ -208,7 +230,7 @@
           { "id": "o3", "text": "flujos de nube de Power Automate" }
         ],
         "correctId": "o3",
-        "explanation": "Microsoft recomienda migrar los flujos de trabajo clásicos de SharePoint a flujos de nube de Power Automate, que incluyen aprobaciones y desencadenadores de SharePoint. Los flujos de escritorio son para aplicaciones sin API y un agente no sustituye un flujo de aprobación."
+        "explanation": "Microsoft recomienda sustituir los flujos de trabajo clásicos de SharePoint, ya retirados en SharePoint Online, por flujos de nube de Power Automate, que incluyen aprobaciones y desencadenadores de SharePoint. Los flujos de escritorio son para aplicaciones sin API y un agente no sustituye un flujo de aprobación."
       },
       {
         "id": "b3",
@@ -224,11 +246,11 @@
     "keyPoint": "Para modernizar soluciones clásicas de SharePoint: formularios con Power Apps y flujos de trabajo con flujos de nube de Power Automate, ambos sobre el conector de SharePoint.",
     "references": [
       {
-        "title": "Migrar de los flujos de trabajo clásicos a Power Automate",
+        "title": "Guía: Migrar de flujos de trabajo clásicos a flujos de Power Automate en SharePoint",
         "url": "https://learn.microsoft.com/es-es/sharepoint/dev/business-apps/power-automate/guidance/migrate-from-classic-workflows-to-power-automate-flows"
       },
       {
-        "title": "Información general de la integración de Power Automate con SharePoint",
+        "title": "Utilizar SharePoint y Power Automate para crear flujos de trabajo",
         "url": "https://learn.microsoft.com/es-es/power-automate/sharepoint-overview"
       }
     ]
@@ -272,11 +294,11 @@
     "keyPoint": "Cuando una solución de Dataverse for Teams se queda pequeña, se actualiza su entorno a Dataverse para obtener todas sus capacidades sin perder lo creado.",
     "references": [
       {
-        "title": "Acerca del entorno de Microsoft Dataverse for Teams",
+        "title": "Acerca del entorno de Dataverse for Teams",
         "url": "https://learn.microsoft.com/es-es/power-platform/admin/about-teams-environment"
       },
       {
-        "title": "Información general de Microsoft Dataverse for Teams",
+        "title": "Introducción a Microsoft Dataverse for Teams",
         "url": "https://learn.microsoft.com/es-es/power-apps/teams/overview-data-platform"
       }
     ]
@@ -330,7 +352,7 @@
         "url": "https://learn.microsoft.com/es-es/connectors/overview"
       },
       {
-        "title": "Administrar las conexiones en Power Automate",
+        "title": "Administrar conexiones en Power Automate",
         "url": "https://learn.microsoft.com/es-es/power-automate/add-manage-connections"
       }
     ]
@@ -374,11 +396,11 @@
     "keyPoint": "Un único almacén en Dataverse sirve a apps, flujos, sitios, agentes e informes: los datos se reutilizan sin duplicarlos.",
     "references": [
       {
-        "title": "¿Por qué elegir Dataverse?",
+        "title": "¿Por qué elegir Microsoft Dataverse?",
         "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/why-dataverse-overview"
       },
       {
-        "title": "Fuentes de conocimiento en Copilot Studio",
+        "title": "Resumen de fuentes de conocimiento",
         "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/knowledge-copilot-studio"
       }
     ]
@@ -422,7 +444,7 @@
     "keyPoint": "Para importar y transformar datos de varios orígenes en Dataverse de forma periódica y sin código, usa flujos de datos con Power Query.",
     "references": [
       {
-        "title": "Crear y usar flujos de datos en Power Apps",
+        "title": "Creación y uso de flujos de datos en Power Apps",
         "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/create-and-use-dataflows"
       }
     ]
@@ -472,7 +494,7 @@
     "keyPoint": "Ciclo de vida de un conector personalizado: crear la API, protegerla, describirla y definir el conector, usarlo, compartirlo y, si quieres, certificarlo.",
     "references": [
       {
-        "title": "Conectores personalizados",
+        "title": "Información general sobre los conectores personalizados",
         "url": "https://learn.microsoft.com/es-es/connectors/custom-connectors/"
       }
     ]
@@ -497,7 +519,7 @@
           { "id": "o3", "text": "un proveedor de identidad configurado en el sitio" }
         ],
         "correctId": "o3",
-        "explanation": "Power Pages autentica a los usuarios externos con proveedores de identidad, como Microsoft Entra External ID u otros proveedores compatibles. Los pacientes no necesitan licencia de Power Apps ni roles de seguridad de Dataverse."
+        "explanation": "Power Pages autentica a los usuarios externos con proveedores de identidad configurados en el sitio, como una cuenta de Microsoft, LinkedIn o Google, u otros compatibles con OAuth 2.0, OpenID Connect o SAML 2.0. Los pacientes no necesitan licencia de Power Apps ni roles de seguridad de Dataverse."
       },
       {
         "id": "b2",
@@ -523,12 +545,16 @@
     "keyPoint": "Seguridad en Power Pages: proveedor de identidad para iniciar sesión, permisos de tabla para los datos de Dataverse y roles web para asignarlos.",
     "references": [
       {
-        "title": "Capacidades de Power Pages",
-        "url": "https://learn.microsoft.com/es-es/power-pages/capabilities"
+        "title": "Configurar la autenticación del sitio",
+        "url": "https://learn.microsoft.com/es-es/power-pages/security/authentication/configure-site"
       },
       {
-        "title": "¿Qué es Power Pages?",
-        "url": "https://learn.microsoft.com/es-es/power-pages/introduction"
+        "title": "Establecer permisos de tabla en Power Pages",
+        "url": "https://learn.microsoft.com/es-es/power-pages/security/table-permissions"
+      },
+      {
+        "title": "Crear y asignar roles web",
+        "url": "https://learn.microsoft.com/es-es/power-pages/security/create-web-roles"
       }
     ]
   },
@@ -576,7 +602,7 @@
     "keyPoint": "Principios de IA responsable de Microsoft: equidad, confiabilidad y seguridad, privacidad y seguridad, inclusión, transparencia y responsabilidad.",
     "references": [
       {
-        "title": "¿Qué es la IA responsable?",
+        "title": "¿Qué es la inteligencia artificial responsable?",
         "url": "https://learn.microsoft.com/es-es/azure/machine-learning/concept-responsible-ai"
       }
     ]
@@ -589,39 +615,39 @@
     "domain": "d1",
     "skill": "d1-ia",
     "difficulty": 2,
-    "scenario": "Los comerciales de una distribuidora trabajan a diario en una aplicación basada en modelos sobre Dataverse. Quieren hacer preguntas en lenguaje natural, como «¿Qué oportunidades de más de 50 000 € se cierran este mes?», y obtener la respuesta sin salir de la aplicación ni pedir informes nuevos.",
-    "prompt": "¿Qué capacidad de IA generativa responde a esta necesidad?",
+    "scenario": "Una aseguradora ya usa un modelo de IA que, a partir del historial, predice qué clientes tienen más probabilidad de no renovar su póliza. Ahora el comité de dirección se pregunta qué aporta, además, la IA generativa de Power Platform, como Copilot.",
+    "prompt": "¿Qué afirmación describe mejor la diferencia?",
     "options": [
       {
         "id": "a",
-        "text": "Copilot en Power Apps Studio, para generar fórmulas de Power Fx",
+        "text": "La IA generativa garantiza respuestas exactas y comprobadas, así que lo que genera Copilot puede pasar a producción sin que nadie lo revise",
         "correct": false,
-        "explanation": "Esa ayuda está pensada para los creadores mientras construyen una aplicación de lienzo, no para que los usuarios consulten datos en una aplicación basada en modelos."
+        "explanation": "El contenido generado puede contener errores: Microsoft recomienda revisar y validar siempre lo que propone Copilot antes de usarlo."
       },
       {
         "id": "b",
-        "text": "Una indicación (*prompt*) ejecutada cada noche por un flujo programado",
-        "correct": false,
-        "explanation": "Un flujo programado no responde a las preguntas que el comercial hace en el momento; solo generaría un resultado fijo a la hora programada."
+        "text": "La IA generativa crea contenido nuevo (textos, flujos, aplicaciones) a partir de lenguaje natural; un modelo predictivo predice o clasifica a partir de datos existentes",
+        "correct": true,
+        "explanation": "Un modelo de IA tradicional devuelve una predicción o una categoría basada en datos existentes, mientras que la IA generativa produce un resultado original para cada petición, como un borrador de respuesta o un flujo de nube que crea Copilot a partir de una descripción."
       },
       {
         "id": "c",
-        "text": "Copilot para los usuarios de la aplicación basada en modelos, que responde preguntas sobre sus datos",
-        "correct": true,
-        "explanation": "En las aplicaciones basadas en modelos, Copilot ofrece a los usuarios un panel de chat para preguntar en lenguaje natural sobre los datos de Dataverse de la app y obtener respuestas y resúmenes."
+        "text": "Solo pueden aprovechar la IA generativa los desarrolladores profesionales, porque las peticiones a Copilot se escriben en un lenguaje de programación",
+        "correct": false,
+        "explanation": "Con Copilot se conversa en lenguaje natural, precisamente para que tanto usuarios técnicos como no técnicos describan lo que necesitan sin programar."
       },
       {
         "id": "d",
-        "text": "Las páginas generativas, para crear una pantalla nueva en la aplicación",
+        "text": "Para usar la IA generativa, cada organización debe entrenar antes su propio modelo con miles de ejemplos etiquetados procedentes de sus datos",
         "correct": false,
-        "explanation": "Las páginas generativas ayudan a los creadores a generar páginas a partir de una descripción; no responden en el momento a las preguntas de los usuarios sobre los datos."
+        "explanation": "Copilot usa modelos de lenguaje ya entrenados: basta con describir lo que necesitas. Entrenar con ejemplos etiquetados es propio de los modelos personalizados de IA tradicional."
       }
     ],
-    "keyPoint": "La IA generativa no es solo para creadores: en las aplicaciones basadas en modelos, Copilot permite a los usuarios consultar los datos en lenguaje natural.",
+    "keyPoint": "IA tradicional = predecir o clasificar a partir de datos existentes; IA generativa = crear contenido nuevo (texto, flujos, aplicaciones) a partir de lenguaje natural, que siempre hay que revisar.",
     "references": [
       {
-        "title": "Usar Copilot en aplicaciones basadas en modelos",
-        "url": "https://learn.microsoft.com/es-es/power-apps/user/use-copilot-model-driven-apps"
+        "title": "Describir el valor de los copilotos y las características de IA generativa en Power Platform",
+        "url": "https://learn.microsoft.com/es-es/training/modules/describe-business-value-microsoft-power-platform-services/8-describe-value-copilots-generative-ai-features-microsoft-power-platform"
       }
     ]
   },
@@ -670,7 +696,7 @@
     "keyPoint": "Indicación = una tarea de IA con entrada y salida, reutilizable; agente = conversación con usuarios que combina conocimiento y herramientas.",
     "references": [
       {
-        "title": "Descripción general de las indicaciones",
+        "title": "Descripción general de indicaciones",
         "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/prompts-overview"
       },
       {
@@ -705,31 +731,35 @@
         "id": "m3",
         "text": "Guiar la solicitud de una beca a lo largo de varias pantallas, paso a paso",
         "answerId": "c3",
-        "explanation": "Un formulario de varios pasos divide la captura de datos en etapas, útil cuando hay mucha información que pedir."
+        "explanation": "Un formulario de varios pasos (antes llamado formulario avanzado) divide la captura de datos en etapas, útil cuando hay mucha información que pedir."
       },
       {
         "id": "m4",
         "text": "Aplicar los colores y las fuentes de la marca a todas las páginas",
         "answerId": "c4",
-        "explanation": "En el área Estilo del estudio de diseño eliges y personalizas el tema del sitio, que se aplica a todas sus páginas."
+        "explanation": "En el espacio de trabajo Estilo del estudio de diseño eliges uno de los temas preestablecidos y personalizas sus colores y fuentes; el estilo se aplica a todo el sitio."
       }
     ],
     "choices": [
       { "id": "c1", "text": "Lista" },
       { "id": "c2", "text": "Formulario" },
       { "id": "c3", "text": "Formulario de varios pasos" },
-      { "id": "c4", "text": "Tema del sitio (área Estilo)" },
+      { "id": "c4", "text": "Tema del sitio (espacio de trabajo Estilo)" },
       { "id": "c5", "text": "Permisos de tabla" }
     ],
     "keyPoint": "Power Pages ofrece bloques de poco código: listas para mostrar datos, formularios (sencillos o de varios pasos) para capturarlos y temas para la imagen del sitio; los permisos de tabla controlan el acceso, no la presentación.",
     "references": [
       {
-        "title": "Capacidades de Power Pages",
-        "url": "https://learn.microsoft.com/es-es/power-pages/capabilities"
+        "title": "Agregar listas",
+        "url": "https://learn.microsoft.com/es-es/power-pages/getting-started/add-list"
       },
       {
-        "title": "¿Qué es Power Pages?",
-        "url": "https://learn.microsoft.com/es-es/power-pages/introduction"
+        "title": "Formularios de varios pasos",
+        "url": "https://learn.microsoft.com/es-es/power-pages/getting-started/multistep-forms"
+      },
+      {
+        "title": "Aplicar estilo a su sitio de Power Pages",
+        "url": "https://learn.microsoft.com/es-es/power-pages/getting-started/style-site"
       }
     ]
   }
