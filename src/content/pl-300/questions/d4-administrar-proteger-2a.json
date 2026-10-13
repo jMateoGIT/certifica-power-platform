@@ -1,0 +1,864 @@
+[
+  {
+    "id": "pl300-d4-areas-101",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "scenario": "El equipo de BI usa una canalización de implementación (*deployment pipeline*) con las fases Desarrollo, Prueba y Producción. Hoy has implementado por primera vez el contenido de Prueba en la fase Producción, que estaba vacía. El informe «Cuadro de mando» y su modelo semántico de importación aparecen en el área de trabajo de Producción, pero los objetos visuales no muestran datos.",
+    "prompt": "¿Qué debes hacer para que el informe de Producción muestre datos?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Volver a implementar desde Prueba marcando la opción que incluye los datos del modelo",
+        "correct": false,
+        "explanation": "Esa opción no existe: las canalizaciones de implementación copian siempre solo metadatos (definición del modelo, informes, paneles), nunca los datos importados."
+      },
+      {
+        "id": "b",
+        "text": "Crear una regla de parámetros sobre el modelo semántico en la fase Producción",
+        "correct": false,
+        "explanation": "Una regla de parámetros cambia el valor de un parámetro (por ejemplo, el servidor) en las siguientes implementaciones, pero no carga datos en el modelo."
+      },
+      {
+        "id": "c",
+        "text": "Configurar las credenciales del origen en el modelo de Producción y actualizarlo",
+        "correct": true,
+        "explanation": "Los datos no se copian entre fases y las credenciales del origen tampoco, así que el modelo llega vacío. Tras configurar sus credenciales (y la conexión de puerta de enlace si el origen es local), lo actualizas y el informe ya muestra datos."
+      },
+      {
+        "id": "d",
+        "text": "Seleccionar Actualizar aplicación en el área de trabajo de Producción",
+        "correct": false,
+        "explanation": "Actualizar la aplicación publica en ella los cambios del área de trabajo, pero no rellena de datos un modelo semántico que todavía no se ha actualizado."
+      }
+    ],
+    "keyPoint": "Una canalización de implementación copia metadatos, no datos: tras la primera implementación hay que configurar credenciales y actualizar el modelo en la fase de destino.",
+    "references": [
+      {
+        "title": "El proceso de las canalizaciones de implementación",
+        "url": "https://learn.microsoft.com/es-es/fabric/cicd/deployment-pipelines/understand-the-deployment-process"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-areas-102",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "scenario": "El área de trabajo «Ventas [Desarrollo]» contiene un modelo semántico que se conecta a la base de datos SQL de pruebas. Vas a usar una canalización de implementación con las fases Desarrollo, Prueba y Producción, y el modelo de Producción debe conectarse a la base de datos de producción sin que nadie modifique el archivo .pbix.",
+    "prompt": "Ordena los pasos para conseguirlo.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Crear la canalización de implementación y definir sus fases",
+        "explanation": "La canalización y sus fases son la estructura en la que después se asignan las áreas de trabajo; por eso es el primer paso."
+      },
+      {
+        "id": "p2",
+        "text": "Asignar el área de trabajo «Ventas [Desarrollo]» a la fase Desarrollo",
+        "explanation": "El contenido entra en la canalización cuando asignas un área de trabajo a una fase; sin esta asignación no hay nada que implementar."
+      },
+      {
+        "id": "p3",
+        "text": "Implementar el contenido de Desarrollo a Prueba y validarlo",
+        "explanation": "El flujo habitual avanza de una fase a la adyacente: primero se prueba el contenido en la fase Prueba antes de llevarlo a Producción."
+      },
+      {
+        "id": "p4",
+        "text": "Implementar de Prueba a Producción para que el modelo semántico exista en esa fase",
+        "explanation": "Las reglas se definen sobre elementos de la fase de destino, así que el modelo tiene que haberse implementado antes en Producción."
+      },
+      {
+        "id": "p5",
+        "text": "En la fase Producción, crear una regla de origen de datos en el modelo que apunte a la base de datos de producción",
+        "explanation": "Las reglas de implementación se crean en la fase de destino (nunca en Desarrollo) y requieren ser el propietario del modelo, algo que el usuario que implementa obtiene automáticamente."
+      },
+      {
+        "id": "p6",
+        "text": "Volver a implementar de Prueba a Producción y actualizar el modelo de Producción",
+        "explanation": "Una regla solo surte efecto en la siguiente implementación hacia esa fase; después, la actualización carga los datos de la base de datos de producción."
+      }
+    ],
+    "keyPoint": "Las reglas de implementación se crean en la fase de destino sobre un elemento ya implementado y solo se aplican en la siguiente implementación.",
+    "references": [
+      {
+        "title": "Creación de reglas de implementación",
+        "url": "https://learn.microsoft.com/es-es/fabric/cicd/deployment-pipelines/create-rules"
+      },
+      {
+        "title": "Introducción a las canalizaciones de implementación",
+        "url": "https://learn.microsoft.com/es-es/fabric/cicd/deployment-pipelines/get-started-with-deployment-pipelines"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-areas-103",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 3,
+    "prompt": "Implementas una nueva versión de un informe y su modelo semántico desde la fase Prueba a la fase Producción, que ya tenía contenido. Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "La aplicación publicada desde el área de trabajo de Producción se actualiza automáticamente con la nueva versión.",
+        "answer": false,
+        "explanation": "El contenido y la configuración de la aplicación no forman parte de la implementación: después de implementar, tienes que seleccionar Actualizar aplicación en el área de trabajo de Producción."
+      },
+      {
+        "id": "s2",
+        "text": "El informe de Producción conserva su dirección URL y su identificador después de la implementación.",
+        "answer": true,
+        "explanation": "La implementación sobrescribe solo el contenido del elemento emparejado; su identificador, su URL y sus permisos no cambian, así que los vínculos y marcadores de los usuarios siguen funcionando."
+      },
+      {
+        "id": "s3",
+        "text": "La programación de actualización configurada en el modelo semántico de Producción se mantiene.",
+        "answer": true,
+        "explanation": "La programación de actualización no se copia entre fases, y las propiedades que no se copian quedan en la fase de destino como estaban antes de implementar."
+      },
+      {
+        "id": "s4",
+        "text": "Puedes crear reglas de implementación en la fase Desarrollo para cambiar el origen de datos de esa fase.",
+        "answer": false,
+        "explanation": "No se pueden crear reglas de implementación en la fase de desarrollo: las reglas se definen en las fases de destino, como Prueba o Producción."
+      }
+    ],
+    "keyPoint": "Al implementar se sobrescribe el contenido, pero no la aplicación, los permisos, la URL, la programación de actualización ni las credenciales de la fase de destino.",
+    "references": [
+      {
+        "title": "El proceso de las canalizaciones de implementación",
+        "url": "https://learn.microsoft.com/es-es/fabric/cicd/deployment-pipelines/understand-the-deployment-process"
+      },
+      {
+        "title": "Creación de reglas de implementación",
+        "url": "https://learn.microsoft.com/es-es/fabric/cicd/deployment-pipelines/create-rules"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-areas-104",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 3,
+    "scenario": "Has configurado la actualización incremental de la tabla Pedidos con la consulta mostrada. Tras varias semanas de actualizaciones en el servicio, detectas que algunos pedidos registrados exactamente a medianoche aparecen dos veces en el modelo.",
+    "code": {
+      "language": "m",
+      "content": "let\n    Origen = Sql.Database(\"srv-ventas\", \"Ventas\"),\n    Pedidos = Origen{[Schema = \"dbo\", Item = \"Pedidos\"]}[Data],\n    FilasFiltradas = Table.SelectRows(\n        Pedidos,\n        each [FechaPedido] >= RangeStart and [FechaPedido] <= RangeEnd\n    )\nin\n    FilasFiltradas"
+    },
+    "prompt": "¿Qué cambio debes hacer en la consulta?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cambiar el tipo de los parámetros RangeStart y RangeEnd de Fecha y hora a Fecha",
+        "correct": false,
+        "explanation": "RangeStart y RangeEnd deben ser siempre de tipo Fecha y hora, sea cual sea el tipo de la columna; con otro tipo la actualización incremental no se puede configurar."
+      },
+      {
+        "id": "b",
+        "text": "Usar > RangeStart y < RangeEnd para que ningún límite sea inclusivo",
+        "correct": false,
+        "explanation": "Con ambas comparaciones estrictas, una fila con fecha exactamente igual a un límite no entra en ninguna partición, así que en lugar de duplicados perderías filas."
+      },
+      {
+        "id": "c",
+        "text": "Insertar un paso Table.Buffer antes del filtro para fijar las filas leídas",
+        "correct": false,
+        "explanation": "Un paso intermedio como Table.Buffer impide el plegado de consultas: el filtro se aplicaría en local tras leer toda la tabla y no corrige el límite duplicado."
+      },
+      {
+        "id": "d",
+        "text": "Sustituir <= RangeEnd por < RangeEnd y mantener >= RangeStart",
+        "correct": true,
+        "explanation": "El signo igual debe aparecer en uno solo de los límites. Si los dos son inclusivos, una fila cuya fecha coincide con el final de una partición y el inicio de la siguiente cumple ambas condiciones y se carga dos veces."
+      }
+    ],
+    "keyPoint": "Filtro de actualización incremental: >= RangeStart y < RangeEnd (igual en un solo extremo) para que cada fila caiga en una única partición.",
+    "references": [
+      {
+        "title": "Configuración de la actualización incremental",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/incremental-refresh-configure"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-areas-105",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "prompt": "Quieres que la tabla de ventas conserve cinco años de historial y que cada actualización recargue solo los últimos diez días. Completa la frase.",
+    "template": "Creas los parámetros RangeStart y RangeEnd de tipo {{b1}}, filtras con ellos la columna de fecha y defines la directiva de actualización incremental en {{b2}}. Las particiones históricas y de actualización se crean {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Fecha"
+          },
+          {
+            "id": "o2",
+            "text": "Fecha y hora"
+          },
+          {
+            "id": "o3",
+            "text": "Número entero"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Los parámetros reservados RangeStart y RangeEnd deben ser de tipo Fecha y hora. Si la columna es una clave entera aaaammdd, se convierte el parámetro con una función, pero el parámetro sigue siendo Fecha y hora."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Power BI Desktop"
+          },
+          {
+            "id": "o2",
+            "text": "la configuración del modelo semántico en el servicio"
+          },
+          {
+            "id": "o3",
+            "text": "la programación de actualización del área de trabajo"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "La directiva (archivar datos de 5 años, actualizar incrementalmente 10 días) se define en Power BI Desktop, en el cuadro de diálogo de actualización incremental de la tabla; el servicio la aplica después."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "al definir la directiva en Power BI Desktop"
+          },
+          {
+            "id": "o2",
+            "text": "al publicar, antes de cualquier actualización"
+          },
+          {
+            "id": "o3",
+            "text": "en la primera actualización en el servicio tras publicar"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "En Desktop solo se carga el pequeño intervalo de los parámetros. La primera actualización en el servicio crea las particiones según la directiva, y las siguientes solo recargan el período de actualización."
+      }
+    ],
+    "keyPoint": "Actualización incremental: parámetros RangeStart/RangeEnd (Fecha y hora) y directiva en Desktop; las particiones se crean en la primera actualización en el servicio.",
+    "references": [
+      {
+        "title": "Actualización incremental y datos en tiempo real para modelos semánticos",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/incremental-refresh-overview"
+      },
+      {
+        "title": "Configuración de la actualización incremental",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/incremental-refresh-configure"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-areas-106",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "prompt": "Empareja cada situación con la insignia de aprobación (*endorsement*) que corresponde.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Una analista con permiso de escritura sobre su informe quiere indicar que está listo para compartirse y reutilizarse, sin pasar por una revisión formal",
+        "answerId": "c1",
+        "explanation": "Promocionado indica que los creadores consideran el elemento listo para compartir. Puede aplicarlo cualquier usuario con permiso de escritura en el elemento, sin autorización especial."
+      },
+      {
+        "id": "m2",
+        "text": "Un revisor designado por el administrador de Fabric comprueba que un modelo semántico cumple los estándares de calidad de la organización",
+        "answerId": "c2",
+        "explanation": "Certificado significa que un revisor autorizado ha confirmado que el elemento es fiable y está listo para usarse en toda la organización. Solo pueden aplicarlo los usuarios que especifica el administrador de Fabric."
+      },
+      {
+        "id": "m3",
+        "text": "Un lakehouse con la lista oficial de códigos de producto debe identificarse como la fuente única de verdad para ese tipo de datos",
+        "answerId": "c3",
+        "explanation": "Datos maestros identifica datos esenciales que se consideran la fuente única de verdad. Solo se aplica a elementos que contienen datos, como lakehouses o modelos semánticos, y la aplican usuarios autorizados por el administrador."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Promocionado"
+      },
+      {
+        "id": "c2",
+        "text": "Certificado"
+      },
+      {
+        "id": "c3",
+        "text": "Datos maestros"
+      },
+      {
+        "id": "c4",
+        "text": "Etiqueta de confidencialidad «General»"
+      }
+    ],
+    "keyPoint": "Promocionado = el autor lo recomienda; Certificado = revisado por alguien autorizado; Datos maestros = fuente única de verdad (solo elementos con datos).",
+    "references": [
+      {
+        "title": "Información general sobre la aprobación",
+        "url": "https://learn.microsoft.com/es-es/fabric/governance/endorsement-overview"
+      },
+      {
+        "title": "Promocionar o certificar elementos",
+        "url": "https://learn.microsoft.com/es-es/fabric/fundamentals/endorsement-promote-certify"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-areas-107",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "scenario": "Tienes el rol Miembro en el área de trabajo «Datos corporativos», donde está el modelo semántico certificado «Clientes». Los analistas de otros departamentos no tienen acceso al modelo y ni siquiera saben que existe, por lo que crean sus propias versiones. Quieres que puedan encontrarlo y pedir acceso, pero sin concedérselo a todos de antemano. El administrador ya ha habilitado la configuración de detección en el inquilino.",
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Activar Hacer reconocible en la sección de aprobación y detección del modelo",
+        "correct": true,
+        "explanation": "Un modelo aprobado (promocionado o certificado) marcado como reconocible aparece en el catálogo de OneLake también para quien no tiene acceso, que puede solicitar permiso de compilación. Pueden marcarlo los roles Administrador o Miembro."
+      },
+      {
+        "id": "b",
+        "text": "Cambiar la aprobación del modelo de Certificado a Promocionado",
+        "correct": false,
+        "explanation": "La aprobación por sí sola no hace visible el modelo a quien no tiene acceso: los elementos aprobados solo los ven los usuarios con permisos, salvo que se marquen como reconocibles."
+      },
+      {
+        "id": "c",
+        "text": "Conceder permiso de compilación sobre el modelo a toda la organización",
+        "correct": false,
+        "explanation": "Daría acceso a todos de antemano, justo lo que se quiere evitar; con la detección, cada analista solicita acceso y el propietario decide."
+      },
+      {
+        "id": "d",
+        "text": "Agregar a todos los analistas con el rol Visor al área de trabajo",
+        "correct": false,
+        "explanation": "Les daría acceso a todo el contenido del área de trabajo sin que lo hayan pedido, lo que excede el requisito."
+      }
+    ],
+    "keyPoint": "La detección (Hacer reconocible) muestra modelos aprobados a quien no tiene acceso para que lo solicite.",
+    "references": [
+      {
+        "title": "Descubrimiento de modelos semánticos",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-discovery"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-areas-108",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "scenario": "Eres el propietario del modelo semántico «Ventas corporativas», del área de trabajo «Datos». Vas a eliminar una columna obsoleta del modelo. Sabes que otros departamentos han creado informes sobre él en sus propias áreas de trabajo, pero no sabes cuáles ni quién los mantiene.",
+    "prompt": "¿Qué debes usar para ver qué áreas de trabajo y elementos pueden verse afectados y avisar a sus responsables antes del cambio?",
+    "options": [
+      {
+        "id": "a",
+        "text": "La vista de linaje del área de trabajo «Datos», resaltando el modelo",
+        "correct": false,
+        "explanation": "La vista de linaje muestra los elementos del área de trabajo y sus orígenes ascendentes, pero no los elementos descendientes de otras áreas de trabajo."
+      },
+      {
+        "id": "b",
+        "text": "El informe de métricas de uso del modelo semántico «Ventas corporativas»",
+        "correct": false,
+        "explanation": "Las métricas de uso indican cuántas veces se ve el contenido, no qué elementos dependen del modelo ni permiten notificar a sus responsables."
+      },
+      {
+        "id": "c",
+        "text": "Un correo a todos los miembros del área de trabajo «Datos»",
+        "correct": false,
+        "explanation": "Avisaría a quienes ya trabajan en el modelo, no a los responsables de los informes de otras áreas de trabajo, que son los afectados."
+      },
+      {
+        "id": "d",
+        "text": "El análisis de impacto del modelo, con Notificar a los contactos",
+        "correct": true,
+        "explanation": "El análisis de impacto muestra los elementos y áreas de trabajo descendientes que pueden verse afectados, y Notificar a los contactos envía un correo a las listas de contactos de esas áreas de trabajo. Requiere permiso de escritura sobre el elemento."
+      }
+    ],
+    "keyPoint": "Antes de cambiar un modelo, usa el análisis de impacto para ver los elementos dependientes de todas las áreas de trabajo y notificar a sus contactos.",
+    "references": [
+      {
+        "title": "Análisis de impacto",
+        "url": "https://learn.microsoft.com/es-es/fabric/governance/impact-analysis"
+      },
+      {
+        "title": "Linaje en Fabric",
+        "url": "https://learn.microsoft.com/es-es/fabric/governance/lineage"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-areas-109",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre la vista de linaje (*lineage view*) es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Un administrador tiene que habilitar la vista de linaje en la configuración de cada área de trabajo antes de usarla.",
+        "answer": false,
+        "explanation": "Todas las áreas de trabajo tienen una vista de linaje automática; se abre desde la barra de herramientas del área de trabajo sin configurar nada."
+      },
+      {
+        "id": "s2",
+        "text": "Un usuario con el rol Visor puede abrir la vista de linaje, pero no ve los orígenes de datos.",
+        "answer": true,
+        "explanation": "Cualquier rol del área de trabajo da acceso a la vista de linaje, aunque los usuarios con el rol Visor no ven las tarjetas de los orígenes de datos."
+      },
+      {
+        "id": "s3",
+        "text": "La vista de linaje muestra los elementos ascendentes de otra área de trabajo e indica en su tarjeta a qué área de trabajo pertenecen.",
+        "answer": true,
+        "explanation": "Además de los elementos del área de trabajo, muestra las conexiones ascendentes externas, un nivel hacia arriba, con el nombre del área de trabajo de origen en la tarjeta."
+      },
+      {
+        "id": "s4",
+        "text": "Con el rol Visor puedes ejecutar el análisis de impacto de cualquier elemento del área de trabajo.",
+        "answer": false,
+        "explanation": "Para hacer el análisis de impacto de un elemento necesitas permiso de escritura sobre él, que el rol Visor no concede."
+      }
+    ],
+    "keyPoint": "Linaje: automático en cada área de trabajo, muestra los elementos ascendentes externos; para los descendientes de otras áreas de trabajo, análisis de impacto.",
+    "references": [
+      {
+        "title": "Linaje en Fabric",
+        "url": "https://learn.microsoft.com/es-es/fabric/governance/lineage"
+      },
+      {
+        "title": "Análisis de impacto",
+        "url": "https://learn.microsoft.com/es-es/fabric/governance/impact-analysis"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-areas-110",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "scenario": "El equipo de Marketing usó Publicar en la web (*Publish to web*) para insertar en el blog de la empresa un informe de tendencias de búsqueda. Hoy descubres que el modelo semántico de ese informe incluye también una tabla con los márgenes por cliente, aunque ningún objeto visual la muestra.",
+    "prompt": "¿Qué dos afirmaciones son correctas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ocultar la tabla de márgenes en la vista de modelo basta para que los visitantes no puedan acceder a ella",
+        "correct": false,
+        "explanation": "Ocultar una tabla solo la quita de la lista de campos; no es una medida de seguridad y no impide el acceso a los datos del modelo."
+      },
+      {
+        "id": "b",
+        "text": "Cualquier persona con el vínculo puede llegar a los datos del modelo, aunque el informe no los muestre",
+        "correct": true,
+        "explanation": "Publicar en la web no exige autenticación y da acceso a los datos del modelo con su nivel de detalle, incluidos los que el informe no muestra. Por eso no debe usarse con información confidencial."
+      },
+      {
+        "id": "c",
+        "text": "Si agregas un rol RLS al modelo, los visitantes anónimos solo verán las filas permitidas",
+        "correct": false,
+        "explanation": "Publicar en la web no admite informes con seguridad de nivel de fila: el código para insertar deja de funcionar en lugar de filtrar los datos."
+      },
+      {
+        "id": "d",
+        "text": "Eliminar el código para insertar en Administrar códigos para insertar deshabilita el vínculo público",
+        "correct": true,
+        "explanation": "Desde la configuración del área de trabajo, Administrar códigos para insertar permite eliminar el código; al hacerlo, los vínculos y el iframe publicados dejan de funcionar."
+      },
+      {
+        "id": "e",
+        "text": "Los cambios que hagas en el informe después de publicarlo no llegan a la versión pública",
+        "correct": false,
+        "explanation": "La versión publicada refleja los cambios que haces en el informe; los datos se sirven desde una caché que se renueva periódicamente."
+      }
+    ],
+    "keyPoint": "Publicar en la web = acceso público sin autenticación a los datos del modelo; no admite RLS y se revoca eliminando el código para insertar.",
+    "references": [
+      {
+        "title": "Publicar en la web desde Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-publish-to-web"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-areas-111",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 1,
+    "prompt": "Empareja cada necesidad con el tipo de archivo de Power BI Desktop adecuado.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Repartir el diseño, el modelo y las consultas de un informe como punto de partida, sin datos, pidiendo los valores de los parámetros al abrirlo",
+        "answerId": "c3",
+        "explanation": "Una plantilla de Power BI (.pbit) contiene páginas, objetos visuales, definición del modelo y consultas, pero no datos; al abrirla se piden los parámetros y se cargan los datos con las credenciales de quien la usa."
+      },
+      {
+        "id": "m2",
+        "text": "Guardar el informe y el modelo como carpetas de archivos de texto legibles para controlar sus versiones con Git",
+        "answerId": "c2",
+        "explanation": "Un proyecto de Power BI (.pbip) guarda las definiciones del informe y del modelo semántico como archivos de texto en carpetas separadas, listos para el control de código fuente."
+      },
+      {
+        "id": "m3",
+        "text": "Un único archivo que incluye el informe, el modelo y los datos importados",
+        "answerId": "c1",
+        "explanation": "El archivo .pbix es el formato predeterminado de Power BI Desktop: un único archivo que contiene el informe, el modelo y los datos importados."
+      },
+      {
+        "id": "m4",
+        "text": "Que los autores principiantes abran Obtener datos ya conectados a un origen concreto y solo elijan las tablas",
+        "answerId": "c4",
+        "explanation": "Un archivo de origen de datos (.pbids) define una conexión a un único origen; al abrirlo, Power BI Desktop pide las credenciales y muestra el Navegador para elegir las tablas."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": ".pbix"
+      },
+      {
+        "id": "c2",
+        "text": ".pbip"
+      },
+      {
+        "id": "c3",
+        "text": ".pbit"
+      },
+      {
+        "id": "c4",
+        "text": ".pbids"
+      },
+      {
+        "id": "c5",
+        "text": ".rdl"
+      }
+    ],
+    "keyPoint": "PBIX = informe con datos; PBIT = plantilla sin datos; PBIP = proyecto en archivos de texto para Git; PBIDS = conexión predefinida a un origen.",
+    "references": [
+      {
+        "title": "Proyectos de Power BI Desktop (PBIP)",
+        "url": "https://learn.microsoft.com/es-es/power-bi/developer/projects/projects-overview"
+      },
+      {
+        "title": "Creación y uso de plantillas de informe en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-templates"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-areas-112",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "scenario": "Marta, con el rol Colaborador en el área de trabajo «Comercial», creó suscripciones semanales a varios informes para 20 directores regionales. El mes que viene se traslada a otro departamento. Tú tienes el rol Administrador en el área de trabajo y debes encargarte de esas suscripciones sin tener que volver a crearlas.",
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Pedir al administrador de Fabric que transfiera las suscripciones desde el portal de administración",
+        "correct": false,
+        "explanation": "No hace falta recurrir al administrador de Fabric: los administradores del área de trabajo ya pueden ver, editar y asumir las suscripciones de esa área de trabajo."
+      },
+      {
+        "id": "b",
+        "text": "Asumir la propiedad de las suscripciones desde la página de administración de suscripciones",
+        "correct": true,
+        "explanation": "El rol Administrador permite ver todas las suscripciones del área de trabajo y asumir la propiedad de las de otros usuarios. Marta recibe un correo y deja de verlas en su lista."
+      },
+      {
+        "id": "c",
+        "text": "Asignarte también el rol Miembro, que permite asumir suscripciones de otros usuarios",
+        "correct": false,
+        "explanation": "Ver, editar y asumir las suscripciones de otros usuarios es propio del rol Administrador del área de trabajo, no del rol Miembro."
+      },
+      {
+        "id": "d",
+        "text": "No hacer nada, porque las suscripciones pasan solas al administrador cuando Marta sale del área de trabajo",
+        "correct": false,
+        "explanation": "La propiedad no se transfiere automáticamente: un administrador del área de trabajo tiene que asumirla de forma explícita."
+      }
+    ],
+    "keyPoint": "Los administradores del área de trabajo pueden ver, editar y asumir las suscripciones creadas por otros usuarios en esa área de trabajo.",
+    "references": [
+      {
+        "title": "Suscripciones de correo electrónico para informes y paneles",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/end-user-subscribe"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-areas-113",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 2,
+    "prompt": "Completa la frase sobre OneLake y las áreas de trabajo de Microsoft Fabric.",
+    "template": "Cada inquilino de Fabric tiene {{b1}}. Dentro de él, los datos se organizan en {{b2}}, que contienen elementos como lakehouses, almacenes y modelos semánticos. Para crear un lakehouse en un área de trabajo, esta debe estar asignada a {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "un OneLake por cada área de trabajo"
+          },
+          {
+            "id": "o2",
+            "text": "un OneLake por cada capacidad"
+          },
+          {
+            "id": "o3",
+            "text": "una única instancia de OneLake"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "OneLake se incluye automáticamente con el inquilino y hay uno solo: no se pueden crear varios ni eliminarlo, ni hay infraestructura que aprovisionar."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "áreas de trabajo"
+          },
+          {
+            "id": "o2",
+            "text": "aplicaciones"
+          },
+          {
+            "id": "o3",
+            "text": "canalizaciones de implementación"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Las áreas de trabajo son los contenedores de los elementos y permiten repartir la propiedad y el acceso entre equipos; las aplicaciones y canalizaciones distribuyen o mueven contenido, no lo contienen."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "una capacidad de Fabric (por ejemplo, una SKU F o una prueba de Fabric)"
+          },
+          {
+            "id": "o2",
+            "text": "Premium por usuario (PPU)"
+          },
+          {
+            "id": "o3",
+            "text": "Power BI Pro en la capacidad compartida"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Los elementos de Fabric que no son de Power BI, como lakehouses o cuadernos, requieren una capacidad de Fabric. Pro y PPU solo admiten elementos de Power BI: PPU da funciones Premium por usuario, pero no capacidad de Fabric."
+      }
+    ],
+    "keyPoint": "Un OneLake por inquilino; las áreas de trabajo organizan los elementos; los lakehouses necesitan una capacidad de Fabric (PPU no basta).",
+    "references": [
+      {
+        "title": "OneLake, el lago de datos unificado",
+        "url": "https://learn.microsoft.com/es-es/fabric/onelake/onelake-overview"
+      },
+      {
+        "title": "Licencias y capacidad de Microsoft Fabric",
+        "url": "https://learn.microsoft.com/es-es/fabric/enterprise/licenses"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-areas-114",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 1,
+    "scenario": "El modelo semántico «Compras», en modo de importación, tiene una actualización programada a las 6:00. A las 11:00 se corrigen varios pedidos en el ERP. El director de compras abre el informe en el servicio, selecciona Actualizar objetos visuales (*Refresh visuals*) y sigue viendo las cifras sin corregir.",
+    "prompt": "¿Por qué ocurre y qué hace falta para ver las cifras corregidas?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Actualizar los objetos visuales no reimporta datos del origen; hay que actualizar el modelo semántico",
+        "correct": true,
+        "explanation": "En un modelo de importación, los datos solo cambian cuando una actualización de datos los vuelve a importar del origen. Actualizar los objetos visuales repite las consultas sobre el modelo, que sigue con los datos de las 6:00."
+      },
+      {
+        "id": "b",
+        "text": "El explorador guarda en caché el informe; hay que borrar la caché del explorador y volver a abrirlo",
+        "correct": false,
+        "explanation": "La caché del explorador no es el problema: aunque recargues la página, el modelo de importación devuelve los mismos datos hasta que se actualice."
+      },
+      {
+        "id": "c",
+        "text": "El director tiene el rol Visor, que no permite ver los cambios hasta que el autor vuelve a publicar el informe",
+        "correct": false,
+        "explanation": "El rol no influye en la actualidad de los datos: todos los usuarios ven los mismos datos del modelo, que dependen de su última actualización."
+      },
+      {
+        "id": "d",
+        "text": "La puerta de enlace solo envía datos al servicio durante la ventana programada; hay que reiniciar la puerta de enlace",
+        "correct": false,
+        "explanation": "La puerta de enlace no envía datos por sí sola: transfiere los datos cuando se ejecuta una actualización. Reiniciarla no actualiza el modelo."
+      }
+    ],
+    "keyPoint": "Actualizar objetos visuales ≠ actualizar datos: en modo de importación los datos solo cambian con una actualización del modelo semántico.",
+    "references": [
+      {
+        "title": "Actualizar datos en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/refresh-data"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-areas-115",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 3,
+    "scenario": "Una puerta de enlace de datos local en modo estándar, instalada en el servidor SRV-GW1, da servicio a decenas de modelos semánticos. Cada vez que SRV-GW1 se reinicia por las actualizaciones de seguridad, fallan las actualizaciones de los modelos. Quieres eliminar este punto único de error sin tener que reconfigurar las conexiones de cada modelo.",
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Instalar una segunda puerta de enlace estándar en el mismo servidor SRV-GW1",
+        "correct": false,
+        "explanation": "Solo se puede instalar una puerta de enlace estándar por equipo y, además, en el mismo servidor no habría redundancia cuando este se reinicie."
+      },
+      {
+        "id": "b",
+        "text": "Habilitar Distribuir solicitudes entre todas las puertas de enlace activas en la puerta de enlace actual",
+        "correct": false,
+        "explanation": "Esa opción reparte la carga entre los miembros de un clúster; con un solo miembro no aporta ninguna redundancia."
+      },
+      {
+        "id": "c",
+        "text": "Instalar una puerta de enlace independiente en otro servidor, duplicar las conexiones y cambiar cada modelo a ella cuando falle la primera",
+        "correct": false,
+        "explanation": "Dos puertas de enlace independientes no forman un clúster: tendrías que mantener las conexiones dos veces y reasignar los modelos a mano en cada incidencia."
+      },
+      {
+        "id": "d",
+        "text": "Instalar la puerta de enlace en otro servidor y agregarla al clúster de la principal con su clave de recuperación",
+        "correct": true,
+        "explanation": "Un clúster de alta disponibilidad enruta las solicitudes a otro miembro cuando la puerta de enlace principal no está disponible. Las conexiones se administran a nivel de clúster, así que los modelos no se reconfiguran."
+      }
+    ],
+    "keyPoint": "Alta disponibilidad de la puerta de enlace: agrega miembros en otros equipos al mismo clúster con la clave de recuperación de la principal.",
+    "references": [
+      {
+        "title": "Instalación de una puerta de enlace de datos local",
+        "url": "https://learn.microsoft.com/es-es/data-integration/gateway/service-gateway-install"
+      },
+      {
+        "title": "Clústeres de alta disponibilidad y equilibrio de carga de puertas de enlace",
+        "url": "https://learn.microsoft.com/es-es/data-integration/gateway/service-gateway-high-availability-clusters"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-areas-116",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "difficulty": 3,
+    "scenario": "Al revisar el modelo semántico de importación «Inventario», descubres que el servicio Power BI ha detenido su actualización programada, aunque nadie la ha desactivado a mano.",
+    "prompt": "¿Qué dos situaciones pueden haber provocado que el servicio detenga la actualización programada? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Las credenciales del origen de datos caducaron y las actualizaciones empezaron a fallar",
+        "correct": true,
+        "explanation": "Power BI desactiva la programación tras varios errores consecutivos o ante un error irrecuperable que exige cambiar la configuración, como unas credenciales no válidas o caducadas, y avisa por correo al propietario."
+      },
+      {
+        "id": "b",
+        "text": "El propietario del modelo estuvo dos semanas de vacaciones sin iniciar sesión en Power BI",
+        "correct": false,
+        "explanation": "La inactividad no depende de que el propietario inicie sesión, sino de que nadie visite informes o paneles basados en el modelo, y el plazo es de dos meses."
+      },
+      {
+        "id": "c",
+        "text": "Nadie abrió ningún informe ni panel basado en el modelo durante dos meses",
+        "correct": true,
+        "explanation": "Tras dos meses sin visitas a informes o paneles del modelo (incluidas aplicaciones e inserciones), el servicio pausa la programación y avisa al propietario; se reanuda al visitar un informe o con Actualizar ahora."
+      },
+      {
+        "id": "d",
+        "text": "Un compañero lanzó varias actualizaciones a petición con Actualizar ahora durante el día",
+        "correct": false,
+        "explanation": "Las actualizaciones a petición desde la interfaz conviven con la programación y no la desactivan."
+      },
+      {
+        "id": "e",
+        "text": "Un Colaborador agregó una página nueva al informe directamente en el servicio",
+        "correct": false,
+        "explanation": "Editar el informe no afecta a la programación de actualización del modelo semántico, que se configura y conserva por separado."
+      }
+    ],
+    "keyPoint": "La actualización programada se detiene por errores repetidos o irrecuperables (p. ej., credenciales caducadas) y se pausa tras dos meses sin visitas.",
+    "references": [
+      {
+        "title": "Configuración de la actualización programada",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/refresh-scheduled-refresh"
+      },
+      {
+        "title": "Actualizar datos en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/refresh-data"
+      }
+    ]
+  }
+]
