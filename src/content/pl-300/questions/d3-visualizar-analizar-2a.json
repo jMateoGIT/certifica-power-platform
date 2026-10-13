@@ -578,11 +578,11 @@
     "keyPoint": "El parámetro Reset de los cálculos visuales controla cuándo se reinicia: HIGHESTPARENT = nivel superior; LOWESTPARENT = padre inmediato; NONE = nunca.",
     "references": [
       {
-        "title": "Cálculos visuales",
+        "title": "Introducción a los cálculos visuales",
         "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-visual-calculations-overview"
       },
       {
-        "title": "RUNNINGSUM",
+        "title": "Función RUNNINGSUM (DAX)",
         "url": "https://learn.microsoft.com/es-es/dax/runningsum-function-dax"
       }
     ]
@@ -685,7 +685,7 @@
         "id": "a",
         "text": "Agregar un objeto visual Narración a cada una de las tres páginas y copiar sus textos en «Resumen ejecutivo»",
         "correct": false,
-        "explanation": "El texto de Copilot no se puede editar ni combinar así, y el gráfico oculto seguiría sin incluirse."
+        "explanation": "Es innecesario, porque una sola narración puede resumir varias páginas; además, sin la opción de marcadores ocultos el gráfico de abandono no se incluiría y el texto de Copilot no se puede editar directamente para combinarlo."
       },
       {
         "id": "b",
@@ -895,7 +895,7 @@
         "id": "a",
         "text": "Un mapa coroplético (*filled map*) con el código postal",
         "correct": false,
-        "explanation": "Sombrea regiones geográficas con límites definidos para comparar valores agregados; no representa la densidad de puntos individuales."
+        "explanation": "Sombrea regiones geográficas con límites definidos para comparar valores agregados; no representa la densidad de puntos individuales. Además, se basa en Bing Maps, cuya retirada ya está anunciada en favor de Azure Maps."
       },
       {
         "id": "b",
@@ -907,7 +907,7 @@
         "id": "c",
         "text": "Un mapa de formas (*shape map*) con un archivo TopoJSON de barrios",
         "correct": false,
-        "explanation": "Compara regiones coloreadas, incluso personalizadas, en lugar de ubicaciones precisas; tampoco ofrece mapa térmico de puntos."
+        "explanation": "Compara regiones coloreadas, incluso personalizadas, en lugar de ubicaciones precisas, y no ofrece mapa térmico de puntos; además, sigue en versión preliminar."
       },
       {
         "id": "d",
@@ -986,9 +986,9 @@
     "options": [
       {
         "id": "a",
-        "text": "Para crearlos hace falta permiso de edición sobre el informe.",
+        "text": "Un marcador personal guarda el estado de todas las páginas del informe a la vez.",
         "correct": false,
-        "explanation": "Cualquier persona que pueda abrir y ver el informe puede crear marcadores personales; no se necesitan permisos de edición."
+        "explanation": "Un marcador personal captura el estado de la página actual; los cambios en otras páginas, incluso en segmentaciones sincronizadas, no se guardan."
       },
       {
         "id": "b",
@@ -1041,7 +1041,7 @@
       },
       {
         "id": "m2",
-        "text": "Cambiar solo la visibilidad de los dos gráficos del panel izquierdo, sin tocar el resto de la página",
+        "text": "Que el marcador solo restaure el estado de los dos gráficos del panel izquierdo y no modifique los demás objetos visuales de la página",
         "answerId": "c4",
         "explanation": "Objetos visuales seleccionados aplica el marcador solo a los objetos que estaban seleccionados al crearlo o actualizarlo."
       },
@@ -1098,7 +1098,7 @@
     "difficulty": 2,
     "scenario": "En la reunión trimestral, el analista quiere contar una historia recorriendo varias vistas del informe en orden y, en una de ellas, centrar la atención en el gráfico de márgenes.",
     "prompt": "Completa la frase.",
-    "template": "Para atenuar los demás objetos visuales y resaltar el gráfico de márgenes usas {{b1}}; guardas ese estado en un marcador con la opción {{b2}} activada; y para recorrer los marcadores en orden, como diapositivas, seleccionas {{b3}} en el panel Marcadores.",
+    "template": "Para atenuar los demás objetos visuales y resaltar el gráfico de márgenes usas {{b1}}; para recorrer los marcadores en orden, como diapositivas, seleccionas {{b2}} en el panel Marcadores; y si el marcador seleccionado al empezar pertenece a un grupo de marcadores, la presentación recorre {{b3}}.",
     "blanks": [
       {
         "id": "b1",
@@ -1124,25 +1124,6 @@
         "options": [
           {
             "id": "o1",
-            "text": "Datos"
-          },
-          {
-            "id": "o2",
-            "text": "Mostrar"
-          },
-          {
-            "id": "o3",
-            "text": "Página actual"
-          }
-        ],
-        "correctId": "o2",
-        "explanation": "Las propiedades de visualización (Mostrar) incluyen la visibilidad de los objetos y el modo destacado."
-      },
-      {
-        "id": "b3",
-        "options": [
-          {
-            "id": "o1",
             "text": "Agregar"
           },
           {
@@ -1155,10 +1136,29 @@
           }
         ],
         "correctId": "o2",
-        "explanation": "Ver inicia la presentación: el nombre del marcador aparece en una barra con flechas para pasar al siguiente o al anterior."
+        "explanation": "Ver inicia la presentación: el nombre del marcador aparece en una barra con flechas para pasar al siguiente o al anterior. Agregar crea un marcador y Agrupar reúne varios en un grupo."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "solo los marcadores de ese grupo"
+          },
+          {
+            "id": "o2",
+            "text": "todos los marcadores del informe"
+          },
+          {
+            "id": "o3",
+            "text": "solo los marcadores creados en la página actual"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Si el marcador seleccionado está en un grupo, la vista solo muestra los marcadores de ese grupo; si no lo está, o seleccionas el nivel superior, se recorren todos los marcadores del informe."
       }
     ],
-    "keyPoint": "Contenido destacado atenúa el resto; el marcador lo guarda con Mostrar; Ver recorre los marcadores como una presentación.",
+    "keyPoint": "Contenido destacado atenúa el resto; Ver recorre los marcadores como una presentación y, si empiezas en un grupo, solo recorre ese grupo.",
     "references": [
       {
         "title": "Creación de marcadores de informes en Power BI para compartir información detallada y crear historias",
@@ -1577,7 +1577,7 @@
     "keyPoint": "Los lectores pueden activar en el servicio Ver > Colores de contraste alto; Power BI Desktop detecta además el contraste alto de Windows.",
     "references": [
       {
-        "title": "Cambio de la pantalla de una página del informe",
+        "title": "Cambiar el tamaño de presentación y la proporción de una página de informe",
         "url": "https://learn.microsoft.com/es-es/power-bi/consumer/end-user-focus"
       },
       {

@@ -10,23 +10,66 @@
     "scenario": "Analizas la satisfacción de los clientes de un servicio de suscripción con el objeto visual de influenciadores clave (*key influencers*): Valoración está en Analizar, Tipo de contrato está en Explicar por y en el desplegable has elegido el valor Baja. La tabla resume los datos que usa el análisis.",
     "table": {
       "caption": "Valoraciones por tipo de contrato",
-      "headers": ["Tipo de contrato", "Clientes", "Valoración Baja", "% Baja"],
+      "headers": [
+        "Tipo de contrato",
+        "Clientes",
+        "Valoración Baja",
+        "% Baja"
+      ],
       "rows": [
-        ["Mensual", "600", "144", "24 %"],
-        ["Anual", "1500", "120", "8 %"],
-        ["Bienal", "900", "72", "8 %"]
+        [
+          "Mensual",
+          "600",
+          "144",
+          "24 %"
+        ],
+        [
+          "Anual",
+          "1500",
+          "120",
+          "8 %"
+        ],
+        [
+          "Bienal",
+          "900",
+          "72",
+          "8 %"
+        ]
       ]
     },
     "prompt": "El primer influenciador de la lista es «Tipo de contrato es Mensual». ¿Qué valor muestra su burbuja?",
     "options": [
-      { "id": "a", "text": "16: la diferencia en puntos porcentuales entre el 24 % y el 8 %", "correct": false, "explanation": "Una diferencia expresada como número es lo que se muestra cuando se analiza una métrica numérica en modo continuo. Con una métrica categórica, la burbuja muestra cuántas veces es más probable el valor elegido." },
-      { "id": "b", "text": "24 %: el porcentaje de valoraciones Baja de los contratos mensuales", "correct": false, "explanation": "El 24 % aparece como barra verde en el panel derecho, pero la burbuja no muestra ese porcentaje, sino la comparación con el promedio del resto de valores." },
-      { "id": "c", "text": "3,00x: un contrato mensual triplica la probabilidad de valoración Baja", "correct": true, "explanation": "La burbuja divide el porcentaje del influenciador (24 %) entre el promedio de todos los demás valores del campo (192 de 2400 clientes = 8 %): 24 / 8 = 3 veces más probable." },
-      { "id": "d", "text": "0,43: la parte de las valoraciones Baja que aportan los contratos mensuales", "correct": false, "explanation": "144 de 336 valoraciones Baja es una cuota de contribución, no una medida de influencia. El objeto visual compara probabilidades, no el peso en el total." }
+      {
+        "id": "a",
+        "text": "16: la diferencia en puntos porcentuales entre el 24 % y el 8 %",
+        "correct": false,
+        "explanation": "Una diferencia expresada como número es lo que se muestra cuando se analiza una métrica numérica en modo continuo. Con una métrica categórica, la burbuja muestra cuántas veces es más probable el valor elegido."
+      },
+      {
+        "id": "b",
+        "text": "24 %: el porcentaje de valoraciones Baja de los contratos mensuales",
+        "correct": false,
+        "explanation": "El 24 % aparece como barra verde en el panel derecho, pero la burbuja no muestra ese porcentaje, sino la comparación con el promedio del resto de valores."
+      },
+      {
+        "id": "c",
+        "text": "3,00x: un contrato mensual triplica la probabilidad de valoración Baja",
+        "correct": true,
+        "explanation": "La burbuja divide el porcentaje del influenciador (24 %) entre el promedio de todos los demás valores del campo (192 de 2400 clientes = 8 %): 24 / 8 = 3 veces más probable."
+      },
+      {
+        "id": "d",
+        "text": "0,43: la parte de las valoraciones Baja que aportan los contratos mensuales",
+        "correct": false,
+        "explanation": "144 de 336 valoraciones Baja es una cuota de contribución, no una medida de influencia. El objeto visual compara probabilidades, no el peso en el total."
+      }
     ],
     "keyPoint": "Con una métrica categórica, la burbuja = % del influenciador ÷ % promedio de todos los demás valores (barra verde ÷ línea de puntos).",
     "references": [
-      { "title": "Creación de objetos visuales de influenciadores clave", "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-influencers" }
+      {
+        "title": "Creación de objetos visuales de influenciadores clave",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-influencers"
+      }
     ]
   },
   {
@@ -39,22 +82,63 @@
     "difficulty": 2,
     "prompt": "Trabajas con el objeto visual de influenciadores clave (*key influencers*). Empareja cada necesidad con el elemento del objeto visual que la resuelve.",
     "prompts": [
-      { "id": "m1", "text": "Ver qué combinaciones de factores (por ejemplo, más de 29 meses de antigüedad y más de cuatro incidencias) concentran más valoraciones bajas", "answerId": "c1", "explanation": "La pestaña Segmentos principales (*Top segments*) muestra grupos formados por combinaciones de valores; la pestaña Influenciadores clave evalúa cada factor por separado." },
-      { "id": "m2", "text": "Preguntar qué hace aumentar el precio de una vivienda, un campo numérico sin resumir con miles de valores distintos", "answerId": "c2", "explanation": "El tipo de análisis continuo cambia la pregunta a «¿qué hace que aumente o disminuya?», útil cuando el campo tiene muchos valores únicos." },
-      { "id": "m3", "text": "Hacer que una medida se evalúe a nivel de cada vivienda sin que el identificador de vivienda se considere un factor", "answerId": "c3", "explanation": "Expandir por (*Expand by*) fija el nivel al que se calculan las medidas o columnas resumidas sin añadir esos campos como influenciadores." },
-      { "id": "m4", "text": "Saber qué parte de los datos representa cada influenciador para priorizar los que afectan a más clientes", "answerId": "c4", "explanation": "Al activar los recuentos en la tarjeta Análisis del panel Formato aparece un anillo alrededor de cada burbuja con la proporción aproximada de datos que contiene." }
+      {
+        "id": "m1",
+        "text": "Ver qué combinaciones de factores (por ejemplo, más de 29 meses de antigüedad y más de cuatro incidencias) concentran más valoraciones bajas",
+        "answerId": "c1",
+        "explanation": "La pestaña Segmentos principales (*Top segments*) muestra grupos formados por combinaciones de valores; la pestaña Influenciadores clave evalúa cada factor por separado."
+      },
+      {
+        "id": "m2",
+        "text": "Preguntar qué hace aumentar el precio de una vivienda, un campo numérico sin resumir con miles de valores distintos",
+        "answerId": "c2",
+        "explanation": "El tipo de análisis continuo cambia la pregunta a «¿qué hace que aumente o disminuya?», útil cuando el campo tiene muchos valores únicos."
+      },
+      {
+        "id": "m3",
+        "text": "Hacer que una medida se evalúe a nivel de cada vivienda sin que el identificador de vivienda se considere un factor",
+        "answerId": "c3",
+        "explanation": "Expandir por (*Expand by*) fija el nivel al que se calculan las medidas o columnas resumidas sin añadir esos campos como influenciadores."
+      },
+      {
+        "id": "m4",
+        "text": "Saber qué parte de los datos representa cada influenciador para priorizar los que afectan a más clientes",
+        "answerId": "c4",
+        "explanation": "Al activar los recuentos en la tarjeta Análisis del panel Formato aparece un anillo alrededor de cada burbuja con la proporción aproximada de datos que contiene."
+      }
     ],
     "choices": [
-      { "id": "c1", "text": "Pestaña Segmentos principales" },
-      { "id": "c2", "text": "Tipo de análisis continuo" },
-      { "id": "c3", "text": "Campo Expandir por" },
-      { "id": "c4", "text": "Recuentos (tarjeta Análisis del panel Formato)" },
-      { "id": "c5", "text": "Tipo de análisis categórico" },
-      { "id": "c6", "text": "Casilla «Solo mostrar valores que son influenciadores»" }
+      {
+        "id": "c1",
+        "text": "Pestaña Segmentos principales"
+      },
+      {
+        "id": "c2",
+        "text": "Tipo de análisis continuo"
+      },
+      {
+        "id": "c3",
+        "text": "Campo Expandir por"
+      },
+      {
+        "id": "c4",
+        "text": "Recuentos (tarjeta Análisis del panel Formato)"
+      },
+      {
+        "id": "c5",
+        "text": "Tipo de análisis categórico"
+      },
+      {
+        "id": "c6",
+        "text": "Casilla «Solo mostrar valores que son influenciadores»"
+      }
     ],
     "keyPoint": "Segmentos principales = combinaciones de factores; continuo = «qué hace subir»; Expandir por = nivel de análisis de una medida; recuentos = peso de cada influenciador.",
     "references": [
-      { "title": "Creación de objetos visuales de influenciadores clave", "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-influencers" }
+      {
+        "title": "Creación de objetos visuales de influenciadores clave",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-influencers"
+      }
     ]
   },
   {
@@ -68,15 +152,43 @@
     "scenario": "En un objeto visual de influenciadores clave analizas Valoración, de la tabla Clientes (una fila por cliente). Quieres saber si el dispositivo con el que se usa el servicio influye, pero la columna Dispositivo está en la tabla Uso, donde un mismo cliente puede tener varias filas (navegador, móvil, tableta). Al agregar Dispositivo a Explicar por aparece un error que indica que el campo no está relacionado de forma exclusiva con la tabla de la métrica.",
     "prompt": "¿Qué dos acciones resuelven el problema? Selecciona dos.",
     "options": [
-      { "id": "a", "text": "Agregar Dispositivo al campo Expandir por en lugar de a Explicar por", "correct": false, "explanation": "Expandir por solo sirve para fijar el nivel de análisis cuando Analizar es una medida o un campo resumido; no convierte Dispositivo en un atributo del cliente." },
-      { "id": "b", "text": "Cambiar el resumen de Dispositivo a Recuento en Explicar por", "correct": true, "explanation": "Al resumir como recuento, cada cliente tiene un único valor (número de dispositivos), definido ya a nivel de cliente, que el análisis puede usar." },
-      { "id": "c", "text": "Cambiar el tipo de análisis a continuo en la tarjeta Análisis", "correct": false, "explanation": "El tipo de análisis continuo se aplica a la métrica numérica de Analizar; no cambia la granularidad de los factores explicativos." },
-      { "id": "d", "text": "Dinamizar la columna Dispositivo en Power Query para tener una columna por dispositivo a nivel de cliente", "correct": true, "explanation": "Con las columnas Navegador, Móvil y Tableta en la tabla de clientes, cada dispositivo pasa a ser un atributo del cliente y puede evaluarse como influenciador." },
-      { "id": "e", "text": "Establecer la dirección del filtro cruzado de la relación en Ambas", "correct": false, "explanation": "La dirección del filtro no cambia el hecho de que un cliente tenga varios dispositivos; el factor sigue sin estar definido a nivel de cliente." }
+      {
+        "id": "a",
+        "text": "Agregar Dispositivo al campo Expandir por en lugar de a Explicar por",
+        "correct": false,
+        "explanation": "Expandir por solo sirve para fijar el nivel de análisis cuando Analizar es una medida o un campo resumido; no convierte Dispositivo en un atributo del cliente."
+      },
+      {
+        "id": "b",
+        "text": "Cambiar el resumen de Dispositivo a Recuento en Explicar por",
+        "correct": true,
+        "explanation": "Al resumir como recuento, cada cliente tiene un único valor (número de dispositivos), definido ya a nivel de cliente, que el análisis puede usar."
+      },
+      {
+        "id": "c",
+        "text": "Cambiar el tipo de análisis a continuo en la tarjeta Análisis",
+        "correct": false,
+        "explanation": "El tipo de análisis continuo se aplica a la métrica numérica de Analizar; no cambia la granularidad de los factores explicativos."
+      },
+      {
+        "id": "d",
+        "text": "Dinamizar la columna Dispositivo en Power Query para tener una columna por dispositivo a nivel de cliente",
+        "correct": true,
+        "explanation": "Con las columnas Navegador, Móvil y Tableta en la tabla de clientes, cada dispositivo pasa a ser un atributo del cliente y puede evaluarse como influenciador."
+      },
+      {
+        "id": "e",
+        "text": "Establecer la dirección del filtro cruzado de la relación en Ambas",
+        "correct": false,
+        "explanation": "La dirección del filtro no cambia el hecho de que un cliente tenga varios dispositivos; el factor sigue sin estar definido a nivel de cliente."
+      }
     ],
     "keyPoint": "Influenciadores clave analiza al nivel de la tabla de la métrica: los factores de una relación uno a varios deben agregarse (recuento) o dinamizarse a ese nivel.",
     "references": [
-      { "title": "Creación de objetos visuales de influenciadores clave", "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-influencers" }
+      {
+        "title": "Creación de objetos visuales de influenciadores clave",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-influencers"
+      }
     ]
   },
   {
@@ -90,22 +202,60 @@
     "scenario": "Un árbol de descomposición (*decomposition tree*) analiza las ventas de videojuegos en Norteamérica. Has dividido por Editorial y has seleccionado el nodo Lumen, que solo publica para su propia consola. Al elegir la división de IA Valor alto (*High value*), el árbol se expande siempre por Plataforma, que bajo ese nodo tiene un único valor.",
     "table": {
       "caption": "Columnas candidatas bajo el nodo Editorial = Lumen",
-      "headers": ["Columna", "Valores bajo el nodo", "Valor más alto", "Media de los valores"],
+      "headers": [
+        "Columna",
+        "Valores bajo el nodo",
+        "Valor más alto",
+        "Media de los valores"
+      ],
       "rows": [
-        ["Plataforma", "1", "46,9 M€", "46,9 M€"],
-        ["Género", "10", "19,6 M€", "4,6 M€"]
+        [
+          "Plataforma",
+          "1",
+          "46,9 M€",
+          "46,9 M€"
+        ],
+        [
+          "Género",
+          "10",
+          "19,6 M€",
+          "4,6 M€"
+        ]
       ]
     },
     "prompt": "Quieres que la división de IA proponga la columna cuyo valor más alto destaca más frente al resto de valores de esa misma columna. ¿Qué debes hacer?",
     "options": [
-      { "id": "a", "text": "Usar la división de IA Valor bajo (*Low value*) en el nodo Lumen", "correct": false, "explanation": "Valor bajo busca la columna que lleva al valor más pequeño de la medida; no compara cada valor con el resto de su columna." },
-      { "id": "b", "text": "Seleccionar la bombilla del nivel para convertirlo en un nivel normal", "correct": false, "explanation": "Seleccionar la bombilla revierte el nivel al comportamiento de un nivel sin IA; deja de buscar automáticamente la mejor división." },
-      { "id": "c", "text": "Desactivar las divisiones de IA en las opciones de análisis del panel Formato", "correct": false, "explanation": "Desactivarlas quita la ayuda de la IA y obliga a elegir manualmente; no cambia el criterio con el que se elige la división." },
-      { "id": "d", "text": "Cambiar el tipo de análisis de las divisiones de IA de Absoluto a Relativo", "correct": true, "explanation": "El modo relativo busca valores altos que destacan frente al resto de la columna: Género tiene un máximo 4,3 veces superior a su media, mientras que Plataforma solo 1 vez." }
+      {
+        "id": "a",
+        "text": "Usar la división de IA Valor bajo (*Low value*) en el nodo Lumen",
+        "correct": false,
+        "explanation": "Valor bajo busca la columna que lleva al valor más pequeño de la medida; no compara cada valor con el resto de su columna."
+      },
+      {
+        "id": "b",
+        "text": "Seleccionar la bombilla del nivel para convertirlo en un nivel normal",
+        "correct": false,
+        "explanation": "Seleccionar la bombilla revierte el nivel al comportamiento de un nivel sin IA; deja de buscar automáticamente la mejor división."
+      },
+      {
+        "id": "c",
+        "text": "Desactivar las divisiones de IA en las opciones de análisis del panel Formato",
+        "correct": false,
+        "explanation": "Desactivarlas quita la ayuda de la IA y obliga a elegir manualmente; no cambia el criterio con el que se elige la división."
+      },
+      {
+        "id": "d",
+        "text": "Cambiar el tipo de análisis de las divisiones de IA de Absoluto a Relativo",
+        "correct": true,
+        "explanation": "El modo relativo busca valores altos que destacan frente al resto de la columna: Género tiene un máximo 4,3 veces superior a su media, mientras que Plataforma solo 1 vez."
+      }
     ],
     "keyPoint": "Divisiones de IA: Absoluto elige el valor más alto; Relativo elige el que más destaca frente a la media de su columna.",
     "references": [
-      { "title": "Creación y visualización de objetos visuales de árbol de descomposición", "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-decomposition-tree" }
+      {
+        "title": "Creación y visualización de objetos visuales de árbol de descomposición",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-decomposition-tree"
+      }
     ]
   },
   {
@@ -118,14 +268,37 @@
     "difficulty": 2,
     "prompt": "Indica si cada afirmación sobre los niveles de un árbol de descomposición (*decomposition tree*) es verdadera.",
     "statements": [
-      { "id": "s1", "text": "Como creador, puedes bloquear niveles para que los lectores no puedan quitarlos ni cambiarlos, aunque sí explorar distintos nodos dentro de ellos.", "answer": true, "explanation": "Un nivel bloqueado no se puede quitar ni cambiar, pero el consumidor puede seguir explorando rutas dentro de él y añadir niveles posteriores." },
-      { "id": "s2", "text": "Puedes bloquear el tercer nivel y dejar desbloqueados el primero y el segundo.", "answer": false, "explanation": "Puedes bloquear tantos niveles como quieras, pero no puede haber niveles desbloqueados antes de un nivel bloqueado." },
-      { "id": "s3", "text": "Si haces una división manual justo después de un nivel de IA, ese nivel pierde la bombilla y se convierte en un nivel normal.", "answer": true, "explanation": "Se pueden encadenar varios niveles de IA, pero un nivel que no es de IA no puede seguir a uno de IA; por eso el nivel de IA se transforma en normal." },
-      { "id": "s4", "text": "Cuando otro objeto visual filtra el árbol, cada nivel de IA conserva la columna que eligió al principio.", "answer": false, "explanation": "Los niveles de IA se recalculan con el filtro cruzado: no solo se reordenan los nodos, también puede elegirse otra columna." }
+      {
+        "id": "s1",
+        "text": "Como creador, puedes bloquear niveles para que los lectores no puedan quitarlos ni cambiarlos, aunque sí explorar distintos nodos dentro de ellos.",
+        "answer": true,
+        "explanation": "Un nivel bloqueado no se puede quitar ni cambiar, pero el consumidor puede seguir explorando rutas dentro de él y añadir niveles posteriores."
+      },
+      {
+        "id": "s2",
+        "text": "Puedes bloquear el tercer nivel y dejar desbloqueados el primero y el segundo.",
+        "answer": false,
+        "explanation": "Puedes bloquear tantos niveles como quieras, pero no puede haber niveles desbloqueados antes de un nivel bloqueado."
+      },
+      {
+        "id": "s3",
+        "text": "Si haces una división manual justo después de un nivel de IA, ese nivel pierde la bombilla y se convierte en un nivel normal.",
+        "answer": true,
+        "explanation": "Se pueden encadenar varios niveles de IA, pero un nivel que no es de IA no puede seguir a uno de IA; por eso el nivel de IA se transforma en normal."
+      },
+      {
+        "id": "s4",
+        "text": "Cuando otro objeto visual filtra el árbol, cada nivel de IA conserva la columna que eligió al principio.",
+        "answer": false,
+        "explanation": "Los niveles de IA se recalculan con el filtro cruzado: no solo se reordenan los nodos, también puede elegirse otra columna."
+      }
     ],
     "keyPoint": "Bloqueos en orden desde el primer nivel; tras un nivel de IA solo puede ir otro de IA; las divisiones de IA se recalculan al filtrar.",
     "references": [
-      { "title": "Creación y visualización de objetos visuales de árbol de descomposición", "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-decomposition-tree" }
+      {
+        "title": "Creación y visualización de objetos visuales de árbol de descomposición",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-decomposition-tree"
+      }
     ]
   },
   {
@@ -138,22 +311,63 @@
     "difficulty": 2,
     "prompt": "Has usado Analizar > Explicar el aumento (*Analyze > Explain the increase*) y Power BI ha devuelto la columna Categoría como explicación. Empareja cada necesidad con el objeto visual de la ventana de conclusiones que mejor la responde.",
     "prompts": [
-      { "id": "m1", "text": "Comparar lado a lado qué porcentaje del total aportaba cada categoría antes y después", "answerId": "c1", "explanation": "El gráfico de columnas 100 % apiladas muestra la contribución de cada valor en los dos períodos para compararla en paralelo." },
-      { "id": "m2", "text": "Ver que la categoría que era la primera contribuyente ha pasado a la tercera posición", "answerId": "c2", "explanation": "El gráfico de cintas es útil cuando los cambios de contribución alteran el orden de los contribuyentes." },
-      { "id": "m3", "text": "Ver qué categorías crecieron más que la tendencia general, por encima de la línea de puntos", "answerId": "c3", "explanation": "El gráfico de dispersión enfrenta el valor del primer período (X) con el del segundo (Y); los puntos sobre la línea de mejor ajuste crecieron más que la tendencia." },
-      { "id": "m4", "text": "Mostrar los aumentos y disminuciones reales en euros de cada categoría entre los dos períodos", "answerId": "c4", "explanation": "El gráfico de cascada, el que aparece por defecto, muestra los cambios reales, aunque por sí solo no refleja el cambio de contribución." }
+      {
+        "id": "m1",
+        "text": "Comparar lado a lado qué porcentaje del total aportaba cada categoría antes y después",
+        "answerId": "c1",
+        "explanation": "El gráfico de columnas 100 % apiladas muestra la contribución de cada valor en los dos períodos para compararla en paralelo."
+      },
+      {
+        "id": "m2",
+        "text": "Ver que la categoría que era la primera contribuyente ha pasado a la tercera posición",
+        "answerId": "c2",
+        "explanation": "El gráfico de cintas es útil cuando los cambios de contribución alteran el orden de los contribuyentes."
+      },
+      {
+        "id": "m3",
+        "text": "Ver qué categorías crecieron más que la tendencia general, por encima de la línea de puntos",
+        "answerId": "c3",
+        "explanation": "El gráfico de dispersión enfrenta el valor del primer período (X) con el del segundo (Y); los puntos sobre la línea de mejor ajuste crecieron más que la tendencia."
+      },
+      {
+        "id": "m4",
+        "text": "Mostrar los aumentos y disminuciones reales en euros de cada categoría entre los dos períodos",
+        "answerId": "c4",
+        "explanation": "El gráfico de cascada, el que aparece por defecto, muestra los cambios reales, aunque por sí solo no refleja el cambio de contribución."
+      }
     ],
     "choices": [
-      { "id": "c1", "text": "Gráfico de columnas 100 % apiladas" },
-      { "id": "c2", "text": "Gráfico de cintas" },
-      { "id": "c3", "text": "Gráfico de dispersión" },
-      { "id": "c4", "text": "Gráfico de cascada" },
-      { "id": "c5", "text": "Gráfico de anillos" },
-      { "id": "c6", "text": "Gráfico de embudo" }
+      {
+        "id": "c1",
+        "text": "Gráfico de columnas 100 % apiladas"
+      },
+      {
+        "id": "c2",
+        "text": "Gráfico de cintas"
+      },
+      {
+        "id": "c3",
+        "text": "Gráfico de dispersión"
+      },
+      {
+        "id": "c4",
+        "text": "Gráfico de cascada"
+      },
+      {
+        "id": "c5",
+        "text": "Gráfico de anillos"
+      },
+      {
+        "id": "c6",
+        "text": "Gráfico de embudo"
+      }
     ],
     "keyPoint": "Explicar el aumento ofrece cascada (cambio real), dispersión, 100 % apiladas (contribución) y cintas (cambio de posición).",
     "references": [
-      { "title": "Aplicar conclusiones para explicar las fluctuaciones en los objetos visuales", "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-insights" }
+      {
+        "title": "Aplicar conclusiones para explicar las fluctuaciones en los objetos visuales",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-insights"
+      }
     ]
   },
   {
@@ -167,15 +381,43 @@
     "scenario": "Un modelo en modo Importación, sin seguridad de nivel de fila, tiene varios gráficos de líneas de ventas por fecha. En algunos de ellos la opción Analizar > Explicar el aumento (*Analyze > Explain the increase*) no está disponible para ningún punto de datos.",
     "prompt": "¿Qué dos configuraciones de un objeto visual impiden usar Explicar el aumento? Selecciona dos.",
     "options": [
-      { "id": "a", "text": "Un filtro N principales (*Top N*) de nivel de objeto visual que deja solo los diez productos más vendidos", "correct": true, "explanation": "Los filtros N principales están entre los escenarios no admitidos, junto con los filtros de inclusión o exclusión y los filtros de medidas." },
-      { "id": "b", "text": "El informe se consulta en modo de lectura en el servicio Power BI", "correct": false, "explanation": "Las conclusiones se pueden usar tanto en modo de lectura como de edición; solo agregar el objeto visual resultante al informe requiere editar." },
-      { "id": "c", "text": "La medida se muestra con Mostrar valor como > Porcentaje del total general", "correct": true, "explanation": "El uso de «Mostrar valor como» (*Show value as*) no se admite para explicar aumentos o disminuciones." },
-      { "id": "d", "text": "El eje X usa la columna Fecha, de tipo fecha, de la tabla de calendario", "correct": false, "explanation": "Un eje de fecha es escalar y está admitido; el problema aparece con columnas de categorías sin una ordenación por columna escalar." },
-      { "id": "e", "text": "El modelo semántico usa el modo de almacenamiento Importación", "correct": false, "explanation": "Importación es el modo admitido; lo que no se admite es DirectQuery ni la conexión dinámica." }
+      {
+        "id": "a",
+        "text": "Un filtro N principales (*Top N*) de nivel de objeto visual que deja solo los diez productos más vendidos",
+        "correct": true,
+        "explanation": "Los filtros N principales están entre los escenarios no admitidos, junto con los filtros de inclusión o exclusión y los filtros de medidas."
+      },
+      {
+        "id": "b",
+        "text": "El informe se consulta en modo de lectura en el servicio Power BI",
+        "correct": false,
+        "explanation": "Las conclusiones se pueden usar tanto en modo de lectura como de edición; solo agregar el objeto visual resultante al informe requiere editar."
+      },
+      {
+        "id": "c",
+        "text": "La medida se muestra con Mostrar valor como > Porcentaje del total general",
+        "correct": true,
+        "explanation": "El uso de «Mostrar valor como» (*Show value as*) no se admite para explicar aumentos o disminuciones."
+      },
+      {
+        "id": "d",
+        "text": "El eje X usa la columna Fecha, de tipo fecha, de la tabla de calendario",
+        "correct": false,
+        "explanation": "Un eje de fecha es escalar y está admitido; el problema aparece con columnas de categorías sin una ordenación por columna escalar."
+      },
+      {
+        "id": "e",
+        "text": "El modelo semántico usa el modo de almacenamiento Importación",
+        "correct": false,
+        "explanation": "Importación es el modo admitido; lo que no se admite es DirectQuery ni la conexión dinámica."
+      }
     ],
     "keyPoint": "Explicar el aumento/disminución no admite filtros N principales, de inclusión/exclusión o de medidas ni «Mostrar valor como».",
     "references": [
-      { "title": "Aplicar conclusiones para explicar las fluctuaciones en los objetos visuales", "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-insights" }
+      {
+        "title": "Aplicar conclusiones para explicar las fluctuaciones en los objetos visuales",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-insights"
+      }
     ]
   },
   {
@@ -188,14 +430,37 @@
     "difficulty": 2,
     "prompt": "Indica si cada afirmación sobre el panel Análisis (*Analytics pane*) es verdadera.",
     "statements": [
-      { "id": "s1", "text": "Puedes agregar a un mismo objeto visual varias líneas de percentil (por ejemplo, 25, 50 y 75), cada una con su nombre y color.", "answer": true, "explanation": "Se admiten varias instancias del mismo tipo de línea en un objeto visual, cada una con su nombre, color y formato propios." },
-      { "id": "s2", "text": "La línea de percentil está disponible en un modelo que se conecta por DirectQuery a una base de datos de SQL Server.", "answer": false, "explanation": "Solo está disponible con datos importados o conectado a Analysis Services 2016 o posterior, Azure Analysis Services o un modelo semántico del servicio Power BI." },
-      { "id": "s3", "text": "Si seleccionas un objeto visual de mapa, el panel Análisis indica que no se pueden aplicar líneas de referencia dinámicas.", "answer": true, "explanation": "No todos los objetos visuales las admiten; con un mapa, el panel Análisis muestra un mensaje en lugar de las opciones." },
-      { "id": "s4", "text": "Puedes agregar barras de error a un gráfico de dispersión desde el panel Análisis.", "answer": false, "explanation": "Las barras de error se admiten en gráficos de barras y columnas agrupadas, de líneas y combinados de líneas y columnas agrupadas, no en el de dispersión." }
+      {
+        "id": "s1",
+        "text": "Puedes agregar a un mismo objeto visual varias líneas de percentil (por ejemplo, 25, 50 y 75), cada una con su nombre y color.",
+        "answer": true,
+        "explanation": "Se admiten varias instancias del mismo tipo de línea en un objeto visual, cada una con su nombre, color y formato propios."
+      },
+      {
+        "id": "s2",
+        "text": "La línea de percentil está disponible en un modelo que se conecta por DirectQuery a una base de datos de SQL Server.",
+        "answer": false,
+        "explanation": "Solo está disponible con datos importados o conectado a Analysis Services 2016 o posterior, Azure Analysis Services o un modelo semántico del servicio Power BI."
+      },
+      {
+        "id": "s3",
+        "text": "Si seleccionas un objeto visual de mapa, el panel Análisis indica que no se pueden aplicar líneas de referencia dinámicas.",
+        "answer": true,
+        "explanation": "No todos los objetos visuales las admiten; con un mapa, el panel Análisis muestra un mensaje en lugar de las opciones."
+      },
+      {
+        "id": "s4",
+        "text": "Puedes agregar barras de error a un gráfico de dispersión desde el panel Análisis.",
+        "answer": false,
+        "explanation": "Las barras de error se admiten en gráficos de barras y columnas agrupadas, de líneas y combinados de líneas y columnas agrupadas, no en el de dispersión."
+      }
     ],
     "keyPoint": "Cada característica del panel Análisis depende del tipo de objeto visual y, en el caso del percentil, del modo de conexión.",
     "references": [
-      { "title": "Uso del panel Análisis en Power BI", "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-analytics-pane" }
+      {
+        "title": "Uso del panel Análisis en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-analytics-pane"
+      }
     ]
   },
   {
@@ -209,15 +474,41 @@
     "scenario": "Un gráfico de dispersión muestra cada tienda con las ventas del año anterior en el eje X y las del año actual en el eje Y, con la misma escala en ambos ejes. El director quiere ver de un vistazo qué tiendas quedan del lado de crecimiento y cuáles del de caída respecto a la diagonal en la que X e Y son iguales.",
     "prompt": "¿Qué característica del panel Análisis (*Analytics pane*) debes agregar?",
     "options": [
-      { "id": "a", "text": "Una línea de tendencia", "correct": false, "explanation": "La línea de tendencia indica la dirección general de los datos, no la frontera en la que X e Y son iguales." },
-      { "id": "b", "text": "Sombreado de simetría (*symmetry shading*)", "correct": true, "explanation": "Exclusivo del gráfico de dispersión, sombrea el fondo a ambos lados de la diagonal X = Y y revela hacia qué eje se inclina cada punto." },
-      { "id": "c", "text": "Una línea promedio del eje Y", "correct": false, "explanation": "Marca la media de las ventas del año actual; no compara cada tienda con su propio valor del año anterior." },
-      { "id": "d", "text": "Una línea constante del eje X", "correct": false, "explanation": "Traza una línea vertical en un valor fijo de X; no separa las tiendas que crecen de las que caen." }
+      {
+        "id": "a",
+        "text": "Una línea de tendencia",
+        "correct": false,
+        "explanation": "La línea de tendencia indica la dirección general de los datos, no la frontera en la que X e Y son iguales."
+      },
+      {
+        "id": "b",
+        "text": "Sombreado de simetría (*symmetry shading*)",
+        "correct": true,
+        "explanation": "Exclusivo del gráfico de dispersión, sombrea el fondo a ambos lados de la diagonal X = Y y revela hacia qué eje se inclina cada punto."
+      },
+      {
+        "id": "c",
+        "text": "Una línea promedio del eje Y",
+        "correct": false,
+        "explanation": "Marca la media de las ventas del año actual; no compara cada tienda con su propio valor del año anterior."
+      },
+      {
+        "id": "d",
+        "text": "Una línea constante del eje X",
+        "correct": false,
+        "explanation": "Traza una línea vertical en un valor fijo de X; no separa las tiendas que crecen de las que caen."
+      }
     ],
     "keyPoint": "En un gráfico de dispersión, el sombreado de simetría resalta a qué lado de la diagonal X = Y queda cada punto.",
     "references": [
-      { "title": "Uso del panel Análisis en Power BI", "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-analytics-pane" },
-      { "title": "Gráficos de dispersión, de burbujas y de trazado de puntos en Power BI", "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-scatter" }
+      {
+        "title": "Uso del panel Análisis en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-analytics-pane"
+      },
+      {
+        "title": "Gráficos de dispersión, de burbujas y de trazado de puntos en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-scatter"
+      }
     ]
   },
   {
@@ -231,14 +522,37 @@
     "scenario": "Un gráfico de líneas muestra los ingresos diarios del último año con Fecha en el eje X y Región en Leyenda, de modo que dibuja cuatro líneas. Quieres activar Anomalías en el panel Análisis para marcar los picos y caídas inesperados, pero la detección no se puede aplicar.",
     "prompt": "¿Qué debes cambiar para poder usar la detección de anomalías?",
     "options": [
-      { "id": "a", "text": "Agregar una línea de previsión al gráfico para calcular el intervalo esperado", "correct": false, "explanation": "Las líneas de previsión, mínimo, máximo, promedio, mediana y percentil no funcionan junto con la detección de anomalías." },
-      { "id": "b", "text": "Convertir el eje en una jerarquía de fechas y explorar en profundidad hasta el mes", "correct": false, "explanation": "La detección de anomalías no admite explorar en profundidad al siguiente nivel de una jerarquía." },
-      { "id": "c", "text": "Quitar Región del campo Leyenda para que el gráfico tenga una sola serie", "correct": true, "explanation": "La detección de anomalías no se admite con leyendas ni con varios valores o valores secundarios; necesita una sola serie temporal en el eje." },
-      { "id": "d", "text": "Cambiar a un gráfico de columnas agrupadas, que admite anomalías por serie", "correct": false, "explanation": "La característica Anomalías solo está disponible en gráficos de líneas con datos de serie temporal en el eje." }
+      {
+        "id": "a",
+        "text": "Agregar una línea de previsión al gráfico para calcular el intervalo esperado",
+        "correct": false,
+        "explanation": "Las líneas de previsión, mínimo, máximo, promedio, mediana y percentil no funcionan junto con la detección de anomalías."
+      },
+      {
+        "id": "b",
+        "text": "Convertir el eje en una jerarquía de fechas y explorar en profundidad hasta el mes",
+        "correct": false,
+        "explanation": "La detección de anomalías no admite explorar en profundidad al siguiente nivel de una jerarquía."
+      },
+      {
+        "id": "c",
+        "text": "Quitar Región del campo Leyenda para que el gráfico tenga una sola serie",
+        "correct": true,
+        "explanation": "La detección de anomalías no se admite con leyendas ni con varios valores o valores secundarios; necesita una sola serie temporal en el eje."
+      },
+      {
+        "id": "d",
+        "text": "Cambiar a un gráfico de columnas agrupadas, que admite anomalías por serie",
+        "correct": false,
+        "explanation": "La característica Anomalías solo está disponible en gráficos de líneas con datos de serie temporal en el eje."
+      }
     ],
     "keyPoint": "Anomalías: gráfico de líneas, una sola serie temporal (sin leyenda ni varios valores) y sin líneas de previsión o de referencia estadística.",
     "references": [
-      { "title": "Detección de anomalías", "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-anomaly-detection" }
+      {
+        "title": "Detección de anomalías",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-anomaly-detection"
+      }
     ]
   },
   {
@@ -255,9 +569,18 @@
       {
         "id": "b1",
         "options": [
-          { "id": "o1", "text": "la sensibilidad" },
-          { "id": "o2", "text": "la transparencia del intervalo esperado" },
-          { "id": "o3", "text": "el tamaño de la forma de las anomalías" }
+          {
+            "id": "o1",
+            "text": "la sensibilidad"
+          },
+          {
+            "id": "o2",
+            "text": "la transparencia del intervalo esperado"
+          },
+          {
+            "id": "o3",
+            "text": "el tamaño de la forma de las anomalías"
+          }
         ],
         "correctId": "o1",
         "explanation": "Una sensibilidad mayor detecta más anomalías; una menor solo marca las desviaciones más significativas. La transparencia y la forma son solo de formato."
@@ -265,9 +588,18 @@
       {
         "id": "b2",
         "options": [
-          { "id": "o1", "text": "Leyenda" },
-          { "id": "o2", "text": "Explicar por" },
-          { "id": "o3", "text": "Información sobre herramientas" }
+          {
+            "id": "o1",
+            "text": "Leyenda"
+          },
+          {
+            "id": "o2",
+            "text": "Explicar por"
+          },
+          {
+            "id": "o3",
+            "text": "Información sobre herramientas"
+          }
         ],
         "correctId": "o2",
         "explanation": "Explicar por (*Explain by*) indica los campos que Power BI analiza para explicar una anomalía. Una leyenda, además, impide usar la detección de anomalías."
@@ -275,9 +607,18 @@
       {
         "id": "b3",
         "options": [
-          { "id": "o1", "text": "analiza esos campos además de todos los demás del modelo" },
-          { "id": "o2", "text": "limita el análisis a esos dos campos" },
-          { "id": "o3", "text": "crea un grupo con los valores anómalos de esos campos" }
+          {
+            "id": "o1",
+            "text": "analiza esos campos además de todos los demás del modelo"
+          },
+          {
+            "id": "o2",
+            "text": "limita el análisis a esos dos campos"
+          },
+          {
+            "id": "o3",
+            "text": "crea un grupo con los valores anómalos de esos campos"
+          }
         ],
         "correctId": "o2",
         "explanation": "Al rellenar Explicar por, Power BI restringe el análisis a esos campos y ordena las explicaciones según su solidez."
@@ -285,8 +626,14 @@
     ],
     "keyPoint": "Sensibilidad = cuántas anomalías se marcan; Explicar por = campos a los que se limita la búsqueda de explicaciones.",
     "references": [
-      { "title": "Detección de anomalías", "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-anomaly-detection" },
-      { "title": "Uso del panel Análisis en Power BI", "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-analytics-pane" }
+      {
+        "title": "Detección de anomalías",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-anomaly-detection"
+      },
+      {
+        "title": "Uso del panel Análisis en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-analytics-pane"
+      }
     ]
   },
   {
@@ -304,9 +651,18 @@
       {
         "id": "b1",
         "options": [
-          { "id": "o1", "text": "una columna calculada" },
-          { "id": "o2", "text": "una medida DAX" },
-          { "id": "o3", "text": "un grupo de discretización" }
+          {
+            "id": "o1",
+            "text": "una columna calculada"
+          },
+          {
+            "id": "o2",
+            "text": "una medida DAX"
+          },
+          {
+            "id": "o3",
+            "text": "un grupo de discretización"
+          }
         ],
         "correctId": "o2",
         "explanation": "Una medida hace que la identificación de atípicos sea dinámica. Una discretización solo reparte valores en intervalos fijos, sin decidir qué es atípico."
@@ -314,9 +670,18 @@
       {
         "id": "b2",
         "options": [
-          { "id": "o1", "text": "se evalúa en cada consulta, según el contexto de filtro de las segmentaciones" },
-          { "id": "o2", "text": "se guarda en el modelo y solo se recalcula al actualizar los datos" },
-          { "id": "o3", "text": "Power BI la recalcula al publicar el informe en el servicio" }
+          {
+            "id": "o1",
+            "text": "se evalúa en cada consulta, según el contexto de filtro de las segmentaciones"
+          },
+          {
+            "id": "o2",
+            "text": "se guarda en el modelo y solo se recalcula al actualizar los datos"
+          },
+          {
+            "id": "o3",
+            "text": "Power BI la recalcula al publicar el informe en el servicio"
+          }
         ],
         "correctId": "o1",
         "explanation": "Las medidas responden a filtros y segmentaciones. Una columna calculada daría resultados estáticos hasta la siguiente actualización de datos."
@@ -324,9 +689,18 @@
       {
         "id": "b3",
         "options": [
-          { "id": "o1", "text": "un gráfico de anillos" },
-          { "id": "o2", "text": "un gráfico de dispersión" },
-          { "id": "o3", "text": "una tarjeta de varias filas" }
+          {
+            "id": "o1",
+            "text": "un gráfico de anillos"
+          },
+          {
+            "id": "o2",
+            "text": "un gráfico de dispersión"
+          },
+          {
+            "id": "o3",
+            "text": "una tarjeta de varias filas"
+          }
         ],
         "correctId": "o2",
         "explanation": "El gráfico de dispersión relaciona dos valores numéricos y muestra los atípicos como puntos alejados de la nube principal."
@@ -334,7 +708,10 @@
     ],
     "keyPoint": "Atípicos dinámicos: lógica en una medida (no en una columna calculada) y visualización en un gráfico de dispersión.",
     "references": [
-      { "title": "Identificación de valores atípicos con objetos visuales de Power BI", "url": "https://learn.microsoft.com/es-es/training/modules/perform-analytics-power-bi/3-visuals" }
+      {
+        "title": "Identificación de valores atípicos con objetos visuales de Power BI",
+        "url": "https://learn.microsoft.com/es-es/training/modules/perform-analytics-power-bi/3-visuals"
+      }
     ]
   },
   {
@@ -348,27 +725,76 @@
     "scenario": "La cadena tiene 40 tiendas. En el mes analizado, la venta media por tienda es de 50 000 € y la desviación estándar, de 8 000 €. Has definido una medida que marca como atípica cualquier tienda cuyas ventas queden fuera del intervalo media ± 2 desviaciones estándar.",
     "table": {
       "caption": "Ventas del mes (extracto)",
-      "headers": ["Tienda", "Ventas del mes"],
+      "headers": [
+        "Tienda",
+        "Ventas del mes"
+      ],
       "rows": [
-        ["Centro", "52 000 €"],
-        ["Puerto", "71 500 €"],
-        ["Norte", "47 000 €"],
-        ["Estación", "31 000 €"],
-        ["Plaza", "64 000 €"],
-        ["Aeropuerto", "58 000 €"]
+        [
+          "Centro",
+          "52 000 €"
+        ],
+        [
+          "Puerto",
+          "71 500 €"
+        ],
+        [
+          "Norte",
+          "47 000 €"
+        ],
+        [
+          "Estación",
+          "31 000 €"
+        ],
+        [
+          "Plaza",
+          "64 000 €"
+        ],
+        [
+          "Aeropuerto",
+          "58 000 €"
+        ]
       ]
     },
     "prompt": "¿Qué dos tiendas del extracto marcará la medida como atípicas? Selecciona dos.",
     "options": [
-      { "id": "a", "text": "Plaza", "correct": false, "explanation": "64 000 € queda por debajo del límite superior de 66 000 € (50 000 + 2 × 8 000), así que está dentro del intervalo." },
-      { "id": "b", "text": "Puerto", "correct": true, "explanation": "71 500 € supera el límite superior de 66 000 €: es un atípico por arriba." },
-      { "id": "c", "text": "Aeropuerto", "correct": false, "explanation": "58 000 € está a una desviación estándar de la media, dentro del intervalo de 34 000 € a 66 000 €." },
-      { "id": "d", "text": "Estación", "correct": true, "explanation": "31 000 € está por debajo del límite inferior de 34 000 € (50 000 − 2 × 8 000): es un atípico por abajo." },
-      { "id": "e", "text": "Norte", "correct": false, "explanation": "47 000 € está cerca de la media; solo se aleja 3 000 €, menos de media desviación estándar." }
+      {
+        "id": "a",
+        "text": "Plaza",
+        "correct": false,
+        "explanation": "64 000 € queda por debajo del límite superior de 66 000 € (50 000 + 2 × 8 000), así que está dentro del intervalo."
+      },
+      {
+        "id": "b",
+        "text": "Puerto",
+        "correct": true,
+        "explanation": "71 500 € supera el límite superior de 66 000 €: es un atípico por arriba."
+      },
+      {
+        "id": "c",
+        "text": "Aeropuerto",
+        "correct": false,
+        "explanation": "58 000 € está a una desviación estándar de la media, dentro del intervalo de 34 000 € a 66 000 €."
+      },
+      {
+        "id": "d",
+        "text": "Estación",
+        "correct": true,
+        "explanation": "31 000 € está por debajo del límite inferior de 34 000 € (50 000 − 2 × 8 000): es un atípico por abajo."
+      },
+      {
+        "id": "e",
+        "text": "Norte",
+        "correct": false,
+        "explanation": "47 000 € está cerca de la media; solo se aleja 3 000 €, menos de media desviación estándar."
+      }
     ],
     "keyPoint": "Antes de buscar valores atípicos defines la regla (p. ej., media ± 2 desviaciones estándar) y la aplicas en ambos extremos.",
     "references": [
-      { "title": "Identificación de valores atípicos con objetos visuales de Power BI", "url": "https://learn.microsoft.com/es-es/training/modules/perform-analytics-power-bi/3-visuals" }
+      {
+        "title": "Identificación de valores atípicos con objetos visuales de Power BI",
+        "url": "https://learn.microsoft.com/es-es/training/modules/perform-analytics-power-bi/3-visuals"
+      }
     ]
   },
   {
@@ -382,14 +808,37 @@
     "scenario": "Quieres estudiar la relación entre el descuento medio y el margen de cada cliente. Creas un gráfico de dispersión con Descuento medio en el eje X y Margen en el eje Y, pero el objeto visual muestra un único punto que agrega todos los datos.",
     "prompt": "¿Qué debes hacer para obtener un punto por cliente?",
     "options": [
-      { "id": "a", "text": "Agregar el campo Cliente, único para cada punto, al área Valores del objeto visual", "correct": true, "explanation": "El campo de Valores indica a Power BI cómo agrupar los datos; debe ser único para cada punto que quieras trazar, como un identificador de cliente." },
-      { "id": "b", "text": "Subir el número de puntos de datos a 10 000 en las opciones avanzadas", "correct": false, "explanation": "Ese ajuste limita cuántos puntos se pueden mostrar como máximo, pero no crea puntos si no hay un campo por el que agrupar." },
-      { "id": "c", "text": "Agregar Importe de ventas al área Tamaño para convertirlo en gráfico de burbujas", "correct": false, "explanation": "Tamaño añade una tercera medida que cambia el tamaño de los puntos, pero sigue habiendo un solo punto agregado." },
-      { "id": "d", "text": "Activar la opción Ajustar automáticamente los marcadores en el panel Formato", "correct": false, "explanation": "Esa opción solo ajusta el área de trazado para que no se recorten los marcadores de los bordes." }
+      {
+        "id": "a",
+        "text": "Agregar el campo Cliente, único para cada punto, al área Valores del objeto visual",
+        "correct": true,
+        "explanation": "El campo de Valores indica a Power BI cómo agrupar los datos; debe ser único para cada punto que quieras trazar, como un identificador de cliente."
+      },
+      {
+        "id": "b",
+        "text": "Subir el número de puntos de datos a 10 000 en las opciones avanzadas",
+        "correct": false,
+        "explanation": "Ese ajuste limita cuántos puntos se pueden mostrar como máximo, pero no crea puntos si no hay un campo por el que agrupar."
+      },
+      {
+        "id": "c",
+        "text": "Agregar Importe de ventas al área Tamaño para convertirlo en gráfico de burbujas",
+        "correct": false,
+        "explanation": "Tamaño añade una tercera medida que cambia el tamaño de los puntos, pero sigue habiendo un solo punto agregado."
+      },
+      {
+        "id": "d",
+        "text": "Activar la opción Ajustar automáticamente los marcadores en el panel Formato",
+        "correct": false,
+        "explanation": "Esa opción solo ajusta el área de trazado para que no se recorten los marcadores de los bordes."
+      }
     ],
     "keyPoint": "Un gráfico de dispersión necesita en Valores un campo que identifique cada punto; sin él, agrega todo en un solo punto.",
     "references": [
-      { "title": "Gráficos de dispersión, de burbujas y de trazado de puntos en Power BI", "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-scatter" }
+      {
+        "title": "Gráficos de dispersión, de burbujas y de trazado de puntos en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-scatter"
+      }
     ]
   },
   {
@@ -403,13 +852,31 @@
     "scenario": "Marketing quiere segmentar automáticamente a los clientes según cuatro medidas a la vez: días desde la última compra, número de pedidos, importe total y ticket medio.",
     "prompt": "¿Cómo debes aplicar la agrupación en clústeres?",
     "options": [
-      { "id": "a", "text": "Crear un gráfico de dispersión con dos medidas en los ejes y las otras dos en Tamaño e Información sobre herramientas, y buscar clústeres", "correct": false, "explanation": "Los clústeres de un gráfico de dispersión solo usan las dos medidas de los ejes; los demás campos no intervienen en el algoritmo." },
-      { "id": "b", "text": "Crear un grupo de discretización sobre cada una de las cuatro medidas", "correct": false, "explanation": "La discretización no se puede aplicar a medidas, y además reparte valores en intervalos fijos en lugar de buscar segmentos similares." },
-      { "id": "c", "text": "Crear una tabla con Cliente y las cuatro medidas y elegir Más opciones (...) > Buscar clústeres automáticamente", "correct": true, "explanation": "Para buscar clústeres con más de dos medidas se usa un objeto visual de tabla con todos los campos y el mismo proceso de búsqueda automática." }
+      {
+        "id": "a",
+        "text": "Crear un gráfico de dispersión con dos medidas en los ejes y las otras dos en Tamaño e Información sobre herramientas, y buscar clústeres",
+        "correct": false,
+        "explanation": "Los clústeres de un gráfico de dispersión solo usan las dos medidas de los ejes; los demás campos no intervienen en el algoritmo."
+      },
+      {
+        "id": "b",
+        "text": "Crear un grupo de discretización sobre cada una de las cuatro medidas",
+        "correct": false,
+        "explanation": "La discretización no se puede aplicar a medidas, y además reparte valores en intervalos fijos en lugar de buscar segmentos similares."
+      },
+      {
+        "id": "c",
+        "text": "Crear una tabla con Cliente y las cuatro medidas y elegir Más opciones (...) > Buscar clústeres automáticamente",
+        "correct": true,
+        "explanation": "Para buscar clústeres con más de dos medidas se usa un objeto visual de tabla con todos los campos y el mismo proceso de búsqueda automática."
+      }
     ],
     "keyPoint": "Clústeres con dos medidas: gráfico de dispersión; con más de dos: objeto visual de tabla.",
     "references": [
-      { "title": "Aplicación de técnicas de agrupación en clústeres", "url": "https://learn.microsoft.com/es-es/training/modules/perform-analytics-power-bi/5-clustering-techniques" }
+      {
+        "title": "Aplicación de técnicas de agrupación en clústeres",
+        "url": "https://learn.microsoft.com/es-es/training/modules/perform-analytics-power-bi/5-clustering-techniques"
+      }
     ]
   },
   {
@@ -422,15 +889,41 @@
     "difficulty": 2,
     "prompt": "Indica si cada afirmación sobre la agrupación y la discretización en Power BI Desktop es verdadera.",
     "statements": [
-      { "id": "s1", "text": "Al agrupar barras seleccionadas con Ctrl+clic, el nuevo campo de grupo se agrega a Leyenda y aparece también en el panel Datos.", "answer": true, "explanation": "Power BI añade el grupo al área Leyenda con el sufijo (grupos) y lo incorpora al modelo, así que puedes usarlo en otros objetos visuales." },
-      { "id": "s2", "text": "Puedes crear un grupo de discretización sobre una medida, como Importe total.", "answer": false, "explanation": "La discretización se aplica a campos numéricos y de tiempo, incluidas columnas calculadas, pero no a medidas." },
-      { "id": "s3", "text": "Si el grupo incluye el grupo Otros, los valores nuevos que aparezcan tras una actualización se incluyen en Otros.", "answer": true, "explanation": "Los valores nuevos aparecen como valores no agrupados y pasan al grupo Otros, por lo que el objeto visual no se rompe al llegar categorías nuevas." },
-      { "id": "s4", "text": "Para crear un grupo tienes que seleccionar antes sus elementos en un objeto visual.", "answer": false, "explanation": "También puedes hacer clic con el botón derecho en un campo del panel Datos y elegir Nuevo grupo, sin seleccionar nada en un objeto visual." }
+      {
+        "id": "s1",
+        "text": "Al agrupar barras seleccionadas con Ctrl+clic, el nuevo campo de grupo se agrega a Leyenda y aparece también en el panel Datos.",
+        "answer": true,
+        "explanation": "Power BI añade el grupo al área Leyenda con el sufijo (grupos) y lo incorpora al modelo, así que puedes usarlo en otros objetos visuales."
+      },
+      {
+        "id": "s2",
+        "text": "Puedes crear un grupo de discretización sobre una medida, como Importe total.",
+        "answer": false,
+        "explanation": "La discretización se aplica a campos numéricos y de tiempo, incluidas columnas calculadas, pero no a medidas."
+      },
+      {
+        "id": "s3",
+        "text": "En la ventana Grupos, los valores que no asignas a ningún grupo desaparecen del objeto visual.",
+        "answer": false,
+        "explanation": "Los valores sin asignar pueden quedarse sin agrupar, y se siguen mostrando con su propio nombre, o puedes moverlos al grupo Otros."
+      },
+      {
+        "id": "s4",
+        "text": "Para crear un grupo tienes que seleccionar antes sus elementos en un objeto visual.",
+        "answer": false,
+        "explanation": "También puedes hacer clic con el botón derecho en un campo del panel Datos y elegir Nuevo grupo, sin seleccionar nada en un objeto visual."
+      }
     ],
-    "keyPoint": "Los grupos se crean desde un objeto visual o desde el panel Datos; la discretización no admite medidas; el grupo Otros recoge los valores nuevos.",
+    "keyPoint": "Los grupos se crean desde un objeto visual o desde el panel Datos; los valores sin asignar quedan sin agrupar o van a Otros; la discretización no admite medidas.",
     "references": [
-      { "title": "Usar la agrupación y la discretización en Power BI Desktop", "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-grouping-and-binning" },
-      { "title": "Agrupación y discretización de datos para su análisis", "url": "https://learn.microsoft.com/es-es/training/modules/perform-analytics-power-bi/4-group-data" }
+      {
+        "title": "Usar la agrupación y la discretización en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-grouping-and-binning"
+      },
+      {
+        "title": "Agrupación y discretización de datos para su análisis",
+        "url": "https://learn.microsoft.com/es-es/training/modules/perform-analytics-power-bi/4-group-data"
+      }
     ]
   },
   {
@@ -443,15 +936,37 @@
     "difficulty": 1,
     "prompt": "Quieres un histograma que reparta los pedidos en exactamente cinco intervalos de igual tamaño según su cantidad pedida, sin calcular tú el tamaño de cada intervalo. Ordena los pasos.",
     "items": [
-      { "id": "p1", "text": "En el panel Datos, haz clic con el botón derecho en la columna Cantidad pedida y selecciona Nuevo grupo.", "explanation": "Los grupos y las discretizaciones se crean desde el menú contextual del campo en el panel Datos." },
-      { "id": "p2", "text": "En la ventana Grupos, elige el tipo de grupo Discretización (*Bin*), el tipo de discretización Número de discretizaciones (*Number of bins*) y escribe 5.", "explanation": "Con un número fijo de discretizaciones, Power BI calcula el tamaño de cada intervalo a partir del mínimo y el máximo." },
-      { "id": "p3", "text": "Selecciona Aceptar y comprueba que aparece el nuevo campo de discretización en el panel Datos.", "explanation": "El campo nuevo se crea con un sufijo que indica que es una discretización y ya se puede usar en cualquier objeto visual." },
-      { "id": "p4", "text": "Agrega un gráfico de columnas agrupadas con el campo de discretización en el eje X y el recuento de pedidos en el eje Y.", "explanation": "Un histograma en Power BI es un gráfico de columnas (o barras) cuyo eje muestra los intervalos de la discretización." }
+      {
+        "id": "p1",
+        "text": "En el panel Datos, haz clic con el botón derecho en la columna Cantidad pedida y selecciona Nuevo grupo.",
+        "explanation": "Los grupos y las discretizaciones se crean desde el menú contextual del campo en el panel Datos."
+      },
+      {
+        "id": "p2",
+        "text": "En la ventana Grupos, elige el tipo de grupo Discretización (*Bin*), el tipo de discretización Número de discretizaciones (*Number of bins*) y escribe 5.",
+        "explanation": "Con un número fijo de discretizaciones, Power BI calcula el tamaño de cada intervalo a partir del mínimo y el máximo."
+      },
+      {
+        "id": "p3",
+        "text": "Selecciona Aceptar y comprueba que aparece el nuevo campo de discretización en el panel Datos.",
+        "explanation": "El campo nuevo se crea con un sufijo que indica que es una discretización y ya se puede usar en cualquier objeto visual."
+      },
+      {
+        "id": "p4",
+        "text": "Agrega un gráfico de columnas agrupadas con el campo de discretización en el eje X y el recuento de pedidos en el eje Y.",
+        "explanation": "Un histograma en Power BI es un gráfico de columnas (o barras) cuyo eje muestra los intervalos de la discretización."
+      }
     ],
     "keyPoint": "Histograma: discretización por número de intervalos (o por tamaño) + gráfico de columnas con ese campo en el eje.",
     "references": [
-      { "title": "Exploración del resumen estadístico", "url": "https://learn.microsoft.com/es-es/training/modules/perform-analytics-power-bi/2-statistical-summary" },
-      { "title": "Usar la agrupación y la discretización en Power BI Desktop", "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-grouping-and-binning" }
+      {
+        "title": "Exploración del resumen estadístico",
+        "url": "https://learn.microsoft.com/es-es/training/modules/perform-analytics-power-bi/2-statistical-summary"
+      },
+      {
+        "title": "Usar la agrupación y la discretización en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-grouping-and-binning"
+      }
     ]
   },
   {
@@ -469,26 +984,76 @@
     },
     "table": {
       "caption": "Valores del objeto visual, en el orden en que se muestran",
-      "headers": ["Producto", "Importe de ventas", "Porcentaje acumulado"],
+      "headers": [
+        "Producto",
+        "Importe de ventas",
+        "Porcentaje acumulado"
+      ],
       "rows": [
-        ["Zapatos", "40 000 €", "100,0 %"],
-        ["Camisas", "30 000 €", "40,0 %"],
-        ["Pantalones", "15 000 €", "60,0 %"],
-        ["Bolsos", "10 000 €", "10,0 %"],
-        ["Gorras", "5 000 €", "45,0 %"]
+        [
+          "Zapatos",
+          "40 000 €",
+          "100,0 %"
+        ],
+        [
+          "Camisas",
+          "30 000 €",
+          "40,0 %"
+        ],
+        [
+          "Pantalones",
+          "15 000 €",
+          "60,0 %"
+        ],
+        [
+          "Bolsos",
+          "10 000 €",
+          "10,0 %"
+        ],
+        [
+          "Gorras",
+          "5 000 €",
+          "45,0 %"
+        ]
       ]
     },
     "prompt": "¿Qué cambio obtiene la curva de Pareto correcta?",
     "options": [
-      { "id": "a", "text": "Sustituir COLLAPSEALL por COLLAPSE para dividir entre el total del nivel superior", "correct": false, "explanation": "El denominador ya es correcto (100 000 €, por eso el último acumulado llega al 100 %); el fallo está en el orden de acumulación." },
-      { "id": "b", "text": "Ordenar el gráfico por Porcentaje acumulado de forma ascendente", "correct": false, "explanation": "Eso no cambia el cálculo: la línea subiría, pero las columnas quedarían en orden alfabético y dejaría de ser un diagrama de Pareto." },
-      { "id": "c", "text": "Usar RUNNINGSUM ( [Importe de ventas], ORDERBY ( [Importe de ventas], DESC ) )", "correct": true, "explanation": "Sin orderBy, RUNNINGSUM acumula según las columnas de agrupación en orden ascendente (aquí, alfabético: Bolsos, Camisas, Gorras…). ORDERBY descendente acumula de mayor a menor importe." },
-      { "id": "d", "text": "Agregar el parámetro Reset con el valor HIGHESTPARENT a RUNNINGSUM", "correct": false, "explanation": "Reset controla cuándo se reinicia la suma en una jerarquía; con un solo nivel en el eje no cambia el orden de acumulación." }
+      {
+        "id": "a",
+        "text": "Sustituir COLLAPSEALL por COLLAPSE para dividir entre el total del nivel superior",
+        "correct": false,
+        "explanation": "El denominador ya es correcto (100 000 €, por eso el último acumulado llega al 100 %); el fallo está en el orden de acumulación."
+      },
+      {
+        "id": "b",
+        "text": "Ordenar el gráfico por Porcentaje acumulado de forma ascendente",
+        "correct": false,
+        "explanation": "Los cálculos visuales no admiten ordenar el objeto visual por ellos. Y aunque se pudiera, ordenar por el acumulado actual pondría las columnas en orden alfabético y dejaría de ser un diagrama de Pareto."
+      },
+      {
+        "id": "c",
+        "text": "Usar RUNNINGSUM ( [Importe de ventas], ORDERBY ( [Importe de ventas], DESC ) )",
+        "correct": true,
+        "explanation": "Sin orderBy, RUNNINGSUM acumula según las columnas de agrupación en orden ascendente (aquí, alfabético: Bolsos, Camisas, Gorras…). ORDERBY descendente acumula de mayor a menor importe."
+      },
+      {
+        "id": "d",
+        "text": "Usar RUNNINGSUM ( [Importe de ventas], ORDERBY ( [Producto], DESC ) )",
+        "correct": false,
+        "explanation": "Acumularía por nombre de producto descendente (Zapatos, Pantalones, Gorras, Camisas, Bolsos), que no coincide con el orden por importe de las columnas: la línea seguiría sin subir de forma continua."
+      }
     ],
     "keyPoint": "En un Pareto con cálculos visuales, el acumulado debe ordenarse explícitamente con ORDERBY: RUNNINGSUM no sigue la ordenación del gráfico.",
     "references": [
-      { "title": "RUNNINGSUM (función DAX)", "url": "https://learn.microsoft.com/es-es/dax/runningsum-function-dax" },
-      { "title": "Uso de cálculos visuales en Power BI", "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-visual-calculations-overview" }
+      {
+        "title": "Función RUNNINGSUM (DAX)",
+        "url": "https://learn.microsoft.com/es-es/dax/runningsum-function-dax"
+      },
+      {
+        "title": "Introducción a los cálculos visuales",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-visual-calculations-overview"
+      }
     ]
   }
 ]
