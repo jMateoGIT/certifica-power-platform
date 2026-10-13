@@ -1,0 +1,1787 @@
+[
+  {
+    "id": "pl300-d2-diseno-101",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "scenario": "El ERP de una distribuidora guarda los productos en tres tablas normalizadas: Productos (IdProducto, IdSubcategoría), Subcategorías (IdSubcategoría, IdCategoría) y Categorías. Las has importado tal cual y los autores se quejan de que el panel Datos (*Data*) tiene demasiadas tablas con una o dos columnas.",
+    "prompt": "¿Qué dos ventajas obtienes al combinar en Power Query las tres consultas en una sola tabla Producto? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Puedes crear una jerarquía Categoría > Subcategoría > Producto en la tabla",
+        "correct": true,
+        "explanation": "Los niveles de una jerarquía deben ser columnas de una misma tabla; con el diseño de copo de nieve no es posible crear una jerarquía que cruce las tres tablas."
+      },
+      {
+        "id": "b",
+        "text": "El modelo ocupa siempre menos memoria que con tres tablas",
+        "correct": false,
+        "explanation": "No está garantizado: al desnormalizar se repiten los nombres de categoría y subcategoría en cada producto, y el tamaño puede aumentar algo en dimensiones grandes."
+      },
+      {
+        "id": "c",
+        "text": "Los filtros recorren cadenas de relaciones más cortas y el panel Datos es más sencillo",
+        "correct": true,
+        "explanation": "Con una sola tabla, el filtro de categoría llega a Ventas por una única relación y los autores encuentran todos los atributos del producto en el mismo sitio."
+      },
+      {
+        "id": "d",
+        "text": "Ya no necesitas relacionar la tabla Producto con la tabla Ventas",
+        "correct": false,
+        "explanation": "La dimensión sigue necesitando su relación uno a varios con la tabla de hechos para filtrarla; lo que desaparecen son las relaciones entre las tablas del copo de nieve."
+      },
+      {
+        "id": "e",
+        "text": "Las relaciones pasan a ser de varios a varios con dirección Ambos",
+        "correct": false,
+        "explanation": "Combinar las consultas no cambia la cardinalidad: Producto sigue teniendo IdProducto único y una relación uno a varios, con dirección única, hacia Ventas."
+      }
+    ],
+    "keyPoint": "Copo de nieve → normalmente conviene desnormalizar en una sola tabla de dimensión: menos tablas, filtros más cortos y jerarquías completas.",
+    "references": [
+      {
+        "title": "Descripción de un esquema de estrella e importancia para Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
+      },
+      {
+        "title": "Configurar jerarquías (módulo de formación)",
+        "url": "https://learn.microsoft.com/es-es/training/modules/configure-semantic-model-power-bi/5-hierarchies"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-102",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 3,
+    "scenario": "Un banco modela clientes y cuentas, que pueden ser compartidas. Ha creado la tabla puente ClienteCuenta y las relaciones del anexo. Un objeto visual de tabla con Clientes[Nombre] y la suma de Movimientos[Importe] muestra el mismo importe (el total de todas las cuentas) en cada cliente.",
+    "table": {
+      "caption": "Relaciones del modelo",
+      "headers": [
+        "Desde (lado uno)",
+        "Hacia (lado varios)",
+        "Dirección de filtro"
+      ],
+      "rows": [
+        [
+          "Clientes[IdCliente]",
+          "ClienteCuenta[IdCliente]",
+          "Única"
+        ],
+        [
+          "Cuentas[IdCuenta]",
+          "ClienteCuenta[IdCuenta]",
+          "Única"
+        ],
+        [
+          "Cuentas[IdCuenta]",
+          "Movimientos[IdCuenta]",
+          "Única"
+        ]
+      ]
+    },
+    "prompt": "¿Qué cambio hace que el objeto visual muestre el saldo correcto de cada cliente?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cambiar a Ambos la relación entre Clientes y ClienteCuenta",
+        "correct": false,
+        "explanation": "Clientes ya filtra a ClienteCuenta desde el lado uno; el filtro se detiene en el siguiente salto, porque no puede subir de ClienteCuenta a Cuentas."
+      },
+      {
+        "id": "b",
+        "text": "Cambiar a Ambos la relación entre Cuentas y Movimientos",
+        "correct": false,
+        "explanation": "Esa relación ya filtra de Cuentas a Movimientos. El bidireccional solo añadiría filtrado de Movimientos hacia Cuentas, que no resuelve el problema."
+      },
+      {
+        "id": "c",
+        "text": "Cambiar a Ambos la relación entre Cuentas y ClienteCuenta",
+        "correct": true,
+        "explanation": "El filtro de cliente llega a ClienteCuenta, pero debe propagarse desde el lado varios hacia Cuentas para continuar hasta Movimientos. La guía indica configurar esa relación como bidireccional."
+      },
+      {
+        "id": "d",
+        "text": "Sustituir la tabla puente por una relación varios a varios directa entre Clientes y Cuentas",
+        "correct": false,
+        "explanation": "Las dimensiones deben usar su columna de identificador como lado uno; relacionarlas directamente con cardinalidad varios a varios no es el diseño recomendado y no representa las asociaciones cliente-cuenta."
+      }
+    ],
+    "keyPoint": "Dimensiones varios a varios: tabla puente con dos relaciones uno a varios y filtro bidireccional en la relación que lleva el filtro hacia la tabla de hechos.",
+    "references": [
+      {
+        "title": "Instrucciones para relaciones de varios a varios",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-many-to-many"
+      },
+      {
+        "title": "Instrucciones para relaciones bidireccionales",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-bidirectional-filtering"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-103",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 1,
+    "scenario": "El director comercial quiere que, en un gráfico de barras de ventas, los lectores elijan con una segmentación si el eje muestra Categoría, Color o Cliente.",
+    "prompt": "Ordena los pasos para crear el parámetro de campos y usarlo en el gráfico.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "En la pestaña Modelado, selecciona Nuevo parámetro > Campos (*Fields*)",
+        "explanation": "El parámetro de campos se crea desde la pestaña Modelado eligiendo el tipo Campos, no Intervalo numérico."
+      },
+      {
+        "id": "p2",
+        "text": "Escribe el nombre del parámetro y selecciona las columnas Categoría, Color y Cliente en el orden deseado",
+        "explanation": "En el cuadro de diálogo eliges los campos que podrá seleccionar el lector y puedes reordenarlos o cambiar su nombre para mostrar."
+      },
+      {
+        "id": "p3",
+        "text": "Deja marcada Agregar segmentación a esta página y selecciona Crear",
+        "explanation": "Al crear el parámetro, Power BI genera la tabla del parámetro y, si la opción está marcada, una segmentación con los nombres de los campos."
+      },
+      {
+        "id": "p4",
+        "text": "En el gráfico de barras, coloca el parámetro en el eje en lugar de la columna fija",
+        "explanation": "Un parámetro basado en columnas se usa en el área del eje; a partir de ahí, la selección de la segmentación decide qué campo se muestra."
+      }
+    ],
+    "keyPoint": "Parámetro de campos: Modelado > Nuevo parámetro > Campos; se usa en el eje o en los valores del objeto visual y se controla con una segmentación.",
+    "references": [
+      {
+        "title": "Uso de parámetros de campo para permitir que los lectores cambien los objetos visuales",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/power-bi-field-parameters"
+      },
+      {
+        "title": "Configurar parámetros (módulo de formación)",
+        "url": "https://learn.microsoft.com/es-es/training/modules/configure-semantic-model-power-bi/7-parameters"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-104",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 1,
+    "prompt": "Indica si cada afirmación sobre las jerarquías del modelo es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puedes crear una jerarquía con la columna Categoría de la tabla Categorías y la columna Producto de la tabla Productos.",
+        "answer": false,
+        "explanation": "Los niveles deben basarse en columnas de la tabla donde se crea la jerarquía. Para tener ambos niveles, primero hay que desnormalizar la categoría en la tabla Productos."
+      },
+      {
+        "id": "s2",
+        "text": "Una misma tabla Fecha puede tener una jerarquía Calendario y otra Fiscal.",
+        "answer": true,
+        "explanation": "Puedes añadir una o más jerarquías a cualquier tabla del modelo, cada una con su propia ruta de navegación."
+      },
+      {
+        "id": "s3",
+        "text": "Si no creas una jerarquía, los autores no pueden explorar en profundidad (*drill down*) de Año a Mes en una matriz.",
+        "answer": false,
+        "explanation": "Las jerarquías son opcionales: el autor puede conseguir lo mismo añadiendo varias columnas al objeto visual; la jerarquía solo se lo facilita."
+      },
+      {
+        "id": "s4",
+        "text": "A una jerarquía le puedes asignar descripción, sinónimos y carpeta para mostrar, y también ocultarla.",
+        "answer": true,
+        "explanation": "Igual que las columnas, las jerarquías tienen las propiedades de descripción, sinónimos, carpeta para mostrar (*display folder*) y «está oculto»."
+      }
+    ],
+    "keyPoint": "Jerarquía = niveles de columnas de una misma tabla; es opcional, una tabla puede tener varias y admite descripción, sinónimos, carpeta y ocultación.",
+    "references": [
+      {
+        "title": "Configurar jerarquías (módulo de formación)",
+        "url": "https://learn.microsoft.com/es-es/training/modules/configure-semantic-model-power-bi/5-hierarchies"
+      },
+      {
+        "title": "Descripción de un esquema de estrella e importancia para Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-105",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "prompt": "Empareja cada requisito con el elemento del modelo que lo resuelve. Cada opción puede usarse una vez, varias veces o ninguna.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Que el lector elija en una segmentación si el eje de un gráfico muestra Categoría, Región o Vendedor",
+        "answerId": "c1",
+        "explanation": "Un parámetro de campos agrupa varias columnas y permite que la selección de una segmentación decida cuál se usa en el eje."
+      },
+      {
+        "id": "m2",
+        "text": "Que el lector cambie la medida (Ventas, Margen o Unidades) que muestra un gráfico de líneas",
+        "answerId": "c1",
+        "explanation": "Un parámetro de campos también puede contener medidas; se coloca en el área de valores del objeto visual."
+      },
+      {
+        "id": "m3",
+        "text": "Simular con un control deslizante una subida de precio entre el 0 % y el 20 % y ver su efecto en una medida",
+        "answerId": "c2",
+        "explanation": "El parámetro de intervalo numérico crea una tabla calculada desconectada y una medida con el valor seleccionado para escenarios hipotéticos."
+      },
+      {
+        "id": "m4",
+        "text": "Aplicar acumulado anual y año anterior a cualquiera de las 30 medidas explícitas sin crear 60 medidas nuevas",
+        "answerId": "c3",
+        "explanation": "Un grupo de cálculo define elementos con SELECTEDMEASURE que se aplican a cualquier medida explícita."
+      },
+      {
+        "id": "m5",
+        "text": "Ofrecer a los autores una ruta de navegación Año > Trimestre > Mes ya preparada",
+        "answerId": "c5",
+        "explanation": "Una jerarquía en la tabla Fecha da a los autores esa ruta de exploración lista para usar."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Parámetro de campos (*Fields*)"
+      },
+      {
+        "id": "c2",
+        "text": "Parámetro de intervalo numérico (*Numeric range*)"
+      },
+      {
+        "id": "c3",
+        "text": "Grupo de cálculo (*Calculation group*)"
+      },
+      {
+        "id": "c4",
+        "text": "Columna calculada"
+      },
+      {
+        "id": "c5",
+        "text": "Jerarquía"
+      }
+    ],
+    "keyPoint": "Parámetro de campos = elegir qué columna o medida muestra un objeto visual; intervalo numérico = valor hipotético; grupo de cálculo = misma lógica para muchas medidas.",
+    "references": [
+      {
+        "title": "Configurar parámetros (módulo de formación)",
+        "url": "https://learn.microsoft.com/es-es/training/modules/configure-semantic-model-power-bi/7-parameters"
+      },
+      {
+        "title": "Crear grupos de cálculo",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/calculation-groups"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-106",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 3,
+    "scenario": "El grupo de cálculo Inteligencia de tiempo tiene el elemento Var % AA del anexo. Al aplicarlo a la medida Ventas (formato moneda), la matriz muestra «0,12 €» en lugar de «12 %». Además, vas a añadir un segundo grupo de cálculo, Conversión de divisa.",
+    "code": {
+      "language": "dax",
+      "content": "VAR ValorAA =\n    CALCULATE ( SELECTEDMEASURE (), SAMEPERIODLASTYEAR ( 'Fecha'[Fecha] ) )\nRETURN\n    DIVIDE ( SELECTEDMEASURE () - ValorAA, ValorAA )"
+    },
+    "prompt": "Completa la frase.",
+    "template": "Para que Var % AA se muestre como porcentaje, activas {{b1}} en las propiedades del elemento de cálculo. Para decidir en qué orden se aplican los dos grupos de cálculo a una medida, configuras su propiedad {{b2}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "el formato de la medida Ventas"
+          },
+          {
+            "id": "o2",
+            "text": "Cadena de formato dinámico (*Dynamic format string*)"
+          },
+          {
+            "id": "o3",
+            "text": "la categoría de datos"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Los elementos de cálculo heredan por defecto el formato de la medida; con una cadena de formato dinámico (por ejemplo, «#,##0.00 %») el elemento impone su propio formato sin cambiar la medida base."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Ordinal"
+          },
+          {
+            "id": "o2",
+            "text": "Carpeta para mostrar"
+          },
+          {
+            "id": "o3",
+            "text": "Precedencia (*Precedence*)"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "La precedencia del grupo de cálculo fija el orden en que se aplican varios grupos a una medida. Ordinal solo ordena los elementos dentro de un grupo, y la carpeta organiza el panel Datos."
+      }
+    ],
+    "keyPoint": "Formato de un elemento de cálculo → Cadena de formato dinámico; orden entre varios grupos de cálculo → Precedencia.",
+    "references": [
+      {
+        "title": "Crear grupos de cálculo",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/calculation-groups"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-107",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "scenario": "Un gráfico de ventas por Productos[Categoría] muestra una barra «(En blanco)» con 1.250 €. La relación Productos (uno) → Ventas (varios) es normal, de importación y con dirección Única.",
+    "table": {
+      "caption": "Valores de IdProducto en cada tabla",
+      "headers": [
+        "Tabla",
+        "Valores de IdProducto"
+      ],
+      "rows": [
+        [
+          "Productos",
+          "P01, P02, P03"
+        ],
+        [
+          "Ventas",
+          "P01, P02, P03, P09"
+        ]
+      ]
+    },
+    "prompt": "¿Qué debes hacer para que las ventas se asignen a su categoría?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Aplicar al gráfico un filtro de nivel de objeto visual que excluya «(En blanco)»",
+        "correct": false,
+        "explanation": "El filtro solo esconde el síntoma: las ventas de P09 desaparecen del gráfico y su total deja de cuadrar con el de otros objetos visuales."
+      },
+      {
+        "id": "b",
+        "text": "Cambiar la cardinalidad de la relación a varios a varios",
+        "correct": false,
+        "explanation": "Una relación varios a varios es limitada y usa combinación interna: no añade la fila en blanco, pero las ventas de P09 se pierden sin avisar."
+      },
+      {
+        "id": "c",
+        "text": "Activar Asumir integridad referencial en la relación",
+        "correct": false,
+        "explanation": "Esa propiedad solo existe para relaciones DirectQuery del mismo grupo de origen y exige que todos los valores coincidan; no repara los datos."
+      },
+      {
+        "id": "d",
+        "text": "Corregir los datos para que P09 exista en Productos, en el origen o en Power Query",
+        "correct": true,
+        "explanation": "En una relación normal, cada valor del lado varios sin correspondencia se agrupa en una fila virtual en blanco (miembro desconocido). Se elimina limpiando o reparando los datos de origen."
+      }
+    ],
+    "keyPoint": "Fila «(En blanco)» en una dimensión = infracción de integridad referencial en una relación normal; se corrige en los datos, no ocultándola.",
+    "references": [
+      {
+        "title": "Relaciones de modelos en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-relationships-understand"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-108",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "scenario": "Relacionas Ventas[FechaHoraPedido] con 'Fecha'[Fecha]. Al analizar por año, casi todas las ventas aparecen en «(En blanco)» y solo se asignan correctamente las registradas a las 00:00:00.",
+    "table": {
+      "caption": "Valores de ejemplo",
+      "headers": [
+        "Columna",
+        "Valor"
+      ],
+      "rows": [
+        [
+          "Ventas[FechaHoraPedido]",
+          "03/02/2026 10:15:00"
+        ],
+        [
+          "Ventas[FechaHoraPedido]",
+          "03/02/2026 00:00:00"
+        ],
+        [
+          "'Fecha'[Fecha]",
+          "03/02/2026"
+        ]
+      ]
+    },
+    "prompt": "¿Qué debes hacer para que las ventas se relacionen correctamente con la tabla Fecha?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cambiar el formato de FechaHoraPedido a dd/mm/aaaa en Herramientas de columna",
+        "correct": false,
+        "explanation": "El formato solo cambia cómo se presentan los valores; el motor sigue comparando la parte de hora y las filas siguen sin coincidir."
+      },
+      {
+        "id": "b",
+        "text": "En Power Query, crear una columna de tipo Fecha a partir de FechaHoraPedido y relacionar esa columna con 'Fecha'[Fecha]",
+        "correct": true,
+        "explanation": "Las relaciones comparan valores exactos y el motor almacena fecha y hora. Al truncar la hora antes de cargar, cada venta coincide con su día y además baja la cardinalidad de la columna."
+      },
+      {
+        "id": "c",
+        "text": "Cambiar la relación a varios a varios con dirección Ambos",
+        "correct": false,
+        "explanation": "La cardinalidad no resuelve que 03/02/2026 10:15 y 03/02/2026 00:00 sean valores distintos; además crearía una relación limitada sin necesidad."
+      },
+      {
+        "id": "d",
+        "text": "Marcar la tabla Ventas como tabla de fechas eligiendo FechaHoraPedido",
+        "correct": false,
+        "explanation": "Solo se marca la tabla de calendario, y la columna elegida debe tener valores únicos y contiguos, cosa que no cumple una columna de hechos."
+      }
+    ],
+    "keyPoint": "El motor guarda fecha y hora: para relacionar con una tabla de fechas, la columna del hecho debe contener solo la fecha (truncada en Power Query).",
+    "references": [
+      {
+        "title": "Relaciones de modelos en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-relationships-understand"
+      },
+      {
+        "title": "Reducir la cardinalidad para mejorar el rendimiento (módulo de formación)",
+        "url": "https://learn.microsoft.com/es-es/training/modules/optimize-semantic-model-performance/4-reduce-cardinality"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-109",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 3,
+    "scenario": "Un gráfico de líneas usa en el eje la columna de texto Fecha[MesAño] para mostrar 24 meses seguidos. Los meses aparecen en orden alfabético. La tabla Fecha tiene una fila por día y estas columnas.",
+    "table": {
+      "caption": "Tabla Fecha (extracto)",
+      "headers": [
+        "Fecha",
+        "MesAño",
+        "NumMes",
+        "AñoMesNum"
+      ],
+      "rows": [
+        [
+          "31/01/2025",
+          "ene 2025",
+          "1",
+          "202501"
+        ],
+        [
+          "01/02/2025",
+          "feb 2025",
+          "2",
+          "202502"
+        ],
+        [
+          "31/01/2026",
+          "ene 2026",
+          "1",
+          "202601"
+        ]
+      ]
+    },
+    "prompt": "¿Cómo configuras la ordenación de MesAño para que los meses aparezcan en orden cronológico?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ordenar MesAño por la columna NumMes",
+        "correct": false,
+        "explanation": "Cada MesAño tiene un único NumMes y Power BI lo acepta, pero ene 2025 y ene 2026 comparten el valor 1 y quedan juntos, sin respetar el año."
+      },
+      {
+        "id": "b",
+        "text": "Ordenar MesAño por la columna Fecha",
+        "correct": false,
+        "explanation": "Cada MesAño corresponde a unos 30 valores de Fecha. Como la granularidad es distinta, Power BI muestra el error «No se puede usar esta columna para ordenar»."
+      },
+      {
+        "id": "c",
+        "text": "Ordenar el eje del gráfico por MesAño en orden ascendente",
+        "correct": false,
+        "explanation": "La ordenación del objeto visual sobre una columna de texto sigue siendo alfabética; hay que configurar Ordenar por columna en el modelo."
+      },
+      {
+        "id": "d",
+        "text": "Ordenar MesAño por la columna AñoMesNum",
+        "correct": true,
+        "explanation": "AñoMesNum tiene un único valor por mes y año y crece de forma cronológica (202501, 202502… 202601), así que ordena correctamente los 24 meses. Después conviene ocultarla."
+      }
+    ],
+    "keyPoint": "Ordenar por columna exige la misma granularidad: cada valor de la columna ordenada debe tener exactamente un valor en la columna de ordenación.",
+    "references": [
+      {
+        "title": "Ordenar por columna en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-sort-by-column"
+      },
+      {
+        "title": "Configurar columnas (módulo de formación)",
+        "url": "https://learn.microsoft.com/es-es/training/modules/configure-semantic-model-power-bi/4-columns"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-110",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 3,
+    "prompt": "Indica si cada afirmación sobre las relaciones limitadas es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Una relación con cardinalidad varios a varios es siempre limitada, aunque ambas columnas tengan valores únicos.",
+        "answer": true,
+        "explanation": "La evaluación limitada se deduce de la cardinalidad: si no hay un lado uno garantizado, la relación es limitada."
+      },
+      {
+        "id": "s2",
+        "text": "En una relación limitada, los valores del lado varios sin correspondencia se agrupan en una fila virtual en blanco.",
+        "answer": false,
+        "explanation": "Las relaciones limitadas usan combinación interna y no expanden tablas; esas filas no aparecen en ninguna fila en blanco."
+      },
+      {
+        "id": "s3",
+        "text": "No puedes usar RELATED para obtener valores del lado uno a través de una relación limitada.",
+        "answer": true,
+        "explanation": "Es una de las restricciones de las relaciones limitadas, junto con las limitaciones de topología para RLS."
+      },
+      {
+        "id": "s4",
+        "text": "En un modelo solo de importación, una relación uno a varios entre una tabla de Excel y otra de SQL Server es limitada.",
+        "answer": false,
+        "explanation": "En un modelo de importación todas las tablas pertenecen al mismo grupo de origen (la caché de VertiPaq), así que la relación uno a varios es normal."
+      }
+    ],
+    "keyPoint": "Relación limitada = varios a varios o entre grupos de origen: combinación interna, sin fila en blanco y sin RELATED.",
+    "references": [
+      {
+        "title": "Relaciones de modelos en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-relationships-understand"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-111",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "prompt": "Empareja cada elemento del modelo con el concepto de diseño de esquema de estrella que representa.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Número de pedido que se guarda en la tabla de hechos Ventas y se usa para filtrar",
+        "answerId": "c1",
+        "explanation": "Una dimensión degenerada es un atributo de la tabla de hechos necesario para filtrar; no compensa crear una tabla solo para él."
+      },
+      {
+        "id": "m2",
+        "text": "Tabla con todas las combinaciones de EstadoPedido, Canal y TipoPago y una clave suplente",
+        "answerId": "c2",
+        "explanation": "Una dimensión no deseada (*junk*) consolida varias dimensiones pequeñas de pocos valores en una sola, para reducir tablas y tamaño."
+      },
+      {
+        "id": "m3",
+        "text": "Tabla que solo registra qué cliente inició sesión en la web y en qué fecha",
+        "answerId": "c3",
+        "explanation": "Una tabla de hechos sin hechos guarda observaciones definidas solo por claves de dimensión; se analiza contando filas."
+      },
+      {
+        "id": "m4",
+        "text": "Tabla Clientes con varias filas por cliente y las columnas FechaInicio, FechaFin y EsActual",
+        "answerId": "c4",
+        "explanation": "Una dimensión de variación lenta de tipo 2 guarda versiones de cada miembro con su intervalo de validez y una clave suplente por versión."
+      },
+      {
+        "id": "m5",
+        "text": "Tabla Fecha que puede filtrar Ventas por fecha de pedido, de envío o de entrega",
+        "answerId": "c5",
+        "explanation": "Una dimensión de rol (*role-playing*) filtra los mismos hechos de formas distintas según la columna con la que se relaciona."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Dimensión degenerada"
+      },
+      {
+        "id": "c2",
+        "text": "Dimensión no deseada (*junk dimension*)"
+      },
+      {
+        "id": "c3",
+        "text": "Tabla de hechos sin hechos (*factless*)"
+      },
+      {
+        "id": "c4",
+        "text": "Dimensión de variación lenta de tipo 2"
+      },
+      {
+        "id": "c5",
+        "text": "Dimensión de rol"
+      },
+      {
+        "id": "c6",
+        "text": "Dimensión de copo de nieve"
+      }
+    ],
+    "keyPoint": "Degenerada = atributo en el hecho; no deseada (junk) = varias marcas pequeñas en una tabla; sin hechos = solo claves; SCD tipo 2 = versiones; rol = una dimensión con varios significados.",
+    "references": [
+      {
+        "title": "Descripción de un esquema de estrella e importancia para Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-112",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "scenario": "La tabla de hechos Pedidos tiene una fila por línea de pedido y la tabla Envíos tiene cero o más filas por línea de pedido. Un analista ha relacionado ambas por IdPedido con cardinalidad varios a varios. Ahora los informes solo pueden agrupar por IdPedido y no por producto ni por fecha.",
+    "prompt": "¿Qué diseño recomienda la guía de modelado de Power BI?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Mantener la relación varios a varios y cambiar su dirección a Ambos",
+        "correct": false,
+        "explanation": "La dirección no añade nuevas formas de agrupar; además, las relaciones varios a varios son limitadas y pueden omitir filas si hay problemas de integridad."
+      },
+      {
+        "id": "b",
+        "text": "Crear dimensiones como Producto, Fecha y LíneaPedido y relacionarlas uno a varios con ambas tablas de hechos",
+        "correct": true,
+        "explanation": "Con un esquema de estrella, los filtros de cada dimensión llegan a las dos tablas de hechos, puedes agrupar por cualquier atributo y todas las relaciones son normales."
+      },
+      {
+        "id": "c",
+        "text": "Combinar Envíos dentro de Pedidos en Power Query para tener una sola tabla de hechos",
+        "correct": false,
+        "explanation": "Como hay varios envíos por línea, la combinación duplicaría las filas de pedidos y los importes se sumarían de más."
+      },
+      {
+        "id": "d",
+        "text": "Cambiar la relación a uno a uno por IdPedido",
+        "correct": false,
+        "explanation": "IdPedido se repite en ambas tablas, así que una relación uno a uno no es válida; Power BI no permitiría crearla."
+      }
+    ],
+    "keyPoint": "No relaciones dos tablas de hechos entre sí: añade dimensiones compartidas con relaciones uno a varios hacia ambas.",
+    "references": [
+      {
+        "title": "Instrucciones para relaciones de varios a varios",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-many-to-many"
+      },
+      {
+        "title": "Descripción de un esquema de estrella e importancia para Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-113",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "scenario": "Ventas y Presupuesto tienen la columna CodigoRegion, pero el modelo no tiene una tabla de regiones. Algunas regiones nuevas tienen presupuesto pero todavía no tienen ventas. Quieres una segmentación de región que filtre las dos tablas y creas la tabla calculada del anexo.",
+    "code": {
+      "language": "dax",
+      "content": "Regiones =\nDISTINCT (\n    ??? (\n        DISTINCT ( Ventas[CodigoRegion] ),\n        DISTINCT ( Presupuesto[CodigoRegion] )\n    )\n)"
+    },
+    "prompt": "Completa la frase.",
+    "template": "Debes sustituir ??? por {{b1}} y después crear {{b2}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "INTERSECT"
+          },
+          {
+            "id": "o2",
+            "text": "UNION"
+          },
+          {
+            "id": "o3",
+            "text": "EXCEPT"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "UNION une las regiones de ambas tablas, incluidas las que solo tienen presupuesto; el DISTINCT exterior quita los duplicados. INTERSECT dejaría fuera las regiones nuevas y EXCEPT devolvería solo las que tienen ventas sin presupuesto."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "una relación uno a varios de Regiones a Ventas y otra de Regiones a Presupuesto, ambas con dirección Única"
+          },
+          {
+            "id": "o2",
+            "text": "una relación varios a varios entre Ventas y Presupuesto por CodigoRegion"
+          },
+          {
+            "id": "o3",
+            "text": "una relación uno a uno de Regiones a Ventas y otra uno a uno de Regiones a Presupuesto"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "La nueva tabla tiene un valor por región, así que actúa como lado uno de dos relaciones normales y filtra ambas tablas de hechos. Relacionar hechos entre sí no es recomendable, y uno a uno no es válido porque las regiones se repiten en los hechos."
+      }
+    ],
+    "keyPoint": "Si dos tablas de hechos comparten un código sin dimensión, crea una dimensión común con valores únicos y relaciónala uno a varios con ambas.",
+    "references": [
+      {
+        "title": "Crear tablas calculadas en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-calculated-tables"
+      },
+      {
+        "title": "Descripción de un esquema de estrella e importancia para Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-114",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "scenario": "La tabla Productos se carga desde un Excel y tiene una relación uno a varios con Ventas. Tras la última actualización aparece el error: «La columna IdProducto de la tabla Productos contiene un valor duplicado P-100, lo que no está permitido en las columnas del lado uno de una relación». Al revisar el Excel ves lo siguiente.",
+    "table": {
+      "caption": "Productos (extracto del Excel)",
+      "headers": [
+        "IdProducto",
+        "Producto",
+        "Precio",
+        "Vigente"
+      ],
+      "rows": [
+        [
+          "P-100",
+          "Silla Nórdica",
+          "89,00",
+          "No"
+        ],
+        [
+          "P-100",
+          "Silla Nórdica",
+          "95,00",
+          "Sí"
+        ],
+        [
+          "P-101",
+          "Mesa Roble",
+          "240,00",
+          "Sí"
+        ]
+      ]
+    },
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cambiar la cardinalidad de la relación a varios a varios",
+        "correct": false,
+        "explanation": "La actualización funcionaría, pero la relación sería limitada, la dimensión dejaría de tener un identificador único y las ventas de P-100 se duplicarían al agrupar por precio."
+      },
+      {
+        "id": "b",
+        "text": "En Power Query, dejar solo la fila vigente de cada producto (por ejemplo, filtrando Vigente = Sí) para que IdProducto sea único",
+        "correct": true,
+        "explanation": "La columna del lado uno debe contener valores únicos. Filtrar la versión vigente en la consulta de la dimensión (o corregir el origen) elimina el duplicado y mantiene la relación uno a varios."
+      },
+      {
+        "id": "c",
+        "text": "Cambiar la dirección de filtro cruzado a Ambos",
+        "correct": false,
+        "explanation": "La dirección de filtro no tiene nada que ver con la unicidad de la columna; el error de actualización seguiría apareciendo."
+      },
+      {
+        "id": "d",
+        "text": "Desactivar la relación para que la actualización termine",
+        "correct": false,
+        "explanation": "Una relación inactiva también exige un lado uno con valores únicos, y además Productos dejaría de filtrar Ventas en los objetos visuales."
+      }
+    ],
+    "keyPoint": "El lado uno de una relación debe tener valores únicos: los duplicados se corrigen en la dimensión, no cambiando la cardinalidad.",
+    "references": [
+      {
+        "title": "Configurar relaciones (módulo de formación)",
+        "url": "https://learn.microsoft.com/es-es/training/modules/configure-semantic-model-power-bi/2-relationships"
+      },
+      {
+        "title": "Instrucciones para relaciones de varios a varios",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-many-to-many"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-115",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 1,
+    "prompt": "Indica si cada afirmación sobre las propiedades de tablas y columnas en Power BI Desktop es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Si cambias el nombre de una tabla del modelo en Power BI Desktop, también cambia el nombre de su consulta de Power Query.",
+        "answer": true,
+        "explanation": "El nombre de la tabla siempre se hereda de la consulta, así que al renombrarla en el modelo se actualiza también la consulta."
+      },
+      {
+        "id": "s2",
+        "text": "La propiedad Sinónimos ayuda a Preguntas y respuestas (*Q&A*) y a Copilot a interpretar las preguntas de los usuarios.",
+        "answer": true,
+        "explanation": "Los sinónimos son nombres alternativos de tablas y columnas que mejoran cómo Q&A y Copilot resuelven las solicitudes."
+      },
+      {
+        "id": "s3",
+        "text": "Cambiar la propiedad Formato de una columna a moneda cambia cómo se almacenan sus valores en el modelo.",
+        "answer": false,
+        "explanation": "El tipo de datos determina cómo se almacenan los valores; el formato solo determina cómo se presentan en los objetos visuales."
+      },
+      {
+        "id": "s4",
+        "text": "Ocultar una columna impide que un usuario con permiso de compilación la consulte desde otro informe.",
+        "answer": false,
+        "explanation": "Ocultar solo la quita del panel Datos para simplificar la experiencia; no es una medida de seguridad. Para restringir datos se usa RLS u OLS."
+      }
+    ],
+    "keyPoint": "Nombre de tabla = nombre de la consulta; sinónimos ayudan a Q&A y Copilot; tipo de datos = almacenamiento y formato = presentación; ocultar no es seguridad.",
+    "references": [
+      {
+        "title": "Configurar tablas (módulo de formación)",
+        "url": "https://learn.microsoft.com/es-es/training/modules/configure-semantic-model-power-bi/3-tables"
+      },
+      {
+        "title": "Configurar columnas (módulo de formación)",
+        "url": "https://learn.microsoft.com/es-es/training/modules/configure-semantic-model-power-bi/4-columns"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-116",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 3,
+    "scenario": "Una página tiene una segmentación de Clientes[País] y otra de Productos[Producto]. Al elegir un país, el responsable quiere que la segmentación de productos muestre solo los productos vendidos en ese país. Productos y Clientes tienen relaciones uno a varios con dirección Única hacia Ventas, y existe la medida Unidades = SUM ( Ventas[Cantidad] ).",
+    "prompt": "¿Qué solución recomienda la guía de Power BI?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cambiar a Ambos la relación entre Productos y Ventas",
+        "correct": false,
+        "explanation": "Funciona, pero la guía lo desaconseja: las relaciones bidireccionales requieren más procesamiento y afectan al rendimiento, sobre todo cuando se multiplican."
+      },
+      {
+        "id": "b",
+        "text": "Usar CROSSFILTER ( ..., BOTH ) dentro de la medida Unidades",
+        "correct": false,
+        "explanation": "CROSSFILTER solo cambia la propagación mientras se evalúa la medida; la lista de valores de la segmentación no depende de esa medida."
+      },
+      {
+        "id": "c",
+        "text": "Agregar a la segmentación de productos un filtro de nivel de objeto visual: Unidades no está en blanco",
+        "correct": true,
+        "explanation": "La segmentación solo muestra productos con unidades en el contexto del país seleccionado, y las relaciones pueden seguir con dirección Única."
+      },
+      {
+        "id": "d",
+        "text": "Crear una relación varios a varios entre Clientes y Productos",
+        "correct": false,
+        "explanation": "No hay columna común entre las dos dimensiones, y relacionar dimensiones directamente rompe el diseño de estrella."
+      }
+    ],
+    "keyPoint": "Segmentaciones «con datos»: mejor un filtro de nivel de objeto visual con «la medida no está en blanco» que una relación bidireccional.",
+    "references": [
+      {
+        "title": "Instrucciones para relaciones bidireccionales",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-bidirectional-filtering"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-117",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "scenario": "Vas a marcar como tabla de fechas la tabla Calendario, que procede del almacenamiento de datos de la empresa. Algunos objetos visuales antiguos usan la jerarquía automática de Calendario[Fecha].",
+    "prompt": "¿Qué dos afirmaciones sobre la opción Marcar como tabla de fechas (*Mark as date table*) son correctas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Power BI quita la tabla de fechas integrada (automática) de esa tabla, y los objetos visuales y expresiones que la usaban dejan de funcionar correctamente",
+        "correct": true,
+        "explanation": "Al marcar la tabla, Power BI elimina la tabla automática asociada; lo que se construyó sobre ella hay que rehacerlo con las columnas de la tabla de fechas."
+      },
+      {
+        "id": "b",
+        "text": "Power BI crea automáticamente en la tabla una jerarquía Año > Trimestre > Mes > Día",
+        "correct": false,
+        "explanation": "Es al revés: con tu propia tabla de fechas Power BI deja de generar jerarquías automáticas, y las jerarquías las defines tú."
+      },
+      {
+        "id": "c",
+        "text": "Solo puedes marcar tablas calculadas creadas con CALENDAR o CALENDARAUTO",
+        "correct": false,
+        "explanation": "Puedes marcar cualquier tabla que cumpla las validaciones, por ejemplo una dimensión de fechas importada de un almacenamiento de datos."
+      },
+      {
+        "id": "d",
+        "text": "La columna de fecha puede ser de tipo Fecha/Hora si todos sus valores tienen la misma hora",
+        "correct": true,
+        "explanation": "Entre las validaciones está que, si la columna es de tipo Fecha/Hora, la marca de tiempo sea la misma en todos los valores."
+      },
+      {
+        "id": "e",
+        "text": "Debes desactivar antes la opción global Fecha y hora automáticas para archivos nuevos",
+        "correct": false,
+        "explanation": "No es un requisito: la tabla marcada sustituye a la automática de esa tabla, aunque desactivar la opción sigue siendo recomendable para reducir el tamaño."
+      }
+    ],
+    "keyPoint": "Marcar una tabla de fechas quita las tablas automáticas de esa tabla y admite Fecha/Hora si todas las filas tienen la misma hora.",
+    "references": [
+      {
+        "title": "Configurar y usar tablas de fechas en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-date-tables"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-diseno-118",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "difficulty": 2,
+    "scenario": "La tabla Vuelos tiene AeropuertoSalida y AeropuertoLlegada. La dimensión Aeropuerto está relacionada de forma activa con AeropuertoSalida. Los informes deben filtrar a la vez por ciudad de salida y ciudad de llegada, y los títulos de los objetos visuales deben distinguir ambos roles.",
+    "prompt": "Ordena los pasos para implementar la dimensión de rol con una consulta de referencia.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "En el Editor de Power Query, haz clic con el botón derecho en la consulta Aeropuerto y selecciona Referencia (*Reference*)",
+        "explanation": "La consulta de referencia reutiliza la lógica de Aeropuerto sin duplicar sus pasos; es una de las dos formas recomendadas de crear una tabla por rol."
+      },
+      {
+        "id": "p2",
+        "text": "Cambia el nombre de la nueva consulta a Aeropuerto llegada y el de sus columnas, por ejemplo Ciudad llegada",
+        "explanation": "Los nombres de columna deben describir el rol, porque los títulos predeterminados de los objetos visuales solo muestran el nombre de la columna."
+      },
+      {
+        "id": "p3",
+        "text": "Selecciona Cerrar y aplicar",
+        "explanation": "Hasta que no se aplican los cambios, la nueva tabla no existe en el modelo y no se puede relacionar."
+      },
+      {
+        "id": "p4",
+        "text": "En la vista de modelo, crea una relación activa uno a varios de Aeropuerto llegada[IdAeropuerto] a Vuelos[AeropuertoLlegada]",
+        "explanation": "Cada tabla de rol tiene su propia relación activa, así que ambos roles filtran a la vez sin medidas con USERELATIONSHIP."
+      }
+    ],
+    "keyPoint": "Dimensión de rol con tablas separadas: copia por referencia (o tabla calculada), columnas con nombres que indiquen el rol y una relación activa por rol.",
+    "references": [
+      {
+        "title": "Descripción de un esquema de estrella e importancia para Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema"
+      },
+      {
+        "title": "Configurar relaciones (módulo de formación)",
+        "url": "https://learn.microsoft.com/es-es/training/modules/configure-semantic-model-power-bi/2-relationships"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-101",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 2,
+    "scenario": "Editas en Power BI Desktop un informe DirectQuery sobre una base de datos lenta. Cada vez que añades o quitas un campo de un objeto visual, esperas varios segundos a que el origen responda.",
+    "prompt": "Ordena los pasos para modificar varios objetos visuales sin enviar una consulta con cada cambio.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "En la cinta Optimizar, selecciona Pausar objetos visuales (*Pause visuals*)",
+        "explanation": "Mientras el informe está en pausa, los objetos visuales no envían consultas DAX al origen con cada cambio."
+      },
+      {
+        "id": "p2",
+        "text": "Agrega, mueve o quita campos en los objetos visuales que quieres rediseñar",
+        "explanation": "Los objetos visuales cambiados pasan al estado «tienen cambios pendientes» sin ejecutar consultas."
+      },
+      {
+        "id": "p3",
+        "text": "Selecciona Actualizar en el banner de uno de los objetos visuales para comprobar solo ese",
+        "explanation": "Esa opción actualiza un objeto visual concreto y mantiene en pausa el resto del informe."
+      },
+      {
+        "id": "p4",
+        "text": "Selecciona Reanudar consultas de objeto visual (*Resume visual queries*) para actualizar todo y salir de la pausa",
+        "explanation": "Al terminar, reanudas: se actualizan todos los objetos visuales y el informe deja de estar en pausa."
+      }
+    ],
+    "keyPoint": "Pausar objetos visuales (cinta Optimizar) deja los cambios pendientes sin consultar el origen hasta que actualizas o reanudas.",
+    "references": [
+      {
+        "title": "Optimizar la cinta de opciones en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-optimize-ribbon"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-102",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 2,
+    "prompt": "Completa la frase sobre los valores preestablecidos de optimización (*Optimization presets*) de la cinta Optimizar.",
+    "template": "Para un informe DirectQuery eliges {{b1}}, que desactiva {{b2}} y agrega un botón Aplicar al panel Filtros. El valor {{b3}} es el predeterminado y el más adecuado para el modo de importación.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Interactividad"
+          },
+          {
+            "id": "o2",
+            "text": "Personalizar"
+          },
+          {
+            "id": "o3",
+            "text": "Reducción de consultas"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "Reducción de consultas (*Query reduction*) aplica la combinación de opciones recomendada para DirectQuery y reduce las consultas que se envían al origen."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "el resaltado cruzado y el filtrado cruzado"
+          },
+          {
+            "id": "o2",
+            "text": "las medidas implícitas"
+          },
+          {
+            "id": "o3",
+            "text": "la fecha y hora automáticas"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Sin resaltado ni filtrado cruzado, al seleccionar un punto de un objeto visual no se lanzan consultas para todos los demás. Las otras opciones no forman parte de los valores preestablecidos."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Reducción de consultas"
+          },
+          {
+            "id": "o2",
+            "text": "Interactividad"
+          },
+          {
+            "id": "o3",
+            "text": "Personalizar"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Interactividad permite resaltado y filtrado cruzados y cambios inmediatos en segmentaciones y filtros; es la configuración predeterminada de Power BI Desktop. Personalizar abre las opciones de reducción de consultas."
+      }
+    ],
+    "keyPoint": "Reducción de consultas = sin resaltado ni filtrado cruzado y con botón Aplicar (ideal para DirectQuery); Interactividad = predeterminado (importación).",
+    "references": [
+      {
+        "title": "Optimizar la cinta de opciones en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-optimize-ribbon"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-103",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 2,
+    "scenario": "Un modelo DirectQuery sobre SQL Server tiene tres relaciones uno a varios hacia la tabla Pedidos. Has comprobado los datos del lado varios de cada una.",
+    "table": {
+      "caption": "Comprobación de la columna del lado varios",
+      "headers": [
+        "Relación",
+        "Valores nulos",
+        "Valores sin correspondencia",
+        "Clave externa en la base de datos"
+      ],
+      "rows": [
+        [
+          "Productos → Pedidos[IdProducto]",
+          "0",
+          "0",
+          "Sí"
+        ],
+        [
+          "Almacenes → Pedidos[IdAlmacen]",
+          "1.250",
+          "0",
+          "No"
+        ],
+        [
+          "Clientes → Pedidos[IdCliente]",
+          "0",
+          "37",
+          "No"
+        ]
+      ]
+    },
+    "prompt": "¿En qué relaciones debes activar Asumir integridad referencial (*Assume referential integrity*)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "En las tres, para que todas las consultas usen combinaciones internas",
+        "correct": false,
+        "explanation": "Si la integridad no se cumple, la combinación interna elimina filas: se perderían los pedidos sin almacén y los de clientes desconocidos, sin ningún error."
+      },
+      {
+        "id": "b",
+        "text": "Solo en la relación con Productos",
+        "correct": true,
+        "explanation": "Es la única sin nulos ni valores huérfanos y con clave externa en el origen. Ahí Power BI puede usar INNER JOIN en lugar de OUTER JOIN sin cambiar los resultados."
+      },
+      {
+        "id": "c",
+        "text": "En las relaciones con Productos y Almacenes",
+        "correct": false,
+        "explanation": "Pedidos[IdAlmacen] contiene nulos, y la propiedad exige que la columna del lado varios nunca sea nula ni esté en blanco."
+      },
+      {
+        "id": "d",
+        "text": "En las relaciones con Productos y Clientes",
+        "correct": false,
+        "explanation": "Hay 37 valores de IdCliente que no existen en Clientes; con la propiedad activada, esas ventas desaparecerían de los totales filtrados por cliente."
+      }
+    ],
+    "keyPoint": "Asumir integridad referencial (solo DirectQuery) usa INNER JOIN: actívala solo si el lado varios no tiene nulos y todos sus valores existen en el lado uno.",
+    "references": [
+      {
+        "title": "Aplicar la configuración Asumir integridad referencial en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/desktop-assume-referential-integrity"
+      },
+      {
+        "title": "Relaciones de modelos en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-relationships-understand"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-104",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 3,
+    "scenario": "La tabla Ventas tiene miles de millones de filas y está en DirectQuery. Para acelerar los informes de resumen creas la tabla VentasAgg, agrupada por día y producto, en modo Importar, y configuras sus columnas con Administrar agregaciones (*Manage aggregations*). Fecha y Producto se relacionan tanto con Ventas como con VentasAgg.",
+    "prompt": "¿Qué modo de almacenamiento debes asignar a las tablas Fecha y Producto?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Importar, para que todas las consultas se respondan desde la memoria",
+        "correct": false,
+        "explanation": "Las relaciones entre dimensiones importadas y la tabla Ventas en DirectQuery serían entre grupos de origen y, por tanto, limitadas; las consultas de detalle serían menos eficientes."
+      },
+      {
+        "id": "b",
+        "text": "DirectQuery, para que coincidan con la tabla de detalle",
+        "correct": false,
+        "explanation": "Así las consultas que agrupan por atributos de Fecha o Producto no podrían resolverse solo con la caché, y se perderían los aciertos de agregación."
+      },
+      {
+        "id": "c",
+        "text": "Direct Lake, para combinar la caché y el origen",
+        "correct": false,
+        "explanation": "Direct Lake es un modo para modelos semánticos sobre tablas Delta de OneLake en Fabric, no para combinar una tabla agregada importada con un origen SQL en DirectQuery."
+      },
+      {
+        "id": "d",
+        "text": "Dual, para que actúen como importadas o como DirectQuery según la consulta",
+        "correct": true,
+        "explanation": "Con Dual, las consultas que agregan VentasAgg y agrupan por Fecha o Producto se responden desde la memoria, y las que necesitan el detalle de Ventas se envían al origen."
+      }
+    ],
+    "keyPoint": "Agregaciones: tabla de detalle en DirectQuery, tabla agregada en Importar (oculta) y dimensiones relacionadas en Dual.",
+    "references": [
+      {
+        "title": "Administrar y usar agregaciones en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/aggregations-advanced"
+      },
+      {
+        "title": "Modo de almacenamiento de tablas en modelos semánticos de Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-storage-mode"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-105",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre el Analizador de rendimiento es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puedes abrir el Analizador de rendimiento en el servicio Power BI al editar un informe, desde el menú Ver.",
+        "answer": true,
+        "explanation": "Además de Power BI Desktop (cinta Optimizar), el panel está disponible en la web cuando el informe está en modo de edición."
+      },
+      {
+        "id": "s2",
+        "text": "En el servicio Power BI, el botón Ejecutar en la vista de consulta DAX abre la consulta directamente en el modelado web.",
+        "answer": false,
+        "explanation": "Ese botón no está disponible en el servicio: copias la consulta, seleccionas Abrir modelo de datos y la pegas en la vista de consulta DAX."
+      },
+      {
+        "id": "s3",
+        "text": "Al seleccionar Borrar (*Clear*), los resultados se guardan automáticamente en un archivo .json.",
+        "answer": false,
+        "explanation": "Borrar elimina la información y no la guarda. Para conservarla debes seleccionar Exportar antes, que genera el archivo .json."
+      },
+      {
+        "id": "s4",
+        "text": "Los resultados en caché pueden hacer que un objeto visual parezca más rápido, así que conviene borrar la caché del objeto visual y repetir las mediciones.",
+        "answer": true,
+        "explanation": "Los datos almacenados en caché enmascaran el tiempo real de la consulta; medir varias veces evita conclusiones basadas en una sola ejecución."
+      }
+    ],
+    "keyPoint": "Analizador de rendimiento: también en el servicio al editar; Ejecutar en la vista de consulta DAX solo en Desktop; Exportar guarda un .json; mide sin caché y repite las pruebas.",
+    "references": [
+      {
+        "title": "Uso del Analizador de rendimiento",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/performance-analyzer"
+      },
+      {
+        "title": "Uso del analizador de rendimiento para diagnosticar problemas (módulo de formación)",
+        "url": "https://learn.microsoft.com/es-es/training/modules/optimize-semantic-model-performance/2-performance-analyzer"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-106",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 2,
+    "scenario": "Una cadena de supermercados tiene cuatro direcciones regionales y cada una solo analiza su región. El modelo nacional es muy grande, así que decides publicar un modelo por región, cargando en cada uno solo las filas de esa región mediante un parámetro de Power Query.",
+    "prompt": "¿Qué técnica estás aplicando y qué inconveniente tiene?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Filtrado vertical; se pierden columnas que podrían necesitarse en el futuro",
+        "correct": false,
+        "explanation": "El filtrado vertical quita columnas. Aquí se quitan filas de otras regiones, que es filtrado horizontal."
+      },
+      {
+        "id": "b",
+        "text": "Agrupar y resumir; se pierde la posibilidad de analizar por día",
+        "correct": false,
+        "explanation": "No se agregan los datos: cada modelo conserva el detalle de su región, así que no cambia la granularidad."
+      },
+      {
+        "id": "c",
+        "text": "Filtrado horizontal por entidad; hay que conceder permisos por modelo y mantener informes duplicados",
+        "correct": true,
+        "explanation": "Cargar un subconjunto por entidad da modelos más pequeños y puede evitar definir RLS, pero obliga a gestionar varios modelos e informes (los parámetros y las plantillas .pbit ayudan)."
+      },
+      {
+        "id": "d",
+        "text": "Filtrado horizontal por tiempo; los informes dejan de mostrar el historial anterior",
+        "correct": false,
+        "explanation": "El filtro es por región, no por fecha: cada modelo conserva todo el historial de su región."
+      }
+    ],
+    "keyPoint": "Filtrado horizontal por entidad: modelos más pequeños y quizá sin RLS, a cambio de más modelos, permisos e informes que mantener.",
+    "references": [
+      {
+        "title": "Técnicas de reducción de datos para el modelado de importación",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/import-modeling-data-reduction"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-107",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 1,
+    "prompt": "En la vista de consulta DAX (*DAX query view*), empareja cada necesidad con la consulta rápida (*Quick query*) que la resuelve.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Revisar en una sola consulta las fórmulas de todas las medidas del modelo para buscar patrones ineficientes",
+        "answerId": "c1",
+        "explanation": "Definir todas las medidas del modelo (en el menú contextual del modelo) crea una consulta con todas las fórmulas de medida."
+      },
+      {
+        "id": "m2",
+        "text": "Ver el mínimo, el máximo, los recuentos y otras estadísticas de cada columna de una tabla",
+        "answerId": "c2",
+        "explanation": "Mostrar estadísticas de columna, sobre una tabla, devuelve información estadística de cada columna y ayuda a detectar columnas con muchos valores distintos."
+      },
+      {
+        "id": "m3",
+        "text": "Ver los valores distintos de una columna concreta",
+        "answerId": "c3",
+        "explanation": "Mostrar vista previa de datos, sobre una columna, genera una consulta con DISTINCT() para ver sus valores."
+      },
+      {
+        "id": "m4",
+        "text": "Ver las primeras filas de una tabla, con cada columna en una línea para comentarla fácilmente",
+        "answerId": "c4",
+        "explanation": "Mostrar las 100 primeras filas usa SELECTCOLUMNS con una columna por línea y un ORDER BY editable."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Definir todas las medidas del modelo"
+      },
+      {
+        "id": "c2",
+        "text": "Mostrar estadísticas de columna"
+      },
+      {
+        "id": "c3",
+        "text": "Mostrar vista previa de datos"
+      },
+      {
+        "id": "c4",
+        "text": "Mostrar las 100 primeras filas"
+      },
+      {
+        "id": "c5",
+        "text": "Evaluar"
+      },
+      {
+        "id": "c6",
+        "text": "Definir con referencias y evaluar"
+      }
+    ],
+    "keyPoint": "Consultas rápidas: Definir todas las medidas del modelo, Mostrar estadísticas de columna, Mostrar vista previa de datos y Mostrar las 100 primeras filas.",
+    "references": [
+      {
+        "title": "Trabajar con la vista de consulta DAX",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/dax-query-view"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-108",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 3,
+    "scenario": "Una tabla con 18 medidas y unas 50.000 filas de detalle tarda en cargarse. Copias su consulta desde el Analizador de rendimiento y en la vista de consulta DAX devuelve los resultados en 140 ms. Estos son los tiempos del Analizador de rendimiento.",
+    "table": {
+      "caption": "Analizador de rendimiento (milisegundos)",
+      "headers": [
+        "Objeto visual",
+        "Consulta DAX",
+        "Dibujo en pantalla",
+        "Otros"
+      ],
+      "rows": [
+        [
+          "Tabla de detalle de productos",
+          "150",
+          "3.900",
+          "220"
+        ],
+        [
+          "Gráfico de ventas por mes",
+          "90",
+          "110",
+          "240"
+        ]
+      ]
+    },
+    "prompt": "¿Qué debes hacer a continuación?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Reescribir las 18 medidas con variables para acelerar la consulta DAX",
+        "correct": false,
+        "explanation": "La consulta tarda unos 150 ms; optimizar las medidas apenas cambiaría el tiempo total, que está en el dibujo."
+      },
+      {
+        "id": "b",
+        "text": "Reducir los datos que dibuja la tabla: aplicar un filtro N principales, quitar medidas o mover el detalle a una página de obtención de detalles",
+        "correct": true,
+        "explanation": "El tiempo está en Dibujo en pantalla (*Visual display*): el objeto visual representa demasiadas filas y medidas. Limitar los puntos de datos o repartir la información reduce ese tiempo."
+      },
+      {
+        "id": "c",
+        "text": "Cambiar la tabla de hechos al modo DirectQuery",
+        "correct": false,
+        "explanation": "El modelo responde rápido; DirectQuery añadiría el tiempo de ida y vuelta al origen y no reduciría el dibujo."
+      },
+      {
+        "id": "d",
+        "text": "Activar Asumir integridad referencial en las relaciones del modelo",
+        "correct": false,
+        "explanation": "Es una propiedad de DirectQuery que mejora las consultas al origen; aquí ni hay DirectQuery ni el cuello de botella está en la consulta."
+      }
+    ],
+    "keyPoint": "Si la consulta es rápida en la vista de consulta DAX pero el objeto visual tarda, el problema es la representación: reduce los datos que dibuja.",
+    "references": [
+      {
+        "title": "Solución de problemas de rendimiento habituales (módulo de formación)",
+        "url": "https://learn.microsoft.com/es-es/training/modules/optimize-semantic-model-performance/6-troubleshoot"
+      },
+      {
+        "title": "Uso del analizador de rendimiento para diagnosticar problemas (módulo de formación)",
+        "url": "https://learn.microsoft.com/es-es/training/modules/optimize-semantic-model-performance/2-performance-analyzer"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-109",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 2,
+    "prompt": "Empareja cada necesidad de diagnóstico con la herramienta más adecuada.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Medir cuánto tarda en cargarse cada objeto visual de una página al mover una segmentación",
+        "answerId": "c1",
+        "explanation": "El Analizador de rendimiento registra cada interacción y desglosa el tiempo de cada objeto visual por categorías."
+      },
+      {
+        "id": "m2",
+        "text": "Ejecutar la consulta de un objeto visual y probar una versión reescrita de su medida antes de guardarla",
+        "answerId": "c2",
+        "explanation": "En la vista de consulta DAX puedes ejecutar la consulta, editar la medida en DEFINE y actualizar el modelo con CodeLens."
+      },
+      {
+        "id": "m3",
+        "text": "Revisar todo el modelo con un conjunto de reglas (columnas sin usar, claves de alta cardinalidad, descripciones que faltan)",
+        "answerId": "c3",
+        "explanation": "El Analizador de procedimientos recomendados (BPA) aplica más de 60 reglas; en Fabric se ejecuta con un cuaderno desde el modelo semántico o, sin Fabric, con Tabular Editor."
+      },
+      {
+        "id": "m4",
+        "text": "Ver en un cuaderno de Fabric las estadísticas de almacenamiento de tablas, columnas y relaciones",
+        "answerId": "c4",
+        "explanation": "El cuaderno complementario Analizador de memoria muestra cuánto ocupa cada tabla, columna y relación."
+      },
+      {
+        "id": "m5",
+        "text": "Separar el tiempo de una consulta entre el motor de fórmulas y el motor de almacenamiento",
+        "answerId": "c5",
+        "explanation": "DAX Studio muestra los tiempos del servidor (FE/SE) y el plan de consulta, información que no ofrecen las herramientas integradas."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Analizador de rendimiento"
+      },
+      {
+        "id": "c2",
+        "text": "Vista de consulta DAX"
+      },
+      {
+        "id": "c3",
+        "text": "Analizador de procedimientos recomendados (*Best Practice Analyzer*)"
+      },
+      {
+        "id": "c4",
+        "text": "Analizador de memoria (*Memory Analyzer*)"
+      },
+      {
+        "id": "c5",
+        "text": "DAX Studio"
+      },
+      {
+        "id": "c6",
+        "text": "Vista de modelo"
+      }
+    ],
+    "keyPoint": "Analizador de rendimiento = tiempos por objeto visual; vista de consulta DAX = ejecutar y reescribir; BPA = reglas; Analizador de memoria = tamaños; DAX Studio = tiempos del servidor y plan.",
+    "references": [
+      {
+        "title": "Solución de problemas de rendimiento habituales (módulo de formación)",
+        "url": "https://learn.microsoft.com/es-es/training/modules/optimize-semantic-model-performance/6-troubleshoot"
+      },
+      {
+        "title": "Uso del analizador de rendimiento para diagnosticar problemas (módulo de formación)",
+        "url": "https://learn.microsoft.com/es-es/training/modules/optimize-semantic-model-performance/2-performance-analyzer"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-110",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 2,
+    "scenario": "Revisas la tabla Productos para reducir el tamaño del modelo. Has comprobado para qué se usa cada columna.",
+    "table": {
+      "caption": "Uso de las columnas de Productos",
+      "headers": [
+        "Columna",
+        "Uso"
+      ],
+      "rows": [
+        [
+          "IdProducto",
+          "Relación con Ventas (oculta)"
+        ],
+        [
+          "ColorHex",
+          "Formato condicional por valor de campo en una tabla"
+        ],
+        [
+          "EmailResponsable",
+          "Regla de un rol RLS con USERPRINCIPALNAME (oculta)"
+        ],
+        [
+          "CodigoInterno",
+          "Ningún objeto visual, medida, relación ni rol"
+        ],
+        [
+          "Categoría",
+          "Segmentación de la página Resumen"
+        ]
+      ]
+    },
+    "prompt": "¿Qué columna puedes quitar sin afectar a los informes ni a la estructura del modelo?",
+    "options": [
+      {
+        "id": "a",
+        "text": "ColorHex, porque no aparece como campo en ningún objeto visual",
+        "correct": false,
+        "explanation": "Se usa para el formato condicional, que forma parte de la estructura del modelo; quitarla rompería el formato."
+      },
+      {
+        "id": "b",
+        "text": "EmailResponsable, porque está oculta",
+        "correct": false,
+        "explanation": "Ocultar no significa que sobre: la columna la usa la regla de seguridad y quitarla rompería el rol RLS."
+      },
+      {
+        "id": "c",
+        "text": "IdProducto, porque está oculta y nadie la arrastra a los objetos visuales",
+        "correct": false,
+        "explanation": "Es la clave de la relación con Ventas; sin ella Productos dejaría de filtrar la tabla de hechos."
+      },
+      {
+        "id": "d",
+        "text": "CodigoInterno, quitándola en Power Query",
+        "correct": true,
+        "explanation": "No sirve para informes ni para la estructura del modelo. Quitarla en Power Query (filtrado vertical) reduce el tamaño y el tiempo de actualización."
+      }
+    ],
+    "keyPoint": "Una columna se queda si sirve para informes o para la estructura del modelo (relaciones, cálculos, RLS, formato condicional); si no, quítala.",
+    "references": [
+      {
+        "title": "Técnicas de reducción de datos para el modelado de importación",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/import-modeling-data-reduction"
+      },
+      {
+        "title": "Reducir la cardinalidad para mejorar el rendimiento (módulo de formación)",
+        "url": "https://learn.microsoft.com/es-es/training/modules/optimize-semantic-model-performance/4-reduce-cardinality"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-111",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 2,
+    "scenario": "Ventas (300 millones de filas) se relaciona con Clientes mediante IdClienteGuid, una columna de texto con identificadores GUID. Las consultas que filtran por atributos de cliente son lentas y la columna ocupa mucha memoria en Ventas.",
+    "prompt": "¿Qué cambio mejora más el rendimiento de esta relación?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ocultar IdClienteGuid en ambas tablas",
+        "correct": false,
+        "explanation": "Ocultar solo afecta al panel Datos; la columna sigue cargada, ocupa la misma memoria y la relación sigue siendo igual de costosa."
+      },
+      {
+        "id": "b",
+        "text": "Cambiar la dirección de filtro de la relación a Ambos",
+        "correct": false,
+        "explanation": "La relación bidireccional añade trabajo a la propagación de filtros; no reduce el coste de la columna."
+      },
+      {
+        "id": "c",
+        "text": "Usar en ambas tablas una clave suplente de número entero, generada en el origen o en Power Query, y quitar el GUID de Ventas",
+        "correct": true,
+        "explanation": "Las columnas numéricas usan codificación por valor y comprimen mejor que el texto. Una clave entera hace la relación más barata de recorrer y reduce el tamaño de la tabla de hechos."
+      },
+      {
+        "id": "d",
+        "text": "Cambiar la cardinalidad a varios a varios",
+        "correct": false,
+        "explanation": "Una relación varios a varios es limitada y se resuelve en el momento de la consulta, lo que no mejora el rendimiento y oculta problemas de integridad."
+      }
+    ],
+    "keyPoint": "Evita relaciones sobre columnas de texto de alta cardinalidad como GUID: usa claves suplentes de número entero.",
+    "references": [
+      {
+        "title": "Solución de problemas de rendimiento habituales (módulo de formación)",
+        "url": "https://learn.microsoft.com/es-es/training/modules/optimize-semantic-model-performance/6-troubleshoot"
+      },
+      {
+        "title": "Técnicas de reducción de datos para el modelado de importación",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/import-modeling-data-reduction"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-rendimiento-112",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-rendimiento",
+    "difficulty": 2,
+    "scenario": "La página Resumen de un informe de importación tiene 30 objetos visuales y un gráfico de dispersión con unos 100.000 puntos (uno por cliente). El Analizador de rendimiento muestra tiempos altos en Otros para casi todos los objetos visuales y en Dibujo en pantalla para el gráfico de dispersión.",
+    "prompt": "¿Qué dos cambios reducen el tiempo de carga de la página? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Repartir el contenido en varias páginas y usar páginas de obtención de detalles e información sobre herramientas",
+        "correct": true,
+        "explanation": "Cada objeto visual envía su propia consulta al cargar la página; con menos objetos visuales hay menos consultas y menos espera en cola, que es lo que mide Otros."
+      },
+      {
+        "id": "b",
+        "text": "Aplicar al gráfico de dispersión un filtro N principales o agregar los puntos a un nivel superior",
+        "correct": true,
+        "explanation": "Representar 100.000 puntos dispara el tiempo de dibujo; limitar los puntos devueltos reduce ese tiempo."
+      },
+      {
+        "id": "c",
+        "text": "Cambiar todas las relaciones a dirección Ambos",
+        "correct": false,
+        "explanation": "Las relaciones bidireccionales hacen más compleja la evaluación de las consultas y suelen empeorar el rendimiento."
+      },
+      {
+        "id": "d",
+        "text": "Convertir las medidas en columnas calculadas",
+        "correct": false,
+        "explanation": "Las columnas calculadas no responden a los filtros como las medidas y aumentan el tamaño del modelo; no reducen el número de objetos visuales ni de puntos."
+      },
+      {
+        "id": "e",
+        "text": "Activar Fecha y hora automáticas",
+        "correct": false,
+        "explanation": "Esa opción crea tablas ocultas para cada columna de fecha y aumenta el tamaño del modelo; no acelera la página."
+      }
+    ],
+    "keyPoint": "Menos objetos visuales por página y menos puntos de datos por objeto visual = menos consultas y menos tiempo de dibujo.",
+    "references": [
+      {
+        "title": "Solución de problemas de rendimiento habituales (módulo de formación)",
+        "url": "https://learn.microsoft.com/es-es/training/modules/optimize-semantic-model-performance/6-troubleshoot"
+      }
+    ]
+  }
+]
