@@ -1,0 +1,1115 @@
+[
+  {
+    "id": "pl900-d4-casos-101",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-casos",
+    "difficulty": 2,
+    "scenario": "En el centro de atención telefónica de Seguros Mistral, cada agente consulta los datos del cliente en un CRM web y después los copia a mano en una aplicación de Windows antigua, sin API, instalada en su propio equipo. Quieren que el agente, durante la llamada, lance la copia con un clic y vea en pantalla cómo se completa.",
+    "prompt": "¿Qué solución de Power Automate se ajusta a este requisito?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un flujo de escritorio ejecutado en modo desatendido en el equipo del agente",
+        "correct": false,
+        "explanation": "El modo desatendido necesita una máquina sin ninguna sesión de Windows activa; aquí el agente está trabajando con su sesión iniciada, así que la ejecución no podría arrancar."
+      },
+      {
+        "id": "b",
+        "text": "Un flujo de nube programado que copie los datos cada quince minutos",
+        "correct": false,
+        "explanation": "Un flujo programado se ejecuta por horario, no cuando el agente lo necesita durante la llamada, y por sí solo no puede escribir en la interfaz de una aplicación sin API."
+      },
+      {
+        "id": "c",
+        "text": "Un flujo de escritorio ejecutado en modo asistido (attended) en el equipo del agente",
+        "correct": true,
+        "explanation": "La RPA asistida se ejecuta en la sesión del usuario que está usando el equipo: el agente la inicia cuando quiere y ve cómo el flujo rellena la aplicación heredada."
+      },
+      {
+        "id": "d",
+        "text": "Un grupo de máquinas hospedadas que ejecute el flujo en Azure",
+        "correct": false,
+        "explanation": "Los grupos de máquinas hospedadas solo admiten ejecuciones desatendidas en máquinas virtuales de Azure, no en el equipo del agente donde está instalada la aplicación."
+      }
+    ],
+    "keyPoint": "Persona delante del equipo que lanza y ve la automatización = RPA asistida; nadie con sesión iniciada = RPA desatendida.",
+    "references": [
+      {
+        "title": "Desencadenar flujos de escritorio desde flujos de nube",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/trigger-desktop-flows"
+      },
+      {
+        "title": "Ejecutar flujos de escritorio desatendidos",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/run-unattended-desktop-flows"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-casos-102",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-casos",
+    "difficulty": 3,
+    "scenario": "Logística Bética procesa con flujos de escritorio desatendidos los albaranes de sus clientes. Casi todo el mes basta con una ejecución a la vez, pero en los cierres de mes se acumulan cientos de ejecuciones en cola. El departamento de TI no quiere aprovisionar, registrar ni mantener máquinas que pasen la mayor parte del mes sin uso.",
+    "prompt": "¿Qué opción de Power Automate cubre mejor esta necesidad?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Una única máquina hospedada (hosted machine) creada desde el portal",
+        "correct": false,
+        "explanation": "Una máquina hospedada evita instalar hardware, pero es una sola máquina: no crea más capacidad automáticamente cuando la cola crece en el cierre de mes."
+      },
+      {
+        "id": "b",
+        "text": "Un grupo de máquinas propio con varias máquinas virtuales registradas",
+        "correct": false,
+        "explanation": "Reparte la carga, pero obliga a TI a aprovisionar, registrar y mantener esas máquinas aunque estén ociosas la mayor parte del mes, justo lo que quiere evitar."
+      },
+      {
+        "id": "c",
+        "text": "Ejecutar los flujos en modo asistido en los equipos de los empleados",
+        "correct": false,
+        "explanation": "El modo asistido ocupa la sesión de cada empleado mientras trabaja y no está pensado para procesar cientos de ejecuciones en cola sin supervisión."
+      },
+      {
+        "id": "d",
+        "text": "Un grupo de máquinas hospedadas (hosted machine group)",
+        "correct": true,
+        "explanation": "Power Automate crea bots hospedados en Azure automáticamente cuando hay ejecuciones en cola, hasta el máximo fijado, sin que haya que aprovisionar ni registrar máquinas."
+      }
+    ],
+    "keyPoint": "Picos de carga desatendida sin infraestructura propia = grupo de máquinas hospedadas, que escala solo según la cola.",
+    "references": [
+      {
+        "title": "RPA hospedada en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/hosted-rpa-overview"
+      },
+      {
+        "title": "Grupos de máquinas hospedadas",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/hosted-machine-groups"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-casos-103",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-casos",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre la RPA hospedada de Power Automate es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Una máquina hospedada permite crear, probar y ejecutar flujos de escritorio asistidos y desatendidos sin proporcionar ninguna máquina física.",
+        "answer": true,
+        "explanation": "Es su propósito: Power Automate aprovisiona una máquina Windows en la nube (con Windows 365) para desarrollar y ejecutar los flujos de escritorio."
+      },
+      {
+        "id": "s2",
+        "text": "Los grupos de máquinas hospedadas admiten ejecuciones asistidas y acceso por Escritorio remoto a sus bots.",
+        "answer": false,
+        "explanation": "Los grupos de máquinas hospedadas están destinados solo a ejecuciones desatendidas y no admiten Escritorio remoto."
+      },
+      {
+        "id": "s3",
+        "text": "Puedes usar tu propia imagen de Windows, con tus aplicaciones ya instaladas, a través de Azure Compute Gallery.",
+        "answer": true,
+        "explanation": "Además de la imagen estándar de Microsoft, puedes aportar una imagen personalizada desde Azure Compute Gallery para que las máquinas tengan tus aplicaciones."
+      },
+      {
+        "id": "s4",
+        "text": "Para crear una máquina hospedada primero debes instalar Windows en un servidor propio y registrarlo con el entorno de ejecución de máquina.",
+        "answer": false,
+        "explanation": "La máquina hospedada se crea desde el portal de Power Automate, que la aprovisiona y la registra en el entorno automáticamente; no hay que instalar ni registrar hardware propio."
+      }
+    ],
+    "keyPoint": "Máquina hospedada: desarrollo y ejecución asistida o desatendida sin hardware. Grupo de máquinas hospedadas: solo desatendido, a escala.",
+    "references": [
+      {
+        "title": "Máquinas hospedadas",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/hosted-machines"
+      },
+      {
+        "title": "Grupos de máquinas hospedadas",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/hosted-machine-groups"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-casos-104",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-casos",
+    "difficulty": 2,
+    "scenario": "Lucía, administrativa de Clínica Arlanza, ha creado con Power Automate para escritorio un flujo que renombra los PDF escaneados de su carpeta Descargas y los mueve a carpetas por paciente. Quiere ejecutarlo en su propio equipo cuando ella decida, sin crear ningún flujo de nube.",
+    "prompt": "¿Qué dos formas tiene Lucía de iniciar el flujo? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agregar la acción «Ejecutar un flujo creado con Power Automate para escritorio» a un flujo de nube instantáneo",
+        "correct": false,
+        "explanation": "Funcionaría, pero exige crear un flujo de nube, que es justo lo que Lucía quiere evitar. Los flujos de escritorio también se pueden ejecutar localmente."
+      },
+      {
+        "id": "b",
+        "text": "Seleccionar el flujo en la consola de Power Automate para escritorio y pulsar Iniciar",
+        "correct": true,
+        "explanation": "Desde la consola, el botón Iniciar ejecuta el flujo como asistido local en el propio equipo, sin necesidad de ningún flujo de nube."
+      },
+      {
+        "id": "c",
+        "text": "Asignar el flujo a un grupo de máquinas hospedadas",
+        "correct": false,
+        "explanation": "Los grupos de máquinas hospedadas ejecutan flujos desatendidos en máquinas de Azure, no en el equipo de Lucía, donde están sus archivos."
+      },
+      {
+        "id": "d",
+        "text": "Configurar un método abreviado de teclado en las propiedades del flujo",
+        "correct": true,
+        "explanation": "En las propiedades del flujo, en la consola, puedes definir un método abreviado de teclado para desencadenar el flujo localmente."
+      },
+      {
+        "id": "e",
+        "text": "Usar el desencadenador «Para un archivo seleccionado» de SharePoint",
+        "correct": false,
+        "explanation": "Es un desencadenador de flujos de nube instantáneos que se lanzan desde una biblioteca de SharePoint, no una forma de iniciar un flujo de escritorio local."
+      }
+    ],
+    "keyPoint": "Un flujo de escritorio no necesita un flujo de nube: puede ejecutarse localmente desde la consola o con un método abreviado.",
+    "references": [
+      {
+        "title": "Consola de Power Automate para escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/console"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-casos-105",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-casos",
+    "difficulty": 2,
+    "scenario": "Cada día, el equipo de compras de Ferretería Oria descarga las tarifas del portal web de un proveedor que no ofrece API ni conector. Quieren automatizarlo con un flujo de escritorio.",
+    "prompt": "Completa la frase.",
+    "template": "Para automatizar el portal sin configurar nada en el navegador, el flujo puede usar {{b1}}. Si el proceso debe ejecutarse en Microsoft Edge, Google Chrome o Mozilla Firefox, necesitas {{b2}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "el conector HTTP de un flujo de nube"
+          },
+          {
+            "id": "o2",
+            "text": "el Automation browser integrado en Power Automate para escritorio"
+          },
+          {
+            "id": "o3",
+            "text": "una puerta de enlace de datos local"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Power Automate para escritorio incluye un Automation browser ya configurado que funciona de forma predeterminada. El conector HTTP necesita una API, que el portal no tiene, y la puerta de enlace solo da acceso a datos locales."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "un conector personalizado para el portal"
+          },
+          {
+            "id": "o2",
+            "text": "ejecutar el flujo en modo desatendido"
+          },
+          {
+            "id": "o3",
+            "text": "la extensión de Power Automate para ese navegador"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "Edge, Chrome y Firefox necesitan la extensión de Power Automate, que el instalador ofrece al terminar. Un conector personalizado requiere una API y el modo de ejecución no tiene que ver con el navegador."
+      }
+    ],
+    "keyPoint": "Automatización web con flujos de escritorio: Automation browser integrado, o Edge, Chrome o Firefox con la extensión de Power Automate.",
+    "references": [
+      {
+        "title": "Instalar extensiones del navegador de Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/install-browser-extensions"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-casos-106",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-casos",
+    "difficulty": 3,
+    "scenario": "En Conservas del Cantábrico, un programa antiguo deja cada noche varios libros de Excel en la carpeta C:\\Informes de un equipo de contabilidad. Esa carpeta no se sincroniza con OneDrive ni con SharePoint. Cada mañana, una persona abre los libros y ejecuta una macro de VBA que ya existe para consolidarlos.",
+    "prompt": "¿Qué debes usar para automatizar esta tarea?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un flujo de nube con la acción «Ejecutar script» de Excel Online (Business)",
+        "correct": false,
+        "explanation": "Ese conector solo trabaja con libros guardados en OneDrive para la Empresa, SharePoint o grupos de Microsoft 365, y «Ejecutar script» ejecuta scripts de Office, no macros de VBA."
+      },
+      {
+        "id": "b",
+        "text": "Un flujo de escritorio con las acciones de Excel, como «Ejecutar macro de Excel»",
+        "correct": true,
+        "explanation": "Un flujo de escritorio trabaja con archivos y carpetas locales del equipo y sus acciones de Excel pueden abrir los libros y ejecutar la macro existente."
+      },
+      {
+        "id": "c",
+        "text": "Un flujo de nube automatizado con el desencadenador «Cuando se crea un archivo» de OneDrive",
+        "correct": false,
+        "explanation": "La carpeta C:\\Informes no está en OneDrive, así que el desencadenador nunca se activaría, y un flujo de nube tampoco puede ejecutar la macro en el equipo."
+      },
+      {
+        "id": "d",
+        "text": "Un modelo de AI Builder de procesamiento de documentos",
+        "correct": false,
+        "explanation": "AI Builder extrae datos de documentos como facturas o formularios; no abre libros de Excel locales ni ejecuta macros."
+      }
+    ],
+    "keyPoint": "Archivos locales del equipo y aplicaciones de escritorio como Excel con macros = flujo de escritorio.",
+    "references": [
+      {
+        "title": "Acciones de Excel en flujos de escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/actions-reference/excel"
+      },
+      {
+        "title": "Conector Excel Online (Business)",
+        "url": "https://learn.microsoft.com/es-es/connectors/excelonlinebusiness/"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-casos-107",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-casos",
+    "difficulty": 1,
+    "prompt": "Indica si cada afirmación sobre los flujos de nube y los flujos de escritorio es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Un flujo de nube automatizado sigue ejecutándose aunque el equipo de quien lo creó esté apagado.",
+        "answer": true,
+        "explanation": "Los flujos de nube se ejecutan en el servicio de Power Automate y conectan servicios mediante conectores; no dependen del equipo de su creador."
+      },
+      {
+        "id": "s2",
+        "text": "Para ejecutar un flujo de escritorio necesitas un dispositivo con Windows.",
+        "answer": true,
+        "explanation": "Power Automate para escritorio funciona en Windows 10, Windows 11 y Windows Server; los flujos de escritorio se ejecutan en una máquina Windows, física, virtual u hospedada."
+      },
+      {
+        "id": "s3",
+        "text": "Un flujo de escritorio puede organizar archivos y carpetas del propio equipo.",
+        "answer": true,
+        "explanation": "Ordenar documentos con las acciones de archivos y carpetas es uno de los ejemplos típicos de flujos de escritorio que cita Microsoft Learn."
+      },
+      {
+        "id": "s4",
+        "text": "Un flujo de nube puede hacer clic en los botones de una aplicación de Windows instalada en un PC sin usar un flujo de escritorio.",
+        "answer": false,
+        "explanation": "Los flujos de nube trabajan con servicios a través de conectores y API. Para interactuar con la interfaz de una aplicación de escritorio necesitan un flujo de escritorio."
+      }
+    ],
+    "keyPoint": "Flujo de nube = servicios con conectores, sin depender de un PC. Flujo de escritorio = interfaz y archivos de una máquina Windows.",
+    "references": [
+      {
+        "title": "Tipos de flujos en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/flow-types"
+      },
+      {
+        "title": "Requisitos previos y limitaciones de Power Automate para escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/requirements"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-casos-108",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-casos",
+    "difficulty": 2,
+    "prompt": "¿Qué dos comportamientos tiene una ejecución desatendida de un flujo de escritorio? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Se ejecuta dentro de la sesión del usuario que está trabajando en ese momento en el equipo",
+        "correct": false,
+        "explanation": "Eso describe la ejecución asistida. Una ejecución desatendida no puede empezar si hay una sesión de usuario de Windows activa en Windows 10 u 11."
+      },
+      {
+        "id": "b",
+        "text": "Mantiene bloqueada la pantalla de la máquina para que nadie vea la ejecución",
+        "correct": true,
+        "explanation": "Learn indica que los flujos desatendidos mantienen la pantalla de la máquina de destino bloqueada mientras se ejecutan."
+      },
+      {
+        "id": "c",
+        "text": "Se ejecuta con privilegios elevados de administrador",
+        "correct": false,
+        "explanation": "Los flujos de escritorio desatendidos no se pueden ejecutar con privilegios elevados."
+      },
+      {
+        "id": "d",
+        "text": "Power Automate inicia sesión con las credenciales de la conexión y la cierra al terminar",
+        "correct": true,
+        "explanation": "Power Automate usa la conexión de flujo de escritorio para abrir la sesión de Windows, ejecuta el flujo y después cierra la sesión e informa de su actividad."
+      },
+      {
+        "id": "e",
+        "text": "Permite que un técnico inicie sesión en la máquina durante la ejecución para supervisarla",
+        "correct": false,
+        "explanation": "No se admite iniciar sesión en la máquina durante una ejecución desatendida, y hacerlo puede provocar un error en el flujo."
+      }
+    ],
+    "keyPoint": "Desatendido: Power Automate abre y cierra la sesión con la conexión, con la pantalla bloqueada y sin nadie conectado.",
+    "references": [
+      {
+        "title": "Ejecutar flujos de escritorio desatendidos",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/run-unattended-desktop-flows"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-casos-109",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-casos",
+    "difficulty": 3,
+    "scenario": "En Cooperativa Vinícola Ribera, un flujo de escritorio desatendido registra cada noche los pagos a proveedores en un ERP antiguo sin API. La auditoría exige que el jefe de administración apruebe cada pago antes de registrarlo. El jefe trabaja con Outlook y Teams y nunca accede a la máquina donde se ejecuta el robot.",
+    "prompt": "¿Cómo debes incorporar la aprobación a la solución?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agregar al flujo de escritorio una acción que muestre un cuadro de mensaje pidiendo confirmación",
+        "correct": false,
+        "explanation": "En una ejecución desatendida nadie ve la pantalla de la máquina, así que el cuadro de mensaje no llegaría al jefe y el flujo se quedaría esperando."
+      },
+      {
+        "id": "b",
+        "text": "Ejecutar el flujo de escritorio en modo asistido para que el jefe lo apruebe en la máquina",
+        "correct": false,
+        "explanation": "El modo asistido necesita a alguien con sesión iniciada en esa máquina, y el jefe nunca trabaja en ella; además no deja constancia formal de la decisión."
+      },
+      {
+        "id": "c",
+        "text": "Usar un flujo de nube programado que lance el flujo de escritorio cada noche sin más pasos",
+        "correct": false,
+        "explanation": "Automatiza el horario, pero no incluye ninguna aprobación, así que no cumple el requisito de auditoría."
+      },
+      {
+        "id": "d",
+        "text": "En el flujo de nube, usar «Iniciar y esperar una aprobación» y solo si se aprueba ejecutar el flujo de escritorio",
+        "correct": true,
+        "explanation": "Las aprobaciones son una capacidad de los flujos de nube: el jefe responde desde Outlook o Teams y, si aprueba, la acción que ejecuta el flujo de escritorio registra el pago."
+      }
+    ],
+    "keyPoint": "La decisión humana se orquesta en el flujo de nube (Aprobaciones) y el flujo de escritorio solo hace el trabajo en la aplicación sin API.",
+    "references": [
+      {
+        "title": "Introducción a las aprobaciones",
+        "url": "https://learn.microsoft.com/es-es/power-automate/get-started-approvals"
+      },
+      {
+        "title": "Desencadenar flujos de escritorio desde flujos de nube",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/trigger-desktop-flows"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-casos-110",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-casos",
+    "difficulty": 2,
+    "scenario": "Marta, de Viveros Moncayo, copia cada semana los precios de una web de mercado a un libro de Excel. Quiere crear un flujo de escritorio grabando cómo lo hace ella, en lugar de añadir las acciones una a una.",
+    "prompt": "Ordena los pasos que debe seguir.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Instalar Power Automate para escritorio en su equipo con Windows",
+        "explanation": "Sin la aplicación instalada no hay consola, ni diseñador, ni grabadora con los que crear el flujo de escritorio."
+      },
+      {
+        "id": "p2",
+        "text": "En la consola, seleccionar Nuevo flujo, escribir un nombre y seleccionar Crear",
+        "explanation": "Al crear el flujo desde la consola se abre el diseñador de flujos en una ventana independiente."
+      },
+      {
+        "id": "p3",
+        "text": "En el diseñador, abrir la Grabadora, seleccionar Grabar y realizar la tarea en la web y en Excel",
+        "explanation": "La grabadora sigue la actividad del ratón y el teclado sobre los elementos de la interfaz mientras Marta hace la tarea."
+      },
+      {
+        "id": "p4",
+        "text": "Seleccionar Hecho para convertir los pasos grabados en acciones del flujo",
+        "explanation": "Al terminar la grabación, Hecho convierte los pasos en acciones de flujo de escritorio y agrega los elementos de interfaz usados."
+      },
+      {
+        "id": "p5",
+        "text": "Guardar el flujo y cerrar el diseñador para verlo en la pestaña Mis flujos de la consola",
+        "explanation": "Una vez guardado, el flujo aparece en Mis flujos, desde donde puede ejecutarse o editarse más adelante."
+      }
+    ],
+    "keyPoint": "Flujo de escritorio grabado: instalar, crear en la consola, grabar en el diseñador, Hecho y guardar.",
+    "references": [
+      {
+        "title": "Crear flujos de escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/create-flow"
+      },
+      {
+        "title": "Grabar flujos de escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/recording-flow"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-casos-111",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-casos",
+    "difficulty": 3,
+    "scenario": "Panadería Lamas ha creado un flujo de escritorio en un portátil con Windows 11 Home y lo ejecuta sin problemas desde la consola. Ahora quiere que un flujo de nube lo lance automáticamente cada vez que llegue un pedido por correo, pero no consigue usar ese portátil como máquina desde el flujo de nube.",
+    "prompt": "¿Qué debe hacer para cumplir el requisito?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cambiar el modo de ejecución del flujo de escritorio a desatendido",
+        "correct": false,
+        "explanation": "Cualquier ejecución desde la nube, asistida o desatendida, requiere una edición de Windows que la admita; cambiar el modo no lo resuelve en Windows Home."
+      },
+      {
+        "id": "b",
+        "text": "Ejecutarlo en una máquina con Windows Pro, Enterprise o Server registrada en el entorno",
+        "correct": true,
+        "explanation": "En Windows 10 u 11 Home puedes crear y ejecutar flujos de escritorio localmente, pero no desencadenarlos desde la nube; la conectividad directa de máquinas no está disponible en Home."
+      },
+      {
+        "id": "c",
+        "text": "Instalar una puerta de enlace de datos local en el portátil",
+        "correct": false,
+        "explanation": "La puerta de enlace da acceso a orígenes de datos locales para los conectores; no habilita la ejecución de flujos de escritorio desde la nube."
+      },
+      {
+        "id": "d",
+        "text": "Reinstalar Power Automate para escritorio desde Microsoft Store",
+        "correct": false,
+        "explanation": "El origen de la instalación no cambia las capacidades de la edición de Windows: en Home sigue sin poder ejecutarse desde la nube."
+      }
+    ],
+    "keyPoint": "Windows Home: crear y ejecutar flujos de escritorio en local. Para lanzarlos desde un flujo de nube hace falta Windows Pro, Enterprise o Server.",
+    "references": [
+      {
+        "title": "Requisitos previos y limitaciones de Power Automate para escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/requirements"
+      },
+      {
+        "title": "Administrar máquinas",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/manage-machines"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-casos-112",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-casos",
+    "difficulty": 1,
+    "prompt": "Empareja cada tarea con el componente de Power Automate para escritorio que la cubre. Dos de las opciones no se usan.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Ver, iniciar y administrar tus flujos de escritorio desde una ventana central",
+        "answerId": "c1",
+        "explanation": "La consola es la interfaz central de Power Automate para escritorio: muestra tus flujos, los compartidos y los ejemplos, y permite iniciarlos o editarlos."
+      },
+      {
+        "id": "m2",
+        "text": "Añadir, editar y depurar acciones con puntos de interrupción y ejecución paso a paso",
+        "answerId": "c2",
+        "explanation": "El diseñador de flujos contiene las herramientas para diseñar y depurar el flujo, con los paneles de acciones y variables."
+      },
+      {
+        "id": "m3",
+        "text": "Capturar tus clics y pulsaciones de teclado en una aplicación y convertirlos en acciones",
+        "answerId": "c3",
+        "explanation": "La grabadora replica las tareas que haces sobre los elementos de la interfaz y las convierte en acciones de flujo de escritorio."
+      },
+      {
+        "id": "m4",
+        "text": "Registrar el equipo en un entorno para que los flujos de nube ejecuten flujos de escritorio en él",
+        "answerId": "c4",
+        "explanation": "Al iniciar sesión en el entorno de ejecución de máquina (machine runtime), el equipo se registra como máquina del entorno seleccionado."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Consola"
+      },
+      {
+        "id": "c2",
+        "text": "Diseñador de flujos"
+      },
+      {
+        "id": "c3",
+        "text": "Grabadora"
+      },
+      {
+        "id": "c4",
+        "text": "Entorno de ejecución de máquina"
+      },
+      {
+        "id": "c5",
+        "text": "Centro de aprobaciones"
+      },
+      {
+        "id": "c6",
+        "text": "Puerta de enlace de datos local"
+      }
+    ],
+    "keyPoint": "Consola = gestionar e iniciar; diseñador = construir y depurar; grabadora = capturar pasos; entorno de ejecución de máquina = conectar el equipo a la nube.",
+    "references": [
+      {
+        "title": "Consola de Power Automate para escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/console"
+      },
+      {
+        "title": "Diseñador de flujos de escritorio",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/flow-designer"
+      },
+      {
+        "title": "Administrar máquinas",
+        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/manage-machines"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-escenarios-101",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escenarios",
+    "difficulty": 2,
+    "scenario": "En Talleres Navarro, las horas extra que pide un operario las puede autorizar cualquiera de los tres jefes de turno. En cuanto uno de ellos responda, la solicitud debe quedar resuelta y el flujo debe continuar, sin esperar a los demás.",
+    "prompt": "¿Qué tipo de aprobación debes elegir en la acción «Iniciar y esperar una aprobación» (Start and wait for an approval)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Aprobar/Rechazar: todos deben aprobar",
+        "correct": false,
+        "explanation": "Este tipo necesita la respuesta de cada aprobador (o un rechazo) antes de continuar, así que obligaría a esperar a los tres jefes."
+      },
+      {
+        "id": "b",
+        "text": "Aprobación secuencial",
+        "correct": false,
+        "explanation": "La aprobación secuencial envía la solicitud a un aprobador tras otro en un orden fijo; no se resuelve con la primera respuesta."
+      },
+      {
+        "id": "c",
+        "text": "Aprobar/Rechazar: el primero en responder",
+        "correct": true,
+        "explanation": "La aprobación o el rechazo de cualquiera de los aprobadores asignados completa la solicitud, y el flujo continúa con esa decisión."
+      },
+      {
+        "id": "d",
+        "text": "Respuestas personalizadas: esperar todas las respuestas",
+        "correct": false,
+        "explanation": "Además de exigir que respondan todos, sirve para definir opciones propias; aquí bastan Aprobar o Rechazar."
+      }
+    ],
+    "keyPoint": "Varios aprobadores posibles y basta uno = «Aprobar/Rechazar: el primero en responder».",
+    "references": [
+      {
+        "title": "Introducción a las aprobaciones",
+        "url": "https://learn.microsoft.com/es-es/power-automate/get-started-approvals"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-escenarios-102",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escenarios",
+    "difficulty": 3,
+    "scenario": "En Distribuciones Altamira, cada solicitud de compra se registra en una lista de SharePoint y debe aprobarla el responsable de compras. Mientras la aprobación está pendiente, el elemento de la lista debe guardar el identificador de la aprobación para poder consultarla, y el flujo debe seguir esperando hasta que el responsable decida.",
+    "prompt": "Completa la frase.",
+    "template": "En el flujo agregas primero la acción {{b1}}, actualizas el elemento de SharePoint con el identificador que devuelve y, después, agregas {{b2}} para que el flujo continúe solo cuando haya una decisión.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "«Iniciar y esperar una aprobación»"
+          },
+          {
+            "id": "o2",
+            "text": "«Crear una aprobación» (Create an approval)"
+          },
+          {
+            "id": "o3",
+            "text": "«Iniciar y esperar una aprobación del texto»"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "«Crear una aprobación» inicia la aprobación sin esperar a que se complete, así que el flujo puede guardar su identificador mientras está pendiente. «Iniciar y esperar» no continúa hasta que hay respuesta, y la aprobación de texto sirve para revisar un texto sugerido."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "un bucle Hasta (Do until) que consulte el elemento"
+          },
+          {
+            "id": "o2",
+            "text": "una acción Retraso (Delay) de un día"
+          },
+          {
+            "id": "o3",
+            "text": "la acción «Esperar una aprobación» (Wait for an approval)"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "«Esperar una aprobación» detiene el flujo hasta que se completa la aprobación indicada por su identificador y devuelve el resultado. Un retraso fijo o un bucle sobre el elemento no saben cuándo ha respondido el aprobador."
+      }
+    ],
+    "keyPoint": "Para hacer algo entre el envío y la respuesta, divide «Iniciar y esperar una aprobación» en «Crear una aprobación» + «Esperar una aprobación».",
+    "references": [
+      {
+        "title": "Conector Aprobaciones",
+        "url": "https://learn.microsoft.com/es-es/connectors/approvals/"
+      },
+      {
+        "title": "Introducción a las aprobaciones",
+        "url": "https://learn.microsoft.com/es-es/power-automate/get-started-approvals"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-escenarios-103",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escenarios",
+    "difficulty": 2,
+    "scenario": "La responsable de oficina de Estudio Garnacha necesita, solo esta vez, que el socio director apruebe un presupuesto de mobiliario en PDF. Trabaja todo el día en Microsoft Teams y no quiere crear ningún flujo para una petición puntual.",
+    "prompt": "¿Qué debe usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "La aplicación Aprobaciones de Microsoft Teams",
+        "correct": true,
+        "explanation": "Desde Aprobaciones en Teams eliges el tipo, adjuntas archivos y seleccionas aprobadores; la solicitud usa la infraestructura de Power Automate sin necesidad de crear un flujo."
+      },
+      {
+        "id": "b",
+        "text": "Un flujo de nube automatizado con el conector Aprobaciones",
+        "correct": false,
+        "explanation": "Funcionaría, pero obliga a crear y mantener un flujo para una petición única, justo lo que la responsable quiere evitar."
+      },
+      {
+        "id": "c",
+        "text": "La aplicación Flujos de trabajo (Workflows) de Teams",
+        "correct": false,
+        "explanation": "Flujos de trabajo sirve para crear y administrar flujos desde Teams; usarla también supondría crear un flujo."
+      },
+      {
+        "id": "d",
+        "text": "La acción «Enviar correo electrónico con opciones» de Outlook",
+        "correct": false,
+        "explanation": "Es una acción que tiene que formar parte de un flujo y no genera una aprobación formal con historial."
+      }
+    ],
+    "keyPoint": "Aprobación puntual sin crear un flujo = aplicación Aprobaciones de Teams.",
+    "references": [
+      {
+        "title": "Aprobaciones en Microsoft Teams",
+        "url": "https://learn.microsoft.com/es-es/power-automate/teams/native-approvals-in-teams"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-escenarios-104",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escenarios",
+    "difficulty": 1,
+    "prompt": "Un coordinador quiere crear y administrar flujos a partir de plantillas, por ejemplo para avisar en un canal cuando ocurra algo en otra aplicación, sin salir de Microsoft Teams. ¿Qué debe usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "La aplicación Aprobaciones de Teams",
+        "correct": false,
+        "explanation": "Aprobaciones crea y gestiona solicitudes de aprobación, no flujos de cualquier tipo basados en plantillas."
+      },
+      {
+        "id": "b",
+        "text": "Power Automate para escritorio",
+        "correct": false,
+        "explanation": "Es la aplicación de Windows para crear flujos de escritorio (RPA); no se usa dentro de Teams."
+      },
+      {
+        "id": "c",
+        "text": "El desencadenador «Para un mensaje seleccionado» de Teams",
+        "correct": false,
+        "explanation": "Es un desencadenador que inicia un flujo desde un mensaje concreto, no un lugar donde crear y administrar flujos."
+      },
+      {
+        "id": "d",
+        "text": "La aplicación Flujos de trabajo (Workflows) de Teams",
+        "correct": true,
+        "explanation": "La aplicación Flujos de trabajo, antes llamada Power Automate en Teams, permite crear y administrar flujos desde Teams; los flujos que crea se guardan en el entorno predeterminado."
+      }
+    ],
+    "keyPoint": "Crear flujos sin salir de Teams = aplicación Flujos de trabajo (antes Power Automate), que trabaja en el entorno predeterminado.",
+    "references": [
+      {
+        "title": "Instalar la aplicación Flujos de trabajo en Microsoft Teams",
+        "url": "https://learn.microsoft.com/es-es/power-automate/teams/install-teams-app"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-escenarios-105",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escenarios",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre la gestión de las aprobaciones de Power Automate es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Si recibes una solicitud de aprobación y prefieres que decida otra persona, puedes reasignársela desde el centro de aprobaciones de Power Automate.",
+        "answer": true,
+        "explanation": "El aprobador puede seleccionar la solicitud recibida y usar Reasignar para que otra persona tome la decisión."
+      },
+      {
+        "id": "s2",
+        "text": "Quien envía la solicitud puede reasignarla a otro aprobador mientras sigue pendiente.",
+        "answer": false,
+        "explanation": "El solicitante no puede reasignarla: puede cancelarla desde la pestaña Enviado y editar el flujo para cambiar el aprobador."
+      },
+      {
+        "id": "s3",
+        "text": "Puedes adjuntar un archivo a la solicitud para que el aprobador lo revise antes de decidir.",
+        "answer": true,
+        "explanation": "La acción de aprobación tiene campos de nombre y contenido de datos adjuntos, y el aprobador ve el archivo en el correo de la solicitud."
+      },
+      {
+        "id": "s4",
+        "text": "Las solicitudes y respuestas de aprobación se guardan en un libro de Excel en el OneDrive del creador del flujo.",
+        "answer": false,
+        "explanation": "Los datos de aprobaciones se guardan en Dataverse; la primera vez que se usan en un entorno se aprovisiona la base de datos si aún no existe."
+      }
+    ],
+    "keyPoint": "El aprobador puede reasignar; el solicitante solo puede cancelar. Las aprobaciones admiten adjuntos y se guardan en Dataverse.",
+    "references": [
+      {
+        "title": "Preguntas frecuentes sobre aprobaciones",
+        "url": "https://learn.microsoft.com/es-es/power-automate/approvals-howto"
+      },
+      {
+        "title": "Introducción a las aprobaciones",
+        "url": "https://learn.microsoft.com/es-es/power-automate/get-started-approvals"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-escenarios-106",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escenarios",
+    "difficulty": 2,
+    "scenario": "La biblioteca de SharePoint del área legal de Grupo Tormes contiene muchos borradores de contratos. Cada abogado decide cuándo un contrato está listo y quiere enviarlo a aprobación desde la propia biblioteca, seleccionando ese archivo concreto.",
+    "prompt": "¿Qué solución cumple el requisito?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un flujo automatizado con «Cuando se crea un archivo (solo propiedades)» y una aprobación",
+        "correct": false,
+        "explanation": "Pediría aprobación de todos los archivos en cuanto se suben, incluidos los borradores, en lugar de cuando el abogado lo decide."
+      },
+      {
+        "id": "b",
+        "text": "Un flujo instantáneo con «Para un archivo seleccionado» (For a selected file) y una aprobación",
+        "correct": true,
+        "explanation": "Este desencadenador permite al usuario lanzar el flujo sobre el archivo que selecciona, desde el menú Automatizar de la biblioteca; solo se muestran flujos del entorno predeterminado."
+      },
+      {
+        "id": "c",
+        "text": "Automatizar > Establecer un recordatorio sobre una columna de fecha de la biblioteca",
+        "correct": false,
+        "explanation": "Los recordatorios avisan antes de una fecha de una columna; no envían un archivo a aprobación cuando alguien lo decide."
+      },
+      {
+        "id": "d",
+        "text": "Un flujo programado que envíe cada viernes a aprobación todos los archivos de la biblioteca",
+        "correct": false,
+        "explanation": "Enviaría también los borradores sin terminar y no respetaría el momento que elige cada abogado."
+      }
+    ],
+    "keyPoint": "La persona elige el archivo y el momento = flujo instantáneo con «Para un archivo seleccionado», lanzado desde Automatizar en SharePoint.",
+    "references": [
+      {
+        "title": "Desencadenadores y acciones de SharePoint en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/sharepoint/dev/business-apps/power-automate/sharepoint-connector-actions-triggers"
+      },
+      {
+        "title": "Conector de SharePoint",
+        "url": "https://learn.microsoft.com/es-es/connectors/sharepointonline/"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-escenarios-107",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escenarios",
+    "difficulty": 2,
+    "scenario": "En Óptica Sil, los responsables de compras aprueban los pedidos desde el correo de Outlook. Se quejan de que la descripción del pedido llega como un bloque de texto plano y piden ver, en el propio cuerpo de la solicitud y sin abrir adjuntos, encabezados, texto en negrita y una tabla con las líneas del pedido.",
+    "prompt": "¿Qué debes hacer en la acción de aprobación del flujo?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Adjuntar a la solicitud un libro de Excel con las líneas del pedido",
+        "correct": false,
+        "explanation": "El aprobador tendría que abrir un adjunto, y el requisito es ver el formato en el propio cuerpo de la solicitud."
+      },
+      {
+        "id": "b",
+        "text": "Cambiar el tipo de aprobación a Respuestas personalizadas",
+        "correct": false,
+        "explanation": "Las respuestas personalizadas cambian las opciones entre las que elige el aprobador, no el formato de los detalles de la solicitud."
+      },
+      {
+        "id": "c",
+        "text": "Escribir el campo Detalles con sintaxis Markdown",
+        "correct": true,
+        "explanation": "El campo Detalles admite Markdown para dar formato con encabezados, negrita o tablas, y Outlook lo muestra en el mensaje de la aprobación."
+      },
+      {
+        "id": "d",
+        "text": "Usar una aprobación secuencial con un paso por cada línea",
+        "correct": false,
+        "explanation": "Una aprobación secuencial define el orden de los aprobadores; no da formato al contenido y obligaría a aprobar cada línea por separado."
+      }
+    ],
+    "keyPoint": "Formato enriquecido en una solicitud de aprobación = Markdown en Detalles (su compatibilidad varía según el cliente; la app Aprobaciones de Teams no lo admite).",
+    "references": [
+      {
+        "title": "Usar Markdown en las solicitudes de aprobación",
+        "url": "https://learn.microsoft.com/es-es/power-automate/approvals-markdown-support"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-escenarios-108",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escenarios",
+    "difficulty": 2,
+    "scenario": "Grupo Vetón quiere automatizar con flujos de nube el procesamiento de varios tipos de documentos usando modelos de AI Builder.",
+    "prompt": "Empareja cada tipo de documento con el modelo de AI Builder más adecuado. Dos de las opciones no se usan.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Tiques de restaurante y de taxi que los comerciales fotografían para sus notas de gastos",
+        "answerId": "c1",
+        "explanation": "El modelo precompilado de procesamiento de recibos extrae del tique el comercio, la fecha y los importes; Microsoft lo recomienda para automatizar informes de gastos."
+      },
+      {
+        "id": "m2",
+        "text": "Facturas de proveedores de las que necesitas el número, la fecha y el importe total",
+        "answerId": "c2",
+        "explanation": "El procesamiento de facturas es un modelo precompilado que reconoce los campos habituales de una factura sin entrenarlo."
+      },
+      {
+        "id": "m3",
+        "text": "Partes de trabajo con un diseño propio de la empresa, de los que necesitas campos concretos como el técnico, el cliente y las horas",
+        "answerId": "c3",
+        "explanation": "Para extraer campos concretos de documentos con un formato propio entrenas un modelo personalizado de procesamiento de documentos con ejemplos de ese diseño."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Procesamiento de recibos"
+      },
+      {
+        "id": "c2",
+        "text": "Procesamiento de facturas"
+      },
+      {
+        "id": "c3",
+        "text": "Procesamiento de documentos (modelo personalizado)"
+      },
+      {
+        "id": "c4",
+        "text": "Reconocimiento de texto"
+      },
+      {
+        "id": "c5",
+        "text": "Análisis de sentimiento"
+      }
+    ],
+    "keyPoint": "Recibos y facturas tienen modelos precompilados; para extraer campos de documentos con diseño propio entrenas un modelo personalizado de procesamiento de documentos.",
+    "references": [
+      {
+        "title": "Tipos de modelos de AI Builder",
+        "url": "https://learn.microsoft.com/es-es/ai-builder/model-types"
+      },
+      {
+        "title": "Información general sobre el procesamiento de documentos",
+        "url": "https://learn.microsoft.com/es-es/ai-builder/form-processing-model-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-escenarios-109",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escenarios",
+    "difficulty": 2,
+    "scenario": "El director comercial de Muebles Tajo recibe muchos correos al día. Quiere que, cada vez que él marque con una marca de seguimiento un correo en Outlook, se cree automáticamente una tarea en su plan de Microsoft Planner con el asunto del mensaje. Los correos que no marque no deben generar tareas.",
+    "prompt": "¿Qué solución cumple el requisito?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un flujo automatizado con «Cuando llega un nuevo correo electrónico (V3)» filtrado por importancia alta",
+        "correct": false,
+        "explanation": "Se activaría según la importancia que pone el remitente al llegar el correo, no cuando el director decide marcarlo."
+      },
+      {
+        "id": "b",
+        "text": "Un flujo instantáneo con el desencadenador «Para un mensaje seleccionado» de Teams",
+        "correct": false,
+        "explanation": "Ese desencadenador trabaja con mensajes de Teams, no con correos de Outlook."
+      },
+      {
+        "id": "c",
+        "text": "Un flujo programado diario que le envíe un correo con opciones para elegir qué tareas crear",
+        "correct": false,
+        "explanation": "Añade un paso manual y un retraso de hasta un día, y no reacciona a la acción de marcar el correo."
+      },
+      {
+        "id": "d",
+        "text": "Un flujo automatizado con «Cuando se marca un correo electrónico» de Outlook y «Crear una tarea» de Planner",
+        "correct": true,
+        "explanation": "El conector Office 365 Outlook tiene un desencadenador que se activa al marcar un correo, y la acción de Planner crea la tarea con el asunto como contenido dinámico."
+      }
+    ],
+    "keyPoint": "Marcar un correo puede iniciar un flujo: una forma sencilla de convertir correos en tareas solo cuando el usuario lo decide.",
+    "references": [
+      {
+        "title": "Conector Office 365 Outlook",
+        "url": "https://learn.microsoft.com/es-es/connectors/office365/"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-escenarios-110",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escenarios",
+    "difficulty": 3,
+    "scenario": "El equipo de Recursos Humanos de Hoteles Duero creó su encuesta de clima laboral como formulario de grupo, dentro de su grupo de Microsoft 365. Al configurar el desencadenador «Cuando se envía una nueva respuesta» de Microsoft Forms, el formulario no aparece en la lista desplegable.",
+    "prompt": "¿Qué dos afirmaciones son correctas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Debes volver a crear el formulario con una cuenta personal de Microsoft para que aparezca",
+        "correct": false,
+        "explanation": "Es al revés: el conector de Microsoft Forms solo funciona con cuentas organizativas."
+      },
+      {
+        "id": "b",
+        "text": "Puedes escribir en el campo de identificador del formulario el valor que aparece tras «FormId=» en la dirección del formulario en edición",
+        "correct": true,
+        "explanation": "Los formularios de grupo no se muestran en la lista desplegable; Learn indica que hay que agregar a mano su identificador, copiado de la barra de direcciones."
+      },
+      {
+        "id": "c",
+        "text": "Los formularios de grupo no admiten desencadenadores, así que necesitas un flujo programado que lea las respuestas cada hora",
+        "correct": false,
+        "explanation": "El desencadenador funciona con formularios de grupo si indicas su identificador; no hace falta sustituirlo por un flujo programado."
+      },
+      {
+        "id": "d",
+        "text": "Una vez configurado, el flujo se ejecutará una vez por cada respuesta que se envíe",
+        "correct": true,
+        "explanation": "«Cuando se envía una nueva respuesta» inicia una ejecución por cada envío, y después «Obtener detalles de la respuesta» lee las respuestas de ese envío."
+      },
+      {
+        "id": "e",
+        "text": "El desencadenador ya incluye todas las respuestas como contenido dinámico, sin más acciones",
+        "correct": false,
+        "explanation": "El desencadenador aporta el identificador de la respuesta; para usar lo que contestó la persona necesitas la acción «Obtener detalles de la respuesta»."
+      }
+    ],
+    "keyPoint": "Formularios de grupo: pega su FormId en el desencadenador. El conector de Forms funciona con cuentas organizativas y se ejecuta una vez por respuesta.",
+    "references": [
+      {
+        "title": "Conector de Microsoft Forms",
+        "url": "https://learn.microsoft.com/es-es/connectors/microsoftforms/"
+      },
+      {
+        "title": "Usar Microsoft Forms en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/forms/overview"
+      }
+    ]
+  }
+]
