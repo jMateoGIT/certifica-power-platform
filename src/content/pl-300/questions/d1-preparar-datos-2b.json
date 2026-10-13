@@ -1,0 +1,1239 @@
+[
+  {
+    "id": "pl300-d1-transformar-101",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 3,
+    "scenario": "Distribuidora Alba prepara en Power BI Desktop la consulta Clientes sobre una base de datos de SQL Server. Este es su código:",
+    "code": {
+      "language": "m",
+      "content": "let\n    Origen = Sql.Database(\"sql-alba\", \"Comercial\"),\n    Clientes = Origen{[Schema = \"dbo\", Item = \"Clientes\"]}[Data],\n    FilasFiltradas = Table.SelectRows(Clientes, each [Pais] = \"ES\"),\n    OtrasQuitadas = Table.SelectColumns(FilasFiltradas, {\"IdCliente\", \"Nombre\", \"Segmento\"}),\n    Mayusculas = Table.TransformColumns(OtrasQuitadas, {{\"Nombre\", Text.Proper, type text}}),\n    EmpiezanPorA = Table.SelectRows(Mayusculas, each Text.StartsWith([Nombre], \"A\"))\nin\n    EmpiezanPorA"
+    },
+    "prompt": "¿Qué afirmación describe correctamente el plegado de consultas (*query folding*) de esta consulta?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Todos los pasos se pliegan en una única instrucción SELECT, porque el origen es SQL Server",
+        "correct": false,
+        "explanation": "Que el origen admita plegado no garantiza que se pliegue cada transformación: Poner En Mayúsculas Cada Palabra (Text.Proper) no se traduce a SQL."
+      },
+      {
+        "id": "b",
+        "text": "FilasFiltradas y OtrasQuitadas se pliegan; Mayusculas y EmpiezanPorA se evalúan en el motor de Power Query",
+        "correct": true,
+        "explanation": "El filtro de filas y la selección de columnas se traducen a WHERE y a la lista del SELECT. Text.Proper no se pliega, y el filtro posterior depende de su resultado, así que ambos se ejecutan localmente."
+      },
+      {
+        "id": "c",
+        "text": "Solo FilasFiltradas se pliega, porque Table.SelectColumns siempre se ejecuta en el motor de Power Query",
+        "correct": false,
+        "explanation": "Elegir o quitar columnas es de las transformaciones que mejor se pliegan: se convierte en la lista de columnas de la instrucción SELECT."
+      },
+      {
+        "id": "d",
+        "text": "Mayusculas se ejecuta localmente, pero EmpiezanPorA vuelve a plegarse porque es un filtro de filas",
+        "correct": false,
+        "explanation": "El filtro trabaja sobre la columna ya transformada por Text.Proper, que solo existe en el motor de Power Query; no puede enviarse al origen."
+      }
+    ],
+    "keyPoint": "Una transformación que no se pliega (como Text.Proper) hace que ella y los pasos que dependen de su resultado se ejecuten en el motor de Power Query; los pasos anteriores siguen plegándose.",
+    "references": [
+      {
+        "title": "Información general sobre la evaluación de consultas y el plegado de consultas",
+        "url": "https://learn.microsoft.com/es-es/power-query/query-folding-basics"
+      },
+      {
+        "title": "Indicadores de plegado de consultas",
+        "url": "https://learn.microsoft.com/es-es/power-query/step-folding-indicators"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-102",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "En Logística Trébol preparas en Power BI Desktop varias consultas sobre una base de datos de SQL Server y quieres que la mayor parte posible del trabajo se haga en el origen.",
+    "prompt": "¿Qué dos afirmaciones sobre el plegado de consultas son correctas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un paso que no se pliega obliga a ejecutar en el motor de Power Query también todos los pasos anteriores",
+        "correct": false,
+        "explanation": "Los pasos anteriores siguen plegándose: el origen ejecuta todo lo que se pudo traducir hasta ese punto y el motor de Power Query procesa el resto."
+      },
+      {
+        "id": "b",
+        "text": "Si escribes una instrucción SQL en las Opciones avanzadas del conector, los pasos que añadas después no se pliegan",
+        "correct": true,
+        "explanation": "Con una consulta nativa escrita en el cuadro de diálogo del conector, Power Query no aprovecha el plegado de los pasos posteriores."
+      },
+      {
+        "id": "c",
+        "text": "Al conectarte a un archivo CSV, los filtros de filas se pliegan para que solo se lean las filas necesarias",
+        "correct": false,
+        "explanation": "Los orígenes sin motor de consultas, como los archivos CSV y Excel, no admiten plegado: Power Query lee el archivo y aplica las transformaciones él mismo."
+      },
+      {
+        "id": "d",
+        "text": "Con Value.NativeQuery y la opción [EnableFolding = true], los pasos posteriores a la consulta nativa pueden plegarse",
+        "correct": true,
+        "explanation": "En los conectores compatibles, como SQL Server, esta opción envuelve la consulta nativa en una subconsulta y mantiene activo el plegado de los pasos siguientes."
+      },
+      {
+        "id": "e",
+        "text": "En DirectQuery, los pasos que no se pliegan se ejecutan localmente cada vez que un objeto visual consulta la tabla",
+        "correct": false,
+        "explanation": "En DirectQuery las transformaciones deben condensarse en una consulta nativa; los pasos que no se pueden plegar provocan errores y obligan a simplificarlos o a cambiar a Importar."
+      }
+    ],
+    "keyPoint": "Una consulta SQL escrita en el conector corta el plegado de los pasos siguientes; Value.NativeQuery con EnableFolding = true lo mantiene.",
+    "references": [
+      {
+        "title": "Plegado de consultas en consultas nativas",
+        "url": "https://learn.microsoft.com/es-es/power-query/native-query-folding"
+      },
+      {
+        "title": "Información general sobre la evaluación de consultas y el plegado de consultas",
+        "url": "https://learn.microsoft.com/es-es/power-query/query-folding-basics"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-103",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "En Compras Ébano, la consulta Facturas tiene una columna Proveedor escrita a mano. La combinas con la tabla maestra Proveedores marcando Usar coincidencia aproximada para realizar la combinación (*Use fuzzy matching to perform the merge*) con las opciones predeterminadas. Este es el resultado:",
+    "table": {
+      "caption": "Resultado de la combinación aproximada",
+      "headers": [
+        "Proveedor (Facturas)",
+        "Proveedor coincidente"
+      ],
+      "rows": [
+        [
+          "Transportes Rapidos Leon",
+          "Transportes Rápidos de León"
+        ],
+        [
+          "transportes rápidos de león",
+          "Transportes Rápidos de León"
+        ],
+        [
+          "Papelera Sur",
+          "Papelera del Sur"
+        ],
+        [
+          "TRL",
+          "null"
+        ]
+      ]
+    },
+    "prompt": "Quieres que «TRL» se combine con «Transportes Rápidos de León» sin provocar coincidencias incorrectas en otras filas. ¿Qué opción de coincidencia aproximada configuras?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Bajar el Umbral de similitud (*Similarity threshold*) a 0,10",
+        "correct": false,
+        "explanation": "Una sigla apenas se parece al nombre completo, y un umbral tan bajo haría que muchos valores coincidieran con proveedores equivocados."
+      },
+      {
+        "id": "b",
+        "text": "Activar Ignorar mayúsculas y minúsculas (*Ignore case*)",
+        "correct": false,
+        "explanation": "El problema no es de mayúsculas: «TRL» y el nombre completo son textos distintos. Además, la fila en minúsculas ya coincide."
+      },
+      {
+        "id": "c",
+        "text": "Una Tabla de transformación (*Transformation table*) que asigne TRL al nombre completo",
+        "correct": true,
+        "explanation": "La tabla de transformación asigna valores de forma explícita antes de comparar, ideal para siglas o alias que ningún algoritmo de similitud relacionaría."
+      },
+      {
+        "id": "d",
+        "text": "Activar Coincidencia mediante la combinación de elementos de texto (*Match by combining text parts*)",
+        "correct": false,
+        "explanation": "Esta opción une fragmentos separados, por ejemplo «Micro soft» con «Microsoft»; no convierte una sigla en un nombre."
+      }
+    ],
+    "keyPoint": "Para alias y siglas que no se parecen al valor de referencia, usa una tabla de transformación en la combinación aproximada en lugar de bajar el umbral.",
+    "references": [
+      {
+        "title": "Combinación aproximada",
+        "url": "https://learn.microsoft.com/es-es/power-query/merge-queries-fuzzy-match"
+      },
+      {
+        "title": "Funcionamiento de la coincidencia aproximada en Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/fuzzy-matching"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-104",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 3,
+    "scenario": "En Suministros Gala, la consulta Ventas tiene 6 filas: 3 del producto P1, 2 de P2 y 1 de P3. La consulta Tarifas contiene las filas de la tabla. Añades estos pasos a Ventas:",
+    "table": {
+      "caption": "Consulta Tarifas",
+      "headers": [
+        "IdProducto",
+        "Año",
+        "Precio"
+      ],
+      "rows": [
+        [
+          "P1",
+          "2025",
+          "10,00"
+        ],
+        [
+          "P1",
+          "2026",
+          "11,00"
+        ],
+        [
+          "P2",
+          "2026",
+          "8,50"
+        ]
+      ]
+    },
+    "code": {
+      "language": "m",
+      "content": "let\n    Combinada = Table.NestedJoin(\n        Ventas, {\"IdProducto\"},\n        Tarifas, {\"IdProducto\"},\n        \"Tarifas\",\n        JoinKind.LeftOuter\n    ),\n    Expandida = Table.ExpandTableColumn(Combinada, \"Tarifas\", {\"Año\", \"Precio\"})\nin\n    Expandida"
+    },
+    "prompt": "¿Cuántas filas tiene el resultado del paso Expandida?",
+    "options": [
+      {
+        "id": "a",
+        "text": "6, porque una combinación externa izquierda conserva exactamente las filas de la tabla izquierda",
+        "correct": false,
+        "explanation": "Conserva todas las filas de la izquierda, pero no las limita a una: si una clave coincide con varias filas de la derecha, la fila se repite al expandir."
+      },
+      {
+        "id": "b",
+        "text": "8, porque P3 no tiene tarifa y se descarta al expandir",
+        "correct": false,
+        "explanation": "En una externa izquierda, P3 se mantiene con null en Año y Precio; las filas sin coincidencia solo desaparecen en una combinación interna."
+      },
+      {
+        "id": "c",
+        "text": "9, porque cada venta de P1 aparece una vez por cada una de sus dos tarifas",
+        "correct": true,
+        "explanation": "P1: 3 ventas × 2 tarifas = 6; P2: 2 × 1 = 2; P3: 1 fila con null. Total 9. Para evitarlo, filtra Tarifas por el año vigente o quita duplicados de la clave antes de combinar."
+      },
+      {
+        "id": "d",
+        "text": "11, porque se suman las 6 filas de Ventas y las 3 de Tarifas, más dos filas de P1",
+        "correct": false,
+        "explanation": "Combinar no suma filas de las dos tablas (eso sería anexar): cada fila de la izquierda se repite tantas veces como filas coincidentes haya en la derecha."
+      }
+    ],
+    "keyPoint": "Si la clave se repite en la tabla derecha, expandir una combinación multiplica las filas de la izquierda; deja una sola fila por clave antes de combinar.",
+    "references": [
+      {
+        "title": "Combinación externa izquierda",
+        "url": "https://learn.microsoft.com/es-es/power-query/merge-queries-left-outer"
+      },
+      {
+        "title": "Table.ExpandTableColumn",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-expandtablecolumn"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-105",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "En Gimnasios Vértice combinas la consulta Socios (izquierda) con Cuotas (derecha), que tiene varias filas por socio, mediante una combinación externa izquierda. Quieres añadir a Socios el importe total pagado por cada socio sin cambiar el número de filas de Socios.",
+    "prompt": "Completa la frase.",
+    "template": "En el botón de la nueva columna de tabla eliges {{b1}}, marcas {{b2}} Importe y el resultado tiene {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Expandir (*Expand*)"
+          },
+          {
+            "id": "o2",
+            "text": "Agregar (*Aggregate*)"
+          },
+          {
+            "id": "o3",
+            "text": "Anexar consultas"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Agregar resume la tabla anidada de cada fila (genera Table.AggregateTableColumn); Expandir copiaría cada cuota en una fila nueva."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Recuento de"
+          },
+          {
+            "id": "o2",
+            "text": "Suma de"
+          },
+          {
+            "id": "o3",
+            "text": "Mínimo de"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "El total pagado es la suma de los importes de las cuotas de cada socio; el recuento daría el número de cuotas."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "una fila por socio"
+          },
+          {
+            "id": "o2",
+            "text": "una fila por cuota"
+          },
+          {
+            "id": "o3",
+            "text": "una fila por socio y año"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Al agregar, cada fila de Socios recibe un único valor calculado sobre su tabla anidada, así que el número de filas no cambia."
+      }
+    ],
+    "keyPoint": "Tras combinar una tabla con varias filas por clave, Agregar resume los valores en la misma fila; Expandir multiplica las filas.",
+    "references": [
+      {
+        "title": "Introducción a las combinaciones de consultas",
+        "url": "https://learn.microsoft.com/es-es/power-query/merge-queries-overview"
+      },
+      {
+        "title": "Table.AggregateTableColumn",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-aggregatetablecolumn"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-106",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 1,
+    "scenario": "En Seguros Olmo, la columna Póliza contiene códigos como los de la tabla. Seleccionas Póliza, eliges Agregar columna > Columna a partir de los ejemplos (*Column from examples*) > De la selección y escribes MAD y BCN en las dos primeras filas.",
+    "table": {
+      "caption": "Columna Póliza",
+      "headers": [
+        "Póliza"
+      ],
+      "rows": [
+        [
+          "ES-MAD-00412"
+        ],
+        [
+          "ES-BCN-00977"
+        ],
+        [
+          "ES-SEV-01203"
+        ],
+        [
+          "ES-VLC-00058"
+        ]
+      ]
+    },
+    "prompt": "Power Query encuentra una transformación que reproduce tus ejemplos y seleccionas Aceptar. ¿Qué ocurre?",
+    "options": [
+      {
+        "id": "a",
+        "text": "La nueva columna sustituye a la columna Póliza en la tabla",
+        "correct": false,
+        "explanation": "Las opciones de la pestaña Agregar columna crean una columna nueva y conservan la original; si no la necesitas, la quitas en otro paso."
+      },
+      {
+        "id": "b",
+        "text": "Power Query guarda tus ejemplos y vuelve a deducir los valores con IA en cada actualización",
+        "correct": false,
+        "explanation": "La deducción solo se hace al crear la columna; después queda una fórmula M fija que se evalúa igual en cada actualización."
+      },
+      {
+        "id": "c",
+        "text": "Solo se rellenan las filas visibles en la vista previa y el resto queda en null",
+        "correct": false,
+        "explanation": "Power Query usa las filas de la vista previa para deducir la transformación, pero la fórmula resultante se aplica a todas las filas."
+      },
+      {
+        "id": "d",
+        "text": "Se agrega un paso con una fórmula M, por ejemplo con Text.BetweenDelimiters, que se aplica a todas las filas",
+        "correct": true,
+        "explanation": "La columna se define con una fórmula M que puedes ver en la barra de fórmulas y modificar como cualquier otro paso."
+      }
+    ],
+    "keyPoint": "Columna a partir de los ejemplos traduce tus ejemplos a una fórmula M normal, que queda como un paso más de la consulta.",
+    "references": [
+      {
+        "title": "Agregar una columna a partir de ejemplos",
+        "url": "https://learn.microsoft.com/es-es/power-query/column-from-example"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-107",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "Para la dimensión de fechas de Clínicas Aral creas una consulta en blanco con este código:",
+    "code": {
+      "language": "m",
+      "content": "let\n    Inicio = #date(2026, 1, 1),\n    Fin = #date(2026, 12, 31),\n    Dias = Duration.Days(Fin - Inicio) + 1,\n    Fechas = List.Dates(Inicio, Dias, #duration(1, 0, 0, 0)),\n    Tabla = Table.FromList(Fechas, Splitter.SplitByNothing(), {\"Fecha\"}),\n    Tipo = Table.TransformColumnTypes(Tabla, {{\"Fecha\", type date}}),\n    ConAnio = Table.AddColumn(Tipo, \"Año\", each Date.Year([Fecha]), Int64.Type)\nin\n    ConAnio"
+    },
+    "prompt": "¿Qué devuelve la consulta?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Una tabla de 364 filas, porque List.Dates no incluye la fecha final",
+        "correct": false,
+        "explanation": "List.Dates genera exactamente el número de valores que le pides; Fin - Inicio son 364 días y el + 1 hace que se incluya el 31 de diciembre."
+      },
+      {
+        "id": "b",
+        "text": "Una tabla de 365 filas, una por día de 2026, con las columnas Fecha y Año",
+        "correct": true,
+        "explanation": "Dias vale 365, List.Dates crea una fecha por día, Table.FromList convierte la lista en la columna Fecha y Table.AddColumn añade Año como número entero."
+      },
+      {
+        "id": "c",
+        "text": "Una lista de 365 fechas sin columnas, porque List.Dates devuelve una lista",
+        "correct": false,
+        "explanation": "List.Dates devuelve una lista, pero el paso Tabla la convierte en una tabla de una columna con Table.FromList."
+      },
+      {
+        "id": "d",
+        "text": "Un error, porque el tercer argumento de List.Dates debe ser un número de días",
+        "correct": false,
+        "explanation": "El paso entre fechas es una duración; #duration(1, 0, 0, 0) representa un día y es el valor correcto."
+      }
+    ],
+    "keyPoint": "List.Dates(inicio, número, #duration(1,0,0,0)) genera las fechas de una dimensión de calendario; conviértela en tabla y añade columnas como Año.",
+    "references": [
+      {
+        "title": "List.Dates",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/list-dates"
+      },
+      {
+        "title": "Table.FromList",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-fromlist"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-108",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "La consulta Ventas de Heladerías Polo contiene estas filas y le añades el paso siguiente:",
+    "table": {
+      "caption": "Consulta Ventas",
+      "headers": [
+        "Region",
+        "Mes",
+        "Unidades"
+      ],
+      "rows": [
+        [
+          "Norte",
+          "Ene",
+          "10"
+        ],
+        [
+          "Norte",
+          "Feb",
+          "5"
+        ],
+        [
+          "Sur",
+          "Ene",
+          "8"
+        ],
+        [
+          "Norte",
+          "Feb",
+          "7"
+        ],
+        [
+          "Sur",
+          "Ene",
+          "4"
+        ]
+      ]
+    },
+    "code": {
+      "language": "m",
+      "content": "Pivotada = Table.Pivot(\n    Ventas,\n    List.Distinct(Ventas[Mes]),\n    \"Mes\",\n    \"Unidades\",\n    List.Sum\n)"
+    },
+    "prompt": "¿Qué fila obtiene el paso para la región Sur?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Region = Sur, Ene = 12, Feb = 0",
+        "correct": false,
+        "explanation": "Table.Pivot no inventa ceros: si no hay filas para una combinación, la celda queda en null. Si necesitas 0, reemplaza después los valores null."
+      },
+      {
+        "id": "b",
+        "text": "Dos filas de Sur, con Ene = 8 y Ene = 4",
+        "correct": false,
+        "explanation": "Dinamizar crea una fila por cada valor distinto del resto de columnas (aquí, Region); las dos filas de Sur en Ene se suman con List.Sum."
+      },
+      {
+        "id": "c",
+        "text": "Un error en la celda Ene, porque Sur tiene dos valores para ese mes",
+        "correct": false,
+        "explanation": "Ese error aparece con No agregar (*Don't aggregate*); aquí la función List.Sum resuelve los valores repetidos."
+      },
+      {
+        "id": "d",
+        "text": "Region = Sur, Ene = 12, Feb = null",
+        "correct": true,
+        "explanation": "List.Sum suma 8 + 4 para Ene; como Sur no tiene filas de Feb, la celda queda en null."
+      }
+    ],
+    "keyPoint": "Columna dinámica con una agregación (Suma por defecto) resume los valores repetidos; las combinaciones sin datos quedan en null.",
+    "references": [
+      {
+        "title": "Columnas dinámicas",
+        "url": "https://learn.microsoft.com/es-es/power-query/pivot-columns"
+      },
+      {
+        "title": "Table.Pivot",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-pivot"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-109",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "En Ópticas Lirio quieres anexar las consultas VentasTienda, VentasWeb y VentasMayorista. Solo VentasWeb tiene la columna CodigoCupon, y algunos pedidos aparecen por error tanto en VentasTienda como en VentasWeb.",
+    "prompt": "Indica si cada afirmación es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puedes anexar las tres consultas en un solo paso con la opción Tres o más tablas (*Three or more tables*).",
+        "answer": true,
+        "explanation": "El cuadro de diálogo Anexar tiene el modo Dos tablas (predeterminado) y el modo Tres o más tablas, que admite cualquier número de consultas."
+      },
+      {
+        "id": "s2",
+        "text": "En el resultado, CodigoCupon contiene null en las filas que proceden de VentasTienda y VentasMayorista.",
+        "answer": true,
+        "explanation": "El resultado incluye todas las columnas de todas las tablas; cuando una tabla no tiene una columna, sus filas muestran null en ella."
+      },
+      {
+        "id": "s3",
+        "text": "Anexar elimina automáticamente las filas idénticas que aparecen en más de una consulta.",
+        "answer": false,
+        "explanation": "Anexar solo apila las filas de las tablas; si hay pedidos repetidos, debes quitarlos después con Quitar duplicados."
+      },
+      {
+        "id": "s4",
+        "text": "El orden en que eliges las tablas no influye en el orden de las filas del resultado.",
+        "answer": false,
+        "explanation": "Las tablas se anexan en el orden en que se seleccionan, empezando por la tabla principal; las filas del resultado siguen ese orden."
+      }
+    ],
+    "keyPoint": "Anexar apila las filas en el orden elegido, une todas las columnas (null donde falten) y no quita duplicados.",
+    "references": [
+      {
+        "title": "Anexar consultas",
+        "url": "https://learn.microsoft.com/es-es/power-query/append-queries"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-110",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "En la consulta Reservas de Albergues Nido, Base nunca es null, pero Suplemento puede serlo. Quieres una columna personalizada Total que sume ambas columnas y trate null como 0 (para R2 debe dar 90).",
+    "table": {
+      "caption": "Consulta Reservas",
+      "headers": [
+        "IdReserva",
+        "Base",
+        "Suplemento"
+      ],
+      "rows": [
+        [
+          "R1",
+          "120",
+          "15"
+        ],
+        [
+          "R2",
+          "90",
+          "null"
+        ],
+        [
+          "R3",
+          "200",
+          "30"
+        ]
+      ]
+    },
+    "prompt": "¿Qué tres fórmulas de columna personalizada lo consiguen? Cada respuesta correcta es una solución completa. Selecciona tres.",
+    "options": [
+      {
+        "id": "a",
+        "text": "[Base] + [Suplemento]",
+        "correct": false,
+        "explanation": "En M, una operación aritmética con un operando null devuelve null, así que R2 obtendría null en lugar de 90."
+      },
+      {
+        "id": "b",
+        "text": "[Base] + ([Suplemento] ?? 0)",
+        "correct": true,
+        "explanation": "El operador de fusión ?? devuelve el operando izquierdo si no es null y, si lo es, el derecho; el null se sustituye por 0 antes de sumar."
+      },
+      {
+        "id": "c",
+        "text": "List.Sum({[Base], [Suplemento]})",
+        "correct": true,
+        "explanation": "List.Sum suma los valores no null de la lista, así que para R2 devuelve 90."
+      },
+      {
+        "id": "d",
+        "text": "[Base] & [Suplemento]",
+        "correct": false,
+        "explanation": "El operador & concatena textos, listas o registros; con números produce un error en lugar de sumar."
+      },
+      {
+        "id": "e",
+        "text": "if [Suplemento] = null then [Base] else [Base] + [Suplemento]",
+        "correct": true,
+        "explanation": "La condición trata explícitamente el caso null y solo suma cuando hay suplemento."
+      },
+      {
+        "id": "f",
+        "text": "Number.From([Base] + [Suplemento])",
+        "correct": false,
+        "explanation": "La suma se evalúa antes y ya da null; Number.From(null) también devuelve null."
+      }
+    ],
+    "keyPoint": "En M, null + número = null: usa ??, List.Sum o un if para tratar los null antes de operar.",
+    "references": [
+      {
+        "title": "Comportamiento de los operadores (especificación del lenguaje M)",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/m-spec-operators"
+      },
+      {
+        "title": "List.Sum",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/list-sum"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-111",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "En Pinturas Sierra escribes este paso en la barra de fórmulas para clasificar los pedidos:",
+    "code": {
+      "language": "m",
+      "content": "Tamaño = Table.AddColumn(\n    Pedidos,\n    \"Tamaño\",\n    each if [Importe] >= 1000 then \"Grande\"\n        else if [Importe] >= 300 then \"Mediano\",\n    type text\n)"
+    },
+    "prompt": "Power Query muestra un error de sintaxis (Expression.SyntaxError) al confirmar el paso. ¿Cuál es la causa?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Falta el else final: en M, toda expresión if debe tener una parte then y una parte else",
+        "correct": true,
+        "explanation": "La sintaxis es if condición then valor else valor; el segundo if no tiene else, así que el analizador espera ese token y falla."
+      },
+      {
+        "id": "b",
+        "text": "En M, el operador «mayor o igual que» se escribe =>",
+        "correct": false,
+        "explanation": ">= es el operador correcto; => se usa para definir funciones, por ejemplo (x) => x * 2."
+      },
+      {
+        "id": "c",
+        "text": "En M, else if no existe y las condiciones anidadas se escriben con elseif",
+        "correct": false,
+        "explanation": "M no tiene la palabra clave elseif: las condiciones se encadenan anidando una expresión if dentro del else."
+      },
+      {
+        "id": "d",
+        "text": "Las palabras clave deben ir en mayúsculas: IF, THEN y ELSE",
+        "correct": false,
+        "explanation": "M distingue mayúsculas de minúsculas y sus palabras clave se escriben en minúsculas; IF en mayúsculas sí sería un error."
+      }
+    ],
+    "keyPoint": "En M no hay if sin else: cada if necesita then y else, y las condiciones múltiples se anidan con else if.",
+    "references": [
+      {
+        "title": "Condicionales (especificación del lenguaje M)",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/m-spec-conditionals"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-112",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 3,
+    "scenario": "En Mobiliario Haya, la consulta Productos contiene estas filas y le añades el paso del código.",
+    "table": {
+      "caption": "Consulta Productos",
+      "headers": [
+        "IdProducto",
+        "Nombre"
+      ],
+      "rows": [
+        [
+          "1",
+          "Silla Pro"
+        ],
+        [
+          "2",
+          "silla plegable"
+        ],
+        [
+          "3",
+          "Mesa con SILLA"
+        ],
+        [
+          "4",
+          "Sillón Alto"
+        ],
+        [
+          "5",
+          "Taburete"
+        ]
+      ]
+    },
+    "code": {
+      "language": "m",
+      "content": "Sillas = Table.SelectRows(Productos, each Text.Contains([Nombre], \"Silla\"))"
+    },
+    "prompt": "Completa la frase.",
+    "template": "El paso devuelve {{b1}}. Para incluir también «silla plegable» y «Mesa con SILLA», añades a Text.Contains el tercer argumento {{b2}}, y entonces el paso devuelve {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "1 fila"
+          },
+          {
+            "id": "o2",
+            "text": "3 filas"
+          },
+          {
+            "id": "o3",
+            "text": "4 filas"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Text.Contains distingue mayúsculas de minúsculas por defecto: solo «Silla Pro» contiene exactamente «Silla». «Sillón» no contiene «Silla»."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Comparer.Ordinal"
+          },
+          {
+            "id": "o2",
+            "text": "Comparer.OrdinalIgnoreCase"
+          },
+          {
+            "id": "o3",
+            "text": "\"es-ES\""
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Comparer.OrdinalIgnoreCase compara sin distinguir mayúsculas; Comparer.Ordinal es la comparación que distingue mayúsculas, y el tercer argumento espera un comparador, no una referencia cultural."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "3 filas"
+          },
+          {
+            "id": "o2",
+            "text": "4 filas"
+          },
+          {
+            "id": "o3",
+            "text": "5 filas"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Sin distinguir mayúsculas coinciden «Silla Pro», «silla plegable» y «Mesa con SILLA»; «Sillón Alto» sigue sin contener «silla»."
+      }
+    ],
+    "keyPoint": "Las funciones de texto de M distinguen mayúsculas por defecto; pasa Comparer.OrdinalIgnoreCase para comparar sin distinguirlas.",
+    "references": [
+      {
+        "title": "Text.Contains",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/text-contains"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-113",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 3,
+    "scenario": "En Repuestos Navarra, la consulta Productos reúne los catálogos de dos ERP. Aplicas Quitar duplicados (*Remove duplicates*) a IdProducto, pero al cargar el modelo la relación con Ventas falla porque IdProducto contiene valores duplicados en el lado «uno».",
+    "table": {
+      "caption": "Consulta Productos después de Quitar duplicados (extracto)",
+      "headers": [
+        "IdProducto",
+        "Nombre"
+      ],
+      "rows": [
+        [
+          "AB-100",
+          "Bomba de agua"
+        ],
+        [
+          "ab-100",
+          "Bomba de agua"
+        ],
+        [
+          "CD-200",
+          "Filtro de aceite"
+        ]
+      ]
+    },
+    "prompt": "¿Qué debes hacer en Power Query para resolverlo?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Aplicar Formato > MAYÚSCULAS a IdProducto antes de Quitar duplicados",
+        "correct": true,
+        "explanation": "Power Query distingue mayúsculas al quitar duplicados, pero el motor del modelo no: para él «AB-100» y «ab-100» son el mismo valor. Normalizar antes deja una sola fila."
+      },
+      {
+        "id": "b",
+        "text": "Aplicar Recortar (*Trim*) a IdProducto antes de Quitar duplicados",
+        "correct": false,
+        "explanation": "Recortar quita espacios al principio y al final; aquí los valores solo se diferencian en las mayúsculas."
+      },
+      {
+        "id": "c",
+        "text": "Aplicar Quitar duplicados seleccionando todas las columnas de la consulta",
+        "correct": false,
+        "explanation": "Con más columnas la comparación es aún más estricta y sigue distinguiendo «AB-100» de «ab-100»."
+      },
+      {
+        "id": "d",
+        "text": "Cambiar el tipo de IdProducto a Número entero",
+        "correct": false,
+        "explanation": "Los códigos son alfanuméricos: la conversión produciría errores y no resolvería la diferencia entre mayúsculas y minúsculas."
+      }
+    ],
+    "keyPoint": "Power Query distingue mayúsculas y el modelo no; normaliza el texto de las claves antes de quitar duplicados.",
+    "references": [
+      {
+        "title": "Trabajar con duplicados",
+        "url": "https://learn.microsoft.com/es-es/power-query/working-with-duplicates"
+      },
+      {
+        "title": "DirectQuery en Power BI (distinción entre mayúsculas y minúsculas)",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/desktop-directquery-about"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-114",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "La consulta Incidencias de Aguas Teide lee un CSV exportado de un sistema de tickets y tiene este paso:",
+    "code": {
+      "language": "m",
+      "content": "SinColumnas = Table.RemoveColumns(Origen, {\"Comentario\", \"Usuario\"})"
+    },
+    "prompt": "Completa la frase.",
+    "template": "Si el sistema añade al CSV una columna Auditoria, {{b1}}. Si deja de exportar la columna Usuario, {{b2}}. Para cargar siempre solo IdIncidencia, Fecha y Estado, {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "el paso la quita automáticamente"
+          },
+          {
+            "id": "o2",
+            "text": "la columna Auditoria se carga en el modelo"
+          },
+          {
+            "id": "o3",
+            "text": "el paso produce un error"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Table.RemoveColumns solo quita las columnas de su lista; cualquier columna nueva pasa al resultado y se carga."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "el paso ignora la columna que falta"
+          },
+          {
+            "id": "o2",
+            "text": "Power Query la recrea con valores null"
+          },
+          {
+            "id": "o3",
+            "text": "el paso produce un error al actualizar"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "Si una columna de la lista no existe, Table.RemoveColumns produce un error, salvo que se indique MissingField.Ignore o MissingField.UseNull."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "seleccionas esas tres columnas y usas Quitar otras columnas, que genera Table.SelectColumns"
+          },
+          {
+            "id": "o2",
+            "text": "añades Auditoria a la lista de Table.RemoveColumns"
+          },
+          {
+            "id": "o3",
+            "text": "desactivas Habilitar carga en la consulta"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Quitar otras columnas (*Remove other columns*) indica qué columnas conservar, así que las columnas nuevas del origen no llegan al modelo. Añadir Auditoria solo resuelve esa columna, y deshabilitar la carga quitaría toda la tabla."
+      }
+    ],
+    "keyPoint": "Quitar columnas enumera lo que se elimina (las columnas nuevas pasan); Quitar otras columnas enumera lo que se conserva.",
+    "references": [
+      {
+        "title": "Elegir o quitar columnas",
+        "url": "https://learn.microsoft.com/es-es/power-query/choose-remove-columns"
+      },
+      {
+        "title": "Table.RemoveColumns",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-removecolumns"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-115",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "En Ferreterías Nogal, varias consultas necesitan calcular el precio con IVA. Quieres definir una vez la función del código y aplicarla a la consulta Ventas, que tiene las columnas Importe y TipoIva.",
+    "code": {
+      "language": "m",
+      "content": "(importe as number, tipoIva as number) as number =>\n    importe * (1 + tipoIva)"
+    },
+    "prompt": "Ordena los pasos en el Editor de Power Query.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Crear una nueva consulta en blanco (*Blank query*) desde el panel Consultas",
+        "explanation": "La función necesita su propia consulta, que todavía no existe."
+      },
+      {
+        "id": "p2",
+        "text": "Abrir el Editor avanzado y sustituir el contenido por la definición de la función",
+        "explanation": "Al pegar la expresión (parámetros) => cuerpo, la consulta pasa a ser una función."
+      },
+      {
+        "id": "p3",
+        "text": "Cambiar el nombre de la consulta a fnPrecioConIva",
+        "explanation": "El nombre de la consulta es el nombre con el que se invoca la función desde otras consultas."
+      },
+      {
+        "id": "p4",
+        "text": "Seleccionar Ventas y elegir Agregar columna > Invocar función personalizada (*Invoke custom function*)",
+        "explanation": "La función se aplica a la tabla en la que se quiere la nueva columna, que se crea desde la pestaña Agregar columna."
+      },
+      {
+        "id": "p5",
+        "text": "Elegir fnPrecioConIva, llamar ImporteConIva a la columna y asignar Importe y TipoIva a los parámetros",
+        "explanation": "En el cuadro de diálogo se indica la función y qué columna alimenta cada parámetro; la función se evalúa fila a fila."
+      }
+    ],
+    "keyPoint": "Función personalizada: consulta en blanco → definición en el Editor avanzado → nombre → Invocar función personalizada en la tabla destino.",
+    "references": [
+      {
+        "title": "Uso de funciones personalizadas",
+        "url": "https://learn.microsoft.com/es-es/power-query/custom-function"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-116",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 2,
+    "scenario": "En Mensajería Rayo, la consulta Envíos tiene las columnas FechaPedido y FechaEntrega, de tipo Fecha. Quieres una columna personalizada DiasEntrega con el número de días entre ambas fechas, como número, para poder promediarla.",
+    "table": {
+      "caption": "Consulta Envíos (extracto)",
+      "headers": [
+        "IdEnvio",
+        "FechaPedido",
+        "FechaEntrega"
+      ],
+      "rows": [
+        [
+          "E1",
+          "02/03/2026",
+          "05/03/2026"
+        ],
+        [
+          "E2",
+          "28/02/2026",
+          "03/03/2026"
+        ]
+      ]
+    },
+    "prompt": "¿Qué dos fórmulas lo consiguen? Cada respuesta correcta es una solución completa. Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "[FechaEntrega] - [FechaPedido]",
+        "correct": false,
+        "explanation": "Restar dos fechas en M devuelve un valor de tipo duración (por ejemplo, 3.00:00:00), no un número."
+      },
+      {
+        "id": "b",
+        "text": "Duration.Days([FechaEntrega] - [FechaPedido])",
+        "correct": true,
+        "explanation": "Duration.Days extrae la parte de días de la duración que resulta de la resta: 3 para E1 y 3 para E2."
+      },
+      {
+        "id": "c",
+        "text": "Date.Day([FechaEntrega]) - Date.Day([FechaPedido])",
+        "correct": false,
+        "explanation": "Date.Day devuelve el día del mes; para E2 daría 3 - 28 = -25, porque no tiene en cuenta el cambio de mes."
+      },
+      {
+        "id": "d",
+        "text": "Number.From([FechaEntrega] - [FechaPedido])",
+        "correct": true,
+        "explanation": "Number.From convierte una duración en días (enteros y fraccionarios); entre dos fechas sin hora devuelve el número de días."
+      },
+      {
+        "id": "e",
+        "text": "Duration.Days([FechaEntrega]) - Duration.Days([FechaPedido])",
+        "correct": false,
+        "explanation": "Duration.Days espera una duración, no una fecha, así que cada llamada produce un error."
+      }
+    ],
+    "keyPoint": "En M, fecha - fecha = duración; conviértela en número de días con Duration.Days o Number.From.",
+    "references": [
+      {
+        "title": "Duration.Days",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/duration-days"
+      },
+      {
+        "title": "Number.From",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/number-from"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-117",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 1,
+    "prompt": "Empareja cada acción del Editor de Power Query con la función M del paso que genera.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Combinar consultas (*Merge queries*) por una columna clave",
+        "answerId": "c1",
+        "explanation": "Table.NestedJoin añade una columna con una tabla anidada de las filas coincidentes, que después se expande o agrega."
+      },
+      {
+        "id": "m2",
+        "text": "Anexar consultas (*Append queries*)",
+        "answerId": "c2",
+        "explanation": "Table.Combine recibe una lista de tablas y las apila en una sola."
+      },
+      {
+        "id": "m3",
+        "text": "Rellenar > Hacia abajo (*Fill down*)",
+        "answerId": "c3",
+        "explanation": "Table.FillDown copia el último valor no null en las celdas null siguientes de las columnas indicadas."
+      },
+      {
+        "id": "m4",
+        "text": "Agregar columna de índice (*Index column*)",
+        "answerId": "c4",
+        "explanation": "Table.AddIndexColumn crea una columna con valores secuenciales, con el valor inicial y el incremento indicados."
+      },
+      {
+        "id": "m5",
+        "text": "Quitar duplicados (*Remove duplicates*)",
+        "answerId": "c5",
+        "explanation": "Table.Distinct conserva una fila por cada valor distinto de las columnas seleccionadas."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Table.NestedJoin"
+      },
+      {
+        "id": "c2",
+        "text": "Table.Combine"
+      },
+      {
+        "id": "c3",
+        "text": "Table.FillDown"
+      },
+      {
+        "id": "c4",
+        "text": "Table.AddIndexColumn"
+      },
+      {
+        "id": "c5",
+        "text": "Table.Distinct"
+      },
+      {
+        "id": "c6",
+        "text": "Table.Group"
+      },
+      {
+        "id": "c7",
+        "text": "Table.ReplaceValue"
+      }
+    ],
+    "keyPoint": "Reconocer la función M de cada paso (NestedJoin, Combine, FillDown, AddIndexColumn, Distinct) ayuda a leer y depurar consultas.",
+    "references": [
+      {
+        "title": "Table.NestedJoin",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-nestedjoin"
+      },
+      {
+        "title": "Table.Combine",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-combine"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d1-transformar-118",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "difficulty": 1,
+    "prompt": "Indica si cada afirmación sobre las columnas en Power Query es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Si cambias a Número entero una columna CódigoPostal con valores como 08001, se pierde el cero inicial.",
+        "answer": true,
+        "explanation": "Un número no guarda ceros a la izquierda: 08001 pasa a ser 8001. Los códigos que no se usan en cálculos deben quedarse como texto."
+      },
+      {
+        "id": "s2",
+        "text": "Las opciones de la pestaña Transformar modifican la columna seleccionada, mientras que las de Agregar columna crean una columna nueva.",
+        "answer": true,
+        "explanation": "Por ejemplo, Estándar > Multiplicar en Transformar cambia los valores existentes; la misma opción en Agregar columna deja la original y añade el resultado."
+      },
+      {
+        "id": "s3",
+        "text": "Agregar columna de índice siempre empieza en 1 y su incremento no se puede cambiar.",
+        "answer": false,
+        "explanation": "Por defecto empieza en 0 con incremento 1; puedes elegir Desde 1 o Personalizado para indicar el valor inicial y el incremento."
+      },
+      {
+        "id": "s4",
+        "text": "En el modo Importar, una columna personalizada de Power Query se recalcula cada vez que un usuario filtra el informe.",
+        "answer": false,
+        "explanation": "Se evalúa al actualizar los datos y su resultado se almacena en el modelo; los filtros del informe no la recalculan."
+      }
+    ],
+    "keyPoint": "Guarda los códigos como texto, distingue Transformar (modifica) de Agregar columna (crea) y recuerda que el índice empieza en 0 por defecto.",
+    "references": [
+      {
+        "title": "Agregar una columna de índice",
+        "url": "https://learn.microsoft.com/es-es/power-query/add-index-column"
+      },
+      {
+        "title": "Tipos de datos en Power Query",
+        "url": "https://learn.microsoft.com/es-es/power-query/data-types"
+      }
+    ]
+  }
+]
