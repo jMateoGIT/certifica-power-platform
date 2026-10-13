@@ -10,7 +10,7 @@
     "scenario": "Distribuidora Alba prepara en Power BI Desktop la consulta Clientes sobre una base de datos de SQL Server. Este es su código:",
     "code": {
       "language": "m",
-      "content": "let\n    Origen = Sql.Database(\"sql-alba\", \"Comercial\"),\n    Clientes = Origen{[Schema = \"dbo\", Item = \"Clientes\"]}[Data],\n    FilasFiltradas = Table.SelectRows(Clientes, each [Pais] = \"ES\"),\n    OtrasQuitadas = Table.SelectColumns(FilasFiltradas, {\"IdCliente\", \"Nombre\", \"Segmento\"}),\n    Mayusculas = Table.TransformColumns(OtrasQuitadas, {{\"Nombre\", Text.Proper, type text}}),\n    EmpiezanPorA = Table.SelectRows(Mayusculas, each Text.StartsWith([Nombre], \"A\"))\nin\n    EmpiezanPorA"
+      "content": "let\n    Origen = Sql.Database(\"sql-alba\", \"Comercial\"),\n    Clientes = Origen{[Schema = \"dbo\", Item = \"Clientes\"]}[Data],\n    FilasFiltradas = Table.SelectRows(Clientes, each [Pais] = \"ES\"),\n    OtrasQuitadas = Table.SelectColumns(FilasFiltradas, {\"IdCliente\", \"Nombre\", \"Segmento\"}),\n    NombrePropio = Table.TransformColumns(OtrasQuitadas, {{\"Nombre\", Text.Proper, type text}}),\n    EmpiezanPorA = Table.SelectRows(NombrePropio, each Text.StartsWith([Nombre], \"A\"))\nin\n    EmpiezanPorA"
     },
     "prompt": "¿Qué afirmación describe correctamente el plegado de consultas (*query folding*) de esta consulta?",
     "options": [
@@ -22,7 +22,7 @@
       },
       {
         "id": "b",
-        "text": "FilasFiltradas y OtrasQuitadas se pliegan; Mayusculas y EmpiezanPorA se evalúan en el motor de Power Query",
+        "text": "FilasFiltradas y OtrasQuitadas se pliegan; NombrePropio y EmpiezanPorA se evalúan en el motor de Power Query",
         "correct": true,
         "explanation": "El filtro de filas y la selección de columnas se traducen a WHERE y a la lista del SELECT. Text.Proper no se pliega, y el filtro posterior depende de su resultado, así que ambos se ejecutan localmente."
       },
@@ -34,7 +34,7 @@
       },
       {
         "id": "d",
-        "text": "Mayusculas se ejecuta localmente, pero EmpiezanPorA vuelve a plegarse porque es un filtro de filas",
+        "text": "NombrePropio se ejecuta localmente, pero EmpiezanPorA vuelve a plegarse porque es un filtro de filas",
         "correct": false,
         "explanation": "El filtro trabaja sobre la columna ya transformada por Text.Proper, que solo existe en el motor de Power Query; no puede enviarse al origen."
       }
@@ -59,49 +59,76 @@
     "domain": "d1",
     "skill": "d1-transformar",
     "difficulty": 2,
-    "scenario": "En Logística Trébol preparas en Power BI Desktop varias consultas sobre una base de datos de SQL Server y quieres que la mayor parte posible del trabajo se haga en el origen.",
-    "prompt": "¿Qué dos afirmaciones sobre el plegado de consultas son correctas? Selecciona dos.",
+    "scenario": "En Inmobiliaria Cauce, la columna Ubicacion de la consulta Inmuebles guarda la ruta geográfica de cada inmueble, con los niveles separados por barras. El número de niveles varía, pero el municipio siempre es el último.",
+    "table": {
+      "caption": "Columna Ubicacion (extracto)",
+      "headers": [
+        "Ubicacion"
+      ],
+      "rows": [
+        [
+          "ES/Castilla y León/Burgos/Aranda de Duero"
+        ],
+        [
+          "ES/Madrid/Alcobendas"
+        ],
+        [
+          "ES/Galicia/A Coruña/Santiago de Compostela"
+        ]
+      ]
+    },
+    "prompt": "Quieres obtener una columna que contenga solo el municipio de cada inmueble. ¿Qué dos acciones lo consiguen? Cada respuesta correcta es una solución completa. Selecciona dos.",
     "options": [
       {
         "id": "a",
-        "text": "Un paso que no se pliega obliga a ejecutar en el motor de Power Query también todos los pasos anteriores",
-        "correct": false,
-        "explanation": "Los pasos anteriores siguen plegándose: el origen ejecuta todo lo que se pudo traducir hasta ese punto y el motor de Power Query procesa el resto."
+        "text": "Dividir columna > Por delimitador, con «/» y la opción Delimitador más a la derecha (*Right-most delimiter*)",
+        "correct": true,
+        "explanation": "Divide cada valor en dos columnas por la última barra: la segunda (Ubicacion.2) contiene siempre el municipio, tenga la ruta tres o cuatro niveles."
       },
       {
         "id": "b",
-        "text": "Si escribes una instrucción SQL en las Opciones avanzadas del conector, los pasos que añadas después no se pliegan",
-        "correct": true,
-        "explanation": "Con una consulta nativa escrita en el cuadro de diálogo del conector, Power Query no aprovecha el plegado de los pasos posteriores."
+        "text": "Dividir columna > Por delimitador, con «/» y Cada aparición del delimitador, y conservar la columna Ubicacion.4",
+        "correct": false,
+        "explanation": "Las rutas no tienen todas el mismo número de niveles: en «ES/Madrid/Alcobendas» el municipio queda en Ubicacion.3 y Ubicacion.4 queda en null."
       },
       {
         "id": "c",
-        "text": "Al conectarte a un archivo CSV, los filtros de filas se pliegan para que solo se lean las filas necesarias",
-        "correct": false,
-        "explanation": "Los orígenes sin motor de consultas, como los archivos CSV y Excel, no admiten plegado: Power Query lee el archivo y aplica las transformaciones él mismo."
+        "text": "Agregar una columna personalizada con Text.AfterDelimiter([Ubicacion], \"/\", {0, RelativePosition.FromEnd})",
+        "correct": true,
+        "explanation": "El índice {0, RelativePosition.FromEnd} indica la primera barra contando desde el final, es decir, la última, y la función devuelve el texto que la sigue."
       },
       {
         "id": "d",
-        "text": "Con Value.NativeQuery y la opción [EnableFolding = true], los pasos posteriores a la consulta nativa pueden plegarse",
-        "correct": true,
-        "explanation": "En los conectores compatibles, como SQL Server, esta opción envuelve la consulta nativa en una subconsulta y mantiene activo el plegado de los pasos siguientes."
+        "text": "Agregar una columna personalizada con Text.AfterDelimiter([Ubicacion], \"/\")",
+        "correct": false,
+        "explanation": "Sin índice se usa la primera barra: devuelve «Castilla y León/Burgos/Aranda de Duero» en lugar del municipio."
       },
       {
         "id": "e",
-        "text": "En DirectQuery, los pasos que no se pliegan se ejecutan localmente cada vez que un objeto visual consulta la tabla",
+        "text": "Agregar una columna personalizada con Text.BeforeDelimiter([Ubicacion], \"/\", {0, RelativePosition.FromEnd})",
         "correct": false,
-        "explanation": "En DirectQuery las transformaciones deben condensarse en una consulta nativa; los pasos que no se pueden plegar provocan errores y obligan a simplificarlos o a cambiar a Importar."
-      }
-    ],
-    "keyPoint": "Una consulta SQL escrita en el conector corta el plegado de los pasos siguientes; Value.NativeQuery con EnableFolding = true lo mantiene.",
-    "references": [
-      {
-        "title": "Plegado de consultas en consultas nativas",
-        "url": "https://learn.microsoft.com/es-es/power-query/native-query-folding"
+        "explanation": "Devuelve el texto anterior a la última barra, es decir, la ruta sin el municipio, como «ES/Castilla y León/Burgos»."
       },
       {
-        "title": "Información general sobre la evaluación de consultas y el plegado de consultas",
-        "url": "https://learn.microsoft.com/es-es/power-query/query-folding-basics"
+        "id": "f",
+        "text": "Extraer > Últimos caracteres (*Last characters*) con el valor 15",
+        "correct": false,
+        "explanation": "Los nombres de municipio tienen longitudes distintas: un número fijo de caracteres corta unos y añade a otros parte de la ruta."
+      }
+    ],
+    "keyPoint": "Para quedarte con el último fragmento de un texto con un número variable de separadores, divide por el delimitador más a la derecha o usa Text.AfterDelimiter con RelativePosition.FromEnd.",
+    "references": [
+      {
+        "title": "Dividir columnas por delimitador",
+        "url": "https://learn.microsoft.com/es-es/power-query/split-columns-delimiter"
+      },
+      {
+        "title": "Text.AfterDelimiter",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/text-afterdelimiter"
+      },
+      {
+        "title": "Text.BeforeDelimiter",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/text-beforedelimiter"
       }
     ]
   },
@@ -149,9 +176,9 @@
       },
       {
         "id": "b",
-        "text": "Activar Ignorar mayúsculas y minúsculas (*Ignore case*)",
+        "text": "Activar Mostrar puntuaciones de similitud (*Show similarity scores*)",
         "correct": false,
-        "explanation": "El problema no es de mayúsculas: «TRL» y el nombre completo son textos distintos. Además, la fila en minúsculas ya coincide."
+        "explanation": "Solo añade una columna con la puntuación de cada coincidencia; ayuda a ajustar el umbral, pero no hace que «TRL» coincida con nada."
       },
       {
         "id": "c",
@@ -161,9 +188,9 @@
       },
       {
         "id": "d",
-        "text": "Activar Coincidencia mediante la combinación de elementos de texto (*Match by combining text parts*)",
+        "text": "Indicar 1 en Número de coincidencias (*Maximum number of matches*)",
         "correct": false,
-        "explanation": "Esta opción une fragmentos separados, por ejemplo «Micro soft» con «Microsoft»; no convierte una sigla en un nombre."
+        "explanation": "Limita cuántas filas coincidentes se devuelven por cada fila de entrada; no crea coincidencias para valores que no alcanzan el umbral."
       }
     ],
     "keyPoint": "Para alias y siglas que no se parecen al valor de referencia, usa una tabla de transformación en la combinación aproximada en lugar de bajar el umbral.",
@@ -461,37 +488,37 @@
     "domain": "d1",
     "skill": "d1-transformar",
     "difficulty": 2,
-    "scenario": "La consulta Ventas de Heladerías Polo contiene estas filas y le añades el paso siguiente:",
+    "scenario": "En Heladerías Polo quieres una columna por mes con las unidades vendidas en cada tienda. Sobre la consulta Ventas, que tiene estas filas, aplicas Columna dinámica (*Pivot column*) a Mes, con Unidades como columna de valores y la función de agregado Suma, y obtienes este paso:",
     "table": {
       "caption": "Consulta Ventas",
       "headers": [
-        "Region",
+        "Tienda",
         "Mes",
         "Unidades"
       ],
       "rows": [
         [
-          "Norte",
+          "Centro",
           "Ene",
           "10"
         ],
         [
-          "Norte",
+          "Centro",
           "Feb",
           "5"
         ],
         [
-          "Sur",
+          "Puerto",
           "Ene",
           "8"
         ],
         [
-          "Norte",
+          "Centro",
           "Feb",
           "7"
         ],
         [
-          "Sur",
+          "Puerto",
           "Ene",
           "4"
         ]
@@ -501,31 +528,31 @@
       "language": "m",
       "content": "Pivotada = Table.Pivot(\n    Ventas,\n    List.Distinct(Ventas[Mes]),\n    \"Mes\",\n    \"Unidades\",\n    List.Sum\n)"
     },
-    "prompt": "¿Qué fila obtiene el paso para la región Sur?",
+    "prompt": "¿Qué valores muestra el resultado para la tienda Puerto?",
     "options": [
       {
         "id": "a",
-        "text": "Region = Sur, Ene = 12, Feb = 0",
+        "text": "Tienda = Puerto, Ene = 12, Feb = 0",
         "correct": false,
         "explanation": "Table.Pivot no inventa ceros: si no hay filas para una combinación, la celda queda en null. Si necesitas 0, reemplaza después los valores null."
       },
       {
         "id": "b",
-        "text": "Dos filas de Sur, con Ene = 8 y Ene = 4",
+        "text": "Dos filas de Puerto, con Ene = 8 y Ene = 4",
         "correct": false,
-        "explanation": "Dinamizar crea una fila por cada valor distinto del resto de columnas (aquí, Region); las dos filas de Sur en Ene se suman con List.Sum."
+        "explanation": "Dinamizar crea una fila por cada valor distinto del resto de columnas (aquí, Tienda); las dos filas de Puerto en Ene se suman con List.Sum."
       },
       {
         "id": "c",
-        "text": "Un error en la celda Ene, porque Sur tiene dos valores para ese mes",
+        "text": "Un error en la celda Ene, porque Puerto tiene dos valores para ese mes",
         "correct": false,
         "explanation": "Ese error aparece con No agregar (*Don't aggregate*); aquí la función List.Sum resuelve los valores repetidos."
       },
       {
         "id": "d",
-        "text": "Region = Sur, Ene = 12, Feb = null",
+        "text": "Tienda = Puerto, Ene = 12, Feb = null",
         "correct": true,
-        "explanation": "List.Sum suma 8 + 4 para Ene; como Sur no tiene filas de Feb, la celda queda en null."
+        "explanation": "List.Sum suma 8 + 4 para Ene; como Puerto no tiene filas de Feb, la celda queda en null."
       }
     ],
     "keyPoint": "Columna dinámica con una agregación (Suma por defecto) resume los valores repetidos; las combinaciones sin datos quedan en null.",
@@ -835,65 +862,69 @@
     "outlineVersion": "2026-04-20",
     "domain": "d1",
     "skill": "d1-transformar",
-    "difficulty": 3,
-    "scenario": "En Repuestos Navarra, la consulta Productos reúne los catálogos de dos ERP. Aplicas Quitar duplicados (*Remove duplicates*) a IdProducto, pero al cargar el modelo la relación con Ventas falla porque IdProducto contiene valores duplicados en el lado «uno».",
+    "difficulty": 2,
+    "scenario": "En Transportes Garnacha, la consulta Envíos tiene las columnas IdEnvio, Origen, Destino y Kilos. La consulta Tarifas tiene una fila por trayecto, y el precio depende del sentido del viaje:",
     "table": {
-      "caption": "Consulta Productos después de Quitar duplicados (extracto)",
+      "caption": "Consulta Tarifas",
       "headers": [
-        "IdProducto",
-        "Nombre"
+        "Origen",
+        "Destino",
+        "PrecioKg"
       ],
       "rows": [
         [
-          "AB-100",
-          "Bomba de agua"
+          "Burgos",
+          "León",
+          "0,40"
         ],
         [
-          "ab-100",
-          "Bomba de agua"
+          "Burgos",
+          "Soria",
+          "0,55"
         ],
         [
-          "CD-200",
-          "Filtro de aceite"
+          "León",
+          "Burgos",
+          "0,45"
         ]
       ]
     },
-    "prompt": "¿Qué debes hacer en Power Query para resolverlo?",
+    "prompt": "Quieres añadir a cada envío el PrecioKg de su trayecto con Combinar consultas (*Merge queries*), usando Envíos como tabla izquierda. ¿Cómo seleccionas las columnas de combinación?",
     "options": [
       {
         "id": "a",
-        "text": "Aplicar Formato > MAYÚSCULAS a IdProducto antes de Quitar duplicados",
+        "text": "En Envíos, Origen y después, con Ctrl, Destino; en Tarifas, Origen y después, con Ctrl, Destino",
         "correct": true,
-        "explanation": "Power Query distingue mayúsculas al quitar duplicados, pero el motor del modelo no: para él «AB-100» y «ab-100» son el mismo valor. Normalizar antes deja una sola fila."
+        "explanation": "Para combinar por varias columnas las seleccionas con Ctrl; un número en cada encabezado indica el orden, y la primera columna de la izquierda se compara con la primera de la derecha, la segunda con la segunda, etc."
       },
       {
         "id": "b",
-        "text": "Aplicar Recortar (*Trim*) a IdProducto antes de Quitar duplicados",
+        "text": "Solo Origen en las dos tablas, porque es la primera columna del trayecto",
         "correct": false,
-        "explanation": "Recortar quita espacios al principio y al final; aquí los valores solo se diferencian en las mayúsculas."
+        "explanation": "Un envío desde Burgos coincidiría con dos tarifas (a León y a Soria): al expandir se duplicaría la fila y obtendrías precios de trayectos equivocados."
       },
       {
         "id": "c",
-        "text": "Aplicar Quitar duplicados seleccionando todas las columnas de la consulta",
+        "text": "En Envíos, Origen y después Destino; en Tarifas, Destino y después Origen",
         "correct": false,
-        "explanation": "Con más columnas la comparación es aún más estricta y sigue distinguiendo «AB-100» de «ab-100»."
+        "explanation": "Las columnas se emparejan por el orden de selección, no por el nombre: compararías Origen con Destino, y un envío de Burgos a León tomaría la tarifa de León a Burgos (0,45)."
       },
       {
         "id": "d",
-        "text": "Cambiar el tipo de IdProducto a Número entero",
+        "text": "Anexar Tarifas a Envíos y quitar los duplicados de Origen y Destino",
         "correct": false,
-        "explanation": "Los códigos son alfanuméricos: la conversión produciría errores y no resolvería la diferencia entre mayúsculas y minúsculas."
+        "explanation": "Anexar apila las filas de ambas tablas en lugar de añadir columnas, y quitar duplicados eliminaría envíos del mismo trayecto."
       }
     ],
-    "keyPoint": "Power Query distingue mayúsculas y el modelo no; normaliza el texto de las claves antes de quitar duplicados.",
+    "keyPoint": "Para combinar por varias columnas, selecciónalas con Ctrl en el mismo orden en ambas tablas: se emparejan por posición, no por nombre.",
     "references": [
       {
-        "title": "Trabajar con duplicados",
-        "url": "https://learn.microsoft.com/es-es/power-query/working-with-duplicates"
+        "title": "Introducción a las combinaciones de consultas",
+        "url": "https://learn.microsoft.com/es-es/power-query/merge-queries-overview"
       },
       {
-        "title": "DirectQuery en Power BI (distinción entre mayúsculas y minúsculas)",
-        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/desktop-directquery-about"
+        "title": "Table.NestedJoin",
+        "url": "https://learn.microsoft.com/es-es/powerquery-m/table-nestedjoin"
       }
     ]
   },
@@ -1000,31 +1031,31 @@
     "items": [
       {
         "id": "p1",
-        "text": "Crear una nueva consulta en blanco (*Blank query*) desde el panel Consultas",
-        "explanation": "La función necesita su propia consulta, que todavía no existe."
+        "text": "Crear una consulta en blanco (*Blank query*) desde el panel Consultas y llamarla fnPrecioConIva",
+        "explanation": "La función necesita su propia consulta, y su nombre es el que usarán las demás consultas para invocarla."
       },
       {
         "id": "p2",
-        "text": "Abrir el Editor avanzado y sustituir el contenido por la definición de la función",
+        "text": "Abrir el Editor avanzado de esa consulta y sustituir su contenido por la definición de la función",
         "explanation": "Al pegar la expresión (parámetros) => cuerpo, la consulta pasa a ser una función."
       },
       {
         "id": "p3",
-        "text": "Cambiar el nombre de la consulta a fnPrecioConIva",
-        "explanation": "El nombre de la consulta es el nombre con el que se invoca la función desde otras consultas."
-      },
-      {
-        "id": "p4",
         "text": "Seleccionar Ventas y elegir Agregar columna > Invocar función personalizada (*Invoke custom function*)",
         "explanation": "La función se aplica a la tabla en la que se quiere la nueva columna, que se crea desde la pestaña Agregar columna."
       },
       {
-        "id": "p5",
+        "id": "p4",
         "text": "Elegir fnPrecioConIva, llamar ImporteConIva a la columna y asignar Importe y TipoIva a los parámetros",
         "explanation": "En el cuadro de diálogo se indica la función y qué columna alimenta cada parámetro; la función se evalúa fila a fila."
+      },
+      {
+        "id": "p5",
+        "text": "Asignar el tipo Número decimal a la nueva columna ImporteConIva",
+        "explanation": "El paso que crea Invocar función personalizada no indica el tipo de la columna (queda como Cualquiera), así que conviene asignarlo antes de cargar."
       }
     ],
-    "keyPoint": "Función personalizada: consulta en blanco → definición en el Editor avanzado → nombre → Invocar función personalizada en la tabla destino.",
+    "keyPoint": "Función personalizada: consulta en blanco con nombre → definición en el Editor avanzado → Invocar función personalizada en la tabla destino → tipo de la nueva columna.",
     "references": [
       {
         "title": "Uso de funciones personalizadas",
@@ -1201,9 +1232,9 @@
     "statements": [
       {
         "id": "s1",
-        "text": "Si cambias a Número entero una columna CódigoPostal con valores como 08001, se pierde el cero inicial.",
+        "text": "En una columna de texto, Reemplazar valores sustituye por defecto cada aparición del texto buscado, aunque forme parte de un valor más largo.",
         "answer": true,
-        "explanation": "Un número no guarda ceros a la izquierda: 08001 pasa a ser 8001. Los códigos que no se usan en cálculos deben quedarse como texto."
+        "explanation": "En columnas de texto, el modo predeterminado reemplaza instancias de la cadena: cambiar «N» por «Norte» convertiría también «NE» en «NorteE». Para sustituir solo celdas completas, activa Coincidir con todo el contenido de la celda en Opciones avanzadas."
       },
       {
         "id": "s2",
@@ -1224,15 +1255,15 @@
         "explanation": "Se evalúa al actualizar los datos y su resultado se almacena en el modelo; los filtros del informe no la recalculan."
       }
     ],
-    "keyPoint": "Guarda los códigos como texto, distingue Transformar (modifica) de Agregar columna (crea) y recuerda que el índice empieza en 0 por defecto.",
+    "keyPoint": "Reemplazar valores cambia subcadenas salvo que pidas coincidir con toda la celda; Transformar modifica la columna y Agregar columna crea otra; el índice empieza en 0 por defecto.",
     "references": [
+      {
+        "title": "Reemplazar valores",
+        "url": "https://learn.microsoft.com/es-es/power-query/replace-values"
+      },
       {
         "title": "Agregar una columna de índice",
         "url": "https://learn.microsoft.com/es-es/power-query/add-index-column"
-      },
-      {
-        "title": "Tipos de datos en Power Query",
-        "url": "https://learn.microsoft.com/es-es/power-query/data-types"
       }
     ]
   }

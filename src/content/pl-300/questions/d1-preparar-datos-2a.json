@@ -548,8 +548,8 @@
       },
       {
         "id": "p5",
-        "text": "Agrega NombrePais a una segmentación de selección única en el informe",
-        "explanation": "Con Selección múltiple en No (valor predeterminado), la segmentación debe ser de selección única."
+        "text": "Prueba el enlace: agrega NombrePais a una segmentación de selección única y elige un país",
+        "explanation": "La selección solo llega al parámetro una vez enlazada la columna; con Selección múltiple en No (valor predeterminado), la segmentación debe ser de selección única."
       }
     ],
     "keyPoint": "Parámetro M → referencia en la consulta DirectQuery → enlace de una columna al parámetro en la vista de modelo → segmentación.",
@@ -846,13 +846,13 @@
       "language": "m",
       "content": "let\n    Fecha = Date.ToText(Date.From(DateTime.LocalNow()), \"yyyy-MM-dd\"),\n    Origen = Json.Document(\n        Web.Contents(\"https://api.cambios.example.com/v1/tipos?fecha=\" & Fecha)\n    )\nin\n    Origen"
     },
-    "prompt": "¿Qué cambio permite actualizar el modelo en el servicio?",
+    "prompt": "¿Qué cambio permite actualizar el modelo en el servicio y seguir descargando cada día los tipos del día sin intervención manual?",
     "options": [
       {
         "id": "a",
         "text": "Convertir Fecha en un parámetro de consulta y editarlo cada día en la configuración del modelo semántico",
         "correct": false,
-        "explanation": "Obligaría a cambiar el valor a mano cada día y no aprovecha que la fecha se calcula en la propia consulta."
+        "explanation": "Una consulta que usa parámetros sí puede actualizarse en el servicio, pero tendrías que cambiar el valor a mano cada día; el requisito es que la fecha se siga calculando sola."
       },
       {
         "id": "b",
@@ -905,7 +905,7 @@
         "id": "b",
         "text": "Un SQL Server de la red local a través de una puerta de enlace",
         "correct": false,
-        "explanation": "Direct Lake solo trabaja con datos en OneLake y no funciona a través de puertas de enlace; para este origen usarías importación o DirectQuery."
+        "explanation": "Direct Lake solo lee tablas Delta de OneLake y no puede trabajar a través de ninguna puerta de enlace; este origen se usaría con importación o DirectQuery, o habría que llevar antes sus datos a OneLake."
       },
       {
         "id": "c",
@@ -1513,9 +1513,9 @@
       },
       {
         "id": "m4",
-        "text": "Formula.Firewall: La consulta hace referencia a otras consultas o pasos…",
+        "text": "Formula.Firewall: La consulta «Ventas» (paso «Origen») tiene acceso a orígenes de datos con niveles de privacidad que no se pueden usar juntos.",
         "answerId": "c4",
-        "explanation": "El firewall de privacidad bloquea la combinación por los niveles de privacidad de los orígenes o por cómo se combinan."
+        "explanation": "Es el firewall de privacidad de datos: la consulta combina orígenes cuyos niveles de privacidad no permiten enviar datos de uno a otro."
       }
     ],
     "choices": [
@@ -1533,7 +1533,7 @@
       },
       {
         "id": "c4",
-        "text": "La combinación de orígenes infringe los niveles de privacidad"
+        "text": "La combinación de orígenes infringe sus niveles de privacidad"
       },
       {
         "id": "c5",
