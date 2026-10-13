@@ -173,7 +173,7 @@
       },
       {
         "title": "Orígenes de datos",
-        "body": "- **Ventas**: tabla de Azure SQL Database con una fila por línea de pedido, FechaPedido, IdProducto, IdCampaña e importes.\n- **Productos**: catálogo con IdProducto, Producto, Categoría, Temporada y Etiquetas. La columna Etiquetas contiene todas las etiquetas de un producto en un solo texto separado por punto y coma, por ejemplo «lino; verano; oferta».\n- **AccesoAgencia**: una fila por usuario de agencia, con Correo (la dirección original del usuario, por ejemplo ana@agencianorte.com) e IdAgencia. El rol RLS Agencias filtra esta tabla con [Correo] = USERPRINCIPALNAME().\n- Importe neto es una medida explícita. La tabla Fecha está marcada como tabla de fechas y relacionada con Ventas[FechaPedido]."
+        "body": "- **Ventas**: tabla de Azure SQL Database con una fila por línea de pedido, FechaPedido, IdProducto, IdCampaña e importes.\n- **Productos**: catálogo con IdProducto, Producto, Categoría, Temporada y Etiquetas. La columna Etiquetas contiene todas las etiquetas de un producto en un solo texto separado por punto y coma, por ejemplo «lino; verano; oferta».\n- **AccesoAgencia**: una fila por usuario de agencia, con Correo (la dirección original del usuario, por ejemplo ana@agencianorte.com) e IdAgencia. El rol RLS Agencias filtra esta tabla con [Correo] = USERPRINCIPALNAME(), y las relaciones del modelo llevan ese filtro hasta las ventas de las campañas de cada agencia.\n- Importe neto es una medida explícita. La tabla Fecha está marcada como tabla de fechas y relacionada con Ventas[FechaPedido]."
       },
       {
         "title": "Requisitos de informes",

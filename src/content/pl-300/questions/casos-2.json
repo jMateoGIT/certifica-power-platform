@@ -220,7 +220,7 @@
         "id": "s4",
         "text": "Si un jefe dirige dos servicios, la suscripción puede aplicarle en un único correo un filtro con los dos servicios.",
         "answer": false,
-        "explanation": "Las suscripciones dinámicas por destinatario solo admiten filtros de un único valor. Con una fila por servicio en la tabla, ese jefe recibiría un correo por cada servicio."
+        "explanation": "Las suscripciones dinámicas por destinatario solo admiten filtros de un único valor, no filtros con varios valores, así que no puedes filtrar un mismo correo por los dos servicios de ese jefe."
       }
     ],
     "keyPoint": "Suscripción dinámica por destinatario: destinatarios y filtros (de un solo valor) salen de un modelo semántico en cada envío; no concede acceso al informe.",
@@ -309,9 +309,9 @@
       },
       {
         "id": "d",
-        "text": "Para que el filtro llegue a Ventas también debes cambiar a Ambos la relación entre Productos y Ventas",
+        "text": "Además debes activar Aplicar filtro de seguridad en ambas direcciones en la relación Productos–ProductoEtiqueta",
         "correct": false,
-        "explanation": "De Productos a Ventas el filtro ya fluye del lado «uno» al lado «varios». Solo hace falta la dirección Ambos en la relación de la tabla puente con Productos; añadir más relaciones bidireccionales empeora el rendimiento y puede crear ambigüedad."
+        "explanation": "Esa opción solo controla cómo se propagan los filtros de la seguridad de nivel de fila (RLS). Los filtros de los segmentadores ya siguen la dirección Ambos de la relación, y el enunciado indica que el segmentador ya filtra las ventas."
       },
       {
         "id": "e",
@@ -320,7 +320,7 @@
         "explanation": "IdProducto se repite en ProductoEtiqueta (una fila por etiqueta) y también en Ventas, así que ninguna de las dos columnas puede ser el lado «uno» de la relación."
       }
     ],
-    "keyPoint": "Dimensión de varios a varios con tabla puente: totales no aditivos, la puente se oculta y solo su relación con la dimensión necesita dirección Ambos.",
+    "keyPoint": "Dimensión de varios a varios con tabla puente: los totales no son aditivos, cada venta se cuenta una sola vez aunque se elijan varias etiquetas y la tabla puente se oculta.",
     "references": [
       { "title": "Instrucciones para relaciones de varios a varios", "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-many-to-many" }
     ]
@@ -389,7 +389,7 @@
           { "id": "o2", "text": "Exportar como imagen" }
         ],
         "correctId": "o2",
-        "explanation": "Exportar como imagen genera una diapositiva por página con una imagen estática de alta resolución, que la agencia puede abrir sin acceso a Power BI. Con Insertar datos activos, los datos no forman parte del archivo: se consultan en Power BI, y quien abre la presentación necesita una cuenta y acceso al informe."
+        "explanation": "Exportar como imagen genera una diapositiva por página con una imagen estática de alta resolución, que la agencia puede abrir sin acceso a Power BI. Insertar datos activos agrega solo la página actual como un complemento conectado en directo al informe, y para ver e interactuar con esos datos hay que tener acceso al informe en Power BI."
       },
       {
         "id": "b2",
@@ -437,7 +437,7 @@
         "id": "s2",
         "text": "Puedes reproducir exactamente lo que ve un invitado con Probar como rol, seleccionando su cuenta en Ahora se muestra como.",
         "answer": false,
-        "explanation": "Probar como rol evalúa las expresiones dinámicas con tu propia identidad, así que no permite ver lo que vería un invitado B2B concreto. Para validarlo, el invitado real debe iniciar sesión y abrir el informe."
+        "explanation": "Aunque Ahora se muestra como permite elegir a una persona, la documentación advierte que Probar como rol usa tu propia identidad y no revela cómo se resuelve el UPN de un invitado externo. Para validarlo, el invitado real debe iniciar sesión y abrir el informe."
       },
       {
         "id": "s3",
@@ -449,7 +449,7 @@
         "id": "s4",
         "text": "Basta con sustituir USERPRINCIPALNAME() por USERNAME(), que en el servicio devuelve siempre la dirección original del invitado.",
         "answer": false,
-        "explanation": "En el servicio Power BI, USERNAME() y USERPRINCIPALNAME() devuelven el mismo nombre principal de usuario, así que el cambio no resuelve la diferencia de formato."
+        "explanation": "En el servicio, USERNAME() devuelve también el UPN, y para los invitados B2B suele devolver el mismo valor que USERPRINCIPALNAME(). El cambio no resuelve la diferencia de formato: lo que hay que hacer es guardar en AccesoAgencia el valor exacto que devuelve la función."
       }
     ],
     "keyPoint": "RLS dinámica con invitados B2B: comprueba el valor real de USERPRINCIPALNAME() (puede llevar #EXT#) con el propio invitado; Probar como rol no simula a un invitado concreto.",

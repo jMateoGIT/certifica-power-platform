@@ -587,6 +587,10 @@
       {
         "title": "Creación y uso de plantillas de informe en Power BI Desktop",
         "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-templates"
+      },
+      {
+        "title": "Orígenes de datos en Power BI Desktop (archivos PBIDS)",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/desktop-data-sources"
       }
     ]
   },
@@ -834,7 +838,7 @@
         "id": "c",
         "text": "Nadie abrió ningún informe ni panel basado en el modelo durante dos meses",
         "correct": true,
-        "explanation": "Tras dos meses sin visitas a informes o paneles del modelo (incluidas aplicaciones e inserciones), el servicio pausa la programación y avisa al propietario; se reanuda al visitar un informe o con Actualizar ahora."
+        "explanation": "Tras dos meses sin visitas a informes o paneles del modelo (incluidas aplicaciones e inserciones), el servicio pausa la programación, la muestra como deshabilitada y avisa al propietario. Para reanudarla, abre un informe o panel del modelo y vuelve a activar la programación si hace falta."
       },
       {
         "id": "d",

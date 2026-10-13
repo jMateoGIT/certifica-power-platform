@@ -469,7 +469,7 @@
         "id": "c",
         "text": "Aplicar al informe la etiqueta de confidencialidad «Confidencial» con cifrado",
         "correct": false,
-        "explanation": "En el servicio Power BI las etiquetas no afectan al acceso; el cifrado solo protege los archivos exportados."
+        "explanation": "En el servicio Power BI la etiqueta no cambia quién accede al contenido, que depende solo de los permisos de Power BI; su cifrado se aplica a los archivos que salen por una ruta de exportación admitida."
       },
       {
         "id": "d",
@@ -657,9 +657,9 @@
     "statements": [
       {
         "id": "s1",
-        "text": "Para quitar la etiqueta de un informe tienes que hacerlo desde el servicio Power BI.",
+        "text": "Si quitas la etiqueta del .pbix en Power BI Desktop y lo vuelves a publicar sobre el informe existente, el informe y el modelo semántico del servicio se quedan sin etiqueta.",
         "answer": false,
-        "explanation": "Es al revés: en el servicio puedes aplicar o cambiar etiquetas, pero solo puedes quitarlas en Power BI Desktop."
+        "explanation": "Quitar la etiqueta en Desktop solo afecta al archivo. Si publicas un .pbix sin etiqueta sobre elementos etiquetados, el servicio conserva las etiquetas que ya tenían; solo un .pbix etiquetado puede sobrescribirlas, tras pedirte confirmación."
       },
       {
         "id": "s2",
@@ -669,9 +669,9 @@
       },
       {
         "id": "s3",
-        "text": "Si descargas el .pbix de un informe etiquetado como General cuyo modelo es Confidencial, el archivo recibe la etiqueta Confidencial.",
+        "text": "Si guardas en Power BI Desktop un .pbix con una etiqueta que incluye cifrado, un compañero sin derechos de uso sobre esa etiqueta no podrá abrir el archivo.",
         "answer": true,
-        "explanation": "Cuando el informe y el modelo tienen etiquetas distintas, el .pbix descargado recibe la más restrictiva de las dos."
+        "explanation": "En Desktop, al guardar se aplican al .pbix la etiqueta y su cifrado, y el cifrado sí controla el acceso al archivo: quien no tenga los derechos de uso necesarios no puede abrirlo. En el servicio, en cambio, la etiqueta no cambia quién accede al contenido."
       },
       {
         "id": "s4",
@@ -680,11 +680,15 @@
         "explanation": "Para aplicar o cambiar etiquetas en el servicio se necesita permiso de edición sobre el elemento, que el Visor no tiene."
       }
     ],
-    "keyPoint": "Etiquetar exige poder editar; las etiquetas se quitan solo en Desktop, y una directiva obligatoria impide guardar o publicar sin etiqueta.",
+    "keyPoint": "Etiquetar en el servicio exige permiso de edición; un .pbix sin etiqueta no borra las etiquetas del servicio; el cifrado protege el .pbix en Desktop, y una directiva obligatoria impide guardar o publicar sin etiqueta.",
     "references": [
       {
         "title": "Cómo aplicar etiquetas de confidencialidad en Power BI",
         "url": "https://learn.microsoft.com/es-es/fabric/enterprise/powerbi/service-security-apply-data-sensitivity-labels"
+      },
+      {
+        "title": "Etiquetas de confidencialidad en Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/enterprise/powerbi/service-security-sensitivity-label-overview"
       },
       {
         "title": "Directiva de etiquetas obligatorias para Fabric y Power BI",
@@ -892,63 +896,45 @@
   },
   {
     "id": "pl300-d4-seguridad-118",
-    "type": "match",
+    "type": "single",
     "exam": "PL-300",
     "outlineVersion": "2026-04-20",
     "domain": "d4",
     "skill": "d4-seguridad",
     "difficulty": 2,
-    "prompt": "Empareja cada requisito de protección con el mecanismo de Power BI que lo cumple.",
-    "prompts": [
+    "scenario": "El modelo semántico «Distribuidores» tiene el rol RLS estático «Canal Socios», con el filtro [Canal] = \"Socios\" sobre la tabla Cliente. En la página Seguridad del modelo, el único miembro del rol es el grupo de seguridad de Microsoft Entra SG-Socios, que incluye empleados internos y usuarios invitados (B2B) de las empresas distribuidoras. Todos abren el informe desde una aplicación. Los empleados internos ven los datos del canal Socios, pero varios invitados no ven ningún dato.",
+    "prompt": "¿Qué solución recomienda la documentación de Power BI para los invitados?",
+    "options": [
       {
-        "id": "m1",
-        "text": "Que cada delegado vea solo las filas de su delegación en el mismo informe",
-        "answerId": "c1",
-        "explanation": "La seguridad de nivel de fila filtra las filas del modelo según el rol (o la identidad) del lector."
+        "id": "a",
+        "text": "Agregar a los usuarios invitados directamente como miembros del rol, por su dirección de correo",
+        "correct": true,
+        "explanation": "La pertenencia a grupos de seguridad que contienen invitados B2B puede no evaluarse correctamente al aplicar la RLS, sobre todo con cuentas de tipo invitado. La solución recomendada es agregarlos al rol uno a uno por correo, que se resuelve a su cuenta B2B; con muchos invitados, otra opción es una RLS dinámica con USERPRINCIPALNAME()."
       },
       {
-        "id": "m2",
-        "text": "Que la columna Salario no exista para quien no es de Recursos Humanos",
-        "answerId": "c2",
-        "explanation": "La seguridad de nivel de objeto oculta tablas o columnas, y sus metadatos, a los miembros de un rol."
+        "id": "b",
+        "text": "Sustituir SG-Socios por un grupo de Microsoft 365 con los mismos miembros",
+        "correct": false,
+        "explanation": "Los grupos de Microsoft 365 no se pueden agregar a ningún rol RLS. Como miembros de un rol solo se admiten usuarios, grupos de seguridad de Microsoft Entra, grupos de distribución y grupos habilitados para correo."
       },
       {
-        "id": "m3",
-        "text": "Que un Excel exportado desde el informe siga cifrado fuera de Power BI",
-        "answerId": "c3",
-        "explanation": "Una etiqueta de confidencialidad con cifrado se aplica al archivo exportado por una ruta admitida y lo protege fuera de Power BI."
+        "id": "c",
+        "text": "Asignar a los invitados el rol Colaborador en el área de trabajo de la aplicación",
+        "correct": false,
+        "explanation": "La RLS no se aplica a los roles con permiso de edición: los invitados verían los datos de todos los canales, no solo los de Socios, y además podrían modificar el contenido."
       },
       {
-        "id": "m4",
-        "text": "Que un analista cree sus propios informes sobre el modelo sin acceder al resto del área de trabajo",
-        "answerId": "c4",
-        "explanation": "El permiso de compilación sobre el modelo semántico permite crear contenido con él sin dar ningún rol en el área de trabajo."
-      },
-      {
-        "id": "m5",
-        "text": "Que tres personas puedan editar todos los informes del área de trabajo",
-        "answerId": "c5",
-        "explanation": "Un rol del área de trabajo con edición, como Colaborador, da acceso a todos sus elementos y permite modificarlos."
+        "id": "d",
+        "text": "Activar Aplicar filtro de seguridad en ambas direcciones en la relación de la tabla Cliente",
+        "correct": false,
+        "explanation": "Esa opción cambia cómo se propaga el filtro del rol entre tablas, no quién pertenece al rol. Los empleados internos ya ven sus datos, así que el filtro funciona; lo que falla es cómo se evalúa la pertenencia de los invitados."
       }
     ],
-    "choices": [
-      { "id": "c1", "text": "Seguridad de nivel de fila (RLS)" },
-      { "id": "c2", "text": "Seguridad de nivel de objeto (OLS)" },
-      { "id": "c3", "text": "Etiqueta de confidencialidad con cifrado" },
-      { "id": "c4", "text": "Permiso de compilación sobre el modelo semántico" },
-      { "id": "c5", "text": "Rol Colaborador del área de trabajo" },
-      { "id": "c6", "text": "Perspectiva del modelo" },
-      { "id": "c7", "text": "Ocultar el campo en la vista de informe" }
-    ],
-    "keyPoint": "Roles del área de trabajo y permisos dan acceso; RLS y OLS limitan qué datos se ven; las etiquetas protegen lo que sale. Ocultar campos o usar perspectivas no es seguridad.",
+    "keyPoint": "RLS con invitados B2B: agrégalos al rol directamente por correo (o usa RLS dinámica), porque los grupos de seguridad con invitados pueden no evaluarse bien; los grupos de Microsoft 365 no se admiten en los roles.",
     "references": [
       {
-        "title": "Planeamiento de la seguridad del consumidor de informes",
-        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/powerbi-implementation-planning-security-report-consumer-planning"
-      },
-      {
-        "title": "Compartir informes y paneles de Power BI",
-        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-share-dashboards"
+        "title": "Seguridad de nivel de fila (RLS) con Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/security/service-admin-row-level-security"
       }
     ]
   }
