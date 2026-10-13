@@ -1,0 +1,460 @@
+[
+  {
+    "id": "pl300-caso-6-001",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "caseId": "caso-6",
+    "difficulty": 2,
+    "prompt": "Para resolver el problema actual 1 y cumplir el requisito de informes 1, combinas en Power Query la consulta Ingresos (izquierda) con Municipios (derecha) mediante una combinación externa izquierda por MunicipioResidencia y Municipio, y después expandes Comarca. ¿Qué dos opciones configuras en el cuadro de diálogo Combinar? Elige 2.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Usar coincidencia aproximada para realizar la combinación",
+        "correct": true,
+        "explanation": "La combinación aproximada (*fuzzy merge*) compara columnas de texto con un algoritmo de similitud e ignora por defecto las mayúsculas, así que «Robledillo de la Siera» encuentra su municipio del catálogo aunque no coincida exactamente."
+      },
+      {
+        "id": "b",
+        "text": "Umbral de similitud de 1,00, para no asignar municipios equivocados",
+        "correct": false,
+        "explanation": "Un umbral de 1,00 equivale a exigir una coincidencia exacta, de modo que los valores con errores tipográficos volverían a quedarse sin comarca. El valor predeterminado es 0,80; bajarlo admite más diferencias."
+      },
+      {
+        "id": "c",
+        "text": "Mostrar puntuaciones de similitud, para quedarse solo con la mejor coincidencia",
+        "correct": false,
+        "explanation": "Esta opción solo agrega la puntuación de cada coincidencia al resultado para que puedas revisarla. No limita cuántas filas coincidentes se devuelven, así que «Villar» seguiría duplicando ingresos."
+      },
+      {
+        "id": "d",
+        "text": "Número de coincidencias igual a 1",
+        "correct": true,
+        "explanation": "«Villar» puede parecerse lo suficiente a dos municipios y devolver dos filas coincidentes; al expandir, ese ingreso se duplicaría. Número de coincidencias limita a una el máximo de filas devueltas por cada fila de Ingresos, como exige el requisito 1."
+      },
+      {
+        "id": "e",
+        "text": "Recortar y Poner En Mayúsculas Cada Palabra en MunicipioResidencia, manteniendo la combinación exacta",
+        "correct": false,
+        "explanation": "Unificar espacios y mayúsculas no corrige letras que faltan o sobran, como en «Siera». Con una combinación exacta, muchos ingresos seguirían sin comarca."
+      }
+    ],
+    "keyPoint": "Texto libre que debe casar con un catálogo → combinación aproximada (umbral < 1); para que cada fila izquierda no se multiplique al expandir, Número de coincidencias = 1.",
+    "references": [
+      { "title": "Combinación parcial (aproximada) en Power Query", "url": "https://learn.microsoft.com/es-es/power-query/merge-queries-fuzzy-match" },
+      { "title": "Funcionamiento de la coincidencia aproximada en Power Query", "url": "https://learn.microsoft.com/es-es/power-query/fuzzy-matching" }
+    ]
+  },
+  {
+    "id": "pl300-caso-6-002",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "caseId": "caso-6",
+    "difficulty": 3,
+    "code": {
+      "language": "dax",
+      "content": "Ingresados al cierre =\nVAR FinPeriodo = MAX ( 'Fecha'[Fecha] )\nRETURN\n    CALCULATE (\n        COUNTROWS ( Ingresos ),\n        Ingresos[FechaIngreso] <= FinPeriodo,\n        Ingresos[FechaAlta] > FinPeriodo || ISBLANK ( Ingresos[FechaAlta] )\n    )"
+    },
+    "prompt": "Para el requisito de informes 2 creas la medida del anexo, pero en la matriz por mes solo cuenta pacientes que ingresaron en ese mismo mes. ¿Qué argumento agregas a CALCULATE para corregirla?",
+    "options": [
+      {
+        "id": "a",
+        "text": "REMOVEFILTERS ( Ingresos[FechaIngreso] )",
+        "correct": false,
+        "explanation": "La restricción no es un filtro sobre la columna FechaIngreso, sino el filtro del mes en la tabla Fecha, que llega a Ingresos por la relación. Quitar filtros de FechaIngreso no lo elimina."
+      },
+      {
+        "id": "b",
+        "text": "CROSSFILTER ( Ingresos[FechaIngreso], 'Fecha'[Fecha], BOTH )",
+        "correct": false,
+        "explanation": "Hacer bidireccional la relación solo añade la propagación de Ingresos hacia Fecha. El filtro del mes sigue llegando a Ingresos, así que el resultado no cambia."
+      },
+      {
+        "id": "c",
+        "text": "REMOVEFILTERS ( 'Fecha' )",
+        "correct": true,
+        "explanation": "Quita el filtro del mes de la fila, que por la relación activa limitaba los ingresos a los de ese mes. FinPeriodo ya se calculó antes, en el contexto original, así que la medida cuenta todos los pacientes ingresados antes del cierre y sin alta en esa fecha."
+      },
+      {
+        "id": "d",
+        "text": "USERELATIONSHIP ( Ingresos[FechaAlta], 'Fecha'[Fecha] )",
+        "correct": false,
+        "explanation": "USERELATIONSHIP activa una relación que ya existe en el modelo, y no hay ninguna entre FechaAlta y Fecha. Aunque existiera, filtraría las altas del mes en lugar de los pacientes que siguen ingresados."
+      }
+    ],
+    "keyPoint": "Recuento de «eventos en curso» con una tabla de fechas relacionada: calcula el fin del periodo en una variable y quita en CALCULATE el filtro de la tabla Fecha (REMOVEFILTERS ( 'Fecha' )).",
+    "references": [
+      { "title": "Función REMOVEFILTERS (DAX)", "url": "https://learn.microsoft.com/es-es/dax/removefilters-function-dax" },
+      { "title": "Función CALCULATE (DAX)", "url": "https://learn.microsoft.com/es-es/dax/calculate-function-dax" }
+    ]
+  },
+  {
+    "id": "pl300-caso-6-003",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "caseId": "caso-6",
+    "difficulty": 2,
+    "code": {
+      "language": "dax",
+      "content": "Estancia (días) =\nDATEDIFF (\n    Ingresos[FechaIngreso],\n    COALESCE ( Ingresos[FechaAlta], TODAY () ),\n    DAY\n)"
+    },
+    "prompt": "Para el requisito de informes 3 agregas a la tabla Ingresos la columna calculada del anexo. Completa la frase.",
+    "template": "Para un paciente que sigue ingresado, la columna cuenta los días hasta {{b1}}. Si por un error de grabación FechaAlta es anterior a FechaIngreso, DATEDIFF {{b2}}. Para que la estancia de los ingresados se calcule en el momento de la consulta, deberías {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "la fecha de la última actualización del modelo" },
+          { "id": "o2", "text": "el día en que cada usuario abre el informe" },
+          { "id": "o3", "text": "la última fecha de la tabla Fecha" }
+        ],
+        "correctId": "o1",
+        "explanation": "Las columnas calculadas se calculan y se almacenan durante la actualización. COALESCE devuelve FechaAlta si no está vacía y, si lo está, TODAY(), que se evalúa en ese momento y queda fijado hasta la siguiente actualización (aquí, la diaria de las 6:00)."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "devuelve un error y la columna no se calcula" },
+          { "id": "o2", "text": "devuelve un número negativo" },
+          { "id": "o3", "text": "devuelve BLANK" }
+        ],
+        "correctId": "o2",
+        "explanation": "DATEDIFF devuelve un resultado positivo si la segunda fecha es posterior a la primera y uno negativo en caso contrario. No hay error, así que conviene detectar esas filas, por ejemplo con el perfil de columna de Power Query."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "sustituir TODAY() por NOW() en la columna" },
+          { "id": "o2", "text": "convertir la columna en tabla calculada" },
+          { "id": "o3", "text": "calcularla en una medida" }
+        ],
+        "correctId": "o3",
+        "explanation": "Las medidas se evalúan en cada consulta, en el contexto de filtro del objeto visual. NOW() también devuelve la hora, pero en una columna calculada se sigue evaluando solo durante la actualización, igual que una tabla calculada."
+      }
+    ],
+    "keyPoint": "Columna calculada = valor fijado en la actualización (TODAY incluido); COALESCE devuelve el primer valor no vacío y DATEDIFF admite resultados negativos.",
+    "references": [
+      { "title": "Columnas calculadas en Power BI Desktop", "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-calculated-columns" },
+      { "title": "Función DATEDIFF (DAX)", "url": "https://learn.microsoft.com/es-es/dax/datediff-function-dax" }
+    ]
+  },
+  {
+    "id": "pl300-caso-6-004",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-patrones",
+    "caseId": "caso-6",
+    "difficulty": 2,
+    "prompt": "Para el requisito de informes 4 tienes un gráfico de barras con el número de ingresos por servicio. ¿Qué haces?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Hacer clic con el botón derecho en una barra y seleccionar Analizar > Explicar el aumento",
+        "correct": false,
+        "explanation": "Explicar el aumento compara un punto de datos con el anterior en un eje ordenado, como el tiempo. Aquí no hay un periodo anterior: se trata de comparar el reparto entre servicios."
+      },
+      {
+        "id": "b",
+        "text": "Agregar la detección de anomalías desde el panel Análisis",
+        "correct": false,
+        "explanation": "La detección de anomalías solo está disponible en gráficos de líneas con una serie temporal y busca picos o caídas inesperados en el tiempo, no grupos de pacientes con otro reparto."
+      },
+      {
+        "id": "c",
+        "text": "Hacer clic con el botón derecho en una barra y seleccionar Analizar > Buscar dónde es diferente esta distribución",
+        "correct": true,
+        "explanation": "Power BI aplica como filtro los valores de las demás columnas del modelo (comarca, tipo de ingreso…) y muestra aquellos con los que el reparto por servicio cambia más. Puedes agregar al informe el objeto visual que devuelve con el botón +."
+      },
+      {
+        "id": "d",
+        "text": "Crear un árbol de descomposición con la división de IA Valor alto",
+        "correct": false,
+        "explanation": "La división Valor alto elige la dimensión por la que el valor de la medida es más alto, pero no compara la forma del reparto por servicio entre grupos de pacientes."
+      }
+    ],
+    "keyPoint": "¿Para qué subgrupo cambia el reparto de un gráfico por categorías? → Analizar > Buscar dónde es diferente esta distribución.",
+    "references": [
+      { "title": "Uso de conclusiones para encontrar dónde la distribución es diferente", "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-insights-find-where-different" }
+    ]
+  },
+  {
+    "id": "pl300-caso-6-005",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-areas",
+    "caseId": "caso-6",
+    "difficulty": 2,
+    "prompt": "Vas a cumplir los requisitos de distribución con una suscripción dinámica por destinatario (*dynamic per recipient subscription*). Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Una sola suscripción puede obtener los destinatarios de la columna CorreoJefe y aplicar a cada uno el filtro de su servicio, a partir de un modelo semántico que contenga la tabla Servicio.",
+        "answer": true,
+        "explanation": "La suscripción dinámica se conecta a un modelo semántico con los datos de los destinatarios: toma de él las direcciones de correo y asigna una de sus columnas al campo del informe que debe filtrarse para cada persona."
+      },
+      {
+        "id": "s2",
+        "text": "Cuando se cree un servicio nuevo con su jefe en la tabla Servicio, tendrás que editar la suscripción para añadir el destinatario.",
+        "answer": false,
+        "explanation": "En cada envío, los datos más recientes del modelo de destinatarios determinan quién recibe el correo y con qué filtro, así que el nuevo jefe se incluye solo."
+      },
+      {
+        "id": "s3",
+        "text": "Recibir el correo no concede acceso al informe: los jefes siguen necesitando permiso para abrirlo, por ejemplo a través de la aplicación.",
+        "answer": true,
+        "explanation": "La documentación lo indica expresamente: el acceso al informe se establece por separado de la suscripción."
+      },
+      {
+        "id": "s4",
+        "text": "Si un jefe dirige dos servicios, la suscripción puede aplicarle en un único correo un filtro con los dos servicios.",
+        "answer": false,
+        "explanation": "Las suscripciones dinámicas por destinatario solo admiten filtros de un único valor. Con una fila por servicio en la tabla, ese jefe recibiría un correo por cada servicio."
+      }
+    ],
+    "keyPoint": "Suscripción dinámica por destinatario: destinatarios y filtros (de un solo valor) salen de un modelo semántico en cada envío; no concede acceso al informe.",
+    "references": [
+      { "title": "Creación de una suscripción dinámica para un informe de Power BI", "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/power-bi-dynamic-report-subscriptions" }
+    ]
+  },
+  {
+    "id": "pl300-caso-7-001",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d1",
+    "skill": "d1-transformar",
+    "caseId": "caso-7",
+    "difficulty": 2,
+    "table": {
+      "caption": "Consulta ProductoEtiqueta, referencia a Productos (extracto)",
+      "headers": ["IdProducto", "Etiquetas"],
+      "rows": [
+        ["P-1001", "lino; verano; oferta"],
+        ["P-1002", "algodón orgánico; básicos"],
+        ["P-1003", "verano"]
+      ]
+    },
+    "prompt": "Para el requisito de informes 1 necesitas una tabla ProductoEtiqueta con una fila por producto y etiqueta. Ya has creado una referencia a Productos con las columnas del anexo. ¿Qué transformación aplicas a continuación?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Dividir columna > Por delimitador, con punto y coma, y Dividir en: Columnas",
+        "correct": false,
+        "explanation": "Dividir en columnas crea Etiquetas.1, Etiquetas.2… en la misma fila: seguirías teniendo una fila por producto y un número fijo de columnas, que no sirve para relacionar cada etiqueta con sus productos."
+      },
+      {
+        "id": "b",
+        "text": "Seleccionar IdProducto y aplicar Anular dinamización de otras columnas",
+        "correct": false,
+        "explanation": "Solo hay otra columna, así que obtendrías Atributo = «Etiquetas» y Valor = el texto completo. Anular la dinamización convierte columnas en filas, pero no separa los valores de una celda."
+      },
+      {
+        "id": "c",
+        "text": "Dividir columna > Por delimitador, con punto y coma, y en Opciones avanzadas Dividir en: Filas",
+        "correct": true,
+        "explanation": "Dividir en filas crea una fila por cada etiqueta y repite el IdProducto, que es justo la forma de la tabla puente. Después aplica Recortar, porque las etiquetas conservan el espacio que sigue al punto y coma."
+      },
+      {
+        "id": "d",
+        "text": "Extraer > Texto antes del delimitador, con punto y coma",
+        "correct": false,
+        "explanation": "Extraer el texto antes del delimitador conserva solo la primera etiqueta de cada producto («lino» en P-1001) y pierde el resto."
+      }
+    ],
+    "keyPoint": "Varios valores en una celda que deben ser filas independientes → Dividir columna por delimitador en Filas (y Recortar después).",
+    "references": [
+      { "title": "Dividir columnas por delimitador", "url": "https://learn.microsoft.com/es-es/power-query/split-columns-delimiter" }
+    ]
+  },
+  {
+    "id": "pl300-caso-7-002",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-diseno",
+    "caseId": "caso-7",
+    "difficulty": 3,
+    "prompt": "Para el requisito de informes 1 cargas ProductoEtiqueta (IdProducto, Etiqueta) y una tabla Etiquetas con una fila por etiqueta. Las relaciones son de uno a varios: Etiquetas → ProductoEtiqueta (dirección única), Productos → ProductoEtiqueta (dirección Ambos) y Productos → Ventas (dirección única). El segmentador usa Etiquetas[Etiqueta] y ya filtra las ventas. ¿Qué dos afirmaciones son correctas? Elige 2.",
+    "options": [
+      {
+        "id": "a",
+        "text": "En una tabla de importe neto por etiqueta, el total puede ser menor que la suma de las filas",
+        "correct": true,
+        "explanation": "Las ventas de un producto con tres etiquetas aparecen en las tres filas, pero el total se calcula sin filtro de etiqueta y las cuenta una sola vez. Con dimensiones de varios a varios, los resultados no son aditivos."
+      },
+      {
+        "id": "b",
+        "text": "Si el usuario selecciona dos etiquetas, la tarjeta Importe neto cuenta dos veces las ventas de los productos que tienen ambas",
+        "correct": false,
+        "explanation": "El filtro llega a Productos como un conjunto de productos y de ahí a Ventas, así que cada venta se cuenta una sola vez aunque su producto tenga las dos etiquetas."
+      },
+      {
+        "id": "c",
+        "text": "Conviene ocultar ProductoEtiqueta en la vista de informe, porque solo sirve para relacionar las tablas",
+        "correct": true,
+        "explanation": "La guía de Microsoft recomienda ocultar la tabla puente (salvo que tenga columnas o medidas útiles para los informes) y las columnas de identificador del lado «varios»: los autores filtran con Etiquetas y Productos."
+      },
+      {
+        "id": "d",
+        "text": "Para que el filtro llegue a Ventas también debes cambiar a Ambos la relación entre Productos y Ventas",
+        "correct": false,
+        "explanation": "De Productos a Ventas el filtro ya fluye del lado «uno» al lado «varios». Solo hace falta la dirección Ambos en la relación de la tabla puente con Productos; añadir más relaciones bidireccionales empeora el rendimiento y puede crear ambigüedad."
+      },
+      {
+        "id": "e",
+        "text": "Podrías prescindir de Productos en la ruta creando una relación de uno a varios entre ProductoEtiqueta[IdProducto] y Ventas[IdProducto]",
+        "correct": false,
+        "explanation": "IdProducto se repite en ProductoEtiqueta (una fila por etiqueta) y también en Ventas, así que ninguna de las dos columnas puede ser el lado «uno» de la relación."
+      }
+    ],
+    "keyPoint": "Dimensión de varios a varios con tabla puente: totales no aditivos, la puente se oculta y solo su relación con la dimensión necesita dirección Ambos.",
+    "references": [
+      { "title": "Instrucciones para relaciones de varios a varios", "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-many-to-many" }
+    ]
+  },
+  {
+    "id": "pl300-caso-7-003",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "caseId": "caso-7",
+    "difficulty": 2,
+    "code": {
+      "language": "dax",
+      "content": "Importe año anterior =\nCALCULATE (\n    [Importe neto],\n    PARALLELPERIOD ( 'Fecha'[Fecha], -1, YEAR )\n)"
+    },
+    "prompt": "Para el requisito de informes 2 agregas a la matriz mensual la medida del anexo. ¿Qué intervalo de fechas usa la medida en la fila de mayo de 2026?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Del 01/05/2025 al 31/05/2025",
+        "correct": false,
+        "explanation": "Ese sería el mismo mes del año anterior, que devuelven SAMEPERIODLASTYEAR o DATEADD con -1 YEAR. PARALLELPERIOD amplía el resultado al intervalo completo indicado."
+      },
+      {
+        "id": "b",
+        "text": "Del 01/01/2025 al 31/05/2025",
+        "correct": false,
+        "explanation": "Eso es el acumulado del año anterior hasta mayo, que obtendrías combinando DATESYTD con SAMEPERIODLASTYEAR. PARALLELPERIOD no se detiene en el mes de la fila."
+      },
+      {
+        "id": "c",
+        "text": "Del 01/06/2025 al 31/05/2026",
+        "correct": false,
+        "explanation": "Ese es un periodo móvil de 12 meses, propio de DATESINPERIOD. PARALLELPERIOD desplaza las fechas al año anterior y no incluye fechas de 2026."
+      },
+      {
+        "id": "d",
+        "text": "Del 01/01/2025 al 31/12/2025",
+        "correct": true,
+        "explanation": "PARALLELPERIOD desplaza un año las fechas del contexto (mayo de 2025) y, como el intervalo YEAR queda incompleto, rellena el año entero. Todas las filas de 2026 muestran así el importe de todo 2025, como pide el requisito."
+      }
+    ],
+    "keyPoint": "PARALLELPERIOD ( Fecha, -1, YEAR ) = el año anterior completo, sea cual sea el mes del contexto; SAMEPERIODLASTYEAR o DATEADD desplazan solo las fechas del contexto.",
+    "references": [
+      { "title": "Función PARALLELPERIOD (DAX)", "url": "https://learn.microsoft.com/es-es/dax/parallelperiod-function-dax" }
+    ]
+  },
+  {
+    "id": "pl300-caso-7-004",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-usabilidad",
+    "caseId": "caso-7",
+    "difficulty": 2,
+    "prompt": "Completa los pasos que sigue la directora de marketing para cumplir el requisito de informes 3.",
+    "template": "En el servicio Power BI selecciona Exportar > PowerPoint, elige {{b1}}, marca {{b2}} y activa {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "Insertar datos activos (*Embed live data*)" },
+          { "id": "o2", "text": "Exportar como imagen" }
+        ],
+        "correctId": "o2",
+        "explanation": "Exportar como imagen genera una diapositiva por página con una imagen estática de alta resolución, que la agencia puede abrir sin acceso a Power BI. Con Insertar datos activos, los datos no forman parte del archivo: se consultan en Power BI, y quien abre la presentación necesita una cuenta y acceso al informe."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "Valores actuales" },
+          { "id": "o2", "text": "Valores predeterminados" }
+        ],
+        "correctId": "o1",
+        "explanation": "Valores actuales exporta el informe con los cambios de segmentaciones y filtros que la directora acaba de aplicar, como la temporada elegida. Valores predeterminados lo exporta tal como lo publicó el diseñador."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "Excluir pestañas de informe ocultas" },
+          { "id": "o2", "text": "Exportar solo la página actual" }
+        ],
+        "correctId": "o1",
+        "explanation": "Las páginas ocultas, como las de información sobre herramientas, se incluirían en la presentación si no las excluyes. Exportar solo la página actual dejaría fuera el resto de páginas visibles."
+      }
+    ],
+    "keyPoint": "Exportar a PowerPoint como imagen = una diapositiva estática por página; Valores actuales conserva los filtros aplicados y Excluir pestañas ocultas deja fuera las páginas ocultas.",
+    "references": [
+      { "title": "Exportar informes completos a PowerPoint", "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/end-user-powerpoint" },
+      { "title": "Ver y presentar datos dinámicos de Power BI en PowerPoint", "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/office-integration/service-power-bi-powerpoint-add-in-view-present" }
+    ]
+  },
+  {
+    "id": "pl300-caso-7-005",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "caseId": "caso-7",
+    "difficulty": 3,
+    "prompt": "Estás investigando el problema actual 1. Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Una causa probable es que, para los invitados, USERPRINCIPALNAME() devuelva un valor con otro formato, como ana_agencianorte.com#EXT#@luamoda.onmicrosoft.com, que no coincide con la columna Correo.",
+        "answer": true,
+        "explanation": "En escenarios B2B, USERPRINCIPALNAME() devuelve la identidad tal como la resuelve el servicio, que puede ser el correo externo o un valor del inquilino con #EXT#. Si la tabla de asignación usa otro formato, el filtro no coincide y el invitado no ve datos."
+      },
+      {
+        "id": "s2",
+        "text": "Puedes reproducir exactamente lo que ve un invitado con Probar como rol, seleccionando su cuenta en Ahora se muestra como.",
+        "answer": false,
+        "explanation": "Probar como rol evalúa las expresiones dinámicas con tu propia identidad, así que no permite ver lo que vería un invitado B2B concreto. Para validarlo, el invitado real debe iniciar sesión y abrir el informe."
+      },
+      {
+        "id": "s3",
+        "text": "Para comprobar el valor, puedes crear una medida con USERPRINCIPALNAME(), mostrarla en una tarjeta y pedir a un invitado que abra el informe con su cuenta.",
+        "answer": true,
+        "explanation": "Es la prueba que recomienda la documentación: la tarjeta muestra el valor exacto que recibe el filtro RLS para ese usuario, y así puedes ajustar la tabla AccesoAgencia."
+      },
+      {
+        "id": "s4",
+        "text": "Basta con sustituir USERPRINCIPALNAME() por USERNAME(), que en el servicio devuelve siempre la dirección original del invitado.",
+        "answer": false,
+        "explanation": "En el servicio Power BI, USERNAME() y USERPRINCIPALNAME() devuelven el mismo nombre principal de usuario, así que el cambio no resuelve la diferencia de formato."
+      }
+    ],
+    "keyPoint": "RLS dinámica con invitados B2B: comprueba el valor real de USERPRINCIPALNAME() (puede llevar #EXT#) con el propio invitado; Probar como rol no simula a un invitado concreto.",
+    "references": [
+      { "title": "Seguridad de nivel de fila (RLS) con Power BI: consideraciones para RLS dinámica", "url": "https://learn.microsoft.com/es-es/fabric/security/service-admin-row-level-security" }
+    ]
+  }
+]

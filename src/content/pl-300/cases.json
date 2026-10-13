@@ -128,5 +128,61 @@
         "body": "1. El equipo de plataforma BI administra el área de trabajo, incluso para eliminarla o quitar usuarios.\n2. La coordinadora editorial publica y actualiza la aplicación y puede añadir personas con permisos inferiores al suyo.\n3. Los analistas de colección crean y modifican informes, pero no pueden publicar la aplicación ni añadir personas.\n4. La auditora interna revisa el contenido del área de trabajo sin poder modificarlo."
       }
     ]
+  },
+  {
+    "id": "caso-6",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "title": "Actividad asistencial y ocupación hospitalaria",
+    "company": "Hospital Universitario Sierra Clara",
+    "summary": "Un hospital quiere analizar sus ingresos por comarca y servicio, medir estancias y pacientes ingresados, y enviar cada semana a cada jefe de servicio el resumen de su servicio.",
+    "sections": [
+      {
+        "title": "Contexto",
+        "body": "**Hospital Universitario Sierra Clara** tiene 450 camas y 14 servicios clínicos. La unidad de BI, formada por dos analistas con el rol Administrador del área de trabajo, mantiene en Power BI Desktop el modelo semántico «Actividad asistencial», en modo de importación, que se actualiza cada día a las 6:00. El área de trabajo está asignada a una capacidad de Microsoft Fabric, y los jefes de servicio y la dirección médica consumen los informes a través de una aplicación de Power BI."
+      },
+      {
+        "title": "Orígenes de datos",
+        "body": "- **Ingresos**: tabla del sistema de información hospitalaria, con una fila por ingreso y las columnas IdIngreso, FechaIngreso, FechaAlta (vacía mientras el paciente sigue ingresado), TipoIngreso (Urgente o Programado), IdServicio y MunicipioResidencia, un texto libre que se teclea en admisión.\n- **Municipios**: catálogo oficial de la consejería de sanidad, con CodMunicipio, Municipio y Comarca.\n- **Servicio**: una fila por servicio clínico, con IdServicio, Servicio y CorreoJefe (la dirección de correo del jefe de servicio).\n- El modelo tiene una tabla Fecha marcada como tabla de fechas y relacionada solo con Ingresos[FechaIngreso], mediante una relación activa de uno a varios."
+      },
+      {
+        "title": "Requisitos de informes",
+        "body": "1. Los indicadores deben poder analizarse por comarca de residencia del paciente, y cada ingreso debe contarse una sola vez.\n2. Una matriz por mes debe mostrar cuántos pacientes seguían ingresados al cierre de cada mes.\n3. La estancia de los pacientes que siguen ingresados debe contarse hasta el día actual.\n4. La dirección ve que dos servicios concentran la mitad de los ingresos y quiere descubrir, sin crear objetos visuales a mano, para qué grupos de pacientes (por comarca, tipo de ingreso, etc.) ese reparto por servicio es claramente distinto."
+      },
+      {
+        "title": "Requisitos de distribución",
+        "body": "1. Cada lunes por la mañana, cada jefe de servicio debe recibir por correo la página «Resumen del servicio» filtrada por su servicio.\n2. La lista de destinatarios debe mantenerse sola a partir de la tabla Servicio, sin que nadie tenga que editar nada cuando cambie un jefe o se cree un servicio."
+      },
+      {
+        "title": "Problemas actuales",
+        "body": "1. Casi una cuarta parte de los valores de MunicipioResidencia no coincide exactamente con el catálogo: hay errores tipográficos («Robledillo de la Siera»), diferencias de mayúsculas y nombres abreviados como «Villar», que se parece a dos municipios del catálogo (Villar del Monte y Villar de Sierra Clara)."
+      }
+    ]
+  },
+  {
+    "id": "caso-7",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "title": "Ventas por etiqueta y campañas de moda online",
+    "company": "Lúa Moda Online",
+    "summary": "Una tienda online de moda quiere analizar sus ventas por etiquetas de producto, compararlas con el año anterior, exportar presentaciones para socios y dar acceso seguro a una agencia externa.",
+    "sections": [
+      {
+        "title": "Contexto",
+        "body": "**Lúa Moda Online** vende ropa y complementos a través de su tienda web en España y Portugal. Dos analistas mantienen el modelo semántico «Ventas online», en modo de importación, con una actualización programada cada mañana. El equipo de marketing consume los informes en el servicio Power BI. La agencia de marketing externa Agencia Norte accede al informe de campañas con cuentas de invitado (B2B) de Microsoft Entra ID."
+      },
+      {
+        "title": "Orígenes de datos",
+        "body": "- **Ventas**: tabla de Azure SQL Database con una fila por línea de pedido, FechaPedido, IdProducto, IdCampaña e importes.\n- **Productos**: catálogo con IdProducto, Producto, Categoría, Temporada y Etiquetas. La columna Etiquetas contiene todas las etiquetas de un producto en un solo texto separado por punto y coma, por ejemplo «lino; verano; oferta».\n- **AccesoAgencia**: una fila por usuario de agencia, con Correo (la dirección original del usuario, por ejemplo ana@agencianorte.com) e IdAgencia. El rol RLS Agencias filtra esta tabla con [Correo] = USERPRINCIPALNAME().\n- Importe neto es una medida explícita. La tabla Fecha está marcada como tabla de fechas y relacionada con Ventas[FechaPedido]."
+      },
+      {
+        "title": "Requisitos de informes",
+        "body": "1. El equipo de marketing debe poder filtrar todas las ventas con un segmentador de etiquetas. Un producto puede tener varias etiquetas.\n2. Una matriz mensual debe mostrar, junto a cada mes, el importe neto de todo el año natural anterior, que es la referencia del plan de marketing.\n3. Cada lunes, la directora de marketing descarga desde el servicio una presentación de PowerPoint con todas las páginas visibles del informe, filtrada por la temporada que acaba de elegir en el segmentador, y la envía a una agencia de relaciones públicas que no tiene acceso a Power BI. El informe incluye dos páginas ocultas de información sobre herramientas."
+      },
+      {
+        "title": "Problemas actuales",
+        "body": "1. Los usuarios invitados de Agencia Norte no ven ningún dato en el informe de campañas. Un empleado interno que se añadió a AccesoAgencia con su propio correo para hacer una prueba sí ve los datos de la agencia."
+      }
+    ]
   }
 ]
