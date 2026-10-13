@@ -58,9 +58,18 @@
       {
         "id": "b1",
         "options": [
-          { "id": "o1", "text": "Preguntar al usuario final antes de ejecutar" },
-          { "id": "o2", "text": "Permitir que el agente decida dinámicamente cuándo usar la herramienta" },
-          { "id": "o3", "text": "Credenciales del usuario final" }
+          {
+            "id": "o1",
+            "text": "Preguntar al usuario final antes de ejecutar"
+          },
+          {
+            "id": "o2",
+            "text": "Permitir que el agente decida dinámicamente cuándo usar la herramienta"
+          },
+          {
+            "id": "o3",
+            "text": "Credenciales del usuario final"
+          }
         ],
         "correctId": "o2",
         "explanation": "Si esta opción no está seleccionada, el agente solo usa la herramienta cuando se la llama desde un tema. «Preguntar antes de ejecutar» solo pide confirmación, y la autenticación no decide cuándo se usa la herramienta."
@@ -68,9 +77,18 @@
       {
         "id": "b2",
         "options": [
-          { "id": "o1", "text": "Valor personalizado (*Custom value*)" },
-          { "id": "o2", "text": "Rellenar dinámicamente con IA (*Dynamically fill with AI*)" },
-          { "id": "o3", "text": "una entidad precompilada" }
+          {
+            "id": "o1",
+            "text": "Valor personalizado (*Custom value*)"
+          },
+          {
+            "id": "o2",
+            "text": "Rellenar dinámicamente con IA (*Dynamically fill with AI*)"
+          },
+          {
+            "id": "o3",
+            "text": "una entidad precompilada"
+          }
         ],
         "correctId": "o1",
         "explanation": "Con «Valor personalizado» fijas un valor, una variable o una fórmula de Power Fx y el agente no pregunta nada al usuario. «Rellenar dinámicamente con IA» intenta extraer el valor del contexto y, si no lo encuentra, lo pregunta."
@@ -78,9 +96,18 @@
       {
         "id": "b3",
         "options": [
-          { "id": "o1", "text": "No responder" },
-          { "id": "o2", "text": "Enviar una respuesta específica" },
-          { "id": "o3", "text": "Enviar una tarjeta adaptable" }
+          {
+            "id": "o1",
+            "text": "No responder"
+          },
+          {
+            "id": "o2",
+            "text": "Enviar una respuesta específica"
+          },
+          {
+            "id": "o3",
+            "text": "Enviar una tarjeta adaptable"
+          }
         ],
         "correctId": "o3",
         "explanation": "La tarjeta adaptable crea respuestas enriquecidas e interactivas, con botones y acciones. «Enviar una respuesta específica» es un texto con variables y «No responder» deja que el agente incorpore el resultado a su propia respuesta."
@@ -96,60 +123,45 @@
   },
   {
     "id": "pl900-d5-herramientas-103",
-    "type": "multiple",
+    "type": "single",
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d5",
     "skill": "d5-herramientas",
-    "difficulty": 1,
-    "prompt": "Al crear una herramienta de tipo indicación (*prompt*) para un agente, ¿qué tres elementos puedes incluir en ella? Selecciona tres.",
+    "difficulty": 2,
+    "scenario": "Transportes Bierzo registra cada día los albaranes en el portal web de un cliente que no ofrece API ni conector, y cuyo diseño cambia a menudo. Quiere que su agente de Copilot Studio, que usa orquestación generativa, haga ese registro a partir de instrucciones en lenguaje natural, sin escribir código.",
+    "prompt": "¿Qué herramienta debe agregar al agente?",
     "options": [
       {
         "id": "a",
-        "text": "Frases desencadenantes que inician la indicación cuando el usuario las escribe",
+        "text": "Un conector personalizado del portal del cliente",
         "correct": false,
-        "explanation": "Las frases desencadenantes pertenecen a los temas. Con orquestación generativa, el agente elige una herramienta por su nombre y su descripción."
+        "explanation": "Un conector personalizado se define a partir de una API; el portal no ofrece ninguna."
       },
       {
         "id": "b",
-        "text": "Instrucciones en lenguaje natural que indican al modelo qué tarea realizar",
-        "correct": true,
-        "explanation": "Una indicación se compone principalmente de una instrucción en lenguaje natural que le dice al modelo de IA generativa qué hacer, por ejemplo resumir, clasificar o extraer datos."
+        "text": "Una herramienta de indicación (*prompt*) con las instrucciones del registro",
+        "correct": false,
+        "explanation": "Una indicación genera texto con un modelo de IA, pero no interactúa con la interfaz de un sitio web."
       },
       {
         "id": "c",
-        "text": "Variables de entrada que aportan datos dinámicos en cada ejecución",
+        "text": "La herramienta Uso del equipo (*computer use*)",
         "correct": true,
-        "explanation": "Las entradas permiten pasar a la indicación, en tiempo de ejecución, el contenido que debe procesar, como el texto de un correo o de una reclamación."
+        "explanation": "Uso del equipo automatiza sitios web y aplicaciones de escritorio a través de su interfaz, en un equipo Windows configurado, a partir de instrucciones en lenguaje natural. Al estar basado en IA, se adapta a los cambios de la interfaz."
       },
       {
         "id": "d",
-        "text": "El desencadenador Cuando un agente llama al flujo (*When an agent calls the flow*)",
+        "text": "Un servidor MCP (*Model Context Protocol*) agregado como herramienta",
         "correct": false,
-        "explanation": "Ese desencadenador es propio de los flujos de agente que se usan como herramienta, no de las indicaciones."
-      },
-      {
-        "id": "e",
-        "text": "Conocimiento, como columnas de tablas de Dataverse, para fundamentar la respuesta",
-        "correct": true,
-        "explanation": "Puedes agregar datos como conocimiento para que el modelo responda con información de la empresa (generación aumentada por recuperación) y no solo con lo que aprendió en su entrenamiento."
-      },
-      {
-        "id": "f",
-        "text": "El canal en el que se mostrará la respuesta generada",
-        "correct": false,
-        "explanation": "Los canales se configuran al publicar el agente; la indicación es reutilizable y no depende del canal. Incluso puede usarse en flujos y aplicaciones."
+        "explanation": "Un servidor MCP expone herramientas que alguien ha desarrollado; el cliente no ofrece ninguno y crearlo exigiría desarrollo."
       }
     ],
-    "keyPoint": "Una indicación reúne instrucciones, entradas y, si hace falta, conocimiento; es reutilizable en agentes, flujos y aplicaciones.",
+    "keyPoint": "Sin API ni conector, la herramienta Uso del equipo permite que el agente use un sitio web o una aplicación de escritorio como lo haría una persona, a partir de instrucciones en lenguaje natural.",
     "references": [
       {
-        "title": "Información general sobre las indicaciones",
-        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/prompts-overview"
-      },
-      {
-        "title": "Agregar conocimiento a una indicación",
-        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/use-your-own-prompt-data"
+        "title": "Automatizar aplicaciones web y de escritorio con el uso del equipo",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/computer-use"
       }
     ]
   },
@@ -161,7 +173,9 @@
     "domain": "d5",
     "skill": "d5-herramientas",
     "difficulty": 2,
-    "tags": ["preview"],
+    "tags": [
+      "preview"
+    ],
     "scenario": "Viveros Almendro tiene una aplicación propia de pedidos que expone una API REST documentada con una especificación OpenAPI. No existe ningún conector precompilado para ella, y la empresa quiere que su agente consulte y cree pedidos en esa aplicación.",
     "prompt": "¿Qué dos tipos de herramienta permiten conectar el agente a esa API? Selecciona dos.",
     "options": [
@@ -442,9 +456,18 @@
       {
         "id": "b1",
         "options": [
-          { "id": "o1", "text": "Requerir que los usuarios inicien sesión" },
-          { "id": "o2", "text": "Sin autenticación" },
-          { "id": "o3", "text": "Requerir acceso seguro" }
+          {
+            "id": "o1",
+            "text": "Requerir que los usuarios inicien sesión"
+          },
+          {
+            "id": "o2",
+            "text": "Sin autenticación"
+          },
+          {
+            "id": "o3",
+            "text": "Requerir acceso seguro"
+          }
         ],
         "correctId": "o3",
         "explanation": "«Requerir acceso seguro» obliga a que los clientes autentiquen sus solicitudes con un secreto o un token de Direct Line; las solicitudes sin ellos no funcionan. Iniciar sesión identifica a la persona, no la página desde la que se conecta."
@@ -452,9 +475,18 @@
       {
         "id": "b2",
         "options": [
-          { "id": "o1", "text": "un token" },
-          { "id": "o2", "text": "el mismo secreto, escrito en el código de la página" },
-          { "id": "o3", "text": "un código QR" }
+          {
+            "id": "o1",
+            "text": "un token"
+          },
+          {
+            "id": "o2",
+            "text": "el mismo secreto, escrito en el código de la página"
+          },
+          {
+            "id": "o3",
+            "text": "un código QR"
+          }
         ],
         "correctId": "o1",
         "explanation": "El secreto nunca debe exponerse en código que se ejecuta en el navegador. El servicio lo intercambia por un token, que solo sirve para una conversación y caduca si no se renueva."
@@ -462,9 +494,18 @@
       {
         "id": "b3",
         "options": [
-          { "id": "o1", "text": "hay que volver a enviar el agente para su aprobación en Teams" },
-          { "id": "o2", "text": "no hace falta volver a publicar el agente, aunque tarda un tiempo en propagarse" },
-          { "id": "o3", "text": "hay que volver a publicar el agente en todos sus canales" }
+          {
+            "id": "o1",
+            "text": "hay que volver a enviar el agente para su aprobación en Teams"
+          },
+          {
+            "id": "o2",
+            "text": "no hace falta volver a publicar el agente, aunque tarda un tiempo en propagarse"
+          },
+          {
+            "id": "o3",
+            "text": "hay que volver a publicar el agente en todos sus canales"
+          }
         ],
         "correctId": "o2",
         "explanation": "A diferencia de los cambios de autenticación, activar o desactivar el acceso seguro no requiere publicar. El cambio tarda en propagarse y, mientras tanto, sigue vigente la configuración anterior."
@@ -487,7 +528,7 @@
     "skill": "d5-publicar",
     "difficulty": 2,
     "scenario": "Clínica Dental Sonrisa ya tiene su agente en el sitio web y quiere llevarlo a otros canales y públicos.",
-    "prompt": "Empareja cada necesidad con la opción de Copilot Studio que la cubre.",
+    "prompt": "Empareja cada necesidad con la opción de Copilot Studio que la cubre. Dos de las opciones no se usan.",
     "prompts": [
       {
         "id": "m1",
@@ -505,32 +546,40 @@
         "id": "m3",
         "text": "Los pacientes consultan sus citas en el portal externo creado con Power Pages",
         "answerId": "c3",
-        "explanation": "Desde el estudio de diseño de Power Pages puedes agregar el agente a las páginas del sitio para que los visitantes conversen con él."
-      },
-      {
-        "id": "m4",
-        "text": "El agente debe pasar la conversación, con su contexto, a las personas que atienden en Dynamics 365 Customer Service",
-        "answerId": "c4",
-        "explanation": "Copilot Studio se integra con centros de interacción con el cliente, como Dynamics 365 Customer Service, ServiceNow, Salesforce, LivePerson o Genesys, para transferir la conversación a un agente humano."
+        "explanation": "Desde el área de trabajo Configurar del estudio de diseño de Power Pages agregas un agente al sitio, y puedes usar un agente creado en Copilot Studio para que los visitantes conversen con él."
       }
     ],
     "choices": [
-      { "id": "c1", "text": "Canal WhatsApp" },
-      { "id": "c2", "text": "Canales de Azure Bot Service" },
-      { "id": "c3", "text": "Power Pages" },
-      { "id": "c4", "text": "Transferencia a un centro de interacción con el cliente" },
-      { "id": "c5", "text": "Canal Facebook" },
-      { "id": "c6", "text": "Sitio web de demostración" }
+      {
+        "id": "c1",
+        "text": "Canal WhatsApp"
+      },
+      {
+        "id": "c2",
+        "text": "Canales de Azure Bot Service"
+      },
+      {
+        "id": "c3",
+        "text": "Power Pages"
+      },
+      {
+        "id": "c5",
+        "text": "Canal Facebook"
+      },
+      {
+        "id": "c6",
+        "text": "Sitio web de demostración"
+      }
     ],
-    "keyPoint": "Además de Teams y la web, un agente puede llegar a WhatsApp, Power Pages, canales de Azure Bot Service como Slack, y transferir a centros de atención como Dynamics 365.",
+    "keyPoint": "Además de Teams y la web, un agente puede llegar a WhatsApp, a sitios de Power Pages y, mediante los canales de Azure Bot Service, a plataformas como Slack.",
     "references": [
       {
         "title": "Conceptos clave: publicar e implementar el agente",
         "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/publication-fundamentals-publish-channels"
       },
       {
-        "title": "Agentes para la interacción con el cliente y la transferencia",
-        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/customer-copilot-overview"
+        "title": "Incorporación de un agente a un sitio de Power Pages: información general",
+        "url": "https://learn.microsoft.com/es-es/power-pages/getting-started/add-agent-overview"
       }
     ]
   },
@@ -633,45 +682,45 @@
   },
   {
     "id": "pl900-d5-publicar-107",
-    "type": "single",
+    "type": "yesno",
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d5",
     "skill": "d5-publicar",
-    "difficulty": 1,
-    "tags": ["preview"],
-    "prompt": "¿Para qué sirve el canal Cliente MCP (*MCP client*) de un agente de Copilot Studio?",
-    "options": [
+    "difficulty": 2,
+    "scenario": "Seguros Cierzo tiene su agente publicado en el sitio web y quiere conectarlo también a Teams y a Facebook.",
+    "prompt": "Indica si cada afirmación sobre los canales del agente es verdadera.",
+    "statements": [
       {
-        "id": "a",
-        "text": "Para conectar el agente a un servidor MCP externo y usar sus herramientas y recursos",
-        "correct": false,
-        "explanation": "Eso se hace agregando el servidor MCP como herramienta del agente. El canal hace lo contrario: publica el agente para que otros clientes lo usen."
+        "id": "s1",
+        "text": "La experiencia puede variar según el canal: por ejemplo, la encuesta de satisfacción se muestra como tarjeta adaptable en el sitio web y como texto en Teams.",
+        "answer": true,
+        "explanation": "Cada canal ofrece experiencias distintas, por lo que conviene tenerlas en cuenta al optimizar el contenido del agente para cada canal."
       },
       {
-        "id": "b",
-        "text": "Para que otros agentes envíen tareas al agente mediante el protocolo Agent2Agent (A2A)",
-        "correct": false,
-        "explanation": "Eso corresponde al canal Cliente A2A, que expone el agente a otros agentes y orquestadores a través de ese protocolo."
+        "id": "s2",
+        "text": "Todos los canales muestran el mismo número de opciones de selección múltiple, así que no hace falta adaptar las preguntas al canal.",
+        "answer": false,
+        "explanation": "El número de opciones admitidas varía: por ejemplo, Teams muestra hasta seis en una pregunta, mientras que otros canales admiten más o solo parcialmente."
       },
       {
-        "id": "c",
-        "text": "Para exponer el agente publicado como servidor MCP remoto, de modo que herramientas de desarrollo u otros hosts de agentes lo invoquen como herramienta",
-        "correct": true,
-        "explanation": "El canal Cliente MCP (en versión preliminar) publica un punto de conexión HTTPS para el agente; los clientes MCP lo descubren y lo llaman como herramienta, autenticándose con Microsoft Entra ID."
+        "id": "s3",
+        "text": "Si un canal aparece deshabilitado en la página Canales, puede deberse a las directivas de la organización o a la configuración de autenticación del agente.",
+        "answer": true,
+        "explanation": "Las directivas de gobierno o la configuración del agente pueden bloquear canales; el icono de información junto al canal explica el motivo."
       },
       {
-        "id": "d",
-        "text": "Para insertar el agente en un sitio web mediante un fragmento de código",
-        "correct": false,
-        "explanation": "Eso es el canal de sitio web o aplicación web, que integra el agente en las páginas de un sitio."
+        "id": "s4",
+        "text": "Si una directiva de la organización bloquea un canal, puedes desbloquearlo tú mismo desde la configuración de autenticación del agente.",
+        "answer": false,
+        "explanation": "Un bloqueo por directiva de la organización no lo levanta el creador: según el caso, hay que usar otro canal o hablar con el administrador."
       }
     ],
-    "keyPoint": "Servidor MCP como herramienta: el agente usa un servidor MCP. Canal Cliente MCP: el agente se ofrece como servidor MCP a otras aplicaciones.",
+    "keyPoint": "Cada canal tiene su propia experiencia (tarjetas, opciones, Markdown…), y algunos pueden estar bloqueados por las directivas de la organización o por la autenticación del agente.",
     "references": [
       {
-        "title": "Conectar clientes con los canales MCP y A2A",
-        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/agents-experience/publication-channels-mcp-agent-to-agent"
+        "title": "Conceptos clave: publicar e implementar el agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/publication-fundamentals-publish-channels"
       }
     ]
   },
@@ -712,12 +761,30 @@
       }
     ],
     "choices": [
-      { "id": "c1", "text": "Centro de administración de Microsoft 365" },
-      { "id": "c2", "text": "Microsoft Defender" },
-      { "id": "c3", "text": "Microsoft Purview" },
-      { "id": "c4", "text": "Microsoft Entra" },
-      { "id": "c5", "text": "Página Supervisar (*Monitor*) de Copilot Studio" },
-      { "id": "c6", "text": "Evaluación de agentes" }
+      {
+        "id": "c1",
+        "text": "Centro de administración de Microsoft 365"
+      },
+      {
+        "id": "c2",
+        "text": "Microsoft Defender"
+      },
+      {
+        "id": "c3",
+        "text": "Microsoft Purview"
+      },
+      {
+        "id": "c4",
+        "text": "Microsoft Entra"
+      },
+      {
+        "id": "c5",
+        "text": "Página Supervisar (*Monitor*) de Copilot Studio"
+      },
+      {
+        "id": "c6",
+        "text": "Evaluación de agentes"
+      }
     ],
     "keyPoint": "Agent 365 reparte la gestión: registro y actividad en el Centro de administración de Microsoft 365, amenazas en Defender, auditoría en Purview e identidad y acceso en Entra.",
     "references": [
@@ -786,7 +853,9 @@
     "domain": "d5",
     "skill": "d5-gestion",
     "difficulty": 1,
-    "tags": ["preview"],
+    "tags": [
+      "preview"
+    ],
     "prompt": "En la supervisión de un agente de Copilot Studio, ¿qué hace la función de temáticas (*themes*)?",
     "options": [
       {

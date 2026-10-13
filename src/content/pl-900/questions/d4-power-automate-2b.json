@@ -7,39 +7,39 @@
     "domain": "d4",
     "skill": "d4-conectores",
     "difficulty": 2,
-    "scenario": "En Distribuciones Turia los empleados registran sus gastos en una lista de SharePoint. Un flujo de nube automatizado con el desencadenador «Cuando se crea un elemento» empieza con una condición que comprueba si el importe supera 1.000 €; si no lo supera, no hace nada. El historial de ejecuciones está lleno de ejecuciones que no realizan ninguna acción y el responsable quiere que el flujo ni siquiera se inicie con los gastos pequeños.",
-    "prompt": "¿Qué debes configurar?",
+    "scenario": "El equipo de calidad de Conservas Rías Baixas quiere un flujo de nube programado que, cada dos semanas, los lunes a las 8:00 (hora peninsular española), publique en Teams un resumen de las no conformidades abiertas.",
+    "prompt": "¿Cómo debes configurar el desencadenador Periodicidad (*Recurrence*) del flujo?",
     "options": [
       {
         "id": "a",
-        "text": "El control de simultaneidad del desencadenador, limitado a una ejecución a la vez",
+        "text": "Intervalo 1 y Frecuencia Semana, con el lunes en «En estos días», las 8 en «A estas horas» y la zona horaria de Madrid",
         "correct": false,
-        "explanation": "El control de simultaneidad solo limita cuántas ejecuciones se procesan a la vez y pone el resto en cola; el flujo se seguiría ejecutando con cada gasto."
+        "explanation": "Con Intervalo 1 y Frecuencia Semana el flujo se ejecuta todas las semanas, no cada dos."
       },
       {
         "id": "b",
-        "text": "Una condición del desencadenador (*trigger condition*) en su configuración que compruebe que el importe es mayor que 1.000",
+        "text": "Intervalo 2 y Frecuencia Semana, con el lunes en «En estos días», las 8 en «A estas horas» y la zona horaria de Madrid",
         "correct": true,
-        "explanation": "La condición del desencadenador se evalúa antes de iniciar el flujo: si no se cumple, no se crea ninguna ejecución, lo que evita ejecuciones innecesarias."
+        "explanation": "Intervalo y Frecuencia definen cada cuánto se ejecuta el flujo (cada 2 semanas). Con Frecuencia Semana eliges los días y las horas, y la zona horaria indica que esas horas son las de Madrid y no las de UTC."
       },
       {
         "id": "c",
-        "text": "Una directiva de reintentos exponencial en la primera acción del flujo",
+        "text": "Intervalo 2 y Frecuencia Mes, con una hora de inicio un lunes a las 8:00 y la zona horaria de Madrid",
         "correct": false,
-        "explanation": "La directiva de reintentos sirve para recuperarse de errores transitorios de una acción; no decide si el flujo debe iniciarse."
+        "explanation": "Con Frecuencia Mes el flujo se ejecuta cada dos meses, siempre en la misma fecha del mes, que no tiene por qué caer en lunes."
       },
       {
         "id": "d",
-        "text": "Mover la condición actual dentro de un ámbito (*scope*) al principio del flujo",
+        "text": "Un flujo instantáneo con el desencadenador «Desencadenar un flujo manualmente» que un responsable pulse cada dos lunes",
         "correct": false,
-        "explanation": "Un ámbito solo agrupa acciones; la condición seguiría evaluándose después de que el flujo ya se haya iniciado y contaría como ejecución."
+        "explanation": "Un flujo instantáneo necesita que alguien lo inicie; el requisito pide que se ejecute solo, según una programación."
       }
     ],
-    "keyPoint": "Una condición de acción decide qué hace el flujo una vez iniciado; una condición del desencadenador evita que el flujo se inicie.",
+    "keyPoint": "Periodicidad: Intervalo y Frecuencia fijan cada cuánto se ejecuta el flujo; con Frecuencia Semana eliges días y horas, y la zona horaria fija en qué hora local se interpretan.",
     "references": [
       {
-        "title": "Optimizar los desencadenadores de Power Automate",
-        "url": "https://learn.microsoft.com/es-es/power-automate/guidance/coding-guidelines/optimize-power-automate-triggers"
+        "title": "Ejecutar un flujo de nube según una programación en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/run-scheduled-tasks"
       }
     ]
   },
@@ -88,100 +88,126 @@
   },
   {
     "id": "pl900-d4-conectores-103",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "difficulty": 2,
+    "prompt": "Empareja cada necesidad de un flujo de nube con el elemento de control (*Control*) que la resuelve. Una de las opciones no se usa.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Avisar al jefe de compras solo si el importe del pedido supera 1.000 €; si no, registrar el pedido sin avisar",
+        "answerId": "c1",
+        "explanation": "Una condición evalúa una comparación (por ejemplo, «es mayor que») y ejecuta la rama Sí o la rama No según el resultado."
+      },
+      {
+        "id": "m2",
+        "text": "Enviar cada solicitud a un equipo distinto según el valor de la columna Departamento: Compras, Recursos Humanos o TI",
+        "answerId": "c2",
+        "explanation": "«Cambiar» (*Switch*) compara un valor con varios casos y ejecuta solo el que coincide, con un caso predeterminado para el resto; evita anidar varias condiciones."
+      },
+      {
+        "id": "m3",
+        "text": "Guardar en SharePoint, uno por uno, todos los archivos adjuntos de un correo",
+        "answerId": "c3",
+        "explanation": "«Aplicar a cada uno» recorre una lista, como los adjuntos de un correo, y repite las acciones con cada elemento."
+      },
+      {
+        "id": "m4",
+        "text": "Volver a consultar el estado de un trabajo en un servicio externo hasta que sea «Completado»",
+        "answerId": "c4",
+        "explanation": "«Hasta» (*Do until*) repite sus acciones hasta que se cumple una condición, con un límite de repeticiones y de tiempo para no quedarse en bucle indefinidamente."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Condición (*Condition*)"
+      },
+      {
+        "id": "c2",
+        "text": "Cambiar (*Switch*)"
+      },
+      {
+        "id": "c3",
+        "text": "Aplicar a cada uno (*Apply to each*)"
+      },
+      {
+        "id": "c4",
+        "text": "Hasta (*Do until*)"
+      },
+      {
+        "id": "c5",
+        "text": "Ámbito (*Scope*)"
+      }
+    ],
+    "keyPoint": "Condición = dos ramas según una comparación; Cambiar = una rama por valor; Aplicar a cada uno = recorrer una lista; Hasta = repetir hasta que se cumpla algo. Un ámbito solo agrupa acciones.",
+    "references": [
+      {
+        "title": "Agregar una condición a un flujo de nube en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/add-condition"
+      },
+      {
+        "title": "Usar la acción Aplicar a cada uno para procesar una lista de elementos",
+        "url": "https://learn.microsoft.com/es-es/power-automate/apply-to-each"
+      },
+      {
+        "title": "Ejecutar bucles para repetir acciones en flujos de trabajo",
+        "url": "https://learn.microsoft.com/es-es/azure/logic-apps/logic-apps-control-flow-loops"
+      },
+      {
+        "title": "Agregar acciones de conmutador (Switch) a flujos de trabajo",
+        "url": "https://learn.microsoft.com/es-es/azure/logic-apps/logic-apps-control-flow-switch-statement"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-conectores-104",
     "type": "single",
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d4",
     "skill": "d4-conectores",
     "difficulty": 2,
-    "scenario": "Traducciones Atlas envía cada documento nuevo a un servicio externo de traducción mediante un conector. El servicio tarda un tiempo variable y ofrece una acción que devuelve el estado del trabajo. Dentro del mismo flujo de nube, hay que consultar el estado cada diez minutos y, solo cuando sea «Completado», descargar la traducción.",
-    "prompt": "¿Qué elemento de control debes usar para repetir la consulta?",
+    "scenario": "En Hoteles Duero, cuando Recursos Humanos registra una nueva incorporación en Dataverse, un flujo de nube automatizado envía al empleado la documentación. El mismo flujo debe enviarle después un mensaje de bienvenida en Teams justo el día de su incorporación, que siempre es dentro de las dos semanas siguientes.",
+    "prompt": "¿Qué debes agregar al flujo antes de la acción que envía el mensaje de bienvenida?",
     "options": [
       {
         "id": "a",
-        "text": "«Aplicar a cada uno» (*Apply to each*) sobre la salida de la acción de estado",
+        "text": "La acción «Retraso» (*Delay*) configurada en 14 días",
         "correct": false,
-        "explanation": "«Aplicar a cada uno» recorre una vez cada elemento de una matriz que ya existe; no repite pasos mientras se espera a que cambie un valor."
+        "explanation": "«Retraso» espera siempre la misma cantidad de tiempo, así que el mensaje llegaría a los 14 días aunque la incorporación fuera antes."
       },
       {
         "id": "b",
-        "text": "Una condición que compruebe si el estado es «Completado»",
+        "text": "Un segundo desencadenador Periodicidad que compruebe cada día la fecha",
         "correct": false,
-        "explanation": "Una condición evalúa el valor una sola vez: si el trabajo aún no ha terminado, el flujo no vuelve a comprobarlo."
+        "explanation": "Un flujo de nube tiene un único desencadenador; una comprobación diaria exigiría crear otro flujo programado."
       },
       {
         "id": "c",
-        "text": "Un bucle *Do until* (Hasta) con la acción de estado y un retraso de diez minutos, que termina cuando el estado es «Completado»",
+        "text": "La acción «Retraso hasta» (*Delay until*) con la fecha de incorporación del registro",
         "correct": true,
-        "explanation": "*Do until* repite sus acciones hasta que se cumple la condición indicada, con un límite de iteraciones y de tiempo para no quedarse en bucle indefinidamente."
+        "explanation": "«Retraso hasta» pausa la ejecución hasta la fecha y hora indicadas, que puede venir del contenido dinámico del registro. Un plazo de dos semanas está dentro de la duración máxima de una ejecución."
       },
       {
         "id": "d",
-        "text": "Una condición del desencadenador que espere a que el estado sea «Completado»",
+        "text": "Una condición que compruebe si la fecha de hoy es la de incorporación",
         "correct": false,
-        "explanation": "La condición del desencadenador solo decide si el flujo se inicia; no puede esperar a que cambie el estado de un trabajo ya enviado."
+        "explanation": "La condición se evalúa una sola vez, al llegar a ella: el día del registro sería falsa y el flujo no esperaría a la fecha."
       }
     ],
-    "keyPoint": "«Aplicar a cada uno» recorre una lista; *Do until* repite pasos hasta que se cumple una condición, como esperar a que cambie un estado.",
+    "keyPoint": "«Retraso» espera un tiempo fijo; «Retraso hasta» espera hasta una fecha y hora concretas, dentro de la duración máxima de una ejecución.",
     "references": [
       {
-        "title": "Agregar bucles para repetir acciones (For each y Until)",
-        "url": "https://learn.microsoft.com/es-es/azure/logic-apps/logic-apps-control-flow-loops"
+        "title": "Pausar la ejecución del flujo de trabajo (Retraso y Retraso hasta)",
+        "url": "https://learn.microsoft.com/es-es/azure/connectors/connectors-native-delay"
       },
       {
-        "title": "Límites de los flujos de nube",
+        "title": "Límites de flujos instantáneos, programados y automatizados",
         "url": "https://learn.microsoft.com/es-es/power-automate/limits-and-config"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d4-conectores-104",
-    "type": "dropdown",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d4",
-    "skill": "d4-conectores",
-    "difficulty": 2,
-    "scenario": "Un flujo de nube de Mutua Cierzo debe enviar cada solicitud a un equipo distinto según el valor de la columna Departamento (Compras, Recursos Humanos o TI). Además, las solicitudes de más de 5.000 € necesitan una revisión adicional.",
-    "prompt": "Completa la frase.",
-    "template": "Para ejecutar una ruta distinta según el valor de Departamento usas {{b1}}; las solicitudes cuyo departamento no coincide con ninguno de los valores previstos siguen {{b2}}; y para comprobar si el importe es mayor que 5.000 € usas {{b3}}.",
-    "blanks": [
-      {
-        "id": "b1",
-        "options": [
-          { "id": "o1", "text": "la acción de control *Switch*, con un caso por departamento" },
-          { "id": "o2", "text": "un bucle «Aplicar a cada uno» sobre los departamentos" },
-          { "id": "o3", "text": "un ámbito (*scope*) por departamento" }
-        ],
-        "correctId": "o1",
-        "explanation": "*Switch* evalúa un valor y ejecuta solo el caso que coincide, lo que evita anidar varias condiciones. Un bucle o un ámbito no eligen una ruta según un valor."
-      },
-      {
-        "id": "b2",
-        "options": [
-          { "id": "o1", "text": "la rama «Si no» de cada caso" },
-          { "id": "o2", "text": "el caso predeterminado (*Default*) del *Switch*" },
-          { "id": "o3", "text": "ninguna ruta, porque el flujo termina con error" }
-        ],
-        "correctId": "o2",
-        "explanation": "El caso predeterminado se ejecuta cuando el valor no coincide con ningún caso; los casos de *Switch* no tienen rama «Si no» y el flujo no falla por no coincidir."
-      },
-      {
-        "id": "b3",
-        "options": [
-          { "id": "o1", "text": "otro caso del *Switch* con el valor «> 5000»" },
-          { "id": "o2", "text": "una acción «Inicializar variable»" },
-          { "id": "o3", "text": "una condición (*Condition*) con el operador «es mayor que»" }
-        ],
-        "correctId": "o3",
-        "explanation": "*Switch* solo compara por igualdad con valores fijos; para comparaciones como «mayor que» necesitas una condición. Una variable solo guarda valores."
-      }
-    ],
-    "keyPoint": "*Switch* = varias rutas según un valor exacto, con caso predeterminado; condición = comparaciones como «mayor que» con rama Sí/No.",
-    "references": [
-      {
-        "title": "Agregar acciones switch a flujos de trabajo",
-        "url": "https://learn.microsoft.com/es-es/azure/logic-apps/logic-apps-control-flow-switch-statement"
       }
     ]
   },
@@ -227,12 +253,30 @@
       }
     ],
     "choices": [
-      { "id": "c1", "text": "Redactar (*Compose*)" },
-      { "id": "c2", "text": "Filtrar matriz (*Filter array*)" },
-      { "id": "c3", "text": "Seleccionar (*Select*)" },
-      { "id": "c4", "text": "Crear tabla HTML (*Create HTML table*)" },
-      { "id": "c5", "text": "Unir (*Join*)" },
-      { "id": "c6", "text": "Analizar JSON (*Parse JSON*)" }
+      {
+        "id": "c1",
+        "text": "Redactar (*Compose*)"
+      },
+      {
+        "id": "c2",
+        "text": "Filtrar matriz (*Filter array*)"
+      },
+      {
+        "id": "c3",
+        "text": "Seleccionar (*Select*)"
+      },
+      {
+        "id": "c4",
+        "text": "Crear tabla HTML (*Create HTML table*)"
+      },
+      {
+        "id": "c5",
+        "text": "Unir (*Join*)"
+      },
+      {
+        "id": "c6",
+        "text": "Analizar JSON (*Parse JSON*)"
+      }
     ],
     "keyPoint": "Operaciones de datos: Redactar guarda un valor, Filtrar matriz quita elementos, Seleccionar cambia su forma, Unir los junta en un texto y Crear tabla HTML los presenta en una tabla.",
     "references": [
@@ -294,85 +338,108 @@
   },
   {
     "id": "pl900-d4-conectores-107",
-    "type": "order",
-    "exam": "PL-900",
-    "outlineVersion": "2026-07-24",
-    "domain": "d4",
-    "skill": "d4-conectores",
-    "difficulty": 3,
-    "scenario": "Un flujo de nube de Laboratorios Duna actualiza varias filas de Dataverse. Si cualquiera de esas acciones falla, hay que avisar al equipo de soporte con el nombre del flujo y el identificador de la ejecución, y la ejecución debe quedar marcada como errónea en el historial. Para ello usas el patrón *try-catch* con ámbitos.",
-    "prompt": "Ordena los elementos del flujo en el orden en que se ejecutan cuando una de las actualizaciones falla.",
-    "items": [
-      {
-        "id": "p1",
-        "text": "Ámbito «Intentar» (*Try*), que agrupa las acciones de actualización de Dataverse",
-        "explanation": "Primero se ejecutan las acciones principales agrupadas en un ámbito; si una de ellas falla, el ámbito completo termina con error."
-      },
-      {
-        "id": "p2",
-        "text": "Ámbito «Capturar» (*Catch*), configurado en «Ejecutar después» (*Run after*) para ejecutarse solo si «Intentar» ha fallado o ha agotado el tiempo de espera",
-        "explanation": "La configuración «Ejecutar después» hace que este ámbito se ejecute únicamente cuando el anterior falla, en lugar de cuando termina correctamente."
-      },
-      {
-        "id": "p3",
-        "text": "Acción de correo, dentro de «Capturar», que envía al soporte el nombre del flujo y el identificador de ejecución obtenidos con la función workflow()",
-        "explanation": "Dentro del ámbito de captura se registra o notifica el error; workflow() devuelve datos de la ejecución, como el nombre del flujo y el identificador de ejecución."
-      },
-      {
-        "id": "p4",
-        "text": "Acción «Terminar» (*Terminate*) con el estado «Con errores» (*Failed*)",
-        "explanation": "Va al final porque detiene el flujo: marca la ejecución como errónea para que el fallo se vea en el historial aunque el error se haya gestionado."
-      }
-    ],
-    "keyPoint": "Patrón try-catch: ámbito Intentar → ámbito Capturar con «Ejecutar después» en caso de error → notificar → Terminar con estado de error.",
-    "references": [
-      {
-        "title": "Emplear un control de errores sólido",
-        "url": "https://learn.microsoft.com/es-es/power-automate/guidance/coding-guidelines/error-handling"
-      }
-    ]
-  },
-  {
-    "id": "pl900-d4-conectores-108",
-    "type": "single",
+    "type": "yesno",
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d4",
     "skill": "d4-conectores",
     "difficulty": 2,
-    "scenario": "Un flujo de nube crea una tarea de revisión cada vez que se firma un contrato. La columna Vencimiento de la tarea debe contener la fecha de dentro de 30 días con el formato dd/MM/yyyy.",
-    "prompt": "¿Qué expresión debes escribir en el editor de expresiones (*fx*) del campo Vencimiento?",
-    "options": [
+    "scenario": "Marta ha creado en Power Automate varios flujos de nube que usan su conexión de SharePoint. Su compañero Luis usa esa misma conexión en una aplicación de lienzo de Power Apps del mismo entorno.",
+    "prompt": "Indica si cada afirmación sobre las conexiones es verdadera.",
+    "statements": [
       {
-        "id": "a",
-        "text": "formatDateTime(utcNow(), 'dd/MM/yyyy') + 30",
-        "correct": false,
-        "explanation": "El lenguaje de expresiones de los flujos no usa el operador + para sumar días a una fecha; las operaciones se hacen con funciones como addDays()."
+        "id": "s1",
+        "text": "Las conexiones se comparten entre Power Automate y Power Apps: una conexión creada en un servicio aparece también en el otro.",
+        "answer": true,
+        "explanation": "Learn indica que las conexiones se comparten con Power Apps; por eso la misma conexión de SharePoint sirve en flujos y en aplicaciones."
       },
       {
-        "id": "b",
-        "text": "addDays(utcNow(), -30, 'dd/MM/yyyy')",
-        "correct": false,
-        "explanation": "Con un número negativo, addDays() resta días: devolvería la fecha de hace 30 días, no la de dentro de 30 días."
+        "id": "s2",
+        "text": "Si la contraseña de la cuenta cambia y la conexión deja de funcionar, puedes actualizarla con «Corregir conexión» en Datos > Conexiones.",
+        "answer": true,
+        "explanation": "Al actualizar las credenciales de la conexión, el cambio se aplica a la vez en Power Automate y en Power Apps."
       },
       {
-        "id": "c",
-        "text": "formatDateTime(addHours(utcNow(), 30), 'dd/MM/yyyy')",
-        "correct": false,
-        "explanation": "addHours() suma horas, no días: el resultado sería la fecha de dentro de 30 horas (mañana o pasado mañana)."
+        "id": "s3",
+        "text": "Si eliminas la conexión en Power Automate, la aplicación de lienzo sigue funcionando porque Power Apps conserva su propia copia de la conexión.",
+        "answer": false,
+        "explanation": "Al eliminar una conexión se quita tanto de Power Automate como de Power Apps, así que la aplicación también dejaría de poder usarla."
       },
       {
-        "id": "d",
-        "text": "formatDateTime(addDays(utcNow(), 30), 'dd/MM/yyyy')",
-        "correct": true,
-        "explanation": "utcNow() devuelve la fecha y hora actual (en UTC), addDays() le suma 30 días y formatDateTime() aplica el formato dd/MM/yyyy."
+        "id": "s4",
+        "text": "Para saber qué flujos y aplicaciones usan una conexión, tienes que abrirlos uno a uno en el diseñador.",
+        "answer": false,
+        "explanation": "En los detalles de la conexión puedes ver directamente las aplicaciones y los flujos que la usan, algo útil antes de eliminarla o cambiarla."
       }
     ],
-    "keyPoint": "Fechas en expresiones: utcNow() da el momento actual en UTC, addDays() suma o resta días y formatDateTime() aplica el formato.",
+    "keyPoint": "Las conexiones se gestionan en Datos > Conexiones y se comparten con Power Apps: corregirlas o eliminarlas afecta a los flujos y a las aplicaciones que las usan.",
     "references": [
       {
-        "title": "Guía de referencia de las funciones de expresión",
-        "url": "https://learn.microsoft.com/es-es/azure/logic-apps/expression-functions-reference"
+        "title": "Administrar conexiones en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/add-manage-connections"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d4-conectores-108",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "difficulty": 1,
+    "scenario": "Un flujo de nube de Seguros Bética se inicia cuando llega un correo al buzón de siniestros y crea una tarea en Microsoft Planner por cada correo.",
+    "prompt": "Completa la frase.",
+    "template": "Para usar como título de la tarea el asunto del correo que inició el flujo, insertas {{b1}}; y para que la fecha de vencimiento sea la de dentro de siete días, un valor que no devuelve ningún paso anterior, escribes {{b2}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "el contenido dinámico Asunto del desencadenador"
+          },
+          {
+            "id": "o2",
+            "text": "el texto «Asunto» escrito a mano en el campo"
+          },
+          {
+            "id": "o3",
+            "text": "una nueva conexión de Office 365 Outlook"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "El contenido dinámico expone las salidas del desencadenador y de las acciones anteriores para usarlas en los pasos siguientes. Escribir «Asunto» pondría ese texto literal en todas las tareas, y una conexión solo da acceso al servicio."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "el contenido dinámico Hora de recepción del correo"
+          },
+          {
+            "id": "o2",
+            "text": "una expresión en el editor de expresiones (*fx*)"
+          },
+          {
+            "id": "o3",
+            "text": "una segunda acción de Planner"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Las expresiones calculan o transforman valores con funciones, por ejemplo sumar días a la fecha actual. La hora de recepción es un dato existente, no la fecha de dentro de siete días, y otra acción de Planner no calcula nada."
+      }
+    ],
+    "keyPoint": "Contenido dinámico = reutilizar datos que ya devuelve un paso anterior; expresión = calcular o transformar un valor nuevo.",
+    "references": [
+      {
+        "title": "Explorar el diseñador de flujos de nube",
+        "url": "https://learn.microsoft.com/es-es/power-automate/flows-designer"
+      },
+      {
+        "title": "Usar expresiones en condiciones en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/use-expressions-in-conditions"
       }
     ]
   },
@@ -470,40 +537,40 @@
     "outlineVersion": "2026-07-24",
     "domain": "d4",
     "skill": "d4-conectores",
-    "difficulty": 3,
-    "scenario": "La lista de SharePoint Incidencias de Ópticas Galicia tiene miles de elementos. Un flujo programado debe enviar cada mañana un recordatorio por cada incidencia cuyo Estado sea «Pendiente», que son solo unas pocas decenas.",
-    "prompt": "¿Cuál es la forma más eficiente de obtener solo esas incidencias?",
+    "difficulty": 1,
+    "scenario": "Iván está creando un flujo de nube en el diseñador. Al guardarlo, el diseñador le avisa de que hay problemas, como un parámetro obligatorio vacío en una acción de Outlook. Quiere ver todos los errores y advertencias, y saber en qué acción está cada uno, antes de probar el flujo.",
+    "prompt": "¿Qué debe usar?",
     "options": [
       {
         "id": "a",
-        "text": "Usar «Obtener elementos» sin filtro y, dentro de «Aplicar a cada uno», una condición que compruebe el Estado",
+        "text": "El historial de ejecuciones de la página de detalles del flujo",
         "correct": false,
-        "explanation": "Funciona, pero trae todos los elementos y ejecuta una condición por cada uno: muchas más acciones y más tiempo de ejecución de lo necesario."
+        "explanation": "El historial muestra ejecuciones que ya se han producido; el flujo todavía no se ha ejecutado ni probado."
       },
       {
         "id": "b",
-        "text": "Usar «Obtener elementos» y, después, «Filtrar matriz» con el criterio Estado igual a Pendiente",
-        "correct": false,
-        "explanation": "Reduce el bucle posterior, pero el flujo sigue descargando todos los elementos de la lista antes de filtrarlos."
+        "text": "El comprobador de flujos (*Flow checker*) de la barra de comandos del diseñador",
+        "correct": true,
+        "explanation": "El comprobador de flujos muestra los errores y advertencias del flujo, señala la acción donde está cada uno y ayuda a corregirlos; además se abre solo al guardar si hay problemas."
       },
       {
         "id": "c",
-        "text": "Agregar una condición del desencadenador «Periodicidad» que compruebe el Estado",
+        "text": "La página Conexiones, para volver a crear la conexión de Outlook",
         "correct": false,
-        "explanation": "El desencadenador de periodicidad no recibe elementos de la lista, así que no hay ningún Estado que evaluar al iniciarse el flujo."
+        "explanation": "La conexión no es el problema: falta un valor obligatorio en la acción, y la página Conexiones no revisa la definición del flujo."
       },
       {
         "id": "d",
-        "text": "Escribir en la propiedad «Consulta de filtro» (*Filter Query*) de «Obtener elementos» la expresión OData Estado eq 'Pendiente'",
-        "correct": true,
-        "explanation": "La consulta de filtro OData hace que SharePoint devuelva solo los elementos que cumplen el criterio, así el flujo recibe y recorre únicamente las incidencias pendientes."
+        "text": "El centro de automatización (*automation center*) del portal de Power Automate",
+        "correct": false,
+        "explanation": "El centro de automatización sirve para supervisar la actividad y las ejecuciones de las automatizaciones, no para revisar el diseño de un flujo que aún no se ha ejecutado."
       }
     ],
-    "keyPoint": "Filtra en el origen: la «Consulta de filtro» de «Obtener elementos» evita descargar y recorrer elementos que no necesitas.",
+    "keyPoint": "Antes de probar un flujo, el comprobador de flujos señala sus errores y advertencias de diseño; el historial de ejecuciones sirve después, para diagnosticar ejecuciones.",
     "references": [
       {
-        "title": "Referencia del conector SharePoint",
-        "url": "https://learn.microsoft.com/es-es/connectors/sharepointonline/"
+        "title": "Buscar y corregir errores con el comprobador de flujos en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/error-checker"
       }
     ]
   },
@@ -564,26 +631,46 @@
     "domain": "d4",
     "skill": "d4-ia",
     "difficulty": 2,
-    "tags": ["preview"],
+    "tags": [
+      "preview"
+    ],
     "prompt": "Completa la frase sobre el panel de Copilot del diseñador de Power Automate para escritorio.",
-    "template": "Para preguntar «¿Cómo leo datos de un archivo de Excel?» eliges la habilidad {{b1}}; para que Copilot añada acciones a tu flujo eliges {{b2}}, y Copilot las inserta {{b3}}.",
+    "template": "Para preguntar «¿Cómo leo datos de un archivo de Excel?» eliges la habilidad {{b1}}; para que Copilot añada acciones a tu flujo eliges {{b2}}; y para obtener una explicación breve de lo que hace un subflujo que heredaste eliges {{b3}}.",
     "blanks": [
       {
         "id": "b1",
         "options": [
-          { "id": "o1", "text": "«Resumir acciones y subflujos»" },
-          { "id": "o2", "text": "«Ayúdame a entender»" },
-          { "id": "o3", "text": "«Agregar un paso»" }
+          {
+            "id": "o1",
+            "text": "«Resumir acciones y subflujos»"
+          },
+          {
+            "id": "o2",
+            "text": "«Ayúdame a entender»"
+          },
+          {
+            "id": "o3",
+            "text": "«Agregar un paso»"
+          }
         ],
         "correctId": "o2",
-        "explanation": "«Ayúdame a entender» activa las respuestas generativas a preguntas sobre el producto, con un vínculo a la documentación. Resumir explica acciones existentes y Agregar un paso genera acciones."
+        "explanation": "«Ayúdame a entender» activa las respuestas generativas a preguntas sobre el producto, con un vínculo a la documentación. «Resumir acciones y subflujos» explica lo que ya tiene tu flujo y «Agregar un paso» genera acciones."
       },
       {
         "id": "b2",
         "options": [
-          { "id": "o1", "text": "«Agregar un paso»" },
-          { "id": "o2", "text": "«Reparar con Copilot»" },
-          { "id": "o3", "text": "«Ayúdame a entender»" }
+          {
+            "id": "o1",
+            "text": "«Agregar un paso»"
+          },
+          {
+            "id": "o2",
+            "text": "«Reparar con Copilot»"
+          },
+          {
+            "id": "o3",
+            "text": "«Ayúdame a entender»"
+          }
         ],
         "correctId": "o1",
         "explanation": "Con «Agregar un paso» describes en lenguaje natural lo que falta y Copilot genera las acciones. Reparar con Copilot corrige selectores de interfaz que fallan en ejecución."
@@ -591,15 +678,24 @@
       {
         "id": "b3",
         "options": [
-          { "id": "o1", "text": "siempre al principio del subflujo Main" },
-          { "id": "o2", "text": "en un flujo nuevo, separado del que estás editando" },
-          { "id": "o3", "text": "al final del flujo o debajo de la acción que tengas seleccionada" }
+          {
+            "id": "o1",
+            "text": "«Agregar un paso»"
+          },
+          {
+            "id": "o2",
+            "text": "«Ayúdame a entender»"
+          },
+          {
+            "id": "o3",
+            "text": "«Resumir acciones y subflujos»"
+          }
         ],
         "correctId": "o3",
-        "explanation": "Copilot agrega las acciones al final del flujo o justo debajo de la acción seleccionada, dentro del flujo que estás editando."
+        "explanation": "«Resumir acciones y subflujos» genera un resumen de una acción, de varias o de un subflujo completo. «Ayúdame a entender» responde preguntas generales sobre el producto, no sobre tu flujo, y «Agregar un paso» genera acciones nuevas."
       }
     ],
-    "keyPoint": "Copilot en Power Automate para escritorio tiene habilidades distintas: Ayúdame a entender (preguntas), Agregar un paso (generar acciones) y Resumir acciones y subflujos.",
+    "keyPoint": "Copilot en Power Automate para escritorio tiene habilidades distintas: Ayúdame a entender (preguntas sobre el producto), Agregar un paso (generar acciones, en versión preliminar) y Resumir acciones y subflujos.",
     "references": [
       {
         "title": "Copilot en Power Automate para escritorio",
@@ -609,46 +705,54 @@
   },
   {
     "id": "pl900-d4-ia-103",
-    "type": "single",
+    "type": "multiple",
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d4",
     "skill": "d4-ia",
     "difficulty": 2,
-    "tags": ["preview"],
-    "scenario": "Óscar ha descrito a Copilot en Power Automate para escritorio un flujo que busca archivos de Excel en una carpeta, los comprime y los envía por Outlook. El diseñador se abre con el flujo generado y Óscar quiere localizar rápidamente qué acciones ha añadido Copilot para revisarlas antes de ejecutar nada.",
-    "prompt": "¿Cómo identifica esas acciones en el diseñador?",
+    "tags": [
+      "preview"
+    ],
+    "scenario": "Lucía edita en el diseñador nuevo un flujo de nube de Ópticas Galicia. Varias acciones usan expresiones que escribió un compañero y ella no domina las funciones de expresión. Su organización tiene Copilot habilitado.",
+    "prompt": "¿Qué dos tareas puede hacer con el asistente de expresiones de Copilot (*Copilot expression assistant*) desde el editor de expresiones? Selecciona dos.",
     "options": [
       {
         "id": "a",
-        "text": "Aparecen en un subflujo nuevo llamado Copilot, separado del subflujo Main",
-        "correct": false,
-        "explanation": "Copilot no crea un subflujo aparte para sus acciones; las coloca en el flujo que se está editando."
+        "text": "Pedir en lenguaje natural un cambio sobre una expresión existente, por ejemplo que tome solo los cuatro últimos caracteres",
+        "correct": true,
+        "explanation": "Si abres el asistente con una expresión ya cargada, entiende su contexto y usa tu indicación para modificarla."
       },
       {
         "id": "b",
-        "text": "Solo se ven en el historial de ejecuciones del portal después de ejecutar el flujo por primera vez",
-        "correct": false,
-        "explanation": "Las acciones generadas se ven en el diseñador desde el primer momento, precisamente para que las revises antes de ejecutar el flujo."
+        "text": "Corregir una expresión no válida, por ejemplo una a la que le falta un paréntesis de cierre",
+        "correct": true,
+        "explanation": "Con una expresión errónea en el editor, el asistente la corrige automáticamente al seleccionar la opción de crear la expresión con Copilot."
       },
       {
         "id": "c",
-        "text": "Están entre dos comentarios que marcan su inicio y su final, agrupadas en regiones según su función",
-        "correct": true,
-        "explanation": "Copilot marca el inicio y el final de lo que genera con comentarios y agrupa las acciones por funcionalidad en regiones, que también se listan en su panel lateral."
+        "text": "Usar el asistente también en el diseñador clásico, si el flujo no se abre en el nuevo",
+        "correct": false,
+        "explanation": "El asistente de expresiones forma parte del diseñador nuevo; no está disponible en el diseñador clásico."
       },
       {
         "id": "d",
-        "text": "Quedan desactivadas hasta que las aceptas una a una desde el panel de Copilot",
+        "text": "Ejecutar el flujo para comprobar que la expresión devuelve el valor correcto con datos reales",
         "correct": false,
-        "explanation": "Las acciones generadas no quedan desactivadas a la espera de aprobación; las revisas y ajustas directamente en el diseñador."
+        "explanation": "El asistente genera o modifica la expresión, pero no ejecuta el flujo: después conviene probarlo y revisar el resultado."
+      },
+      {
+        "id": "e",
+        "text": "Convertir todas las expresiones del flujo en contenido dinámico para no tener que mantenerlas",
+        "correct": false,
+        "explanation": "El contenido dinámico solo reutiliza salidas de pasos anteriores; los cálculos y transformaciones siguen necesitando expresiones."
       }
     ],
-    "keyPoint": "En Power Automate para escritorio, lo que genera Copilot queda delimitado por comentarios de inicio y fin y agrupado en regiones para revisarlo fácilmente.",
+    "keyPoint": "El asistente de expresiones de Copilot (versión preliminar, diseñador nuevo) crea, modifica y corrige expresiones a partir de lenguaje natural; el resultado se revisa y se prueba.",
     "references": [
       {
-        "title": "Copilot en Power Automate para escritorio",
-        "url": "https://learn.microsoft.com/es-es/power-automate/desktop-flows/copilot-in-power-automate-for-desktop"
+        "title": "Crear, actualizar y corregir expresiones con el asistente de expresiones de Copilot (versión preliminar)",
+        "url": "https://learn.microsoft.com/es-es/power-automate/expressions-copilot"
       }
     ]
   },
@@ -670,9 +774,9 @@
       },
       {
         "id": "s2",
-        "text": "Convierte la pregunta en una consulta FetchXML sobre Dataverse que se ejecuta con los permisos del usuario, así que solo devuelve datos a los que ya tiene acceso.",
+        "text": "Solo devuelve datos que el usuario ya tiene permiso para ver, porque las consultas se ejecutan con sus propios permisos.",
         "answer": true,
-        "explanation": "La consulta se ejecuta en el contexto de seguridad del usuario actual, de modo que Copilot no expone ejecuciones ni colas que el usuario no podría ver."
+        "explanation": "Copilot traduce la pregunta en una consulta sobre Dataverse que se ejecuta en el contexto de seguridad del usuario, así que no expone ejecuciones ni colas que no podría ver."
       },
       {
         "id": "s3",
@@ -870,12 +974,30 @@
       }
     ],
     "choices": [
-      { "id": "c1", "text": "Reconocimiento de texto (precompilado)" },
-      { "id": "c2", "text": "Detección de idioma (precompilado)" },
-      { "id": "c3", "text": "Detección de objetos (personalizado)" },
-      { "id": "c4", "text": "Predicción (personalizado)" },
-      { "id": "c5", "text": "Extracción de frases clave (precompilado)" },
-      { "id": "c6", "text": "Procesamiento de facturas (precompilado)" }
+      {
+        "id": "c1",
+        "text": "Reconocimiento de texto (precompilado)"
+      },
+      {
+        "id": "c2",
+        "text": "Detección de idioma (precompilado)"
+      },
+      {
+        "id": "c3",
+        "text": "Detección de objetos (personalizado)"
+      },
+      {
+        "id": "c4",
+        "text": "Predicción (personalizado)"
+      },
+      {
+        "id": "c5",
+        "text": "Extracción de frases clave (precompilado)"
+      },
+      {
+        "id": "c6",
+        "text": "Procesamiento de facturas (precompilado)"
+      }
     ],
     "keyPoint": "AI Builder ofrece modelos precompilados listos para usar (texto, idioma, frases clave…) y personalizados que entrenas con tus datos (detección de objetos, predicción…).",
     "references": [
@@ -946,7 +1068,9 @@
     "domain": "d4",
     "skill": "d4-ia",
     "difficulty": 2,
-    "tags": ["preview"],
+    "tags": [
+      "preview"
+    ],
     "scenario": "Pilar describe a Copilot en Power Automate para escritorio un flujo que debe entrar en el portal web de un proveedor, descargar el informe diario y guardarlo en una carpeta. Copilot genera el flujo, pero donde deberían ir los pasos del navegador aparece una acción marcada con un error de diseño.",
     "prompt": "¿Qué debe hacer Pilar con esa acción?",
     "options": [

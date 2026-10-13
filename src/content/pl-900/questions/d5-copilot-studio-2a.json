@@ -57,50 +57,65 @@
     "domain": "d5",
     "skill": "d5-casos",
     "difficulty": 2,
-    "scenario": "Construcciones Sierra Norte ha recogido varias peticiones de sus departamentos y quiere resolver cada una con la herramienta de Microsoft más adecuada.",
+    "scenario": "Construcciones Sierra Norte ha recogido varias peticiones de sus departamentos y quiere resolver cada una con la herramienta de Power Platform más adecuada; no todas necesitan un agente.",
     "prompt": "Empareja cada necesidad con la herramienta que mejor la resuelve.",
     "prompts": [
       {
         "id": "m1",
-        "text": "Un jefe de obra quiere, en pocos minutos y sin salir de Microsoft 365 Copilot, un agente para él y su pequeño equipo que responda con los documentos del proyecto",
+        "text": "Un asistente en la web corporativa que conversa con los clientes, crea incidencias de soporte y pasa los casos complejos a una persona",
         "answerId": "c1",
-        "explanation": "Agent Builder está integrado en Microsoft 365 Copilot y permite crear con lenguaje natural agentes ligeros de preguntas y respuestas para uno mismo o un equipo pequeño."
+        "explanation": "Conversar en lenguaje natural, actuar en otros sistemas y escalar a una persona es el caso de uso típico de un agente de Copilot Studio publicado en un sitio web."
       },
       {
         "id": "m2",
-        "text": "Un agente en la web corporativa que atiende a los clientes, crea incidencias de soporte y pasa los casos complejos a una persona",
-        "answerId": "c2",
-        "explanation": "Un agente para clientes externos, con integración con sistemas y escalado a personas, encaja con Copilot Studio, que admite públicos amplios, conectores y publicación en sitios web."
-      },
-      {
-        "id": "m3",
         "text": "Copiar cada noche las filas nuevas de un libro de Excel a una lista de SharePoint, sin ninguna conversación con usuarios",
-        "answerId": "c3",
+        "answerId": "c2",
         "explanation": "Es una automatización programada con pasos fijos y sin conversación: un flujo de nube programado de Power Automate es la opción natural."
       },
       {
-        "id": "m4",
+        "id": "m3",
         "text": "Una aplicación con formularios para que los técnicos registren inspecciones con fotos desde el móvil",
-        "answerId": "c4",
+        "answerId": "c3",
         "explanation": "Capturar datos con pantallas y formularios, también desde el móvil, es el caso de uso típico de una aplicación de Power Apps."
+      },
+      {
+        "id": "m4",
+        "text": "Un sitio web externo donde los subcontratistas se registran, inician sesión y consultan sus pedidos guardados en Dataverse",
+        "answerId": "c4",
+        "explanation": "Un sitio web seguro para usuarios externos, con inicio de sesión y datos de Dataverse, es el caso de uso de Power Pages."
       }
     ],
     "choices": [
-      { "id": "c1", "text": "Agent Builder en Microsoft 365 Copilot" },
-      { "id": "c2", "text": "Agente de Copilot Studio" },
-      { "id": "c3", "text": "Flujo de nube de Power Automate" },
-      { "id": "c4", "text": "Aplicación de Power Apps" },
-      { "id": "c5", "text": "Informe de Power BI" }
-    ],
-    "keyPoint": "Agente ligero para tu equipo dentro de Microsoft 365 Copilot = Agent Builder; agente para públicos amplios con integraciones = Copilot Studio; automatización sin conversación = Power Automate; formularios = Power Apps.",
-    "references": [
       {
-        "title": "Elige entre Agent Builder y Copilot Studio para crear tu agente",
-        "url": "https://learn.microsoft.com/es-es/microsoft-365/copilot/extensibility/copilot-studio-experience"
+        "id": "c1",
+        "text": "Agente de Copilot Studio"
       },
+      {
+        "id": "c2",
+        "text": "Flujo de nube de Power Automate"
+      },
+      {
+        "id": "c3",
+        "text": "Aplicación de Power Apps"
+      },
+      {
+        "id": "c4",
+        "text": "Sitio de Power Pages"
+      },
+      {
+        "id": "c5",
+        "text": "Informe de Power BI"
+      }
+    ],
+    "keyPoint": "Agente = conversación en lenguaje natural que además actúa y escala; flujo = automatización sin conversación; Power Apps = formularios y pantallas; Power Pages = sitio web para usuarios externos.",
+    "references": [
       {
         "title": "Visión general de Microsoft Copilot Studio",
         "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/fundamentals-what-is-copilot-studio"
+      },
+      {
+        "title": "¿Qué es Power Pages?",
+        "url": "https://learn.microsoft.com/es-es/power-pages/introduction"
       }
     ]
   },
@@ -116,9 +131,9 @@
     "statements": [
       {
         "id": "s1",
-        "text": "Para agregar desencadenadores de eventos, el agente debe tener activada la orquestación generativa.",
+        "text": "Cada carga útil que un desencadenador de eventos envía al agente cuenta como un mensaje para el consumo y la facturación del agente.",
         "answer": true,
-        "explanation": "Los desencadenadores de eventos solo están disponibles en agentes con orquestación generativa, porque es el orquestador el que decide qué hacer con la información del evento."
+        "explanation": "La actividad de los desencadenadores cuenta para el consumo: por ejemplo, un desencadenador de periodicidad configurado cada 10 minutos envía un mensaje al agente cada 10 minutos."
       },
       {
         "id": "s2",
@@ -139,7 +154,7 @@
         "explanation": "Los administradores pueden bloquear el uso de desencadenadores de eventos mediante las directivas de datos; además, los desencadenadores disponibles dependen de esas directivas."
       }
     ],
-    "keyPoint": "Agente autónomo = desencadenador de eventos + orquestación generativa; actúa con las instrucciones del agente y de la carga útil, usando solo las herramientas y temas que ya tiene, dentro de las directivas de datos.",
+    "keyPoint": "Agente autónomo: cada evento envía una carga útil (que cuenta para el consumo) con datos e instrucciones; el agente solo usa las herramientas y temas que ya tiene, dentro de las directivas de datos.",
     "references": [
       {
         "title": "Introducción general sobre desencadenadores de eventos",
@@ -206,9 +221,18 @@
       {
         "id": "b1",
         "options": [
-          { "id": "o1", "text": "un orquestador y unos modelos que alojas en Azure" },
-          { "id": "o2", "text": "el orquestador y los modelos de Microsoft 365 Copilot" },
-          { "id": "o3", "text": "solo temas clásicos con frases desencadenantes" }
+          {
+            "id": "o1",
+            "text": "un orquestador y unos modelos que alojas en Azure"
+          },
+          {
+            "id": "o2",
+            "text": "el orquestador y los modelos de Microsoft 365 Copilot"
+          },
+          {
+            "id": "o3",
+            "text": "solo temas clásicos con frases desencadenantes"
+          }
         ],
         "correctId": "o2",
         "explanation": "El agente declarativo aporta instrucciones, conocimiento y acciones, pero se ejecuta con la infraestructura, el modelo y el orquestador de Copilot, y hereda sus controles de seguridad y cumplimiento."
@@ -216,9 +240,18 @@
       {
         "id": "b2",
         "options": [
-          { "id": "o1", "text": "datos de Microsoft 365, como SharePoint, OneDrive o mensajes de Teams" },
-          { "id": "o2", "text": "únicamente sitios web públicos indexados por Bing" },
-          { "id": "o3", "text": "solo archivos cargados dentro del propio agente" }
+          {
+            "id": "o1",
+            "text": "datos de Microsoft 365, como SharePoint, OneDrive o mensajes de Teams"
+          },
+          {
+            "id": "o2",
+            "text": "únicamente sitios web públicos indexados por Bing"
+          },
+          {
+            "id": "o3",
+            "text": "solo archivos cargados dentro del propio agente"
+          }
         ],
         "correctId": "o1",
         "explanation": "Un agente declarativo puede usar como conocimiento contenido de Microsoft 365 (SharePoint, OneDrive, chats y reuniones de Teams, correo) y datos externos mediante conectores de Copilot, siempre con los permisos del usuario."
@@ -226,9 +259,18 @@
       {
         "id": "b3",
         "options": [
-          { "id": "o1", "text": "un agente declarativo con instrucciones más detalladas" },
-          { "id": "o2", "text": "un conector de Copilot" },
-          { "id": "o3", "text": "un agente de motor personalizado (*custom engine agent*)" }
+          {
+            "id": "o1",
+            "text": "un agente declarativo con instrucciones más detalladas"
+          },
+          {
+            "id": "o2",
+            "text": "un conector de Copilot"
+          },
+          {
+            "id": "o3",
+            "text": "un agente de motor personalizado (*custom engine agent*)"
+          }
         ],
         "correctId": "o3",
         "explanation": "Un agente de motor personalizado aporta su propio orquestador y modelos; se puede crear con Copilot Studio o con herramientas de código profesional. Un conector de Copilot solo añade datos."
@@ -297,40 +339,40 @@
     "outlineVersion": "2026-07-24",
     "domain": "d5",
     "skill": "d5-casos",
-    "difficulty": 3,
-    "scenario": "Marta, de Recursos Humanos de Textiles Duero, ha creado un agente autónomo con un desencadenador «Cuando llega un correo nuevo» en el buzón compartido de RR. HH. Las conexiones están autorizadas con su cuenta, que tiene acceso a datos confidenciales. Además, quiere publicar el agente en Teams para que cualquier empleado le pregunte por el estado de sus solicitudes.",
-    "prompt": "¿Qué riesgo debe evaluar Marta antes de publicar el agente?",
+    "difficulty": 2,
+    "scenario": "Marta, de Recursos Humanos de Textiles Duero, prueba en el panel de prueba un agente con orquestación generativa. Cuando pregunta «¿Cuántos días de vacaciones me quedan?», el agente responde con la política general en lugar de usar la herramienta que consulta el saldo de cada empleado. Marta quiere ver qué plan generó el agente, qué herramientas o temas eligió y con qué entradas y salidas.",
+    "prompt": "¿Qué debe usar?",
     "options": [
       {
         "id": "a",
-        "text": "Que cada empleado tenga que autorizar el desencadenador con su propia cuenta antes de que se active",
+        "text": "La página Supervisar (*Monitor*) del agente",
         "correct": false,
-        "explanation": "Ocurre lo contrario: los desencadenadores de eventos solo usan las credenciales del autor del agente, no las de cada usuario."
+        "explanation": "Supervisar muestra métricas agregadas del uso del agente y no incluye las conversaciones del panel de prueba; no detalla el plan de una conversación concreta."
       },
       {
         "id": "b",
-        "text": "Que el agente deje de usar la orquestación generativa al publicarse en Teams",
-        "correct": false,
-        "explanation": "Publicar en un canal no cambia el modo de orquestación; de hecho, los desencadenadores de eventos exigen la orquestación generativa."
+        "text": "El mapa de actividad (*activity map*) del panel de prueba",
+        "correct": true,
+        "explanation": "El mapa de actividad representa el plan que generó el agente, con las herramientas y temas que eligió, sus entradas y salidas y los errores, como entradas que faltan; también se consulta después en la página Actividad."
       },
       {
         "id": "c",
-        "text": "Que los usuarios del agente puedan obtener datos o lanzar acciones con las credenciales de Marta",
-        "correct": true,
-        "explanation": "Como el desencadenador y sus acciones usan las credenciales de la autora, un agente publicado podría exponer datos o permitir acciones con esa autorización. Hay que limitar el alcance del desencadenador y dar instrucciones sobre cómo tratar los datos."
+        "text": "El comprobador de temas de la página Temas",
+        "correct": false,
+        "explanation": "El comprobador de temas señala errores y advertencias en el diseño de los temas, no las decisiones que tomó el agente durante una conversación."
       },
       {
         "id": "d",
-        "text": "Que el desencadenador deje de funcionar cuando Marta cierre sesión en Copilot Studio",
+        "text": "El registro de agentes de Microsoft Agent 365",
         "correct": false,
-        "explanation": "El agente publicado reacciona a sus desencadenadores aunque la autora no tenga Copilot Studio abierto; la sesión del creador no lo detiene."
+        "explanation": "El registro de Agent 365 sirve para que TI vea y gobierne todos los agentes de la organización, no para depurar una conversación mientras construyes el agente."
       }
     ],
-    "keyPoint": "Los desencadenadores de eventos usan las credenciales del autor: evalúa qué datos y acciones quedan al alcance de los usuarios del agente publicado.",
+    "keyPoint": "Para entender qué decidió un agente con orquestación generativa en una conversación (plan, herramientas, entradas y salidas), revisa su mapa de actividad.",
     "references": [
       {
-        "title": "Introducción general sobre desencadenadores de eventos",
-        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-triggers-about"
+        "title": "Revisar la actividad del agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-review-activity"
       }
     ]
   },
@@ -427,12 +469,30 @@
       }
     ],
     "choices": [
-      { "id": "c1", "text": "El agente elige" },
-      { "id": "c2", "text": "El usuario dice una frase" },
-      { "id": "c3", "text": "Se redirige a" },
-      { "id": "c4", "text": "El usuario está inactivo durante un tiempo" },
-      { "id": "c5", "text": "Se completa un plan" },
-      { "id": "c6", "text": "La conversación cambia" }
+      {
+        "id": "c1",
+        "text": "El agente elige"
+      },
+      {
+        "id": "c2",
+        "text": "El usuario dice una frase"
+      },
+      {
+        "id": "c3",
+        "text": "Se redirige a"
+      },
+      {
+        "id": "c4",
+        "text": "El usuario está inactivo durante un tiempo"
+      },
+      {
+        "id": "c5",
+        "text": "Se completa un plan"
+      },
+      {
+        "id": "c6",
+        "text": "La conversación cambia"
+      }
     ],
     "keyPoint": "Además de las frases o la descripción, un tema puede iniciarse por redirección, por inactividad del usuario o al completarse el plan del agente, entre otros desencadenadores.",
     "references": [
@@ -460,9 +520,18 @@
       {
         "id": "b1",
         "options": [
-          { "id": "o1", "text": "salta al tema del sistema Fin de la conversación" },
-          { "id": "o2", "text": "vuelve, de forma predeterminada, al tema de origen" },
-          { "id": "o3", "text": "se reinicia y el agente borra todas las variables" }
+          {
+            "id": "o1",
+            "text": "salta al tema del sistema Fin de la conversación"
+          },
+          {
+            "id": "o2",
+            "text": "vuelve, de forma predeterminada, al tema de origen"
+          },
+          {
+            "id": "o3",
+            "text": "se reinicia y el agente borra todas las variables"
+          }
         ],
         "correctId": "o2",
         "explanation": "Por defecto, al terminar el tema llamado la conversación se reanuda en el tema de origen, y puedes añadir más nodos después del nodo Redirigir."
@@ -470,9 +539,18 @@
       {
         "id": "b2",
         "options": [
-          { "id": "o1", "text": "Finalizar tema actual" },
-          { "id": "o2", "text": "Finalizar todos los temas" },
-          { "id": "o3", "text": "Transferir conversación" }
+          {
+            "id": "o1",
+            "text": "Finalizar tema actual"
+          },
+          {
+            "id": "o2",
+            "text": "Finalizar todos los temas"
+          },
+          {
+            "id": "o3",
+            "text": "Transferir conversación"
+          }
         ],
         "correctId": "o1",
         "explanation": "Finalizar tema actual sale solo del tema en curso; si lo llamó otro tema, la conversación vuelve a él. Es habitual en una rama que termina antes."
@@ -480,9 +558,18 @@
       {
         "id": "b3",
         "options": [
-          { "id": "o1", "text": "Finalizar tema actual" },
-          { "id": "o2", "text": "Borrar valores de variable" },
-          { "id": "o3", "text": "Finalizar todos los temas" }
+          {
+            "id": "o1",
+            "text": "Finalizar tema actual"
+          },
+          {
+            "id": "o2",
+            "text": "Borrar valores de variable"
+          },
+          {
+            "id": "o3",
+            "text": "Finalizar todos los temas"
+          }
         ],
         "correctId": "o3",
         "explanation": "Finalizar todos los temas cierra de inmediato todos los temas activos. No borra las variables globales: para eso se usa antes un nodo que borre las variables, como hace el tema Restablecer conversación."
@@ -498,45 +585,75 @@
   },
   {
     "id": "pl900-d5-temas-103",
-    "type": "single",
+    "type": "dropdown",
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d5",
     "skill": "d5-temas",
-    "difficulty": 3,
-    "scenario": "En el agente del restaurante La Brasa, el tema «Reservar mesa» tiene un nodo de pregunta «¿Para cuántas personas?» que identifica la entidad Número y guarda la respuesta en Topic.Comensales. Por internet solo se aceptan reservas de 1 a 8 personas; si el valor no cumple, el agente debe explicarlo y volver a preguntar.",
-    "code": {
-      "language": "powerfx",
-      "content": "Topic.Comensales >= 1 && Topic.Comensales <= 8"
-    },
-    "prompt": "¿Dónde debes usar esta fórmula de Power Fx?",
-    "options": [
+    "difficulty": 2,
+    "scenario": "En el tema «Hacer pedido» del agente de Floristería Lirio, el cliente debe elegir entre «Recogida en tienda» y «Envío a domicilio», y el tema sigue un camino distinto en cada caso.",
+    "prompt": "Completa la frase sobre el nodo de pregunta que debes usar.",
+    "template": "En Identificar eliges {{b1}} y escribes las dos alternativas; durante la conversación, cada alternativa {{b2}}; y si el cliente responde algo que no coincide con ninguna, el nodo {{b3}}.",
+    "blanks": [
       {
-        "id": "a",
-        "text": "En la condición del nodo Desencadenador del tema",
-        "correct": false,
-        "explanation": "La condición del desencadenador decide si el tema se inicia; se evalúa antes de que exista la respuesta del usuario y no vuelve a preguntar."
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Respuesta completa del usuario"
+          },
+          {
+            "id": "o2",
+            "text": "Opciones de selección múltiple"
+          },
+          {
+            "id": "o3",
+            "text": "la entidad precompilada Número"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Con las opciones de selección múltiple defines las respuestas que puede elegir el usuario. La respuesta completa guardaría el texto tal cual y la entidad Número solo reconoce cifras."
       },
       {
-        "id": "b",
-        "text": "En un nodo Establecer valor de variable colocado antes de la pregunta",
-        "correct": false,
-        "explanation": "Antes de la pregunta la variable aún no tiene valor, y este nodo asigna valores; no valida respuestas ni repite la pregunta."
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "aparece como un botón, aunque el cliente también puede escribir su respuesta"
+          },
+          {
+            "id": "o2",
+            "text": "solo se acepta si el cliente la escribe exactamente igual"
+          },
+          {
+            "id": "o3",
+            "text": "se muestra únicamente si el agente está publicado en Teams"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Cada opción se muestra como un botón que el usuario puede seleccionar, pero también puede escribir la respuesta; no hace falta que la escriba de forma literal ni depende de un único canal."
       },
       {
-        "id": "c",
-        "text": "En la Validación de entidad adicional de las propiedades del nodo de pregunta",
-        "correct": true,
-        "explanation": "La Validación de entidad adicional añade una condición de Power Fx a la validación de la entidad y permite personalizar el mensaje cuando no se cumple; el nodo vuelve a preguntar según su configuración."
-      },
-      {
-        "id": "d",
-        "text": "En la opción Omitir pregunta del comportamiento de la pregunta",
-        "correct": false,
-        "explanation": "El comportamiento de omisión solo decide si se pregunta cuando la variable ya tiene un valor; no admite condiciones de validación."
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "termina la conversación de inmediato"
+          },
+          {
+            "id": "o2",
+            "text": "transfiere siempre la conversación a una persona"
+          },
+          {
+            "id": "o3",
+            "text": "vuelve a preguntar según la opción Volver a preguntar, que de forma predeterminada lo intenta hasta dos veces"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "Volver a preguntar define cuántas veces insiste el agente; si no logra una respuesta válida, se aplica lo configurado en «No se encontró ninguna entidad válida», como escalar o usar un valor predeterminado."
       }
     ],
-    "keyPoint": "Para aceptar solo ciertos valores de una entidad, usa la Validación de entidad adicional del nodo de pregunta con una condición de Power Fx.",
+    "keyPoint": "Para que el usuario elija entre varias alternativas, usa un nodo de pregunta con opciones de selección múltiple: se muestran como botones y el nodo vuelve a preguntar si la respuesta no es válida.",
     "references": [
       {
         "title": "Formular una pregunta",
@@ -686,41 +803,45 @@
   },
   {
     "id": "pl900-d5-temas-107",
-    "type": "order",
+    "type": "yesno",
     "exam": "PL-900",
     "outlineVersion": "2026-07-24",
     "domain": "d5",
     "skill": "d5-temas",
-    "difficulty": 2,
-    "scenario": "En el agente de Clínica Dental Sonrisa, el tema «Reservar cita» pregunta la ciudad del paciente, la guarda en Topic.Ciudad y termina con un nodo Redirigir hacia «Confirmar cita». Este segundo tema vuelve a preguntar la ciudad y la guarda en Topic.CiudadCita. Quieres que no se repita la pregunta.",
-    "prompt": "Ordena los pasos teniendo en cuenta qué necesita cada uno del anterior.",
-    "items": [
+    "difficulty": 1,
+    "scenario": "Estás diseñando los mensajes del tema «Horarios de tienda» del agente de Librerías Aneto, que se publicará en el sitio web de la cadena.",
+    "prompt": "Indica si cada afirmación sobre los nodos de mensaje es verdadera.",
+    "statements": [
       {
-        "id": "p1",
-        "text": "En «Confirmar cita», abrir las propiedades de CiudadCita y seleccionar Recibir valores de otros temas",
-        "explanation": "Primero el tema de destino debe declarar que esa variable puede recibir su valor desde otro tema; si no, no aparece como entrada en el nodo Redirigir."
+        "id": "s1",
+        "text": "Puedes agregar variaciones de un mensaje para que el agente elija una de ellas al azar cada vez que se ejecuta el nodo.",
+        "answer": true,
+        "explanation": "Las variaciones del mensaje hacen que la conversación resulte menos repetitiva: el agente elige una aleatoriamente en cada ejecución del nodo."
       },
       {
-        "id": "p2",
-        "text": "En el nodo Redirigir de «Reservar cita», seleccionar Agregar entrada y elegir CiudadCita",
-        "explanation": "Una vez marcada para recibir valores, la variable del tema de destino aparece como entrada disponible en el nodo Redirigir del tema de origen."
+        "id": "s2",
+        "text": "Además de texto, un nodo de mensaje puede incluir imágenes, vídeos, tarjetas y respuestas rápidas.",
+        "answer": true,
+        "explanation": "El nodo de mensaje admite componentes enriquecidos, como imágenes, vídeos, tarjetas básicas, tarjetas adaptables y respuestas rápidas."
       },
       {
-        "id": "p3",
-        "text": "Asignar a esa entrada la variable Topic.Ciudad del tema de origen",
-        "explanation": "Con la entrada añadida, le indicas qué valor debe pasar: la ciudad que ya recogió «Reservar cita»."
+        "id": "s3",
+        "text": "Para incluir en el mensaje el nombre de la tienda que eligió el cliente, necesitas un nodo de mensaje distinto para cada tienda.",
+        "answer": false,
+        "explanation": "Puedes insertar variables en el texto del mensaje, así que un solo nodo muestra el valor que corresponda en cada conversación."
       },
       {
-        "id": "p4",
-        "text": "Guardar los temas y comprobar en el panel de prueba que «Confirmar cita» ya no pregunta la ciudad",
-        "explanation": "Al final se prueba la conversación: como la variable llega con valor, el nodo de pregunta del tema de destino se omite."
+        "id": "s4",
+        "text": "Las imágenes, tarjetas y respuestas rápidas solo están disponibles en el nodo de mensaje, no en el nodo de pregunta.",
+        "answer": false,
+        "explanation": "Todas las capacidades del nodo de mensaje también están disponibles en el nodo de pregunta."
       }
     ],
-    "keyPoint": "Para pasar un valor entre temas: la variable de destino debe Recibir valores de otros temas y el nodo Redirigir le asigna el valor como entrada.",
+    "keyPoint": "El nodo de mensaje admite variaciones, variables y contenido enriquecido (imágenes, vídeos, tarjetas y respuestas rápidas), igual que el nodo de pregunta.",
     "references": [
       {
-        "title": "Trabajar con variables",
-        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-variables"
+        "title": "Enviar un mensaje",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-send-message"
       }
     ]
   },
@@ -968,9 +1089,18 @@
       {
         "id": "b1",
         "options": [
-          { "id": "o1", "text": "subir el nivel de moderación de contenido" },
-          { "id": "o2", "text": "bajar el nivel de moderación de contenido" },
-          { "id": "o3", "text": "activar las respuestas no fundamentadas" }
+          {
+            "id": "o1",
+            "text": "subir el nivel de moderación de contenido"
+          },
+          {
+            "id": "o2",
+            "text": "bajar el nivel de moderación de contenido"
+          },
+          {
+            "id": "o3",
+            "text": "activar las respuestas no fundamentadas"
+          }
         ],
         "correctId": "o2",
         "explanation": "Un nivel de moderación más bajo filtra menos y genera más respuestas. Subirlo haría el filtro más estricto, y las respuestas no fundamentadas tratan otro asunto: usar el conocimiento general del modelo."
@@ -978,25 +1108,43 @@
       {
         "id": "b2",
         "options": [
-          { "id": "o1", "text": "un nivel más bajo genera más respuestas, pero pueden incluir contenido dañino" },
-          { "id": "o2", "text": "un nivel más bajo bloquea las respuestas que no tienen cita" },
-          { "id": "o3", "text": "el nivel predeterminado ya es el más bajo" }
+          {
+            "id": "o1",
+            "text": "un nivel más bajo genera más respuestas, pero pueden incluir contenido dañino"
+          },
+          {
+            "id": "o2",
+            "text": "un nivel más bajo bloquea las respuestas que no tienen cita"
+          },
+          {
+            "id": "o3",
+            "text": "el nivel predeterminado ya es el más bajo"
+          }
         ],
         "correctId": "o1",
-        "explanation": "Hay un equilibrio: el nivel más bajo da más respuestas pero con más riesgo de contenido dañino. El nivel predeterminado es Alto, el más estricto."
+        "explanation": "Hay un equilibrio: el nivel más bajo da más respuestas pero con más riesgo de contenido dañino. Los niveles van de «más bajo» a «más alto», y el predeterminado es Alto, así que bajarlo hace el filtro menos estricto."
       },
       {
         "id": "b3",
         "options": [
-          { "id": "o1", "text": "las frases desencadenantes del tema" },
-          { "id": "o2", "text": "la descripción de la fuente de conocimiento" },
-          { "id": "o3", "text": "el nodo de respuestas generativas del tema" }
+          {
+            "id": "o1",
+            "text": "las frases desencadenantes del tema"
+          },
+          {
+            "id": "o2",
+            "text": "la descripción de la fuente de conocimiento"
+          },
+          {
+            "id": "o3",
+            "text": "el nodo de respuestas generativas del tema"
+          }
         ],
         "correctId": "o3",
         "explanation": "La moderación también se configura en el nodo de respuestas generativas; en tiempo de ejecución, la configuración del tema tiene prioridad sobre la del agente."
       }
     ],
-    "keyPoint": "Moderación de contenido: predeterminada en Alto; bajarla da más respuestas con más riesgo. La del nodo de respuestas generativas prevalece sobre la del agente.",
+    "keyPoint": "Moderación de contenido: los niveles van de más bajo a más alto y el predeterminado es Alto; bajarlo da más respuestas con más riesgo. La del nodo de respuestas generativas prevalece sobre la del agente.",
     "references": [
       {
         "title": "Resumen de fuentes de conocimiento: moderación",
