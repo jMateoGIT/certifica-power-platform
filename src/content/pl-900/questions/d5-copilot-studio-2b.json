@@ -1,0 +1,1036 @@
+[
+  {
+    "id": "pl900-d5-herramientas-101",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-herramientas",
+    "difficulty": 3,
+    "scenario": "Talleres Mecánicos Lince quiere que su agente interno consulte el stock de recambios en el sistema de inventario mediante una herramienta basada en un conector. Solo el responsable de almacén tiene cuenta en ese sistema; el resto de empleados no tiene acceso individual ni se les va a crear, pero todos deben poder consultar el stock a través del agente.",
+    "prompt": "¿Qué opción de autenticación debes configurar en la herramienta?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Credenciales del usuario final",
+        "correct": false,
+        "explanation": "Con esta opción cada usuario se conecta con su propia cuenta y solo ve lo que tiene permiso para ver; como los empleados no tienen acceso al sistema de inventario, la herramienta no podría ejecutarse en su nombre."
+      },
+      {
+        "id": "b",
+        "text": "Credenciales proporcionadas por el creador",
+        "correct": true,
+        "explanation": "La herramienta usa las credenciales de su autor para todos los usuarios. Es el modo pensado para recursos compartidos o cuando los usuarios no necesitan acceso individual, como en este caso."
+      },
+      {
+        "id": "c",
+        "text": "«Sin autenticación» en la configuración de seguridad del agente",
+        "correct": false,
+        "explanation": "Esa opción define si los usuarios inician sesión en el agente, no con qué cuenta se conecta la herramienta al sistema de inventario."
+      },
+      {
+        "id": "d",
+        "text": "«Autenticar manualmente» en la configuración de seguridad del agente",
+        "correct": false,
+        "explanation": "Configura el inicio de sesión de los usuarios en el agente con un proveedor de identidades; no resuelve que los empleados carezcan de cuenta en el sistema de inventario."
+      }
+    ],
+    "keyPoint": "Credenciales del usuario final: cada usuario accede solo a sus datos. Credenciales del creador: una conexión compartida para todos los usuarios.",
+    "references": [
+      {
+        "title": "Agregar herramientas a agentes personalizados",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/add-tools-custom-agent"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-herramientas-102",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-herramientas",
+    "difficulty": 2,
+    "scenario": "Estás configurando la herramienta «Registrar devolución» del agente de Moda Cierzo, que usa orquestación generativa.",
+    "prompt": "Completa la frase con la opción de configuración de la herramienta que corresponde a cada requisito.",
+    "template": "Para que el agente use la herramienta solo cuando un tema la llame explícitamente, desactivas {{b1}}; para que la entrada «Canal de origen» valga siempre «Agente» sin preguntar al usuario, configuras esa entrada con {{b2}}; y para mostrar el resultado con botones interactivos, en Después de ejecutar (*After running*) eliges {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Preguntar al usuario final antes de ejecutar"
+          },
+          {
+            "id": "o2",
+            "text": "Permitir que el agente decida dinámicamente cuándo usar la herramienta"
+          },
+          {
+            "id": "o3",
+            "text": "Credenciales del usuario final"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Si esta opción no está seleccionada, el agente solo usa la herramienta cuando se la llama desde un tema. «Preguntar antes de ejecutar» solo pide confirmación, y la autenticación no decide cuándo se usa la herramienta."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Valor personalizado (*Custom value*)"
+          },
+          {
+            "id": "o2",
+            "text": "Rellenar dinámicamente con IA (*Dynamically fill with AI*)"
+          },
+          {
+            "id": "o3",
+            "text": "una entidad precompilada"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Con «Valor personalizado» fijas un valor, una variable o una fórmula de Power Fx y el agente no pregunta nada al usuario. «Rellenar dinámicamente con IA» intenta extraer el valor del contexto y, si no lo encuentra, lo pregunta."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "No responder"
+          },
+          {
+            "id": "o2",
+            "text": "Enviar una respuesta específica"
+          },
+          {
+            "id": "o3",
+            "text": "Enviar una tarjeta adaptable"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "La tarjeta adaptable crea respuestas enriquecidas e interactivas, con botones y acciones. «Enviar una respuesta específica» es un texto con variables y «No responder» deja que el agente incorpore el resultado a su propia respuesta."
+      }
+    ],
+    "keyPoint": "En cada herramienta decides cuándo se usa (dinámicamente o solo desde temas), cómo se rellenan sus entradas y cómo responde al terminar.",
+    "references": [
+      {
+        "title": "Agregar herramientas a agentes personalizados",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/add-tools-custom-agent"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-herramientas-103",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-herramientas",
+    "difficulty": 2,
+    "scenario": "Transportes Bierzo registra cada día los albaranes en el portal web de un cliente que no ofrece API ni conector, y cuyo diseño cambia a menudo. Quiere que su agente de Copilot Studio, que usa orquestación generativa, haga ese registro a partir de instrucciones en lenguaje natural, sin escribir código.",
+    "prompt": "¿Qué herramienta debe agregar al agente?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un conector personalizado del portal del cliente",
+        "correct": false,
+        "explanation": "Un conector personalizado se define a partir de una API; el portal no ofrece ninguna."
+      },
+      {
+        "id": "b",
+        "text": "Una herramienta de indicación (*prompt*) con las instrucciones del registro",
+        "correct": false,
+        "explanation": "Una indicación genera texto con un modelo de IA, pero no interactúa con la interfaz de un sitio web."
+      },
+      {
+        "id": "c",
+        "text": "La herramienta Uso del equipo (*computer use*)",
+        "correct": true,
+        "explanation": "Uso del equipo automatiza sitios web y aplicaciones de escritorio a través de su interfaz, en un equipo Windows configurado, a partir de instrucciones en lenguaje natural. Al estar basado en IA, se adapta a los cambios de la interfaz."
+      },
+      {
+        "id": "d",
+        "text": "Un servidor MCP (*Model Context Protocol*) agregado como herramienta",
+        "correct": false,
+        "explanation": "Un servidor MCP expone herramientas que alguien ha desarrollado; el cliente no ofrece ninguno y crearlo exigiría desarrollo."
+      }
+    ],
+    "keyPoint": "Sin API ni conector, la herramienta Uso del equipo permite que el agente use un sitio web o una aplicación de escritorio como lo haría una persona, a partir de instrucciones en lenguaje natural.",
+    "references": [
+      {
+        "title": "Automatizar aplicaciones web y de escritorio con el uso del equipo",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/computer-use"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-herramientas-104",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-herramientas",
+    "difficulty": 2,
+    "tags": [
+      "preview"
+    ],
+    "scenario": "Viveros Almendro tiene una aplicación propia de pedidos que expone una API REST documentada con una especificación OpenAPI. No existe ningún conector precompilado para ella, y la empresa quiere que su agente consulte y cree pedidos en esa aplicación.",
+    "prompt": "¿Qué dos tipos de herramienta permiten conectar el agente a esa API? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un conector precompilado del catálogo de Power Platform",
+        "correct": false,
+        "explanation": "Los conectores precompilados cubren servicios conocidos de Microsoft y de terceros; la aplicación propia de Viveros Almendro no tiene ninguno."
+      },
+      {
+        "id": "b",
+        "text": "Un conector personalizado (*custom connector*) definido a partir de la API",
+        "correct": true,
+        "explanation": "Un conector personalizado define la conexión con un servicio o sistema propio mediante los conectores de Power Platform, y después puede usarse como herramienta del agente."
+      },
+      {
+        "id": "c",
+        "text": "Una fuente de conocimiento de sitio web público con la URL de la API",
+        "correct": false,
+        "explanation": "El conocimiento solo sirve para leer contenido y generar respuestas; no permite llamar a operaciones de la API para crear pedidos."
+      },
+      {
+        "id": "d",
+        "text": "Una herramienta API REST creada a partir de la especificación OpenAPI",
+        "correct": true,
+        "explanation": "La herramienta API REST (en versión preliminar) se configura con la especificación OpenAPI, los datos de autenticación y descripciones que ayudan al modelo a decidir cuándo llamar a cada operación."
+      },
+      {
+        "id": "e",
+        "text": "La herramienta Uso del equipo (*computer use*)",
+        "correct": false,
+        "explanation": "Uso del equipo interactúa con interfaces gráficas de sitios web y aplicaciones de escritorio; no se conecta a una API. Si hay una API documentada, lo adecuado es usarla directamente."
+      }
+    ],
+    "keyPoint": "Sin conector precompilado, conecta tu propia API con un conector personalizado o con una herramienta API REST basada en OpenAPI.",
+    "references": [
+      {
+        "title": "Agregar herramientas a agentes personalizados",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/add-tools-custom-agent"
+      },
+      {
+        "title": "Agregar herramientas desde una API REST",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/agent-extend-action-rest-api"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-herramientas-105",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-herramientas",
+    "difficulty": 2,
+    "scenario": "Seguros Orión va a conectar su agente al servidor MCP (*Model Context Protocol*) de un proveedor de gestión de expedientes. El proveedor exige que cada empleado inicie sesión con su propia cuenta en el proveedor de identidades y conceda permisos al agente, sin compartir su contraseña con él.",
+    "prompt": "Al agregar el servidor con el asistente de incorporación de MCP, ¿qué tipo de autenticación debes seleccionar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ninguna",
+        "correct": false,
+        "explanation": "Solo sirve para servidores que no requieren autenticación; aquí el proveedor exige identificar a cada usuario."
+      },
+      {
+        "id": "b",
+        "text": "Clave de API",
+        "correct": false,
+        "explanation": "Con una clave de API el agente incluye una clave en las solicitudes, en el encabezado o en la consulta; no hay un inicio de sesión del usuario ni una concesión de permisos."
+      },
+      {
+        "id": "c",
+        "text": "OAuth 2.0",
+        "correct": true,
+        "explanation": "OAuth 2.0 permite que cada usuario se autentique en el servidor y conceda permisos al agente sin compartir sus credenciales. El asistente admite configurarlo con detección dinámica, de forma dinámica o manualmente."
+      },
+      {
+        "id": "d",
+        "text": "Autenticar con Microsoft",
+        "correct": false,
+        "explanation": "Es una opción de autenticación de los usuarios del propio agente (en la configuración de seguridad), no uno de los tipos de autenticación del asistente de MCP."
+      }
+    ],
+    "keyPoint": "El asistente de MCP admite Ninguna, Clave de API y OAuth 2.0; elige OAuth 2.0 cuando cada usuario deba iniciar sesión y conceder permisos.",
+    "references": [
+      {
+        "title": "Conectar el agente a un servidor MCP existente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/mcp-add-existing-server-to-agent"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-herramientas-106",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-herramientas",
+    "difficulty": 2,
+    "scenario": "Distribuciones Garnacha tiene un flujo de nube de Power Automate que genera albaranes. Quiere usarlo como herramienta de su agente y gestionarlo desde Copilot Studio.",
+    "prompt": "Indica si cada afirmación sobre los flujos de agente (*agent flows*) es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puedes convertir el flujo de nube en un flujo de agente para gestionarlo en Copilot Studio, y la conversión no se puede deshacer.",
+        "answer": true,
+        "explanation": "La conversión cambia la facturación del flujo a la capacidad de Copilot Studio y es de un solo sentido. El flujo sigue siendo accesible desde Power Automate."
+      },
+      {
+        "id": "s2",
+        "text": "Para convertirlo, el flujo de nube debe estar dentro de una solución.",
+        "answer": true,
+        "explanation": "Antes de cambiar el plan del flujo a Copilot Studio hay que comprobar que está en una solución y en el entorno cuya capacidad de Copilot Studio se va a consumir."
+      },
+      {
+        "id": "s3",
+        "text": "Una vez convertido, las acciones del flujo se siguen facturando con la licencia de Power Automate del propietario.",
+        "answer": false,
+        "explanation": "Los flujos de agente consumen capacidad de Copilot Studio por cada acción que ejecutan, en lugar de la facturación de Power Automate."
+      },
+      {
+        "id": "s4",
+        "text": "Un flujo de agente solo puede crearse arrastrando acciones en el diseñador; no puede generarse describiéndolo en lenguaje natural.",
+        "answer": false,
+        "explanation": "Puedes crearlo describiendo lo que necesitas en lenguaje natural o en el diseñador visual, y después editarlo en el diseñador para agregar acciones."
+      }
+    ],
+    "keyPoint": "Un flujo de nube que está en una solución puede convertirse, sin vuelta atrás, en un flujo de agente que consume capacidad de Copilot Studio.",
+    "references": [
+      {
+        "title": "Información general sobre los flujos de agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/flows-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-herramientas-107",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-herramientas",
+    "difficulty": 2,
+    "scenario": "El proveedor del servicio de tarifas que usa Energía Alba ha avisado de que su API devolverá datos erróneos durante unos días. El agente de la empresa usa ese servicio como herramienta, y el equipo quiere que deje de usarla temporalmente sin perder su configuración, para reactivarla cuando se corrija el problema.",
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Eliminar la herramienta desde la página Herramientas del agente",
+        "correct": false,
+        "explanation": "Eliminarla la quita del agente; para volver a usarla tendrías que agregarla y configurarla otra vez."
+      },
+      {
+        "id": "b",
+        "text": "Activar la opción Preguntar al usuario final antes de ejecutar",
+        "correct": false,
+        "explanation": "Solo añade una confirmación antes de ejecutarla; si el usuario acepta, la herramienta se seguiría usando con datos erróneos."
+      },
+      {
+        "id": "c",
+        "text": "Cambiar la autenticación de la herramienta a credenciales del creador",
+        "correct": false,
+        "explanation": "Cambia la cuenta con la que se conecta la herramienta, pero no impide que el agente la siga usando."
+      },
+      {
+        "id": "d",
+        "text": "Desactivar la herramienta con el interruptor Habilitado de su configuración",
+        "correct": true,
+        "explanation": "Desactivarla impide que el agente la use, pero la herramienta sigue conectada al agente con su configuración y puedes volver a activarla más adelante."
+      }
+    ],
+    "keyPoint": "Desactivar una herramienta con el interruptor Habilitado la bloquea temporalmente sin perder su configuración; eliminarla la quita del agente.",
+    "references": [
+      {
+        "title": "Agregar herramientas a agentes personalizados",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/add-tools-custom-agent"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-publicar-101",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-publicar",
+    "difficulty": 2,
+    "scenario": "El gimnasio online FitRío publica un agente en su sitio web. Sus clientes inician sesión en la web con su cuenta de Google, y el agente debe identificarlos para consultar el estado de su suscripción. Los clientes no usan Teams ni tienen cuentas de Microsoft Entra ID de la empresa.",
+    "prompt": "¿Qué opción de autenticación del agente debes configurar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Sin autenticación",
+        "correct": false,
+        "explanation": "El agente solo podría acceder a información pública y no sabría qué cliente le escribe, así que no podría consultar su suscripción."
+      },
+      {
+        "id": "b",
+        "text": "Autenticar con Microsoft",
+        "correct": false,
+        "explanation": "Configura automáticamente Microsoft Entra ID para los canales Teams y Microsoft 365; no sirve para un sitio web cuyos clientes inician sesión con Google."
+      },
+      {
+        "id": "c",
+        "text": "Autenticar manualmente, con un proveedor OAuth 2 genérico",
+        "correct": true,
+        "explanation": "La autenticación manual admite Microsoft Entra ID y cualquier proveedor de identidades que cumpla el estándar OAuth2, como Google. Es la opción para autenticar usuarios en canales distintos de Teams y Microsoft 365."
+      },
+      {
+        "id": "d",
+        "text": "Autenticar con Microsoft y activar Requerir que los usuarios inicien sesión",
+        "correct": false,
+        "explanation": "Con Autenticar con Microsoft esa opción no se puede cambiar (el usuario siempre está identificado en Teams) y, además, los clientes no tienen cuentas de Microsoft Entra ID."
+      }
+    ],
+    "keyPoint": "Fuera de Teams y Microsoft 365, para identificar a los usuarios se usa «Autenticar manualmente» con Entra ID o con cualquier proveedor OAuth2.",
+    "references": [
+      {
+        "title": "Configurar la autenticación de usuarios en Copilot Studio",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/configuration-end-user-authentication"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-publicar-102",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-publicar",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre el canal Teams y Microsoft Copilot es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Si al agregar el canal no seleccionas «Hacer que el agente esté disponible en Microsoft Copilot», el agente solo estará disponible en Teams.",
+        "answer": true,
+        "explanation": "Esa casilla es la que lleva el agente también a Microsoft Copilot; sin ella, el agente se instala únicamente en Teams."
+      },
+      {
+        "id": "s2",
+        "text": "Los usuarios pueden instalar el agente en la aplicación móvil de Teams con el vínculo de instalación que copias en Copilot Studio.",
+        "answer": false,
+        "explanation": "El vínculo de instalación no funciona en la aplicación móvil de Teams. Para los usuarios móviles, el agente debe mostrarse en la tienda de aplicaciones de Teams."
+      },
+      {
+        "id": "s3",
+        "text": "Un administrador puede usar directivas de configuración de aplicaciones de Teams para instalar y anclar el agente automáticamente a los usuarios.",
+        "answer": true,
+        "explanation": "Con estas directivas, el agente aparece directamente en la barra de aplicaciones de Teams de los usuarios, sin que tengan que buscarlo e instalarlo."
+      },
+      {
+        "id": "s4",
+        "text": "Si cambias el icono o la descripción de un agente que ya aprobó el administrador, los usuarios ven el cambio sin necesidad de volver a enviarlo para su aprobación.",
+        "answer": false,
+        "explanation": "Para actualizar el icono y las descripciones de un agente ya aprobado hay que enviar una nueva solicitud de aprobación al administrador."
+      }
+    ],
+    "keyPoint": "En el canal Teams y Microsoft Copilot decides si el agente llega también a Copilot; para móviles y para toda la organización, usa la tienda de Teams y la aprobación del administrador.",
+    "references": [
+      {
+        "title": "Conectar y configurar un agente para Teams y Microsoft Copilot",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/publication-add-bot-to-microsoft-teams"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-publicar-103",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-publicar",
+    "difficulty": 3,
+    "scenario": "El agente de Banca Nogal está publicado en el sitio web del banco. El equipo de seguridad advierte de que cualquiera que conozca el identificador del agente podría usarlo desde otro sitio, y quiere que solo funcione en las páginas que controla el banco.",
+    "prompt": "Completa la frase sobre la seguridad del canal web.",
+    "template": "En la seguridad del canal web activas {{b1}}; como el código de la página se ejecuta en el navegador de los clientes, el servidor del banco intercambia el secreto por {{b2}} antes de cada conversación; y para que el cambio surta efecto, {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Requerir que los usuarios inicien sesión"
+          },
+          {
+            "id": "o2",
+            "text": "Sin autenticación"
+          },
+          {
+            "id": "o3",
+            "text": "Requerir acceso seguro"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "«Requerir acceso seguro» obliga a que los clientes autentiquen sus solicitudes con un secreto o un token de Direct Line; las solicitudes sin ellos no funcionan. Iniciar sesión identifica a la persona, no la página desde la que se conecta."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "un token"
+          },
+          {
+            "id": "o2",
+            "text": "el mismo secreto, escrito en el código de la página"
+          },
+          {
+            "id": "o3",
+            "text": "un código QR"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "El secreto nunca debe exponerse en código que se ejecuta en el navegador. El servicio lo intercambia por un token, que solo sirve para una conversación y caduca si no se renueva."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "hay que volver a enviar el agente para su aprobación en Teams"
+          },
+          {
+            "id": "o2",
+            "text": "no hace falta volver a publicar el agente, aunque tarda un tiempo en propagarse"
+          },
+          {
+            "id": "o3",
+            "text": "hay que volver a publicar el agente en todos sus canales"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "A diferencia de los cambios de autenticación, activar o desactivar el acceso seguro no requiere publicar. El cambio tarda en propagarse y, mientras tanto, sigue vigente la configuración anterior."
+      }
+    ],
+    "keyPoint": "El acceso seguro del canal web usa secretos y tokens de Direct Line: el secreto se queda en el servidor y el navegador usa tokens.",
+    "references": [
+      {
+        "title": "Configurar la seguridad del canal web y de Direct Line",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/configure-web-security"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-publicar-104",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-publicar",
+    "difficulty": 2,
+    "scenario": "Clínica Dental Sonrisa ya tiene su agente en el sitio web y quiere llevarlo a otros canales y públicos.",
+    "prompt": "Empareja cada necesidad con la opción de Copilot Studio que la cubre. Dos de las opciones no se usan.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Los pacientes escriben al número de WhatsApp Business de la clínica",
+        "answerId": "c1",
+        "explanation": "El canal WhatsApp conecta el agente a un número de teléfono mediante un recurso de Azure Communication Services; el agente debe usar «Sin autenticación» o «Autenticar manualmente»."
+      },
+      {
+        "id": "m2",
+        "text": "El equipo del laboratorio trabaja a diario en un área de trabajo de Slack",
+        "answerId": "c2",
+        "explanation": "Slack se conecta mediante los canales de Azure Bot Service, con un bot que retransmite las conversaciones al agente; requiere conocimientos de desarrollo."
+      },
+      {
+        "id": "m3",
+        "text": "Los pacientes consultan sus citas en el portal externo creado con Power Pages",
+        "answerId": "c3",
+        "explanation": "Desde el área de trabajo Configurar del estudio de diseño de Power Pages agregas un agente al sitio, y puedes usar un agente creado en Copilot Studio para que los visitantes conversen con él."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Canal WhatsApp"
+      },
+      {
+        "id": "c2",
+        "text": "Canales de Azure Bot Service"
+      },
+      {
+        "id": "c3",
+        "text": "Power Pages"
+      },
+      {
+        "id": "c5",
+        "text": "Canal Facebook"
+      },
+      {
+        "id": "c6",
+        "text": "Sitio web de demostración"
+      }
+    ],
+    "keyPoint": "Además de Teams y la web, un agente puede llegar a WhatsApp, a sitios de Power Pages y, mediante los canales de Azure Bot Service, a plataformas como Slack.",
+    "references": [
+      {
+        "title": "Conceptos clave: publicar e implementar el agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/publication-fundamentals-publish-channels"
+      },
+      {
+        "title": "Incorporación de un agente a un sitio de Power Pages: información general",
+        "url": "https://learn.microsoft.com/es-es/power-pages/getting-started/add-agent-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-publicar-105",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-publicar",
+    "difficulty": 2,
+    "scenario": "Editorial Brezo quiere añadir su agente a la web corporativa usando la página HTML de ejemplo de Web Chat que ofrece la documentación de Copilot Studio.",
+    "prompt": "Ordena los pasos teniendo en cuenta qué necesita cada uno del anterior.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Publicar el agente",
+        "explanation": "Los canales solo se configuran después de publicar el agente al menos una vez, y siempre sirven la última versión publicada."
+      },
+      {
+        "id": "p2",
+        "text": "Obtener el punto de conexión de token (*token endpoint*) del agente",
+        "explanation": "La página de ejemplo necesita este valor para iniciar conversaciones con el agente publicado."
+      },
+      {
+        "id": "p3",
+        "text": "Sustituir el marcador del punto de conexión en el archivo HTML de ejemplo",
+        "explanation": "Solo cuando tienes el punto de conexión puedes reemplazar con él el marcador que trae el archivo de ejemplo."
+      },
+      {
+        "id": "p4",
+        "text": "Abrir el archivo en un navegador y comprobar que el agente responde",
+        "explanation": "Pruebas la página en local, ya configurada, para detectar errores antes de entregarla."
+      },
+      {
+        "id": "p5",
+        "text": "Entregar el archivo al desarrollador web para que lo integre en el sitio",
+        "explanation": "Con la página ya probada, el desarrollador la incorpora a la web corporativa."
+      }
+    ],
+    "keyPoint": "Para la web: publica, obtén el punto de conexión de token, configúralo en la página de Web Chat, pruébala y entrégala al desarrollador.",
+    "references": [
+      {
+        "title": "Publicar en un sitio web activo o de demostración",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/publication-connect-bot-to-web-channels"
+      },
+      {
+        "title": "Conceptos clave: publicar e implementar el agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/publication-fundamentals-publish-channels"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-publicar-106",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-publicar",
+    "difficulty": 3,
+    "scenario": "Recursos Humanos de Grupo Tajo publica un agente en su intranet, un sitio web interno (no en Teams). Los empleados tienen cuentas de Microsoft Entra ID, y solo los miembros del grupo de seguridad «Mandos intermedios» deben poder chatear con el agente.",
+    "prompt": "¿Qué configuración te permite controlar quién puede chatear con el agente?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Sin autenticación, y compartir el agente con el grupo de seguridad «Mandos intermedios»",
+        "correct": false,
+        "explanation": "Sin autenticación, cualquier persona que tenga el vínculo puede chatear con el agente, y no puedes controlar qué usuarios de la organización lo usan."
+      },
+      {
+        "id": "b",
+        "text": "Autenticar manualmente con Entra ID, exigir inicio de sesión y compartir el agente con el grupo",
+        "correct": true,
+        "explanation": "Con Microsoft Entra ID como proveedor de autenticación manual y la opción Requerir que los usuarios inicien sesión activada, el uso compartido del agente determina qué usuarios de la organización pueden chatear con él."
+      },
+      {
+        "id": "c",
+        "text": "Autenticar manualmente con un proveedor OAuth 2 genérico, y compartir el agente con el grupo",
+        "correct": false,
+        "explanation": "Con un proveedor OAuth2 genérico, cualquier usuario que inicie sesión puede chatear; el uso compartido no permite limitar qué usuarios concretos de la organización lo usan."
+      },
+      {
+        "id": "d",
+        "text": "Autenticar con Microsoft, y compartir el agente con el grupo de seguridad «Mandos intermedios»",
+        "correct": false,
+        "explanation": "Con esta opción el agente solo funciona en los canales de Teams y Microsoft 365, no en el sitio web de la intranet."
+      }
+    ],
+    "keyPoint": "Para limitar quién chatea fuera de Teams: Autenticar manualmente con Entra ID, Requerir que los usuarios inicien sesión y compartir el agente.",
+    "references": [
+      {
+        "title": "Configurar la autenticación de usuarios en Copilot Studio",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/configuration-end-user-authentication"
+      },
+      {
+        "title": "Compartir agentes con otros usuarios",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/admin-share-bots"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-publicar-107",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-publicar",
+    "difficulty": 2,
+    "scenario": "Seguros Cierzo tiene su agente publicado en el sitio web y quiere conectarlo también a Teams y a Facebook.",
+    "prompt": "Indica si cada afirmación sobre los canales del agente es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "La experiencia puede variar según el canal: por ejemplo, la encuesta de satisfacción se muestra como tarjeta adaptable en el sitio web y como texto en Teams.",
+        "answer": true,
+        "explanation": "Cada canal ofrece experiencias distintas, por lo que conviene tenerlas en cuenta al optimizar el contenido del agente para cada canal."
+      },
+      {
+        "id": "s2",
+        "text": "Todos los canales muestran el mismo número de opciones de selección múltiple, así que no hace falta adaptar las preguntas al canal.",
+        "answer": false,
+        "explanation": "El número de opciones admitidas varía: por ejemplo, Teams muestra hasta seis en una pregunta, mientras que otros canales admiten más o solo parcialmente."
+      },
+      {
+        "id": "s3",
+        "text": "Si un canal aparece deshabilitado en la página Canales, puede deberse a las directivas de la organización o a la configuración de autenticación del agente.",
+        "answer": true,
+        "explanation": "Las directivas de gobierno o la configuración del agente pueden bloquear canales; el icono de información junto al canal explica el motivo."
+      },
+      {
+        "id": "s4",
+        "text": "Si una directiva de la organización bloquea un canal, puedes desbloquearlo tú mismo desde la configuración de autenticación del agente.",
+        "answer": false,
+        "explanation": "Un bloqueo por directiva de la organización no lo levanta el creador: según el caso, hay que usar otro canal o hablar con el administrador."
+      }
+    ],
+    "keyPoint": "Cada canal tiene su propia experiencia (tarjetas, opciones, Markdown…), y algunos pueden estar bloqueados por las directivas de la organización o por la autenticación del agente.",
+    "references": [
+      {
+        "title": "Conceptos clave: publicar e implementar el agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/publication-fundamentals-publish-channels"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-gestion-101",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-gestion",
+    "difficulty": 2,
+    "scenario": "El equipo de TI de Navieras Cantabria usa Microsoft Agent 365 para supervisar los agentes de Copilot Studio de la empresa, que envían su telemetría automáticamente.",
+    "prompt": "Empareja cada necesidad con el servicio o la herramienta donde se cubre.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Revisar en un panel de actividad los patrones de uso y el rendimiento de todos los agentes",
+        "answerId": "c1",
+        "explanation": "El registro de agentes y el panel de actividad de Agent 365 están en el Centro de administración de Microsoft 365, donde aparecen todos los agentes de Copilot Studio."
+      },
+      {
+        "id": "m2",
+        "text": "Recibir alertas de seguridad y detectar amenazas o comportamientos maliciosos de los agentes",
+        "answerId": "c2",
+        "explanation": "Microsoft Defender aporta detección continua de amenazas y protección en tiempo real para bloquear comportamientos peligrosos."
+      },
+      {
+        "id": "m3",
+        "text": "Consultar registros de auditoría de cumplimiento, incluidas las acciones de gobierno aplicadas a los agentes",
+        "answerId": "c3",
+        "explanation": "Microsoft Purview guarda los registros de auditoría de cumplimiento y el seguimiento de las directivas de prevención de pérdida de datos, así como el historial de las acciones de gobierno."
+      },
+      {
+        "id": "m4",
+        "text": "Aplicar controles de acceso basados en el riesgo a los agentes y a su identidad (Agent ID)",
+        "answerId": "c4",
+        "explanation": "Microsoft Entra aplica controles de acceso coherentes y basados en el riesgo a los usuarios y a los agentes que actúan en su nombre."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Centro de administración de Microsoft 365"
+      },
+      {
+        "id": "c2",
+        "text": "Microsoft Defender"
+      },
+      {
+        "id": "c3",
+        "text": "Microsoft Purview"
+      },
+      {
+        "id": "c4",
+        "text": "Microsoft Entra"
+      },
+      {
+        "id": "c5",
+        "text": "Página Supervisar (*Monitor*) de Copilot Studio"
+      },
+      {
+        "id": "c6",
+        "text": "Evaluación de agentes"
+      }
+    ],
+    "keyPoint": "Agent 365 reparte la gestión: registro y actividad en el Centro de administración de Microsoft 365, amenazas en Defender, auditoría en Purview e identidad y acceso en Entra.",
+    "references": [
+      {
+        "title": "Agentes de Copilot Studio y Agent 365",
+        "url": "https://learn.microsoft.com/es-es/microsoft-agent-365/builder/overview"
+      },
+      {
+        "title": "Información general de Microsoft Agent 365",
+        "url": "https://learn.microsoft.com/es-es/microsoft-agent-365/overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-gestion-102",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-gestion",
+    "difficulty": 3,
+    "prompt": "Indica si cada afirmación sobre Microsoft Agent 365 es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Agent 365 puede descubrir agentes creados en plataformas de terceros, como Amazon Bedrock o Salesforce Agentforce, y agregarlos al registro de agentes.",
+        "answer": true,
+        "explanation": "Desde la página Plataformas conectadas (*Connected platforms*) del Centro de administración de Microsoft 365 se crean conexiones con plataformas compatibles; la sincronización y la observabilidad varían según la plataforma."
+      },
+      {
+        "id": "s2",
+        "text": "La identidad de un agente de Copilot Studio (Agent ID) se crea cuando lo publicas por primera vez.",
+        "answer": false,
+        "explanation": "El Agent ID se crea automáticamente al crear el agente, no al publicarlo. Publicar solo pone el agente a disposición de los usuarios."
+      },
+      {
+        "id": "s3",
+        "text": "Los agentes de Copilot Studio se aprueban previamente mediante las directivas del Centro de administración de Power Platform, como las directivas de datos, pero necesitan una aprobación adicional para entrar en el catálogo de Teams o Microsoft Copilot de toda la organización.",
+        "answer": true,
+        "explanation": "Por eso no hace falta aprobar cada agente en Agent 365 para crearlo, pero sí para publicarlo en el catálogo de agentes de toda la organización."
+      },
+      {
+        "id": "s4",
+        "text": "Desde el registro de Agent 365, un administrador puede eliminar cualquier agente creado en Copilot Studio sin intervención de un administrador del entorno de Power Platform.",
+        "answer": false,
+        "explanation": "La acción Eliminar del registro solo se aplica así a los agentes creados con Agent Builder; los creados en Copilot Studio requieren a un administrador del entorno de Power Platform. Sí puede bloquearlos o reasignar su propiedad."
+      }
+    ],
+    "keyPoint": "Agent 365 incorpora también agentes de terceros; los de Copilot Studio reciben su Agent ID al crearse y se gobiernan junto con las directivas de Power Platform.",
+    "references": [
+      {
+        "title": "Agentes de Copilot Studio y Agent 365",
+        "url": "https://learn.microsoft.com/es-es/microsoft-agent-365/builder/overview"
+      },
+      {
+        "title": "Plataformas conectadas en Agent 365",
+        "url": "https://learn.microsoft.com/es-es/microsoft-agent-365/admin/connected-platforms"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-gestion-103",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-gestion",
+    "difficulty": 1,
+    "tags": [
+      "preview"
+    ],
+    "prompt": "En la supervisión de un agente de Copilot Studio, ¿qué hace la función de temáticas (*themes*)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crear automáticamente un tema (*topic*) nuevo por cada pregunta frecuente que el agente no sabe responder",
+        "correct": false,
+        "explanation": "Las temáticas son un análisis: agrupan preguntas y muestran métricas, pero no crean temas de conversación en el agente."
+      },
+      {
+        "id": "b",
+        "text": "Agrupar las preguntas de los usuarios que activaron respuestas generativas y mostrar métricas de cada grupo",
+        "correct": true,
+        "explanation": "La función (en versión preliminar) sugiere temáticas que agrupan preguntas parecidas, con métricas como el total de preguntas, la proporción respondida o la calidad de las respuestas, para ver dónde mejorar el agente."
+      },
+      {
+        "id": "c",
+        "text": "Cambiar el aspecto visual del agente, como los colores y el icono, en el canal de sitio web",
+        "correct": false,
+        "explanation": "El aspecto del agente se configura en los canales; las temáticas no tienen relación con el diseño visual."
+      },
+      {
+        "id": "d",
+        "text": "Agrupar los agentes de la organización según la plataforma en la que se crearon",
+        "correct": false,
+        "explanation": "Eso describe el mapa de agentes de Microsoft Agent 365, no una función de la supervisión de un agente concreto."
+      }
+    ],
+    "keyPoint": "Las temáticas agrupan las preguntas respondidas con IA generativa para analizar su volumen y calidad.",
+    "references": [
+      {
+        "title": "Supervisar las preguntas de los usuarios por temáticas",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/analytics-themes"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-gestion-104",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-gestion",
+    "difficulty": 2,
+    "scenario": "Logística Tormes tiene un agente autónomo que se ejecuta mediante desencadenadores de eventos (*event triggers*), por ejemplo cuando llega un correo a un buzón o se crea un archivo en SharePoint. El responsable quiere saber qué eventos inician más ejecuciones y cuáles provocan más ejecuciones fallidas.",
+    "prompt": "¿Qué sección de la página Supervisar (*Monitor*) debe revisar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Usuarios activos",
+        "correct": false,
+        "explanation": "Mide la adopción de agentes conversacionales con usuarios autenticados; no informa de los eventos que inician las ejecuciones."
+      },
+      {
+        "id": "b",
+        "text": "Satisfacción del cliente (CSAT)",
+        "correct": false,
+        "explanation": "Se basa en las encuestas que responden los usuarios al final de una conversación; las ejecuciones por eventos no tienen esas valoraciones."
+      },
+      {
+        "id": "c",
+        "text": "Temáticas (*themes*)",
+        "correct": false,
+        "explanation": "Agrupan las preguntas de usuarios que activaron respuestas generativas; no analizan los desencadenadores de eventos."
+      },
+      {
+        "id": "d",
+        "text": "Uso de desencadenadores",
+        "correct": true,
+        "explanation": "Muestra con qué frecuencia cada desencadenador inició una sesión y, en el detalle, los eventos más comunes y los que causaron más ejecuciones fallidas."
+      }
+    ],
+    "keyPoint": "En agentes autónomos, la supervisión se centra en resultados de ejecución, uso de desencadenadores, uso de herramientas y uso de fuentes de conocimiento.",
+    "references": [
+      {
+        "title": "Supervisar el estado de un agente autónomo",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/analytics-improve-agent-health"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-gestion-105",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-gestion",
+    "difficulty": 2,
+    "scenario": "Laura es la propietaria del agente de atención al cliente de Ópticas Brisa. Su director quiere consultar las métricas de la página Supervisar (*Monitor*) del agente, pero Laura no quiere que pueda modificarlo.",
+    "prompt": "¿Qué debe hacer Laura?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Compartir el agente con el director como editor",
+        "correct": false,
+        "explanation": "Como editor podría ver los análisis, pero también modificar el agente, justo lo que Laura quiere evitar."
+      },
+      {
+        "id": "b",
+        "text": "Agregar al director al grupo de seguridad con el que el agente está compartido para chatear",
+        "correct": false,
+        "explanation": "Compartir para chatear permite usar el agente, no ver sus análisis; además, el rol que da acceso a la supervisión no se comparte con grupos."
+      },
+      {
+        "id": "c",
+        "text": "Compartir el agente con el director con el rol Visor de análisis (*Analytics Viewer*) activado",
+        "correct": true,
+        "explanation": "Este rol da acceso solo a la página Supervisar del agente. Se comparte con personas, no con grupos, y para ver transcripciones haría falta además el rol de seguridad Visor de transcripciones de bots."
+      },
+      {
+        "id": "d",
+        "text": "Ejecutar una evaluación del agente y enviarle los resultados",
+        "correct": false,
+        "explanation": "Una evaluación mide la calidad de las respuestas con un conjunto de pruebas; no da acceso a las métricas de uso real de la página Supervisar."
+      }
+    ],
+    "keyPoint": "El rol Visor de análisis da acceso de solo lectura a la página Supervisar; las transcripciones requieren además el rol Visor de transcripciones de bots.",
+    "references": [
+      {
+        "title": "Conceptos clave de la supervisión de agentes",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/analytics-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-gestion-106",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-gestion",
+    "difficulty": 3,
+    "scenario": "Viajes Horizonte va a ampliar su agente de reservas. Antes de cada cambio quiere comprobar que el agente mantiene el contexto durante una conversación de varios pasos (destino, fechas y confirmación) y que esas pruebas se lancen automáticamente desde su canalización de integración y entrega continuas (CI/CD), sin que nadie tenga que ejecutarlas a mano.",
+    "prompt": "¿Qué dos capacidades de la evaluación de agentes debe usar? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un conjunto de pruebas de respuesta única",
+        "correct": false,
+        "explanation": "Evalúa cada pregunta y su respuesta por separado; sirve para comprobar respuestas concretas, no si el agente mantiene el contexto a lo largo de varios turnos."
+      },
+      {
+        "id": "b",
+        "text": "Un conjunto de pruebas de conversación (varios turnos)",
+        "correct": true,
+        "explanation": "La evaluación conversacional comprueba el comportamiento en interacciones largas: si el agente mantiene el contexto, pide aclaraciones y completa tareas de varios pasos."
+      },
+      {
+        "id": "c",
+        "text": "Los evaluadores de seguridad, como violencia o contenido de odio",
+        "correct": false,
+        "explanation": "Detectan contenido dañino en las respuestas; no comprueban el mantenimiento del contexto ni automatizan la ejecución de las pruebas."
+      },
+      {
+        "id": "d",
+        "text": "Iniciar las evaluaciones con las API REST de Power Platform o con conectores",
+        "correct": true,
+        "explanation": "Las evaluaciones pueden lanzarse por programación con API REST o conectores de Power Platform, lo que permite integrarlas en canalizaciones de CI/CD."
+      },
+      {
+        "id": "e",
+        "text": "La página Supervisar con los resultados de las sesiones",
+        "correct": false,
+        "explanation": "Muestra datos del uso real del agente publicado; no ejecuta pruebas antes de cada cambio."
+      }
+    ],
+    "keyPoint": "Para probar el contexto usa conjuntos de pruebas de conversación; para automatizar, lanza las evaluaciones con API REST o conectores.",
+    "references": [
+      {
+        "title": "Crear un conjunto de pruebas de conversación",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/analytics-agent-evaluation-multi-turn"
+      },
+      {
+        "title": "Acerca de la evaluación de agentes",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/analytics-agent-evaluation-intro"
+      }
+    ]
+  }
+]

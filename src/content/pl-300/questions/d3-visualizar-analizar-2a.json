@@ -1,0 +1,1769 @@
+[
+  {
+    "id": "pl300-d3-informes-101",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-informes",
+    "difficulty": 2,
+    "scenario": "La directora comercial de Lácteos Ribera tiene un gráfico de líneas con las ventas mensuales. Quiere ver, en ese mismo objeto visual, un minigráfico por cada una de sus seis regiones, colocados en cuadrícula y con los ejes alineados para compararlos de un vistazo.",
+    "prompt": "¿Qué debes configurar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agregar Región a la leyenda del gráfico de líneas",
+        "correct": false,
+        "explanation": "Dibuja una línea por región en un único gráfico; con seis series superpuestas cuesta comparar y no se obtiene una cuadrícula de minigráficos."
+      },
+      {
+        "id": "b",
+        "text": "Copiar el gráfico seis veces y aplicar a cada copia un filtro de nivel de objeto visual por región",
+        "correct": false,
+        "explanation": "Funciona a la fuerza, pero obliga a mantener seis objetos visuales y los ejes no quedan sincronizados automáticamente."
+      },
+      {
+        "id": "c",
+        "text": "Arrastrar Región al área Múltiplos pequeños (*Small multiples*) del gráfico",
+        "correct": true,
+        "explanation": "Los múltiplos pequeños dividen el objeto visual en una versión por cada valor de la dimensión, en cuadrícula y con ejes sincronizados; se admiten en gráficos de barras, columnas, líneas y áreas."
+      },
+      {
+        "id": "d",
+        "text": "Cambiar el objeto visual por un gráfico de cintas (*ribbon chart*) con Región en la leyenda",
+        "correct": false,
+        "explanation": "El gráfico de cintas muestra cómo cambia la clasificación de las categorías en el tiempo; sigue siendo un solo gráfico, no uno por región."
+      }
+    ],
+    "keyPoint": "Para repetir el mismo gráfico por cada valor de una dimensión, en cuadrícula y con ejes sincronizados, usa múltiplos pequeños.",
+    "references": [
+      {
+        "title": "Creación de múltiplos pequeños en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-small-multiples"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-informes-102",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-informes",
+    "difficulty": 3,
+    "scenario": "Un informe de ventas debe mostrar siempre los tres últimos meses completos. El mes en curso, que todavía está a medias, no debe aparecer nunca, y el periodo debe avanzar solo cada mes sin que nadie toque el informe.",
+    "prompt": "Completa la configuración de la segmentación.",
+    "template": "En una segmentación sobre la columna Fecha con el estilo Fecha relativa, eliges {{b1}}, escribes 3 y seleccionas {{b2}}. El intervalo se calcula a partir de {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Último"
+          },
+          {
+            "id": "o2",
+            "text": "Siguiente"
+          },
+          {
+            "id": "o3",
+            "text": "Este"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "«Último» mira hacia atrás desde hoy; «Siguiente» mira hacia el futuro y «Este» no admite número (solo el periodo actual)."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Meses"
+          },
+          {
+            "id": "o2",
+            "text": "Meses (calendario)"
+          },
+          {
+            "id": "o3",
+            "text": "Semanas (calendario)"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Meses (calendario) selecciona solo meses naturales completos y excluye el mes en curso; Meses tomaría un periodo móvil que termina hoy e incluiría días del mes actual."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "la fecha más reciente de la columna Fecha"
+          },
+          {
+            "id": "o2",
+            "text": "el día en que se consulta el informe (en UTC)"
+          },
+          {
+            "id": "o3",
+            "text": "la fecha de la última actualización del modelo"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "El estilo Fecha relativa es relativo al día de consulta y, una vez publicado, se basa en la hora UTC; anclar a la última fecha de los datos es una opción del estilo Selector de fecha."
+      }
+    ],
+    "keyPoint": "Meses (calendario) = solo meses naturales completos; Meses = periodo móvil que incluye hoy. Se calcula respecto al día de consulta, en UTC.",
+    "references": [
+      {
+        "title": "Creación de un filtro y una segmentación de fecha relativa en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/desktop-slicer-filter-date-range"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-informes-103",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-informes",
+    "difficulty": 2,
+    "prompt": "Empareja cada necesidad con el tipo o estilo de segmentación (*slicer*) más adecuado.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Mostrar las líneas de producto como botones en cuadrícula, cada uno con la imagen de la línea",
+        "answerId": "c1",
+        "explanation": "La segmentación de botones admite diseño en cuadrícula, imágenes, estados interactivos y formato condicional de etiquetas."
+      },
+      {
+        "id": "m2",
+        "text": "Escribir parte de un código de pedido y filtrar los pedidos que empiezan por ese texto",
+        "answerId": "c2",
+        "explanation": "La segmentación de entrada acepta texto libre y operadores como «Comienza con cualquier» o «Contiene alguno»."
+      },
+      {
+        "id": "m3",
+        "text": "Elegir un periodo relativo anclado a la fecha más reciente de los datos o marcar fechas a mano en un calendario",
+        "answerId": "c3",
+        "explanation": "El estilo Selector de fecha añade calendario y control deslizante, y permite anclar el periodo relativo a Hoy, a la última fecha o a la primera fecha de los datos."
+      },
+      {
+        "id": "m4",
+        "text": "Elegir una región en una lista que ocupe poco espacio en el lienzo hasta que se abre",
+        "answerId": "c4",
+        "explanation": "El estilo Desplegable de la segmentación muestra la lista solo al abrirla, por lo que ahorra espacio en la página."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Segmentación de botones"
+      },
+      {
+        "id": "c2",
+        "text": "Segmentación de entrada"
+      },
+      {
+        "id": "c3",
+        "text": "Segmentación con el estilo Selector de fecha"
+      },
+      {
+        "id": "c4",
+        "text": "Segmentación con el estilo Desplegable"
+      },
+      {
+        "id": "c5",
+        "text": "Segmentación con el estilo Fecha relativa"
+      },
+      {
+        "id": "c6",
+        "text": "Filtro de nivel de página en el panel Filtros"
+      }
+    ],
+    "keyPoint": "Botones = cuadrícula con imágenes; entrada = texto libre con operadores; selector de fecha = calendario y anclajes relativos; desplegable = ocupa poco espacio.",
+    "references": [
+      {
+        "title": "Introducción a las segmentaciones de datos en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-slicers"
+      },
+      {
+        "title": "Crear y usar un segmentador de entrada",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-input-slicer"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-informes-104",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-informes",
+    "difficulty": 2,
+    "scenario": "En Ferretería Ibérica, los lectores quieren elegir con una segmentación del lienzo si el gráfico principal muestra Ventas, Margen o Unidades. El autor no quiere duplicar el gráfico ni que cada lector tenga que editarlo por su cuenta.",
+    "prompt": "¿Qué debes crear?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Tres marcadores, cada uno con una copia del gráfico visible y las otras dos ocultas",
+        "correct": false,
+        "explanation": "Resuelve el cambio de vista, pero duplica el gráfico tres veces y obliga a mantener los marcadores; el requisito pide no duplicarlo."
+      },
+      {
+        "id": "b",
+        "text": "Habilitar Personalizar objetos visuales en la configuración del informe",
+        "correct": false,
+        "explanation": "Permite a cada lector modificar el objeto visual desde su encabezado, no elegir la medida en una segmentación del lienzo común para todos."
+      },
+      {
+        "id": "c",
+        "text": "Un grupo (*group*) sobre la columna Producto con las tres categorías",
+        "correct": false,
+        "explanation": "La agrupación combina valores de una columna en categorías; no cambia qué medida representa el gráfico."
+      },
+      {
+        "id": "d",
+        "text": "Un parámetro de campo (*field parameter*) con las tres medidas",
+        "correct": true,
+        "explanation": "Desde Modelado > Nuevo parámetro > Campos creas el parámetro; al seleccionar una medida en la segmentación, los objetos visuales que usan el parámetro la muestran."
+      }
+    ],
+    "keyPoint": "Los parámetros de campo dejan que el lector cambie, desde una segmentación, qué medida o dimensión muestra un objeto visual.",
+    "references": [
+      {
+        "title": "Uso de parámetros de campo para permitir que los lectores de informes cambien los objetos visuales",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/power-bi-field-parameters"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-informes-105",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-informes",
+    "difficulty": 3,
+    "scenario": "Una página conectada por DirectQuery tiene cinco segmentaciones y varias tarjetas en el panel Filtros. Cada selección lanza consultas en todos los objetos visuales y los usuarios se quejan de la espera. Quieres que puedan preparar varias selecciones y aplicarlas de una vez.",
+    "prompt": "Completa la frase.",
+    "template": "Para las cinco segmentaciones de la página, insertas {{b1}}; para las tarjetas del panel Filtros, en Power BI Desktop activas {{b2}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "el botón Aplicar todas las segmentaciones"
+          },
+          {
+            "id": "o2",
+            "text": "el botón Borrar todas las segmentaciones"
+          },
+          {
+            "id": "o3",
+            "text": "un navegador de marcadores"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Con este botón las selecciones quedan pendientes hasta pulsarlo, lo que evita consultas intermedias; Borrar todas solo limpia las selecciones."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "en Opciones > Reducción de consulta, un único botón Aplicar en el panel de filtros"
+          },
+          {
+            "id": "o2",
+            "text": "el mismo botón Aplicar todas las segmentaciones, que también controla el panel Filtros"
+          },
+          {
+            "id": "o3",
+            "text": "la sincronización de segmentaciones en todas las páginas"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Los botones Aplicar todas y Borrar todas no controlan el panel Filtros; para aplazar sus cambios se activa el botón Aplicar del panel en Reducción de consulta, una opción de nivel de informe de Power BI Desktop."
+      }
+    ],
+    "keyPoint": "Aplicar todas las segmentaciones controla solo las segmentaciones de la página; para el panel Filtros, usa el botón Aplicar de Reducción de consulta.",
+    "references": [
+      {
+        "title": "Crea botones para Aplicar todas las segmentaciones y Borrar todas las segmentaciones en informes de Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/buttons-apply-all-clear-all-slicers"
+      },
+      {
+        "title": "Dar formato a los filtros en informes de Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/power-bi-report-filter"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-informes-106",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-informes",
+    "difficulty": 2,
+    "scenario": "Una tabla muestra Producto[Nombre] y la medida [Ventas] filtradas por el trimestre seleccionado. El jefe de compras quiere ver también los productos que no se han vendido en el trimestre, con la venta en blanco, sin modificar las medidas del modelo.",
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Activar Mostrar elementos sin datos en el campo Nombre de la tabla",
+        "correct": true,
+        "explanation": "Por defecto Power BI omite las filas cuya medida está en blanco; la opción, en el menú del campo de agrupación, las incluye."
+      },
+      {
+        "id": "b",
+        "text": "Activar Mostrar elementos sin datos en la medida Ventas",
+        "correct": false,
+        "explanation": "La opción se aplica a los campos de agrupación (filas, columnas, eje, leyenda), no a las medidas."
+      },
+      {
+        "id": "c",
+        "text": "Cambiar la dirección de filtro cruzado de la relación entre Producto y Ventas a Ambas",
+        "correct": false,
+        "explanation": "La dirección del filtro no hace que aparezcan los productos sin ventas y puede introducir ambigüedad en el modelo."
+      },
+      {
+        "id": "d",
+        "text": "Convertir la tabla en una matriz con Nombre en las filas",
+        "correct": false,
+        "explanation": "Una matriz también omite las filas con la medida en blanco; el tipo de objeto visual no cambia ese comportamiento."
+      }
+    ],
+    "keyPoint": "Mostrar elementos sin datos se activa en el campo de agrupación (filas, eje, leyenda) para incluir las filas cuyo valor de medida está en blanco.",
+    "references": [
+      {
+        "title": "Característica Mostrar elementos sin datos de Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-show-items-no-data"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-informes-107",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-informes",
+    "difficulty": 2,
+    "code": {
+      "language": "json",
+      "content": "{\n  \"name\": \"Corporativo Contoso\",\n  \"dataColors\": [\"#0B5394\", \"#E69138\", \"#6AA84F\", \"#CC0000\"],\n  \"good\": \"#2E7D32\",\n  \"neutral\": \"#F9A825\",\n  \"bad\": \"#C62828\",\n  \"maximum\": \"#0B5394\",\n  \"center\": \"#FFFFFF\",\n  \"minimum\": \"#DEEAF6\"\n}"
+    },
+    "prompt": "Completa la frase sobre el archivo de tema del anexo.",
+    "template": "Las series de un gráfico de columnas agrupadas toman sus colores de {{b1}}; el objeto visual KPI usa {{b2}} para indicar si se cumple el objetivo; y los colores que propone el formato condicional con degradado salen de {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "dataColors"
+          },
+          {
+            "id": "o2",
+            "text": "good, neutral y bad"
+          },
+          {
+            "id": "o3",
+            "text": "maximum, center y minimum"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "dataColors es la lista de colores para las formas que representan datos; si se agotan, Power BI genera variaciones de tono y saturación."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "dataColors"
+          },
+          {
+            "id": "o2",
+            "text": "good, neutral y bad"
+          },
+          {
+            "id": "o3",
+            "text": "maximum, center y minimum"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "good, neutral y bad son los colores de estado que usan el gráfico de cascada y el objeto visual KPI."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "dataColors"
+          },
+          {
+            "id": "o2",
+            "text": "good, neutral y bad"
+          },
+          {
+            "id": "o3",
+            "text": "maximum, center y minimum"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "maximum, center, minimum (y null) definen los colores del degradado en el cuadro de diálogo de formato condicional."
+      }
+    ],
+    "keyPoint": "dataColors = series; good/neutral/bad = estados de cascada y KPI; maximum/center/minimum = degradado del formato condicional.",
+    "references": [
+      {
+        "title": "Creación de temas de informes personalizados en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/report-themes-create-custom"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-informes-108",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-informes",
+    "difficulty": 3,
+    "scenario": "La medida [Color estado] devuelve \"#2E7D32\", \"#F9A825\" o \"#C62828\" según el cumplimiento y se usa con el estilo Valor del campo en doce objetos visuales. Marketing cambia el tema del informe cada temporada y los colores de estado ya no encajan. La lógica debe seguir en esa única medida DAX.",
+    "prompt": "¿Qué debes hacer para que los colores sigan siempre al tema?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cambiar la medida para que devuelva valores RGB, por ejemplo RGB(46, 125, 50), en lugar de códigos hexadecimales",
+        "correct": false,
+        "explanation": "RGB sigue siendo un color fijo; no depende del tema aplicado, así que el problema persiste."
+      },
+      {
+        "id": "b",
+        "text": "Mover las reglas de formato condicional al archivo JSON del tema",
+        "correct": false,
+        "explanation": "No se pueden agregar reglas de formato condicional a un tema; se aplican en cada objeto visual."
+      },
+      {
+        "id": "c",
+        "text": "Hacer que la medida devuelva \"good\", \"neutral\" o \"bad\"",
+        "correct": true,
+        "explanation": "Power BI admite nombres de colores del tema en las medidas usadas con Valor del campo; el objeto visual usa el color correspondiente del tema actual y cambia con él."
+      },
+      {
+        "id": "d",
+        "text": "Sustituir el estilo Valor del campo por Degradado basado en la medida de cumplimiento",
+        "correct": false,
+        "explanation": "El degradado asigna colores continuos entre mínimo y máximo y abandona la lógica de tres estados definida en la medida."
+      }
+    ],
+    "keyPoint": "Con el estilo Valor del campo, una medida puede devolver nombres de colores del tema («good», «bad»…) y el color se adapta al tema aplicado.",
+    "references": [
+      {
+        "title": "Creación de temas de informes personalizados en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/report-themes-create-custom"
+      },
+      {
+        "title": "Formato condicional en objetos visuales de Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-conditional-formatting"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-informes-109",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-informes",
+    "difficulty": 2,
+    "prompt": "En una tabla de tiendas, empareja cada requisito con la opción de formato condicional que debes aplicar.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Mostrar un semáforo junto al % de cumplimiento según tres tramos",
+        "answerId": "c1",
+        "explanation": "Los iconos se basan en reglas o en un valor de campo y pueden colocarse a la izquierda, a la derecha o solos."
+      },
+      {
+        "id": "m2",
+        "text": "Que el nombre de cada tienda abra su ficha en la intranet",
+        "answerId": "c2",
+        "explanation": "El formato URL web convierte el campo en un vínculo activo basado en una columna o medida que contiene la dirección."
+      },
+      {
+        "id": "m3",
+        "text": "Colorear el fondo del margen de rojo a verde pasando por blanco en el 0 %",
+        "answerId": "c3",
+        "explanation": "El estilo Degradado con la casilla Agregar un color intermedio permite fijar un valor y un color central para una escala divergente."
+      },
+      {
+        "id": "m4",
+        "text": "Representar las ventas como una barra horizontal dentro de la celda, sin el número",
+        "answerId": "c4",
+        "explanation": "Las barras de datos muestran la barra y el valor de forma predeterminada; la casilla Mostrar solo barra oculta el valor."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Iconos"
+      },
+      {
+        "id": "c2",
+        "text": "URL web"
+      },
+      {
+        "id": "c3",
+        "text": "Color de fondo con estilo Degradado y color intermedio"
+      },
+      {
+        "id": "c4",
+        "text": "Barras de datos con Mostrar solo barra"
+      },
+      {
+        "id": "c5",
+        "text": "Color de fuente con estilo Valor del campo"
+      }
+    ],
+    "keyPoint": "Iconos = semáforos; URL web = vínculos; degradado con color intermedio = escala divergente; barras de datos con Mostrar solo barra = barras sin número.",
+    "references": [
+      {
+        "title": "Aplicar formato condicional en tablas y matrices",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-conditional-table-formatting"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-informes-110",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-informes",
+    "difficulty": 3,
+    "scenario": "Una matriz tiene en las filas la jerarquía Año > Trimestre > Mes y en los valores [Importe de ventas], expandida hasta el nivel de mes. Necesitas un acumulado que vuelva a empezar en enero de cada año.",
+    "prompt": "¿Qué cálculo visual debes agregar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "RUNNINGSUM ( [Importe de ventas], ROWS, HIGHESTPARENT )",
+        "correct": true,
+        "explanation": "HIGHESTPARENT equivale a 1 y particiona por la columna superior de la jerarquía, el año, de modo que el acumulado empieza de nuevo cada año."
+      },
+      {
+        "id": "b",
+        "text": "RUNNINGSUM ( [Importe de ventas], ROWS, LOWESTPARENT )",
+        "correct": false,
+        "explanation": "LOWESTPARENT reinicia en el padre inmediato del nivel actual; en el nivel de mes ese padre es el trimestre, así que el acumulado se reiniciaría cada trimestre."
+      },
+      {
+        "id": "c",
+        "text": "RUNNINGSUM ( [Importe de ventas] )",
+        "correct": false,
+        "explanation": "Sin el parámetro Reset se usa NONE: el acumulado nunca se reinicia y sigue sumando de un año al siguiente."
+      },
+      {
+        "id": "d",
+        "text": "RUNNINGSUM ( [Importe de ventas], COLUMNS )",
+        "correct": false,
+        "explanation": "COLUMNS es un valor del parámetro Axis, no de Reset; además, la matriz no tiene campos en columnas, así que el cálculo no recorrería los meses."
+      }
+    ],
+    "keyPoint": "El parámetro Reset de los cálculos visuales controla cuándo se reinicia: HIGHESTPARENT = nivel superior; LOWESTPARENT = padre inmediato; NONE = nunca.",
+    "references": [
+      {
+        "title": "Introducción a los cálculos visuales",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-visual-calculations-overview"
+      },
+      {
+        "title": "Función RUNNINGSUM (DAX)",
+        "url": "https://learn.microsoft.com/es-es/dax/runningsum-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-informes-111",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-informes",
+    "difficulty": 2,
+    "scenario": "El área de trabajo ya contiene el informe paginado «Albaranes», con un parámetro Año. En un informe de Power BI con una segmentación de Fecha[Año], quieres mostrar ese informe paginado en una página para que se pueda exportar entero a PDF y que muestre el año elegido en la segmentación.",
+    "prompt": "Ordena los pasos para incluir el informe paginado en la página y que responda a la segmentación.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Selecciona Informe paginado en el panel Visualizaciones para agregar el objeto visual a la página.",
+        "explanation": "El objeto visual de informe paginado es nativo de Power BI y se agrega como cualquier otro objeto visual."
+      },
+      {
+        "id": "p2",
+        "text": "Selecciona Conectar con el informe y elige «Albaranes» entre los informes paginados del servicio.",
+        "explanation": "El objeto visual representa un informe paginado que ya está cargado en el servicio Power BI."
+      },
+      {
+        "id": "p3",
+        "text": "Selecciona Establecer parámetros y arrastra Fecha[Año] al área Parámetros para asignarlo al parámetro Año.",
+        "explanation": "Al enlazar el parámetro a un campo de Power BI, la segmentación de año filtra el informe paginado como a cualquier otro objeto visual."
+      },
+      {
+        "id": "p4",
+        "text": "Selecciona Ver informe para representar el informe paginado en la página.",
+        "explanation": "Con el informe conectado y los parámetros asignados, el objeto visual ya puede mostrarse y su barra de herramientas permite exportarlo."
+      }
+    ],
+    "keyPoint": "Objeto visual de informe paginado: conectarlo a un informe ya publicado y asignar campos de Power BI a sus parámetros.",
+    "references": [
+      {
+        "title": "Creación y uso del objeto visual de informe paginado",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/paginated-report-visual"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-informes-112",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-informes",
+    "difficulty": 2,
+    "prompt": "Anclas a un panel (*dashboard*) una tabla de un informe que usa formato condicional. Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "El icono del panel conserva los colores del formato condicional de la tabla.",
+        "answer": false,
+        "explanation": "Al anclar un objeto visual, el formato condicional no se aplica en el icono, igual que el borde, la sombra y el fondo."
+      },
+      {
+        "id": "s2",
+        "text": "Si después cambias la tabla del informe por un gráfico de barras, el icono pasa a mostrar el gráfico de barras.",
+        "answer": false,
+        "explanation": "El icono sigue mostrando el tipo de objeto visual original, aunque sus datos puedan actualizarse."
+      },
+      {
+        "id": "s3",
+        "text": "Al seleccionar el icono en el panel, se abre el informe del que procede.",
+        "answer": true,
+        "explanation": "El icono funciona como vínculo: al seleccionarlo vuelves al informe de origen."
+      },
+      {
+        "id": "s4",
+        "text": "Desde el cuadro de diálogo Anclar al panel puedes crear un panel nuevo escribiendo su nombre.",
+        "answer": true,
+        "explanation": "Puedes anclar a un panel existente o elegir Nuevo panel y escribir su nombre; Power BI lo crea en el área de trabajo actual."
+      }
+    ],
+    "keyPoint": "Un icono anclado es una instantánea con vínculo al informe: pierde el formato condicional y no sigue los cambios de tipo de objeto visual.",
+    "references": [
+      {
+        "title": "Creación de un panel de Power BI desde un informe",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/service-dashboard-create"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-informes-113",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-informes",
+    "difficulty": 3,
+    "scenario": "La página «Resumen ejecutivo» debe incluir un texto generado por Copilot que resuma las páginas Ventas, Margen y Clientes, pero no la página Notas. En Clientes hay un gráfico de abandono que solo se muestra al pulsar un botón vinculado a un marcador de solo visualización (con Datos desactivado), y también debe tenerse en cuenta.",
+    "prompt": "¿Cómo configuras la narración?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agregar un objeto visual Narración a cada una de las tres páginas y copiar sus textos en «Resumen ejecutivo»",
+        "correct": false,
+        "explanation": "Es innecesario, porque una sola narración puede resumir varias páginas; además, sin la opción de marcadores ocultos el gráfico de abandono no se incluiría y el texto de Copilot no se puede editar directamente para combinarlo."
+      },
+      {
+        "id": "b",
+        "text": "Abrir el panel Copilot y usar la opción Sugerir contenido para este informe con las tres páginas",
+        "correct": false,
+        "explanation": "Esa opción propone un esquema de páginas nuevas para crear el informe; no escribe un resumen de páginas existentes."
+      },
+      {
+        "id": "c",
+        "text": "Mover todos los objetos visuales a «Resumen ejecutivo», porque la narración solo resume su propia página",
+        "correct": false,
+        "explanation": "La narración con Copilot puede resumir todo el informe, páginas concretas o los objetos visuales que selecciones."
+      },
+      {
+        "id": "d",
+        "text": "Narración en modo Copilot con solo esas tres páginas y la opción Mostrar objetos visuales de marcadores ocultos",
+        "correct": true,
+        "explanation": "El cuadro de diálogo permite incluir o excluir páginas y objetos visuales; con esa opción se pueden seleccionar los visibles mediante marcadores de solo visualización."
+      }
+    ],
+    "keyPoint": "La narración con Copilot puede resumir todo el informe, páginas o objetos visuales concretos, e incluir los visibles solo con marcadores de visualización.",
+    "references": [
+      {
+        "title": "Creación de un objeto visual narrativo con Copilot para Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/copilot-create-narrative"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-informes-114",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-informes",
+    "difficulty": 2,
+    "scenario": "Un gráfico de columnas muestra las ventas anuales de 40 tiendas. La tienda central vende unos 4 000 000 €, mientras que las demás venden entre 5 000 € y 20 000 €, por lo que sus columnas apenas se ven. Todas las ventas son positivas y quieres compararlas en el mismo gráfico.",
+    "prompt": "¿Qué opción de formato debes cambiar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cambiar el tipo del eje X a Continuo",
+        "correct": false,
+        "explanation": "El tipo del eje de categorías decide si los valores se reparten en una escala continua o como categorías; no reduce la diferencia de altura entre columnas."
+      },
+      {
+        "id": "b",
+        "text": "Activar la escala logarítmica en el eje Y",
+        "correct": true,
+        "explanation": "La escala logarítmica es adecuada cuando los datos abarcan varios órdenes de magnitud; requiere que todos los valores tengan el mismo signo y no haya ceros, lo que aquí se cumple."
+      },
+      {
+        "id": "c",
+        "text": "Agregar la tienda al área Múltiplos pequeños",
+        "correct": false,
+        "explanation": "Generaría 40 minigráficos de una sola columna con ejes sincronizados, así que las tiendas pequeñas seguirían viéndose diminutas."
+      },
+      {
+        "id": "d",
+        "text": "Desactivar Concatenar etiquetas en el eje X",
+        "correct": false,
+        "explanation": "Esa opción solo afecta a cómo se muestran las etiquetas de una jerarquía en el eje, no a la escala de valores."
+      }
+    ],
+    "keyPoint": "Una escala logarítmica compara valores de órdenes de magnitud muy distintos; exige que todos sean positivos (o todos negativos) y sin ceros.",
+    "references": [
+      {
+        "title": "Personalización de las propiedades de los ejes X e Y",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-customize-x-axis-and-y-axis"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-informes-115",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-informes",
+    "difficulty": 1,
+    "prompt": "Empareja cada necesidad con el objeto visual más adecuado.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Mostrar el número medio de reclamaciones del mes en un arco de 0 a 200, con una aguja en el objetivo de 140",
+        "answerId": "c1",
+        "explanation": "El medidor radial muestra un único valor dentro de un rango (mínimo y máximo) y una aguja con el valor de destino."
+      },
+      {
+        "id": "m2",
+        "text": "Ver qué peso tiene cada categoría y subcategoría en las ventas, con muchas categorías",
+        "answerId": "c2",
+        "explanation": "El gráfico de rectángulos (*treemap*) representa datos jerárquicos como rectángulos anidados proporcionales al valor."
+      },
+      {
+        "id": "m3",
+        "text": "Consultar los importes exactos de 200 productos para compararlos uno a uno",
+        "answerId": "c3",
+        "explanation": "Una tabla es ideal cuando se necesitan valores exactos de muchos elementos de una sola categoría."
+      },
+      {
+        "id": "m4",
+        "text": "Destacar en grande el importe total facturado en el año",
+        "answerId": "c4",
+        "explanation": "La tarjeta muestra un único dato de forma destacada."
+      },
+      {
+        "id": "m5",
+        "text": "Mostrar cómo se acumula, mes a mes, la contribución de tres canales al total",
+        "answerId": "c5",
+        "explanation": "El gráfico de áreas apiladas enfatiza la magnitud del cambio en el tiempo y muestra totales acumulados por serie."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Medidor (*gauge*)"
+      },
+      {
+        "id": "c2",
+        "text": "Gráfico de rectángulos (*treemap*)"
+      },
+      {
+        "id": "c3",
+        "text": "Tabla"
+      },
+      {
+        "id": "c4",
+        "text": "Tarjeta"
+      },
+      {
+        "id": "c5",
+        "text": "Gráfico de áreas apiladas"
+      },
+      {
+        "id": "c6",
+        "text": "Gráfico circular"
+      }
+    ],
+    "keyPoint": "Medidor = un valor frente a objetivo en un rango; rectángulos = jerarquías y proporciones; tabla = valores exactos; tarjeta = una cifra destacada; áreas = magnitud del cambio en el tiempo.",
+    "references": [
+      {
+        "title": "Introducción a las visualizaciones en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualizations-overview"
+      },
+      {
+        "title": "Gráficos de medidor radial en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-radial-gauge-charts"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-informes-116",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-informes",
+    "difficulty": 2,
+    "prompt": "Estás dando formato al panel Filtros (*Filters pane*) de un informe. Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puedes dar al panel Filtros un formato distinto en cada página del informe.",
+        "answer": true,
+        "explanation": "El color de fondo, el borde, los títulos y las tarjetas de filtro se pueden formatear de forma diferente para cada página."
+      },
+      {
+        "id": "s2",
+        "text": "Un filtro oculto sigue apareciendo en la lista emergente de filtros que ven los lectores al pasar el puntero sobre el objeto visual.",
+        "answer": false,
+        "explanation": "Los filtros ocultos no se muestran en esa lista emergente de solo lectura."
+      },
+      {
+        "id": "s3",
+        "text": "El estado abierto, cerrado o visible del panel Filtros se puede guardar en un marcador de informe.",
+        "answer": true,
+        "explanation": "Los estados de apertura y visibilidad del panel fluyen con los marcadores de informe."
+      },
+      {
+        "id": "s4",
+        "text": "Ocultar el panel Filtros desde la pestaña Vista de Power BI Desktop lo oculta también a los lectores en el servicio.",
+        "answer": false,
+        "explanation": "Esa opción solo oculta el panel mientras editas en Desktop; para ocultarlo a los lectores usas el icono de ojo situado junto a Filtros."
+      }
+    ],
+    "keyPoint": "El panel Filtros se puede formatear por página y su estado puede guardarse en marcadores; para ocultarlo a los lectores se usa el icono de ojo.",
+    "references": [
+      {
+        "title": "Dar formato a los filtros en informes de Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/power-bi-report-filter"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-informes-117",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-informes",
+    "difficulty": 2,
+    "scenario": "Una empresa de reparto tiene la latitud y la longitud de 50 000 entregas del último mes. Quiere ver sobre un mapa en qué zonas de la ciudad se concentran, como un mapa de calor. El administrador ya ha habilitado el objeto visual en el portal de administración.",
+    "prompt": "¿Qué objeto visual debes usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un mapa coroplético (*filled map*) con el código postal",
+        "correct": false,
+        "explanation": "Sombrea regiones geográficas con límites definidos para comparar valores agregados; no representa la densidad de puntos individuales. Además, se basa en Bing Maps, cuya retirada ya está anunciada en favor de Azure Maps."
+      },
+      {
+        "id": "b",
+        "text": "Un gráfico de dispersión con la longitud en el eje X y la latitud en el eje Y",
+        "correct": false,
+        "explanation": "Dibujaría los puntos, pero sin mapa base ni capa de mapa térmico, así que no se ven las zonas de la ciudad."
+      },
+      {
+        "id": "c",
+        "text": "Un mapa de formas (*shape map*) con un archivo TopoJSON de barrios",
+        "correct": false,
+        "explanation": "Compara regiones coloreadas, incluso personalizadas, en lugar de ubicaciones precisas, y no ofrece mapa térmico de puntos; además, sigue en versión preliminar."
+      },
+      {
+        "id": "d",
+        "text": "El objeto visual Azure Maps con una capa de mapa térmico",
+        "correct": true,
+        "explanation": "Azure Maps admite capas de burbujas, columnas 3D, mapa térmico, marcadores y rutas a partir de coordenadas; requiere que el administrador lo habilite."
+      }
+    ],
+    "keyPoint": "Azure Maps es el mapa recomendado para puntos (burbujas, mapa térmico, marcadores); el mapa coroplético colorea regiones.",
+    "references": [
+      {
+        "title": "Visualizaciones de mapas en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-map-visualizations-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-informes-118",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-informes",
+    "difficulty": 3,
+    "prompt": "En una segmentación de Segmento con selección múltiple has activado Mostrar «Seleccionar todo». ¿Qué dos afirmaciones son correctas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Marcar Seleccionar todo produce el mismo filtrado que borrar todas las selecciones de la segmentación.",
+        "correct": true,
+        "explanation": "Con todo seleccionado la segmentación no filtra los demás objetos visuales; Power BI no guarda cada elemento como una selección individual."
+      },
+      {
+        "id": "b",
+        "text": "Si después de Seleccionar todo desmarcas «Gobierno», Power BI aplica un filtro «Segmento no es Gobierno».",
+        "correct": true,
+        "explanation": "Power BI usa una selección invertida: filtra excluyendo los elementos desmarcados en lugar de enumerar todos los que siguen marcados."
+      },
+      {
+        "id": "c",
+        "text": "Un segmento nuevo que llegue en la próxima actualización quedará excluido hasta que alguien lo marque.",
+        "correct": false,
+        "explanation": "Por la selección invertida, los valores nuevos se incluyen automáticamente salvo que se desmarquen de forma explícita."
+      },
+      {
+        "id": "d",
+        "text": "Power BI guarda la lista completa de segmentos marcados como un filtro «Segmento es …».",
+        "correct": false,
+        "explanation": "Es justo lo contrario: no almacena cada elemento como selección, sino la exclusión de los desmarcados."
+      },
+      {
+        "id": "e",
+        "text": "La opción Seleccionar todo también está disponible cuando la segmentación es de selección única.",
+        "correct": false,
+        "explanation": "Seleccionar todo solo tiene sentido, y solo se ofrece, en segmentaciones que admiten varias selecciones."
+      }
+    ],
+    "keyPoint": "Seleccionar todo equivale a no filtrar; si luego desmarcas un valor, Power BI aplica un filtro «no es», que incluye los valores nuevos.",
+    "references": [
+      {
+        "title": "Introducción a las segmentaciones de datos en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-slicers"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-usabilidad-101",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-usabilidad",
+    "difficulty": 1,
+    "scenario": "Varios jefes de zona consultan a diario el mismo informe de ventas, con permiso solo de lectura. Cada uno quiere guardar su combinación de filtros y abrir el informe directamente con ella.",
+    "prompt": "¿Qué dos afirmaciones sobre los marcadores personales (*personal bookmarks*) del servicio Power BI son correctas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un marcador personal guarda el estado de todas las páginas del informe a la vez.",
+        "correct": false,
+        "explanation": "Un marcador personal captura el estado de la página actual; los cambios en otras páginas, incluso en segmentaciones sincronizadas, no se guardan."
+      },
+      {
+        "id": "b",
+        "text": "Un jefe de zona puede marcar uno de sus marcadores como vista predeterminada para que el informe se abra con ella.",
+        "correct": true,
+        "explanation": "Al crear o editar un marcador personal puedes activar Establecer como valor predeterminado."
+      },
+      {
+        "id": "c",
+        "text": "Los marcadores personales de un usuario aparecen en la lista de marcadores de sus compañeros.",
+        "correct": false,
+        "explanation": "Los marcadores personales no acompañan al informe al compartirlo; cada usuario solo ve los suyos."
+      },
+      {
+        "id": "d",
+        "text": "Cada jefe de zona puede crearlos aunque solo tenga acceso de lectura al informe.",
+        "correct": true,
+        "explanation": "Los marcadores personales están pensados precisamente para lectores: guardan página, filtros, segmentaciones, ordenación y ubicación de exploración."
+      },
+      {
+        "id": "e",
+        "text": "Los marcadores personales se pueden agrupar para mostrarlos en un navegador de marcadores.",
+        "correct": false,
+        "explanation": "No se pueden crear grupos de marcadores personales; los grupos solo existen para marcadores de informe."
+      }
+    ],
+    "keyPoint": "Cualquiera que pueda ver un informe crea marcadores personales y puede fijar uno como vista predeterminada; no viajan con el informe.",
+    "references": [
+      {
+        "title": "Marcadores en el servicio Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/explore-reports/end-user-bookmarks"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-usabilidad-102",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-usabilidad",
+    "difficulty": 2,
+    "prompt": "Empareja cada requisito de un marcador de informe con la opción del marcador que lo resuelve.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Aplicar el filtro «Canal = Online» en la página que el usuario tenga abierta, sin llevarlo a otra página",
+        "answerId": "c3",
+        "explanation": "Con Página actual desactivada, el marcador no navega a la página en la que se creó y aplica su configuración a la página que se está viendo."
+      },
+      {
+        "id": "m2",
+        "text": "Que el marcador solo restaure el estado de los dos gráficos del panel izquierdo y no modifique los demás objetos visuales de la página",
+        "answerId": "c4",
+        "explanation": "Objetos visuales seleccionados aplica el marcador solo a los objetos que estaban seleccionados al crearlo o actualizarlo."
+      },
+      {
+        "id": "m3",
+        "text": "Restaurar las selecciones de las segmentaciones y los filtros guardados",
+        "answerId": "c1",
+        "explanation": "La opción Datos captura y restaura los estados de filtros y segmentaciones."
+      },
+      {
+        "id": "m4",
+        "text": "Restaurar qué objetos están visibles y si un gráfico está en modo destacado",
+        "answerId": "c2",
+        "explanation": "La opción Mostrar captura la visibilidad de los objetos y el modo destacado (*spotlight*)."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Datos activado"
+      },
+      {
+        "id": "c2",
+        "text": "Mostrar activado"
+      },
+      {
+        "id": "c3",
+        "text": "Página actual desactivada"
+      },
+      {
+        "id": "c4",
+        "text": "Objetos visuales seleccionados"
+      },
+      {
+        "id": "c5",
+        "text": "Todos los objetos visuales"
+      }
+    ],
+    "keyPoint": "Datos = filtros y segmentaciones; Mostrar = visibilidad y foco; Página actual desactivada = se aplica en la página abierta; Objetos visuales seleccionados = solo afecta a esos objetos.",
+    "references": [
+      {
+        "title": "Creación de marcadores de informes en Power BI para compartir información detallada y crear historias",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-bookmarks"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-usabilidad-103",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-usabilidad",
+    "difficulty": 2,
+    "scenario": "En la reunión trimestral, el analista quiere contar una historia recorriendo varias vistas del informe en orden y, en una de ellas, centrar la atención en el gráfico de márgenes.",
+    "prompt": "Completa la frase.",
+    "template": "Para atenuar los demás objetos visuales y resaltar el gráfico de márgenes usas {{b1}}; para recorrer los marcadores en orden, como diapositivas, seleccionas {{b2}} en el panel Marcadores; y si el marcador seleccionado al empezar pertenece a un grupo de marcadores, la presentación recorre {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Contenido destacado (*Spotlight*)"
+          },
+          {
+            "id": "o2",
+            "text": "el modo de enfoque"
+          },
+          {
+            "id": "o3",
+            "text": "Pantalla completa"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Contenido destacado resalta un objeto visual y deja casi transparentes los demás; el modo de enfoque, en cambio, amplía un solo objeto visual a todo el lienzo."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Agregar"
+          },
+          {
+            "id": "o2",
+            "text": "Ver"
+          },
+          {
+            "id": "o3",
+            "text": "Agrupar"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Ver inicia la presentación: el nombre del marcador aparece en una barra con flechas para pasar al siguiente o al anterior. Agregar crea un marcador y Agrupar reúne varios en un grupo."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "solo los marcadores de ese grupo"
+          },
+          {
+            "id": "o2",
+            "text": "todos los marcadores del informe"
+          },
+          {
+            "id": "o3",
+            "text": "solo los marcadores creados en la página actual"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Si el marcador seleccionado está en un grupo, la vista solo muestra los marcadores de ese grupo; si no lo está, o seleccionas el nivel superior, se recorren todos los marcadores del informe."
+      }
+    ],
+    "keyPoint": "Contenido destacado atenúa el resto; Ver recorre los marcadores como una presentación y, si empiezas en un grupo, solo recorre ese grupo.",
+    "references": [
+      {
+        "title": "Creación de marcadores de informes en Power BI para compartir información detallada y crear historias",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-bookmarks"
+      },
+      {
+        "title": "Cómo destacar informes en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/explore-reports/end-user-spotlight"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-usabilidad-104",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-usabilidad",
+    "difficulty": 3,
+    "scenario": "Tienes dos páginas de información sobre herramientas: «Ficha de producto», asociada al campo Producto, y «Ficha de región», asociada al campo Región. Una matriz contiene ambos campos y, al pasar el puntero, Power BI muestra «Ficha de producto». En esa matriz debe mostrarse siempre «Ficha de región», sin cambiar el comportamiento de los demás objetos visuales.",
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Quitar Producto de los campos de información sobre herramientas de «Ficha de producto»",
+        "correct": false,
+        "explanation": "Dejaría de mostrarse automáticamente en todos los objetos visuales que usan Producto, no solo en la matriz."
+      },
+      {
+        "id": "b",
+        "text": "En el formato de la matriz, dejar la lista Página en Automático",
+        "correct": false,
+        "explanation": "Automático es justamente el comportamiento actual, en el que Power BI elige una de las dos páginas."
+      },
+      {
+        "id": "c",
+        "text": "Usar Editar interacciones para que la matriz deje de filtrar la página «Ficha de producto» al pasar el puntero",
+        "correct": false,
+        "explanation": "Las interacciones controlan cómo se filtran entre sí los objetos visuales de una página, no qué información sobre herramientas se muestra."
+      },
+      {
+        "id": "d",
+        "text": "Elegir «Ficha de región» en la lista Página de la tarjeta Información sobre herramientas de la matriz",
+        "correct": true,
+        "explanation": "Configurar la información sobre herramientas de forma manual en un objeto visual reemplaza la elección automática de Power BI solo para ese objeto visual."
+      }
+    ],
+    "keyPoint": "Si varios campos de un objeto visual tienen información sobre herramientas, Power BI elige una; para fijarla, selecciona la página en la tarjeta Información sobre herramientas del objeto visual.",
+    "references": [
+      {
+        "title": "Cree información sobre herramientas de informe en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-tooltips"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-usabilidad-105",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-usabilidad",
+    "difficulty": 1,
+    "prompt": "Un gráfico de columnas tiene la jerarquía Año > Trimestre > Mes y muestra los trimestres de 2026. Empareja cada necesidad con la acción de exploración que debes usar.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Ver los meses de todos los trimestres a la vez, sustituyendo los trimestres",
+        "answerId": "c1",
+        "explanation": "Ir al siguiente nivel de la jerarquía mueve todo el objeto visual un nivel hacia abajo sin elegir un punto de datos."
+      },
+      {
+        "id": "m2",
+        "text": "Ver cada trimestre con sus meses debajo, sin perder la agrupación por trimestre",
+        "answerId": "c2",
+        "explanation": "Expandir todo un nivel hacia abajo agrega el siguiente nivel manteniendo visible el actual como contexto."
+      },
+      {
+        "id": "m3",
+        "text": "Ver solo los meses del primer trimestre",
+        "answerId": "c3",
+        "explanation": "Con la exploración en profundidad activada, al seleccionar la columna del T1 solo ese punto baja al nivel de mes."
+      },
+      {
+        "id": "m4",
+        "text": "Volver de los meses a los trimestres",
+        "answerId": "c4",
+        "explanation": "Explorar en profundidad hacia arriba (subir de nivel) vuelve al nivel superior de la jerarquía."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Ir al siguiente nivel de la jerarquía"
+      },
+      {
+        "id": "c2",
+        "text": "Expandir todo un nivel hacia abajo en la jerarquía"
+      },
+      {
+        "id": "c3",
+        "text": "Activar la exploración en profundidad y seleccionar la columna del T1"
+      },
+      {
+        "id": "c4",
+        "text": "Explorar en profundidad hacia arriba"
+      },
+      {
+        "id": "c5",
+        "text": "Obtener detalles (*drillthrough*)"
+      }
+    ],
+    "keyPoint": "Siguiente nivel sustituye el nivel; Expandir añade el nivel manteniendo el actual; el modo de exploración baja solo en el punto que seleccionas.",
+    "references": [
+      {
+        "title": "Use el modo de exploración en profundidad para explorar objetos visuales en el servicio Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/explore-reports/end-user-drill"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-usabilidad-106",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-usabilidad",
+    "difficulty": 2,
+    "prompt": "Según las recomendaciones de Microsoft para diseñar páginas de obtención de detalles (*drillthrough*), ¿qué dos prácticas son correctas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Eliminar el botón Atrás que agrega Power BI para ganar espacio en el lienzo",
+        "correct": false,
+        "explanation": "Se recomienda conservarlo: permite a los usuarios volver con facilidad a la página de origen."
+      },
+      {
+        "id": "b",
+        "text": "Quitar antes de publicar los filtros de obtención de detalles que fijaste para diseñar la página con datos realistas",
+        "correct": true,
+        "explanation": "Fijar un valor ayuda a diseñar, pero hay que quitarlo antes de publicar para que la página no se quede filtrada por él."
+      },
+      {
+        "id": "c",
+        "text": "Usar un tema distinto al del resto del informe para que se note que es una página diferente",
+        "correct": false,
+        "explanation": "Se recomienda el mismo tema y estilo, para que los usuarios sientan que siguen en el mismo informe."
+      },
+      {
+        "id": "d",
+        "text": "Ocultar la página o, si se deja visible, añadir un botón con un marcador que borre los filtros de obtención de detalles",
+        "correct": true,
+        "explanation": "Una página de obtención de detalles visible puede abrirse con filtros previos; si no se oculta, conviene ofrecer una forma de limpiarlos."
+      },
+      {
+        "id": "e",
+        "text": "Agregar el campo como filtro de nivel de página en lugar de usar el área de obtención de detalles",
+        "correct": false,
+        "explanation": "Un filtro de página no habilita la opción Obtener detalles en el menú contextual de los objetos visuales de origen."
+      }
+    ],
+    "keyPoint": "Página de obtención de detalles: quita los filtros de diseño antes de publicar, conserva el botón Atrás y valora ocultarla.",
+    "references": [
+      {
+        "title": "Uso de detalles de la página del informe",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/report-drillthrough"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-usabilidad-107",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-usabilidad",
+    "difficulty": 2,
+    "scenario": "Para ahorrar espacio en el lienzo, quieres un único botón «Ir» que lleve a la página que el usuario elija en una segmentación con los nombres de las páginas.",
+    "prompt": "Ordena los pasos.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Con Escribir datos, crea una tabla de una columna con los nombres exactos de las páginas y agrega esa columna a una segmentación de selección única.",
+        "explanation": "El destino se resuelve por coincidencia exacta de texto, así que la columna debe existir y contener los nombres tal cual antes de usarla en el botón."
+      },
+      {
+        "id": "p2",
+        "text": "Inserta un botón en blanco, activa Acción, elige el tipo Navegación de páginas y, en Destino, selecciona fx basándolo en esa columna.",
+        "explanation": "El formato condicional del destino necesita que exista la columna de la tabla creada en el paso anterior."
+      },
+      {
+        "id": "p3",
+        "text": "Selecciona una página en la segmentación y pulsa el botón (en Desktop, con Ctrl + clic) para comprobarlo.",
+        "explanation": "Solo cuando la segmentación y el destino condicional están configurados el botón puede llevar a la página elegida."
+      }
+    ],
+    "keyPoint": "Destino condicional: tabla con los nombres exactos de página + segmentación de selección única + botón de navegación con destino fx basado en esa columna.",
+    "references": [
+      {
+        "title": "Creación de navegadores de páginas y marcadores",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/button-navigators"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-usabilidad-108",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-usabilidad",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre los botones de un informe de Power BI es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puedes dar un formato distinto a un botón según esté en estado predeterminado, al pasar el puntero, al presionar o deshabilitado.",
+        "answer": true,
+        "explanation": "Tarjetas como Forma o Estilo se configuran por estado eligiendo el estado en Aplicar configuración a."
+      },
+      {
+        "id": "s2",
+        "text": "Un botón de obtención de detalles se muestra con el estado Deshabilitado mientras no hay una selección válida.",
+        "answer": true,
+        "explanation": "El estado Deshabilitado se usa en la obtención de detalles cuando el botón no se puede seleccionar por falta de contexto."
+      },
+      {
+        "id": "s3",
+        "text": "La acción Navegación de páginas solo puede asignarse a botones, no a formas ni imágenes.",
+        "answer": false,
+        "explanation": "Las formas y las imágenes también admiten la acción de navegación de páginas."
+      },
+      {
+        "id": "s4",
+        "text": "Puedes usar una medida numérica como valor de un campo de la acción, por ejemplo, del destino.",
+        "answer": false,
+        "explanation": "Una acción no puede tener una medida numérica como valor de ninguno de sus campos; el destino condicional usa texto."
+      }
+    ],
+    "keyPoint": "Los botones tienen estados (predeterminado, al pasar el puntero, al presionar, deshabilitado) y sus acciones no admiten medidas numéricas como valor.",
+    "references": [
+      {
+        "title": "Creación y configuración de botones en informes de Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-buttons"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-usabilidad-109",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-usabilidad",
+    "difficulty": 3,
+    "scenario": "Tu informe usa una conexión dinámica a un modelo semántico compartido que no puedes modificar. Un gráfico de barras muestra Fecha[Nombre del mes] en orden alfabético (abril, agosto, diciembre…). El modelo tiene la columna Fecha[Número de mes], pero nadie configuró Ordenar por columna y el propietario no está disponible.",
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Seleccionar Nombre del mes y, en Herramientas de columna, usar Ordenar por columna con Número de mes",
+        "correct": false,
+        "explanation": "Ordenar por columna es una propiedad del modelo; con una conexión dinámica no puedes cambiarla desde tu informe."
+      },
+      {
+        "id": "b",
+        "text": "Seleccionar el encabezado Nombre del mes y, después, Mayús + clic en el encabezado Número de mes del gráfico",
+        "correct": false,
+        "explanation": "Mayús + clic sirve para ordenar por varias columnas en una tabla, no en un gráfico de barras, y el campo no está en el objeto visual."
+      },
+      {
+        "id": "c",
+        "text": "Ordenar el gráfico de forma descendente por la medida de ventas",
+        "correct": false,
+        "explanation": "Ordenaría las barras por importe, no por la secuencia cronológica de los meses."
+      },
+      {
+        "id": "d",
+        "text": "Poner Número de mes en Información sobre herramientas y usar Ordenar eje > Número de mes",
+        "correct": true,
+        "explanation": "Un objeto visual puede ordenarse por cualquier campo que contenga; al ponerlo en la información sobre herramientas no aparece en el eje y sí sirve para ordenar."
+      }
+    ],
+    "keyPoint": "Un objeto visual solo se ordena por campos que contiene; si no quieres mostrar el campo, agrégalo a Información sobre herramientas y usa Ordenar eje.",
+    "references": [
+      {
+        "title": "Ordenación de una columna por otra en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-sort-by-column"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-usabilidad-110",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-usabilidad",
+    "difficulty": 3,
+    "scenario": "En un modelo compuesto, la página tiene una segmentación sobre Región de la tabla de ventas (importada) y otra sobre Región de la tabla de presupuesto (DirectQuery a otro origen). No hay relación entre ambas tablas. Cuando el usuario elige «Norte» en una, la otra debe quedarse con la misma selección.",
+    "prompt": "¿Cómo lo configuras?",
+    "options": [
+      {
+        "id": "a",
+        "text": "En el panel Sincronizar segmentaciones, marcar Sincronizar en todas las páginas para cada segmentación",
+        "correct": false,
+        "explanation": "Las columnas Sincronizar y Visible replican una misma segmentación entre páginas; no enlazan dos segmentaciones de campos distintos."
+      },
+      {
+        "id": "b",
+        "text": "Escribir el mismo nombre de grupo en Opciones avanzadas de ambas segmentaciones y activar Sincronizar cambios de filtro con otras segmentaciones",
+        "correct": true,
+        "explanation": "Las segmentaciones de un mismo grupo comparten las selecciones sin depender de relaciones, algo útil en modelos compuestos con orígenes distintos."
+      },
+      {
+        "id": "c",
+        "text": "Escribir el mismo nombre de grupo en Opciones avanzadas de ambas segmentaciones y activar únicamente Sincronizar cambios de campo con otras segmentaciones",
+        "correct": false,
+        "explanation": "Esa opción sincroniza el campo en el que se basan las segmentaciones, no las selecciones de filtro."
+      },
+      {
+        "id": "d",
+        "text": "Crear una relación bidireccional entre las dos tablas por la columna Región",
+        "correct": false,
+        "explanation": "Región no es clave única en ninguna de las dos tablas de hechos y una relación así puede generar ambigüedad; el requisito se resuelve sin tocar el modelo."
+      }
+    ],
+    "keyPoint": "Para sincronizar segmentaciones distintas, dales el mismo nombre de grupo en Opciones avanzadas y activa Sincronizar cambios de filtro.",
+    "references": [
+      {
+        "title": "Introducción a las segmentaciones de datos en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-slicers"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-usabilidad-111",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-usabilidad",
+    "difficulty": 2,
+    "scenario": "Un navegador de marcadores tiene los botones «Norte», «Sur» y «Este». Los usuarios quieren volver a pulsar el botón activo para quitar la selección y ver la página sin filtro de zona. El marcador «Sin filtro» que guarda ese estado no debe aparecer como botón.",
+    "prompt": "¿Qué debes configurar en el navegador de marcadores?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agregar «Sin filtro» a un grupo de marcadores distinto, crear un segundo navegador de marcadores y mostrar en él solo ese grupo",
+        "correct": false,
+        "explanation": "Mostrar otro grupo cambiaría los botones visibles, pero no permitiría quitar la selección del botón activo para volver al estado base."
+      },
+      {
+        "id": "b",
+        "text": "Desactivar la opción Datos en los marcadores «Norte», «Sur» y «Este»",
+        "correct": false,
+        "explanation": "Sin Datos los marcadores dejarían de aplicar el filtro de zona, que es justo lo que deben hacer."
+      },
+      {
+        "id": "c",
+        "text": "Activar Permitir deselección, elegir «Sin filtro» en Iniciar al deseleccionar y activar Ocultar marcador deselección",
+        "correct": true,
+        "explanation": "Al deseleccionar el botón activo, el navegador aplica el marcador indicado; la última opción evita que ese marcador aparezca como botón."
+      },
+      {
+        "id": "d",
+        "text": "Insertar un botón Borrar todas las segmentaciones junto al navegador",
+        "correct": false,
+        "explanation": "Borra las segmentaciones de la página, pero no cambia el comportamiento del navegador ni restaura un marcador."
+      }
+    ],
+    "keyPoint": "Permitir deselección + Iniciar al deseleccionar + Ocultar marcador deselección = el navegador funciona como un interruptor que vuelve a un estado base.",
+    "references": [
+      {
+        "title": "Creación de navegadores de páginas y marcadores",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/button-navigators"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-usabilidad-112",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-usabilidad",
+    "difficulty": 1,
+    "scenario": "Una lectora con baja visión consulta un informe en el servicio Power BI y le cuesta distinguir los colores. No tiene permiso de edición y necesita una solución inmediata, sin esperar a que el autor cambie el informe.",
+    "prompt": "¿Qué debe hacer la lectora?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Seleccionar Ver > Colores de contraste alto",
+        "correct": true,
+        "explanation": "El menú Ver ofrece temas de contraste alto (por ejemplo, Contraste alto 1 o Negro en contraste alto) pensados para personas con baja visión."
+      },
+      {
+        "id": "b",
+        "text": "Pedir al autor que importe un archivo JSON de tema accesible",
+        "correct": false,
+        "explanation": "Es una buena práctica de diseño, pero depende del autor y no resuelve la necesidad inmediata de la lectora."
+      },
+      {
+        "id": "c",
+        "text": "Abrir cada objeto visual en modo de enfoque",
+        "correct": false,
+        "explanation": "El modo de enfoque amplía un objeto visual, pero no cambia los colores ni el contraste."
+      },
+      {
+        "id": "d",
+        "text": "Usar Personalizar objetos visuales para cambiar el tipo de gráfico",
+        "correct": false,
+        "explanation": "La personalización cambia el tipo de objeto visual o sus campos, no el contraste de la página, y debe haberla habilitado el autor."
+      }
+    ],
+    "keyPoint": "Los lectores pueden activar en el servicio Ver > Colores de contraste alto; Power BI Desktop detecta además el contraste alto de Windows.",
+    "references": [
+      {
+        "title": "Cambiar el tamaño de presentación y la proporción de una página de informe",
+        "url": "https://learn.microsoft.com/es-es/power-bi/explore-reports/end-user-report-view"
+      },
+      {
+        "title": "Diseño de informes accesibles de Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-accessibility-creating-reports"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-usabilidad-113",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-usabilidad",
+    "difficulty": 2,
+    "scenario": "Generaste el diseño móvil de una página con la opción de creación automática y después lo retocaste a mano: reordenaste los objetos y ampliaste dos gráficos. Ahora se ha añadido una tarjeta a la página de escritorio y un compañero te sugiere volver a usar la creación automática para que la tarjeta aparezca en el móvil.",
+    "prompt": "¿Qué ocurre si sigues el consejo?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Power BI añade la tarjeta al final del diseño móvil y conserva tus retoques",
+        "correct": false,
+        "explanation": "La creación automática no añade objetos al diseño existente: genera un diseño completo nuevo."
+      },
+      {
+        "id": "b",
+        "text": "Power BI sustituye el diseño móvil actual por uno nuevo y pierdes los retoques",
+        "correct": true,
+        "explanation": "Si el lienzo ya tiene un diseño, la función lo quita y lo reemplaza; para incluir la tarjeta basta con arrastrarla desde el panel Objetos visuales de página."
+      },
+      {
+        "id": "c",
+        "text": "Power BI no permite volver a usar la creación automática en una página que ya tiene diseño móvil",
+        "correct": false,
+        "explanation": "Sí se puede usar en páginas nuevas o existentes; el efecto es que reemplaza el diseño actual."
+      },
+      {
+        "id": "d",
+        "text": "Power BI copia también los retoques del diseño móvil al diseño de escritorio de la página",
+        "correct": false,
+        "explanation": "El diseño móvil y el de escritorio son independientes; la creación automática no modifica el diseño de escritorio."
+      }
+    ],
+    "keyPoint": "Crear automáticamente el diseño móvil sustituye el diseño existente; para añadir un objeto, arrástralo desde el panel Objetos visuales de página.",
+    "references": [
+      {
+        "title": "Vista de diseño móvil en Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/power-bi-create-mobile-optimized-report-mobile-layout-view"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-usabilidad-114",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-usabilidad",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre la accesibilidad de los informes de Power BI es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puedes hacer que el texto alternativo de un objeto visual sea dinámico con una medida DAX mediante formato condicional.",
+        "answer": true,
+        "explanation": "Con una medida y formato condicional, el lector de pantalla anuncia valores concretos de los datos que se están viendo."
+      },
+      {
+        "id": "s2",
+        "text": "Un lector puede pulsar Alt + Mayús + F11 para ver los datos de un objeto visual en una tabla compatible con lectores de pantalla.",
+        "answer": true,
+        "explanation": "Es similar a Mostrar datos del menú contextual, pero presenta una tabla accesible que respeta el criterio de ordenación del objeto visual."
+      },
+      {
+        "id": "s3",
+        "text": "Para que los lectores naveguen con el teclado, debes activar la navegación por teclado en cada objeto visual.",
+        "answer": false,
+        "explanation": "La navegación por teclado es una característica integrada que no requiere configuración del autor."
+      },
+      {
+        "id": "s4",
+        "text": "Las páginas de información sobre herramientas son un buen lugar para la información clave, porque los lectores de pantalla las leen al pasar por el punto de datos.",
+        "answer": false,
+        "explanation": "Los lectores de pantalla no pueden leer el contenido de una información sobre herramientas de página, y los usuarios sin ratón tienen dificultades para abrirlas."
+      }
+    ],
+    "keyPoint": "Texto alternativo dinámico con medidas, Alt + Mayús + F11 para la tabla accesible, navegación por teclado integrada y nada esencial solo en tooltips.",
+    "references": [
+      {
+        "title": "Diseño de informes accesibles de Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/desktop-accessibility-creating-reports"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-usabilidad-115",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-usabilidad",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre la exportación de datos (*export data*) desde objetos visuales es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Si la configuración del portal de administración entra en conflicto con la configuración de exportación del informe, prevalece la del administrador.",
+        "answer": true,
+        "explanation": "La configuración de administrador invalida la configuración de exportación de datos del informe."
+      },
+      {
+        "id": "s2",
+        "text": "En Power BI Desktop puedes exportar los datos subyacentes de un objeto visual a un archivo .xlsx.",
+        "answer": false,
+        "explanation": "En Power BI Desktop solo se pueden exportar los datos resumidos y como archivo .csv."
+      },
+      {
+        "id": "s3",
+        "text": "Si el objeto visual tiene filtros aplicados, los datos resumidos que exportas también están filtrados.",
+        "answer": true,
+        "explanation": "La exportación respeta los filtros del objeto visual y la primera fila indica los filtros aplicados."
+      },
+      {
+        "id": "s4",
+        "text": "La exportación de datos subyacentes incluye los resultados de los cálculos visuales del objeto visual.",
+        "answer": false,
+        "explanation": "Los datos subyacentes no incluyen los resultados de los cálculos visuales, ni columnas numéricas agregadas."
+      }
+    ],
+    "keyPoint": "Exportar datos respeta los filtros del objeto visual; Desktop solo exporta resumidos a .csv; el portal de administración prevalece sobre el informe.",
+    "references": [
+      {
+        "title": "Exportación de datos desde una visualización de Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-export-data"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d3-usabilidad-116",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d3",
+    "skill": "d3-usabilidad",
+    "difficulty": 3,
+    "scenario": "Has habilitado Personalizar objetos visuales en un informe sobre un modelo de 300 columnas. El gráfico de indicadores regulatorios no debe poder personalizarse, y en el resto los lectores solo deben ver, al personalizar, las 15 medidas y dimensiones del área comercial.",
+    "prompt": "¿Qué dos acciones debes realizar? Cada respuesta correcta presenta parte de la solución. Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "En el formato del gráfico regulatorio, en General > Iconos de encabezado, desactivar Personalizar objeto visual",
+        "correct": true,
+        "explanation": "La característica se activa para todo el informe, pero se puede desactivar por página o por objeto visual."
+      },
+      {
+        "id": "b",
+        "text": "Ocultar el gráfico regulatorio con el panel Selección",
+        "correct": false,
+        "explanation": "Lo ocultaría a todos los lectores, que dejarían de ver unos indicadores que sí deben consultar."
+      },
+      {
+        "id": "c",
+        "text": "Crear una perspectiva con esas 15 medidas y dimensiones y usarla para la personalización de objetos visuales",
+        "correct": true,
+        "explanation": "Las perspectivas ofrecen un subconjunto del modelo más manejable en la experiencia de personalización; no son un mecanismo de seguridad."
+      },
+      {
+        "id": "d",
+        "text": "Bloquear los filtros de nivel de objeto visual del gráfico regulatorio",
+        "correct": false,
+        "explanation": "Bloquear filtros impide cambiarlos, pero no evita que el lector cambie el tipo de gráfico o sus campos."
+      },
+      {
+        "id": "e",
+        "text": "Crear un rol de seguridad de nivel de fila (RLS) para los lectores",
+        "correct": false,
+        "explanation": "RLS limita las filas que ve cada usuario, no los campos disponibles al personalizar un objeto visual."
+      }
+    ],
+    "keyPoint": "Personalizar objetos visuales se activa por informe y se puede desactivar por página u objeto visual; una perspectiva limita los campos que ven los lectores.",
+    "references": [
+      {
+        "title": "Permitir a los usuarios personalizar los objetos visuales en un informe",
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/power-bi-personalize-visuals"
+      }
+    ]
+  }
+]

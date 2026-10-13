@@ -1,0 +1,1349 @@
+[
+  {
+    "id": "pl900-d2-entornos-101",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "difficulty": 1,
+    "scenario": "Lucía acaba de incorporarse a una distribuidora y tiene una licencia que incluye Power Apps. Abre Power Apps por primera vez y, sin que nadie le haya concedido permisos, puede crear una aplicación de lienzo en el entorno predeterminado de la organización.",
+    "prompt": "¿Por qué puede crear recursos en ese entorno?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Todos los usuarios con licencia se agregan solos al rol Creador de entornos (*Environment Maker*) de ese entorno",
+        "correct": true,
+        "explanation": "El entorno predeterminado lo comparten todos los usuarios del inquilino: cada usuario que empieza a usar Power Apps se agrega automáticamente al rol Creador de entornos, que permite crear aplicaciones, flujos y conexiones."
+      },
+      {
+        "id": "b",
+        "text": "Al abrir Power Apps por primera vez, el entorno predeterminado le asigna el rol Administrador del sistema de Dataverse",
+        "correct": false,
+        "explanation": "Nadie se agrega automáticamente como administrador del entorno predeterminado; Microsoft recomienda asignar ese rol solo a unos pocos usuarios de confianza."
+      },
+      {
+        "id": "c",
+        "text": "Su licencia la convierte en administradora de Power Platform del inquilino",
+        "correct": false,
+        "explanation": "El rol de administrador de Power Platform se asigna expresamente en Microsoft Entra ID; una licencia de usuario no lo concede."
+      },
+      {
+        "id": "d",
+        "text": "El entorno predeterminado es un espacio aislado en el que no se aplica ningún control de acceso a los usuarios",
+        "correct": false,
+        "explanation": "El predeterminado es un tipo de entorno propio, no un espacio aislado, y sí tiene seguridad: lo que ocurre es que todos los usuarios con licencia son creadores en él."
+      }
+    ],
+    "keyPoint": "En el entorno predeterminado todos los usuarios con licencia son creadores (Creador de entornos); por eso conviene gobernarlo y no usarlo para cargas de producción.",
+    "references": [
+      {
+        "title": "Información general sobre entornos de Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/environments-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-entornos-102",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre las soluciones administradas y no administradas es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Si eliminas una solución no administrada, sus componentes, como aplicaciones, tablas y flujos, siguen en el entorno.",
+        "answer": true,
+        "explanation": "Al eliminar una solución no administrada solo se quita el contenedor; las personalizaciones permanecen y pasan a pertenecer a la solución predeterminada."
+      },
+      {
+        "id": "s2",
+        "text": "Si desinstalas una solución administrada, se quitan sus componentes y se pierden los datos de las tablas personalizadas que incluía.",
+        "answer": true,
+        "explanation": "Desinstalar una solución administrada elimina todas sus personalizaciones; los datos de sus tablas y columnas personalizadas se pierden, así que hay que hacerlo con cuidado."
+      },
+      {
+        "id": "s3",
+        "text": "Puedes exportar una solución administrada que has importado para llevarla a otro entorno.",
+        "answer": false,
+        "explanation": "Una solución administrada no se puede exportar; lo que se exporta, como no administrada o como administrada, es la solución no administrada del entorno de desarrollo."
+      },
+      {
+        "id": "s4",
+        "text": "Para probar la versión administrada, puedes importarla en el mismo entorno de desarrollo donde está la solución no administrada original.",
+        "answer": false,
+        "explanation": "No se puede importar una solución administrada en el entorno que contiene la no administrada original; para probarla necesitas otro entorno, por ejemplo, uno de prueba."
+      }
+    ],
+    "keyPoint": "No administrada = se desarrolla (eliminarla deja los componentes); administrada = se implementa (desinstalarla los quita) y no se puede exportar.",
+    "references": [
+      {
+        "title": "Conceptos de soluciones",
+        "url": "https://learn.microsoft.com/es-es/power-platform/alm/solution-concepts-alm"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-entornos-103",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "difficulty": 2,
+    "scenario": "Antes de importar en producción una versión importante de su solución, el equipo de TI de una mutua revisa qué opciones de copia de seguridad ofrece Power Platform para sus entornos.",
+    "prompt": "¿Qué dos afirmaciones sobre las copias de seguridad de los entornos son verdaderas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Los entornos de prueba (*trial*) tienen copias de seguridad del sistema que puedes restaurar",
+        "correct": false,
+        "explanation": "Las copias de seguridad y la restauración del sistema no están disponibles en los entornos de prueba; para tenerlas hay que convertir el entorno de prueba en uno de producción."
+      },
+      {
+        "id": "b",
+        "text": "El sistema crea automáticamente copias de seguridad de los entornos que tienen una base de datos",
+        "correct": true,
+        "explanation": "Las copias de seguridad del sistema se crean de forma continua y automática para los entornos con base de datos (salvo los de prueba), sin que tengas que programarlas."
+      },
+      {
+        "id": "c",
+        "text": "Puedes crear una copia de seguridad manual del entorno predeterminado cuando quieras",
+        "correct": false,
+        "explanation": "Las copias de seguridad manuales se pueden crear en entornos de producción y de espacio aislado, pero no en el entorno predeterminado."
+      },
+      {
+        "id": "d",
+        "text": "Conviene crear una copia de seguridad manual antes de aplicar personalizaciones importantes o una actualización de versión",
+        "correct": true,
+        "explanation": "Microsoft recomienda hacer copias manuales antes de cambios significativos, para disponer de un punto de restauración conocido si algo sale mal."
+      },
+      {
+        "id": "e",
+        "text": "Las copias de seguridad del sistema consumen la capacidad de base de datos del inquilino",
+        "correct": false,
+        "explanation": "Las copias de seguridad del sistema no cuentan para la capacidad de almacenamiento; eso sí, para restaurar un entorno hace falta tener capacidad libre."
+      }
+    ],
+    "keyPoint": "Copias del sistema = automáticas (no en entornos de prueba y sin consumir capacidad); copias manuales = antes de cambios importantes (no en el entorno predeterminado).",
+    "references": [
+      {
+        "title": "Realizar copias de seguridad y restaurar entornos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/backup-restore-environments"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-entornos-104",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "difficulty": 3,
+    "scenario": "En una aseguradora, una aplicación de lienzo y un flujo de nube usan una lista de SharePoint. En el entorno de prueba deben apuntar al sitio y la lista de pruebas, y en producción, a los de producción. El equipo quiere mover la solución entre entornos sin editar la aplicación ni el flujo en cada uno.",
+    "prompt": "¿Qué debes incluir en la solución?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Variables de entorno para el sitio y la lista de SharePoint",
+        "correct": true,
+        "explanation": "Las variables de entorno guardan parámetros, como el sitio y la lista, separados de la aplicación y del flujo; son componentes de la solución y su valor se indica al importarla en cada entorno, sin modificar los componentes."
+      },
+      {
+        "id": "b",
+        "text": "Solo una referencia de conexión de SharePoint en la solución",
+        "correct": false,
+        "explanation": "La referencia de conexión indica qué conexión se usa en cada entorno, pero no a qué sitio ni a qué lista se apunta; para SharePoint se necesita además una variable de entorno para el sitio y otra para la lista."
+      },
+      {
+        "id": "c",
+        "text": "Una copia de la aplicación y del flujo para cada entorno",
+        "correct": false,
+        "explanation": "Duplicar componentes multiplica el mantenimiento y es justo lo que el equipo quiere evitar."
+      },
+      {
+        "id": "d",
+        "text": "Una directiva de datos distinta en cada uno de los entornos",
+        "correct": false,
+        "explanation": "Las directivas de datos controlan qué conectores se pueden usar juntos; no cambian el sitio o la lista a los que se conecta una aplicación."
+      }
+    ],
+    "keyPoint": "Valores que cambian entre desarrollo, prueba y producción (sitio, lista, URL…) → variables de entorno dentro de la solución.",
+    "references": [
+      {
+        "title": "Información general sobre las variables de entorno de Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/environmentvariables"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-entornos-105",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "difficulty": 2,
+    "prompt": "Completa la frase sobre la opción Copiar (*Copy*) del centro de administración de Power Platform.",
+    "template": "Para impartir una formación con datos parecidos a los reales, copias el entorno de producción con la opción {{b1}}; para que un proveedor externo desarrolle sin ver los datos de negocio de producción, usas {{b2}}; y como destino de la copia, que se sobrescribe, puedes elegir {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Todo (*Everything*)"
+          },
+          {
+            "id": "o2",
+            "text": "Solo personalizaciones y esquemas"
+          },
+          {
+            "id": "o3",
+            "text": "Copia de seguridad manual"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "La copia Todo incluye los datos de la aplicación, los usuarios, las personalizaciones y el esquema; está pensada para pruebas de aceptación, pruebas de actualización o formación."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Todo (*Everything*)"
+          },
+          {
+            "id": "o2",
+            "text": "Solo personalizaciones y esquemas"
+          },
+          {
+            "id": "o3",
+            "text": "Copia de seguridad manual"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "La copia Solo personalizaciones y esquemas lleva las personalizaciones, el esquema y los usuarios, pero trunca las tablas de datos de negocio; sirve para desarrollar sin exponer datos de producción."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "un entorno de producción"
+          },
+          {
+            "id": "o2",
+            "text": "un entorno de espacio aislado"
+          },
+          {
+            "id": "o3",
+            "text": "el entorno predeterminado"
+          },
+          {
+            "id": "o4",
+            "text": "un entorno de prueba (*trial*)"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Los entornos de producción no se pueden sobrescribir, y no se puede copiar desde ni hacia el entorno predeterminado o uno de prueba; lo habitual es copiar sobre un espacio aislado del mismo inquilino y región."
+      }
+    ],
+    "keyPoint": "Copia Todo = datos y personalizaciones (formación, pruebas de aceptación); Solo personalizaciones y esquemas = sin datos de negocio (desarrollo); el destino suele ser un espacio aislado.",
+    "references": [
+      {
+        "title": "Copiar entornos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/copy-environment"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-entornos-106",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "difficulty": 2,
+    "scenario": "Una aplicación de lienzo para gestionar las vacaciones, creada en el entorno predeterminado, la usan ya cientos de empleados y se ha vuelto crítica. El equipo de TI quiere llevarla, con sus flujos y tablas, a un entorno de producción propio y retirarla después del entorno predeterminado.",
+    "prompt": "Ordena los pasos para trasladar la aplicación.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Crear una solución en el entorno predeterminado y agregarle la aplicación con sus flujos y tablas dependientes",
+        "explanation": "Primero se empaquetan los componentes: las soluciones son el mecanismo para mover aplicaciones, flujos y tablas entre entornos."
+      },
+      {
+        "id": "p2",
+        "text": "Exportar la solución desde el entorno predeterminado",
+        "explanation": "Con todos los componentes dentro, la solución se exporta para obtener el archivo que se llevará al otro entorno."
+      },
+      {
+        "id": "p3",
+        "text": "Importar la solución en el entorno de producción de destino",
+        "explanation": "La importación crea los componentes en el nuevo entorno, donde se pueden gobernar con más control."
+      },
+      {
+        "id": "p4",
+        "text": "Migrar al entorno de destino la configuración y los datos de la aplicación",
+        "explanation": "La solución lleva los componentes, no los datos: después de importarla hay que trasladar la configuración y los datos para que la aplicación funcione igual en el nuevo entorno."
+      },
+      {
+        "id": "p5",
+        "text": "Eliminar la aplicación y sus componentes del entorno predeterminado",
+        "explanation": "Solo cuando la aplicación funciona en el destino con sus datos se retira del predeterminado, sin eliminar recursos que usen otras aplicaciones o flujos, como una tabla compartida."
+      }
+    ],
+    "keyPoint": "Para sacar una aplicación crítica del entorno predeterminado: solución → exportar → importar en el destino → migrar configuración y datos → eliminarla del predeterminado.",
+    "references": [
+      {
+        "title": "Administrar y gobernar el entorno predeterminado de Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-platform/guidance/adoption/manage-default-environment"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-entornos-107",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "difficulty": 2,
+    "scenario": "La administradora de Power Platform de un grupo bancario gestiona cientos de entornos. Quiere organizarlos en grupos de entornos (*environment groups*), por ejemplo, Desarrollo y Producción, y aplicar a cada grupo unas reglas comunes.",
+    "prompt": "¿Qué dos afirmaciones sobre los grupos de entornos son verdaderas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un entorno puede pertenecer a la vez a varios grupos",
+        "correct": false,
+        "explanation": "Cada entorno pertenece a un solo grupo y los grupos no se superponen; para cambiarlo de grupo hay que quitarlo de uno y agregarlo a otro."
+      },
+      {
+        "id": "b",
+        "text": "Solo pueden contener entornos administrados",
+        "correct": true,
+        "explanation": "Los grupos de entornos son una función de gobernanza premium que solo admite entornos administrados, aunque sean de regiones o tipos distintos."
+      },
+      {
+        "id": "c",
+        "text": "Las reglas publicadas en el grupo se aplican a todos sus entornos y no se pueden cambiar en cada entorno por separado",
+        "correct": true,
+        "explanation": "Al publicar una regla, la configuración correspondiente queda bloqueada (solo lectura) en los entornos del grupo; solo un administrador con permisos sobre el grupo puede cambiarla."
+      },
+      {
+        "id": "d",
+        "text": "Puedes anidar un grupo dentro de otro para crear una jerarquía",
+        "correct": false,
+        "explanation": "Los grupos de entornos no se pueden anidar: son colecciones planas de entornos, como carpetas de un solo nivel."
+      },
+      {
+        "id": "e",
+        "text": "Todos los entornos de un grupo deben estar en la misma región",
+        "correct": false,
+        "explanation": "Un grupo puede incluir entornos de regiones y tipos distintos, siempre que todos sean administrados."
+      }
+    ],
+    "keyPoint": "Grupo de entornos = «carpeta» de entornos administrados; cada entorno está en un solo grupo y las reglas publicadas se aplican y bloquean en todos ellos.",
+    "references": [
+      {
+        "title": "Grupos de entornos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/environment-groups"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-entornos-108",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "difficulty": 2,
+    "scenario": "En una empresa de logística, cualquier usuario con la licencia adecuada está creando entornos de producción y de prueba (*trial*), y el número de entornos no para de crecer. La administradora de Power Platform quiere que, a partir de ahora, solo los administradores puedan crear entornos de esos tipos.",
+    "prompt": "¿Qué debe hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Activar el enrutamiento de entornos para que todos los creadores trabajen siempre en su propio entorno de desarrollador",
+        "correct": false,
+        "explanation": "El enrutamiento lleva a los creadores a su propio entorno de desarrollador al abrir los portales; no impide que los usuarios creen entornos de producción o de prueba."
+      },
+      {
+        "id": "b",
+        "text": "En Configuración de inquilino, limitar a Solo administradores específicos la creación de entornos de producción y de prueba",
+        "correct": true,
+        "explanation": "Con esta configuración solo los administradores globales, de Dynamics 365 y de Power Platform pueden crear entornos de esos tipos; los entornos ya creados siguen pudiendo administrarlos sus creadores."
+      },
+      {
+        "id": "c",
+        "text": "Crear una directiva de datos de nivel de inquilino que bloquee los conectores de redes sociales",
+        "correct": false,
+        "explanation": "Las directivas de datos limitan los conectores que usan las aplicaciones y los flujos; no controlan quién crea entornos."
+      },
+      {
+        "id": "d",
+        "text": "Quitar a todos los usuarios el rol Creador de entornos del entorno predeterminado",
+        "correct": false,
+        "explanation": "Ese rol permite crear recursos, como aplicaciones y flujos, dentro de un entorno; no es lo que controla la creación de entornos nuevos."
+      }
+    ],
+    "keyPoint": "Limitar quién crea entornos → Configuración de inquilino del centro de administración: asignaciones de entornos por tipo en Solo administradores específicos.",
+    "references": [
+      {
+        "title": "Controlar quién puede crear y administrar entornos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/control-environment-creation"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-seguridad-101",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 2,
+    "prompt": "Empareja cada necesidad con el tipo de equipo de Dataverse que la cubre. Cada opción puede usarse una vez o ninguna.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Que los miembros del equipo se agreguen y se quiten solos según la pertenencia a un grupo de Microsoft Entra ID, y asignar roles de seguridad al equipo",
+        "answerId": "c3",
+        "explanation": "En un equipo de grupo de Microsoft Entra, los miembros se derivan dinámicamente de la pertenencia al grupo; el equipo puede tener roles de seguridad y poseer registros."
+      },
+      {
+        "id": "m2",
+        "text": "Un equipo cuyos miembros se agregan a mano, que posee filas y tiene roles de seguridad asignados",
+        "answerId": "c1",
+        "explanation": "El equipo propietario posee registros y tiene roles de seguridad; sus miembros se agregan manualmente."
+      },
+      {
+        "id": "m3",
+        "text": "Dar a varias personas acceso a una fila concreta compartiéndola con el equipo, que no posee registros ni tiene roles",
+        "answerId": "c2",
+        "explanation": "El equipo de acceso no posee registros ni tiene roles: se comparten registros con él y sus miembros obtienen los derechos concedidos, como leer, escribir o anexar."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Equipo propietario (*owner team*)"
+      },
+      {
+        "id": "c2",
+        "text": "Equipo de acceso (*access team*)"
+      },
+      {
+        "id": "c3",
+        "text": "Equipo de grupo de Microsoft Entra"
+      },
+      {
+        "id": "c4",
+        "text": "Unidad de negocio"
+      },
+      {
+        "id": "c5",
+        "text": "Perfil de seguridad de columna"
+      }
+    ],
+    "keyPoint": "Propietario = posee filas y tiene roles (miembros manuales); de acceso = solo recibe filas compartidas; de grupo de Microsoft Entra = como el propietario, pero con los miembros sincronizados desde el grupo.",
+    "references": [
+      {
+        "title": "Administrar equipos de Microsoft Dataverse",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/manage-teams"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-seguridad-102",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 2,
+    "scenario": "El responsable de seguridad de una aseguradora ha descubierto que algunos creadores han conectado flujos de nube con el SharePoint y el Outlook de otras empresas, iniciando sesión con cuentas de Microsoft Entra de esas organizaciones. Quiere bloquear en Power Platform las conexiones con otros inquilinos de Microsoft Entra, salvo con un proveedor concreto con el que colabora.",
+    "prompt": "¿Qué debe configurar el administrador?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Una directiva de datos que clasifique SharePoint y Office 365 Outlook como conectores Empresariales",
+        "correct": false,
+        "explanation": "Las directivas de datos deciden qué conectores pueden usarse juntos o quedan bloqueados, pero no distinguen a qué inquilino se conecta cada conexión."
+      },
+      {
+        "id": "b",
+        "text": "El aislamiento de inquilinos (*tenant isolation*), con una regla de excepción para el inquilino del proveedor",
+        "correct": true,
+        "explanation": "Con el aislamiento de inquilinos activado, Power Platform bloquea las conexiones entrantes y salientes con otros inquilinos en los conectores que se autentican con Microsoft Entra ID, como SharePoint u Office 365 Outlook. Una lista de permitidos admite excepciones."
+      },
+      {
+        "id": "c",
+        "text": "Un grupo de seguridad de Microsoft Entra ID asociado a cada uno de los entornos",
+        "correct": false,
+        "explanation": "El grupo de seguridad de un entorno decide qué usuarios de tu inquilino pueden ser miembros de él; no impide conectarse a datos de otros inquilinos."
+      },
+      {
+        "id": "d",
+        "text": "El firewall de IP de los entornos administrados, con las direcciones de la oficina",
+        "correct": false,
+        "explanation": "El firewall de IP limita desde qué direcciones IP se accede a un entorno; no controla a qué inquilinos se conectan las aplicaciones y los flujos."
+      }
+    ],
+    "keyPoint": "Para impedir que los datos salgan hacia otros inquilinos de Microsoft Entra (o entren desde ellos) a través de los conectores → aislamiento de inquilinos, con excepciones en una lista de permitidos.",
+    "references": [
+      {
+        "title": "Restricciones cruzadas entrantes y salientes de inquilinos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/cross-tenant-restrictions"
+      },
+      {
+        "title": "Administración de identidades y acceso",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/security/identity-access-management"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-seguridad-103",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 2,
+    "scenario": "Marta, comercial de una distribuidora, es la propietaria de una oportunidad importante en la aplicación basada en modelos de ventas. Quiere que su compañero Raúl, que tiene un rol básico y no ve las oportunidades de otros, la ayude a editarla durante unas semanas, pero ella debe seguir siendo la propietaria.",
+    "prompt": "¿Qué debe hacer Marta?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Asignar la oportunidad a Raúl",
+        "correct": false,
+        "explanation": "Asignar transfiere la propiedad de la fila a otro usuario o equipo, así que Marta dejaría de ser la propietaria."
+      },
+      {
+        "id": "b",
+        "text": "Pedir que trasladen a Raúl a otra unidad de negocio",
+        "correct": false,
+        "explanation": "Cambiar de unidad de negocio afecta a todas las filas que Raúl puede ver según su rol; es una medida excesiva para una sola fila y no le garantiza acceso a ella."
+      },
+      {
+        "id": "c",
+        "text": "Compartir la oportunidad con Raúl con permisos de lectura y escritura",
+        "correct": true,
+        "explanation": "Compartir da acceso a una fila concreta a otro usuario o equipo mientras el propietario la conserva; los permisos que se pueden conceder dependen de los privilegios básicos del usuario."
+      },
+      {
+        "id": "d",
+        "text": "Pedir que den a Raúl un rol con acceso de nivel Organización a las oportunidades",
+        "correct": false,
+        "explanation": "Así Raúl vería y editaría todas las oportunidades de la empresa, no solo la de Marta."
+      }
+    ],
+    "keyPoint": "Asignar = cambiar el propietario de la fila; compartir = dar acceso a una fila concreta conservando la propiedad.",
+    "references": [
+      {
+        "title": "Compartir filas con un usuario o equipo",
+        "url": "https://learn.microsoft.com/es-es/power-apps/user/share-row"
+      },
+      {
+        "title": "Asignar o compartir una fila",
+        "url": "https://learn.microsoft.com/es-es/power-apps/user/assign-or-share-records"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-seguridad-104",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 2,
+    "scenario": "Una empresa tiene un entorno de producción para su departamento financiero. Ahora cualquier usuario con licencia del inquilino puede llegar a ser miembro del entorno, y el responsable de seguridad quiere que solo puedan serlo los empleados de Finanzas.",
+    "prompt": "¿Qué debes configurar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Una unidad de negocio Finanzas dentro del entorno",
+        "correct": false,
+        "explanation": "Las unidades de negocio separan datos y usuarios dentro de un entorno; no deciden qué usuarios del inquilino pueden ser miembros del entorno."
+      },
+      {
+        "id": "b",
+        "text": "Una directiva de datos de entorno aplicada al entorno financiero",
+        "correct": false,
+        "explanation": "Las directivas de datos gobiernan qué conectores se pueden usar juntos; no controlan quién accede al entorno."
+      },
+      {
+        "id": "c",
+        "text": "Límites de uso compartido para las aplicaciones de lienzo",
+        "correct": false,
+        "explanation": "Los límites de uso compartido restringen con quién se comparten las aplicaciones, pero no impiden que otros usuarios sean miembros del entorno."
+      },
+      {
+        "id": "d",
+        "text": "Un grupo de seguridad de Microsoft Entra ID asociado al entorno",
+        "correct": true,
+        "explanation": "Al asociar un grupo de seguridad a un entorno, solo los usuarios con licencia que pertenecen al grupo pueden ser miembros del entorno; agregar a alguien al grupo lo agrega al entorno."
+      }
+    ],
+    "keyPoint": "Controlar qué usuarios del inquilino pueden ser miembros de un entorno → grupo de seguridad del entorno en Microsoft Entra ID.",
+    "references": [
+      {
+        "title": "Controlar el acceso de usuarios a los entornos: grupos de seguridad y licencias",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/control-user-access"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-seguridad-105",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 3,
+    "prompt": "Empareja cada acción con el privilegio de tabla de un rol de seguridad de Dataverse que necesitas. Cada opción puede usarse una vez o ninguna.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Transferir la propiedad de una fila a otro usuario",
+        "answerId": "c1",
+        "explanation": "El privilegio Asignar es necesario para otorgar la propiedad de un registro a otro usuario."
+      },
+      {
+        "id": "m2",
+        "text": "Dar acceso a una fila a otro usuario sin perder tu propio acceso",
+        "answerId": "c2",
+        "explanation": "Compartir permite dar acceso a un registro a otro usuario mientras conservas el tuyo."
+      },
+      {
+        "id": "m3",
+        "text": "Adjuntar una nota a una oportunidad (privilegio que necesitas sobre la nota)",
+        "answerId": "c3",
+        "explanation": "Anexar sobre la nota permite asociar ese registro con otro, como una oportunidad."
+      },
+      {
+        "id": "m4",
+        "text": "Permitir que se agreguen notas a una oportunidad (privilegio que necesitas sobre la oportunidad)",
+        "answerId": "c4",
+        "explanation": "Anexar a sobre la oportunidad permite que otros registros, como notas, se asocien con ella."
+      },
+      {
+        "id": "m5",
+        "text": "Borrar una fila de forma permanente",
+        "answerId": "c5",
+        "explanation": "El privilegio Eliminar es el que permite eliminar un registro de forma permanente."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Asignar"
+      },
+      {
+        "id": "c2",
+        "text": "Compartir"
+      },
+      {
+        "id": "c3",
+        "text": "Anexar"
+      },
+      {
+        "id": "c4",
+        "text": "Anexar a"
+      },
+      {
+        "id": "c5",
+        "text": "Eliminar"
+      },
+      {
+        "id": "c6",
+        "text": "Escribir"
+      },
+      {
+        "id": "c7",
+        "text": "Leer"
+      }
+    ],
+    "keyPoint": "Asignar = cambiar el propietario; Compartir = dar acceso sin perder el tuyo; Anexar = asociar este registro a otro; Anexar a = permitir que otros se asocien a este.",
+    "references": [
+      {
+        "title": "Roles y privilegios de seguridad para Dataverse",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/security-roles-privileges"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-seguridad-106",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 3,
+    "prompt": "Indica si cada afirmación sobre las directivas de datos (antes llamadas directivas DLP) es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Al crear una directiva nueva, todos los conectores están inicialmente en el grupo No empresarial (*Non-business*).",
+        "answer": true,
+        "explanation": "De forma predeterminada todos los conectores se colocan en No empresarial; después el administrador los mueve a Empresarial o a Bloqueado."
+      },
+      {
+        "id": "s2",
+        "text": "Puedes clasificar el conector de Dataverse como Bloqueado para que nadie lo use en un entorno.",
+        "answer": false,
+        "explanation": "Dataverse, como otros conectores básicos de la plataforma (por ejemplo, Aprobaciones o Notificaciones), no se puede bloquear con una directiva de datos; solo puede ser Empresarial o No empresarial."
+      },
+      {
+        "id": "s3",
+        "text": "Si una directiva de inquilino bloquea un conector y otra de entorno lo clasifica como Empresarial, en ese entorno el conector queda bloqueado.",
+        "answer": true,
+        "explanation": "Todas las directivas aplicables a un entorno se evalúan juntas y Bloqueado es la clasificación más restrictiva, así que siempre prevalece."
+      },
+      {
+        "id": "s4",
+        "text": "Los conectores que Microsoft publica después de crear la directiva quedan bloqueados hasta que un administrador los clasifique.",
+        "answer": false,
+        "explanation": "Los conectores nuevos se colocan en el grupo predeterminado de la directiva, que inicialmente es No empresarial; Microsoft recomienda mantenerlo así y clasificarlos tras evaluarlos."
+      }
+    ],
+    "keyPoint": "Directiva nueva → todo en No empresarial; Dataverse no se puede bloquear; con varias directivas gana la más restrictiva; los conectores nuevos van al grupo predeterminado.",
+    "references": [
+      {
+        "title": "Clasificación de conectores",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/dlp-connector-classification"
+      },
+      {
+        "title": "Efecto combinado de varias directivas de datos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/dlp-combined-effect-multiple-policies"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-seguridad-107",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 3,
+    "scenario": "En una aseguradora, cada tramitador tiene un rol con acceso de nivel Usuario a la tabla Siniestro. La dirección quiere que cada jefe pueda leer y modificar los siniestros de sus subordinados directos, según el campo Jefe (*Manager*) de cada usuario, sin crear una unidad de negocio por equipo y sin ver los siniestros de otros equipos.",
+    "prompt": "¿Qué característica de seguridad de Dataverse debes usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un rol con acceso de nivel Organización a la tabla Siniestro para los jefes",
+        "correct": false,
+        "explanation": "Los jefes verían los siniestros de toda la empresa, no solo los de sus subordinados."
+      },
+      {
+        "id": "b",
+        "text": "La seguridad de jerarquía con el modelo de jerarquía de administradores",
+        "correct": true,
+        "explanation": "La jerarquía de administradores se basa en la relación de subordinación del campo Jefe: el jefe obtiene acceso de lectura, escritura, anexar y anexar a sobre los datos de sus subordinados directos, sin crear más unidades de negocio."
+      },
+      {
+        "id": "c",
+        "text": "Un equipo de acceso para cada jefe",
+        "correct": false,
+        "explanation": "Habría que compartir cada siniestro con el equipo de forma manual; no da acceso automático según la estructura de subordinación."
+      },
+      {
+        "id": "d",
+        "text": "La seguridad de nivel de columna sobre la tabla Siniestro",
+        "correct": false,
+        "explanation": "La seguridad de nivel de columna protege columnas concretas; no da a los jefes acceso a las filas de sus subordinados."
+      }
+    ],
+    "keyPoint": "Jefes que acceden a los datos de sus subordinados según el campo Jefe → seguridad de jerarquía de administradores, que complementa a los roles y las unidades de negocio.",
+    "references": [
+      {
+        "title": "Seguridad jerárquica para controlar el acceso",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/hierarchy-security"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-seguridad-108",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 2,
+    "scenario": "Sergio tiene el rol Creador de entornos (*Environment Maker*) en un entorno con Dataverse. Puede crear aplicaciones de lienzo y flujos, pero al intentar crear una tabla nueva para su aplicación recibe un error de permisos.",
+    "prompt": "¿Qué rol de seguridad debe asignarle el administrador para que pueda crear y modificar tablas sin darle el control total del entorno?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Usuario básico (*Basic User*)",
+        "correct": false,
+        "explanation": "Usuario básico sirve para ejecutar aplicaciones y trabajar con los registros propios; no permite personalizar el entorno ni crear tablas."
+      },
+      {
+        "id": "b",
+        "text": "Administrador del sistema",
+        "correct": false,
+        "explanation": "Le permitiría crear tablas, pero también le daría el control total del entorno, mucho más de lo necesario."
+      },
+      {
+        "id": "c",
+        "text": "Personalizador del sistema (*System Customizer*)",
+        "correct": true,
+        "explanation": "Los creadores que necesitan crear o actualizar tablas de Dataverse deben tener el rol Personalizador del sistema además del de Creador de entornos, que no tiene privilegios sobre los datos."
+      },
+      {
+        "id": "d",
+        "text": "Administrador de Power Platform en Microsoft Entra ID",
+        "correct": false,
+        "explanation": "Es un rol de administración de todo el inquilino, excesivo para este caso, y por sí solo no concede acceso a los datos de Dataverse."
+      }
+    ],
+    "keyPoint": "Creador de entornos = crear aplicaciones y flujos; Personalizador del sistema = además, crear y modificar tablas; Administrador del sistema = control total.",
+    "references": [
+      {
+        "title": "Roles de seguridad predefinidos para Dataverse",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/database-security"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-seguridad-109",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "difficulty": 2,
+    "prompt": "Completa la frase sobre las regiones activas (*live regions*) en las aplicaciones de lienzo.",
+    "template": "Para que un lector de pantalla anuncie un mensaje que cambia en pantalla, lo muestras en un control {{b1}}; si el mensaje es un error crítico que requiere atención inmediata, estableces su propiedad Live en {{b2}}; y para una confirmación no crítica, como «Elemento agregado», usas {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Etiqueta (*Label*)"
+          },
+          {
+            "id": "o2",
+            "text": "Botón (*Button*)"
+          },
+          {
+            "id": "o3",
+            "text": "Imagen (*Image*)"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Solo un control Etiqueta puede configurarse como región activa, mediante su propiedad Live."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Desactivado (*Off*)"
+          },
+          {
+            "id": "o2",
+            "text": "Educado (*Polite*)"
+          },
+          {
+            "id": "o3",
+            "text": "Asertivo (*Assertive*)"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "Con Asertivo, el lector de pantalla interrumpe lo que esté leyendo para anunciar el cambio de inmediato; se reserva para notificaciones críticas."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Desactivado (*Off*)"
+          },
+          {
+            "id": "o2",
+            "text": "Educado (*Polite*)"
+          },
+          {
+            "id": "o3",
+            "text": "Asertivo (*Assertive*)"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Con Educado, el lector anuncia el cambio cuando termina de hablar, lo indicado para avisos no críticos; con Desactivado el cambio no se anunciaría."
+      }
+    ],
+    "keyPoint": "Región activa = control Etiqueta con la propiedad Live: Asertivo para lo crítico, Educado para lo no crítico.",
+    "references": [
+      {
+        "title": "Anunciar cambios dinámicos con regiones activas en aplicaciones de lienzo",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/accessible-apps-live-regions"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-supervision-101",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-supervision",
+    "difficulty": 1,
+    "scenario": "El responsable de seguridad de una empresa pide a la administradora de Power Platform un único lugar del centro de administración donde revisar las recomendaciones de seguridad del inquilino y configurar funciones de protección de datos y privacidad, de gestión de identidades y accesos, y de cumplimiento, como la auditoría.",
+    "prompt": "¿Qué área del centro de administración de Power Platform debe usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Supervisar (*Monitor*)",
+        "correct": false,
+        "explanation": "Supervisar mide el estado operativo de aplicaciones, flujos y agentes, por ejemplo, si se abren correctamente; no reúne la configuración de seguridad."
+      },
+      {
+        "id": "b",
+        "text": "Seguridad (*Security*)",
+        "correct": true,
+        "explanation": "El área Seguridad centraliza las recomendaciones de seguridad y las páginas de protección de datos y privacidad, gestión de identidades y accesos, y cumplimiento, desde donde, por ejemplo, se activa la auditoría."
+      },
+      {
+        "id": "c",
+        "text": "Inventario (*Inventory*)",
+        "correct": false,
+        "explanation": "Inventario lista los recursos del inquilino, como aplicaciones, flujos y agentes, para filtrarlos; no configura funciones de seguridad."
+      },
+      {
+        "id": "d",
+        "text": "Licencias (*Licensing*)",
+        "correct": false,
+        "explanation": "Licencias muestra la asignación y el consumo de licencias y de capacidad, no la configuración de seguridad."
+      }
+    ],
+    "keyPoint": "Configuración y recomendaciones de seguridad del inquilino (protección de datos, identidad y acceso, cumplimiento) → área Seguridad del centro de administración.",
+    "references": [
+      {
+        "title": "Información general sobre seguridad",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/security/security-overview"
+      },
+      {
+        "title": "Administrar la auditoría de Dataverse",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/manage-dataverse-auditing"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-supervision-102",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-supervision",
+    "difficulty": 2,
+    "scenario": "En un entorno administrado de producción, la administradora quiere que nadie pueda compartir aplicaciones de lienzo con grupos de seguridad ni con toda la organización, y que cada aplicación pueda compartirse, como mucho, con un número limitado de personas.",
+    "prompt": "¿Qué dos reglas de Limitar uso compartido (*Limit sharing*) debe configurar? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Excluir uso compartido con grupos de seguridad",
+        "correct": true,
+        "explanation": "Esta regla impide compartir aplicaciones de lienzo con cualquier grupo de seguridad o con todos los usuarios de la organización."
+      },
+      {
+        "id": "b",
+        "text": "No establecer límites",
+        "correct": false,
+        "explanation": "Es la opción que deja el uso compartido sin restricciones, justo lo contrario de lo que se busca."
+      },
+      {
+        "id": "c",
+        "text": "Una directiva de datos que clasifique SharePoint como No empresarial",
+        "correct": false,
+        "explanation": "Las directivas de datos controlan qué conectores se pueden combinar; no limitan con quién se comparte una aplicación."
+      },
+      {
+        "id": "d",
+        "text": "Limitar el total de personas con quienes se puede compartir",
+        "correct": true,
+        "explanation": "Disponible cuando se excluyen los grupos de seguridad, fija el número máximo de usuarios con los que se puede compartir cada aplicación de lienzo."
+      },
+      {
+        "id": "e",
+        "text": "La aplicación obligatoria del Comprobador de soluciones en modo Bloquear",
+        "correct": false,
+        "explanation": "El Comprobador de soluciones analiza las soluciones al importarlas; no tiene relación con el uso compartido de aplicaciones."
+      }
+    ],
+    "keyPoint": "Limitar uso compartido (Entornos administrados): excluir los grupos de seguridad y, además, fijar un máximo de personas por aplicación.",
+    "references": [
+      {
+        "title": "Limitar uso compartido",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/managed-environment-sharing-limits"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-supervision-103",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-supervision",
+    "difficulty": 3,
+    "scenario": "En un entorno administrado de producción, el equipo de gobierno quiere que cada solución personalizada se analice automáticamente al importarse. Si tiene problemas muy críticos, la importación debe cancelarse antes de hacer ningún cambio en el entorno, y los administradores deben recibir un correo con el resumen.",
+    "prompt": "¿Qué configuración cumple el requisito?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Aplicación obligatoria del Comprobador de soluciones en modo Avisar (*Warn*)",
+        "correct": false,
+        "explanation": "En modo Avisar la solución se analiza y se avisa de los problemas críticos, pero la importación continúa y se completa."
+      },
+      {
+        "id": "b",
+        "text": "Aplicación obligatoria del Comprobador de soluciones en modo Ninguno (*None*)",
+        "correct": false,
+        "explanation": "Ninguno desactiva las validaciones automáticas durante la importación de soluciones."
+      },
+      {
+        "id": "c",
+        "text": "Una directiva de datos que bloquee todos los conectores personalizados del entorno",
+        "correct": false,
+        "explanation": "Las directivas de datos controlan el uso de conectores; no hacen un análisis estático de los componentes de una solución."
+      },
+      {
+        "id": "d",
+        "text": "Aplicación obligatoria del Comprobador de soluciones en modo Bloquear (*Block*)",
+        "correct": true,
+        "explanation": "En modo Bloquear, si la solución tiene problemas muy críticos la importación se cancela antes de aplicarse, sin cambios en el entorno, y se envía un correo de resumen con los detalles de la validación."
+      }
+    ],
+    "keyPoint": "Comprobador de soluciones en Entornos administrados: Ninguno = no valida; Avisar = importa y avisa; Bloquear = cancela la importación si hay problemas críticos.",
+    "references": [
+      {
+        "title": "Aplicación del comprobador de soluciones en entornos administrados",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/managed-environment-solution-checker"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-supervision-104",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-supervision",
+    "difficulty": 2,
+    "prompt": "Completa la frase sobre el análisis en el nivel de inquilino (*tenant-level analytics*).",
+    "template": "El análisis en el nivel de inquilino lo activa {{b1}}; una vez activado, un administrador de Power Platform ve los informes de {{b2}}; y si no se activa, {{b3}} no muestra datos.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "cada creador, en la configuración de sus aplicaciones"
+          },
+          {
+            "id": "o2",
+            "text": "un administrador, en la configuración del inquilino del centro de administración"
+          },
+          {
+            "id": "o3",
+            "text": "Microsoft, automáticamente, en todos los inquilinos"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Lo activa un administrador de Power Platform (o un administrador global) en Configuración de inquilino > Análisis del centro de administración. No es una opción de cada aplicación ni está activo por sí solo; los informes aparecen al cabo de uno o dos días."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "todos los entornos"
+          },
+          {
+            "id": "o2",
+            "text": "solo el entorno predeterminado"
+          },
+          {
+            "id": "o3",
+            "text": "solo los entornos administrados"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Los administradores de Power Platform y de Dynamics 365 ven los informes de todos los entornos, mientras que un administrador de entorno solo ve los de los entornos en los que tiene ese rol."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "el área Supervisar del centro de administración"
+          },
+          {
+            "id": "o2",
+            "text": "Monitor en directo de Power Apps"
+          },
+          {
+            "id": "o3",
+            "text": "el historial de auditoría de un registro"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "El análisis en el nivel de inquilino es requisito para que el área Supervisar tenga datos; Monitor en directo y el historial de auditoría funcionan sin él."
+      }
+    ],
+    "keyPoint": "Análisis en el nivel de inquilino: lo activa un administrador, da a los administradores de Power Platform la vista de todos los entornos y es requisito para que el área Supervisar tenga datos.",
+    "references": [
+      {
+        "title": "Análisis en el nivel de inquilino",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/tenant-level-analytics"
+      },
+      {
+        "title": "Supervisar el estado de sus recursos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/monitoring/monitoring-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-supervision-105",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-supervision",
+    "difficulty": 2,
+    "scenario": "El departamento de cumplimiento de una inmobiliaria quiere saber quién cambia el importe de los contratos de la tabla Contrato de Dataverse y cuál era el valor anterior. Hasta ahora la auditoría no estaba activada en el entorno.",
+    "prompt": "Ordena los pasos.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Activar la auditoría en el nivel del entorno desde el centro de administración de Power Platform",
+        "explanation": "La auditoría se configura en tres niveles y lo primero es activarla en el entorno; sin eso no se registra nada, aunque las tablas la tengan activada."
+      },
+      {
+        "id": "p2",
+        "text": "Activar la auditoría en la tabla Contrato y en la columna Importe",
+        "explanation": "Para registrar los cambios de datos de una tabla hay que activar la auditoría de la tabla y de las columnas que se quieren seguir."
+      },
+      {
+        "id": "p3",
+        "text": "Un usuario modifica el importe de un contrato",
+        "explanation": "Los registros de auditoría solo se crean desde que la auditoría está activa, cuando el valor nuevo es distinto del anterior."
+      },
+      {
+        "id": "p4",
+        "text": "Revisar la pestaña Historial de auditoría del contrato para ver quién lo cambió, cuándo y cuál era el valor anterior",
+        "explanation": "El historial de auditoría de un registro muestra cada cambio con el valor anterior y el nuevo; puede aparecer con cierto retraso."
+      }
+    ],
+    "keyPoint": "Auditoría de Dataverse: entorno → tabla → columna; solo registra los cambios posteriores a su activación.",
+    "references": [
+      {
+        "title": "Administrar la auditoría de Dataverse",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/manage-dataverse-auditing"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-supervision-106",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-supervision",
+    "difficulty": 2,
+    "scenario": "En un entorno administrado, la administradora quiere que los creadores, al entrar en Power Apps, vean primero las normas internas de desarrollo con enlaces a la formación de la empresa, y que tengan que aceptar las condiciones de uso antes de continuar.",
+    "prompt": "¿Qué dos cosas puede hacer con el contenido de bienvenida del creador (*maker welcome content*)? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Impedir que los creadores hagan aplicaciones hasta que terminen un curso de Microsoft Learn",
+        "correct": false,
+        "explanation": "El contenido de bienvenida informa y puede pedir consentimiento, pero no comprueba si el creador ha completado ninguna formación."
+      },
+      {
+        "id": "b",
+        "text": "Mostrar un mensaje propio, en texto sin formato o Markdown, con enlaces a la wiki y a la formación interna",
+        "correct": true,
+        "explanation": "El contenido de bienvenida sustituye la ayuda inicial predeterminada por la de la organización; admite texto sin formato o Markdown y una URL propia para ampliar información."
+      },
+      {
+        "id": "c",
+        "text": "Enviar a cada creador un resumen semanal por correo con el uso de sus aplicaciones",
+        "correct": false,
+        "explanation": "El resumen semanal por correo pertenece a la información de uso y se envía a los administradores, no a los creadores."
+      },
+      {
+        "id": "d",
+        "text": "Incluir un botón de consentimiento para aceptar unas condiciones de uso y registrar esa aceptación en Microsoft Purview",
+        "correct": true,
+        "explanation": "Con la opción de consentimiento, los creadores deben confirmar el contenido enlazado para continuar, y la actividad UserConsented queda registrada para auditarla en Microsoft Purview."
+      },
+      {
+        "id": "e",
+        "text": "Limitar con cuántas personas pueden compartir sus aplicaciones",
+        "correct": false,
+        "explanation": "Eso se configura con las reglas de Limitar uso compartido, otra función distinta de Entornos administrados."
+      }
+    ],
+    "keyPoint": "Contenido de bienvenida del creador: guía propia (texto o Markdown) al entrar y, si se quiere, aceptación de condiciones registrada en Microsoft Purview.",
+    "references": [
+      {
+        "title": "Habilitar contenido de bienvenida del creador",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/welcome-content"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-supervision-107",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-supervision",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre los Entornos administrados (*Managed Environments*) es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Para habilitar Entornos administrados en un entorno necesitas el rol de administrador de Power Platform o de administrador de Dynamics 365.",
+        "answer": true,
+        "explanation": "Habilitar o editar Entornos administrados requiere uno de esos roles de Microsoft Entra ID; el rol de seguridad Administrador del entorno no basta."
+      },
+      {
+        "id": "s2",
+        "text": "Solo puedes habilitar Entornos administrados en entornos de tipo producción.",
+        "answer": false,
+        "explanation": "Entornos administrados es un conjunto de funciones premium de gobierno que se puede usar con cualquier tipo de entorno: producción, espacio aislado, prueba o desarrollador."
+      },
+      {
+        "id": "s3",
+        "text": "En la página Acciones, de los entornos no administrados solo ves un resumen de las recomendaciones; para ver los recursos afectados y actuar sobre ellos, el entorno debe ser administrado.",
+        "answer": true,
+        "explanation": "Todas las recomendaciones, los recursos afectados y las acciones están disponibles para los entornos administrados; en los no administrados la página muestra solo un resumen."
+      },
+      {
+        "id": "s4",
+        "text": "Al configurar reglas de uso compartido, se retira el acceso a los usuarios con los que ya se había compartido una aplicación.",
+        "answer": false,
+        "explanation": "Las reglas se aplican cuando alguien intenta compartir y no afectan a quien ya tenía acceso; si la aplicación las incumple, solo se permite dejar de compartirla hasta que las cumpla."
+      }
+    ],
+    "keyPoint": "Entornos administrados: funciones premium de gobierno para cualquier tipo de entorno, que habilita un administrador de Power Platform o de Dynamics 365; desbloquean todas las recomendaciones de Acciones y sus reglas de uso compartido no son retroactivas.",
+    "references": [
+      {
+        "title": "Introducción a los entornos administrados",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/managed-environment-overview"
+      },
+      {
+        "title": "Habilitar entorno administrado",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/managed-environment-enable"
+      },
+      {
+        "title": "Información general sobre las acciones",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/power-platform-advisor"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-supervision-108",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-supervision",
+    "difficulty": 3,
+    "scenario": "Tras una fuga de información, el responsable de cumplimiento de una clínica quiere saber qué usuarios consultaron y exportaron a Excel los datos de la tabla Paciente desde una aplicación basada en modelos del entorno de producción. La auditoría de la tabla ya está activada, pero solo muestra creaciones, modificaciones y eliminaciones.",
+    "prompt": "¿Qué debe usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Activar también la auditoría en todas las columnas de la tabla Paciente",
+        "correct": false,
+        "explanation": "La auditoría de Dataverse registra cambios en los datos (crear, actualizar, eliminar), pero no las operaciones de lectura ni de exportación, aunque se active en todas las columnas."
+      },
+      {
+        "id": "b",
+        "text": "El resumen semanal de información de uso de Entornos administrados",
+        "correct": false,
+        "explanation": "Resume las aplicaciones más usadas, los creadores y los recursos inactivos; no indica qué usuario consultó o exportó registros concretos."
+      },
+      {
+        "id": "c",
+        "text": "Monitor en directo abierto en la aplicación basada en modelos",
+        "correct": false,
+        "explanation": "Monitor en directo sirve para depurar una sesión en tiempo real; no conserva un historial de qué usuarios accedieron a los datos."
+      },
+      {
+        "id": "d",
+        "text": "El registro de actividad de Dataverse, consultado en Microsoft Purview",
+        "correct": true,
+        "explanation": "El registro de actividad recoge operaciones como la recuperación y la exportación de datos y se consulta en el portal de Microsoft Purview; se activa con la auditoría del entorno y se envía para los entornos de producción."
+      }
+    ],
+    "keyPoint": "Cambios en las filas → auditoría de Dataverse; lecturas y exportaciones → registro de actividad en Microsoft Purview.",
+    "references": [
+      {
+        "title": "Administrar la auditoría de Dataverse",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/manage-dataverse-auditing"
+      },
+      {
+        "title": "Ver los registros de actividad de las aplicaciones basadas en modelos y de Dataverse en Microsoft Purview",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/activity-logging-auditing/activity-logs-dataverse-model-driven-apps"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-supervision-109",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-supervision",
+    "difficulty": 3,
+    "scenario": "La administradora de Power Platform de una aerolínea quiere recibir un aviso cuando las aplicaciones de lienzo de su entorno de producción, que es un entorno administrado, empiecen a tardar demasiado en abrirse. Quiere hacerlo solo con el centro de administración, sin configurar recursos de Azure.",
+    "prompt": "¿Qué debe hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crear una regla de alerta en el área Supervisar sobre la métrica de apertura",
+        "correct": true,
+        "explanation": "Las alertas de Supervisar fijan umbrales personalizados sobre las métricas de estado y notifican cuando un recurso los supera; solo se pueden crear en entornos administrados y se evalúan sobre agregados diarios."
+      },
+      {
+        "id": "b",
+        "text": "Revisar cada semana el correo de resumen de la información de uso",
+        "correct": false,
+        "explanation": "El resumen semanal muestra el uso y los recursos inactivos; no avisa cuando una métrica de rendimiento supera un umbral."
+      },
+      {
+        "id": "c",
+        "text": "Abrir Monitor en directo en cada aplicación de lienzo del entorno",
+        "correct": false,
+        "explanation": "Monitor en directo depura una sesión concreta en tiempo real; no vigila el entorno ni envía avisos."
+      },
+      {
+        "id": "d",
+        "text": "Exportar la telemetría a Application Insights y crear allí la alerta",
+        "correct": false,
+        "explanation": "Application Insights también admite alertas, pero requiere un recurso de Azure, algo que la administradora quiere evitar."
+      }
+    ],
+    "keyPoint": "Aviso cuando una métrica de estado supera un umbral → regla de alerta del área Supervisar (entornos administrados).",
+    "references": [
+      {
+        "title": "Crear alertas para tus recursos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/monitoring/alerts"
+      }
+    ]
+  }
+]

@@ -134,5 +134,49 @@
         "body": "1. Extraer automáticamente los datos de los certificados, guardarlos en Dataverse y que una persona revise en una aplicación los documentos cuya extracción sea dudosa.\n2. El agente *Asistente de planta* de Copilot Studio debe consultar el estado de las máquinas mediante el servidor MCP del MES.\n3. Calidad quiere probar el agente con conjuntos de pruebas automatizadas antes de desplegarlo y revisar después sus métricas de uso; Seguridad quiere un registro centralizado de todos los agentes de la organización.\n4. Los desarrolladores quieren crear con React, desde Visual Studio Code, un panel de indicadores para los empleados que se ejecute como una aplicación de Power Apps y respete las directivas de la plataforma.\n5. El director de TI duda entre montar una base de datos SQL tradicional o usar Dataverse para los datos de calidad."
       }
     ]
+  },
+  {
+    "id": "caso-7",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "title": "Entradas de fruta, visitas de campo y liquidaciones",
+    "company": "Cooperativa Frutícola Valdeazor",
+    "summary": "Una cooperativa de fruta de hueso quiere registrar en Dataverse las visitas a las parcelas, guiar a sus técnicos con un mapa, avisar de las partidas rechazadas y revisar lo que hace por su cuenta un agente de Copilot Studio.",
+    "sections": [
+      {
+        "title": "Contexto",
+        "body": "La **Cooperativa Frutícola Valdeazor** agrupa a 640 socios que cultivan melocotón, nectarina y cereza. Recibe la fruta en tres centros de recepción y cada centro es una unidad de negocio de Dataverse. Tiene cuatro técnicos de campo, un técnico de calidad, un responsable de sanidad vegetal, un pequeño equipo de administración y una gerente. Todo el personal tiene cuenta de Microsoft 365, y la cooperativa dispone de un entorno de producción de Power Platform con Dataverse, donde ya guarda a los socios en la tabla estándar *Contacto* y las parcelas, con su latitud y su longitud, en la tabla *Parcela*."
+      },
+      {
+        "title": "Situación actual",
+        "body": "En cada báscula, el operario registra cada partida en la tabla *Entrada* de Dataverse, con su peso y su calidad. Los técnicos de campo, en cambio, visitan las parcelas con una libreta, una cámara y un plano en papel, y transcriben las notas al volver a la oficina; en la ficha de cada socio no consta cuándo se le visitó ni qué se encontró.\n\nLucía, del equipo de administración, está preparando un agente de Copilot Studio que revisará los informes de los técnicos, pero todavía no sabe cómo comprobará lo que hace el agente cuando trabaje solo."
+      },
+      {
+        "title": "Requisitos",
+        "body": "1. Las visitas se guardarán en una tabla nueva, *Visita de campo*, en la que cada visita estará asignada a un técnico y tendrá fecha de inicio, fecha de fin y estado (abierta, completada o cancelada). Cada visita debe vincularse al socio y aparecer en la escala de tiempo de su ficha, junto con sus llamadas, correos y citas.\n2. Los técnicos usarán en la tableta una aplicación de lienzo que les muestre sobre un mapa las parcelas que deben visitar ese día y su propia posición, para planificar el recorrido, y que les permita fotografiar los daños de plagas.\n3. Cuando cualquier operario de cualquiera de los tres centros registre una entrada con calidad *Destrío*, el técnico de calidad, Óscar, debe recibir un aviso. Óscar ha creado él mismo el flujo de nube y no quiere ejecuciones innecesarias.\n4. Cada vez que un técnico suba un informe de visita a la biblioteca de SharePoint *Informes de campo*, el agente de Lucía, con orquestación generativa y un desencadenador de eventos, lo leerá por su cuenta y, si detecta una plaga, creará una tarea en Planner para el responsable de sanidad vegetal. Lucía, autora del agente, quiere revisar después, informe a informe, qué decidió el agente, qué herramientas usó y si hubo errores.\n5. Antes de extender la aplicación del requisito 2 a los centros de recepción, la gerente debe explicar al consejo rector qué gana la cooperativa al sustituir las libretas de los técnicos por la aplicación."
+      }
+    ]
+  },
+  {
+    "id": "caso-8",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "title": "Ayudas, voluntariado y atención a familias",
+    "company": "Fundación Alacena Solidaria",
+    "summary": "Una ONG de reparto de alimentos quiere simplificar la gestión de accesos de sus coordinadores, ordenar el trabajo de sus creadores voluntarios, automatizar la resolución de ayudas, atender a familias que hablan varios idiomas y abrir una aplicación a voluntarios de otras organizaciones.",
+    "sections": [
+      {
+        "title": "Contexto",
+        "body": "La **Fundación Alacena Solidaria** reparte alimentos a familias vulnerables desde cuatro delegaciones. Tiene quince empleados y unos trescientos voluntarios; los coordinadores de voluntariado, que rotan cada pocos meses, y los voluntarios del área digital tienen cuenta de Microsoft 365 de la fundación. Dispone de un entorno de producción de Power Platform con Dataverse, que administra una única técnica de Informática, Nerea."
+      },
+      {
+        "title": "Situación actual",
+        "body": "Cada vez que entra o sale un coordinador, Nerea tiene que asignarle o quitarle a mano los roles de seguridad de Dataverse, y alguna vez un antiguo coordinador ha seguido viendo datos de familias. Los voluntarios del área digital crean aplicaciones y flujos de prueba en el entorno predeterminado, donde se mezclan con los de todos los demás.\n\nLas tres aplicaciones de lienzo de la fundación (*Almacén*, *Reparto* y *Acogida*) trabajan con tablas de Dataverse. Cada vez más repartos los hacen voluntarios de asociaciones de barrio colaboradoras, que tienen cuenta de Microsoft 365 en su propia organización, pero no en la de la fundación, y hoy anotan las entregas en papel. Las asociaciones de barrio solicitan ayudas por correo y las familias llaman por teléfono con dudas sobre horarios y documentación; muchas hablan inglés, francés o ucraniano."
+      },
+      {
+        "title": "Requisitos",
+        "body": "1. Los coordinadores deben obtener o perder el acceso a los datos de Dataverse solo con agregarlos al grupo de Microsoft Entra *Coordinadores de voluntariado* o quitarlos de él, sin asignar roles persona a persona.\n2. Cada voluntario del área digital debe trabajar automáticamente en su propio entorno aislado con Dataverse, sin usar el entorno predeterminado y sin que Nerea tenga que crear entornos a mano.\n3. La directora de cada delegación revisa cada solicitud de ayuda y responde *Conceder*, *Conceder parcialmente* o *Denegar*; según su respuesta, la asociación recibe un correo distinto.\n4. Un agente de Copilot Studio en la web de la fundación, con el español como idioma principal, debe atender también a las familias en inglés, francés y ucraniano, en el idioma configurado en su navegador.\n5. Los voluntarios de las asociaciones colaboradoras deben registrar las entregas en la aplicación *Reparto*, desde el explorador o el móvil, iniciando sesión con la cuenta de su propia organización, sin que la fundación les cree cuentas y contraseñas nuevas."
+      }
+    ]
   }
 ]

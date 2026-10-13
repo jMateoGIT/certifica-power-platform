@@ -7,7 +7,7 @@ Plataforma **gratuita y en español** para preparar las certificaciones de Micro
 
 ## Qué ofrece
 
-- **301 preguntas originales de PL-900**, incluidos 6 casos prácticos, alineadas con el [temario oficial del 24/07/2026](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/pl-900): repartidas según el peso oficial de cada dominio y verificadas con la documentación de Microsoft Learn.
+- **501 preguntas originales de PL-900** (8 casos prácticos) y **450 de PL-300** (7 casos prácticos), alineadas con los temarios oficiales de [PL-900](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/pl-900) y [PL-300](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/pl-300): repartidas según el peso oficial de cada dominio, verificadas con la documentación de Microsoft Learn y sin preguntas duplicadas (`npm run check-duplicates`).
 - **Explicación de cada opción**: por qué es correcta o incorrecta, una idea clave y enlaces a Microsoft Learn.
 - **6 tipos de pregunta** como en el examen: respuesta única, múltiple, Sí/No, ordenar, emparejar y completar frases.
 - **Modo práctica** con filtros por dominio, sub-habilidad, preguntas no vistas, falladas o guardadas.

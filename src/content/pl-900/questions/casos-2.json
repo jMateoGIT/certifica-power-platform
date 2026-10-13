@@ -1,0 +1,485 @@
+[
+  {
+    "id": "pl900-caso-7-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse",
+    "caseId": "caso-7",
+    "difficulty": 2,
+    "prompt": "¿Cómo debes crear la tabla *Visita de campo* para cumplir el requisito 1?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Como tabla estándar con propiedad Organización y una columna de búsqueda a Contacto",
+        "correct": false,
+        "explanation": "La búsqueda vincularía la visita con el socio, pero una tabla estándar no es una actividad: no aparece en la escala de tiempo junto con las llamadas y las citas. Además, las filas de una tabla de la organización no se pueden asignar a cada técnico."
+      },
+      {
+        "id": "b",
+        "text": "Como tabla de tipo Actividad, eligiendo ese tipo en las opciones avanzadas al crearla",
+        "correct": true,
+        "explanation": "Las tablas de actividad están pensadas para acciones con fechas y duración que se abren, completan o cancelan. Solo las puede poseer un usuario o un equipo, comparten las columnas comunes de las actividades (como Asunto y Referente a) y se muestran en la escala de tiempo con el resto de actividades del registro."
+      },
+      {
+        "id": "c",
+        "text": "Como tabla estándar, para convertirla en tabla de actividad cuando la aplicación esté terminada",
+        "correct": false,
+        "explanation": "El tipo Actividad se elige al crear la tabla y no se puede cambiar después de guardarla, así que tendrías que crear otra tabla y migrar los datos."
+      },
+      {
+        "id": "d",
+        "text": "Como tabla elástica, para que admita el volumen de visitas de todas las campañas",
+        "correct": false,
+        "explanation": "Las tablas elásticas están pensadas para volúmenes enormes, como millones de lecturas por hora, y no se comportan como actividades. Unas pocas visitas diarias no lo justifican."
+      }
+    ],
+    "keyPoint": "Registros con fechas y estado que deben verse junto a las llamadas, los correos y las citas en la escala de tiempo → tabla de actividad, un tipo que se elige al crear la tabla.",
+    "references": [
+      {
+        "title": "Tipos de tablas",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/types-of-entities"
+      },
+      {
+        "title": "Configurar el control de escala de tiempo",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/set-up-timeline-control"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-7-002",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "caseId": "caso-7",
+    "difficulty": 2,
+    "prompt": "¿Qué debes agregar a la aplicación de lienzo para mostrar las parcelas como pide el requisito 2?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Una etiqueta que muestre los valores de latitud y longitud de la señal Location",
+        "correct": false,
+        "explanation": "La señal Location solo devuelve la posición del dispositivo. Mostrarla en una etiqueta no sitúa las parcelas en un mapa ni ayuda a planificar el recorrido."
+      },
+      {
+        "id": "b",
+        "text": "Un control Imagen con el plano escaneado de las parcelas de cada técnico",
+        "correct": false,
+        "explanation": "Una imagen es estática: no cambia con las parcelas que toca visitar cada día ni muestra dónde está el técnico."
+      },
+      {
+        "id": "c",
+        "text": "El control Mapa, con la tabla Parcela en Items y sus columnas de latitud y longitud",
+        "correct": true,
+        "explanation": "El control de mapa interactivo traza marcadores a partir de un origen de datos con direcciones o con pares de latitud y longitud, puede mostrar la posición actual del usuario y calcular rutas. Antes, un administrador debe habilitar las características geoespaciales del entorno."
+      },
+      {
+        "id": "d",
+        "text": "El control Entrada de dirección, para que el técnico busque cada parcela",
+        "correct": false,
+        "explanation": "La entrada de dirección sugiere direcciones mientras el usuario escribe y devuelve sus datos; no muestra varias parcelas sobre un mapa ni la posición del técnico."
+      }
+    ],
+    "keyPoint": "Para situar datos en un mapa dentro de una aplicación de lienzo, usa el control Mapa: marcadores desde un origen de datos, posición actual y rutas.",
+    "references": [
+      {
+        "title": "Control de mapa interactivo",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/geospatial-component-map"
+      },
+      {
+        "title": "Agregar controles geoespaciales a aplicaciones de lienzo",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/geospatial-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-7-003",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "caseId": "caso-7",
+    "difficulty": 3,
+    "prompt": "Al probar el flujo del requisito 3, Óscar comprueba que solo se ejecuta con las entradas que registra él mismo. ¿Cómo debe configurar el desencadenador «Cuando se agrega, modifica o elimina una fila» de la tabla Entrada?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ámbito Usuario y, después del desencadenador, una acción Condición que compruebe la calidad",
+        "correct": false,
+        "explanation": "Con el ámbito Usuario el flujo solo vigila las filas de las que Óscar es propietario, que es justo el fallo que ha detectado; además, la condición no evita que el flujo se ejecute con cada entrada suya."
+      },
+      {
+        "id": "b",
+        "text": "Ámbito Unidad de negocio y la columna Calidad en Seleccionar columnas",
+        "correct": false,
+        "explanation": "El ámbito Unidad de negocio solo cubre las filas de los miembros de la unidad de negocio de Óscar, no las de los otros centros. Seleccionar columnas solo se aplica a las modificaciones y no comprueba el valor de la columna."
+      },
+      {
+        "id": "c",
+        "text": "Ámbito Organización y la columna Calidad en Seleccionar columnas",
+        "correct": false,
+        "explanation": "El ámbito es correcto, pero Seleccionar columnas solo filtra las actualizaciones según las columnas incluidas, sin mirar su valor; con las filas nuevas el flujo se ejecutaría para cualquier calidad, con ejecuciones innecesarias."
+      },
+      {
+        "id": "d",
+        "text": "Ámbito Organización y, en Filtrar filas, una expresión que compruebe que la calidad es Destrío",
+        "correct": true,
+        "explanation": "El ámbito Organización hace que el flujo reaccione a las filas de cualquier persona del entorno, sea cual sea su centro, y la expresión de filtro (estilo OData) hace que solo se ejecute cuando la entrada tiene calidad Destrío."
+      }
+    ],
+    "keyPoint": "En el desencadenador de Dataverse, el Ámbito decide de quién son las filas vigiladas (Organización = de todos) y Filtrar filas decide con qué valores se ejecuta.",
+    "references": [
+      {
+        "title": "Desencadenar flujos cuando se agrega, modifica o elimina una fila",
+        "url": "https://learn.microsoft.com/es-es/power-automate/dataverse/create-update-delete-trigger"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-7-004",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-gestion",
+    "caseId": "caso-7",
+    "difficulty": 2,
+    "prompt": "¿Dónde debe revisar Lucía lo que pide el requisito 4?",
+    "options": [
+      {
+        "id": "a",
+        "text": "En el panel Probar el agente, volviendo a enviar cada informe como mensaje de prueba",
+        "correct": false,
+        "explanation": "El panel de prueba muestra el mapa de actividad de las pruebas que haces en ese momento; no recoge las ejecuciones reales que el desencadenador inició antes."
+      },
+      {
+        "id": "b",
+        "text": "En la página Actividad del agente en Copilot Studio, con el mapa de cada actividad",
+        "correct": true,
+        "explanation": "La página Actividad registra cada actividad del agente, también las que inicia un desencadenador autónomo, y su mapa muestra las entradas, las decisiones, las herramientas usadas, el tiempo de cada paso y los errores. Está disponible en agentes con orquestación generativa."
+      },
+      {
+        "id": "c",
+        "text": "En la página Supervisar (*Monitor*) del agente, con las métricas de sesiones y desencadenadores",
+        "correct": false,
+        "explanation": "La supervisión ofrece métricas agregadas, como el número de sesiones o el uso de los desencadenadores, pero no el detalle de lo que decidió el agente en cada ejecución."
+      },
+      {
+        "id": "d",
+        "text": "En el historial de ejecuciones del flujo de Power Automate que implementa el desencadenador",
+        "correct": false,
+        "explanation": "Ese historial indica cuándo se activó el desencadenador y qué carga útil envió al agente, pero no qué decidió el agente después ni qué herramientas usó."
+      }
+    ],
+    "keyPoint": "Para revisar qué hizo un agente en cada ejecución, incluidas las autónomas, usa la página Actividad de Copilot Studio y su mapa de actividad.",
+    "references": [
+      {
+        "title": "Revisar la actividad del agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-review-activity"
+      },
+      {
+        "title": "Información general sobre desencadenadores de eventos",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-triggers-about"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-7-005",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-apps-automate",
+    "caseId": "caso-7",
+    "difficulty": 2,
+    "prompt": "¿Qué dos beneficios puede presentar la gerente para cumplir el requisito 5? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cada visita se registra una sola vez, en la propia parcela, y la oficina la tiene disponible al momento",
+        "correct": true,
+        "explanation": "Es el valor típico de una aplicación para trabajadores de campo: los datos se capturan en origen y en tiempo real, y desaparecen el papel y los errores de transcripción."
+      },
+      {
+        "id": "b",
+        "text": "La aplicación garantiza que los datos no tengan errores, así que ya no hará falta revisar las visitas",
+        "correct": false,
+        "explanation": "La aplicación reduce los errores de transcripción y puede validar datos, pero no garantiza que todo sea correcto; seguirá habiendo que revisar la información."
+      },
+      {
+        "id": "c",
+        "text": "Las visitas quedan documentadas con fotos tomadas en la parcela, de forma más completa que en una libreta",
+        "correct": true,
+        "explanation": "Las aplicaciones de lienzo aprovechan la cámara y la ubicación del dispositivo, así que cada visita queda documentada con datos que en papel se perdían o se anotaban mal."
+      },
+      {
+        "id": "d",
+        "text": "Al ser una solución de poco código, la aplicación no necesitará mantenimiento ni gobierno por parte de nadie",
+        "correct": false,
+        "explanation": "El poco código acelera el desarrollo, pero las aplicaciones siguen necesitando mantenimiento, seguridad y gobierno, por ejemplo con entornos y directivas de datos."
+      },
+      {
+        "id": "e",
+        "text": "Los técnicos podrán usarla sin cuenta de Microsoft 365 ni licencia, porque se ejecuta en la tableta",
+        "correct": false,
+        "explanation": "Las aplicaciones de lienzo exigen iniciar sesión con Microsoft Entra ID y que el usuario tenga la licencia adecuada, aunque se ejecuten en una tableta."
+      }
+    ],
+    "keyPoint": "Valor de Power Apps para el trabajo de campo: datos capturados una sola vez, en origen y al momento, y más completos (fotos, ubicación), sin papel ni transcripciones.",
+    "references": [
+      {
+        "title": "Describir el valor de Microsoft Power Platform (Power Apps para técnicos de campo)",
+        "url": "https://learn.microsoft.com/es-es/training/modules/describe-business-value-microsoft-power-platform-services/3-describe-business-value-microsoft-power-apps-build-applications"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-8-001",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "caseId": "caso-8",
+    "difficulty": 2,
+    "prompt": "Para cumplir el requisito 1, Nerea va a usar un equipo de grupo de Microsoft Entra en Dataverse. Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puede crear en el entorno un equipo vinculado al grupo Coordinadores de voluntariado y asignar el rol de seguridad al equipo, no a cada persona.",
+        "answer": true,
+        "explanation": "Un equipo de grupo de Microsoft Entra se asocia a un grupo de Entra (de seguridad o de Microsoft 365) y recibe roles de seguridad; sus integrantes obtienen esos privilegios sin asignarlos uno a uno."
+      },
+      {
+        "id": "s2",
+        "text": "Cuando agrega al grupo de Entra a una coordinadora nueva con licencia, esta puede acceder al entorno con los privilegios del rol del equipo sin más pasos.",
+        "answer": true,
+        "explanation": "La pertenencia al equipo se deriva dinámicamente de la del grupo de Entra: basta con agregar a la persona al grupo y que tenga licencia para que acceda de inmediato con el rol del equipo."
+      },
+      {
+        "id": "s3",
+        "text": "Si quita a un coordinador del grupo de Entra, este conserva sus privilegios hasta que Nerea lo quite también a mano del equipo de Dataverse.",
+        "answer": false,
+        "explanation": "La pertenencia se sincroniza: al quitarlo del grupo de Entra, el usuario sale del equipo y pierde los derechos de acceso la próxima vez que entra en el entorno, sin pasos manuales en Dataverse."
+      },
+      {
+        "id": "s4",
+        "text": "Un equipo de grupo de Microsoft Entra no puede ser propietario de filas; las filas siempre pertenecen a usuarios concretos.",
+        "answer": false,
+        "explanation": "Igual que un equipo de propietario, un equipo de grupo de Microsoft Entra puede poseer filas; basta con asignarle la fila. Así el trabajo no queda ligado a un coordinador que puede marcharse."
+      }
+    ],
+    "keyPoint": "Equipo de grupo de Microsoft Entra: el rol se asigna al equipo y el acceso se gana o se pierde con la pertenencia al grupo de Entra.",
+    "references": [
+      {
+        "title": "Administrar equipos de grupos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/manage-group-teams"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-8-002",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "caseId": "caso-8",
+    "difficulty": 3,
+    "prompt": "¿Qué debe hacer Nerea para cumplir el requisito 2?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crear un único entorno de espacio aislado (*sandbox*) y pedir a todos los voluntarios del área digital que trabajen en él",
+        "correct": false,
+        "explanation": "Un espacio aislado separa el trabajo de producción, pero sería un entorno compartido: el trabajo de cada voluntario seguiría mezclado con el de los demás, que es el problema actual."
+      },
+      {
+        "id": "b",
+        "text": "Aplicar al entorno predeterminado una directiva de datos que bloquee los conectores no empresariales",
+        "correct": false,
+        "explanation": "Una directiva de datos controla qué conectores se pueden combinar, pero no saca a nadie del entorno predeterminado ni da a cada creador un espacio propio."
+      },
+      {
+        "id": "c",
+        "text": "Pedir a cada voluntario que cree un entorno de prueba (*trial*) cada vez que necesite probar algo",
+        "correct": false,
+        "explanation": "Los entornos de prueba caducan al cabo de un tiempo y obligarían a cada voluntario a crearlos a mano; no es una solución automática ni duradera."
+      },
+      {
+        "id": "d",
+        "text": "Activar el enrutamiento de entornos (*environment routing*) para que dirija a esos creadores a sus propios entornos de desarrollador",
+        "correct": true,
+        "explanation": "El enrutamiento de entornos, una función de gobernanza que se activa en el centro de administración de Power Platform, lleva automáticamente a cada creador a su propio entorno de desarrollador con Dataverse, que es un entorno administrado, en lugar del predeterminado."
+      }
+    ],
+    "keyPoint": "Para que cada creador trabaje en su propio entorno con Dataverse sin tocar el predeterminado = enrutamiento de entornos a entornos de desarrollador.",
+    "references": [
+      {
+        "title": "Enrutamiento del entorno",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/default-environment-routing"
+      },
+      {
+        "title": "Información general sobre entornos de Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/environments-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-8-003",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escenarios",
+    "caseId": "caso-8",
+    "difficulty": 2,
+    "prompt": "Completa el diseño del flujo de nube que cumple el requisito 3.",
+    "template": "En la acción «Iniciar y esperar una aprobación» eliges el tipo {{b1}} y defines las opciones Conceder, Conceder parcialmente y Denegar; después agregas {{b2}} que evalúa {{b3}} para enviar el correo que corresponde.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "Aprobar/Rechazar: todos deben aprobar" },
+          { "id": "o2", "text": "Respuestas personalizadas: esperar una respuesta" },
+          { "id": "o3", "text": "Aprobar/Rechazar: primero en responder" }
+        ],
+        "correctId": "o2",
+        "explanation": "Los tipos Aprobar/Rechazar solo ofrecen esas dos respuestas. Para que la directora elija entre tres opciones propias necesitas respuestas personalizadas; como decide una sola persona, basta con esperar una respuesta."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "un bucle Aplicar a cada uno" },
+          { "id": "o2", "text": "una acción Retraso (*Delay*)" },
+          { "id": "o3", "text": "un control Cambiar (*Switch*) con un caso por respuesta" }
+        ],
+        "correctId": "o3",
+        "explanation": "Un control Cambiar ejecuta un camino distinto según el valor que evalúa, con un caso para cada una de las tres respuestas. Aplicar a cada uno repite pasos sobre una lista, y Retraso solo pausa el flujo."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "el resultado (*Outcome*) de la aprobación" },
+          { "id": "o2", "text": "la fecha de creación de la solicitud" },
+          { "id": "o3", "text": "el correo de la directora que responde" }
+        ],
+        "correctId": "o1",
+        "explanation": "La salida Resultado de la aprobación contiene la opción que eligió la directora (Conceder, Conceder parcialmente o Denegar), que es lo que decide qué correo recibe la asociación."
+      }
+    ],
+    "keyPoint": "Más de dos respuestas posibles = aprobación con respuestas personalizadas; luego ramificas el flujo según el resultado.",
+    "references": [
+      {
+        "title": "Creación de opciones de respuesta personalizadas para flujos de aprobación",
+        "url": "https://learn.microsoft.com/es-es/power-automate/create-approval-response-options"
+      },
+      {
+        "title": "Comience con las aprobaciones",
+        "url": "https://learn.microsoft.com/es-es/power-automate/get-started-approvals"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-8-004",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-temas",
+    "caseId": "caso-8",
+    "difficulty": 2,
+    "prompt": "¿Qué dos acciones debes realizar para cumplir el requisito 4? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agregar el inglés, el francés y el ucraniano como idiomas secundarios en la página Idiomas de la configuración del agente",
+        "correct": true,
+        "explanation": "Un agente multilingüe tiene un idioma principal y los idiomas secundarios que agregas en su configuración; al iniciar la sesión, el agente elige el idioma que coincide con el del navegador del usuario."
+      },
+      {
+        "id": "b",
+        "text": "Crear un agente distinto para cada idioma y publicar los cuatro en la web de la fundación",
+        "correct": false,
+        "explanation": "No hace falta duplicar el agente: un único agente multilingüe atiende en varios idiomas y evita mantener cuatro copias de los mismos temas y conocimiento."
+      },
+      {
+        "id": "c",
+        "text": "Descargar el archivo de localización de cada idioma secundario, traducir los mensajes de los temas y volver a cargarlo",
+        "correct": true,
+        "explanation": "Al agregar idiomas secundarios, tú eres responsable de traducir los mensajes de los temas que creas: descargas el archivo de localización (JSON o ResX), traduces sus cadenas y lo cargas de nuevo."
+      },
+      {
+        "id": "d",
+        "text": "Abrir cada tema en el lienzo de creación y redactar sus mensajes directamente en inglés, francés y ucraniano",
+        "correct": false,
+        "explanation": "En Copilot Studio todos los temas se editan en el idioma principal del agente; las versiones en los idiomas secundarios se gestionan con los archivos de localización."
+      },
+      {
+        "id": "e",
+        "text": "Cambiar el idioma principal del agente al inglés, porque es el idioma que más familias comparten",
+        "correct": false,
+        "explanation": "El idioma principal no se puede cambiar después de crear el agente (solo su región) y tampoco es necesario: el agente mantiene el español como principal y añade los demás como secundarios."
+      }
+    ],
+    "keyPoint": "Agente multilingüe: idiomas secundarios en la configuración y traducción de los temas mediante archivos de localización; se crea siempre en el idioma principal.",
+    "references": [
+      {
+        "title": "Configurar y crear agentes multilingües",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/multilingual"
+      },
+      {
+        "title": "Compatibilidad con idiomas",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-language-support"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-8-005",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "caseId": "caso-8",
+    "difficulty": 2,
+    "prompt": "Para cumplir el requisito 5, Nerea va a compartir la aplicación *Reparto* con usuarios invitados. Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Debe invitar a esos voluntarios como usuarios invitados en el Microsoft Entra ID de la fundación y después compartir con ellos la aplicación.",
+        "answer": true,
+        "explanation": "Las aplicaciones de lienzo se pueden compartir con usuarios invitados de Microsoft Entra (B2B): se les invita al inquilino de la fundación, donde está la app, y siguen iniciando sesión con la cuenta de su propia organización."
+      },
+      {
+        "id": "s2",
+        "text": "Como Reparto usa Dataverse, cada voluntario invitado necesita una licencia con derechos de uso de Power Apps.",
+        "answer": true,
+        "explanation": "Para usar una aplicación que se conecta a Dataverse, el invitado necesita una licencia con derechos de uso de Power Apps adecuados para la app; si no la tiene en su propia organización, se la puede asignar la fundación."
+      },
+      {
+        "id": "s3",
+        "text": "Las aplicaciones de lienzo solo se pueden compartir con usuarios de la propia organización, así que habría que rehacer Reparto como sitio de Power Pages.",
+        "answer": false,
+        "explanation": "Las aplicaciones de lienzo admiten el acceso de invitados mediante Microsoft Entra B2B. Power Pages es la opción para sitios web con usuarios externos, incluso anónimos, pero aquí no hace falta rehacer la app."
+      },
+      {
+        "id": "s4",
+        "text": "Los voluntarios invitados podrán abrir la aplicación sin iniciar sesión, como en un sitio web público.",
+        "answer": false,
+        "explanation": "Las aplicaciones de lienzo siempre exigen autenticación con Microsoft Entra ID; el acceso anónimo solo es posible en sitios como los de Power Pages."
+      }
+    ],
+    "keyPoint": "Una aplicación de lienzo puede compartirse con usuarios invitados de Microsoft Entra (B2B), que inician sesión con su propia cuenta y necesitan la licencia adecuada; el acceso anónimo es propio de Power Pages.",
+    "references": [
+      {
+        "title": "Compartir una aplicación de lienzo con usuarios invitados",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/share-app-guests"
+      }
+    ]
+  }
+]

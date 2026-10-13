@@ -1,0 +1,1568 @@
+[
+  {
+    "id": "pl300-d2-dax-101",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 3,
+    "scenario": "Un objeto visual de tabla muestra Productos[Categoría] y la medida % seleccionado. Una segmentación (*slicer*) de Categoría tiene seleccionadas Accesorios, Bicicletas y Componentes; Ropa no está seleccionada. [Ventas] es SUM ( Ventas[Importe] ).",
+    "code": {
+      "language": "dax",
+      "content": "% seleccionado =\nDIVIDE (\n    [Ventas],\n    CALCULATE ( [Ventas], ALLSELECTED ( Productos[Categoría] ) )\n)"
+    },
+    "table": {
+      "caption": "Ventas por categoría (sin filtros)",
+      "headers": [
+        "Categoría",
+        "Ventas"
+      ],
+      "rows": [
+        [
+          "Accesorios",
+          "200"
+        ],
+        [
+          "Bicicletas",
+          "500"
+        ],
+        [
+          "Componentes",
+          "300"
+        ],
+        [
+          "Ropa",
+          "1.000"
+        ]
+      ]
+    },
+    "prompt": "¿Qué valor muestra % seleccionado en la fila Componentes?",
+    "options": [
+      {
+        "id": "a",
+        "text": "15 %",
+        "correct": false,
+        "explanation": "Sería el resultado con ALL o REMOVEFILTERS: quitan también el filtro de la segmentación y el denominador pasa a ser el total de las cuatro categorías (300 / 2.000)."
+      },
+      {
+        "id": "b",
+        "text": "100 %",
+        "correct": false,
+        "explanation": "Sería el resultado si el denominador conservara el filtro de la fila; ALLSELECTED quita precisamente el filtro que aplica la fila del objeto visual sobre Categoría."
+      },
+      {
+        "id": "c",
+        "text": "30 %",
+        "correct": true,
+        "explanation": "ALLSELECTED quita el filtro de la fila del objeto visual pero conserva el de la segmentación: el denominador es 200 + 500 + 300 = 1.000, y 300 / 1.000 = 30 %."
+      },
+      {
+        "id": "d",
+        "text": "50 %",
+        "correct": false,
+        "explanation": "50 % es lo que muestra la fila Bicicletas (500 / 1.000); en la fila Componentes el numerador es 300."
+      }
+    ],
+    "keyPoint": "ALL ignora todos los filtros de la columna; ALLSELECTED ignora los del objeto visual pero respeta las segmentaciones y filtros externos (total visible).",
+    "references": [
+      {
+        "title": "Función ALLSELECTED",
+        "url": "https://learn.microsoft.com/es-es/dax/allselected-function-dax"
+      },
+      {
+        "title": "Función ALL",
+        "url": "https://learn.microsoft.com/es-es/dax/all-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-102",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "scenario": "Una matriz muestra Productos[Categoría] y Productos[Subcategoría] en filas. La página tiene una segmentación de Fecha[Año] con 2026 seleccionado. Las ventas de Bicicletas de todos los años suman 2.500. Fecha y Productos son dimensiones de Ventas y no están relacionadas entre sí.",
+    "code": {
+      "language": "dax",
+      "content": "Ventas de la categoría =\nCALCULATE (\n    [Ventas],\n    ALLEXCEPT ( Productos, Productos[Categoría] )\n)"
+    },
+    "table": {
+      "caption": "Ventas de 2026",
+      "headers": [
+        "Categoría",
+        "Subcategoría",
+        "Ventas"
+      ],
+      "rows": [
+        [
+          "Bicicletas",
+          "Montaña",
+          "400"
+        ],
+        [
+          "Bicicletas",
+          "Carretera",
+          "600"
+        ],
+        [
+          "Accesorios",
+          "Cascos",
+          "150"
+        ],
+        [
+          "Accesorios",
+          "Luces",
+          "50"
+        ]
+      ]
+    },
+    "prompt": "¿Qué valor muestra la medida en la fila Bicicletas > Montaña?",
+    "options": [
+      {
+        "id": "a",
+        "text": "400",
+        "correct": false,
+        "explanation": "Serían las ventas de la propia subcategoría; ALLEXCEPT quita el filtro de Subcategoría que aplica la fila."
+      },
+      {
+        "id": "b",
+        "text": "1.200",
+        "correct": false,
+        "explanation": "Sería el total de 2026 de todas las categorías; ALLEXCEPT conserva el filtro de Categoría, así que el total se limita a Bicicletas."
+      },
+      {
+        "id": "c",
+        "text": "2.500",
+        "correct": false,
+        "explanation": "ALLEXCEPT ( Productos, … ) solo quita filtros de la tabla Productos; el filtro de Fecha[Año] = 2026 sigue aplicándose."
+      },
+      {
+        "id": "d",
+        "text": "1.000",
+        "correct": true,
+        "explanation": "Se quitan los filtros de Productos salvo Categoría y se mantiene el filtro de año: ventas de Bicicletas en 2026 = 400 + 600 = 1.000."
+      }
+    ],
+    "keyPoint": "ALLEXCEPT ( tabla, columnas ) quita los filtros de esa tabla salvo los de las columnas indicadas; los filtros de otras tablas no se tocan.",
+    "references": [
+      {
+        "title": "Función ALLEXCEPT",
+        "url": "https://learn.microsoft.com/es-es/dax/allexcept-function-dax"
+      },
+      {
+        "title": "Función CALCULATE",
+        "url": "https://learn.microsoft.com/es-es/dax/calculate-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-103",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "scenario": "Un objeto visual de tabla muestra Productos[Producto], la medida [Margen %] y la medida Tramo margen del anexo, que debe clasificar cada producto como «Alto» (30 % o más), «Medio» (entre el 10 % y el 30 %) o «Bajo».",
+    "code": {
+      "language": "dax",
+      "content": "Tramo margen =\nSWITCH (\n    TRUE (),\n    [Margen %] >= 0.1, \"Medio\",\n    [Margen %] >= 0.3, \"Alto\",\n    \"Bajo\"\n)"
+    },
+    "table": {
+      "caption": "Margen por producto",
+      "headers": [
+        "Producto",
+        "Margen %"
+      ],
+      "rows": [
+        [
+          "Sillín",
+          "35 %"
+        ],
+        [
+          "Pedal",
+          "18 %"
+        ],
+        [
+          "Cadena",
+          "6 %"
+        ]
+      ]
+    },
+    "prompt": "Indica si cada afirmación sobre la medida Tramo margen es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "En la fila Sillín, la medida muestra «Alto».",
+        "answer": false,
+        "explanation": "SWITCH devuelve el resultado de la primera condición que se cumple y no evalúa las siguientes: 0,35 >= 0,1 ya es verdadero, así que muestra «Medio»."
+      },
+      {
+        "id": "s2",
+        "text": "En la fila Cadena, la medida muestra «Bajo».",
+        "answer": true,
+        "explanation": "0,06 no cumple ninguna de las dos condiciones, así que SWITCH devuelve el último argumento, el valor alternativo (else)."
+      },
+      {
+        "id": "s3",
+        "text": "Para que Sillín muestre «Alto», basta con colocar la condición [Margen %] >= 0.3 antes que [Margen %] >= 0.1.",
+        "answer": true,
+        "explanation": "El orden de las condiciones importa: hay que evaluar primero la más restrictiva. Con ese cambio, Sillín cumple la primera condición y Pedal sigue en «Medio»."
+      },
+      {
+        "id": "s4",
+        "text": "Si quitas el último argumento («Bajo»), la fila Cadena muestra un error.",
+        "answer": false,
+        "explanation": "Si ninguna condición se cumple y no hay valor alternativo, SWITCH devuelve BLANK, no un error."
+      }
+    ],
+    "keyPoint": "SWITCH ( TRUE (), condición1, resultado1, … , alternativo ) devuelve el resultado de la primera condición verdadera: escribe primero las más restrictivas.",
+    "references": [
+      {
+        "title": "Función SWITCH",
+        "url": "https://learn.microsoft.com/es-es/dax/switch-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-104",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 3,
+    "scenario": "Un compañero reescribe la medida % categoría para usar una variable. Una matriz muestra Productos[Categoría] en filas y las ventas son las de la tabla. Antes del cambio, la fila Bicicletas mostraba 50 %.",
+    "code": {
+      "language": "dax",
+      "content": "% categoría =\nVAR VentasActuales = [Ventas]\nRETURN\n    DIVIDE (\n        VentasActuales,\n        CALCULATE ( VentasActuales, REMOVEFILTERS ( Productos[Categoría] ) )\n    )"
+    },
+    "table": {
+      "caption": "Ventas por categoría",
+      "headers": [
+        "Categoría",
+        "Ventas"
+      ],
+      "rows": [
+        [
+          "Accesorios",
+          "200"
+        ],
+        [
+          "Bicicletas",
+          "500"
+        ],
+        [
+          "Componentes",
+          "300"
+        ]
+      ]
+    },
+    "prompt": "¿Qué valor muestra ahora la medida en la fila Bicicletas?",
+    "options": [
+      {
+        "id": "a",
+        "text": "50 %",
+        "correct": false,
+        "explanation": "Sería correcto si el denominador volviera a evaluar [Ventas] sin el filtro de categoría, por ejemplo CALCULATE ( [Ventas], REMOVEFILTERS ( Productos[Categoría] ) )."
+      },
+      {
+        "id": "b",
+        "text": "100 %",
+        "correct": true,
+        "explanation": "La variable se evalúa una sola vez, en el contexto de la fila (500). CALCULATE no puede cambiar un valor ya calculado, así que el cociente es 500 / 500."
+      },
+      {
+        "id": "c",
+        "text": "(en blanco)",
+        "correct": false,
+        "explanation": "DIVIDE solo devuelve BLANK si el denominador es 0 o BLANK; aquí el denominador vale 500."
+      },
+      {
+        "id": "d",
+        "text": "Un error de sintaxis",
+        "correct": false,
+        "explanation": "La fórmula es válida: CALCULATE admite cualquier expresión escalar, también una variable, aunque los filtros no le afecten."
+      }
+    ],
+    "keyPoint": "Una variable se calcula una vez en el contexto donde se define; los filtros de un CALCULATE posterior no la recalculan.",
+    "references": [
+      {
+        "title": "Palabra clave VAR",
+        "url": "https://learn.microsoft.com/es-es/dax/var-dax"
+      },
+      {
+        "title": "Usar variables para mejorar las fórmulas DAX",
+        "url": "https://learn.microsoft.com/es-es/dax/best-practices/dax-variables"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-105",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "scenario": "Un objeto visual de tabla muestra Productos[Producto], [Ventas] y una medida de clasificación. Las ventas son las del anexo.",
+    "code": {
+      "language": "dax",
+      "content": "Ranking ventas =\nRANKX (\n    <1>,\n    [Ventas]\n)"
+    },
+    "table": {
+      "caption": "Ventas por producto",
+      "headers": [
+        "Producto",
+        "Ventas"
+      ],
+      "rows": [
+        [
+          "Sillín",
+          "500"
+        ],
+        [
+          "Pedal",
+          "400"
+        ],
+        [
+          "Cadena",
+          "400"
+        ],
+        [
+          "Freno",
+          "300"
+        ]
+      ]
+    },
+    "prompt": "Completa la frase.",
+    "template": "Para que no aparezca 1 en todas las filas, <1> debe ser {{b1}}. Con los datos del anexo, Freno obtiene el puesto {{b2}}. Para que Freno obtenga el puesto 3, añades el argumento de empates (*ties*) con el valor {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Productos"
+          },
+          {
+            "id": "o2",
+            "text": "VALUES ( Productos[Producto] )"
+          },
+          {
+            "id": "o3",
+            "text": "ALL ( Productos[Producto] )"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "ALL devuelve todos los productos aunque la fila filtre uno, y RANKX compara las ventas de la fila con las de todos. Con Productos o VALUES, la tabla solo contiene el producto de la fila y siempre queda primero."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "3"
+          },
+          {
+            "id": "o2",
+            "text": "4"
+          },
+          {
+            "id": "o3",
+            "text": "2"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "El valor predeterminado de ties es Skip: Pedal y Cadena empatan en el puesto 2 y el siguiente salta al 2 + 2 = 4."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "SKIP"
+          },
+          {
+            "id": "o2",
+            "text": "ASC"
+          },
+          {
+            "id": "o3",
+            "text": "DENSE"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "Con Dense, después de un empate se usa el siguiente puesto consecutivo (3). ASC cambia el orden de la clasificación y SKIP es el comportamiento actual."
+      }
+    ],
+    "keyPoint": "RANKX necesita una tabla con todos los elementos (ALL) para comparar; los empates usan Skip por defecto y Dense para no saltar puestos.",
+    "references": [
+      {
+        "title": "Función RANKX",
+        "url": "https://learn.microsoft.com/es-es/dax/rankx-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-106",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "prompt": "Tienes la medida Margen % = DIVIDE ( [Beneficio], [Ventas] ). Indica si cada afirmación es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Si [Ventas] devuelve BLANK para un producto, Margen % devuelve un error.",
+        "answer": false,
+        "explanation": "DIVIDE controla la división por cero: si el denominador es 0 o BLANK y no indicas resultado alternativo, devuelve BLANK."
+      },
+      {
+        "id": "s2",
+        "text": "Con DIVIDE ( [Beneficio], [Ventas], 0 ), los productos sin ventas muestran 0 en lugar de quedar en blanco, por lo que pueden aparecer como filas en una tabla.",
+        "answer": true,
+        "explanation": "El tercer argumento es el resultado alternativo. Como ya no es BLANK, el objeto visual muestra esas filas, lo que puede no interesarte."
+      },
+      {
+        "id": "s3",
+        "text": "Para dividir entre una constante distinta de cero, como 12, se recomienda el operador / en lugar de DIVIDE.",
+        "answer": true,
+        "explanation": "Con un denominador constante la división nunca falla, así que el operador / evita comprobaciones innecesarias y rinde mejor."
+      },
+      {
+        "id": "s4",
+        "text": "DIVIDE es más lento que escribir IF ( OR ( ISBLANK ( [Ventas] ), [Ventas] = 0 ), BLANK (), [Beneficio] / [Ventas] ).",
+        "answer": false,
+        "explanation": "Es al revés: DIVIDE está más optimizado para comprobar el denominador que la combinación de IF, OR e ISBLANK, y es más conciso."
+      }
+    ],
+    "keyPoint": "Usa DIVIDE cuando el denominador pueda ser 0 o BLANK (devuelve BLANK o el resultado alternativo) y / cuando sea una constante.",
+    "references": [
+      {
+        "title": "Función DIVIDE",
+        "url": "https://learn.microsoft.com/es-es/dax/divide-function-dax"
+      },
+      {
+        "title": "Función DIVIDE frente al operador de división (/)",
+        "url": "https://learn.microsoft.com/es-es/dax/best-practices/dax-divide-function-operator"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-107",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "scenario": "Quieres un título dinámico que muestre la categoría elegida en una segmentación de Productos[Categoría], o el texto «Varias categorías» cuando no haya exactamente una seleccionada (ninguna o más de una).",
+    "prompt": "¿Qué dos expresiones de medida cumplen el requisito? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "SELECTEDVALUE ( Productos[Categoría], \"Varias categorías\" )",
+        "correct": true,
+        "explanation": "Devuelve el valor si el contexto filtra un único valor distinto y, si no, el resultado alternativo."
+      },
+      {
+        "id": "b",
+        "text": "MAX ( Productos[Categoría] )",
+        "correct": false,
+        "explanation": "Con varias categorías visibles devuelve la última en orden alfabético, no el texto «Varias categorías»."
+      },
+      {
+        "id": "c",
+        "text": "IF ( HASONEVALUE ( Productos[Categoría] ), VALUES ( Productos[Categoría] ), \"Varias categorías\" )",
+        "correct": true,
+        "explanation": "Es la expresión equivalente a SELECTEDVALUE: VALUES solo se evalúa cuando hay un único valor, así que devuelve un escalar."
+      },
+      {
+        "id": "d",
+        "text": "IF ( ISFILTERED ( Productos[Categoría] ), VALUES ( Productos[Categoría] ), \"Varias categorías\" )",
+        "correct": false,
+        "explanation": "Si se seleccionan dos categorías, la columna está filtrada pero VALUES devuelve dos filas y la medida produce un error."
+      },
+      {
+        "id": "e",
+        "text": "CONCATENATEX ( VALUES ( Productos[Categoría] ), Productos[Categoría], \", \" )",
+        "correct": false,
+        "explanation": "Lista todas las categorías visibles separadas por comas; nunca devuelve «Varias categorías»."
+      }
+    ],
+    "keyPoint": "SELECTEDVALUE ( col, alternativo ) equivale a IF ( HASONEVALUE ( col ), VALUES ( col ), alternativo ).",
+    "references": [
+      {
+        "title": "Función SELECTEDVALUE",
+        "url": "https://learn.microsoft.com/es-es/dax/selectedvalue-function-dax"
+      },
+      {
+        "title": "Función HASONEVALUE",
+        "url": "https://learn.microsoft.com/es-es/dax/hasonevalue-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-108",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 3,
+    "scenario": "Una matriz muestra Productos[Categoría] y Productos[Subcategoría] en filas, y la página tiene una segmentación de Subcategoría. La medida del anexo solo debe mostrar valor en las filas de subcategoría. Sin embargo, la categoría Ropa, que solo tiene la subcategoría Maillots, muestra 100 % en su fila de categoría.",
+    "code": {
+      "language": "dax",
+      "content": "% sobre categoría =\nIF (\n    HASONEVALUE ( Productos[Subcategoría] ),\n    DIVIDE (\n        [Ventas],\n        CALCULATE ( [Ventas], REMOVEFILTERS ( Productos[Subcategoría] ) )\n    )\n)"
+    },
+    "prompt": "¿Qué función debes usar en lugar de HASONEVALUE?",
+    "options": [
+      {
+        "id": "a",
+        "text": "ISFILTERED",
+        "correct": false,
+        "explanation": "En cuanto la segmentación tiene alguna subcategoría seleccionada, filtra Subcategoría directamente, así que ISFILTERED también devuelve TRUE en las filas de categoría y en el total."
+      },
+      {
+        "id": "b",
+        "text": "ISCROSSFILTERED",
+        "correct": false,
+        "explanation": "En una fila de categoría, Subcategoría está filtrada de forma cruzada por Categoría (misma tabla), así que también devolvería TRUE."
+      },
+      {
+        "id": "c",
+        "text": "ISINSCOPE",
+        "correct": true,
+        "explanation": "ISINSCOPE ( Productos[Subcategoría] ) es TRUE solo cuando la subcategoría es el nivel actual de la jerarquía, sin importar cuántos valores haya o qué filtros externos existan."
+      },
+      {
+        "id": "d",
+        "text": "SELECTEDVALUE",
+        "correct": false,
+        "explanation": "Devuelve el valor de la subcategoría, no un valor lógico; además, en Ropa también encontraría un único valor."
+      }
+    ],
+    "keyPoint": "Para saber en qué nivel de una jerarquía estás (fila de detalle, subtotal o total), usa ISINSCOPE, no HASONEVALUE ni ISFILTERED.",
+    "references": [
+      {
+        "title": "Función ISINSCOPE",
+        "url": "https://learn.microsoft.com/es-es/dax/isinscope-function-dax"
+      },
+      {
+        "title": "Función ISFILTERED",
+        "url": "https://learn.microsoft.com/es-es/dax/isfiltered-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-109",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "scenario": "La tabla Presupuesto (Categoría, Mes, Importe) se carga a nivel de categoría. No está relacionada con Productos y el equipo no quiere añadir una relación varios a varios. Un objeto visual agrupa por Productos[Categoría] y debe mostrar el presupuesto de cada categoría.",
+    "prompt": "¿Qué expresión debes usar en la medida Presupuesto?",
+    "options": [
+      {
+        "id": "a",
+        "text": "CALCULATE ( SUM ( Presupuesto[Importe] ), USERELATIONSHIP ( Productos[Categoría], Presupuesto[Categoría] ) )",
+        "correct": false,
+        "explanation": "USERELATIONSHIP solo activa una relación que ya existe en el modelo como inactiva; aquí no hay ninguna."
+      },
+      {
+        "id": "b",
+        "text": "CALCULATE ( SUM ( Presupuesto[Importe] ), CROSSFILTER ( Productos[Categoría], Presupuesto[Categoría], BOTH ) )",
+        "correct": false,
+        "explanation": "CROSSFILTER cambia la dirección de una relación existente; sin relación no hay nada que modificar."
+      },
+      {
+        "id": "c",
+        "text": "CALCULATE ( SUM ( Presupuesto[Importe] ), ALL ( Productos[Categoría] ) )",
+        "correct": false,
+        "explanation": "Quita el filtro de categoría de Productos, pero ese filtro nunca llega a Presupuesto: todas las filas mostrarían el presupuesto total."
+      },
+      {
+        "id": "d",
+        "text": "CALCULATE ( SUM ( Presupuesto[Importe] ), TREATAS ( VALUES ( Productos[Categoría] ), Presupuesto[Categoría] ) )",
+        "correct": true,
+        "explanation": "TREATAS aplica las categorías visibles de Productos como filtro sobre Presupuesto[Categoría]: crea una relación virtual sin tocar el modelo."
+      }
+    ],
+    "keyPoint": "TREATAS aplica los valores de una tabla como filtro sobre columnas de una tabla no relacionada (relación virtual).",
+    "references": [
+      {
+        "title": "Función TREATAS",
+        "url": "https://learn.microsoft.com/es-es/dax/treatas-function-dax"
+      },
+      {
+        "title": "Función USERELATIONSHIP",
+        "url": "https://learn.microsoft.com/es-es/dax/userelationship-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-110",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "scenario": "En la tabla Ventas creas la columna calculada del anexo. Un autor arrastra Margen % a un objeto visual de tabla agrupado por Categoría, y Power BI aplica el resumen predeterminado Suma. El anexo muestra las líneas de la categoría Bicicletas.",
+    "code": {
+      "language": "dax",
+      "content": "Margen % = DIVIDE ( Ventas[Margen], Ventas[Importe] )"
+    },
+    "table": {
+      "caption": "Ventas de Bicicletas",
+      "headers": [
+        "Línea",
+        "Importe",
+        "Margen",
+        "Margen % (columna)"
+      ],
+      "rows": [
+        [
+          "1",
+          "100",
+          "20",
+          "20 %"
+        ],
+        [
+          "2",
+          "300",
+          "30",
+          "10 %"
+        ],
+        [
+          "3",
+          "100",
+          "30",
+          "30 %"
+        ]
+      ]
+    },
+    "prompt": "¿Qué valor muestra la fila Bicicletas?",
+    "options": [
+      {
+        "id": "a",
+        "text": "16 %",
+        "correct": false,
+        "explanation": "Es el margen correcto (80 / 500), el que daría una medida DIVIDE ( SUM ( Ventas[Margen] ), SUM ( Ventas[Importe] ) ), que divide después de agregar."
+      },
+      {
+        "id": "b",
+        "text": "20 %",
+        "correct": false,
+        "explanation": "Sería el promedio de la columna (60 % / 3); tampoco es correcto, porque no pondera por el importe de cada línea."
+      },
+      {
+        "id": "c",
+        "text": "60 %",
+        "correct": true,
+        "explanation": "La columna guarda un porcentaje por línea y el objeto visual los suma: 20 % + 10 % + 30 % = 60 %. Los cocientes deben calcularse con una medida."
+      },
+      {
+        "id": "d",
+        "text": "80",
+        "correct": false,
+        "explanation": "80 es la suma del margen en euros; el objeto visual suma la columna Margen %, no la columna Margen."
+      }
+    ],
+    "keyPoint": "Los cocientes (márgenes, porcentajes) no son aditivos: calcúlalos con una medida que divida totales, no con una columna calculada que luego se suma.",
+    "references": [
+      {
+        "title": "Uso de columnas calculadas en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-calculated-columns"
+      },
+      {
+        "title": "Medidas en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-measures"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-111",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "scenario": "Compras quiere seguir la tendencia con un total móvil de tres meses. La tabla Fecha, marcada como tabla de fechas, tiene una fila por día, y la matriz muestra Fecha[Año] y Fecha[Mes] en filas.",
+    "code": {
+      "language": "dax",
+      "content": "Ventas 3 meses =\nCALCULATE (\n    [Ventas],\n    DATESINPERIOD ( 'Fecha'[Fecha], MAX ( 'Fecha'[Fecha] ), -3, MONTH )\n)"
+    },
+    "table": {
+      "caption": "Ventas de cada mes",
+      "headers": [
+        "Mes",
+        "Ventas"
+      ],
+      "rows": [
+        [
+          "Diciembre 2025",
+          "90"
+        ],
+        [
+          "Enero 2026",
+          "100"
+        ],
+        [
+          "Febrero 2026",
+          "120"
+        ],
+        [
+          "Marzo 2026",
+          "80"
+        ],
+        [
+          "Abril 2026",
+          "150"
+        ]
+      ]
+    },
+    "prompt": "¿Qué devuelve la medida para abril de 2026?",
+    "options": [
+      {
+        "id": "a",
+        "text": "350",
+        "correct": true,
+        "explanation": "MAX devuelve el 30/04/2026 y DATESINPERIOD devuelve las fechas del 01/02/2026 al 30/04/2026: 120 + 80 + 150 = 350."
+      },
+      {
+        "id": "b",
+        "text": "450",
+        "correct": false,
+        "explanation": "Incluiría enero; el intervalo de tres meses que termina el 30/04/2026 empieza el 01/02/2026."
+      },
+      {
+        "id": "c",
+        "text": "230",
+        "correct": false,
+        "explanation": "Solo suma marzo y abril; DATESINPERIOD con -3 y MONTH abarca tres meses completos, incluido el de la fila."
+      },
+      {
+        "id": "d",
+        "text": "150",
+        "correct": false,
+        "explanation": "Son las ventas de abril; la medida sustituye el filtro del mes por un intervalo de tres meses."
+      }
+    ],
+    "keyPoint": "DATESINPERIOD ( fechas, MAX ( fechas ), -N, MONTH ) devuelve los N meses que terminan en la última fecha del contexto: base de los totales móviles.",
+    "references": [
+      {
+        "title": "Función DATESINPERIOD",
+        "url": "https://learn.microsoft.com/es-es/dax/datesinperiod-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-112",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 3,
+    "scenario": "Las ventas empezaron en noviembre de 2025. Dirección quiere ver en una matriz por mes el total acumulado desde el primer día de actividad, sin que vuelva a cero al empezar cada año. Creas la medida del anexo.",
+    "code": {
+      "language": "dax",
+      "content": "Ventas acumuladas =\nCALCULATE (\n    [Ventas],\n    FILTER (\n        ALL ( 'Fecha' ),\n        'Fecha'[Fecha] <= MAX ( 'Fecha'[Fecha] )\n    )\n)"
+    },
+    "table": {
+      "caption": "Ventas por mes",
+      "headers": [
+        "Mes",
+        "Ventas"
+      ],
+      "rows": [
+        [
+          "Noviembre 2025",
+          "90"
+        ],
+        [
+          "Diciembre 2025",
+          "80"
+        ],
+        [
+          "Enero 2026",
+          "100"
+        ],
+        [
+          "Febrero 2026",
+          "120"
+        ],
+        [
+          "Marzo 2026",
+          "50"
+        ]
+      ]
+    },
+    "prompt": "¿Qué valor muestra Ventas acumuladas en la fila Febrero 2026?",
+    "options": [
+      {
+        "id": "a",
+        "text": "390",
+        "correct": true,
+        "explanation": "ALL quita los filtros de la tabla Fecha y la condición conserva las fechas hasta MAX, que se evalúa en el contexto de la celda (28/02/2026): 90 + 80 + 100 + 120 = 390."
+      },
+      {
+        "id": "b",
+        "text": "220",
+        "correct": false,
+        "explanation": "Es el acumulado del año (100 + 120), el que daría TOTALYTD o DATESYTD, que vuelven a empezar cada 1 de enero."
+      },
+      {
+        "id": "c",
+        "text": "440",
+        "correct": false,
+        "explanation": "Es el total de todos los meses. La condición con MAX limita las fechas a las anteriores o iguales a la última fecha de la celda, así que marzo no se incluye."
+      },
+      {
+        "id": "d",
+        "text": "120",
+        "correct": false,
+        "explanation": "Son solo las ventas de febrero; sería el resultado si FILTER recorriera VALUES ( 'Fecha' ), que conserva el filtro del mes, en lugar de ALL ( 'Fecha' )."
+      }
+    ],
+    "keyPoint": "Acumulado sin reinicio: CALCULATE ( [medida], FILTER ( ALL ( 'Fecha' ), 'Fecha'[Fecha] <= MAX ( 'Fecha'[Fecha] ) ) ); TOTALYTD, en cambio, se reinicia al inicio de cada año.",
+    "references": [
+      {
+        "title": "Función FILTER",
+        "url": "https://learn.microsoft.com/es-es/dax/filter-function-dax"
+      },
+      {
+        "title": "Función ALL",
+        "url": "https://learn.microsoft.com/es-es/dax/all-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-113",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 3,
+    "scenario": "La tabla Clientes (C1 a C5) se relaciona uno a varios con Ventas. [Ventas] = SUM ( Ventas[Importe] ). El cliente C5 no tiene compras. Muestras la medida del anexo en una tarjeta sin filtros.",
+    "code": {
+      "language": "dax",
+      "content": "Clientes grandes =\nCOUNTROWS (\n    FILTER (\n        VALUES ( Clientes[IdCliente] ),\n        [Ventas] > 200\n    )\n)"
+    },
+    "table": {
+      "caption": "Tabla Ventas",
+      "headers": [
+        "IdCliente",
+        "Importe"
+      ],
+      "rows": [
+        [
+          "C1",
+          "150"
+        ],
+        [
+          "C2",
+          "120"
+        ],
+        [
+          "C1",
+          "100"
+        ],
+        [
+          "C3",
+          "210"
+        ],
+        [
+          "C2",
+          "60"
+        ],
+        [
+          "C4",
+          "90"
+        ]
+      ]
+    },
+    "prompt": "¿Qué valor muestra la tarjeta?",
+    "options": [
+      {
+        "id": "a",
+        "text": "2",
+        "correct": true,
+        "explanation": "FILTER recorre los clientes y [Ventas] se evalúa para cada uno gracias a la transición de contexto: C1 = 250 y C3 = 210 superan 200; C2 = 180, C4 = 90 y C5 está en blanco."
+      },
+      {
+        "id": "b",
+        "text": "1",
+        "correct": false,
+        "explanation": "Es el número de líneas con importe mayor que 200 (solo la de C3). La medida compara el total de cada cliente, no cada línea."
+      },
+      {
+        "id": "c",
+        "text": "5",
+        "correct": false,
+        "explanation": "Sería el resultado si [Ventas] no se evaluara por cliente y devolviera siempre el total (730). La referencia a una medida hace la transición de contexto."
+      },
+      {
+        "id": "d",
+        "text": "4",
+        "correct": false,
+        "explanation": "Es el número de clientes con compras; C2 y C4 no superan 200 y C5 no tiene ventas."
+      }
+    ],
+    "keyPoint": "Al referenciar una medida dentro de un iterador como FILTER, DAX aplica una CALCULATE implícita y la evalúa para cada fila (transición de contexto).",
+    "references": [
+      {
+        "title": "Función FILTER",
+        "url": "https://learn.microsoft.com/es-es/dax/filter-function-dax"
+      },
+      {
+        "title": "Realizar la transición de contexto",
+        "url": "https://learn.microsoft.com/es-es/training/modules/dax-power-bi-modify-filter/5-context-transition"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-114",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "scenario": "Una matriz muestra Fecha[Mes] en filas y la medida Clientes activos = DISTINCTCOUNT ( Ventas[IdCliente] ), con la fila de total activada. El anexo muestra las ventas del primer trimestre de 2026.",
+    "table": {
+      "caption": "Tabla Ventas (primer trimestre de 2026)",
+      "headers": [
+        "Mes",
+        "IdCliente",
+        "Importe"
+      ],
+      "rows": [
+        [
+          "Enero",
+          "C1",
+          "120"
+        ],
+        [
+          "Enero",
+          "C2",
+          "80"
+        ],
+        [
+          "Enero",
+          "C1",
+          "60"
+        ],
+        [
+          "Enero",
+          "C3",
+          "90"
+        ],
+        [
+          "Febrero",
+          "C2",
+          "150"
+        ],
+        [
+          "Febrero",
+          "C3",
+          "40"
+        ],
+        [
+          "Febrero",
+          "C4",
+          "70"
+        ],
+        [
+          "Marzo",
+          "C1",
+          "110"
+        ],
+        [
+          "Marzo",
+          "C4",
+          "30"
+        ]
+      ]
+    },
+    "prompt": "¿Qué valor muestra la fila de total?",
+    "options": [
+      {
+        "id": "a",
+        "text": "8",
+        "correct": false,
+        "explanation": "Es la suma de las filas (3 + 3 + 2). La fila de total no suma los valores de las filas: evalúa la medida otra vez con el filtro de todo el trimestre."
+      },
+      {
+        "id": "b",
+        "text": "4",
+        "correct": true,
+        "explanation": "En el total el contexto de filtro incluye los tres meses y DISTINCTCOUNT cuenta una vez cada cliente distinto: C1, C2, C3 y C4."
+      },
+      {
+        "id": "c",
+        "text": "9",
+        "correct": false,
+        "explanation": "Es el número de filas de Ventas, que devolverían COUNTROWS ( Ventas ) o COUNT ( Ventas[IdCliente] ); DISTINCTCOUNT no cuenta los clientes repetidos."
+      },
+      {
+        "id": "d",
+        "text": "3",
+        "correct": false,
+        "explanation": "Es el máximo de las filas; la fila de total no toma el máximo ni ningún otro valor de las filas, sino que recalcula la medida."
+      }
+    ],
+    "keyPoint": "Los totales se calculan evaluando la medida en el contexto del total, no sumando filas: un recuento distinto no es aditivo y su total puede ser menor que la suma de las filas.",
+    "references": [
+      {
+        "title": "Función DISTINCTCOUNT",
+        "url": "https://learn.microsoft.com/es-es/dax/distinctcount-function-dax"
+      },
+      {
+        "title": "Medidas en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-measures"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-115",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "prompt": "¿En qué dos situaciones se produce una transición de contexto (el contexto de fila se convierte en contexto de filtro)? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "SUM ( Ventas[Importe] ) en una columna calculada de la tabla Clientes",
+        "correct": false,
+        "explanation": "Hay contexto de fila sobre Clientes, pero SUM no lo convierte en filtro: devuelve el total de Ventas en todas las filas."
+      },
+      {
+        "id": "b",
+        "text": "La referencia a la medida [Ventas] dentro de SUMX ( VALUES ( Clientes[IdCliente] ), [Ventas] )",
+        "correct": true,
+        "explanation": "Toda referencia a una medida lleva una CALCULATE implícita, así que se evalúa filtrada por el cliente de cada iteración."
+      },
+      {
+        "id": "c",
+        "text": "RELATED ( Productos[Coste] ) en una columna calculada de la tabla Ventas",
+        "correct": false,
+        "explanation": "RELATED usa el contexto de fila para seguir la relación hasta el lado uno y leer un valor; no crea filtros."
+      },
+      {
+        "id": "d",
+        "text": "CALCULATE ( SUM ( Ventas[Importe] ) ) en una columna calculada de la tabla Clientes",
+        "correct": true,
+        "explanation": "CALCULATE sin filtros aplica los valores de la fila actual como filtros, que se propagan a Ventas: suma lo comprado por cada cliente."
+      },
+      {
+        "id": "e",
+        "text": "SUMX ( Ventas, Ventas[Cantidad] * Ventas[Precio] ) en una medida",
+        "correct": false,
+        "explanation": "SUMX crea un contexto de fila y lee columnas de la misma fila; no hay ninguna CALCULATE ni medida que provoque la transición."
+      }
+    ],
+    "keyPoint": "Solo CALCULATE (explícita o implícita al referenciar una medida) convierte el contexto de fila en contexto de filtro.",
+    "references": [
+      {
+        "title": "Realizar la transición de contexto",
+        "url": "https://learn.microsoft.com/es-es/training/modules/dax-power-bi-modify-filter/5-context-transition"
+      },
+      {
+        "title": "Función CALCULATE",
+        "url": "https://learn.microsoft.com/es-es/dax/calculate-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-116",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "scenario": "La tabla Encuestas guarda la puntuación de cada respuesta; algunas personas dejaron la puntuación vacía y otras pusieron 0. Creas las medidas del anexo.",
+    "code": {
+      "language": "dax",
+      "content": "Filas = COUNTROWS ( Encuestas )\n\nRespuestas = COUNT ( Encuestas[Puntuación] )\n\nMedia = AVERAGE ( Encuestas[Puntuación] )"
+    },
+    "table": {
+      "caption": "Tabla Encuestas",
+      "headers": [
+        "IdEncuesta",
+        "Puntuación"
+      ],
+      "rows": [
+        [
+          "1",
+          "8"
+        ],
+        [
+          "2",
+          ""
+        ],
+        [
+          "3",
+          "0"
+        ],
+        [
+          "4",
+          "10"
+        ]
+      ]
+    },
+    "prompt": "Completa la frase con los valores que devuelven las medidas sin filtros.",
+    "template": "Filas devuelve {{b1}}, Respuestas devuelve {{b2}} y Media devuelve {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "3"
+          },
+          {
+            "id": "o2",
+            "text": "4"
+          },
+          {
+            "id": "o3",
+            "text": "2"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "COUNTROWS cuenta las filas de la tabla, tengan o no valores en sus columnas: 4."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "4"
+          },
+          {
+            "id": "o2",
+            "text": "2"
+          },
+          {
+            "id": "o3",
+            "text": "3"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "COUNT omite los valores en blanco pero cuenta el 0, que es un número: 3."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "6"
+          },
+          {
+            "id": "o2",
+            "text": "4,5"
+          },
+          {
+            "id": "o3",
+            "text": "9"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "AVERAGE omite las celdas vacías e incluye los ceros: (8 + 0 + 10) / 3 = 6. 4,5 dividiría entre 4 filas y 9 excluiría el 0."
+      }
+    ],
+    "keyPoint": "Blanco no es cero: COUNT y AVERAGE ignoran los blancos pero cuentan los ceros; COUNTROWS cuenta filas.",
+    "references": [
+      {
+        "title": "Función AVERAGE",
+        "url": "https://learn.microsoft.com/es-es/dax/average-function-dax"
+      },
+      {
+        "title": "Función COUNT",
+        "url": "https://learn.microsoft.com/es-es/dax/count-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-117",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 3,
+    "scenario": "Productos se relaciona uno a varios con Ventas. Creas la tabla calculada del anexo. El catálogo y las ventas por categoría son los de la tabla; la categoría Repuestos todavía no tiene ventas.",
+    "code": {
+      "language": "dax",
+      "content": "Resumen categorías =\nSUMMARIZECOLUMNS (\n    Productos[Categoría],\n    \"Ventas\", [Ventas]\n)"
+    },
+    "table": {
+      "caption": "Catálogo y ventas por categoría",
+      "headers": [
+        "Categoría",
+        "Productos en catálogo",
+        "Ventas"
+      ],
+      "rows": [
+        [
+          "Bicicletas",
+          "12",
+          "5.000"
+        ],
+        [
+          "Cascos",
+          "8",
+          "900"
+        ],
+        [
+          "Ropa",
+          "20",
+          "1.200"
+        ],
+        [
+          "Repuestos",
+          "15",
+          "(sin ventas)"
+        ]
+      ]
+    },
+    "prompt": "¿Qué contiene la tabla Resumen categorías?",
+    "options": [
+      {
+        "id": "a",
+        "text": "4 filas; Repuestos aparece con Ventas en blanco",
+        "correct": false,
+        "explanation": "SUMMARIZECOLUMNS no incluye las filas en las que todas las expresiones devuelven BLANK."
+      },
+      {
+        "id": "b",
+        "text": "3 filas: Bicicletas, Cascos y Ropa",
+        "correct": true,
+        "explanation": "SUMMARIZECOLUMNS solo devuelve las combinaciones con al menos una expresión no en blanco; [Ventas] es BLANK para Repuestos y esa fila se elimina."
+      },
+      {
+        "id": "c",
+        "text": "4 filas; Repuestos aparece con Ventas 0",
+        "correct": false,
+        "explanation": "Una suma sin filas devuelve BLANK, no 0; solo verías 0 si la medida lo forzara, y entonces la fila sí aparecería."
+      },
+      {
+        "id": "d",
+        "text": "55 filas, una por producto del catálogo",
+        "correct": false,
+        "explanation": "La agrupación es por Productos[Categoría], así que hay como máximo una fila por categoría."
+      }
+    ],
+    "keyPoint": "SUMMARIZECOLUMNS descarta las filas en las que todas las expresiones son BLANK, igual que un objeto visual oculta las filas vacías.",
+    "references": [
+      {
+        "title": "Función SUMMARIZECOLUMNS",
+        "url": "https://learn.microsoft.com/es-es/dax/summarizecolumns-function-dax"
+      },
+      {
+        "title": "Uso de tablas calculadas en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-calculated-tables"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-118",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 1,
+    "prompt": "Escribes una medida que calcula las ventas netas, después el margen a partir de ellas y por último el margen sobre ventas netas. Ordena las líneas de la medida.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Margen % =",
+        "explanation": "La definición de la medida empieza por su nombre seguido del signo igual."
+      },
+      {
+        "id": "p2",
+        "text": "VAR VentasNetas = SUM ( Ventas[Importe] ) - SUM ( Ventas[Descuento] )",
+        "explanation": "Va primero porque la variable Margen la utiliza; una variable solo puede usar variables definidas antes."
+      },
+      {
+        "id": "p3",
+        "text": "VAR Margen = VentasNetas - SUM ( Ventas[Coste] )",
+        "explanation": "Se declara después de VentasNetas, de la que depende, y antes de RETURN."
+      },
+      {
+        "id": "p4",
+        "text": "RETURN",
+        "explanation": "RETURN cierra el bloque de variables e introduce la expresión que devuelve la medida."
+      },
+      {
+        "id": "p5",
+        "text": "DIVIDE ( Margen, VentasNetas )",
+        "explanation": "Es la expresión de resultado; reutiliza ambas variables sin volver a calcularlas."
+      }
+    ],
+    "keyPoint": "Estructura de variables: VAR … (en orden de dependencia) y RETURN con la expresión final.",
+    "references": [
+      {
+        "title": "Palabra clave VAR",
+        "url": "https://learn.microsoft.com/es-es/dax/var-dax"
+      },
+      {
+        "title": "Usar variables para mejorar las fórmulas DAX",
+        "url": "https://learn.microsoft.com/es-es/dax/best-practices/dax-variables"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-119",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 3,
+    "scenario": "Una matriz muestra Clientes[Región] en filas y la medida del anexo, que suma las ventas solo de los clientes que han comprado más de 1.000. [Ventas] = SUM ( Ventas[Importe] ).",
+    "code": {
+      "language": "dax",
+      "content": "Ventas clientes grandes =\nSUMX (\n    VALUES ( Clientes[IdCliente] ),\n    IF ( [Ventas] > 1000, [Ventas] )\n)"
+    },
+    "prompt": "Ordena cómo se evalúa la medida en la celda de la región Norte.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "La fila de la matriz (Región = Norte) y las segmentaciones forman el contexto de filtro de la celda.",
+        "explanation": "Toda medida se evalúa primero en el contexto de filtro de la celda del objeto visual."
+      },
+      {
+        "id": "p2",
+        "text": "VALUES devuelve los clientes de la región Norte visibles en ese contexto de filtro.",
+        "explanation": "El primer argumento de SUMX se evalúa en el contexto de filtro de la celda, antes de iterar."
+      },
+      {
+        "id": "p3",
+        "text": "SUMX recorre esa tabla y crea un contexto de fila para cada cliente.",
+        "explanation": "El iterador evalúa la expresión una vez por fila de la tabla devuelta por VALUES."
+      },
+      {
+        "id": "p4",
+        "text": "La referencia a [Ventas] provoca la transición de contexto y filtra Ventas por el cliente de la fila.",
+        "explanation": "Sin esta transición, [Ventas] devolvería el total de la región en cada iteración."
+      },
+      {
+        "id": "p5",
+        "text": "SUMX suma los importes de los clientes que superan 1.000 y devuelve el resultado a la celda.",
+        "explanation": "Los clientes que no superan el umbral devuelven BLANK y no suman; el resultado agregado es el valor de la celda."
+      }
+    ],
+    "keyPoint": "Un iterador evalúa su tabla en el contexto de filtro, crea un contexto de fila por fila y, al referenciar medidas, aplica la transición de contexto.",
+    "references": [
+      {
+        "title": "Función SUMX",
+        "url": "https://learn.microsoft.com/es-es/dax/sumx-function-dax"
+      },
+      {
+        "title": "Realizar la transición de contexto",
+        "url": "https://learn.microsoft.com/es-es/training/modules/dax-power-bi-modify-filter/5-context-transition"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-120",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 1,
+    "prompt": "Empareja cada necesidad con la función de tabla de DAX que la resuelve.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Obtener los 5 productos con más ventas para usarlos como filtro en CALCULATE",
+        "answerId": "c1",
+        "explanation": "TOPN devuelve las N primeras filas de una tabla ordenadas por una expresión."
+      },
+      {
+        "id": "m2",
+        "text": "Obtener la lista de valores distintos de Productos[Categoría] visibles en el contexto de filtro actual",
+        "answerId": "c2",
+        "explanation": "VALUES devuelve los valores distintos de una columna que respetan los filtros activos."
+      },
+      {
+        "id": "m3",
+        "text": "Obtener las filas de Ventas cuyo importe supera 1.000 para contarlas con COUNTROWS",
+        "answerId": "c3",
+        "explanation": "FILTER devuelve el subconjunto de filas de una tabla que cumplen una condición evaluada fila a fila."
+      },
+      {
+        "id": "m4",
+        "text": "Agregar a la tabla que devuelve VALUES ( Productos[Categoría] ) una columna con las ventas de cada categoría",
+        "answerId": "c4",
+        "explanation": "ADDCOLUMNS añade columnas calculadas a una expresión de tabla existente."
+      },
+      {
+        "id": "m5",
+        "text": "Obtener todas las filas de Productos ignorando cualquier filtro del informe",
+        "answerId": "c5",
+        "explanation": "ALL devuelve todas las filas de la tabla o todos los valores de la columna, sin tener en cuenta los filtros."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "TOPN"
+      },
+      {
+        "id": "c2",
+        "text": "VALUES"
+      },
+      {
+        "id": "c3",
+        "text": "FILTER"
+      },
+      {
+        "id": "c4",
+        "text": "ADDCOLUMNS"
+      },
+      {
+        "id": "c5",
+        "text": "ALL"
+      },
+      {
+        "id": "c6",
+        "text": "SELECTEDVALUE"
+      },
+      {
+        "id": "c7",
+        "text": "RELATED"
+      }
+    ],
+    "keyPoint": "TOPN, VALUES, FILTER, ADDCOLUMNS y ALL devuelven tablas que puedes iterar, contar o pasar como filtro; SELECTEDVALUE y RELATED devuelven escalares.",
+    "references": [
+      {
+        "title": "Funciones de manipulación de tablas",
+        "url": "https://learn.microsoft.com/es-es/dax/table-manipulation-functions-dax"
+      },
+      {
+        "title": "Función TOPN",
+        "url": "https://learn.microsoft.com/es-es/dax/topn-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-121",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "prompt": "¿Qué dos definiciones de medida producen un error? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Total = SUMX ( Ventas, Ventas[Cantidad] * RELATED ( Productos[Precio] ) )",
+        "correct": false,
+        "explanation": "Es válida: SUMX crea un contexto de fila sobre Ventas, en el que RELATED puede leer el precio del producto relacionado."
+      },
+      {
+        "id": "b",
+        "text": "Total = SUM ( Ventas[Cantidad] * Ventas[Precio] )",
+        "correct": true,
+        "explanation": "SUM solo admite una referencia a una columna, no una expresión; para multiplicar fila a fila necesitas un iterador como SUMX."
+      },
+      {
+        "id": "c",
+        "text": "Total web = CALCULATE ( SUM ( Ventas[Importe] ), Ventas[Canal] = \"Web\" )",
+        "correct": false,
+        "explanation": "Es válida: el filtro booleano usa una sola columna de una tabla y no hace referencia a medidas."
+      },
+      {
+        "id": "d",
+        "text": "Total = Ventas[Importe]",
+        "correct": true,
+        "explanation": "Una medida no tiene contexto de fila, así que no puede leer una columna sin agregarla; debes usar SUM u otra agregación."
+      },
+      {
+        "id": "e",
+        "text": "Total = SUMX ( Ventas, Ventas[Cantidad] * Ventas[Precio] )",
+        "correct": false,
+        "explanation": "Es válida: es el patrón correcto para calcular un importe fila a fila y sumarlo."
+      }
+    ],
+    "keyPoint": "En una medida, las columnas se usan dentro de agregaciones (SUM sobre una columna) o de iteradores (SUMX con expresiones fila a fila).",
+    "references": [
+      {
+        "title": "Función SUM",
+        "url": "https://learn.microsoft.com/es-es/dax/sum-function-dax"
+      },
+      {
+        "title": "Función SUMX",
+        "url": "https://learn.microsoft.com/es-es/dax/sumx-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d2-dax-122",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d2",
+    "skill": "d2-dax",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre medidas y columnas calculadas es correcta.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Una medida se evalúa en el momento de la consulta, en el contexto de filtro de cada celda del objeto visual.",
+        "answer": true,
+        "explanation": "Por eso la misma medida devuelve un resultado distinto en cada fila, total o selección de segmentación."
+      },
+      {
+        "id": "s2",
+        "text": "Una medida guarda un valor por cada fila de su tabla principal, por lo que aumenta el tamaño del modelo.",
+        "answer": false,
+        "explanation": "Las medidas no almacenan datos: solo se guarda su fórmula. Son las columnas calculadas las que guardan un valor por fila."
+      },
+      {
+        "id": "s3",
+        "text": "La tabla principal (*home table*) de una medida determina qué filas agrega.",
+        "answer": false,
+        "explanation": "La tabla principal solo indica dónde aparece la medida en el panel Datos; lo que agrega lo define su fórmula."
+      },
+      {
+        "id": "s4",
+        "text": "Los valores de una columna calculada no cambian cuando el usuario selecciona un elemento en una segmentación.",
+        "answer": true,
+        "explanation": "Se calculan al actualizar el modelo, con contexto de fila; las segmentaciones filtran qué filas se ven, pero no recalculan la columna."
+      }
+    ],
+    "keyPoint": "Medida = fórmula evaluada en cada consulta según el contexto de filtro; columna calculada = valor por fila calculado al actualizar.",
+    "references": [
+      {
+        "title": "Medidas en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-measures"
+      },
+      {
+        "title": "Uso de columnas calculadas en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/transform-model/desktop-calculated-columns"
+      }
+    ]
+  }
+]

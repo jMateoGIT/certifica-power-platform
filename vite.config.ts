@@ -36,10 +36,24 @@ export default defineConfig({
         // Solo precacheamos las fuentes de alfabeto latino.
         globIgnores: ['**/inter-{cyrillic,cyrillic-ext,greek,greek-ext,vietnamese}-*.woff2'],
         navigateFallback: 'index.html',
+        // Margen para el banco de preguntas, que va en un fragmento por examen.
+        maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
       },
     }),
   ],
-  build: { chunkSizeWarningLimit: 800 },
+  build: {
+    chunkSizeWarningLimit: 1600,
+    rollupOptions: {
+      output: {
+        // El contenido de cada examen va en su propio fragmento: así una actualización
+        // de PL-900 no obliga a descargar otra vez PL-300, y viceversa.
+        manualChunks(id) {
+          const exam = id.match(/\/src\/content\/([a-z]{2}-\d{3})\//)
+          if (exam) return `contenido-${exam[1]}`
+        },
+      },
+    },
+  },
   test: {
     globals: true,
     environment: 'jsdom',

@@ -1,0 +1,941 @@
+[
+  {
+    "id": "pl300-d4-seguridad-101",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "scenario": "En Power BI Desktop has creado el rol «Vendedores» con el filtro mostrado sobre la tabla Vendedor. Antes de publicar el modelo quieres comprobar qué datos verá Laura (laura.gil@contoso.com).",
+    "code": {
+      "language": "dax",
+      "content": "// Rol \"Vendedores\" — filtro sobre la tabla Vendedor\n[Correo] = USERPRINCIPALNAME ()"
+    },
+    "prompt": "¿Qué debes hacer en Power BI Desktop?",
+    "options": [
+      {
+        "id": "a",
+        "text": "En Administrar roles, seleccionar la marca de verificación que valida la expresión DAX del rol",
+        "correct": false,
+        "explanation": "La marca de verificación solo comprueba que la sintaxis DAX es correcta; no muestra el informe filtrado para ningún usuario."
+      },
+      {
+        "id": "b",
+        "text": "Agregar a Laura como miembro del rol «Vendedores» en la ventana Administrar roles",
+        "correct": false,
+        "explanation": "En Power BI Desktop no se pueden asignar usuarios a los roles; la pertenencia se configura en el servicio Power BI después de publicar."
+      },
+      {
+        "id": "c",
+        "text": "En Modelado > Ver como, activar Otro usuario con el UPN de Laura y seleccionar el rol «Vendedores»",
+        "correct": true,
+        "explanation": "Ver como (View as) aplica el rol en Desktop y, con Otro usuario, pasa a USERPRINCIPALNAME() el nombre que escribas, así simulas la RLS dinámica de Laura."
+      },
+      {
+        "id": "d",
+        "text": "Cambiar la regla a [Correo] = \"laura.gil@contoso.com\" y revisar el informe en la vista Informe",
+        "correct": false,
+        "explanation": "Como autor, en Desktop ves todos los datos aunque existan roles; las reglas solo se aplican al usar Ver como, y además romperías la regla dinámica."
+      }
+    ],
+    "keyPoint": "En Desktop, Modelado > Ver como permite probar un rol y, con Otro usuario, simular la identidad que recibe USERPRINCIPALNAME().",
+    "references": [
+      {
+        "title": "Restricción del acceso a los datos del modelo de Power BI",
+        "url": "https://learn.microsoft.com/es-es/training/modules/enforce-power-bi-model-security/2-restrict-access-to-power-bi-model-data"
+      },
+      {
+        "title": "Instrucciones de seguridad de nivel de fila (RLS) en Power BI Desktop",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/rls-guidance"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-seguridad-102",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 1,
+    "prompt": "Completa la frase con la opción correcta en cada hueco.",
+    "template": "En Power BI Desktop, la función USERNAME() devuelve el usuario con el formato {{b1}}. En el servicio Power BI, USERNAME() devuelve {{b2}}. Para que una regla de RLS se comporte igual en ambos entornos, comparas la columna de la tabla de usuarios con {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "DOMINIO\\usuario" },
+          { "id": "o2", "text": "usuario@contoso.com" },
+          { "id": "o3", "text": "el nombre para mostrar del usuario" }
+        ],
+        "correctId": "o1",
+        "explanation": "En Desktop, USERNAME() usa el formato DOMINIO\\usuario de la sesión de Windows, distinto del que se usa en el servicio."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "el identificador de objeto de Microsoft Entra" },
+          { "id": "o2", "text": "el nombre principal de usuario (UPN)" },
+          { "id": "o3", "text": "DOMINIO\\usuario" }
+        ],
+        "correctId": "o2",
+        "explanation": "En el servicio Power BI, tanto USERNAME() como USERPRINCIPALNAME() devuelven el UPN, que suele parecerse a una dirección de correo."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "CUSTOMDATA()" },
+          { "id": "o2", "text": "USERNAME()" },
+          { "id": "o3", "text": "USERPRINCIPALNAME()" }
+        ],
+        "correctId": "o3",
+        "explanation": "USERPRINCIPALNAME() devuelve siempre el UPN, en Desktop y en el servicio, así que la regla da el mismo resultado al probarla y en producción."
+      }
+    ],
+    "keyPoint": "USERNAME() cambia de formato entre Desktop (DOMINIO\\usuario) y el servicio (UPN); USERPRINCIPALNAME() devuelve siempre el UPN.",
+    "references": [
+      {
+        "title": "Seguridad de nivel de fila (RLS) con Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/security/service-admin-row-level-security"
+      },
+      {
+        "title": "USERPRINCIPALNAME (DAX)",
+        "url": "https://learn.microsoft.com/es-es/dax/userprincipalname-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-seguridad-103",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 3,
+    "scenario": "Un modelo de importación tiene la tabla Empleado (extracto en la tabla), relacionada de uno a varios con la tabla Ventas. El correo de cada empleado es nombre@contoso.com. Los responsables deben ver sus ventas y las de todo su equipo, directo o indirecto. Has creado la columna y el rol mostrados, y Bruno (Visor) es miembro del rol «Jerarquía».",
+    "code": {
+      "language": "dax",
+      "content": "// Columna calculada en la tabla Empleado\nRuta = PATH ( Empleado[IdEmpleado], Empleado[IdResponsable] )\n\n// Rol \"Jerarquía\" — filtro sobre la tabla Empleado\nPATHCONTAINS (\n    Empleado[Ruta],\n    LOOKUPVALUE ( Empleado[IdEmpleado], Empleado[Correo], USERPRINCIPALNAME () )\n)"
+    },
+    "table": {
+      "caption": "Tabla Empleado (extracto)",
+      "headers": ["IdEmpleado", "Nombre", "IdResponsable", "Ruta"],
+      "rows": [
+        ["1", "Ana", "", "1"],
+        ["2", "Bruno", "1", "1|2"],
+        ["3", "Carla", "1", "1|3"],
+        ["4", "David", "2", "1|2|4"],
+        ["5", "Elena", "4", "1|2|4|5"],
+        ["6", "Fran", "3", "1|3|6"]
+      ]
+    },
+    "prompt": "¿De qué empleados verá Bruno las ventas?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Solo de Bruno y David",
+        "correct": false,
+        "explanation": "La regla no se limita a los subordinados directos: Elena también tiene el 2 en su ruta (1|2|4|5), así que también queda visible."
+      },
+      {
+        "id": "b",
+        "text": "De Ana y Bruno",
+        "correct": false,
+        "explanation": "Ana es la responsable de Bruno, pero su ruta («1») no contiene el identificador 2; la regla mira hacia abajo en la jerarquía, no hacia arriba."
+      },
+      {
+        "id": "c",
+        "text": "De todos los empleados, porque LOOKUPVALUE ignora la RLS",
+        "correct": false,
+        "explanation": "LOOKUPVALUE solo obtiene el identificador de Bruno (2); después PATHCONTAINS filtra fila a fila y únicamente deja visibles las rutas que lo contienen."
+      },
+      {
+        "id": "d",
+        "text": "De Bruno, David y Elena",
+        "correct": true,
+        "explanation": "LOOKUPVALUE devuelve el Id 2 de Bruno y PATHCONTAINS deja visibles las filas cuya ruta contiene ese 2: la suya, la de David y la de Elena."
+      }
+    ],
+    "keyPoint": "Para RLS jerárquica se combina PATH (columna con la ruta) y PATHCONTAINS con el Id del usuario: cada responsable ve a todos sus descendientes.",
+    "references": [
+      {
+        "title": "Funciones para jerarquías primario-secundario en DAX",
+        "url": "https://learn.microsoft.com/es-es/dax/understanding-functions-for-parent-child-hierarchies-in-dax"
+      },
+      {
+        "title": "PATHCONTAINS (DAX)",
+        "url": "https://learn.microsoft.com/es-es/dax/pathcontains-function-dax"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-seguridad-104",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 3,
+    "scenario": "La tabla Region está relacionada de uno a varios con la tabla Ventas. Has importado la tabla AccesoRegion, sin relaciones con ninguna otra tabla, que indica las regiones que puede ver cada usuario. Algunos usuarios, como Marta, tienen varias regiones.",
+    "table": {
+      "caption": "Tabla AccesoRegion",
+      "headers": ["Correo", "Region"],
+      "rows": [
+        ["marta@contoso.com", "Norte"],
+        ["marta@contoso.com", "Centro"],
+        ["jon@contoso.com", "Sur"]
+      ]
+    },
+    "prompt": "¿Qué expresión de filtro debes definir en el rol, sobre la tabla Region, para que cada usuario vea solo sus regiones?",
+    "options": [
+      {
+        "id": "a",
+        "text": "[Region] = LOOKUPVALUE ( AccesoRegion[Region], AccesoRegion[Correo], USERPRINCIPALNAME () )",
+        "correct": false,
+        "explanation": "Para Marta hay dos valores distintos de Region; sin resultado alternativo, LOOKUPVALUE devuelve un error y la regla no funciona."
+      },
+      {
+        "id": "b",
+        "text": "[Region] IN CALCULATETABLE ( VALUES ( AccesoRegion[Region] ), AccesoRegion[Correo] = USERPRINCIPALNAME () )",
+        "correct": true,
+        "explanation": "CALCULATETABLE obtiene la lista de regiones del usuario conectado e IN deja visible cada fila de Region incluida en esa lista, sea una o varias."
+      },
+      {
+        "id": "c",
+        "text": "[Region] IN VALUES ( AccesoRegion[Region] )",
+        "correct": false,
+        "explanation": "No filtra por usuario: devuelve todas las regiones de la tabla AccesoRegion, de modo que todos verían Norte, Centro y Sur."
+      },
+      {
+        "id": "d",
+        "text": "AccesoRegion[Correo] = USERPRINCIPALNAME ()",
+        "correct": false,
+        "explanation": "La regla se evalúa fila a fila sobre Region; una referencia a una columna de otra tabla sin relación ni agregación no tiene un valor único y da error."
+      }
+    ],
+    "keyPoint": "Si un usuario puede tener varios valores permitidos, usa IN con una tabla de valores filtrada por USERPRINCIPALNAME(); LOOKUPVALUE solo sirve para un valor.",
+    "references": [
+      {
+        "title": "LOOKUPVALUE (DAX)",
+        "url": "https://learn.microsoft.com/es-es/dax/lookupvalue-function-dax"
+      },
+      {
+        "title": "Seguridad de nivel de fila (RLS) con Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/security/service-admin-row-level-security"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-seguridad-105",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 3,
+    "scenario": "El modelo «Ventas» define un único rol, «Vendedores», con el filtro [Correo] = USERPRINCIPALNAME() sobre la tabla Vendedor, que se propaga a la tabla Ventas. La tabla muestra la situación de cinco usuarios.",
+    "table": {
+      "caption": "Usuarios del informe de ventas",
+      "headers": ["Usuario", "UPN de inicio de sesión", "Acceso al área de trabajo", "Miembro de «Vendedores»", "Valor en Vendedor[Correo]"],
+      "rows": [
+        ["Laura", "laura.gil@contoso.com", "Visor", "Sí, mediante el grupo SG-Ventas", "laura.gil@contoso.com"],
+        ["Iván", "ivan.mora@contoso.com", "Visor", "No", "ivan.mora@contoso.com"],
+        ["Rosa", "rosa.diez@contoso.com", "Visor", "Sí, directamente", "r.diez@contoso.com"],
+        ["Tomás", "tomas.paz@contoso.com", "Colaborador", "No", "tomas.paz@contoso.com"],
+        ["Nerea", "nerea.sanz@contoso.com", "Visor con permiso de compilación", "Sí, directamente", "nerea.sanz@contoso.com"]
+      ]
+    },
+    "prompt": "¿Qué dos usuarios no verán ninguna venta al abrir el informe? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Laura",
+        "correct": false,
+        "explanation": "La pertenencia mediante un grupo de seguridad es válida y su UPN coincide con la tabla, así que ve sus propias ventas."
+      },
+      {
+        "id": "b",
+        "text": "Iván",
+        "correct": true,
+        "explanation": "El modelo tiene roles y un Visor que no pertenece a ninguno no ve datos, aunque su correo esté en la tabla Vendedor."
+      },
+      {
+        "id": "c",
+        "text": "Rosa",
+        "correct": true,
+        "explanation": "La tabla guarda su alias de correo, pero USERPRINCIPALNAME() devuelve el UPN; al no coincidir ninguna fila, el filtro no deja nada visible."
+      },
+      {
+        "id": "d",
+        "text": "Tomás",
+        "correct": false,
+        "explanation": "Como Colaborador tiene permiso de escritura sobre el modelo, la RLS no se le aplica y ve todas las ventas."
+      },
+      {
+        "id": "e",
+        "text": "Nerea",
+        "correct": false,
+        "explanation": "El permiso de compilación no cambia el efecto de la RLS: pertenece al rol y su UPN coincide, así que ve sus ventas."
+      }
+    ],
+    "keyPoint": "Con RLS definida, un lector sin rol no ve datos; y la tabla de usuarios debe guardar el UPN exacto, no un alias de correo.",
+    "references": [
+      {
+        "title": "Seguridad de nivel de fila (RLS) con Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/security/service-admin-row-level-security"
+      },
+      {
+        "title": "Permisos del modelo semántico",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-datasets-permissions"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-seguridad-106",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "scenario": "Cuatro analistas tienen el rol Colaborador en el área de trabajo «Comercial», donde está el modelo semántico «Comercial» con RLS por zona. Auditoría exige que la RLS también se les aplique. Deben seguir creando informes en Power BI Desktop sobre ese modelo y publicarlos en su propia área de trabajo «Análisis comercial».",
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cambiar su rol en «Comercial» a Visor y concederles el permiso de compilación sobre el modelo semántico",
+        "correct": true,
+        "explanation": "Con Lectura y Compilación la RLS sí se aplica, y la compilación les permite seguir creando informes sobre el modelo desde otra área de trabajo."
+      },
+      {
+        "id": "b",
+        "text": "Mantener el rol Colaborador y quitarles el permiso Escribir en Administrar permisos del modelo",
+        "correct": false,
+        "explanation": "Los permisos heredados de un rol del área de trabajo no se pueden quitar desde Administrar permisos; solo cambiando o quitando ese rol."
+      },
+      {
+        "id": "c",
+        "text": "Mantener el rol Colaborador y agregarlos como miembros del rol RLS de su zona",
+        "correct": false,
+        "explanation": "El Colaborador tiene permiso de escritura sobre el modelo y la RLS no se aplica a quien puede editarlo, aunque pertenezca a un rol."
+      },
+      {
+        "id": "d",
+        "text": "Cambiar su rol en «Comercial» a Visor sin concederles ningún otro permiso",
+        "correct": false,
+        "explanation": "La RLS se aplicaría, pero un Visor sin permiso de compilación no puede crear informes nuevos conectados al modelo."
+      }
+    ],
+    "keyPoint": "Para que la RLS se aplique a un creador de informes, dale Visor (Lectura) + Compilación, nunca un rol con escritura sobre el modelo.",
+    "references": [
+      {
+        "title": "Planeamiento de la seguridad del consumidor de informes",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/powerbi-implementation-planning-security-report-consumer-planning"
+      },
+      {
+        "title": "Permisos del modelo semántico",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-datasets-permissions"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-seguridad-107",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "prompt": "Recursos Humanos quiere que la columna Salario de la tabla Empleado solo la vea su equipo. Indica si cada afirmación sobre la seguridad de nivel de objeto (OLS) es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Con OLS, para los miembros de un rol la columna Salario y sus metadatos quedan ocultos, como si la columna no existiera.",
+        "answer": true,
+        "explanation": "OLS protege tablas o columnas y también sus nombres y metadatos: para quien no tiene permiso, el objeto simplemente no existe."
+      },
+      {
+        "id": "s2",
+        "text": "Con OLS puedes proteger directamente una medida, por ejemplo [Coste salarial].",
+        "answer": false,
+        "explanation": "OLS no protege medidas por sí mismas; una medida queda restringida automáticamente cuando hace referencia a una columna o tabla protegida."
+      },
+      {
+        "id": "s3",
+        "text": "Un objeto visual que usa la columna Salario muestra un error a los usuarios sin permiso sobre ella.",
+        "answer": true,
+        "explanation": "El usuario recibe un mensaje de que el campo no se encuentra, por eso conviene diseñar informes distintos para cada público."
+      },
+      {
+        "id": "s4",
+        "text": "OLS oculta la columna también a los usuarios con el rol Colaborador del área de trabajo.",
+        "answer": false,
+        "explanation": "Igual que la RLS, OLS solo se aplica a los lectores (Visor); Administrador, Miembro y Colaborador pueden editar el modelo y lo ven todo."
+      }
+    ],
+    "keyPoint": "OLS oculta tablas o columnas (y sus metadatos) a los lectores de un rol; no protege medidas directamente ni afecta a quien edita el modelo.",
+    "references": [
+      {
+        "title": "Seguridad de nivel de objeto (OLS)",
+        "url": "https://learn.microsoft.com/es-es/fabric/security/service-admin-object-level-security"
+      },
+      {
+        "title": "Planeamiento de la seguridad del consumidor de informes",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/powerbi-implementation-planning-security-report-consumer-planning"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-seguridad-108",
+    "type": "match",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 1,
+    "prompt": "Empareja cada acción sobre un modelo semántico con el permiso que la permite.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Abrir los informes existentes basados en el modelo e interactuar con ellos",
+        "answerId": "c1",
+        "explanation": "Lectura permite acceder a los informes y otras soluciones que leen datos del modelo, pero no crear contenido nuevo."
+      },
+      {
+        "id": "m2",
+        "text": "Crear un informe nuevo conectado al modelo o usar Analizar en Excel",
+        "answerId": "c2",
+        "explanation": "Compilación permite crear contenido nuevo a partir del modelo, extraer datos con Analizar en Excel o crear modelos compuestos."
+      },
+      {
+        "id": "m3",
+        "text": "Conceder a otras personas acceso al modelo",
+        "answerId": "c3",
+        "explanation": "Volver a compartir (Reshare) es el permiso que permite dar acceso al modelo semántico a otros usuarios."
+      },
+      {
+        "id": "m4",
+        "text": "Volver a publicar el modelo o lanzar Actualizar ahora",
+        "answerId": "c4",
+        "explanation": "Escribir permite volver a publicar, modificar el modelo por XMLA y desencadenar una actualización manual."
+      },
+      {
+        "id": "m5",
+        "text": "Configurar la actualización programada y las credenciales del origen",
+        "answerId": "c5",
+        "explanation": "La actualización programada y las credenciales solo las configura el propietario del modelo (quien lo creó o se hizo cargo de él)."
+      }
+    ],
+    "choices": [
+      { "id": "c1", "text": "Lectura" },
+      { "id": "c2", "text": "Compilación" },
+      { "id": "c3", "text": "Volver a compartir" },
+      { "id": "c4", "text": "Escribir" },
+      { "id": "c5", "text": "Solo el propietario del modelo" }
+    ],
+    "keyPoint": "Lectura = consumir; Compilación = crear; Volver a compartir = dar acceso; Escribir = editar y volver a publicar; actualización programada y credenciales = propietario.",
+    "references": [
+      {
+        "title": "Permisos del modelo semántico",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-datasets-permissions"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-seguridad-109",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "scenario": "Pablo se ha cambiado de departamento y le has quitado el rol Visor del área de trabajo «Finanzas». Al día siguiente sigue abriendo el informe «Márgenes» desde Compartido conmigo, porque hace meses una compañera le dio acceso directo al informe.",
+    "prompt": "¿Qué debes hacer para que Pablo deje de acceder al informe y a sus datos?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Quitar a Pablo de los roles RLS del modelo semántico del informe",
+        "correct": false,
+        "explanation": "La RLS filtra filas, pero no revoca el acceso al informe ni al modelo; es otra capa de seguridad distinta de los permisos."
+      },
+      {
+        "id": "b",
+        "text": "Esperar, porque los permisos compartidos se retiran solos al salir del área de trabajo",
+        "correct": false,
+        "explanation": "El acceso directo a un elemento es independiente de los roles del área de trabajo y no se elimina al quitarle el rol."
+      },
+      {
+        "id": "c",
+        "text": "Aplicar al informe la etiqueta de confidencialidad «Confidencial» con cifrado",
+        "correct": false,
+        "explanation": "En el servicio Power BI la etiqueta no cambia quién accede al contenido, que depende solo de los permisos de Power BI; su cifrado se aplica a los archivos que salen por una ruta de exportación admitida."
+      },
+      {
+        "id": "d",
+        "text": "En Administrar permisos del informe, quitar el acceso directo de Pablo y también su acceso al contenido relacionado",
+        "correct": true,
+        "explanation": "Al quitar el acceso directo puedes retirar también el acceso al contenido relacionado, como el modelo semántico que recibió al compartirlo."
+      }
+    ],
+    "keyPoint": "Los permisos por elemento (acceso directo, vínculos) son independientes de los roles del área de trabajo: revísalos y quítalos en Administrar permisos.",
+    "references": [
+      {
+        "title": "Compartir informes y paneles de Power BI",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/service-share-dashboards"
+      },
+      {
+        "title": "Administración de permisos de acceso al modelo semántico",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-datasets-manage-access-permissions"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-seguridad-110",
+    "type": "multiple",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "scenario": "El informe «Riesgos de crédito» y su modelo semántico tienen la etiqueta de confidencialidad «Confidencial», que incluye cifrado.",
+    "prompt": "¿Qué tres formas de sacar los datos del servicio Power BI aplican automáticamente la etiqueta y su protección al archivo resultante? Selecciona tres.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Exportar el informe a PDF",
+        "correct": true,
+        "explanation": "La exportación a PDF es una ruta admitida: el archivo recibe la etiqueta y se protege según su configuración de cifrado."
+      },
+      {
+        "id": "b",
+        "text": "Exportar los datos de un objeto visual a un archivo .csv",
+        "correct": false,
+        "explanation": "El formato .csv no admite etiquetas: el archivo sale sin etiqueta ni cifrado, por eso el administrador puede bloquear esa exportación."
+      },
+      {
+        "id": "c",
+        "text": "Descargar el archivo .pbix desde el servicio",
+        "correct": true,
+        "explanation": "La descarga del .pbix lleva la etiqueta; si el informe y el modelo tuvieran etiquetas distintas, se aplicaría la más restrictiva."
+      },
+      {
+        "id": "d",
+        "text": "Exportar a PowerPoint con la opción de insertar datos en vivo",
+        "correct": false,
+        "explanation": "En PowerPoint la etiqueta solo se aplica con la opción de exportar como imagen; la inserción de datos en vivo no la admite."
+      },
+      {
+        "id": "e",
+        "text": "Usar Analizar en Excel sobre el modelo",
+        "correct": true,
+        "explanation": "El libro de Excel conectado en directo hereda la etiqueta del modelo y su protección, y, tras la actualización de datos, adopta la etiqueta del modelo si esta pasa a ser más restrictiva."
+      }
+    ],
+    "keyPoint": "La etiqueta viaja con las exportaciones admitidas (Excel, PDF, PowerPoint como imagen, .pbix, Analizar en Excel); el .csv sale sin protección.",
+    "references": [
+      {
+        "title": "Etiquetas de confidencialidad en Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/enterprise/powerbi/service-security-sensitivity-label-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-seguridad-111",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 3,
+    "scenario": "Las etiquetas de la organización, de menos a más restrictiva, son General, Confidencial y Extremadamente confidencial. El administrador ha dejado activada la herencia descendente totalmente automatizada (Aplicar automáticamente etiquetas de confidencialidad al contenido descendente). Cambias la etiqueta del modelo semántico «Clientes» de General a Confidencial. La tabla muestra su contenido descendente.",
+    "table": {
+      "caption": "Elementos creados a partir del modelo «Clientes»",
+      "headers": ["Elemento", "Tipo", "Etiqueta actual", "Cómo se aplicó"],
+      "rows": [
+        ["Ventas clientes", "Informe", "Sin etiqueta", "—"],
+        ["Campaña", "Informe", "General", "Manualmente"],
+        ["Riesgo", "Informe", "Extremadamente confidencial", "Manualmente"],
+        ["Dirección", "Panel (anclado desde Ventas clientes)", "Sin etiqueta", "—"]
+      ]
+    },
+    "prompt": "¿Qué elementos quedan con la etiqueta Confidencial?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ventas clientes, Campaña y Dirección",
+        "correct": false,
+        "explanation": "Campaña tiene una etiqueta aplicada manualmente, y la herencia descendente nunca sobrescribe etiquetas manuales."
+      },
+      {
+        "id": "b",
+        "text": "Ventas clientes y Dirección",
+        "correct": true,
+        "explanation": "Solo cambian los elementos sin etiqueta manual ni otra más restrictiva; el contenido descendente de un modelo incluye informes y paneles."
+      },
+      {
+        "id": "c",
+        "text": "Los cuatro elementos",
+        "correct": false,
+        "explanation": "La herencia descendente no toca etiquetas manuales ni rebaja una etiqueta más restrictiva, como la de Riesgo."
+      },
+      {
+        "id": "d",
+        "text": "Ninguno, hasta que marques la casilla de aplicar la etiqueta al contenido descendente",
+        "correct": false,
+        "explanation": "La casilla solo aparece en el modo con consentimiento del usuario; en el modo totalmente automatizado la herencia ocurre sin preguntar."
+      }
+    ],
+    "keyPoint": "La herencia descendente propaga la etiqueta a informes y paneles derivados, pero nunca sobrescribe etiquetas manuales ni pone una menos restrictiva.",
+    "references": [
+      {
+        "title": "Herencia descendente de etiquetas de confidencialidad",
+        "url": "https://learn.microsoft.com/es-es/fabric/governance/service-security-sensitivity-label-downstream-inheritance"
+      },
+      {
+        "title": "Etiquetas de confidencialidad en Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/enterprise/powerbi/service-security-sensitivity-label-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-seguridad-112",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 1,
+    "prompt": "¿Dónde se crean y configuran las etiquetas de confidencialidad (*sensitivity labels*) que los usuarios aplican después en Power BI?",
+    "options": [
+      {
+        "id": "a",
+        "text": "En la configuración del inquilino del portal de administración de Power BI",
+        "correct": false,
+        "explanation": "En la configuración del inquilino solo se habilita su uso en Power BI y se decide quién puede aplicarlas; las etiquetas no se crean ahí."
+      },
+      {
+        "id": "b",
+        "text": "En Power BI Desktop, en Modelado > Administrar roles",
+        "correct": false,
+        "explanation": "Administrar roles sirve para definir la seguridad de nivel de fila del modelo, no para crear etiquetas de clasificación."
+      },
+      {
+        "id": "c",
+        "text": "En el portal de Microsoft Purview, que las publica mediante directivas de etiquetas",
+        "correct": true,
+        "explanation": "Las etiquetas y su cifrado se definen en Microsoft Purview Information Protection y llegan a los usuarios a través de directivas de etiquetas."
+      },
+      {
+        "id": "d",
+        "text": "En el centro de administración de Microsoft Entra, como atributo de cada grupo",
+        "correct": false,
+        "explanation": "Microsoft Entra ID gestiona identidades y grupos, pero no define etiquetas de confidencialidad para el contenido."
+      }
+    ],
+    "keyPoint": "Las etiquetas se crean en Microsoft Purview; Power BI solo las usa una vez habilitadas en la configuración del inquilino.",
+    "references": [
+      {
+        "title": "Etiquetas de confidencialidad en Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/enterprise/powerbi/service-security-sensitivity-label-overview"
+      },
+      {
+        "title": "Más información sobre las etiquetas de confidencialidad",
+        "url": "https://learn.microsoft.com/es-es/purview/sensitivity-labels"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-seguridad-113",
+    "type": "yesno",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre la aplicación de etiquetas de confidencialidad en Power BI es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Si quitas la etiqueta del .pbix en Power BI Desktop y lo vuelves a publicar sobre el informe existente, el informe y el modelo semántico del servicio se quedan sin etiqueta.",
+        "answer": false,
+        "explanation": "Quitar la etiqueta en Desktop solo afecta al archivo. Si publicas un .pbix sin etiqueta sobre elementos etiquetados, el servicio conserva las etiquetas que ya tenían; solo un .pbix etiquetado puede sobrescribirlas, tras pedirte confirmación."
+      },
+      {
+        "id": "s2",
+        "text": "Con una directiva de etiqueta obligatoria, Power BI Desktop no te deja guardar ni publicar un .pbix sin etiquetar.",
+        "answer": true,
+        "explanation": "La directiva obliga a aplicar una etiqueta al archivo antes de guardarlo o publicarlo, y en el servicio antes de guardar elementos nuevos."
+      },
+      {
+        "id": "s3",
+        "text": "Si guardas en Power BI Desktop un .pbix con una etiqueta que incluye cifrado, un compañero sin derechos de uso sobre esa etiqueta no podrá abrir el archivo.",
+        "answer": true,
+        "explanation": "En Desktop, al guardar se aplican al .pbix la etiqueta y su cifrado, y el cifrado sí controla el acceso al archivo: quien no tenga los derechos de uso necesarios no puede abrirlo. En el servicio, en cambio, la etiqueta no cambia quién accede al contenido."
+      },
+      {
+        "id": "s4",
+        "text": "Un usuario con el rol Visor puede cambiar la etiqueta de un informe del área de trabajo.",
+        "answer": false,
+        "explanation": "Para aplicar o cambiar etiquetas en el servicio se necesita permiso de edición sobre el elemento, que el Visor no tiene."
+      }
+    ],
+    "keyPoint": "Etiquetar en el servicio exige permiso de edición; un .pbix sin etiqueta no borra las etiquetas del servicio; el cifrado protege el .pbix en Desktop, y una directiva obligatoria impide guardar o publicar sin etiqueta.",
+    "references": [
+      {
+        "title": "Cómo aplicar etiquetas de confidencialidad en Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/enterprise/powerbi/service-security-apply-data-sensitivity-labels"
+      },
+      {
+        "title": "Etiquetas de confidencialidad en Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/enterprise/powerbi/service-security-sensitivity-label-overview"
+      },
+      {
+        "title": "Directiva de etiquetas obligatorias para Fabric y Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/governance/mandatory-label-policy"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-seguridad-114",
+    "type": "dropdown",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "scenario": "Tu empresa tiene informes conectados en directo a dos tipos de modelos: uno de Azure Analysis Services y un modelo semántico compartido de Power BI publicado en el área de trabajo «Datos corporativos».",
+    "prompt": "Completa la frase con la opción correcta en cada hueco.",
+    "template": "En un informe con conexión dinámica a Azure Analysis Services, la seguridad de nivel de fila se define {{b1}}. A los lectores de un informe conectado en directo al modelo semántico compartido de Power BI se les aplican {{b2}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "en Modelado > Administrar roles del informe en Power BI Desktop" },
+          { "id": "o2", "text": "en el propio modelo de Analysis Services" },
+          { "id": "o3", "text": "en la página Seguridad del modelo en el servicio Power BI" }
+        ],
+        "correctId": "o2",
+        "explanation": "Con conexión dinámica a Analysis Services no puedes crear roles en Desktop ni aparece la opción Seguridad: la RLS se define y se aplica en el modelo de Analysis Services."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "los roles que definas en el archivo del informe conectado" },
+          { "id": "o2", "text": "ningún filtro, porque la RLS no se aplica fuera del área de trabajo del modelo" },
+          { "id": "o3", "text": "los roles RLS definidos en el modelo semántico de origen" }
+        ],
+        "correctId": "o3",
+        "explanation": "La seguridad vive en el modelo: cualquier informe conectado a él, esté en el área de trabajo que esté, respeta sus roles para quien solo tiene Lectura o Compilación."
+      }
+    ],
+    "keyPoint": "La RLS siempre se define donde está el modelo (Analysis Services o el modelo semántico compartido); los informes conectados la heredan.",
+    "references": [
+      {
+        "title": "Seguridad de nivel de fila (RLS) con Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/security/service-admin-row-level-security"
+      },
+      {
+        "title": "Planeamiento de la seguridad del consumidor de informes",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/powerbi-implementation-planning-security-report-consumer-planning"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-seguridad-115",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "scenario": "La base de datos de Azure SQL Database de pedidos ya aplica su propia seguridad de nivel de fila según la cuenta de Microsoft Entra de cada usuario. Has publicado un modelo semántico en modo DirectQuery sobre esa base de datos. Cada lector debe ver solo los pedidos que la base de datos le permite, sin volver a definir las reglas en Power BI.",
+    "prompt": "¿Qué debes configurar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Activar el inicio de sesión único (SSO) en las credenciales del origen de datos",
+        "correct": true,
+        "explanation": "En la configuración del modelo semántico, al activar SSO (OAuth2 de Microsoft Entra) en las credenciales del origen, Power BI envía la identidad de cada lector en las consultas DirectQuery y la base de datos aplica su propia seguridad."
+      },
+      {
+        "id": "b",
+        "text": "Cambiar el modelo al modo de importación y programar la actualización diaria",
+        "correct": false,
+        "explanation": "Al importar, los datos se cargan con las credenciales del modelo y la seguridad del origen deja de aplicarse a cada lector."
+      },
+      {
+        "id": "c",
+        "text": "Configurar las credenciales con una cuenta de servicio que pueda leer todas las filas",
+        "correct": false,
+        "explanation": "Todas las consultas se harían con esa cuenta, así que cada lector vería todo lo que ve la cuenta de servicio."
+      },
+      {
+        "id": "d",
+        "text": "Crear en Power BI Desktop un rol con el filtro TRUE() y asignarle a todos los lectores",
+        "correct": false,
+        "explanation": "Un rol con TRUE() deja ver todas las filas del modelo y no hace que la base de datos reciba la identidad del lector."
+      }
+    ],
+    "keyPoint": "Para reutilizar la seguridad del origen, usa DirectQuery con SSO: Power BI pasa la identidad del lector y el origen filtra.",
+    "references": [
+      {
+        "title": "Azure SQL Database con DirectQuery",
+        "url": "https://learn.microsoft.com/es-es/power-bi/connect-data/service-azure-sql-database-with-direct-connect"
+      },
+      {
+        "title": "Restricción del acceso a los datos del modelo de Power BI",
+        "url": "https://learn.microsoft.com/es-es/training/modules/enforce-power-bi-model-security/2-restrict-access-to-power-bi-model-data"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-seguridad-116",
+    "type": "order",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "scenario": "Has definido en Power BI Desktop los roles «Norte» y «Sur» de un modelo de importación y quieres validarlos en el servicio Power BI antes de avisar a los usuarios.",
+    "prompt": "Ordena los pasos para probar los roles en el servicio Power BI.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Publicar el modelo semántico y su informe en el área de trabajo",
+        "explanation": "Las definiciones de los roles viajan con el modelo al publicarlo; sin roles publicados no hay nada que probar en el servicio."
+      },
+      {
+        "id": "p2",
+        "text": "En el área de trabajo, abrir Más opciones (...) del modelo semántico y seleccionar Seguridad",
+        "explanation": "La página Seguridad del modelo muestra los roles definidos y permite gestionar sus miembros y probarlos."
+      },
+      {
+        "id": "p3",
+        "text": "Seleccionar Más opciones (...) junto al rol «Norte» y elegir Probar como rol",
+        "explanation": "Probar como rol (Test as role) abre el informe del modelo aplicando el filtro de ese rol."
+      },
+      {
+        "id": "p4",
+        "text": "En el encabezado del informe, usar Ahora se muestra como para cambiar al rol «Sur» o a la combinación de ambos",
+        "explanation": "Desde el encabezado puedes probar otros roles o combinaciones sin volver a la página Seguridad."
+      },
+      {
+        "id": "p5",
+        "text": "Seleccionar Volver a seguridad de nivel de fila para salir de la prueba",
+        "explanation": "Este paso cierra la vista de prueba y te devuelve a la página Seguridad del modelo."
+      }
+    ],
+    "keyPoint": "En el servicio, los roles se prueban desde Seguridad del modelo > Probar como rol, y se cambia de rol con Ahora se muestra como.",
+    "references": [
+      {
+        "title": "Seguridad de nivel de fila (RLS) con Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/security/service-admin-row-level-security"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-seguridad-117",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 3,
+    "scenario": "Marcos es responsable de dos tiendas de la región Norte. El rol RLS mostrado filtra la tabla Tienda y Marcos ve correctamente solo las ventas de sus tiendas. Sin embargo, la segmentación de Región del informe sigue mostrando las cinco regiones de la empresa, y debe mostrar solo las regiones de sus tiendas.",
+    "code": {
+      "language": "dax",
+      "content": "// Rol \"Responsables\" — filtro sobre la tabla Tienda\n[Responsable] = USERPRINCIPALNAME ()"
+    },
+    "table": {
+      "caption": "Relaciones del modelo",
+      "headers": ["Tabla del lado uno", "Tabla del lado varios", "Dirección del filtro cruzado"],
+      "rows": [
+        ["Region", "Tienda", "Única"],
+        ["Tienda", "Ventas", "Única"]
+      ]
+    },
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cambiar la dirección del filtro cruzado de la relación Region–Tienda a Ambas, sin más cambios",
+        "correct": false,
+        "explanation": "Los filtros de RLS usan una sola dirección aunque la relación sea bidireccional, salvo que actives la opción de seguridad específica."
+      },
+      {
+        "id": "b",
+        "text": "Mover el filtro del rol a la tabla Ventas",
+        "correct": false,
+        "explanation": "Con relaciones de una dirección, un filtro sobre la tabla de hechos no sube hasta Tienda ni hasta Region; además es menos eficiente."
+      },
+      {
+        "id": "c",
+        "text": "Cambiar la relación Region–Tienda a Ambas y activar Aplicar filtro de seguridad en ambas direcciones",
+        "correct": true,
+        "explanation": "Con esa opción el filtro de seguridad de Tienda se propaga también hacia Region, y la segmentación solo muestra las regiones de sus tiendas."
+      },
+      {
+        "id": "d",
+        "text": "Agregar al rol una segunda regla sobre Region: [Region] = USERPRINCIPALNAME ()",
+        "correct": false,
+        "explanation": "Compara el nombre de la región con el UPN, que nunca coinciden: Region quedaría vacía y, por la relación, Marcos no vería ninguna venta."
+      }
+    ],
+    "keyPoint": "La RLS se propaga en una sola dirección; para filtrar «hacia arriba» hay que marcar Aplicar filtro de seguridad en ambas direcciones en la relación.",
+    "references": [
+      {
+        "title": "Seguridad de nivel de fila (RLS) con Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/security/service-admin-row-level-security"
+      },
+      {
+        "title": "Instrucciones de relaciones bidireccionales",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/relationships-bidirectional-filtering"
+      }
+    ]
+  },
+  {
+    "id": "pl300-d4-seguridad-118",
+    "type": "single",
+    "exam": "PL-300",
+    "outlineVersion": "2026-04-20",
+    "domain": "d4",
+    "skill": "d4-seguridad",
+    "difficulty": 2,
+    "scenario": "El modelo semántico «Distribuidores» tiene el rol RLS estático «Canal Socios», con el filtro [Canal] = \"Socios\" sobre la tabla Cliente. En la página Seguridad del modelo, el único miembro del rol es el grupo de seguridad de Microsoft Entra SG-Socios, que incluye empleados internos y usuarios invitados (B2B) de las empresas distribuidoras. Todos abren el informe desde una aplicación. Los empleados internos ven los datos del canal Socios, pero varios invitados no ven ningún dato.",
+    "prompt": "¿Qué solución recomienda la documentación de Power BI para los invitados?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agregar a los usuarios invitados directamente como miembros del rol, por su dirección de correo",
+        "correct": true,
+        "explanation": "La pertenencia a grupos de seguridad que contienen invitados B2B puede no evaluarse correctamente al aplicar la RLS, sobre todo con cuentas de tipo invitado. La solución recomendada es agregarlos al rol uno a uno por correo, que se resuelve a su cuenta B2B; con muchos invitados, otra opción es una RLS dinámica con USERPRINCIPALNAME()."
+      },
+      {
+        "id": "b",
+        "text": "Sustituir SG-Socios por un grupo de Microsoft 365 con los mismos miembros",
+        "correct": false,
+        "explanation": "Los grupos de Microsoft 365 no se pueden agregar a ningún rol RLS. Como miembros de un rol solo se admiten usuarios, grupos de seguridad de Microsoft Entra, grupos de distribución y grupos habilitados para correo."
+      },
+      {
+        "id": "c",
+        "text": "Asignar a los invitados el rol Colaborador en el área de trabajo de la aplicación",
+        "correct": false,
+        "explanation": "La RLS no se aplica a los roles con permiso de edición: los invitados verían los datos de todos los canales, no solo los de Socios, y además podrían modificar el contenido."
+      },
+      {
+        "id": "d",
+        "text": "Activar Aplicar filtro de seguridad en ambas direcciones en la relación de la tabla Cliente",
+        "correct": false,
+        "explanation": "Esa opción cambia cómo se propaga el filtro del rol entre tablas, no quién pertenece al rol. Los empleados internos ya ven sus datos, así que el filtro funciona; lo que falla es cómo se evalúa la pertenencia de los invitados."
+      }
+    ],
+    "keyPoint": "RLS con invitados B2B: agrégalos al rol directamente por correo (o usa RLS dinámica), porque los grupos de seguridad con invitados pueden no evaluarse bien; los grupos de Microsoft 365 no se admiten en los roles.",
+    "references": [
+      {
+        "title": "Seguridad de nivel de fila (RLS) con Power BI",
+        "url": "https://learn.microsoft.com/es-es/fabric/security/service-admin-row-level-security"
+      }
+    ]
+  }
+]

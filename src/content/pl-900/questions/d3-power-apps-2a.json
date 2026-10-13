@@ -1,0 +1,1198 @@
+[
+  {
+    "id": "pl900-d3-lienzo-101",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "difficulty": 1,
+    "prompt": "Indica si cada afirmación sobre el funcionamiento de Power Fx en las aplicaciones de lienzo es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Si cambias el valor de un control de entrada, las fórmulas que dependen de él se vuelven a calcular automáticamente, como las celdas de Excel.",
+        "answer": true,
+        "explanation": "Power Fx es declarativo, igual que Excel: al cambiar un valor, las fórmulas que lo usan se recalculan solas y los controles muestran el resultado nuevo."
+      },
+      {
+        "id": "s2",
+        "text": "Para que una etiqueta muestre siempre el total actualizado debes programar un controlador del evento OnChange que la vuelva a rellenar.",
+        "answer": false,
+        "explanation": "Basta con poner la fórmula en la propiedad Text de la etiqueta. Power Fx sigue la dependencia y la actualiza sin controladores de eventos, a diferencia de otros lenguajes."
+      },
+      {
+        "id": "s3",
+        "text": "Además de fórmulas declarativas, Power Fx permite lógica de comportamiento, como guardar datos cuando el usuario selecciona un botón (OnSelect).",
+        "answer": true,
+        "explanation": "Power Apps amplía el modelo de Excel con fórmulas de comportamiento, que se ejecutan ante una acción del usuario, por ejemplo en la propiedad OnSelect de un botón."
+      },
+      {
+        "id": "s4",
+        "text": "Antes de que los usuarios vean los cambios, el creador debe compilar las fórmulas a JavaScript con una herramienta aparte.",
+        "answer": false,
+        "explanation": "En Power Fx no hay paso de compilación por parte del creador: la app está viva mientras la editas y solo hace falta publicar para decidir qué versión ven los usuarios."
+      }
+    ],
+    "keyPoint": "Power Fx funciona como Excel: fórmulas declarativas que se recalculan solas, más fórmulas de comportamiento (OnSelect) cuando hay que actuar.",
+    "references": [
+      {
+        "title": "Información general de Microsoft Power Fx",
+        "url": "https://learn.microsoft.com/es-es/power-platform/power-fx/overview"
+      },
+      {
+        "title": "Comprender las variables en las aplicaciones de lienzo",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/working-with-variables"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-lienzo-102",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "difficulty": 2,
+    "scenario": "Contoso Café está creando una aplicación de lienzo para que los camareros tomen los pedidos en una tableta.",
+    "prompt": "Empareja cada necesidad con la función de Power Fx que debes usar. Cada opción puede usarse una vez o ninguna.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Guardar el nombre del camarero al iniciar la app para mostrarlo en todas las pantallas",
+        "answerId": "c1",
+        "explanation": "Set crea o actualiza una variable global, que puede contener cualquier valor y a la que se puede hacer referencia desde cualquier parte de la app."
+      },
+      {
+        "id": "m2",
+        "text": "Mostrar u ocultar un panel de ayuda solo dentro de la pantalla actual",
+        "answerId": "c2",
+        "explanation": "UpdateContext establece una variable de contexto, cuyo ámbito es una sola pantalla. Es la opción adecuada para un estado local como un panel visible u oculto."
+      },
+      {
+        "id": "m3",
+        "text": "Ir acumulando en una tabla los productos que el camarero añade a la comanda antes de enviarla",
+        "answerId": "c3",
+        "explanation": "Collect agrega registros a una colección, una tabla en memoria a la que se puede hacer referencia en cualquier lugar de la app."
+      },
+      {
+        "id": "m4",
+        "text": "Conservar en el dispositivo el contenido de una colección para recuperarlo la próxima vez que se abra la app",
+        "answerId": "c5",
+        "explanation": "SaveData guarda una colección en el almacenamiento local del dispositivo, y LoadData la recupera después, por ejemplo tras cerrar la app."
+      }
+    ],
+    "choices": [
+      { "id": "c1", "text": "Set" },
+      { "id": "c2", "text": "UpdateContext" },
+      { "id": "c3", "text": "Collect" },
+      { "id": "c4", "text": "Navigate" },
+      { "id": "c5", "text": "SaveData" }
+    ],
+    "keyPoint": "Set = variable global; UpdateContext = variable de una pantalla; Collect = colección (tabla en memoria); SaveData = guardar la colección en el dispositivo.",
+    "references": [
+      {
+        "title": "Comprender las variables en las aplicaciones de lienzo",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/working-with-variables"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-lienzo-103",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "difficulty": 2,
+    "scenario": "En la aplicación de lienzo del almacén de Tailwind Traders, la propiedad Items (Elementos) de una galería contiene la fórmula siguiente. La tabla Pedidos tiene, entre otras, las columnas Estado y FechaEntrega.",
+    "code": {
+      "language": "powerfx",
+      "content": "SortByColumns(\n    Filter( Pedidos, Estado = \"Pendiente\" ),\n    \"FechaEntrega\",\n    SortOrder.Descending\n)"
+    },
+    "prompt": "¿Qué muestra la galería?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Todos los pedidos, con los pendientes al principio y ordenados por fecha de entrega",
+        "correct": false,
+        "explanation": "Filter descarta los registros que no cumplen la condición, así que los pedidos con otro estado no aparecen en la galería."
+      },
+      {
+        "id": "b",
+        "text": "Solo los pedidos pendientes, de la fecha de entrega más temprana a la más tardía",
+        "correct": false,
+        "explanation": "Ese sería el orden ascendente, que es el predeterminado. La fórmula indica SortOrder.Descending, es decir, de la fecha más tardía a la más temprana."
+      },
+      {
+        "id": "c",
+        "text": "Solo los pedidos pendientes, de la fecha de entrega más tardía a la más temprana",
+        "correct": true,
+        "explanation": "Filter devuelve la tabla de pedidos con Estado = \"Pendiente\" y SortByColumns la ordena por FechaEntrega en orden descendente."
+      },
+      {
+        "id": "d",
+        "text": "Solo el primer pedido pendiente, porque Filter devuelve un único registro",
+        "correct": false,
+        "explanation": "Filter devuelve una tabla con todos los registros que cumplen la fórmula. La función que devuelve un único registro es LookUp."
+      }
+    ],
+    "keyPoint": "Filter devuelve una tabla filtrada y SortByColumns la ordena; SortOrder.Ascending es el valor predeterminado y Descending invierte el orden.",
+    "references": [
+      {
+        "title": "Funciones Sort y SortByColumns",
+        "url": "https://learn.microsoft.com/es-es/power-platform/power-fx/reference/function-sort"
+      },
+      {
+        "title": "Funciones Filter, Search y LookUp",
+        "url": "https://learn.microsoft.com/es-es/power-platform/power-fx/reference/function-filter-lookup"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-lienzo-104",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "difficulty": 1,
+    "prompt": "Completa la frase sobre las funciones de Power Fx para consultar datos en una aplicación de lienzo.",
+    "template": "Para obtener el único cliente cuyo NIF escribe el usuario, usas {{b1}}; para mostrar en una galería todos los pedidos de más de 1000 euros, usas {{b2}}; y para encontrar los clientes cuyo nombre contiene el texto de un cuadro de búsqueda, sin escribir ninguna condición, usas {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "Filter" },
+          { "id": "o2", "text": "LookUp" },
+          { "id": "o3", "text": "Sort" }
+        ],
+        "correctId": "o2",
+        "explanation": "LookUp devuelve el primer registro que cumple la fórmula, o un valor en blanco si no hay ninguno. Es la función indicada para obtener un solo registro."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "Filter" },
+          { "id": "o2", "text": "LookUp" },
+          { "id": "o3", "text": "Search" }
+        ],
+        "correctId": "o1",
+        "explanation": "Filter devuelve una tabla con todos los registros que cumplen una condición, como Importe > 1000, y suele usarse en la propiedad Items de una galería."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "LookUp" },
+          { "id": "o2", "text": "Patch" },
+          { "id": "o3", "text": "Search" }
+        ],
+        "correctId": "o3",
+        "explanation": "Search busca una cadena en cualquier parte de una o varias columnas, sin distinguir mayúsculas, y usa ese texto en lugar de una fórmula de condición."
+      }
+    ],
+    "keyPoint": "LookUp = un registro; Filter = tabla de registros que cumplen una condición; Search = tabla de registros que contienen un texto.",
+    "references": [
+      {
+        "title": "Funciones Filter, Search y LookUp",
+        "url": "https://learn.microsoft.com/es-es/power-platform/power-fx/reference/function-filter-lookup"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-lienzo-105",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "difficulty": 2,
+    "scenario": "Los técnicos de mantenimiento de Wide World Importers registran las averías en una aplicación de lienzo conectada a una lista de Microsoft Lists. La usan en sus teléfonos Android e iOS.",
+    "prompt": "Empareja cada necesidad con el control de la aplicación de lienzo que la resuelve. Cada opción puede usarse una vez o ninguna.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Grabar una nota de voz con la descripción de la avería",
+        "answerId": "c1",
+        "explanation": "El control Micrófono captura audio con el micrófono del dispositivo, si el usuario lo autoriza. La última grabación queda en su propiedad Audio, que puede reproducirse con el control Audio o guardarse."
+      },
+      {
+        "id": "m2",
+        "text": "Subir el manual del equipo en PDF al elemento de la lista y descargar los archivos que ya tiene",
+        "answerId": "c2",
+        "explanation": "El control Datos adjuntos permite abrir, agregar y eliminar archivos de un elemento de Microsoft Lists o de una fila de Dataverse. El control clásico se usa dentro de un formulario."
+      },
+      {
+        "id": "m3",
+        "text": "Reproducir dentro de la app el vídeo de formación que explica la reparación",
+        "answerId": "c3",
+        "explanation": "El control Vídeo reproduce un archivo de vídeo, un vídeo de YouTube u otro origen externo, y puede mostrar subtítulos."
+      },
+      {
+        "id": "m4",
+        "text": "Adjuntar una foto de la avería que el técnico ya tiene guardada en el teléfono",
+        "answerId": "c4",
+        "explanation": "Agregar imagen permite tomar una foto o elegir una imagen ya guardada en el dispositivo. El control Cámara solo captura fotos nuevas y el control Imagen solo muestra imágenes."
+      }
+    ],
+    "choices": [
+      { "id": "c1", "text": "Micrófono (*Microphone*)" },
+      { "id": "c2", "text": "Datos adjuntos (*Attachments*)" },
+      { "id": "c3", "text": "Vídeo (*Video*)" },
+      { "id": "c4", "text": "Agregar imagen (*Add picture*)" },
+      { "id": "c5", "text": "Cámara (*Camera*)" },
+      { "id": "c6", "text": "Imagen (*Image*)" }
+    ],
+    "keyPoint": "Controles multimedia de lienzo: Micrófono graba audio, Datos adjuntos sube y descarga archivos de una lista o tabla, Vídeo reproduce vídeos y Agregar imagen toma o elige fotos.",
+    "references": [
+      {
+        "title": "Control Micrófono en Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/controls/control-microphone"
+      },
+      {
+        "title": "Control Datos adjuntos en Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/controls/control-attachments"
+      },
+      {
+        "title": "Control Agregar imagen en aplicaciones de lienzo",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/controls/control-add-picture"
+      },
+      {
+        "title": "Controles Audio y Vídeo en Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/controls/control-audio-video"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-lienzo-106",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "difficulty": 2,
+    "scenario": "Los técnicos de Fabrikam rellenan en una aplicación de lienzo el informe de cada visita. Al pulsar el botón Enviar, la app debe mandar por correo un resumen a la dirección que el técnico escribe en un cuadro de texto. Esa dirección no se guarda en ningún origen de datos.",
+    "prompt": "¿Cómo debes implementarlo?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crear un flujo de nube programado que revise la app cada hora y envíe los correos pendientes",
+        "correct": false,
+        "explanation": "Un flujo programado se ejecuta por horario y no puede leer lo que el técnico escribe en un control de la app, que además no se guarda en ningún origen."
+      },
+      {
+        "id": "b",
+        "text": "Usar la función Patch en el botón para escribir el correo directamente en el buzón de Outlook",
+        "correct": false,
+        "explanation": "Patch crea o modifica registros en un origen de datos; no sirve para enviar mensajes de correo."
+      },
+      {
+        "id": "c",
+        "text": "Agregar desde el panel de Power Automate un flujo con el desencadenador de Power Apps y llamarlo con Run en el OnSelect del botón",
+        "correct": true,
+        "explanation": "Desde Power Apps Studio puedes crear o agregar flujos con desencadenador de Power Apps e invocarlos con NombreDelFlujo.Run(), pasándoles como parámetro la dirección escrita."
+      },
+      {
+        "id": "d",
+        "text": "Crear un flujo de escritorio que abra la app en el equipo del técnico y copie la dirección en Outlook",
+        "correct": false,
+        "explanation": "Los flujos de escritorio automatizan interfaces de aplicaciones de escritorio; no se ejecutan al pulsar un botón en la app móvil ni reciben sus datos."
+      }
+    ],
+    "keyPoint": "Una app de lienzo llama a un flujo de nube con desencadenador de Power Apps mediante NombreDelFlujo.Run(), y puede pasarle parámetros.",
+    "references": [
+      {
+        "title": "Trabajar con flujos de Power Automate en aplicaciones de lienzo",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/working-with-flows"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-lienzo-107",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "difficulty": 2,
+    "scenario": "El equipo de Recursos Humanos de Northwind registra las solicitudes de formación en una lista de SharePoint. Quiere que el formulario que se abre al crear o editar un elemento en la propia lista muestre el logotipo y oculte el campo Coste salvo para cursos externos. Los usuarios deben seguir trabajando desde la lista.",
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crear una aplicación basada en modelos que use la lista como tabla principal",
+        "correct": false,
+        "explanation": "Las aplicaciones basadas en modelos se construyen sobre tablas de Dataverse y no sustituyen el formulario de una lista de SharePoint."
+      },
+      {
+        "id": "b",
+        "text": "Seleccionar Integrar > Power Apps > Crear una aplicación y retirar la lista a los usuarios",
+        "correct": false,
+        "explanation": "Crear una aplicación genera una app de lienzo independiente. El requisito es mantener el trabajo en la lista y cambiar solo su formulario."
+      },
+      {
+        "id": "c",
+        "text": "Publicar un sitio de Power Pages que muestre los elementos de la lista",
+        "correct": false,
+        "explanation": "Power Pages crea sitios web, sobre todo para usuarios externos; no modifica el formulario que aparece dentro de la lista."
+      },
+      {
+        "id": "d",
+        "text": "En la lista, seleccionar Integrar > Power Apps > Personalizar formularios y editarlo en Power Apps Studio",
+        "correct": true,
+        "explanation": "Personalizar formularios abre el formulario de la lista en Power Apps Studio, donde puedes añadir imágenes y usar fórmulas, por ejemplo en la propiedad Visible de un campo. El formulario sigue abriéndose desde SharePoint."
+      }
+    ],
+    "keyPoint": "Para cambiar el formulario de una lista de SharePoint sin salir de ella, usa Integrar > Power Apps > Personalizar formularios.",
+    "references": [
+      {
+        "title": "Crear un formulario personalizado para una lista de SharePoint",
+        "url": "https://learn.microsoft.com/es-es/sharepoint/dev/business-apps/power-apps/get-started/create-your-first-custom-form"
+      },
+      {
+        "title": "Integración de SharePoint Online en Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/sharepoint-form-integration"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-lienzo-108",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "difficulty": 2,
+    "scenario": "El departamento de mantenimiento de Alpine Ski House controla el inventario de equipos en una tabla de un libro de Excel guardado en OneDrive. Quiere una aplicación de lienzo y, además, que los datos dejen de depender del libro: deben pasar a la plataforma de datos de Power Platform, con seguridad mejorada, para reutilizarlos en otras aplicaciones y flujos.",
+    "prompt": "¿Cómo debes empezar a crear la aplicación?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Empezar con datos > Excel Online (Business) y crear la app conectada al libro",
+        "correct": false,
+        "explanation": "Es la forma más rápida de crear la app, pero el libro permanece en su ubicación y los datos siguen dependiendo de Excel."
+      },
+      {
+        "id": "b",
+        "text": "Empezar con datos > Cargar archivo, para convertir los datos del libro en una tabla de Dataverse",
+        "correct": true,
+        "explanation": "Al cargar el archivo, Power Apps crea una tabla de Dataverse con los datos y genera la app. Es el enfoque recomendado si quieres almacenamiento en la nube, seguridad mejorada y una tabla reutilizable."
+      },
+      {
+        "id": "c",
+        "text": "Crear una app en blanco y agregar el libro de OneDrive como origen de datos",
+        "correct": false,
+        "explanation": "Da la máxima flexibilidad de diseño, pero los datos siguen guardados en el libro de Excel."
+      },
+      {
+        "id": "d",
+        "text": "Mover el libro a una biblioteca de documentos de SharePoint y conectarlo",
+        "correct": false,
+        "explanation": "Cambiar el libro de ubicación no cambia nada: los datos siguen en un archivo de Excel, sin la seguridad ni la reutilización que ofrece Dataverse."
+      }
+    ],
+    "keyPoint": "Datos de Excel: conectar al libro es lo más rápido; cargar el archivo los convierte en una tabla de Dataverse segura y reutilizable.",
+    "references": [
+      {
+        "title": "Crear una aplicación de lienzo basada en datos de Excel",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/get-started-create-from-blank"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-lienzo-109",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "difficulty": 3,
+    "scenario": "Relecloud creó una aplicación de lienzo con formato de teléfono. Ahora muchos empleados la abren en el explorador del portátil y se quejan de que todo se ve enorme y de que no aprovecha el espacio de la pantalla.",
+    "prompt": "Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Con la opción Escalar para ajustar (*Scale to fit*) activada, que es el valor predeterminado, la app se amplía para llenar la ventana, pero no muestra más contenido.",
+        "answer": true,
+        "explanation": "Con Escalar para ajustar, el diseño se escala a la pantalla donde se ejecuta. En una ventana grande, una app de teléfono se ve más grande, pero no aprovecha los píxeles adicionales."
+      },
+      {
+        "id": "s2",
+        "text": "El primer paso para que la app sea adaptable es desactivar Escalar para ajustar en Configuración > Mostrar.",
+        "answer": true,
+        "explanation": "Al desactivar Escalar para ajustar también se desactiva Bloquear relación de aspecto. Es el primer paso para que la app pueda adaptarse a distintos tamaños."
+      },
+      {
+        "id": "s3",
+        "text": "Al desactivar Escalar para ajustar, los controles se recolocan y cambian de tamaño solos, sin más cambios en la app.",
+        "answer": false,
+        "explanation": "Desactivar la opción solo lo hace posible. Después hay que usar contenedores o escribir fórmulas para X, Y, Width y Height, por ejemplo en función de Parent.Width."
+      },
+      {
+        "id": "s4",
+        "text": "Los contenedores horizontales y verticales colocan automáticamente sus controles secundarios, sin que tengas que fijar su X ni su Y.",
+        "answer": true,
+        "explanation": "Los contenedores de diseño automático determinan la posición de sus componentes secundarios y reparten el espacio disponible entre ellos. Son la base del diseño adaptable."
+      }
+    ],
+    "keyPoint": "Una app de lienzo solo es adaptable si se diseña así: desactiva Escalar para ajustar y usa contenedores o fórmulas relativas al tamaño de la pantalla.",
+    "references": [
+      {
+        "title": "Crear diseños dinámicos en aplicaciones de lienzo",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/create-responsive-layout"
+      },
+      {
+        "title": "Creación de aplicaciones de lienzo receptivas",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/build-responsive-apps"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-lienzo-110",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "difficulty": 2,
+    "scenario": "Una aplicación de lienzo de Litware usa dos tablas de Dataverse y un libro de Excel guardado en OneDrive para la Empresa. Vas a compartirla con todo el departamento de compras.",
+    "prompt": "¿Qué dos acciones puedes realizar desde el propio panel Compartir de Power Apps? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Compartir la app con un grupo de seguridad de Microsoft Entra ID que incluya al departamento",
+        "correct": true,
+        "explanation": "Puedes compartir con usuarios concretos o con grupos de seguridad de Microsoft Entra ID. Los usuarios que entren o salgan del grupo ganan o pierden el acceso automáticamente."
+      },
+      {
+        "id": "b",
+        "text": "Compartir la app con la lista de distribución de correo del departamento",
+        "correct": false,
+        "explanation": "No se puede compartir una app con un grupo de distribución. Hay que usar un grupo de seguridad (o un grupo de Microsoft 365 con la seguridad habilitada)."
+      },
+      {
+        "id": "c",
+        "text": "Asignar a los usuarios roles de seguridad de Dataverse para las tablas que usa la app",
+        "correct": true,
+        "explanation": "Si la app se conecta a tablas de Dataverse, el panel Compartir permite seleccionar roles de seguridad, que se asignan a los usuarios al compartir."
+      },
+      {
+        "id": "d",
+        "text": "Dar a los usuarios permiso de edición sobre el libro de Excel de OneDrive",
+        "correct": false,
+        "explanation": "Los orígenes que no son de Dataverse, como un libro de OneDrive, hay que compartirlos aparte con los usuarios de la app."
+      },
+      {
+        "id": "e",
+        "text": "Publicar la app en Microsoft AppSource para que la encuentren",
+        "correct": false,
+        "explanation": "AppSource es un mercado de soluciones de terceros, no el mecanismo para dar acceso a una app interna de la organización."
+      }
+    ],
+    "keyPoint": "Al compartir una app de lienzo puedes elegir grupos de seguridad y asignar roles de Dataverse; los demás orígenes, como Excel, se comparten por separado.",
+    "references": [
+      {
+        "title": "Compartir una aplicación de lienzo con su organización",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/share-app"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-lienzo-111",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "difficulty": 3,
+    "scenario": "El centro de excelencia de Contoso mantiene doce aplicaciones de lienzo que deben mostrar el mismo encabezado con el logotipo y el mismo menú lateral. Quiere definirlos una sola vez con Power Fx, sin desarrolladores profesionales, y que los creadores de cada app reciban un aviso cuando haya una versión nueva.",
+    "prompt": "¿Qué debes usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Copiar las pantallas de una app a las demás y repetir cada cambio en todas",
+        "correct": false,
+        "explanation": "Copiar pantallas duplica el trabajo de mantenimiento y no avisa a nadie de los cambios: cada copia evoluciona por separado."
+      },
+      {
+        "id": "b",
+        "text": "Una página personalizada (*custom page*) agregada a cada aplicación",
+        "correct": false,
+        "explanation": "Las páginas personalizadas sirven para incluir una página de diseño libre en una aplicación basada en modelos, no para reutilizar piezas entre apps de lienzo."
+      },
+      {
+        "id": "c",
+        "text": "Una biblioteca de componentes con el encabezado y el menú como componentes",
+        "correct": true,
+        "explanation": "La biblioteca de componentes es la forma recomendada de reutilizar componentes: centraliza sus definiciones, permite publicar actualizaciones y avisa a los creadores de las apps que los usan."
+      },
+      {
+        "id": "d",
+        "text": "Un componente de código creado con Power Apps component framework",
+        "correct": false,
+        "explanation": "Los componentes de código se programan con TypeScript y herramientas de desarrollo profesional, justo lo que el equipo quiere evitar."
+      }
+    ],
+    "keyPoint": "Para reutilizar piezas de interfaz entre apps de lienzo con Power Fx y recibir avisos de actualización, crea una biblioteca de componentes.",
+    "references": [
+      {
+        "title": "Biblioteca de componentes",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/component-library"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-lienzo-112",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "difficulty": 2,
+    "scenario": "Ayer Iván publicó una versión de la aplicación de lienzo de reserva de salas que tiene un error en la pantalla principal. Quiere volver cuanto antes a la versión anterior, que funcionaba, y que los usuarios vuelvan a usarla.",
+    "prompt": "Ordena los pasos que debe seguir en Power Apps.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "En Aplicaciones, seleccionar la app y después Detalles en la barra de comandos",
+        "explanation": "El historial de versiones de una app de lienzo se consulta desde los detalles de la app, en la lista de aplicaciones del entorno."
+      },
+      {
+        "id": "p2",
+        "text": "Abrir Versiones y seleccionar la versión anterior que funcionaba",
+        "explanation": "La pestaña Versiones muestra las versiones guardadas en la nube, con la que está en directo marcada como tal."
+      },
+      {
+        "id": "p3",
+        "text": "Seleccionar Restaurar y confirmar, lo que crea una versión nueva",
+        "explanation": "Restaurar no borra el historial: crea una versión nueva con el contenido de la elegida, que todavía no está publicada."
+      },
+      {
+        "id": "p4",
+        "text": "Seleccionar Publicar esta versión para que pase a estar En directo",
+        "explanation": "Hasta que se publica, los usuarios siguen viendo la versión con el error. Al publicarla, la versión restaurada aparece como En directo."
+      }
+    ],
+    "keyPoint": "Para deshacer una publicación: Detalles > Versiones > Restaurar (crea una versión nueva) > Publicar esta versión.",
+    "references": [
+      {
+        "title": "Restaurar una aplicación de lienzo a una versión anterior",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/restore-an-app"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-lienzo-113",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "difficulty": 2,
+    "scenario": "En una aplicación de lienzo de incidencias, la propiedad OnSelect de un botón contiene la fórmula siguiente. Incidencias es un origen de datos con las columnas de texto Titulo y Prioridad, y txtTitulo es un control de entrada de texto.",
+    "code": {
+      "language": "powerfx",
+      "content": "Patch(\n    Incidencias,\n    Defaults( Incidencias ),\n    { Titulo: txtTitulo.Text, Prioridad: \"Alta\" }\n)"
+    },
+    "prompt": "¿Qué ocurre al seleccionar el botón?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Se modifica el primer registro de Incidencias con el título escrito y prioridad Alta",
+        "correct": false,
+        "explanation": "Para modificar un registro habría que pasar como segundo argumento ese registro, por ejemplo el seleccionado en una galería, no Defaults."
+      },
+      {
+        "id": "b",
+        "text": "Se crea un registro nuevo en Incidencias con el título escrito y prioridad Alta",
+        "correct": true,
+        "explanation": "Defaults devuelve un registro base con los valores predeterminados del origen de datos. Patch con ese registro crea uno nuevo y aplica los valores indicados; el resto de columnas toman su valor predeterminado."
+      },
+      {
+        "id": "c",
+        "text": "Se cambia a Alta la prioridad de todos los registros existentes de Incidencias",
+        "correct": false,
+        "explanation": "Patch no actúa sobre todos los registros. Para modificar varios registros según una condición se usa UpdateIf."
+      },
+      {
+        "id": "d",
+        "text": "Se agrega el registro a una colección local, sin guardarlo en el origen de datos",
+        "correct": false,
+        "explanation": "El primer argumento es el origen de datos Incidencias, así que el cambio se guarda en él. Para una colección en memoria se usaría Collect sobre la colección."
+      }
+    ],
+    "keyPoint": "Patch( Origen, Defaults( Origen ), {…} ) crea un registro nuevo; con un registro existente como segundo argumento, lo modifica.",
+    "references": [
+      {
+        "title": "Función Patch",
+        "url": "https://learn.microsoft.com/es-es/power-platform/power-fx/reference/function-patch"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-modelos-101",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-modelos",
+    "difficulty": 3,
+    "scenario": "Los agentes de soporte de Woodgrove usan una aplicación basada en modelos sobre la tabla Caso. Quieren una página de inicio con varias listas en tiempo real (sus casos activos, los casos de su cola…) y gráficos en los que hacer clic para filtrar esas listas. También quieren actuar sobre cada caso desde esa misma página, sin ir a buscarlo por la app.",
+    "prompt": "¿Qué debes configurar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un panel estándar con varios gráficos y listas de casos",
+        "correct": false,
+        "explanation": "Un panel estándar reúne gráficos o listas independientes para dar una visión general, pero no ofrece secuencias en tiempo real con filtros visuales para trabajar sobre cada fila."
+      },
+      {
+        "id": "b",
+        "text": "Una vista personal de casos por cada cola de soporte",
+        "correct": false,
+        "explanation": "Una vista personal es una lista guardada de una tabla. No combina varias listas y gráficos interactivos en una misma página de trabajo."
+      },
+      {
+        "id": "c",
+        "text": "Un panel de Power BI incrustado con los casos activos",
+        "correct": false,
+        "explanation": "Power BI sirve para analizar los datos, no para trabajar sobre cada caso (asignarlo, resolverlo…) desde la propia página."
+      },
+      {
+        "id": "d",
+        "text": "Un panel interactivo con secuencias y filtros visuales",
+        "correct": true,
+        "explanation": "Los paneles de experiencia interactiva muestran secuencias de datos en tiempo real, gráficos que actúan como filtros visuales y permiten actuar sobre una fila directamente desde el panel."
+      }
+    ],
+    "keyPoint": "Panel estándar = visión general; panel interactivo = área de trabajo con secuencias en tiempo real, filtros visuales y acciones sobre cada fila.",
+    "references": [
+      {
+        "title": "Crear y configurar paneles de experiencia interactiva",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/configure-interactive-experience-dashboards"
+      },
+      {
+        "title": "Crear o editar paneles de aplicaciones basadas en modelos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/create-edit-dashboards"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-modelos-102",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-modelos",
+    "difficulty": 2,
+    "scenario": "El equipo de Proseware ha creado sin código una aplicación basada en modelos para gestionar sus equipos industriales. Ahora quiere que, en el formulario de cada equipo, la columna numérica Nivel de carga se muestre como un dial interactivo que el usuario pueda girar, en lugar del cuadro numérico estándar. Se encargará un desarrollador profesional, que quiere reutilizar el dial en otras tablas y también en aplicaciones de lienzo.",
+    "prompt": "¿Qué debe crear el desarrollador?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un componente de código con Power Apps component framework (PCF)",
+        "correct": true,
+        "explanation": "Los componentes de código permiten, por ejemplo, sustituir una columna numérica de un formulario por un dial o un control deslizante. Se reutilizan en distintas tablas y formularios, y también en aplicaciones de lienzo."
+      },
+      {
+        "id": "b",
+        "text": "Una regla de negocio que cambie la forma de mostrar la columna",
+        "correct": false,
+        "explanation": "Las reglas de negocio establecen valores, validan datos o muestran y ocultan columnas; no cambian el control visual con el que se muestra una columna."
+      },
+      {
+        "id": "c",
+        "text": "Un componente de una biblioteca de componentes de lienzo",
+        "correct": false,
+        "explanation": "Las bibliotecas de componentes reutilizan componentes creados con Power Fx entre aplicaciones de lienzo; no sustituyen el control de una columna en el formulario de una app basada en modelos."
+      },
+      {
+        "id": "d",
+        "text": "Una columna de fórmula de Power Fx para el Nivel de carga",
+        "correct": false,
+        "explanation": "Una columna de fórmula calcula su valor a partir de otras columnas; no cambia cómo ve o edita el usuario el dato."
+      }
+    ],
+    "keyPoint": "Para ampliar con código la interfaz de las apps basadas en modelos y de lienzo con controles propios y reutilizables, los desarrolladores crean componentes de código con Power Apps component framework.",
+    "references": [
+      {
+        "title": "Información general de Power Apps component framework",
+        "url": "https://learn.microsoft.com/es-es/power-apps/developer/component-framework/overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-modelos-103",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-modelos",
+    "difficulty": 2,
+    "scenario": "Los usuarios de la aplicación basada en modelos de gestión de proyectos de Proseware consultan a menudo la normativa interna, publicada en una página de la intranet. Piden un acceso directo a esa página desde el menú de navegación de la app.",
+    "prompt": "¿Qué debes hacer en el diseñador de aplicaciones?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agregar una página personalizada que reproduzca el contenido de la intranet",
+        "correct": false,
+        "explanation": "Una página personalizada sirve para diseñar una pantalla de lienzo dentro de la app. Copiar la intranet obligaría a mantener el contenido duplicado."
+      },
+      {
+        "id": "b",
+        "text": "Agregar una página de tipo vínculo de navegación con la URL de la intranet",
+        "correct": true,
+        "explanation": "Un vínculo de navegación (URL) es un tipo de página de la navegación de la app. Al seleccionarlo, la dirección se abre en una pestaña nueva del explorador."
+      },
+      {
+        "id": "c",
+        "text": "Crear una regla de negocio que abra la intranet al cargar el formulario",
+        "correct": false,
+        "explanation": "Las reglas de negocio validan datos o muestran y ocultan columnas en formularios; no agregan elementos al menú de navegación."
+      },
+      {
+        "id": "d",
+        "text": "Crear una tabla de Dataverse con la normativa y agregarla como página",
+        "correct": false,
+        "explanation": "Copiar la normativa en una tabla duplica el contenido y no da acceso a la página de la intranet, que es lo que piden los usuarios."
+      }
+    ],
+    "keyPoint": "La navegación (mapa del sitio) de una app basada en modelos puede incluir, además de tablas y paneles, vínculos a URL externas.",
+    "references": [
+      {
+        "title": "Navegación de aplicaciones en aplicaciones basadas en modelos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/app-navigation"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-modelos-104",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-modelos",
+    "difficulty": 1,
+    "prompt": "Microsoft Learn agrupa los componentes de una aplicación basada en modelos en cuatro categorías. Empareja cada componente con su categoría. Cada opción puede usarse una vez, más de una vez o ninguna.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Relación entre tablas",
+        "answerId": "c1",
+        "explanation": "Las relaciones (1:N, N:1, N:N) forman parte del modelo de datos, junto con las tablas y las columnas, y se diseñan en el diseñador de tablas."
+      },
+      {
+        "id": "m2",
+        "text": "Mapa del sitio",
+        "answerId": "c2",
+        "explanation": "El mapa del sitio especifica la navegación de la app, por lo que es un componente de interfaz de usuario, como los formularios y las vistas."
+      },
+      {
+        "id": "m3",
+        "text": "Regla de negocio",
+        "answerId": "c3",
+        "explanation": "Las reglas de negocio, los flujos de proceso de negocio y los flujos de Power Automate son componentes de lógica: definen procesos, reglas y automatización."
+      },
+      {
+        "id": "m4",
+        "text": "Panel",
+        "answerId": "c4",
+        "explanation": "Los paneles, los gráficos y el Power BI incrustado son componentes de visualización, que dan una visión general de los datos."
+      },
+      {
+        "id": "m5",
+        "text": "Columna de elección",
+        "answerId": "c1",
+        "explanation": "Una columna de elección es un tipo especial de columna con opciones predefinidas, así que pertenece a los componentes de datos."
+      }
+    ],
+    "choices": [
+      { "id": "c1", "text": "Datos" },
+      { "id": "c2", "text": "Interfaz de usuario" },
+      { "id": "c3", "text": "Lógica" },
+      { "id": "c4", "text": "Visualización" }
+    ],
+    "keyPoint": "Componentes de una app basada en modelos: datos (tablas, columnas, relaciones), interfaz (app, mapa del sitio, formularios, vistas), lógica (reglas, procesos, flujos) y visualización (gráficos, paneles, Power BI).",
+    "references": [
+      {
+        "title": "Información general sobre los componentes de aplicaciones basadas en modelos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/model-driven-app-components"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-modelos-105",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-modelos",
+    "difficulty": 2,
+    "scenario": "El equipo financiero de Adventure Works ha publicado en un área de trabajo de Power BI un informe de rentabilidad. Quiere que los usuarios de su aplicación basada en modelos lo abran desde la navegación de la app y puedan filtrarlo, sin salir de ella.",
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Recrear cada objeto visual del informe como gráfico del sistema de la tabla",
+        "correct": false,
+        "explanation": "Los gráficos del sistema resumen los datos de una vista, pero rehacer el informe así duplica el trabajo y pierde el diseño y el modelo de Power BI."
+      },
+      {
+        "id": "b",
+        "text": "Agregar al informe el objeto visual de Power Apps y crear con él una app",
+        "correct": false,
+        "explanation": "El objeto visual de Power Apps hace lo contrario: inserta una app de lienzo dentro de un informe de Power BI."
+      },
+      {
+        "id": "c",
+        "text": "Crear un panel del sistema de Power BI Embedded que apunte al informe y agregarlo como página",
+        "correct": true,
+        "explanation": "Un panel del sistema de Power BI Embedded hace referencia a un informe o panel de Power BI. Al agregarlo como página, los usuarios lo abren y filtran dentro de la app, si tienen licencia y permiso sobre el contenido."
+      },
+      {
+        "id": "d",
+        "text": "Exportar el informe a Excel e importar el archivo en una tabla de Dataverse",
+        "correct": false,
+        "explanation": "Así solo se copian datos estáticos a una tabla; los usuarios no verían el informe ni sus objetos visuales interactivos."
+      }
+    ],
+    "keyPoint": "Para ver un informe de Power BI dentro de una app basada en modelos, crea un panel del sistema de Power BI Embedded y agrégalo como página.",
+    "references": [
+      {
+        "title": "Crear o editar un panel del sistema de Power BI Embedded",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/create-edit-powerbi-embedded-page"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-modelos-106",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-modelos",
+    "difficulty": 2,
+    "scenario": "Los inspectores de Lamna Salud visitan centros rurales con cobertura irregular y usan en el teléfono una aplicación basada en modelos.",
+    "prompt": "Indica si cada afirmación sobre el uso sin conexión de la aplicación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Para que puedan trabajar sin conexión, el creador debe habilitar el modo sin conexión de la app y definir qué tablas estarán disponibles.",
+        "answer": true,
+        "explanation": "El creador habilita el modo sin conexión en el diseñador de aplicaciones y define las tablas y los datos que se descargan al dispositivo."
+      },
+      {
+        "id": "s2",
+        "text": "Podrán usar la app sin conexión tanto en la app móvil de Power Apps como en el explorador web del teléfono.",
+        "answer": false,
+        "explanation": "El uso sin conexión de las apps basadas en modelos está pensado para la app móvil de Power Apps. Desde el explorador web la app necesita conexión."
+      },
+      {
+        "id": "s3",
+        "text": "Con la experiencia «sin conexión primero», los cambios hechos sin cobertura se sincronizan solos con Dataverse cuando vuelve la conexión.",
+        "answer": true,
+        "explanation": "Power Apps supervisa la red y sincroniza automáticamente los cambios locales con el servidor, incluida la detección de conflictos. El usuario no tiene que acordarse de sincronizar."
+      },
+      {
+        "id": "s4",
+        "text": "Hace falta conexión a Internet al principio para descargar los datos al dispositivo.",
+        "answer": true,
+        "explanation": "La experiencia «sin conexión primero» copia en el dispositivo los datos necesarios, lo que requiere un acceso inicial a la red."
+      }
+    ],
+    "keyPoint": "Las apps basadas en modelos funcionan sin conexión en la app móvil de Power Apps cuando el creador lo configura; los cambios se sincronizan solos al recuperar la conexión.",
+    "references": [
+      {
+        "title": "Información general de Mobile Offline para aplicaciones basadas en modelos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/mobile/mobile-offline-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-modelos-107",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-modelos",
+    "difficulty": 2,
+    "prompt": "¿Qué dos ventajas ofrece la búsqueda de Dataverse (*Dataverse search*) a los usuarios de las aplicaciones basadas en modelos frente a la búsqueda rápida (*quick find*)? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Muestra en los resultados también los registros a los que el usuario no tiene acceso",
+        "correct": false,
+        "explanation": "La búsqueda de Dataverse respeta los roles y permisos de seguridad: cada usuario solo ve los registros a los que tiene acceso."
+      },
+      {
+        "id": "b",
+        "text": "Devuelve en una sola lista, ordenada por relevancia, resultados de varias tablas",
+        "correct": true,
+        "explanation": "Desde el cuadro de búsqueda global, en la parte superior de la app, busca en todas las tablas indexadas y ordena los resultados por relevancia."
+      },
+      {
+        "id": "c",
+        "text": "Encuentra resultados aunque el término tenga errores ortográficos o abreviaturas",
+        "correct": true,
+        "explanation": "Su búsqueda aproximada interpreta errores de escritura, abreviaturas y sinónimos. La búsqueda rápida exige que todos los términos se encuentren en una columna."
+      },
+      {
+        "id": "d",
+        "text": "Busca en todas las columnas sin configurar nada, porque no usa la vista de búsqueda rápida",
+        "correct": false,
+        "explanation": "Las columnas de la vista de búsqueda rápida de cada tabla determinan qué campos se indexan y en cuáles se puede buscar."
+      },
+      {
+        "id": "e",
+        "text": "Solo está disponible en las aplicaciones de lienzo",
+        "correct": false,
+        "explanation": "Es la experiencia de búsqueda global de las aplicaciones basadas en modelos del entorno, que el administrador configura en el centro de administración."
+      }
+    ],
+    "keyPoint": "Búsqueda de Dataverse: búsqueda global en varias tablas, por relevancia, tolerante a errores y respetando la seguridad.",
+    "references": [
+      {
+        "title": "Configurar la búsqueda de Dataverse para su entorno",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/configure-relevance-search-organization"
+      },
+      {
+        "title": "Buscar registros con la búsqueda de Dataverse",
+        "url": "https://learn.microsoft.com/es-es/power-apps/user/relevance-search"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-modelos-108",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-modelos",
+    "difficulty": 2,
+    "scenario": "Los gestores de cuentas de Fourth Coffee abren el formulario de cada cuenta en una aplicación basada en modelos. Quieren ver en ese formulario, en orden cronológico, las notas, correos, llamadas, citas y tareas de la cuenta, y crear otras nuevas desde el mismo lugar.",
+    "prompt": "¿Qué debes agregar al formulario de la cuenta?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Una subcuadrícula de la tabla Tarea",
+        "correct": false,
+        "explanation": "Una subcuadrícula muestra filas relacionadas de una sola tabla. Solo verían las tareas, no las notas ni el resto de actividades."
+      },
+      {
+        "id": "b",
+        "text": "Un flujo de proceso de negocio con una fase por tipo de actividad",
+        "correct": false,
+        "explanation": "Un flujo de proceso de negocio guía por las fases de un proceso; no muestra el historial de interacciones de la cuenta."
+      },
+      {
+        "id": "c",
+        "text": "Un formulario de vista rápida de la tabla Contacto",
+        "correct": false,
+        "explanation": "Un formulario de vista rápida muestra en solo lectura datos de una fila relacionada, no un historial de actividades y notas."
+      },
+      {
+        "id": "d",
+        "text": "El control de escala de tiempo (*timeline*)",
+        "correct": true,
+        "explanation": "La escala de tiempo reúne notas, citas, correos, llamadas y tareas relacionadas con la fila a lo largo del tiempo, y permite crear actividades desde el propio control."
+      }
+    ],
+    "keyPoint": "La escala de tiempo de un formulario muestra el historial de actividades y notas de una fila y permite crear actividades nuevas.",
+    "references": [
+      {
+        "title": "Configurar el control de escala de tiempo",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/set-up-timeline-control"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-modelos-109",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-modelos",
+    "difficulty": 2,
+    "scenario": "Los comerciales de Tailspin Toys usan una aplicación basada en modelos. No son creadores ni administradores, pero quieren seguir sus oportunidades con gráficos y paneles.",
+    "prompt": "Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Cada comercial puede crear sus propios paneles personales (Mis paneles) con gráficos, sin que intervenga un creador.",
+        "answer": true,
+        "explanation": "Los paneles personales los crea el propio usuario desde la app y solo los ve él, salvo que los comparta, si su rol de seguridad le permite compartir."
+      },
+      {
+        "id": "s2",
+        "text": "Los gráficos y paneles del sistema solo los ve quien los creó hasta que los comparte con cada usuario.",
+        "answer": false,
+        "explanation": "Los gráficos y paneles del sistema los crea un administrador o un creador y, de forma predeterminada, están disponibles para todos los usuarios."
+      },
+      {
+        "id": "s3",
+        "text": "Si muestras un gráfico junto a la cuadrícula de una vista, los filtros que apliques a la cuadrícula también filtran el gráfico.",
+        "answer": true,
+        "explanation": "Cuando el gráfico se muestra junto a la cuadrícula, el filtro que eliges en la cuadrícula se aplica a la vez a la cuadrícula y al gráfico."
+      },
+      {
+        "id": "s4",
+        "text": "Al compartir un panel personal, los gráficos personales que contiene se comparten automáticamente con él.",
+        "answer": false,
+        "explanation": "Los gráficos y las vistas personales tienen sus propios permisos, así que el propietario debe compartirlos de forma explícita."
+      }
+    ],
+    "keyPoint": "Gráficos y paneles del sistema: los crea un administrador o creador para todos. Personales: los crea cada usuario y los comparte si quiere, con sus gráficos y vistas por separado.",
+    "references": [
+      {
+        "title": "Seguimiento del progreso con paneles y gráficos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/user/track-your-progress-with-dashboard-and-charts"
+      },
+      {
+        "title": "Ver gráficos en una página o en una fila",
+        "url": "https://learn.microsoft.com/es-es/power-apps/user/chart_on_form"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-modelos-110",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-modelos",
+    "difficulty": 1,
+    "prompt": "Completa la frase sobre cómo se comparte una aplicación basada en modelos.",
+    "template": "A diferencia de una app de lienzo, una aplicación basada en modelos se comparte {{b1}}. Además, al compartirla {{b2}}, así que para que los usuarios la encuentren copias {{b3}} desde los detalles de la app.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "dando permiso de copropietario a cada usuario" },
+          { "id": "o2", "text": "asignando roles de seguridad de Dataverse" },
+          { "id": "o3", "text": "enviando el archivo de la app por correo" }
+        ],
+        "correctId": "o2",
+        "explanation": "Las apps basadas en modelos usan seguridad basada en roles: se comparten con los miembros de uno o varios roles de seguridad, o con usuarios o equipos, según sus privilegios sobre las tablas."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "no se envía ninguna invitación por correo" },
+          { "id": "o2", "text": "se envía siempre una invitación por correo" },
+          { "id": "o3", "text": "se publica en la tienda de Teams" }
+        ],
+        "correctId": "o1",
+        "explanation": "A diferencia de las apps de lienzo, compartir una app basada en modelos no envía un correo con el vínculo a la app."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "el identificador del entorno" },
+          { "id": "o2", "text": "el archivo de la solución" },
+          { "id": "o3", "text": "el vínculo web o el código QR" }
+        ],
+        "correctId": "o3",
+        "explanation": "En Detalles de la app puedes copiar el vínculo web, o el código QR para móviles, y publicarlo en SharePoint o enviarlo por correo."
+      }
+    ],
+    "keyPoint": "Compartir una app basada en modelos = asignarle roles de seguridad; no se envía correo, así que hay que distribuir el vínculo o el código QR.",
+    "references": [
+      {
+        "title": "Compartir una aplicación basada en modelos con Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/share-model-driven-app"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-modelos-111",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-modelos",
+    "difficulty": 2,
+    "prompt": "Vas a crear tu primera aplicación basada en modelos para gestionar cuentas y ponerla a disposición de tu equipo. Ordena los pasos.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Crear una solución nueva y agregarle la tabla Cuenta",
+        "explanation": "Se recomienda crear la app dentro de una solución, que agrupa la app y sus tablas para poder moverlas a otros entornos."
+      },
+      {
+        "id": "p2",
+        "text": "En la solución, seleccionar Nuevo > Aplicación > Aplicación basada en modelos y darle un nombre",
+        "explanation": "Al crearla, la app se abre en el diseñador de aplicaciones, donde se le agregan las páginas."
+      },
+      {
+        "id": "p3",
+        "text": "En el diseñador, seleccionar Agregar página > Tabla de Dataverse y elegir Cuenta",
+        "explanation": "La página de tabla incluye los formularios y vistas de Cuenta y añade la tabla a la navegación de la app."
+      },
+      {
+        "id": "p4",
+        "text": "Seleccionar Publicar en la barra de comandos del diseñador",
+        "explanation": "Guardar conserva los cambios, pero solo al publicar la app queda disponible para los usuarios."
+      },
+      {
+        "id": "p5",
+        "text": "Compartir la app asignándole los roles de seguridad de los usuarios",
+        "explanation": "Una vez publicada, se comparte con los roles de seguridad que dan a los usuarios acceso a la app y a sus tablas."
+      }
+    ],
+    "keyPoint": "Solución con la tabla > nueva app basada en modelos > páginas en el diseñador > publicar > compartir con roles.",
+    "references": [
+      {
+        "title": "Crear su primera aplicación basada en modelos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/build-first-model-driven-app"
+      },
+      {
+        "title": "Compartir una aplicación basada en modelos con Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/share-model-driven-app"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-modelos-112",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-modelos",
+    "difficulty": 3,
+    "scenario": "En la aplicación basada en modelos de Northwind, los responsables de almacén quieren un botón «Marcar como enviado» en la barra de comandos de la cuadrícula de Pedidos que cambie el estado del pedido seleccionado. El botón solo debe verse cuando el pedido está pendiente, y el equipo no quiere escribir JavaScript.",
+    "prompt": "¿Qué debes usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un comando moderno del diseñador de comandos, con Power Fx para la acción y la visibilidad",
+        "correct": true,
+        "explanation": "El diseñador de comandos permite agregar botones a la barra de comandos y usar Power Fx tanto para lo que hace el botón como para decidir cuándo es visible."
+      },
+      {
+        "id": "b",
+        "text": "Una regla de negocio que muestre el botón en la cuadrícula cuando el estado sea Pendiente",
+        "correct": false,
+        "explanation": "Las reglas de negocio actúan sobre las columnas de los formularios (requerir, ocultar, validar…); no crean botones en la barra de comandos."
+      },
+      {
+        "id": "c",
+        "text": "Un flujo de proceso de negocio de Pedidos con una fase final llamada Enviado",
+        "correct": false,
+        "explanation": "Un flujo de proceso de negocio guía al usuario por fases en el formulario; no agrega comandos a la cuadrícula."
+      },
+      {
+        "id": "d",
+        "text": "Una página personalizada con un botón «Marcar como enviado», agregada a la navegación",
+        "correct": false,
+        "explanation": "La página personalizada sería una pantalla aparte en el menú, no un botón en la barra de comandos de la cuadrícula de Pedidos."
+      }
+    ],
+    "keyPoint": "La barra de comandos de una app basada en modelos se personaliza con el diseñador de comandos y Power Fx, sin JavaScript.",
+    "references": [
+      {
+        "title": "Personalizar la barra de comandos usando el diseñador de comandos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/use-command-designer"
+      }
+    ]
+  }
+]

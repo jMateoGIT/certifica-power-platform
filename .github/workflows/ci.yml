@@ -17,6 +17,8 @@ jobs:
       - run: npm ci
       - name: Validar contenido
         run: npm run validate
+      - name: Detectar preguntas duplicadas
+        run: npm run check-duplicates
       - name: Tipos
         run: npm run typecheck
       - name: Tests unitarios

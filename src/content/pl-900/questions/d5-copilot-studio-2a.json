@@ -1,0 +1,1244 @@
+[
+  {
+    "id": "pl900-d5-casos-101",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-casos",
+    "difficulty": 3,
+    "scenario": "Elena, jefa de un equipo de compras de Grupo Ríos, creó con Agent Builder (Generador de agentes) de Microsoft 365 Copilot un agente que responde a su equipo con los documentos de SharePoint del departamento. Ahora le piden ampliarlo con nuevos requisitos.",
+    "prompt": "¿Qué dos requisitos hacen necesario pasar el agente a Copilot Studio? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Que el agente responda preguntas a partir de los archivos de SharePoint del equipo",
+        "correct": false,
+        "explanation": "Responder preguntas con contenido de Microsoft 365, como archivos de SharePoint, es justo el escenario de preguntas y respuestas para el que está pensado Agent Builder."
+      },
+      {
+        "id": "b",
+        "text": "Publicar el agente en el sitio web de la empresa para que lo usen los proveedores externos",
+        "correct": true,
+        "explanation": "Agent Builder se orienta a uno mismo o a equipos pequeños dentro de Microsoft 365. Llegar a públicos amplios o externos, y publicar en canales como un sitio web, requiere Copilot Studio."
+      },
+      {
+        "id": "c",
+        "text": "Que el agente solo muestre a cada persona el contenido al que ya tiene acceso",
+        "correct": false,
+        "explanation": "Agent Builder ya respeta los permisos de Microsoft 365: si un usuario no tiene acceso a un sitio o archivo, el agente no le muestra ese contenido."
+      },
+      {
+        "id": "d",
+        "text": "Iniciar una aprobación de varios pasos y registrar el pedido aprobado en el ERP con un conector",
+        "correct": true,
+        "explanation": "Los flujos de trabajo de varios pasos, las aprobaciones y los conectores hacia sistemas externos a Microsoft 365 son funcionalidades avanzadas propias de Copilot Studio."
+      },
+      {
+        "id": "e",
+        "text": "Modificar el comportamiento del agente escribiendo instrucciones en lenguaje natural",
+        "correct": false,
+        "explanation": "Crear y ajustar el agente con lenguaje natural es una de las características principales de Agent Builder; no obliga a cambiar de herramienta."
+      }
+    ],
+    "keyPoint": "Agent Builder: agentes ligeros de preguntas y respuestas para ti o tu equipo. Copilot Studio: públicos amplios o externos, flujos de varios pasos, conectores y ALM. Un agente de Agent Builder se puede copiar a Copilot Studio.",
+    "references": [
+      {
+        "title": "Elige entre Agent Builder y Copilot Studio para crear tu agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-365/copilot/extensibility/copilot-studio-experience"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-casos-102",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-casos",
+    "difficulty": 2,
+    "scenario": "Construcciones Sierra Norte ha recogido varias peticiones de sus departamentos y quiere resolver cada una con la herramienta de Power Platform más adecuada; no todas necesitan un agente.",
+    "prompt": "Empareja cada necesidad con la herramienta que mejor la resuelve.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Un asistente en la web corporativa que conversa con los clientes, crea incidencias de soporte y pasa los casos complejos a una persona",
+        "answerId": "c1",
+        "explanation": "Conversar en lenguaje natural, actuar en otros sistemas y escalar a una persona es el caso de uso típico de un agente de Copilot Studio publicado en un sitio web."
+      },
+      {
+        "id": "m2",
+        "text": "Copiar cada noche las filas nuevas de un libro de Excel a una lista de SharePoint, sin ninguna conversación con usuarios",
+        "answerId": "c2",
+        "explanation": "Es una automatización programada con pasos fijos y sin conversación: un flujo de nube programado de Power Automate es la opción natural."
+      },
+      {
+        "id": "m3",
+        "text": "Una aplicación con formularios para que los técnicos registren inspecciones con fotos desde el móvil",
+        "answerId": "c3",
+        "explanation": "Capturar datos con pantallas y formularios, también desde el móvil, es el caso de uso típico de una aplicación de Power Apps."
+      },
+      {
+        "id": "m4",
+        "text": "Un sitio web externo donde los subcontratistas se registran, inician sesión y consultan sus pedidos guardados en Dataverse",
+        "answerId": "c4",
+        "explanation": "Un sitio web seguro para usuarios externos, con inicio de sesión y datos de Dataverse, es el caso de uso de Power Pages."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Agente de Copilot Studio"
+      },
+      {
+        "id": "c2",
+        "text": "Flujo de nube de Power Automate"
+      },
+      {
+        "id": "c3",
+        "text": "Aplicación de Power Apps"
+      },
+      {
+        "id": "c4",
+        "text": "Sitio de Power Pages"
+      },
+      {
+        "id": "c5",
+        "text": "Informe de Power BI"
+      }
+    ],
+    "keyPoint": "Agente = conversación en lenguaje natural que además actúa y escala; flujo = automatización sin conversación; Power Apps = formularios y pantallas; Power Pages = sitio web para usuarios externos.",
+    "references": [
+      {
+        "title": "Visión general de Microsoft Copilot Studio",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/fundamentals-what-is-copilot-studio"
+      },
+      {
+        "title": "¿Qué es Power Pages?",
+        "url": "https://learn.microsoft.com/es-es/power-pages/introduction"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-casos-103",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-casos",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre los agentes autónomos que usan desencadenadores de eventos (*event triggers*) es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Cada carga útil que un desencadenador de eventos envía al agente cuenta como un mensaje para el consumo y la facturación del agente.",
+        "answer": true,
+        "explanation": "La actividad de los desencadenadores cuenta para el consumo: por ejemplo, un desencadenador de periodicidad configurado cada 10 minutos envía un mensaje al agente cada 10 minutos."
+      },
+      {
+        "id": "s2",
+        "text": "La carga útil (*payload*) de cada desencadenador puede incluir instrucciones específicas sobre cómo reaccionar a ese evento.",
+        "answer": true,
+        "explanation": "Además de los datos del evento, la carga útil puede llevar instrucciones propias de ese desencadenador; así se evita una única instrucción general larga y confusa cuando hay varios desencadenadores."
+      },
+      {
+        "id": "s3",
+        "text": "Si el agente no tiene ninguna herramienta ni tema adecuado para el evento, crea uno nuevo automáticamente.",
+        "answer": false,
+        "explanation": "El agente no crea herramientas ni temas por su cuenta: elige entre los que definió el creador, guiado por sus instrucciones y por las descripciones."
+      },
+      {
+        "id": "s4",
+        "text": "Un administrador no puede impedir que se usen desencadenadores de eventos en un entorno.",
+        "answer": false,
+        "explanation": "Los administradores pueden bloquear el uso de desencadenadores de eventos mediante las directivas de datos; además, los desencadenadores disponibles dependen de esas directivas."
+      }
+    ],
+    "keyPoint": "Agente autónomo: cada evento envía una carga útil (que cuenta para el consumo) con datos e instrucciones; el agente solo usa las herramientas y temas que ya tiene, dentro de las directivas de datos.",
+    "references": [
+      {
+        "title": "Introducción general sobre desencadenadores de eventos",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-triggers-about"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-casos-104",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-casos",
+    "difficulty": 3,
+    "scenario": "Grupo Albatros tiene un agente principal, «Asistente del empleado», con orquestación generativa. El equipo de Finanzas mantiene su propio agente de gastos de Copilot Studio, con su propio modelo y su propio ciclo de vida (ALM). Ese agente debe seguir publicado por separado en Teams y también lo quiere reutilizar el agente de Recursos Humanos.",
+    "prompt": "¿Cómo debes incorporar la gestión de gastos al «Asistente del empleado»?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crear en el agente principal un agente secundario con las mismas herramientas e instrucciones que el agente de gastos",
+        "correct": false,
+        "explanation": "Un agente secundario (*child agent*) vive dentro del agente principal: no se publica por separado, no tiene configuración ni ALM propios y no se puede reutilizar desde otros agentes."
+      },
+      {
+        "id": "b",
+        "text": "Agregar el sitio de SharePoint de Finanzas como fuente de conocimiento del agente principal",
+        "correct": false,
+        "explanation": "El conocimiento solo aporta información para responder; no incorpora las herramientas, instrucciones ni procesos que ya resuelve el agente de gastos."
+      },
+      {
+        "id": "c",
+        "text": "Copiar los temas del agente de gastos en el agente principal",
+        "correct": false,
+        "explanation": "Duplicar temas obliga a mantener dos copias y rompe la gestión independiente que exige Finanzas."
+      },
+      {
+        "id": "d",
+        "text": "Conectar el agente de gastos existente al agente principal como agente conectado",
+        "correct": true,
+        "explanation": "Un agente conectado se publica y mantiene por separado, con su propia configuración y ALM, y puede usarlo más de un agente. El orquestador del principal lo elige según su descripción."
+      }
+    ],
+    "keyPoint": "Agente secundario: pieza interna del agente, sin publicación ni ALM propios. Agente conectado: agente independiente y reutilizable que el principal invoca.",
+    "references": [
+      {
+        "title": "Agregar otros agentes: agentes secundarios y conectados",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-add-other-agents"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-casos-105",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-casos",
+    "difficulty": 2,
+    "scenario": "El equipo de innovación de Seguros Ebro compara los dos enfoques para crear agentes que amplíen Microsoft 365 Copilot.",
+    "prompt": "Completa la frase sobre los tipos de agente para Microsoft 365 Copilot.",
+    "template": "Un agente declarativo amplía Microsoft 365 Copilot usando {{b1}}, por lo que no necesita alojamiento adicional, y puede fundamentar sus respuestas en {{b2}}. Si necesitas controlar por completo la orquestación y elegir tus propios modelos, creas {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "un orquestador y unos modelos que alojas en Azure"
+          },
+          {
+            "id": "o2",
+            "text": "el orquestador y los modelos de Microsoft 365 Copilot"
+          },
+          {
+            "id": "o3",
+            "text": "solo temas clásicos con frases desencadenantes"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "El agente declarativo aporta instrucciones, conocimiento y acciones, pero se ejecuta con la infraestructura, el modelo y el orquestador de Copilot, y hereda sus controles de seguridad y cumplimiento."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "datos de Microsoft 365, como SharePoint, OneDrive o mensajes de Teams"
+          },
+          {
+            "id": "o2",
+            "text": "únicamente sitios web públicos indexados por Bing"
+          },
+          {
+            "id": "o3",
+            "text": "solo archivos cargados dentro del propio agente"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Un agente declarativo puede usar como conocimiento contenido de Microsoft 365 (SharePoint, OneDrive, chats y reuniones de Teams, correo) y datos externos mediante conectores de Copilot, siempre con los permisos del usuario."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "un agente declarativo con instrucciones más detalladas"
+          },
+          {
+            "id": "o2",
+            "text": "un conector de Copilot"
+          },
+          {
+            "id": "o3",
+            "text": "un agente de motor personalizado (*custom engine agent*)"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "Un agente de motor personalizado aporta su propio orquestador y modelos; se puede crear con Copilot Studio o con herramientas de código profesional. Un conector de Copilot solo añade datos."
+      }
+    ],
+    "keyPoint": "Declarativo = instrucciones, conocimiento y acciones sobre el orquestador y los modelos de Copilot. Motor personalizado = orquestación y modelos propios.",
+    "references": [
+      {
+        "title": "Comparar agentes declarativos y de motor personalizado",
+        "url": "https://learn.microsoft.com/es-es/microsoft-365/copilot/extensibility/agents-overview"
+      },
+      {
+        "title": "Ampliar Microsoft Copilot con agentes",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/microsoft-365-copilot-extend-with-agents"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-casos-106",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-casos",
+    "difficulty": 1,
+    "scenario": "El departamento de TI de Papeleras del Cantábrico quiere tener cuanto antes un agente de soporte técnico interno y adaptarlo después a sus propios procesos.",
+    "prompt": "¿Qué opción de Copilot Studio le permite partir de un agente ya preparado para ese caso de uso?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Activar la orquestación generativa en un agente en blanco",
+        "correct": false,
+        "explanation": "La orquestación generativa decide cómo responde el agente, pero no aporta ninguna configuración inicial para un caso de uso concreto."
+      },
+      {
+        "id": "b",
+        "text": "Crear el agente a partir de una plantilla de agente y personalizarla",
+        "correct": true,
+        "explanation": "Copilot Studio ofrece plantillas de agente, como la de soporte técnico de TI, diseñadas para personalizarse. Eso sí, debes evaluar sus implicaciones de seguridad y legales antes de usarlas."
+      },
+      {
+        "id": "c",
+        "text": "Publicar el agente en el sitio web de demostración",
+        "correct": false,
+        "explanation": "El sitio web de demostración sirve para que otros prueben un agente ya creado; no genera el agente ni su contenido."
+      },
+      {
+        "id": "d",
+        "text": "Editar el tema del sistema Escalar para que envíe un correo a TI",
+        "correct": false,
+        "explanation": "Modificar un tema del sistema ajusta un comportamiento concreto, pero no proporciona un agente preparado para el soporte técnico."
+      }
+    ],
+    "keyPoint": "Las plantillas de agente de Copilot Studio son un punto de partida para casos de uso habituales que luego personalizas.",
+    "references": [
+      {
+        "title": "Crear un agente personalizado a partir de una plantilla",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/template-fundamentals"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-casos-107",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-casos",
+    "difficulty": 2,
+    "scenario": "Marta, de Recursos Humanos de Textiles Duero, prueba en el panel de prueba un agente con orquestación generativa. Cuando pregunta «¿Cuántos días de vacaciones me quedan?», el agente responde con la política general en lugar de usar la herramienta que consulta el saldo de cada empleado. Marta quiere ver qué plan generó el agente, qué herramientas o temas eligió y con qué entradas y salidas.",
+    "prompt": "¿Qué debe usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "La página Supervisar (*Monitor*) del agente",
+        "correct": false,
+        "explanation": "Supervisar muestra métricas agregadas del uso del agente y no incluye las conversaciones del panel de prueba; no detalla el plan de una conversación concreta."
+      },
+      {
+        "id": "b",
+        "text": "El mapa de actividad (*activity map*) del panel de prueba",
+        "correct": true,
+        "explanation": "El mapa de actividad representa el plan que generó el agente, con las herramientas y temas que eligió, sus entradas y salidas y los errores, como entradas que faltan; también se consulta después en la página Actividad."
+      },
+      {
+        "id": "c",
+        "text": "El comprobador de temas de la página Temas",
+        "correct": false,
+        "explanation": "El comprobador de temas señala errores y advertencias en el diseño de los temas, no las decisiones que tomó el agente durante una conversación."
+      },
+      {
+        "id": "d",
+        "text": "El registro de agentes de Microsoft Agent 365",
+        "correct": false,
+        "explanation": "El registro de Agent 365 sirve para que TI vea y gobierne todos los agentes de la organización, no para depurar una conversación mientras construyes el agente."
+      }
+    ],
+    "keyPoint": "Para entender qué decidió un agente con orquestación generativa en una conversación (plan, herramientas, entradas y salidas), revisa su mapa de actividad.",
+    "references": [
+      {
+        "title": "Revisar la actividad del agente",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-review-activity"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-casos-108",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-casos",
+    "difficulty": 2,
+    "scenario": "Electrodomésticos Brezo usa un agente de Copilot Studio en su web para resolver dudas frecuentes. Las reclamaciones de garantía complejas deben pasar a los agentes humanos que trabajan en Dynamics 365 Customer Service, y estos deben ver toda la conversación para que el cliente no repita nada.",
+    "prompt": "¿Qué dos elementos necesitas para cumplir este requisito? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Configurar la conexión del agente con el centro de interacción (Omnichannel for Customer Service)",
+        "correct": true,
+        "explanation": "La transferencia a un agente humano requiere un centro de interacción conectado, como Omnichannel for Customer Service, donde el agente humano recibe la alerta y continúa la conversación."
+      },
+      {
+        "id": "b",
+        "text": "Mantener el tema Escalar con su mensaje predeterminado",
+        "correct": false,
+        "explanation": "Por defecto, el tema del sistema Escalar solo muestra un mensaje al usuario; no transfiere la conversación ni su contexto a ninguna persona."
+      },
+      {
+        "id": "c",
+        "text": "Agregar un nodo Transferir conversación en los temas que deben pasar a una persona",
+        "correct": true,
+        "explanation": "El nodo Transferir conversación (por ejemplo, en el tema Escalar) envía al centro de interacción el historial completo y las variables, y puede incluir un mensaje privado para el agente humano."
+      },
+      {
+        "id": "d",
+        "text": "Crear un flujo de nube que envíe por correo la transcripción al supervisor",
+        "correct": false,
+        "explanation": "Un correo con la transcripción no traspasa la conversación en directo: el cliente tendría que volver a contactar."
+      },
+      {
+        "id": "e",
+        "text": "Recrear el agente con Agent Builder de Microsoft 365 Copilot",
+        "correct": false,
+        "explanation": "Agent Builder está pensado para agentes internos ligeros de preguntas y respuestas; no publica en la web para clientes ni transfiere a centros de atención."
+      }
+    ],
+    "keyPoint": "Para pasar a una persona con contexto: centro de interacción conectado + nodo Transferir conversación, que envía el historial y las variables.",
+    "references": [
+      {
+        "title": "Transferencia a agente por chat",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/advanced-hand-off"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-temas-101",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-temas",
+    "difficulty": 2,
+    "scenario": "Estás diseñando los temas de los agentes de Cooperativa Agraria Tormes y debes elegir el tipo de desencadenador del nodo Desencadenador de cada tema.",
+    "prompt": "Empareja cada necesidad con el tipo de desencadenador adecuado.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "En un agente con orquestación generativa, el tema se inicia cuando el agente decide que su nombre y su descripción encajan con el mensaje del usuario",
+        "answerId": "c1",
+        "explanation": "«El agente elige» es el desencadenador predeterminado con orquestación generativa: el agente compara el mensaje con el nombre y la descripción del tema."
+      },
+      {
+        "id": "m2",
+        "text": "En un agente con orquestación clásica, el tema se inicia cuando el mensaje se parece a alguno de sus ejemplos",
+        "answerId": "c2",
+        "explanation": "«El usuario dice una frase» es el predeterminado con orquestación clásica y se basa en las frases desencadenantes del tema."
+      },
+      {
+        "id": "m3",
+        "text": "Avisar al usuario de que la conversación se cerrará si lleva varios minutos sin escribir",
+        "answerId": "c4",
+        "explanation": "«El usuario está inactivo durante un tiempo» lanza el tema cuando pasa el tiempo configurado sin mensajes; el temporizador se reinicia con cada mensaje del usuario."
+      },
+      {
+        "id": "m4",
+        "text": "El tema solo debe ejecutarse cuando otro tema lo llame explícitamente",
+        "answerId": "c3",
+        "explanation": "«Se redirige a» hace que el tema solo se ejecute cuando otro tema lo invoca, por ejemplo con un nodo Redirigir."
+      },
+      {
+        "id": "m5",
+        "text": "Registrar la consulta cuando el agente termine todos los pasos que planificó para responder",
+        "answerId": "c5",
+        "explanation": "«Se completa un plan», disponible con orquestación generativa, se activa cuando el agente ha ejecutado todos los pasos planificados para responder a una consulta o a un desencadenador autónomo."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "El agente elige"
+      },
+      {
+        "id": "c2",
+        "text": "El usuario dice una frase"
+      },
+      {
+        "id": "c3",
+        "text": "Se redirige a"
+      },
+      {
+        "id": "c4",
+        "text": "El usuario está inactivo durante un tiempo"
+      },
+      {
+        "id": "c5",
+        "text": "Se completa un plan"
+      },
+      {
+        "id": "c6",
+        "text": "La conversación cambia"
+      }
+    ],
+    "keyPoint": "Además de las frases o la descripción, un tema puede iniciarse por redirección, por inactividad del usuario o al completarse el plan del agente, entre otros desencadenadores.",
+    "references": [
+      {
+        "title": "Establecer desencadenadores de temas",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-triggers"
+      },
+      {
+        "title": "Desencadenador de inactividad",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/guidance/inactivity-trigger-guidance"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-temas-102",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-temas",
+    "difficulty": 2,
+    "prompt": "Completa la frase sobre cómo termina un tema y cómo continúa la conversación.",
+    "template": "Cuando termina un tema al que llegaste con un nodo Redirigir (Ir a otro tema), la conversación {{b1}}. Si en una rama de condición quieres salir solo del tema en curso, usas el nodo {{b2}}; y si quieres cerrar todos los temas activos para que el siguiente mensaje se trate como el inicio de una conversación nueva, usas el nodo {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "salta al tema del sistema Fin de la conversación"
+          },
+          {
+            "id": "o2",
+            "text": "vuelve, de forma predeterminada, al tema de origen"
+          },
+          {
+            "id": "o3",
+            "text": "se reinicia y el agente borra todas las variables"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Por defecto, al terminar el tema llamado la conversación se reanuda en el tema de origen, y puedes añadir más nodos después del nodo Redirigir."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Finalizar tema actual"
+          },
+          {
+            "id": "o2",
+            "text": "Finalizar todos los temas"
+          },
+          {
+            "id": "o3",
+            "text": "Transferir conversación"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Finalizar tema actual sale solo del tema en curso; si lo llamó otro tema, la conversación vuelve a él. Es habitual en una rama que termina antes."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Finalizar tema actual"
+          },
+          {
+            "id": "o2",
+            "text": "Borrar valores de variable"
+          },
+          {
+            "id": "o3",
+            "text": "Finalizar todos los temas"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "Finalizar todos los temas cierra de inmediato todos los temas activos. No borra las variables globales: para eso se usa antes un nodo que borre las variables, como hace el tema Restablecer conversación."
+      }
+    ],
+    "keyPoint": "Redirigir vuelve al tema de origen; Finalizar tema actual sale de un tema; Finalizar todos los temas cierra todos y el siguiente mensaje empieza de cero.",
+    "references": [
+      {
+        "title": "Administrar temas",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-topic-management"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-temas-103",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-temas",
+    "difficulty": 2,
+    "scenario": "En el tema «Hacer pedido» del agente de Floristería Lirio, el cliente debe elegir entre «Recogida en tienda» y «Envío a domicilio», y el tema sigue un camino distinto en cada caso.",
+    "prompt": "Completa la frase sobre el nodo de pregunta que debes usar.",
+    "template": "En Identificar eliges {{b1}} y escribes las dos alternativas; durante la conversación, cada alternativa {{b2}}; y si el cliente responde algo que no coincide con ninguna, el nodo {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "Respuesta completa del usuario"
+          },
+          {
+            "id": "o2",
+            "text": "Opciones de selección múltiple"
+          },
+          {
+            "id": "o3",
+            "text": "la entidad precompilada Número"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Con las opciones de selección múltiple defines las respuestas que puede elegir el usuario. La respuesta completa guardaría el texto tal cual y la entidad Número solo reconoce cifras."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "aparece como un botón, aunque el cliente también puede escribir su respuesta"
+          },
+          {
+            "id": "o2",
+            "text": "solo se acepta si el cliente la escribe exactamente igual"
+          },
+          {
+            "id": "o3",
+            "text": "se muestra únicamente si el agente está publicado en Teams"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Cada opción se muestra como un botón que el usuario puede seleccionar, pero también puede escribir la respuesta; no hace falta que la escriba de forma literal ni depende de un único canal."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "termina la conversación de inmediato"
+          },
+          {
+            "id": "o2",
+            "text": "transfiere siempre la conversación a una persona"
+          },
+          {
+            "id": "o3",
+            "text": "vuelve a preguntar según la opción Volver a preguntar, que de forma predeterminada lo intenta hasta dos veces"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "Volver a preguntar define cuántas veces insiste el agente; si no logra una respuesta válida, se aplica lo configurado en «No se encontró ninguna entidad válida», como escalar o usar un valor predeterminado."
+      }
+    ],
+    "keyPoint": "Para que el usuario elija entre varias alternativas, usa un nodo de pregunta con opciones de selección múltiple: se muestran como botones y el nodo vuelve a preguntar si la respuesta no es válida.",
+    "references": [
+      {
+        "title": "Formular una pregunta",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-ask-a-question"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-temas-104",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-temas",
+    "difficulty": 2,
+    "scenario": "El tema «Pedir cita» del agente de Talleres Ruedas tiene un nodo de pregunta «¿Qué día quieres traer el coche?» con la entidad Fecha y hora. En las pruebas, un cliente escribe «Quiero cita el lunes para cambiar el aceite» y el agente no le pregunta el día. El taller quiere que el agente pregunte siempre el día, aunque el cliente ya lo haya mencionado.",
+    "prompt": "¿Qué debes configurar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cambiar el comportamiento de omisión del nodo de pregunta a Preguntar cada vez",
+        "correct": true,
+        "explanation": "El agente omitió la pregunta por el relleno proactivo de espacios (*slot filling*): ya reconoció la fecha en el primer mensaje. Con Preguntar cada vez, el nodo pregunta aunque la variable ya tenga valor."
+      },
+      {
+        "id": "b",
+        "text": "Aumentar el número de repeticiones en Volver a preguntar",
+        "correct": false,
+        "explanation": "Volver a preguntar solo actúa cuando la respuesta no es válida; aquí el agente ni siquiera llega a formular la pregunta."
+      },
+      {
+        "id": "c",
+        "text": "Convertir la variable de la fecha en una variable global",
+        "correct": false,
+        "explanation": "Una variable global estaría disponible en todos los temas, lo que haría todavía más probable que la pregunta se omitiera."
+      },
+      {
+        "id": "d",
+        "text": "Quitar las frases desencadenantes que mencionan días de la semana",
+        "correct": false,
+        "explanation": "El agente reconoce la fecha con la entidad en lo que escribe el cliente, no por las frases desencadenantes; quitarlas no evita el relleno de la variable."
+      }
+    ],
+    "keyPoint": "Por defecto, si la variable ya tiene valor (relleno proactivo de espacios), el nodo de pregunta se omite; Preguntar cada vez obliga a preguntar.",
+    "references": [
+      {
+        "title": "Usar entidades y llenado de ranuras en agentes",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/advanced-entities-slot-filling"
+      },
+      {
+        "title": "Formular una pregunta",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-ask-a-question"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-temas-105",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-temas",
+    "difficulty": 2,
+    "scenario": "El agente de Seguros Atalaya debe reconocer el número de siniestro, que siempre tiene el formato SIN-2026-004512 (prefijo, año y seis cifras). Los clientes suelen escribirlo dentro de una frase, como «mi siniestro es SIN-2026-004512, ¿cómo va?», y cada día se abren siniestros nuevos.",
+    "prompt": "¿Qué debe usar el nodo de pregunta para reconocer y extraer el número de siniestro?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Una entidad de lista cerrada con todos los números de siniestro",
+        "correct": false,
+        "explanation": "Las listas cerradas sirven para listas pequeñas y estables de valores; mantener cada número nuevo que se abre a diario sería inviable."
+      },
+      {
+        "id": "b",
+        "text": "La entidad precompilada Número",
+        "correct": false,
+        "explanation": "La entidad Número reconoce valores numéricos, pero no el código completo con su prefijo y sus guiones."
+      },
+      {
+        "id": "c",
+        "text": "La opción Respuesta completa del usuario",
+        "correct": false,
+        "explanation": "Guardaría toda la frase del cliente en la variable, sin extraer el número de siniestro ni comprobar su formato."
+      },
+      {
+        "id": "d",
+        "text": "Una entidad personalizada de expresión regular (regex)",
+        "correct": true,
+        "explanation": "Las entidades de expresión regular definen un patrón para reconocer y extraer datos con formato fijo, como un identificador de seguimiento o un número de expediente, aunque vayan dentro de una frase."
+      }
+    ],
+    "keyPoint": "Datos con un formato fijo (códigos, matrículas, identificadores) = entidad de expresión regular; listas pequeñas de valores con sinónimos = lista cerrada.",
+    "references": [
+      {
+        "title": "Usar entidades y llenado de ranuras en agentes",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/advanced-entities-slot-filling"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-temas-106",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-temas",
+    "difficulty": 3,
+    "scenario": "El agente de Club Viajes Horizonte usa orquestación generativa. Su tema «Consultar puntos» obtiene el saldo de puntos del cliente y termina con un nodo de mensaje fijo: «Tienes X puntos». Cuando un cliente pregunta «¿Cuántos puntos tengo y a qué destinos puedo ir con ellos?», recibe ese mensaje fijo y, aparte, otra respuesta sobre destinos.",
+    "prompt": "¿Qué debes hacer para que el agente integre el saldo en una única respuesta adaptada a la pregunta?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agregar al tema más frases desencadenantes que mencionen destinos",
+        "correct": false,
+        "explanation": "Con orquestación generativa los temas se eligen por su descripción, y en cualquier caso esto no cambia cómo se construye la respuesta."
+      },
+      {
+        "id": "b",
+        "text": "Devolver el saldo como variable de salida del tema y quitar el nodo de mensaje final",
+        "correct": true,
+        "explanation": "Con orquestación generativa, un tema puede devolver su resultado como salida; el agente lo combina con el conocimiento y otras herramientas y genera una respuesta contextual, sin un mensaje literal en el tema."
+      },
+      {
+        "id": "c",
+        "text": "Desactivar la orquestación generativa para que el tema responda solo",
+        "correct": false,
+        "explanation": "Con orquestación clásica el agente elige un único tema y no combina varias fuentes, así que la pregunta sobre destinos quedaría peor resuelta."
+      },
+      {
+        "id": "d",
+        "text": "Convertir el saldo en variable global y terminar con Finalizar todos los temas",
+        "correct": false,
+        "explanation": "Una variable global y el cierre de todos los temas no hacen que el agente use el saldo para componer su respuesta; además, se cancelarían los pasos que quedaran del plan."
+      }
+    ],
+    "keyPoint": "Con orquestación generativa, devuelve resultados como salidas del tema en lugar de mensajes fijos: el agente redacta una respuesta contextual combinando todo lo que usó.",
+    "references": [
+      {
+        "title": "Administrar entradas y salidas de tema",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/advanced-managing-topic-inputs-outputs"
+      },
+      {
+        "title": "Orquestar el comportamiento del agente con IA generativa",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/advanced-generative-actions"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-temas-107",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-temas",
+    "difficulty": 1,
+    "scenario": "Estás diseñando los mensajes del tema «Horarios de tienda» del agente de Librerías Aneto, que se publicará en el sitio web de la cadena.",
+    "prompt": "Indica si cada afirmación sobre los nodos de mensaje es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puedes agregar variaciones de un mensaje para que el agente elija una de ellas al azar cada vez que se ejecuta el nodo.",
+        "answer": true,
+        "explanation": "Las variaciones del mensaje hacen que la conversación resulte menos repetitiva: el agente elige una aleatoriamente en cada ejecución del nodo."
+      },
+      {
+        "id": "s2",
+        "text": "Además de texto, un nodo de mensaje puede incluir imágenes, vídeos, tarjetas y respuestas rápidas.",
+        "answer": true,
+        "explanation": "El nodo de mensaje admite componentes enriquecidos, como imágenes, vídeos, tarjetas básicas, tarjetas adaptables y respuestas rápidas."
+      },
+      {
+        "id": "s3",
+        "text": "Para incluir en el mensaje el nombre de la tienda que eligió el cliente, necesitas un nodo de mensaje distinto para cada tienda.",
+        "answer": false,
+        "explanation": "Puedes insertar variables en el texto del mensaje, así que un solo nodo muestra el valor que corresponda en cada conversación."
+      },
+      {
+        "id": "s4",
+        "text": "Las imágenes, tarjetas y respuestas rápidas solo están disponibles en el nodo de mensaje, no en el nodo de pregunta.",
+        "answer": false,
+        "explanation": "Todas las capacidades del nodo de mensaje también están disponibles en el nodo de pregunta."
+      }
+    ],
+    "keyPoint": "El nodo de mensaje admite variaciones, variables y contenido enriquecido (imágenes, vídeos, tarjetas y respuestas rápidas), igual que el nodo de pregunta.",
+    "references": [
+      {
+        "title": "Enviar un mensaje",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-send-message"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-temas-108",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-temas",
+    "difficulty": 1,
+    "prompt": "Indica si cada afirmación sobre la administración de los temas de un agente es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Un tema desactivado no se inicia, ni por su desencadenador ni cuando otro tema lo redirige.",
+        "answer": true,
+        "explanation": "Con el estado Desactivado el tema no se activa en absoluto; además, el comprobador de temas marca un error si otro tema redirige a él."
+      },
+      {
+        "id": "s2",
+        "text": "Al publicar el agente, solo se publican los temas que están activados.",
+        "answer": false,
+        "explanation": "Se publican todos los temas, activados o no. Por eso puedes dejar un tema desactivado como borrador mientras publicas cambios en otros."
+      },
+      {
+        "id": "s3",
+        "text": "Los errores que muestra el comprobador de temas deben corregirse antes de poder publicar el agente.",
+        "answer": true,
+        "explanation": "Los errores impiden que el agente funcione, así que hay que corregirlos antes de publicar. La página Temas muestra cuántos tiene cada tema."
+      },
+      {
+        "id": "s4",
+        "text": "Las advertencias del comprobador de temas también impiden que el agente funcione.",
+        "answer": false,
+        "explanation": "Las advertencias no detienen el agente, aunque pueden hacer que algún tema no se comporte como esperas; conviene corregirlas igualmente."
+      }
+    ],
+    "keyPoint": "Tema desactivado = no se inicia, pero se publica igual. Errores del comprobador = bloquean la publicación; advertencias = no.",
+    "references": [
+      {
+        "title": "Administrar temas",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-topic-management"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-conocimiento-101",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-conocimiento",
+    "difficulty": 3,
+    "scenario": "Comunicación interna de Aguas del Turia publica varias veces al día noticias y avisos en un sitio de comunicación de SharePoint. Su agente para empleados, que usa autenticación de Microsoft Entra ID, debe responder siempre con la versión más reciente y sin consumir almacenamiento de Dataverse.",
+    "prompt": "¿Cómo debes agregar ese contenido como conocimiento?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Con la opción Cargar archivos desde SharePoint, que copia el contenido en Dataverse y lo sincroniza",
+        "correct": false,
+        "explanation": "Esta opción copia los archivos en Dataverse y los sincroniza cada pocas horas, así que consume almacenamiento y no refleja los cambios al momento; además, no admite las páginas del sitio."
+      },
+      {
+        "id": "b",
+        "text": "Agregando la dirección del sitio de SharePoint como sitio web público",
+        "correct": false,
+        "explanation": "Los sitios que requieren autenticación, como SharePoint, no se admiten como sitio web público."
+      },
+      {
+        "id": "c",
+        "text": "Con la opción SharePoint indicando la URL del sitio, que consulta directamente su búsqueda",
+        "correct": true,
+        "explanation": "La opción SharePoint por URL deja el contenido en SharePoint y lo consulta en tiempo real mediante su infraestructura de búsqueda: no hay retraso de sincronización ni consumo de Dataverse, y respeta los permisos de cada usuario."
+      },
+      {
+        "id": "d",
+        "text": "Descargando cada día las noticias en PDF y cargándolas como archivos",
+        "correct": false,
+        "explanation": "Sería un proceso manual, con contenido estático que queda desfasado entre cargas y que además ocupa almacenamiento en Dataverse."
+      }
+    ],
+    "keyPoint": "SharePoint por URL = contenido en tiempo real sin consumir Dataverse. Cargar archivos de SharePoint = copia sincronizada en Dataverse, con búsqueda semántica pero con retraso.",
+    "references": [
+      {
+        "title": "Datos no estructurados como origen de conocimiento",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/knowledge-unstructured-data"
+      },
+      {
+        "title": "Agregar SharePoint como origen de conocimiento",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/knowledge-add-sharepoint"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-conocimiento-102",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-conocimiento",
+    "difficulty": 2,
+    "scenario": "Viajes Alborán va a agregar varias direcciones como fuentes de conocimiento de tipo sitio web público en su agente de atención al cliente.",
+    "prompt": "Indica si cada afirmación sobre los sitios web públicos como fuente de conocimiento es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Si agregas viajesalboran.com (sin www), el agente también puede usar el contenido de www.viajesalboran.com y de ofertas.viajesalboran.com.",
+        "answer": true,
+        "explanation": "Al indicar el dominio de nivel superior, el agente usa el contenido público de todos sus subdominios. Si indicaras www.viajesalboran.com, no usaría ofertas.viajesalboran.com."
+      },
+      {
+        "id": "s2",
+        "text": "Puedes agregar la dirección de un sitio de SharePoint de la intranet como sitio web público si los usuarios inician sesión en el agente.",
+        "answer": false,
+        "explanation": "No se admiten como sitio web público las direcciones que requieren autenticación o que Bing no indexa; para SharePoint se usa su propio tipo de fuente."
+      },
+      {
+        "id": "s3",
+        "text": "Usar un foro o una red social como fuente aumenta el riesgo de respuestas irrelevantes o inapropiadas.",
+        "answer": true,
+        "explanation": "El contenido de comunidades y redes sociales es poco fiable, y Microsoft advierte de que puede provocar respuestas sin sentido o que se rechacen más respuestas."
+      },
+      {
+        "id": "s4",
+        "text": "Si una dirección redirige a otro dominio de nivel superior, el agente responde con el contenido del dominio de destino.",
+        "answer": false,
+        "explanation": "Si la URL redirige a otro sitio de nivel superior, el agente no genera respuestas con el contenido de ninguna de las dos direcciones."
+      }
+    ],
+    "keyPoint": "El dominio que indicas define el alcance (con o sin subdominios). No sirven sitios con autenticación ni URL que redirigen a otro dominio, y conviene evitar foros y redes sociales.",
+    "references": [
+      {
+        "title": "Agregar un sitio web público como origen de conocimiento",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/knowledge-add-public-website"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-conocimiento-103",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-conocimiento",
+    "difficulty": 2,
+    "scenario": "Inmobiliaria Castellana agregó su tabla de Dataverse «Inmuebles» como fuente de conocimiento. La calificación energética está en una columna llamada cr4f2_cee y los agentes comerciales preguntan cosas como «¿qué pisos tienen CEE A?». El agente no relaciona la pregunta con esa columna.",
+    "prompt": "¿Qué debes hacer para mejorar las respuestas sin modificar la tabla?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agregar frases desencadenantes al tema del sistema Potenciar conversaciones",
+        "correct": false,
+        "explanation": "Las frases desencadenantes deciden qué tema se inicia; no explican a la IA qué significan las columnas de la tabla."
+      },
+      {
+        "id": "b",
+        "text": "Exportar la tabla a Excel y cargarla como archivo",
+        "correct": false,
+        "explanation": "Crearías una copia estática que se queda desfasada, y el nombre críptico de la columna seguiría sin explicarse."
+      },
+      {
+        "id": "c",
+        "text": "Activar la opción Búsqueda web del agente",
+        "correct": false,
+        "explanation": "La búsqueda web consulta sitios públicos indexados por Bing; no ayuda a interpretar los datos internos de Dataverse."
+      },
+      {
+        "id": "d",
+        "text": "Editar la fuente de Dataverse para agregar sinónimos de la columna y un término de glosario para «CEE»",
+        "correct": true,
+        "explanation": "Los sinónimos de columnas y los términos de glosario explican a la IA la terminología, las siglas y las columnas con nombres poco claros, de modo que reconoce mejor las preguntas y responde con esos datos."
+      }
+    ],
+    "keyPoint": "En una fuente de Dataverse, los sinónimos y el glosario ayudan a la IA a entender columnas con nombres técnicos y siglas propias del negocio.",
+    "references": [
+      {
+        "title": "Agregar tablas de Dataverse como origen de conocimiento",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/knowledge-add-dataverse"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-conocimiento-104",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-conocimiento",
+    "difficulty": 2,
+    "scenario": "Museo del Puerto publicará un agente en su web para que cualquier visitante consulte horarios, exposiciones y tarifas. El agente usará la opción Sin autenticación.",
+    "prompt": "¿Qué dos tipos de fuente de conocimiento puede usar este agente? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un sitio de SharePoint con la programación de exposiciones",
+        "correct": false,
+        "explanation": "SharePoint requiere autenticación de Microsoft Entra ID, porque el agente solo muestra lo que puede ver cada usuario; sin autenticación no puede usarlo."
+      },
+      {
+        "id": "b",
+        "text": "Las páginas públicas de la web del museo",
+        "correct": true,
+        "explanation": "Un sitio web público no necesita autenticación: el agente busca con Bing solo en las direcciones que indicas."
+      },
+      {
+        "id": "c",
+        "text": "Una tabla de Dataverse con las tarifas",
+        "correct": false,
+        "explanation": "Las tablas de Dataverse como conocimiento exigen la opción Autenticar con Microsoft; no funcionan con Sin autenticación."
+      },
+      {
+        "id": "d",
+        "text": "Un PDF con la guía del visitante cargado desde el equipo",
+        "correct": true,
+        "explanation": "Los documentos cargados desde el equipo se guardan en Dataverse y no requieren autenticación, así que el agente puede usarlos con usuarios anónimos."
+      },
+      {
+        "id": "e",
+        "text": "Datos de la organización indexados mediante un conector de Copilot",
+        "correct": false,
+        "explanation": "Los datos empresariales mediante conectores de Copilot requieren autenticación del usuario con Microsoft Entra ID."
+      }
+    ],
+    "keyPoint": "Sin autenticación solo puedes usar sitios web públicos y archivos cargados; SharePoint, Dataverse y los conectores de Copilot requieren autenticación con Microsoft Entra ID.",
+    "references": [
+      {
+        "title": "Resumen de fuentes de conocimiento",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/knowledge-copilot-studio"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-conocimiento-105",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-conocimiento",
+    "difficulty": 2,
+    "scenario": "El agente de prevención de riesgos laborales de Química Levantina deja sin responder preguntas legítimas sobre sustancias «tóxicas» o «inflamables» de sus fichas de seguridad.",
+    "prompt": "Completa la frase sobre la moderación de contenido de las respuestas generativas.",
+    "template": "Para que el agente responda a más preguntas, puedes {{b1}} en la configuración de IA generativa del agente, teniendo en cuenta que {{b2}}. Si solo quieres cambiarlo para las respuestas de un tema concreto, lo ajustas en {{b3}}, cuya configuración tiene prioridad sobre la del agente.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "subir el nivel de moderación de contenido"
+          },
+          {
+            "id": "o2",
+            "text": "bajar el nivel de moderación de contenido"
+          },
+          {
+            "id": "o3",
+            "text": "activar las respuestas no fundamentadas"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Un nivel de moderación más bajo filtra menos y genera más respuestas. Subirlo haría el filtro más estricto, y las respuestas no fundamentadas tratan otro asunto: usar el conocimiento general del modelo."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "un nivel más bajo genera más respuestas, pero pueden incluir contenido dañino"
+          },
+          {
+            "id": "o2",
+            "text": "un nivel más bajo bloquea las respuestas que no tienen cita"
+          },
+          {
+            "id": "o3",
+            "text": "el nivel predeterminado ya es el más bajo"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "Hay un equilibrio: el nivel más bajo da más respuestas pero con más riesgo de contenido dañino. Los niveles van de «más bajo» a «más alto», y el predeterminado es Alto, así que bajarlo hace el filtro menos estricto."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "las frases desencadenantes del tema"
+          },
+          {
+            "id": "o2",
+            "text": "la descripción de la fuente de conocimiento"
+          },
+          {
+            "id": "o3",
+            "text": "el nodo de respuestas generativas del tema"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "La moderación también se configura en el nodo de respuestas generativas; en tiempo de ejecución, la configuración del tema tiene prioridad sobre la del agente."
+      }
+    ],
+    "keyPoint": "Moderación de contenido: los niveles van de más bajo a más alto y el predeterminado es Alto; bajarlo da más respuestas con más riesgo. La del nodo de respuestas generativas prevalece sobre la del agente.",
+    "references": [
+      {
+        "title": "Resumen de fuentes de conocimiento: moderación",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/knowledge-copilot-studio"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-conocimiento-106",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-conocimiento",
+    "difficulty": 1,
+    "scenario": "Muebles Encina quiere que su agente responda a partir del PDF «Guía de garantías», que el equipo de posventa tiene en su equipo.",
+    "prompt": "Ordena los pasos para agregar el archivo como fuente de conocimiento y comprobar que funciona.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Abrir el agente y seleccionar Agregar conocimiento en la página Información general o Conocimiento",
+        "explanation": "Todo empieza abriendo el cuadro de diálogo Agregar conocimiento del agente."
+      },
+      {
+        "id": "p2",
+        "text": "Arrastrar el PDF o buscarlo en el equipo para cargarlo",
+        "explanation": "En el cuadro de diálogo eliges el archivo que quieres cargar; se guardará de forma segura en Dataverse."
+      },
+      {
+        "id": "p3",
+        "text": "Revisar el nombre y escribir una descripción detallada de su contenido",
+        "explanation": "Por defecto el nombre es el del archivo; una buena descripción ayuda a la orquestación generativa a decidir cuándo usar la fuente."
+      },
+      {
+        "id": "p4",
+        "text": "Seleccionar Agregar al agente",
+        "explanation": "Con este paso se completa el alta del archivo como fuente de conocimiento."
+      },
+      {
+        "id": "p5",
+        "text": "Hacer preguntas sobre las garantías en el panel de prueba",
+        "explanation": "Por último, compruebas que el agente responde con el contenido de la guía antes de publicarlo."
+      }
+    ],
+    "keyPoint": "Agregar conocimiento → cargar el archivo → nombre y descripción → Agregar al agente → probar.",
+    "references": [
+      {
+        "title": "Cargar archivos como origen de conocimiento",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/knowledge-add-file-upload"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d5-conocimiento-107",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-conocimiento",
+    "difficulty": 2,
+    "scenario": "El equipo de datos de Ingeniería Moncayo ya ha indexado millones de documentos técnicos en un índice vectorial de Búsqueda de Azure AI. Ahora quiere que un agente de Copilot Studio responda a los ingenieros a partir de ese índice, sin copiar los documentos a otro sitio.",
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agregar Búsqueda de Azure AI como fuente de conocimiento mediante una conexión al índice",
+        "correct": true,
+        "explanation": "Copilot Studio admite Búsqueda de Azure AI como fuente de conocimiento, incluidos los índices vectoriales con vectorización integrada, así que el agente consulta el índice existente sin mover los documentos."
+      },
+      {
+        "id": "b",
+        "text": "Cargar los documentos como archivos en el agente",
+        "correct": false,
+        "explanation": "Cargar archivos los copia a Dataverse, que es justo lo que se quiere evitar, y no aprovecha el índice que ya existe."
+      },
+      {
+        "id": "c",
+        "text": "Agregar la dirección del servicio de búsqueda como sitio web público",
+        "correct": false,
+        "explanation": "Un sitio web público se busca con Bing y solo sirve para contenido público indexado; un servicio de búsqueda privado no lo es."
+      },
+      {
+        "id": "d",
+        "text": "Importar los documentos en una tabla de Dataverse y agregarla como fuente",
+        "correct": false,
+        "explanation": "Supondría copiar los datos a Dataverse y rehacer un trabajo de indexación que ya está hecho en Azure."
+      }
+    ],
+    "keyPoint": "Si los documentos ya están indexados en Búsqueda de Azure AI, conéctalo como fuente de conocimiento en lugar de copiar los archivos.",
+    "references": [
+      {
+        "title": "Agregar Búsqueda de Azure AI como origen de conocimiento",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/knowledge-azure-ai-search"
+      }
+    ]
+  }
+]

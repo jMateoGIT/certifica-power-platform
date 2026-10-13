@@ -1,0 +1,966 @@
+[
+  {
+    "id": "pl900-d3-plan-101",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-plan-codigo",
+    "difficulty": 2,
+    "scenario": "Una analista de Proseware crea un plan en Power Apps para el proceso de aprobación de compras, que tiene varios pasos y niveles de aprobación. Ya ha revisado los roles y las necesidades de usuario que propone el plan. Ahora quiere ver, para cada parte del proceso, los pasos detallados, los puntos de decisión y qué rol realiza cada actividad.",
+    "prompt": "¿Qué debe usar dentro del plan?",
+    "options": [
+      {
+        "id": "a",
+        "text": "El diagrama de datos que se abre con Mostrar detalles en el modelo de datos",
+        "correct": false,
+        "explanation": "Ese diagrama, del espacio de trabajo de datos, muestra las tablas, columnas y relaciones de Dataverse, no los pasos ni las decisiones del proceso de negocio."
+      },
+      {
+        "id": "b",
+        "text": "El diagrama de procesos, abriendo con Ver proceso el mapa de la fase correspondiente",
+        "correct": true,
+        "explanation": "El diagrama de procesos tiene dos niveles: las fases del proceso dan la visión general y cada mapa de proceso detalla pasos, eventos y decisiones, con el rol responsable de cada actividad."
+      },
+      {
+        "id": "c",
+        "text": "Un flujo de proceso de negocio en la aplicación basada en modelos propuesta",
+        "correct": false,
+        "explanation": "Un flujo de proceso de negocio guía a los usuarios por las fases de un registro cuando ya usan la app; no es la herramienta del plan para analizar y documentar el proceso."
+      },
+      {
+        "id": "d",
+        "text": "La exportación del plan a PDF desde el menú Compartir",
+        "correct": false,
+        "explanation": "La exportación a PDF sirve para compartir el plan con otras personas e incluye solo el lado del documento, no el de los diagramas."
+      }
+    ],
+    "keyPoint": "Diagrama de procesos del plan: fases del proceso (visión general) y mapas de proceso (pasos, eventos, decisiones y rol de cada actividad).",
+    "references": [
+      {
+        "title": "Generación de diagramas de procesos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/plan-designer/process-diagram"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-plan-102",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-plan-codigo",
+    "difficulty": 2,
+    "scenario": "Una creadora de Fabrikam hereda una solución sin documentación que contiene una aplicación basada en modelos, una aplicación de lienzo y varias tablas de Dataverse. Para entenderla y mejorarla, decide crear un plan a partir de la solución.",
+    "prompt": "Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "El plan generado describe el problema de negocio, los roles y requisitos de usuario, el modelo de datos y las tecnologías de la solución.",
+        "answer": true,
+        "explanation": "Crear un plan a partir de una solución genera un documento detallado con todo ello, lo que ahorra tiempo para entender una solución y mejorarla."
+      },
+      {
+        "id": "s2",
+        "text": "Para crear el plan, la solución debe contener al menos una aplicación y una tabla asociada.",
+        "answer": true,
+        "explanation": "Es un requisito documentado: sin al menos una app y una tabla asociada no se puede crear el plan."
+      },
+      {
+        "id": "s3",
+        "text": "Si la solución fuera administrada, el plan se guardaría dentro de esa misma solución administrada.",
+        "answer": false,
+        "explanation": "Con una solución administrada, el plan se guarda de forma predeterminada en una solución no administrada nueva. Solo con una solución no administrada se guarda en la misma."
+      },
+      {
+        "id": "s4",
+        "text": "Se recomienda crear el plan a partir de la solución predeterminada (*Default Solution*), porque contiene todos los componentes del entorno.",
+        "answer": false,
+        "explanation": "Es justo lo contrario: Microsoft no recomienda crear un plan a partir de la solución predeterminada."
+      }
+    ],
+    "keyPoint": "Un plan creado a partir de una solución documenta su problema de negocio, requisitos, datos y tecnologías; necesita al menos una app y una tabla.",
+    "references": [
+      {
+        "title": "Crear un plan a partir de una solución",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/plan-designer/create-plan-from-solution"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-plan-103",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-plan-codigo",
+    "difficulty": 3,
+    "scenario": "Un creador de Lucerne Publishing guarda su plan en una solución nueva llamada GestionFormacion. Después agrega al modelo de datos del plan la tabla de Dataverse Empleados, que ya existe y pertenece a la solución RRHHBase, y reemplaza una de las aplicaciones propuestas por una aplicación de lienzo que el equipo ya usaba.",
+    "prompt": "¿Qué dos afirmaciones son correctas? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "La tabla Empleados se traslada a GestionFormacion y deja de pertenecer a RRHHBase.",
+        "correct": false,
+        "explanation": "Agregar una tabla existente al plan no la mueve de solución: lo que hace es asociar al plan las soluciones a las que ya pertenece."
+      },
+      {
+        "id": "b",
+        "text": "El plan queda asociado también a la solución RRHHBase, además de a su solución principal.",
+        "correct": true,
+        "explanation": "Cada plan tiene una solución principal y, al agregar tablas o apps existentes, se le asocian las soluciones a las que pertenecen. En la vista Objetos del plan puedes consultar el contenido de todas ellas."
+      },
+      {
+        "id": "c",
+        "text": "La aplicación de lienzo existente no se incluye en la nueva solución del plan.",
+        "correct": true,
+        "explanation": "Las apps existentes que agregas o con las que reemplazas una propuesta no pasan a la solución nueva; puedes ver todas las soluciones relacionadas desde la vista de soluciones del plan."
+      },
+      {
+        "id": "d",
+        "text": "Un plan solo puede estar asociado a una solución, así que debe copiar la tabla Empleados.",
+        "correct": false,
+        "explanation": "Un plan puede estar asociado a varias soluciones; no hace falta duplicar tablas para reutilizarlas."
+      },
+      {
+        "id": "e",
+        "text": "La vista Objetos solo puede mostrar los objetos del plan, nunca el resto de cada solución.",
+        "correct": false,
+        "explanation": "El filtro Mostrar solo los objetos de este plan es opcional: si lo quitas, ves todo el contenido de las soluciones asociadas y sus posibles dependencias."
+      }
+    ],
+    "keyPoint": "Un plan tiene una solución principal y puede asociarse a otras al reutilizar tablas o apps existentes, que siguen en sus soluciones de origen.",
+    "references": [
+      {
+        "title": "Administración de la solución",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/plan-designer/manage-solution"
+      },
+      {
+        "title": "Construir una solución a partir de un plan",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/plan-designer/build-solution"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-plan-104",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-plan-codigo",
+    "difficulty": 2,
+    "scenario": "Iván tiene el rol de seguridad Creador de entorno (*Environment Maker*) en el entorno compartido de su departamento, con base de datos de Dataverse, pero no es administrador ni personalizador del sistema. Crea un plan en Power Apps y, tras revisar el modelo de datos, selecciona Guardar tablas. Su organización permite usar entornos de desarrollador.",
+    "prompt": "¿Qué ocurre?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Se le redirige a su propio entorno de desarrollador, donde sí puede crear tablas de Dataverse",
+        "correct": true,
+        "explanation": "Los creadores de entorno pueden ver los planes, pero al guardar las tablas se les envía a su entorno de desarrollador, donde tienen permiso para crear tablas de Dataverse."
+      },
+      {
+        "id": "b",
+        "text": "Las tablas se guardan en el entorno compartido como las de un administrador del sistema",
+        "correct": false,
+        "explanation": "Crear tablas requiere privilegios que el rol Creador de entorno no tiene en ese entorno; por eso el plan lo dirige a otro entorno."
+      },
+      {
+        "id": "c",
+        "text": "El plan guarda las tablas como listas de SharePoint, porque no puede usar Dataverse",
+        "correct": false,
+        "explanation": "Los planes siempre generan tablas de Dataverse; nunca sustituyen el modelo de datos por listas de SharePoint."
+      },
+      {
+        "id": "d",
+        "text": "Se descarta el plan y debe pedir el rol de administrador del sistema para empezar de cero",
+        "correct": false,
+        "explanation": "El trabajo no se pierde. Solo si no pudiera usar ni crear un entorno de desarrollador tendría que cambiar a un entorno en el que tenga permiso para crear tablas."
+      }
+    ],
+    "keyPoint": "Los planes se usan con roles como Administrador o Personalizador del sistema; un Creador de entorno se redirige a su entorno de desarrollador al guardar las tablas.",
+    "references": [
+      {
+        "title": "Información general sobre los planes",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/plan-designer/plan-designer"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-plan-105",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-plan-codigo",
+    "difficulty": 2,
+    "prompt": "Completa la frase sobre los agentes que propone un plan de Power Apps.",
+    "template": "Cuando seleccionas Crear en el agente propuesto por un plan guardado, Copilot Studio se abre con {{b1}} ya rellenados. Las tablas que ha creado el plan se agregan al agente como {{b2}} y, antes de publicarlo, debes {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "el nombre, la descripción y las instrucciones"
+          },
+          {
+            "id": "o2",
+            "text": "los temas del sistema y sus nodos de pregunta"
+          },
+          {
+            "id": "o3",
+            "text": "los canales y la autenticación de los usuarios"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "El plan rellena el nombre, la descripción (la finalidad) y las instrucciones del agente a partir del problema de negocio y de la propuesta de solución."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "desencadenadores"
+          },
+          {
+            "id": "o2",
+            "text": "orígenes de conocimiento"
+          },
+          {
+            "id": "o3",
+            "text": "variables globales"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Todas las tablas de Dataverse creadas por el plan se agregan como conocimiento, para que el agente responda con los datos de la solución."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "esperar a que el plan lo publique por ti"
+          },
+          {
+            "id": "o2",
+            "text": "convertirlo antes en una aplicación de lienzo"
+          },
+          {
+            "id": "o3",
+            "text": "revisar las instrucciones, añadir lo que falte y probarlo"
+          }
+        ],
+        "correctId": "o3",
+        "explanation": "El plan es un punto de partida: el creador revisa las instrucciones, añade si hace falta desencadenadores o acciones y prueba el agente antes de publicarlo."
+      }
+    ],
+    "keyPoint": "Agente creado desde un plan: Copilot Studio con nombre, descripción e instrucciones rellenados y las tablas del plan como conocimiento; el creador lo revisa, prueba y publica.",
+    "references": [
+      {
+        "title": "Construir una solución a partir de un plan",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/plan-designer/build-solution"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-plan-106",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-plan-codigo",
+    "difficulty": 2,
+    "scenario": "Una desarrolladora de Adatum va a crear su primera aplicación de código (*code app*) con la CLI de Power Apps. El administrador ya ha habilitado las aplicaciones de código en el entorno, y ella tiene instalados Node.js y Git.",
+    "prompt": "Ordena los pasos para pasar de un proyecto vacío a la aplicación publicada en Power Apps.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Crear el proyecto web a partir de la plantilla de Vite para aplicaciones de código",
+        "explanation": "Primero se necesita el proyecto web; el inicio rápido parte de una plantilla de Vite del repositorio de ejemplos de aplicaciones de código."
+      },
+      {
+        "id": "p2",
+        "text": "Instalar la CLI de Power Apps y las dependencias, e inicializar la app iniciando sesión y eligiendo el entorno",
+        "explanation": "La inicialización (pa app init) inicia sesión en Power Platform, asocia el proyecto a un entorno y le da un nombre para mostrar."
+      },
+      {
+        "id": "p3",
+        "text": "Ejecutar la aplicación en local y probarla en el explorador",
+        "explanation": "Antes de publicar se prueba en local (pa app run), abriendo la URL Local Play en el mismo perfil de explorador que se usa para el inquilino."
+      },
+      {
+        "id": "p4",
+        "text": "Compilar la aplicación",
+        "explanation": "La publicación toma la aplicación ya compilada (npm run build), así que la compilación tiene que ir justo antes."
+      },
+      {
+        "id": "p5",
+        "text": "Publicar la aplicación compilada en el entorno de Power Platform",
+        "explanation": "El comando pa app push sube la app compilada a Power Platform y devuelve la URL para ejecutarla, compartirla o ver sus detalles."
+      }
+    ],
+    "keyPoint": "Aplicación de código: plantilla → inicializar con la CLI en un entorno → probar en local → compilar → publicar en Power Platform.",
+    "references": [
+      {
+        "title": "Inicio rápido: Creación de una aplicación de código mediante la CLI de Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/developer/code-apps/how-to/create-an-app-from-scratch"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-plan-107",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-plan-codigo",
+    "difficulty": 2,
+    "prompt": "Empareja cada función con el componente de la arquitectura de las aplicaciones de código de Power Apps que la realiza. Cada opción puede usarse una vez o ninguna.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Exponer API al código de la app y gestionar los modelos y servicios que se generan al agregar o quitar conectores",
+        "answerId": "c1",
+        "explanation": "La biblioteca cliente de Power Apps para aplicaciones de código (paquete npm @microsoft/power-apps) ofrece las API y los modelos y servicios para pedir datos a través de los conectores."
+      },
+      {
+        "id": "m3",
+        "text": "Tomar la aplicación compilada y publicarla en un entorno de Power Platform",
+        "answerId": "c3",
+        "explanation": "La CLI de Power Apps, con pa app push, empaqueta y publica la app para que se pueda compartir y ejecutar desde Power Apps."
+      },
+      {
+        "id": "m4",
+        "text": "En tiempo de ejecución, autenticar al usuario, cargar la app y avisarle si no se puede cargar",
+        "answerId": "c4",
+        "explanation": "El host de Power Apps se encarga de la autenticación del usuario final con Microsoft Entra ID, de la carga de la app y de los mensajes contextuales si falla."
+      }
+    ],
+    "choices": [
+      {
+        "id": "c1",
+        "text": "Biblioteca cliente de Power Apps para aplicaciones de código"
+      },
+      {
+        "id": "c3",
+        "text": "CLI de Power Apps"
+      },
+      {
+        "id": "c4",
+        "text": "Host de Power Apps"
+      },
+      {
+        "id": "c5",
+        "text": "Power Apps Studio"
+      },
+      {
+        "id": "c6",
+        "text": "Puerta de enlace de datos local"
+      }
+    ],
+    "keyPoint": "Biblioteca cliente = API y conectores desde el código; CLI = publicar la app compilada; host de Power Apps = autenticación y carga en tiempo de ejecución.",
+    "references": [
+      {
+        "title": "Arquitectura de aplicaciones de código de Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/developer/code-apps/architecture"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-plan-108",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-plan-codigo",
+    "difficulty": 2,
+    "scenario": "Trey Research está evaluando las aplicaciones de código (*code apps*) de Power Apps para varias herramientas internas y quiere conocer qué escenarios admiten antes de decidir.",
+    "prompt": "Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Una aplicación de código se puede insertar en un informe de Power BI mediante el objeto visual de Power Apps.",
+        "answer": true,
+        "explanation": "Aunque todavía no admiten la integración de datos de Power BI (la función PowerBIIntegration), sí se pueden incrustar en informes con el objeto visual de Power Apps."
+      },
+      {
+        "id": "s2",
+        "text": "Una aplicación de código puede usarse como formulario personalizado de una lista de SharePoint.",
+        "answer": false,
+        "explanation": "La integración de formularios de SharePoint es una de las limitaciones documentadas de las aplicaciones de código; para eso se usa una app de lienzo."
+      },
+      {
+        "id": "s3",
+        "text": "Los usuarios que ejecutan una aplicación de código necesitan una licencia Power Apps Premium u otra opción equivalente, como un pase de aplicación o el pago por uso.",
+        "answer": true,
+        "explanation": "Las aplicaciones de código requieren licencias premium para los usuarios finales: Power Apps Premium, pase de aplicación, pago por uso o la reclamación automática de una licencia disponible."
+      },
+      {
+        "id": "s4",
+        "text": "Los usuarios pueden ejecutar las aplicaciones de código en la aplicación Power Apps para Windows.",
+        "answer": false,
+        "explanation": "Las aplicaciones de código no se admiten en Power Apps para Windows; se ejecutan desde Power Apps en el explorador."
+      }
+    ],
+    "keyPoint": "Code apps: se pueden incrustar en Power BI con el objeto visual de Power Apps y requieren licencias premium, pero no admiten formularios de SharePoint ni Power Apps para Windows.",
+    "references": [
+      {
+        "title": "Descripción general de las aplicaciones de código de Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/developer/code-apps/overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-plan-109",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-plan-codigo",
+    "difficulty": 3,
+    "scenario": "Una analista de Coho Winery ha creado con la experiencia vibe de Power Apps una aplicación para registrar las catas, junto con su plan y sus datos. El equipo de desarrollo quiere seguir ampliándola en Visual Studio Code, con control de código fuente, así que descarga el código fuente y la convierte en una aplicación de código.",
+    "prompt": "¿Qué deben tener en cuenta tras la conversión?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Los cambios que hagan en el código se sincronizan con la app vibe y actualizan su plan",
+        "correct": false,
+        "explanation": "No hay sincronización: lo que cambien en la aplicación de código no aparece ni en la app vibe ni en su plan."
+      },
+      {
+        "id": "b",
+        "text": "La conversión transforma la app en una aplicación de lienzo que editarán en Power Apps Studio",
+        "correct": false,
+        "explanation": "El resultado es una aplicación de código que se edita en el IDE y se publica con la CLI de Power Apps, no una app de lienzo con Power Fx."
+      },
+      {
+        "id": "c",
+        "text": "Se crea una aplicación de código nueva, independiente de la app vibe y de su plan original",
+        "correct": true,
+        "explanation": "La conversión genera una nueva aplicación de código que se desarrolla y gestiona con sus propias herramientas y su propio ciclo de vida; no queda vinculada al plan original."
+      },
+      {
+        "id": "d",
+        "text": "Ya no podrán publicarla en Power Platform y tendrán que hospedarla en un servidor propio",
+        "correct": false,
+        "explanation": "La aplicación de código se ejecuta en local con pa app run y se publica en un entorno de Power Platform con pa app push, igual que cualquier otra."
+      }
+    ],
+    "keyPoint": "Convertir una app vibe en aplicación de código crea una app nueva e independiente que se sigue desarrollando en el IDE y se publica con la CLI de Power Apps.",
+    "references": [
+      {
+        "title": "Conversión de una aplicación de vibe en una aplicación de código",
+        "url": "https://learn.microsoft.com/es-es/power-apps/vibe/convert-vibe-to-code"
+      }
+    ],
+    "tags": [
+      "preview"
+    ]
+  },
+  {
+    "id": "pl900-d3-ia-101",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-ia",
+    "difficulty": 2,
+    "scenario": "Los agentes de reservas de Margie's Travel dan de alta a diario clientes en una aplicación basada en modelos con la apariencia moderna activada. Los datos les llegan en correos y en archivos PDF. El administrador ha habilitado la asistencia de relleno de formularios con IA, incluido el pegado inteligente (*smart paste*).",
+    "prompt": "Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Las sugerencias de la IA se guardan en la fila en cuanto aparecen en el formulario, aunque el agente no las revise.",
+        "answer": false,
+        "explanation": "Las sugerencias son opcionales y no se guardan hasta que el usuario las revisa y las acepta, una a una o todas a la vez."
+      },
+      {
+        "id": "s2",
+        "text": "Con el pegado inteligente, el agente copia el texto o la imagen del correo y la IA propone valores para los campos del formulario.",
+        "answer": true,
+        "explanation": "El pegado inteligente analiza el formulario y lo copiado en el portapapeles, y muestra las sugerencias junto a cada campo."
+      },
+      {
+        "id": "s3",
+        "text": "El agente puede aportar un archivo, como un PDF, para que la IA sugiera valores a partir de su contenido.",
+        "answer": true,
+        "explanation": "La capacidad Archivos de la asistencia razona sobre el formulario y el archivo aportado (PDF, Word, imágenes…) para sugerir valores."
+      },
+      {
+        "id": "s4",
+        "text": "Para que la IA sugiera un valor, el creador debe escribir antes en Power Fx la fórmula que lo calcula en cada campo.",
+        "answer": false,
+        "explanation": "La IA genera las sugerencias a partir del contexto (el uso de la app, los datos del formulario, el portapapeles o el archivo); el creador no programa fórmulas por campo."
+      }
+    ],
+    "keyPoint": "Asistencia de relleno de formularios: la IA sugiere valores a partir del contexto, del pegado inteligente o de un archivo, y el usuario siempre decide si los acepta.",
+    "references": [
+      {
+        "title": "Usar la asistencia de relleno de formularios con IA",
+        "url": "https://learn.microsoft.com/es-es/power-apps/user/form-filling-assistance"
+      },
+      {
+        "title": "Información general de las características de IA",
+        "url": "https://learn.microsoft.com/es-es/power-apps/user/ai-in-apps"
+      }
+    ],
+    "tags": [
+      "preview"
+    ]
+  },
+  {
+    "id": "pl900-d3-ia-102",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-ia",
+    "difficulty": 2,
+    "scenario": "En Power Apps Studio, un creador selecciona la propiedad Text de una etiqueta de una aplicación de lienzo y escribe en la barra de fórmulas solo el comentario que se muestra.",
+    "code": {
+      "language": "powerfx",
+      "content": "// Mostrar la fecha de hoy con el formato día/mes/año"
+    },
+    "prompt": "¿Qué ocurre?",
+    "options": [
+      {
+        "id": "a",
+        "text": "La etiqueta muestra el texto del comentario tal cual, porque Power Apps lo trata como un valor fijo",
+        "correct": false,
+        "explanation": "Un comentario con // no es un valor: no produce resultado en la etiqueta. Lo que hace Copilot es usarlo como descripción para proponer una fórmula."
+      },
+      {
+        "id": "b",
+        "text": "Copilot ajusta la etiqueta y también otros controles y propiedades para conseguir el resultado",
+        "correct": false,
+        "explanation": "Es una limitación documentada: Copilot trabaja sobre un único control y una única propiedad, y no cambia otros controles."
+      },
+      {
+        "id": "c",
+        "text": "El comentario se envía a Copilot Studio para crear un tema con esa instrucción",
+        "correct": false,
+        "explanation": "La generación de fórmulas ocurre en la propia barra de fórmulas de Power Apps Studio; Copilot Studio no interviene."
+      },
+      {
+        "id": "d",
+        "text": "Copilot propone una fórmula de Power Fx basada en el comentario, que puedes aceptar con Tab",
+        "correct": true,
+        "explanation": "Copilot genera una sugerencia de fórmula a partir de los comentarios de código (// o /*); con Tab la aceptas y el comentario documenta la fórmula, como en el código tradicional."
+      }
+    ],
+    "keyPoint": "En la barra de fórmulas, Copilot explica fórmulas y genera Power Fx a partir de comentarios de código; tú revisas y aceptas la sugerencia.",
+    "references": [
+      {
+        "title": "Usar Copilot para crear y editar fórmulas de Power Fx",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/ai-formulas-formulabar"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-ia-103",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-ia",
+    "difficulty": 1,
+    "scenario": "Una creadora de Southridge Video agrega a una aplicación de lienzo un control Galería y lo conecta a la tabla de Dataverse Alquileres, que tiene decenas de columnas. No quiere conformarse con los campos que Power Apps elige de forma predeterminada.",
+    "prompt": "¿Qué hacen las sugerencias de campos de Copilot (*Copilot field suggestions*) en este caso?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Proponen los campos más relevantes según el esquema y el contexto de la app, y puedes ajustarlos",
+        "correct": true,
+        "explanation": "Copilot analiza el esquema y propone los campos más significativos en el panel Campos; puedes previsualizarlos, reordenarlos, quitarlos o añadir otros antes de aplicar los cambios."
+      },
+      {
+        "id": "b",
+        "text": "Crean en Dataverse una vista nueva con las columnas más consultadas por los usuarios y la asignan a la galería",
+        "correct": false,
+        "explanation": "Las sugerencias solo eligen qué campos muestra el control en la app; no crean vistas ni cambian la tabla de Dataverse."
+      },
+      {
+        "id": "c",
+        "text": "Muestran todas las columnas de la tabla en la galería y ocultan las que están vacías",
+        "correct": false,
+        "explanation": "Justo lo contrario: su objetivo es seleccionar un conjunto reducido de campos relevantes en lugar de mostrarlo todo."
+      },
+      {
+        "id": "d",
+        "text": "Generan una pantalla con un formulario de edición para cada tabla relacionada con Alquileres",
+        "correct": false,
+        "explanation": "No generan pantallas: actúan cuando enlazas un origen de datos a un control como una galería, un formulario o una tabla."
+      }
+    ],
+    "keyPoint": "Sugerencias de campos de Copilot: al conectar un control a datos, Copilot propone los campos más relevantes y el creador los revisa.",
+    "references": [
+      {
+        "title": "Usar sugerencias de campos de Copilot",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/ai-field-suggestions"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-ia-104",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-ia",
+    "difficulty": 2,
+    "scenario": "El equipo de gobierno de Power Platform de Bellows College revisa cómo se controlan las funciones de Copilot que usan sus creadores en Power Apps.",
+    "prompt": "Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Las funciones de Copilot en Power Apps que están en disponibilidad general vienen activadas de forma predeterminada y solo pueden desactivarse a través del soporte técnico de Microsoft.",
+        "answer": true,
+        "explanation": "Para desactivar las funciones de Copilot con disponibilidad general, un administrador de inquilinos debe ponerse en contacto con el soporte técnico de Microsoft."
+      },
+      {
+        "id": "s2",
+        "text": "Un administrador puede desactivar las funciones de Copilot en versión preliminar para un entorno concreto desde el centro de administración de Power Platform.",
+        "answer": true,
+        "explanation": "En la configuración de características del entorno se puede poner en Desactivado el interruptor de Copilot; también existe una opción equivalente para todo el inquilino."
+      },
+      {
+        "id": "s3",
+        "text": "Al desactivar Copilot en Power Apps (versión preliminar) para todo el inquilino, también se desactiva Copilot para los usuarios de las aplicaciones basadas en modelos.",
+        "answer": false,
+        "explanation": "Esa opción de inquilino solo desactiva Copilot para los creadores; Copilot para los usuarios de las aplicaciones se controla con su propia configuración."
+      },
+      {
+        "id": "s4",
+        "text": "Las funciones de Copilot en versión preliminar están desactivadas de forma predeterminada hasta que un administrador las activa.",
+        "answer": false,
+        "explanation": "Las funciones preliminares de Copilot vienen activadas de forma predeterminada; un administrador puede desactivarlas para un entorno o para todo el inquilino."
+      }
+    ],
+    "keyPoint": "Copilot en Power Apps: las funciones GA solo se desactivan a través del soporte técnico; las preliminares vienen activadas y se desactivan por entorno o por inquilino (en este caso, solo para los creadores).",
+    "references": [
+      {
+        "title": "Información general de Copilot en Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/ai-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-ia-105",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-ia",
+    "difficulty": 2,
+    "prompt": "Completa la frase sobre cómo se configuran los resúmenes de fila (*row summaries*) generados por IA en una aplicación basada en modelos.",
+    "template": "Para configurar el resumen de una tabla, el creador {{b1}}; el resumen se aplica {{b2}}; y los usuarios lo consultan {{b3}}, sin revisar campo a campo el registro.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          {
+            "id": "o1",
+            "text": "escribe en la tabla una indicación (*prompt*) con las columnas que debe incluir"
+          },
+          {
+            "id": "o2",
+            "text": "crea una regla de negocio que concatene las columnas"
+          },
+          {
+            "id": "o3",
+            "text": "entrena un modelo personalizado de AI Builder con filas de ejemplo"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "En la tabla, en la opción Resumen de fila, el creador escribe una indicación en la que agrega las columnas y el formato del resumen, y puede probarla antes de aplicarla. No hay que entrenar ningún modelo."
+      },
+      {
+        "id": "b2",
+        "options": [
+          {
+            "id": "o1",
+            "text": "solo a la aplicación desde la que se configuró"
+          },
+          {
+            "id": "o2",
+            "text": "a todos los formularios principales de la tabla"
+          },
+          {
+            "id": "o3",
+            "text": "solo a los formularios de creación rápida"
+          }
+        ],
+        "correctId": "o2",
+        "explanation": "Al aplicarlo, el resumen aparece en todos los formularios principales de la tabla, en cualquier aplicación basada en modelos que los use, y también se puede abrir desde las vistas."
+      },
+      {
+        "id": "b3",
+        "options": [
+          {
+            "id": "o1",
+            "text": "en la parte superior del formulario principal o desde la fila en una vista"
+          },
+          {
+            "id": "o2",
+            "text": "solo en un informe de Power BI incrustado en la app"
+          },
+          {
+            "id": "o3",
+            "text": "en un correo diario que les envía Power Automate"
+          }
+        ],
+        "correctId": "o1",
+        "explanation": "El resumen se muestra en la barra de información de la parte superior del formulario principal y, en las vistas, con la acción de resumen en línea de cada fila."
+      }
+    ],
+    "keyPoint": "Resumen de fila: el creador lo define con una indicación por tabla, se aplica a todos sus formularios principales y los usuarios lo ven en el formulario o desde la vista.",
+    "references": [
+      {
+        "title": "Configurar un resumen de fila para una aplicación basada en modelos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/configure-form-row-summary"
+      },
+      {
+        "title": "Usar resúmenes de fila en aplicaciones basadas en modelos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/user/record-summaries"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-ia-106",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-ia",
+    "difficulty": 2,
+    "scenario": "La jefa de ventas de VanArsdel trabaja con la vista Oportunidades abiertas de una aplicación basada en modelos con la apariencia moderna activada. La tabla no tiene gráficos y ella quiere ver de un vistazo cómo se reparten las oportunidades por región, sin pedir nada al equipo de TI.",
+    "prompt": "La jefa de ventas selecciona Visualizar en la parte superior de la vista. ¿Qué afirmación describe lo que puede hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "La IA crea un informe de Power BI en su área de trabajo personal, que debe publicar para verlo en la app",
+        "correct": false,
+        "explanation": "La visualización se muestra en un panel junto a la cuadrícula de la propia app; no crea ni publica informes de Power BI."
+      },
+      {
+        "id": "b",
+        "text": "La IA genera un gráfico con las columnas visibles de la vista, que puede guardar y usar para filtrar la cuadrícula",
+        "correct": true,
+        "explanation": "Sin gráficos previos en la tabla, la IA crea uno que agrega los datos de la vista; puede cambiar el tipo o las columnas, guardarlo y usarlo para filtrar las filas de la cuadrícula."
+      },
+      {
+        "id": "c",
+        "text": "Solo un creador puede generar el gráfico desde el diseñador de aplicaciones; ella únicamente puede consultarlo",
+        "correct": false,
+        "explanation": "Es una función para usuarios: cualquier usuario con la función disponible puede generar el gráfico desde la vista e incluso pedirlo en lenguaje natural."
+      },
+      {
+        "id": "d",
+        "text": "El gráfico usa todas las columnas de la tabla, estén o no en la vista, y desaparece en cuanto cierra el panel",
+        "correct": false,
+        "explanation": "El gráfico se basa en las columnas visibles de la vista y se regenera si las cambias; además, puede guardarse con Guardar como."
+      }
+    ],
+    "keyPoint": "Visualizar en una vista: gráfico generado por IA a partir de la vista, editable, guardable e interactivo con la cuadrícula.",
+    "references": [
+      {
+        "title": "Visualización de datos en una vista con IA",
+        "url": "https://learn.microsoft.com/es-es/power-apps/user/visualize-data-in-copilot"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-ia-107",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-ia",
+    "difficulty": 3,
+    "scenario": "Graphic Design Institute ha habilitado Microsoft Copilot en su aplicación basada en modelos de gestión de pedidos. Los usuarios obtienen buenas respuestas cuando preguntan por los pedidos, pero cuando escriben «Cambia el estado del pedido 1042 a Enviado», la fila no se modifica.",
+    "prompt": "¿Cuál es la explicación correcta?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Al usuario le falta el privilegio de escritura en la tabla Pedidos; con él, Copilot actualizaría la fila",
+        "correct": false,
+        "explanation": "Aunque el usuario tenga permiso de escritura, Microsoft Copilot en las apps basadas en modelos no realiza cambios en los datos."
+      },
+      {
+        "id": "b",
+        "text": "La petición solo funciona desde la aplicación móvil de Power Apps, donde Copilot admite acciones",
+        "correct": false,
+        "explanation": "Microsoft Copilot para aplicaciones basadas en modelos no está disponible en la aplicación móvil de Power Apps."
+      },
+      {
+        "id": "c",
+        "text": "Copilot solo lee los datos de Dataverse; para que haga cambios hay que personalizarlo con un agente",
+        "correct": true,
+        "explanation": "Es una limitación documentada: los usuarios solo ven los datos que coinciden con sus consultas y no pueden cambiarlos; para hacer cambios se requiere la personalización con un agente."
+      },
+      {
+        "id": "d",
+        "text": "Deben volver a publicar la aplicación para que Copilot pueda escribir en la tabla Pedidos",
+        "correct": false,
+        "explanation": "Publicar de nuevo la app no cambia el comportamiento de Microsoft Copilot, que trabaja con los datos de Dataverse en modo de solo lectura."
+      }
+    ],
+    "keyPoint": "Microsoft Copilot en apps basadas en modelos responde preguntas sobre los datos de Dataverse en modo de solo lectura; para actuar sobre los datos hace falta un agente.",
+    "references": [
+      {
+        "title": "Usar Microsoft Copilot en aplicaciones controladas por modelos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/user/use-microsoft-365-copilot-model-driven-apps"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-ia-108",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-ia",
+    "difficulty": 2,
+    "scenario": "Munson's Pickles usa una aplicación de lienzo para gestionar las solicitudes de vacaciones. Cada día, una persona revisa a mano las solicitudes pendientes, aprueba las que cumplen los criterios y avisa a los empleados. La responsable quiere un agente que haga ese trabajo aprovechando los datos, la lógica y las acciones que ya tiene la app.",
+    "prompt": "¿Qué debe usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Microsoft Copilot en la aplicación de lienzo, para que los usuarios pregunten por las solicitudes",
+        "correct": false,
+        "explanation": "Microsoft Copilot en la app responde preguntas sobre los datos en modo de solo lectura; no automatiza el proceso de revisión y aprobación."
+      },
+      {
+        "id": "b",
+        "text": "Una página generativa que muestre las solicitudes pendientes con un panel guiado",
+        "correct": false,
+        "explanation": "Las páginas generativas son páginas de aplicaciones basadas en modelos para que las personas trabajen; no crean un agente que haga el trabajo por ellas."
+      },
+      {
+        "id": "c",
+        "text": "Una fórmula generada con Copilot en la barra de fórmulas que apruebe las solicitudes al abrir la app",
+        "correct": false,
+        "explanation": "Copilot en la barra de fórmulas ayuda a escribir Power Fx para un control concreto; no crea un agente autónomo con instrucciones, conocimiento y desencadenadores."
+      },
+      {
+        "id": "d",
+        "text": "Crear un agente desde la aplicación con el generador de agentes de Power Apps y terminarlo en Copilot Studio",
+        "correct": true,
+        "explanation": "El generador de agentes usa los metadatos de la app de lienzo y el objetivo descrito para generar instrucciones paso a paso, conocimiento, desencadenadores y acciones; después se edita, prueba y publica en Copilot Studio."
+      }
+    ],
+    "keyPoint": "Crear un agente desde una aplicación: el generador de agentes convierte el conocimiento, la lógica y las acciones de una app de lienzo en un agente de Copilot Studio.",
+    "references": [
+      {
+        "title": "Creación de un agente de IA para automatizar el proceso empresarial",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/agent-builder"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d3-ia-109",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-ia",
+    "difficulty": 1,
+    "prompt": "¿Para qué sirve la fuente de agentes (*agent feed*) en una aplicación basada en modelos?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Para supervisar a los agentes autónomos y revisar, completar o desbloquear las tareas que registran",
+        "correct": true,
+        "explanation": "La fuente reúne las tareas que los agentes registran, como peticiones de ayuda o de revisión, para que las personas validen resultados e intervengan cuando hace falta (persona en el bucle)."
+      },
+      {
+        "id": "b",
+        "text": "Para instalar en la aplicación agentes de un catálogo publicado previamente en Copilot Studio",
+        "correct": false,
+        "explanation": "No es un catálogo de instalación: los agentes se agregan a la app desde el diseñador, y la fuente solo muestra el trabajo que ya realizan."
+      },
+      {
+        "id": "c",
+        "text": "Para auditar todos los cambios que los usuarios hacen en las filas de las tablas de Dataverse",
+        "correct": false,
+        "explanation": "El seguimiento de cambios de los usuarios corresponde a la auditoría de Dataverse; la fuente de agentes se centra en las tareas que generan los agentes."
+      },
+      {
+        "id": "d",
+        "text": "Para crear agentes nuevos describiendo en lenguaje natural la tarea que deben automatizar",
+        "correct": false,
+        "explanation": "Los agentes se crean en Copilot Studio o con el generador de agentes; la fuente sirve para supervisarlos, no para crearlos."
+      }
+    ],
+    "keyPoint": "Fuente de agentes: las apps basadas en modelos se convierten en el lugar donde las personas supervisan, revisan y completan el trabajo de los agentes autónomos.",
+    "references": [
+      {
+        "title": "Supervisar agentes en aplicaciones controladas por modelos con la fuente de agentes",
+        "url": "https://learn.microsoft.com/es-es/power-apps/user/supervise-agents-with-agent-feed"
+      },
+      {
+        "title": "Incorporación de agentes a la aplicación controlada por modelos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/add-agents-to-app"
+      }
+    ],
+    "tags": [
+      "preview"
+    ]
+  },
+  {
+    "id": "pl900-d3-ia-110",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-ia",
+    "difficulty": 3,
+    "scenario": "Un creador de Consolidated Messenger quiere que los usuarios de su aplicación basada en modelos de seguimiento de envíos puedan abrir Microsoft Copilot desde la propia app y preguntar en lenguaje natural por los datos de Dataverse. Los usuarios ya tienen las licencias necesarias.",
+    "prompt": "¿Qué tres elementos forman parte de la solución? Cada respuesta correcta presenta parte de la solución. Selecciona tres.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Que la búsqueda de Dataverse esté en Predeterminado o Activado en el entorno",
+        "correct": true,
+        "explanation": "Microsoft Copilot para aplicaciones basadas en modelos se apoya en los índices de la búsqueda de Dataverse para encontrar los datos."
+      },
+      {
+        "id": "b",
+        "text": "Agregar a la app una página generativa con un cuadro de chat",
+        "correct": false,
+        "explanation": "Una página generativa es una página personalizada creada con IA; el panel de Microsoft Copilot se habilita por configuración, sin construir ninguna página."
+      },
+      {
+        "id": "c",
+        "text": "Que el inquilino permita que los datos de Dataverse estén disponibles en Microsoft Copilot",
+        "correct": true,
+        "explanation": "Es un requisito previo del inquilino, que se configura en el centro de administración de Microsoft 365 para los datos de Dataverse."
+      },
+      {
+        "id": "d",
+        "text": "Migrar las tablas a listas de SharePoint para que Copilot pueda leerlas",
+        "correct": false,
+        "explanation": "En las apps basadas en modelos, Microsoft Copilot responde precisamente sobre los datos de las tablas de Dataverse; no hay que moverlos."
+      },
+      {
+        "id": "e",
+        "text": "Activar Microsoft Copilot en la configuración de la app, en el diseñador de aplicaciones, y publicarla",
+        "correct": true,
+        "explanation": "El creador puede habilitarlo para una app concreta en Configuración > Características; el cambio surte efecto al guardar y publicar la app. También puede habilitarse para un entorno."
+      },
+      {
+        "id": "f",
+        "text": "Pedir a los usuarios que usen la app móvil de Power Apps, donde aparece el panel de Copilot",
+        "correct": false,
+        "explanation": "Microsoft Copilot para aplicaciones basadas en modelos no está disponible en la aplicación móvil de Power Apps."
+      }
+    ],
+    "keyPoint": "Microsoft Copilot en apps basadas en modelos: datos de Dataverse disponibles para Copilot en el inquilino, búsqueda de Dataverse activa y la opción habilitada para el entorno o la app.",
+    "references": [
+      {
+        "title": "Agregar Microsoft Copilot para los usuarios de aplicaciones basadas en modelos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/add-microsoft-365-copilot"
+      }
+    ]
+  }
+]

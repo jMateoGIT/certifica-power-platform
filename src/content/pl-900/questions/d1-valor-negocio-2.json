@@ -1,0 +1,766 @@
+[
+  {
+    "id": "pl900-d1-apps-101",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-apps-automate",
+    "difficulty": 2,
+    "scenario": "Una aseguradora ha formado a un grupo de usuarios avanzados en las fórmulas de Power Fx de sus aplicaciones de lienzo. La dirección quiere saber en qué otras partes de Power Platform podrán aprovechar ese mismo conocimiento sin aprender otro lenguaje.",
+    "prompt": "¿En qué tres casos pueden usar Power Fx? Selecciona tres.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Para calcular el valor de una columna de fórmula en una tabla de Dataverse",
+        "correct": true,
+        "explanation": "Las columnas de fórmula de Dataverse se definen con Power Fx. La lógica queda en la capa de datos y se aplica igual en todas las aplicaciones y flujos que usan la tabla."
+      },
+      {
+        "id": "b",
+        "text": "Para escribir las medidas de cálculo de un informe de Power BI",
+        "correct": false,
+        "explanation": "Las medidas de Power BI se escriben en DAX, un lenguaje distinto pensado para el análisis de datos."
+      },
+      {
+        "id": "c",
+        "text": "Para definir qué hace un botón de comando de una aplicación basada en modelos y cuándo se muestra",
+        "correct": true,
+        "explanation": "Los comandos modernos de las aplicaciones basadas en modelos usan fórmulas de Power Fx tanto para la acción (OnSelect) como para la visibilidad (Visible) del botón."
+      },
+      {
+        "id": "d",
+        "text": "Para transformar los datos de un flujo de datos con Power Query",
+        "correct": false,
+        "explanation": "Las transformaciones de Power Query se expresan en el lenguaje M (o con su editor visual), no con Power Fx."
+      },
+      {
+        "id": "e",
+        "text": "Para crear expresiones en los temas de un agente de Copilot Studio, por ejemplo para transformar una variable",
+        "correct": true,
+        "explanation": "Copilot Studio permite usar fórmulas de Power Fx en los temas para establecer variables, analizar cadenas o crear condiciones."
+      }
+    ],
+    "keyPoint": "Power Fx es el lenguaje de poco código de Power Platform, con fórmulas tipo Excel: el mismo conocimiento sirve en aplicaciones de lienzo, columnas de fórmula de Dataverse, comandos de aplicaciones basadas en modelos y agentes de Copilot Studio.",
+    "references": [
+      {
+        "title": "Describir el valor de Power Fx como solución con poco código",
+        "url": "https://learn.microsoft.com/es-es/training/modules/describe-business-value-microsoft-power-platform-services/6-describe-value-power-fx-low-code-solution"
+      },
+      {
+        "title": "Crear expresiones con Power Fx (Copilot Studio)",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/advanced-power-fx"
+      },
+      {
+        "title": "Uso de Power Fx con comandos con Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/commanding-use-powerfx"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d1-apps-102",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-apps-automate",
+    "difficulty": 2,
+    "scenario": "El área de operaciones de una cadena de ferreterías ha hecho una lista de procesos y quiere empezar por el que más valor obtenga al automatizarlo con Power Automate.",
+    "prompt": "¿Qué proceso es el mejor candidato para automatizar en primer lugar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "La negociación anual del contrato marco con el principal proveedor, que cambia por completo cada año",
+        "correct": false,
+        "explanation": "Un proceso que ocurre una vez al año y cambia cada vez no tiene pasos estables ni volumen suficiente; automatizarlo costaría más de lo que ahorra."
+      },
+      {
+        "id": "b",
+        "text": "La decisión de abrir una tienda nueva, que exige un análisis experto distinto en cada caso",
+        "correct": false,
+        "explanation": "Las decisiones estratégicas que dependen del juicio experto en cada caso no siguen reglas repetibles, así que no son buenas candidatas para un flujo."
+      },
+      {
+        "id": "c",
+        "text": "Copiar cada día al sistema de facturación los pedidos que llegan por correo con un formato fijo",
+        "correct": true,
+        "explanation": "Es una tarea repetitiva, frecuente, basada en reglas y con datos digitales estructurados: el tipo de trabajo en el que la automatización ahorra más tiempo y reduce los errores de transcripción."
+      },
+      {
+        "id": "d",
+        "text": "La entrevista final de selección de los encargados de tienda, que hace la dirección en persona",
+        "correct": false,
+        "explanation": "Una entrevista presencial depende de la interacción humana y del criterio de quien entrevista; no hay pasos repetitivos que un flujo pueda ejecutar."
+      }
+    ],
+    "keyPoint": "Los mejores candidatos para automatizar son procesos repetitivos, frecuentes, basados en reglas y con datos digitales estructurados.",
+    "references": [
+      {
+        "title": "¿Qué es Power Automate?",
+        "url": "https://learn.microsoft.com/es-es/power-automate/flow-types"
+      },
+      {
+        "title": "Explorar Microsoft Power Platform",
+        "url": "https://learn.microsoft.com/es-es/training/modules/describe-business-value-microsoft-power-platform-services/2-explore-microsoft-power-platform"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d1-apps-103",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-apps-automate",
+    "difficulty": 2,
+    "scenario": "La directora de operaciones de una cadena de supermercados consulta cada mañana un panel de Power BI con las existencias de los productos frescos. Quiere que, en cuanto el indicador de un producto baje de un umbral, se avise al responsable de compras en Microsoft Teams y se le cree una tarea en Planner, sin que nadie tenga que estar pendiente del panel.",
+    "prompt": "¿Qué solución aprovecha mejor el valor de Power Automate junto con Power BI?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agregar al informe el objeto visual de Power Apps para que la directora cree la tarea desde el propio informe",
+        "correct": false,
+        "explanation": "El objeto visual de Power Apps permite actuar sobre los datos desde el informe, pero alguien tendría que estar mirándolo y crear la tarea a mano, que es justo lo que se quiere evitar."
+      },
+      {
+        "id": "b",
+        "text": "Configurar una alerta de datos en el icono del panel y un flujo de nube que se inicie con ella y avise en Teams y cree la tarea",
+        "correct": true,
+        "explanation": "Power BI detecta la situación y Power Automate actúa: el conector de Power BI tiene un desencadenador que se activa con una alerta de datos, y el flujo usa después los conectores de Microsoft Teams y Planner."
+      },
+      {
+        "id": "c",
+        "text": "Crear un flujo de escritorio que abra el panel cada hora en el navegador y lea en la pantalla el valor del indicador",
+        "correct": false,
+        "explanation": "Los flujos de escritorio están pensados para aplicaciones sin API ni conector. Leer la pantalla de un panel es frágil cuando Power BI ya ofrece alertas de datos que pueden iniciar un flujo de nube."
+      },
+      {
+        "id": "d",
+        "text": "Suscribir al responsable de compras al panel para que reciba cada mañana por correo una instantánea de los indicadores",
+        "correct": false,
+        "explanation": "Una suscripción envía el panel según una programación, haya o no un problema, y no crea tareas ni avisa en Teams cuando se cruza el umbral."
+      }
+    ],
+    "keyPoint": "Los servicios de Power Platform se complementan: Power BI detecta la situación con una alerta de datos y Power Automate actúa automáticamente con un flujo de nube.",
+    "references": [
+      {
+        "title": "Integración de alertas de datos de Power BI con Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-bi/collaborate-share/office-integration/service-flow-integration"
+      },
+      {
+        "title": "Describir cómo funcionan juntos los servicios de Power Platform",
+        "url": "https://learn.microsoft.com/es-es/training/modules/describe-business-value-microsoft-power-platform-services/7-describe-how-power-platform-services-work-together"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d1-apps-104",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-apps-automate",
+    "difficulty": 1,
+    "prompt": "Para cada afirmación sobre el valor de automatizar procesos con Power Automate, indica si es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Un flujo de nube se ejecuta en los servicios en la nube de Microsoft, así que no necesita que el equipo de quien lo creó esté encendido.",
+        "answer": true,
+        "explanation": "Los flujos de nube se ejecutan en el servicio de Power Automate cuando se cumple su desencadenador, sin depender del equipo del creador."
+      },
+      {
+        "id": "s2",
+        "text": "Power Automate solo puede automatizar procesos entre servicios de Microsoft, como Outlook o SharePoint.",
+        "answer": false,
+        "explanation": "Gracias a los conectores, Power Automate se integra con muchos servicios de terceros y, mediante conectores personalizados, con las API propias de la organización."
+      },
+      {
+        "id": "s3",
+        "text": "Automatizar las tareas repetitivas de introducción de datos reduce los errores manuales y libera tiempo para trabajo de más valor.",
+        "answer": true,
+        "explanation": "Es uno de los principales beneficios de la automatización: las tareas repetitivas se ejecutan siempre igual y las personas dedican su tiempo a tareas que requieren criterio."
+      },
+      {
+        "id": "s4",
+        "text": "Automatizar un proceso con Power Automate exige eliminar cualquier intervención humana, por lo que no puede incluir decisiones de un responsable.",
+        "answer": false,
+        "explanation": "Un flujo puede incluir pasos con personas, por ejemplo aprobaciones en las que un responsable aprueba o rechaza desde Outlook o Teams antes de continuar."
+      }
+    ],
+    "keyPoint": "Power Automate ahorra tiempo y reduce errores conectando servicios de Microsoft y de terceros, sin eliminar a las personas de las decisiones que les corresponden.",
+    "references": [
+      {
+        "title": "Descripción general de los flujos de nube",
+        "url": "https://learn.microsoft.com/es-es/power-automate/overview-cloud"
+      },
+      {
+        "title": "¿Qué es Power Automate?",
+        "url": "https://learn.microsoft.com/es-es/power-automate/flow-types"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d1-apps-105",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-apps-automate",
+    "difficulty": 2,
+    "scenario": "Un ayuntamiento aprobaba las solicitudes de sus empleados en SharePoint Online con formularios de InfoPath y flujos de trabajo de SharePoint 2013. Microsoft ha retirado esos flujos de trabajo de SharePoint Online y ha terminado el soporte de InfoPath 2013, así que el ayuntamiento quiere sustituirlos por tecnologías actuales de Microsoft, sin un gran proyecto de desarrollo y manteniendo los datos en las mismas listas.",
+    "prompt": "Completa la frase sobre la modernización que debes proponer.",
+    "template": "Para sustituir los formularios de InfoPath usas {{b1}}; para sustituir los flujos de trabajo de SharePoint 2013 usas {{b2}}; y ambas soluciones siguen trabajando con las mismas listas gracias a {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "Power Pages" },
+          { "id": "o2", "text": "Power Apps" },
+          { "id": "o3", "text": "Power Automate para escritorio" }
+        ],
+        "correctId": "o2",
+        "explanation": "Power Apps es la opción de Microsoft para crear formularios y aplicaciones de negocio con poco código, incluidos los formularios de listas de SharePoint. Power Pages crea sitios web y Power Automate para escritorio automatiza interfaces de usuario."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "agentes de Copilot Studio" },
+          { "id": "o2", "text": "flujos de escritorio" },
+          { "id": "o3", "text": "flujos de nube de Power Automate" }
+        ],
+        "correctId": "o3",
+        "explanation": "Microsoft recomienda sustituir los flujos de trabajo clásicos de SharePoint, ya retirados en SharePoint Online, por flujos de nube de Power Automate, que incluyen aprobaciones y desencadenadores de SharePoint. Los flujos de escritorio son para aplicaciones sin API y un agente no sustituye un flujo de aprobación."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "el conector de SharePoint" },
+          { "id": "o2", "text": "una puerta de enlace de datos local" },
+          { "id": "o3", "text": "un conector personalizado" }
+        ],
+        "correctId": "o1",
+        "explanation": "El conector de SharePoint, disponible en Power Apps y Power Automate, da acceso a las listas existentes. La puerta de enlace solo hace falta para orígenes locales, y SharePoint Online ya tiene conector, así que no hay que crear uno personalizado."
+      }
+    ],
+    "keyPoint": "Para modernizar soluciones clásicas de SharePoint: formularios con Power Apps y flujos de trabajo con flujos de nube de Power Automate, ambos sobre el conector de SharePoint.",
+    "references": [
+      {
+        "title": "Guía: Migrar de flujos de trabajo clásicos a flujos de Power Automate en SharePoint",
+        "url": "https://learn.microsoft.com/es-es/sharepoint/dev/business-apps/power-automate/guidance/migrate-from-classic-workflows-to-power-automate-flows"
+      },
+      {
+        "title": "Utilizar SharePoint y Power Automate para crear flujos de trabajo",
+        "url": "https://learn.microsoft.com/es-es/power-automate/sharepoint-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d1-datos-101",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-datos",
+    "difficulty": 3,
+    "scenario": "El equipo de proyectos de una consultora creó dentro de Microsoft Teams una aplicación de seguimiento sobre Dataverse for Teams. Ahora otros departamentos quieren usarla fuera de Teams, desde el explorador y la app móvil de Power Apps, y la solución necesita conectores premium y más capacidad. Quieren conservar las tablas, los datos y las aplicaciones que ya tienen.",
+    "prompt": "¿Qué debes recomendar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Actualizar el entorno de Dataverse for Teams a un entorno de Dataverse completo",
+        "correct": true,
+        "explanation": "Un administrador puede actualizar (*upgrade*) un entorno de Dataverse for Teams a Dataverse. El entorno conserva sus tablas, datos y aplicaciones y obtiene todas las capacidades de Dataverse, también fuera de Teams."
+      },
+      {
+        "id": "b",
+        "text": "Exportar los datos a Excel y volver a crear las tablas y la aplicación en otro entorno",
+        "correct": false,
+        "explanation": "Rehacer la solución en otro entorno es costoso y propenso a errores, y obliga a reconstruir lo que ya existe; la actualización del entorno es el camino previsto para que una solución de Teams crezca."
+      },
+      {
+        "id": "c",
+        "text": "Añadir a todos los empleados de esos departamentos como miembros del equipo de Teams",
+        "correct": false,
+        "explanation": "Añadir miembros amplía quién accede dentro de Teams, pero el entorno seguiría con las limitaciones de Dataverse for Teams: uso dentro de Teams, sin conectores premium ni más capacidad."
+      },
+      {
+        "id": "d",
+        "text": "Crear en un entorno nuevo tablas virtuales que lean los datos de Dataverse for Teams",
+        "correct": false,
+        "explanation": "Las tablas virtuales muestran datos de orígenes externos; no son un mecanismo para migrar una solución de Dataverse for Teams y dejarían la aplicación original sin resolver."
+      }
+    ],
+    "keyPoint": "Cuando una solución de Dataverse for Teams se queda pequeña, se actualiza su entorno a Dataverse para obtener todas sus capacidades sin perder lo creado.",
+    "references": [
+      {
+        "title": "Acerca del entorno de Dataverse for Teams",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/about-teams-environment"
+      },
+      {
+        "title": "Introducción a Microsoft Dataverse for Teams",
+        "url": "https://learn.microsoft.com/es-es/power-apps/teams/overview-data-platform"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d1-datos-102",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-datos",
+    "difficulty": 2,
+    "prompt": "Completa la frase sobre la diferencia entre un conector y una conexión.",
+    "template": "Un conector, como el de SharePoint, {{b1}}. Para usarlo en una aplicación o un flujo creas {{b2}}, que guarda la autenticación con tu cuenta en ese servicio y que después {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "almacena una copia de los datos del servicio" },
+          { "id": "o2", "text": "describe las operaciones que ofrece el servicio" },
+          { "id": "o3", "text": "guarda las credenciales de cada usuario" }
+        ],
+        "correctId": "o2",
+        "explanation": "El conector es un envoltorio de la API del servicio: define sus desencadenadores y acciones. No copia los datos ni guarda credenciales; eso último lo hace la conexión."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "una conexión" },
+          { "id": "o2", "text": "una tabla virtual" },
+          { "id": "o3", "text": "un entorno nuevo" }
+        ],
+        "correctId": "o1",
+        "explanation": "La conexión es la instancia autenticada de un conector: al crearla inicias sesión en el servicio y queda guardada para usarla. Una tabla virtual o un entorno no autentican frente a un servicio."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "tienes que volver a crear para cada acción del flujo" },
+          { "id": "o2", "text": "comparten automáticamente todos los usuarios de la organización" },
+          { "id": "o3", "text": "puedes reutilizar en otras aplicaciones y flujos del mismo entorno" }
+        ],
+        "correctId": "o3",
+        "explanation": "Una conexión se crea una vez en el entorno y la reutilizas en tus aplicaciones y flujos. No hay que crear una por acción, y no se comparte de forma automática con toda la organización."
+      }
+    ],
+    "keyPoint": "Conector = qué operaciones ofrece un servicio; conexión = tu acceso autenticado a ese servicio, reutilizable en el entorno.",
+    "references": [
+      {
+        "title": "Introducción a los conectores",
+        "url": "https://learn.microsoft.com/es-es/connectors/overview"
+      },
+      {
+        "title": "Administrar conexiones en Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/add-manage-connections"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d1-datos-103",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-datos",
+    "difficulty": 2,
+    "scenario": "Una aseguradora ha centralizado en Dataverse los datos de clientes y pólizas que usan sus aplicaciones de Power Apps. Ahora quiere aprovechar esos mismos datos en otras herramientas sin duplicarlos.",
+    "prompt": "Para cada afirmación, indica si es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puede crear informes de Power BI que se conecten directamente a las tablas de Dataverse.",
+        "answer": true,
+        "explanation": "Power BI tiene un conector de Dataverse para analizar los datos de las tablas sin exportarlos antes a otro almacén."
+      },
+      {
+        "id": "s2",
+        "text": "Para mostrar las pólizas en un sitio de Power Pages, antes hay que copiarlas a una base de datos SQL independiente.",
+        "answer": false,
+        "explanation": "Power Pages trabaja directamente con Dataverse: el sitio puede mostrar y editar los datos de las tablas, con su seguridad, sin copiarlos a otra base de datos."
+      },
+      {
+        "id": "s3",
+        "text": "Un agente de Copilot Studio puede usar tablas de Dataverse como fuente de conocimiento para responder preguntas.",
+        "answer": true,
+        "explanation": "Dataverse es uno de los orígenes de conocimiento de Copilot Studio, así que el agente puede responder a partir de los datos de negocio que ya usan las aplicaciones."
+      },
+      {
+        "id": "s4",
+        "text": "Los datos de Dataverse solo se pueden usar en aplicaciones basadas en modelos.",
+        "answer": false,
+        "explanation": "Dataverse es el almacén común de Power Platform: lo usan aplicaciones de lienzo y basadas en modelos, flujos, sitios de Power Pages, agentes y herramientas de análisis como Power BI."
+      }
+    ],
+    "keyPoint": "Un único almacén en Dataverse sirve a apps, flujos, sitios, agentes e informes: los datos se reutilizan sin duplicarlos.",
+    "references": [
+      {
+        "title": "¿Por qué elegir Microsoft Dataverse?",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/why-dataverse-overview"
+      },
+      {
+        "title": "Resumen de fuentes de conocimiento",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/knowledge-copilot-studio"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d1-datos-104",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-datos",
+    "difficulty": 3,
+    "scenario": "Una distribuidora quiere tener en una tabla de Dataverse el catálogo de productos. Los datos salen cada noche de dos orígenes: unos archivos CSV que exporta su ERP y una base de datos de Azure SQL. Antes de cargarlos hay que quitar columnas, cambiar formatos y combinar ambos orígenes, y la carga debe repetirse cada noche sin programar.",
+    "prompt": "¿Qué debes usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Una tabla virtual que muestre en Dataverse el contenido de los archivos CSV",
+        "correct": false,
+        "explanation": "Una tabla virtual muestra datos de un origen externo sin copiarlos y sin transformarlos; no permite combinar dos orígenes ni limpiar las columnas antes de cargarlas."
+      },
+      {
+        "id": "b",
+        "text": "Un conector personalizado para cada origen de datos",
+        "correct": false,
+        "explanation": "Un conector personalizado expone las operaciones de una API; no ofrece por sí mismo las transformaciones ni la carga programada en Dataverse, y ambos orígenes ya tienen conector."
+      },
+      {
+        "id": "c",
+        "text": "Un flujo de datos (*dataflow*) con Power Query que cargue el resultado en Dataverse con actualización programada",
+        "correct": true,
+        "explanation": "Los flujos de datos obtienen datos de muchos orígenes, los transforman con Power Query sin código y los cargan en tablas de Dataverse, con actualizaciones programadas."
+      },
+      {
+        "id": "d",
+        "text": "Un entorno de Dataverse for Teams donde los usuarios peguen los datos cada mañana",
+        "correct": false,
+        "explanation": "Pegar los datos a mano no cumple el requisito de automatizar la carga y deja la calidad de los datos en manos de cada usuario."
+      }
+    ],
+    "keyPoint": "Para importar y transformar datos de varios orígenes en Dataverse de forma periódica y sin código, usa flujos de datos con Power Query.",
+    "references": [
+      {
+        "title": "Creación y uso de flujos de datos en Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/create-and-use-dataflows"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d1-datos-105",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-datos",
+    "difficulty": 2,
+    "scenario": "Tailspin Toys quiere que su sistema de envíos se pueda usar desde Power Apps y Power Automate. Todavía no tiene API, y su plan es usar primero el conector dentro de la empresa y, más adelante, ofrecerlo públicamente a sus clientes.",
+    "prompt": "Ordena las fases del ciclo de vida del conector personalizado.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Crear una API REST para el sistema de envíos",
+        "explanation": "Un conector personalizado envuelve una API, así que primero tiene que existir la API que expone las operaciones del sistema."
+      },
+      {
+        "id": "p2",
+        "text": "Proteger la API con un método de autenticación, como Microsoft Entra ID",
+        "explanation": "Antes de describirla en el conector hay que decidir cómo se autentican las llamadas, porque esa autenticación se configura en la definición del conector."
+      },
+      {
+        "id": "p3",
+        "text": "Describir la API, por ejemplo con una definición OpenAPI, y definir el conector personalizado",
+        "explanation": "Con la API protegida, se describe su interfaz y se crea el conector con sus acciones y su autenticación."
+      },
+      {
+        "id": "p4",
+        "text": "Usar el conector en una aplicación de lienzo o en un flujo de nube",
+        "explanation": "Una vez definido, el creador lo usa (y comprueba) en sus propias aplicaciones y flujos mediante una conexión."
+      },
+      {
+        "id": "p5",
+        "text": "Compartir el conector con otros usuarios de la organización",
+        "explanation": "Cuando funciona, se comparte para que otros creadores de la organización puedan usarlo."
+      },
+      {
+        "id": "p6",
+        "text": "Enviar el conector a Microsoft para su certificación y que esté disponible para todos los usuarios",
+        "explanation": "La certificación es el último paso, opcional: tras la revisión de Microsoft, el conector se publica para cualquier usuario de Power Platform, incluidos los clientes."
+      }
+    ],
+    "keyPoint": "Ciclo de vida de un conector personalizado: crear la API, protegerla, describirla y definir el conector, usarlo, compartirlo y, si quieres, certificarlo.",
+    "references": [
+      {
+        "title": "Información general sobre los conectores personalizados",
+        "url": "https://learn.microsoft.com/es-es/connectors/custom-connectors/"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d1-ia-101",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-ia",
+    "difficulty": 2,
+    "scenario": "Una red de clínicas dentales crea con Power Pages un sitio donde los pacientes consultan sus citas y presupuestos, guardados en Dataverse. Cada paciente solo debe ver sus propios datos.",
+    "prompt": "Completa la frase sobre cómo protege Power Pages el acceso de los usuarios externos.",
+    "template": "Los pacientes inician sesión en el sitio mediante {{b1}}; para decidir qué filas de Dataverse puede leer o modificar cada uno configuras {{b2}}, que se asignan a {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "una licencia de Power Apps para cada paciente" },
+          { "id": "o2", "text": "un rol de seguridad de Dataverse" },
+          { "id": "o3", "text": "un proveedor de identidad configurado en el sitio" }
+        ],
+        "correctId": "o3",
+        "explanation": "Power Pages autentica a los usuarios externos con proveedores de identidad configurados en el sitio, como una cuenta de Microsoft, LinkedIn o Google, u otros compatibles con OAuth 2.0, OpenID Connect o SAML 2.0. Los pacientes no necesitan licencia de Power Apps ni roles de seguridad de Dataverse."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "permisos de tabla (*table permissions*)" },
+          { "id": "o2", "text": "directivas de datos" },
+          { "id": "o3", "text": "reglas de negocio" }
+        ],
+        "correctId": "o1",
+        "explanation": "Los permisos de tabla definen qué operaciones (leer, crear, modificar, eliminar) se permiten sobre una tabla y con qué ámbito, por ejemplo solo las filas del propio contacto. Las directivas de datos gobiernan conectores y las reglas de negocio aplican lógica, no acceso."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "unidades de negocio" },
+          { "id": "o2", "text": "roles web (*web roles*)" },
+          { "id": "o3", "text": "grupos de Microsoft 365" }
+        ],
+        "correctId": "o2",
+        "explanation": "En Power Pages los permisos de tabla se asocian a roles web, y los roles web se asignan a los usuarios del sitio. Las unidades de negocio y los grupos de Microsoft 365 organizan a usuarios internos."
+      }
+    ],
+    "keyPoint": "Seguridad en Power Pages: proveedor de identidad para iniciar sesión, permisos de tabla para los datos de Dataverse y roles web para asignarlos.",
+    "references": [
+      {
+        "title": "Configurar la autenticación del sitio",
+        "url": "https://learn.microsoft.com/es-es/power-pages/security/authentication/configure-site"
+      },
+      {
+        "title": "Establecer permisos de tabla en Power Pages",
+        "url": "https://learn.microsoft.com/es-es/power-pages/security/table-permissions"
+      },
+      {
+        "title": "Crear y asignar roles web",
+        "url": "https://learn.microsoft.com/es-es/power-pages/security/create-web-roles"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d1-ia-102",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-ia",
+    "difficulty": 1,
+    "prompt": "Microsoft diseña sus funciones de IA generativa, como Copilot en Power Platform, siguiendo sus principios de IA responsable. ¿Qué dos de los siguientes son principios de IA responsable de Microsoft? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Rentabilidad",
+        "correct": false,
+        "explanation": "El ahorro de costes puede ser un beneficio de la IA, pero no es uno de los principios con los que Microsoft guía el diseño responsable de sus sistemas."
+      },
+      {
+        "id": "b",
+        "text": "Equidad",
+        "correct": true,
+        "explanation": "La equidad (*fairness*) busca que los sistemas de IA traten a todas las personas de forma justa y no reproduzcan sesgos."
+      },
+      {
+        "id": "c",
+        "text": "Autonomía total",
+        "correct": false,
+        "explanation": "Microsoft defiende lo contrario: las personas deben supervisar y responder de los sistemas de IA, y revisar lo que genera Copilot antes de usarlo."
+      },
+      {
+        "id": "d",
+        "text": "Transparencia",
+        "correct": true,
+        "explanation": "La transparencia implica que las personas entiendan qué hace un sistema de IA, sus capacidades y sus límites, y sepan cuándo interactúan con contenido generado por IA."
+      },
+      {
+        "id": "e",
+        "text": "Velocidad de respuesta",
+        "correct": false,
+        "explanation": "El rendimiento es una cualidad técnica deseable, pero no es un principio de IA responsable."
+      }
+    ],
+    "keyPoint": "Principios de IA responsable de Microsoft: equidad, confiabilidad y seguridad, privacidad y seguridad, inclusión, transparencia y responsabilidad.",
+    "references": [
+      {
+        "title": "¿Qué es la inteligencia artificial responsable?",
+        "url": "https://learn.microsoft.com/es-es/azure/machine-learning/concept-responsible-ai"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d1-ia-103",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-ia",
+    "difficulty": 2,
+    "scenario": "Una aseguradora ya usa un modelo de IA que, a partir del historial, predice qué clientes tienen más probabilidad de no renovar su póliza. Ahora el comité de dirección se pregunta qué aporta, además, la IA generativa de Power Platform, como Copilot.",
+    "prompt": "¿Qué afirmación describe mejor la diferencia?",
+    "options": [
+      {
+        "id": "a",
+        "text": "La IA generativa garantiza respuestas exactas y comprobadas, así que lo que genera Copilot puede pasar a producción sin que nadie lo revise",
+        "correct": false,
+        "explanation": "El contenido generado puede contener errores: Microsoft recomienda revisar y validar siempre lo que propone Copilot antes de usarlo."
+      },
+      {
+        "id": "b",
+        "text": "La IA generativa crea contenido nuevo (textos, flujos, aplicaciones) a partir de lenguaje natural; un modelo predictivo predice o clasifica a partir de datos existentes",
+        "correct": true,
+        "explanation": "Un modelo de IA tradicional devuelve una predicción o una categoría basada en datos existentes, mientras que la IA generativa produce un resultado original para cada petición, como un borrador de respuesta o un flujo de nube que crea Copilot a partir de una descripción."
+      },
+      {
+        "id": "c",
+        "text": "Solo pueden aprovechar la IA generativa los desarrolladores profesionales, porque las peticiones a Copilot se escriben en un lenguaje de programación",
+        "correct": false,
+        "explanation": "Con Copilot se conversa en lenguaje natural, precisamente para que tanto usuarios técnicos como no técnicos describan lo que necesitan sin programar."
+      },
+      {
+        "id": "d",
+        "text": "Para usar la IA generativa, cada organización debe entrenar antes su propio modelo con miles de ejemplos etiquetados procedentes de sus datos",
+        "correct": false,
+        "explanation": "Copilot usa modelos de lenguaje ya entrenados: basta con describir lo que necesitas. Entrenar con ejemplos etiquetados es propio de los modelos personalizados de IA tradicional."
+      }
+    ],
+    "keyPoint": "IA tradicional = predecir o clasificar a partir de datos existentes; IA generativa = crear contenido nuevo (texto, flujos, aplicaciones) a partir de lenguaje natural, que siempre hay que revisar.",
+    "references": [
+      {
+        "title": "Describir el valor de los copilotos y las características de IA generativa en Power Platform",
+        "url": "https://learn.microsoft.com/es-es/training/modules/describe-business-value-microsoft-power-platform-services/8-describe-value-copilots-generative-ai-features-microsoft-power-platform"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d1-ia-104",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-ia",
+    "difficulty": 3,
+    "scenario": "El departamento de recursos humanos quiere aprovechar la IA generativa y duda entre crear una indicación (*prompt*) reutilizable o un agente de Copilot Studio. Ha reunido varios requisitos.",
+    "prompt": "¿Qué dos requisitos justifican crear un agente en lugar de una sola indicación? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Resumir en tres líneas el texto de cada parte de baja que recibe un flujo de nube",
+        "correct": false,
+        "explanation": "Resumir un texto de entrada y devolver el resultado es justo lo que hace una indicación, que el flujo puede llamar en cada ejecución."
+      },
+      {
+        "id": "b",
+        "text": "Mantener con los empleados, en Microsoft Teams, una conversación de varios turnos en la que pida los datos que faltan",
+        "correct": true,
+        "explanation": "Un agente conversa con los usuarios en canales como Teams, mantiene el contexto y hace preguntas de seguimiento; una indicación solo recibe una entrada y devuelve una salida."
+      },
+      {
+        "id": "c",
+        "text": "Clasificar el asunto de cada correo entrante en una de cinco categorías",
+        "correct": false,
+        "explanation": "Clasificar un texto es una tarea de entrada y salida que una indicación resuelve sin necesidad de un agente conversacional."
+      },
+      {
+        "id": "d",
+        "text": "Decidir en cada pregunta si consulta la intranet o ejecuta un flujo que registra la solicitud",
+        "correct": true,
+        "explanation": "Un agente combina conocimiento y herramientas, y con la orquestación generativa elige cuál usar para cada petición. Una indicación ejecuta una única tarea definida."
+      },
+      {
+        "id": "e",
+        "text": "Traducir al inglés la descripción de cada oferta de empleo antes de publicarla",
+        "correct": false,
+        "explanation": "La traducción es una transformación de texto puntual que una indicación hace bien y que puede usarse desde un flujo o una aplicación."
+      }
+    ],
+    "keyPoint": "Indicación = una tarea de IA con entrada y salida, reutilizable; agente = conversación con usuarios que combina conocimiento y herramientas.",
+    "references": [
+      {
+        "title": "Descripción general de indicaciones",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/prompts-overview"
+      },
+      {
+        "title": "Información general de Copilot Studio",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/fundamentals-what-is-copilot-studio"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d1-ia-105",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-ia",
+    "difficulty": 2,
+    "prompt": "Estás creando con el estudio de diseño (*design studio*) de Power Pages el sitio de una academia. Empareja cada necesidad con el elemento de Power Pages que la cubre. Cada opción puede usarse una vez o ninguna.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Mostrar a los visitantes los cursos guardados en una tabla de Dataverse, con búsqueda y filtros",
+        "answerId": "c1",
+        "explanation": "Una lista muestra en una página las filas de una tabla de Dataverse, según una vista, y puede incluir búsqueda y filtros."
+      },
+      {
+        "id": "m2",
+        "text": "Recoger en una sola página la inscripción de un alumno y guardarla en Dataverse",
+        "answerId": "c2",
+        "explanation": "Un formulario permite crear o editar una fila de una tabla de Dataverse desde una página del sitio."
+      },
+      {
+        "id": "m3",
+        "text": "Guiar la solicitud de una beca a lo largo de varias pantallas, paso a paso",
+        "answerId": "c3",
+        "explanation": "Un formulario de varios pasos (antes llamado formulario avanzado) divide la captura de datos en etapas, útil cuando hay mucha información que pedir."
+      },
+      {
+        "id": "m4",
+        "text": "Aplicar los colores y las fuentes de la marca a todas las páginas",
+        "answerId": "c4",
+        "explanation": "En el espacio de trabajo Estilo del estudio de diseño eliges uno de los temas preestablecidos y personalizas sus colores y fuentes; el estilo se aplica a todo el sitio."
+      }
+    ],
+    "choices": [
+      { "id": "c1", "text": "Lista" },
+      { "id": "c2", "text": "Formulario" },
+      { "id": "c3", "text": "Formulario de varios pasos" },
+      { "id": "c4", "text": "Tema del sitio (espacio de trabajo Estilo)" },
+      { "id": "c5", "text": "Permisos de tabla" }
+    ],
+    "keyPoint": "Power Pages ofrece bloques de poco código: listas para mostrar datos, formularios (sencillos o de varios pasos) para capturarlos y temas para la imagen del sitio; los permisos de tabla controlan el acceso, no la presentación.",
+    "references": [
+      {
+        "title": "Agregar listas",
+        "url": "https://learn.microsoft.com/es-es/power-pages/getting-started/add-list"
+      },
+      {
+        "title": "Formularios de varios pasos",
+        "url": "https://learn.microsoft.com/es-es/power-pages/getting-started/multistep-forms"
+      },
+      {
+        "title": "Aplicar estilo a su sitio de Power Pages",
+        "url": "https://learn.microsoft.com/es-es/power-pages/getting-started/style-site"
+      }
+    ]
+  }
+]
