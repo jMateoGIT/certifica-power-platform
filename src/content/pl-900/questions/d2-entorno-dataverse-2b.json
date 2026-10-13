@@ -1298,7 +1298,7 @@
       },
       {
         "title": "Ver los registros de actividad de las aplicaciones basadas en modelos y de Dataverse en Microsoft Purview",
-        "url": "https://learn.microsoft.com/es-es/power-platform/admin/enable-use-comprehensive-auditing"
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/activity-logging-auditing/activity-logs-dataverse-model-driven-apps"
       }
     ]
   },

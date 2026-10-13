@@ -666,7 +666,7 @@
     "references": [
       {
         "title": "Creación de un panel de Power BI desde un informe",
-        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/service-dashboard-pin-tile-from-report"
+        "url": "https://learn.microsoft.com/es-es/power-bi/create-reports/service-dashboard-create"
       }
     ]
   },
@@ -1019,7 +1019,7 @@
     "references": [
       {
         "title": "Marcadores en el servicio Power BI",
-        "url": "https://learn.microsoft.com/es-es/power-bi/consumer/end-user-bookmarks"
+        "url": "https://learn.microsoft.com/es-es/power-bi/explore-reports/end-user-bookmarks"
       }
     ]
   },
@@ -1166,7 +1166,7 @@
       },
       {
         "title": "Cómo destacar informes en Power BI",
-        "url": "https://learn.microsoft.com/es-es/power-bi/consumer/end-user-spotlight"
+        "url": "https://learn.microsoft.com/es-es/power-bi/explore-reports/end-user-spotlight"
       }
     ]
   },
@@ -1275,7 +1275,7 @@
     "references": [
       {
         "title": "Use el modo de exploración en profundidad para explorar objetos visuales en el servicio Power BI",
-        "url": "https://learn.microsoft.com/es-es/power-bi/consumer/end-user-drill"
+        "url": "https://learn.microsoft.com/es-es/power-bi/explore-reports/end-user-drill"
       }
     ]
   },
@@ -1578,7 +1578,7 @@
     "references": [
       {
         "title": "Cambiar el tamaño de presentación y la proporción de una página de informe",
-        "url": "https://learn.microsoft.com/es-es/power-bi/consumer/end-user-focus"
+        "url": "https://learn.microsoft.com/es-es/power-bi/explore-reports/end-user-report-view"
       },
       {
         "title": "Diseño de informes accesibles de Power BI",
