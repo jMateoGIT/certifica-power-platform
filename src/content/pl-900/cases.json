@@ -134,5 +134,49 @@
         "body": "1. Extraer automáticamente los datos de los certificados, guardarlos en Dataverse y que una persona revise en una aplicación los documentos cuya extracción sea dudosa.\n2. El agente *Asistente de planta* de Copilot Studio debe consultar el estado de las máquinas mediante el servidor MCP del MES.\n3. Calidad quiere probar el agente con conjuntos de pruebas automatizadas antes de desplegarlo y revisar después sus métricas de uso; Seguridad quiere un registro centralizado de todos los agentes de la organización.\n4. Los desarrolladores quieren crear con React, desde Visual Studio Code, un panel de indicadores para los empleados que se ejecute como una aplicación de Power Apps y respete las directivas de la plataforma.\n5. El director de TI duda entre montar una base de datos SQL tradicional o usar Dataverse para los datos de calidad."
       }
     ]
+  },
+  {
+    "id": "caso-7",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "title": "Entradas de fruta, visitas de campo y liquidaciones",
+    "company": "Cooperativa Frutícola Valdeazor",
+    "summary": "Una cooperativa de fruta de hueso quiere digitalizar las entradas en báscula y las visitas a las parcelas, avisar de las partidas rechazadas y descubrir por qué tardan tanto las liquidaciones a sus socios.",
+    "sections": [
+      {
+        "title": "Contexto",
+        "body": "La **Cooperativa Frutícola Valdeazor** agrupa a 640 socios que cultivan melocotón, nectarina y cereza. Recibe la fruta en tres centros de recepción y cada centro es una unidad de negocio de Dataverse. Tiene cuatro técnicos de campo, un técnico de calidad, un pequeño equipo de administración y una gerente. Todo el personal tiene cuenta de Microsoft 365, y la cooperativa dispone de un entorno de producción de Power Platform con Dataverse."
+      },
+      {
+        "title": "Situación actual",
+        "body": "En cada báscula, el operario anota el peso y la calidad de cada partida en un cuaderno y numera las entradas a mano; como cada centro lleva su propio cuaderno, los números se repiten entre centros. Los técnicos de campo visitan las parcelas con una libreta y una cámara, y transcriben las notas al volver a la oficina. Las cajas de campo llevan una etiqueta con un código QR que identifica la parcela de origen, pero nadie la lee.\n\nLos socios se quejan de que la liquidación de cada campaña tarda meses y nadie sabe en qué paso se atasca, aunque el programa de gestión registra cada paso de cada liquidación (cálculo, revisión, firma y pago) con su fecha y hora."
+      },
+      {
+        "title": "Requisitos",
+        "body": "1. Cada entrada en báscula se guardará en la tabla *Entrada* de Dataverse con un identificador que genere el sistema, único en los tres centros y con el formato ENT-1000, ENT-1001…, sin que nadie lo escriba.\n2. Los técnicos usarán en la tableta una aplicación de lienzo para identificar la parcela leyendo el QR de las cajas, guardar las coordenadas del lugar de la visita, fotografiar los daños de plagas y recoger la firma del socio al terminar.\n3. Cuando cualquier operario de cualquiera de los tres centros registre una entrada con calidad *Destrío*, el técnico de calidad, Óscar, debe recibir un aviso. Óscar ha creado él mismo el flujo de nube y no quiere ejecuciones innecesarias.\n4. Cada vez que un técnico suba un informe de visita a la biblioteca de SharePoint *Informes de campo*, un agente de Copilot Studio debe leerlo por su cuenta y, si detecta una plaga, crear una tarea en Planner para el responsable de sanidad vegetal, sin que nadie converse con él.\n5. Antes de automatizar las liquidaciones, la gerente quiere ver, con los datos que ya registra el programa de gestión, cómo transcurre realmente el proceso y dónde están los cuellos de botella."
+      }
+    ]
+  },
+  {
+    "id": "caso-8",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "title": "Ayudas, voluntariado y atención a familias",
+    "company": "Fundación Alacena Solidaria",
+    "summary": "Una ONG de reparto de alimentos quiere simplificar la gestión de accesos de sus coordinadores, ordenar el trabajo de sus creadores voluntarios, automatizar la resolución de ayudas y atender a familias que hablan varios idiomas.",
+    "sections": [
+      {
+        "title": "Contexto",
+        "body": "La **Fundación Alacena Solidaria** reparte alimentos a familias vulnerables desde cuatro delegaciones. Tiene quince empleados y unos trescientos voluntarios; los coordinadores de voluntariado, que rotan cada pocos meses, y los voluntarios del área digital tienen cuenta de Microsoft 365 de la fundación. Dispone de un entorno de producción de Power Platform con Dataverse, que administra una única técnica de Informática, Nerea."
+      },
+      {
+        "title": "Situación actual",
+        "body": "Cada vez que entra o sale un coordinador, Nerea tiene que asignarle o quitarle a mano los roles de seguridad de Dataverse, y alguna vez un antiguo coordinador ha seguido viendo datos de familias. Los voluntarios del área digital crean aplicaciones y flujos de prueba en el entorno predeterminado, donde se mezclan con los de todos los demás.\n\nLas tres aplicaciones de lienzo de la fundación (*Almacén*, *Reparto* y *Acogida*) tienen cada una su propia cabecera con el logotipo y el menú, y cada cambio de imagen obliga a rehacerlas. Las asociaciones de barrio solicitan ayudas por correo y las familias llaman por teléfono con dudas sobre horarios y documentación; muchas hablan inglés, francés o ucraniano."
+      },
+      {
+        "title": "Requisitos",
+        "body": "1. Los coordinadores deben obtener o perder el acceso a los datos de Dataverse solo con agregarlos al grupo de Microsoft Entra *Coordinadores de voluntariado* o quitarlos de él, sin asignar roles persona a persona.\n2. Cada voluntario del área digital debe trabajar automáticamente en su propio entorno aislado con Dataverse, sin usar el entorno predeterminado y sin que Nerea tenga que crear entornos a mano.\n3. La directora de cada delegación revisa cada solicitud de ayuda y responde *Conceder*, *Conceder parcialmente* o *Denegar*; según su respuesta, la asociación recibe un correo distinto.\n4. Un agente de Copilot Studio en la web de la fundación, con el español como idioma principal, debe atender también a las familias en inglés, francés y ucraniano, en el idioma configurado en su navegador.\n5. La cabecera común de las tres aplicaciones debe diseñarse una sola vez, y sus cambios deben llegar a todas las aplicaciones sin rehacerla en cada una."
+      }
+    ]
   }
 ]

@@ -1,0 +1,488 @@
+[
+  {
+    "id": "pl900-caso-7-001",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse",
+    "caseId": "caso-7",
+    "difficulty": 2,
+    "prompt": "¿Qué debes agregar a la tabla Entrada para cumplir el requisito 1?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Una columna de fórmula de Power Fx que sume 1 al número de la última entrada registrada",
+        "correct": false,
+        "explanation": "Una columna de fórmula calcula su valor a partir de las columnas de la propia fila o de filas relacionadas; no lleva un contador secuencial de toda la tabla, así que no puede generar ENT-1000, ENT-1001…"
+      },
+      {
+        "id": "b",
+        "text": "Una clave alternativa (*key*) sobre una columna de texto Número de entrada",
+        "correct": false,
+        "explanation": "Una clave alternativa impide que se repita un valor, pero no lo genera: el operario seguiría teniendo que escribir el número, que es justo lo que el requisito quiere evitar."
+      },
+      {
+        "id": "c",
+        "text": "Una columna de numeración automática (*autonumber*) con el tipo número predefinido de cadena y el prefijo ENT",
+        "correct": true,
+        "explanation": "La numeración automática es un tipo de columna de texto cuyo valor rellena Dataverse al crear la fila: con el tipo número predefinido de cadena genera un número que se incrementa con un prefijo fijo (ENT-1000, ENT-1001…), el mismo para las entradas de los tres centros."
+      },
+      {
+        "id": "d",
+        "text": "Una regla de negocio que rellene la columna Número de entrada al guardar el formulario",
+        "correct": false,
+        "explanation": "Una regla de negocio puede establecer un valor fijo o copiarlo de otra columna, pero no sabe cuál es el siguiente número de la secuencia en toda la tabla, así que no garantiza un identificador correlativo y único."
+      }
+    ],
+    "keyPoint": "Identificador correlativo generado por el sistema, con prefijo o fecha = columna de numeración automática de Dataverse.",
+    "references": [
+      {
+        "title": "Columnas de autonumeración",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/autonumber-fields"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-7-002",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "caseId": "caso-7",
+    "difficulty": 1,
+    "prompt": "Empareja cada necesidad del requisito 2 con el control o la señal de la aplicación de lienzo que la cubre. Cada opción puede usarse una vez o ninguna.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Identificar la parcela leyendo el código QR de la etiqueta de la caja",
+        "answerId": "c1",
+        "explanation": "El control Lector de códigos de barras abre el escáner nativo del dispositivo y lee códigos de barras, códigos QR y códigos de matriz de datos; su propiedad Barcodes devuelve el valor leído."
+      },
+      {
+        "id": "m2",
+        "text": "Guardar la latitud y la longitud del lugar donde se hace la visita",
+        "answerId": "c2",
+        "explanation": "La señal Location devuelve la posición del dispositivo (latitud, longitud y altitud) a partir del GPS y de otra información del dispositivo; el técnico solo tiene que permitir el acceso a la ubicación."
+      },
+      {
+        "id": "m3",
+        "text": "Fotografiar los daños de plagas desde la propia aplicación",
+        "answerId": "c3",
+        "explanation": "El control Cámara captura imágenes con la cámara del dispositivo y deja la última foto en su propiedad Photo, desde donde puede guardarse junto con la visita."
+      },
+      {
+        "id": "m4",
+        "text": "Recoger la firma del socio al terminar la visita",
+        "answerId": "c4",
+        "explanation": "El control Entrada de lápiz (*Pen input*) es una superficie en la que el usuario dibuja o escribe con el dedo o con un lápiz; es el control habitual para capturar firmas en una aplicación de lienzo."
+      }
+    ],
+    "choices": [
+      { "id": "c1", "text": "Control Lector de códigos de barras (*Barcode reader*)" },
+      { "id": "c2", "text": "Señal Location" },
+      { "id": "c3", "text": "Control Cámara" },
+      { "id": "c4", "text": "Control Entrada de lápiz (*Pen input*)" },
+      { "id": "c5", "text": "Control Temporizador (*Timer*)" },
+      { "id": "c6", "text": "Control Galería (*Gallery*)" }
+    ],
+    "keyPoint": "Las aplicaciones de lienzo aprovechan el hardware del móvil: lector de códigos de barras, Location (GPS), Cámara y Entrada de lápiz.",
+    "references": [
+      {
+        "title": "Control lector de códigos de barras en Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/controls/control-barcodereader"
+      },
+      {
+        "title": "Señales Acceleration, App, Compass, Connection y Location en Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/functions/signals"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-7-003",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-conectores",
+    "caseId": "caso-7",
+    "difficulty": 3,
+    "prompt": "Al probar el flujo del requisito 3, Óscar comprueba que solo se ejecuta con las entradas que registra él mismo. ¿Cómo debe configurar el desencadenador «Cuando se agrega, modifica o elimina una fila» de la tabla Entrada?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ámbito Usuario y, después del desencadenador, una acción Condición que compruebe la calidad",
+        "correct": false,
+        "explanation": "Con el ámbito Usuario el flujo solo vigila las filas de las que Óscar es propietario, que es justo el fallo que ha detectado; además, la condición no evita que el flujo se ejecute con cada entrada suya."
+      },
+      {
+        "id": "b",
+        "text": "Ámbito Unidad de negocio y la columna Calidad en Seleccionar columnas",
+        "correct": false,
+        "explanation": "El ámbito Unidad de negocio solo cubre las filas de los miembros de la unidad de negocio de Óscar, no las de los otros centros. Seleccionar columnas solo se aplica a las modificaciones y no comprueba el valor de la columna."
+      },
+      {
+        "id": "c",
+        "text": "Ámbito Organización y la columna Calidad en Seleccionar columnas",
+        "correct": false,
+        "explanation": "El ámbito es correcto, pero Seleccionar columnas solo filtra las actualizaciones según las columnas incluidas, sin mirar su valor; con las filas nuevas el flujo se ejecutaría para cualquier calidad, con ejecuciones innecesarias."
+      },
+      {
+        "id": "d",
+        "text": "Ámbito Organización y, en Filtrar filas, una expresión que compruebe que la calidad es Destrío",
+        "correct": true,
+        "explanation": "El ámbito Organización hace que el flujo reaccione a las filas de cualquier persona del entorno, sea cual sea su centro, y la expresión de filtro (estilo OData) hace que solo se ejecute cuando la entrada tiene calidad Destrío."
+      }
+    ],
+    "keyPoint": "En el desencadenador de Dataverse, el Ámbito decide de quién son las filas vigiladas (Organización = de todos) y Filtrar filas decide con qué valores se ejecuta.",
+    "references": [
+      {
+        "title": "Desencadenar flujos cuando se agrega, modifica o elimina una fila",
+        "url": "https://learn.microsoft.com/es-es/power-automate/dataverse/create-update-delete-trigger"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-7-004",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-casos",
+    "caseId": "caso-7",
+    "difficulty": 2,
+    "prompt": "Sobre el agente del requisito 4, indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Debes agregar al agente un desencadenador de eventos (*event trigger*) que se active cuando se cree un archivo en la biblioteca Informes de campo.",
+        "answer": true,
+        "explanation": "A diferencia de los desencadenadores de temas, que necesitan que alguien escriba al agente, un desencadenador de eventos envía al agente una carga útil cuando ocurre algo, como la creación de un archivo, para que actúe de forma autónoma."
+      },
+      {
+        "id": "s2",
+        "text": "El agente debe tener activada la orquestación generativa.",
+        "answer": true,
+        "explanation": "Los desencadenadores de eventos solo están disponibles en agentes con orquestación generativa, que es la que decide, a partir de la carga útil y de las instrucciones, qué herramienta o tema usar, como crear la tarea en Planner."
+      },
+      {
+        "id": "s3",
+        "text": "Al activarse, el desencadenador se autentica con las credenciales del técnico que ha subido el informe.",
+        "answer": false,
+        "explanation": "Los desencadenadores de eventos solo pueden usar las credenciales del autor del agente, las que usó para autorizar las conexiones. Por eso conviene revisar a qué datos se puede llegar a través de un agente con desencadenadores."
+      },
+      {
+        "id": "s4",
+        "text": "En cuanto agregas el desencadenador, el agente empieza a reaccionar a los informes reales, aunque todavía no lo hayas publicado.",
+        "answer": false,
+        "explanation": "Hasta que publicas el agente con el nuevo desencadenador, no reacciona automáticamente a los eventos. Por eso debes probarlo a fondo antes de publicarlo: a partir de ese momento reaccionará cada vez que se active."
+      }
+    ],
+    "keyPoint": "Agente autónomo = desencadenador de eventos + orquestación generativa; usa las credenciales del autor y solo reacciona tras publicarlo.",
+    "references": [
+      {
+        "title": "Información general sobre desencadenadores de eventos",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-triggers-about"
+      },
+      {
+        "title": "Agregar un desencadenador de eventos",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-trigger-event"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-7-005",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d1",
+    "skill": "d1-apps-automate",
+    "caseId": "caso-7",
+    "difficulty": 2,
+    "prompt": "¿Qué capacidad de Power Automate aporta el valor que busca la gerente en el requisito 5?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Copilot en Power Automate, para generar un flujo de nube a partir de la descripción del proceso de liquidación",
+        "correct": false,
+        "explanation": "Copilot ayuda a crear y modificar automatizaciones, pero no analiza cómo se ejecuta hoy el proceso. La gerente quiere diagnosticar el proceso real antes de automatizar."
+      },
+      {
+        "id": "b",
+        "text": "La minería de procesos (*process mining*), que usa los registros de eventos del programa de gestión",
+        "correct": true,
+        "explanation": "La minería de procesos extrae los datos de eventos del sistema que registra el proceso (cada paso de cada liquidación con su fecha y hora), visualiza cómo transcurre realmente e identifica cuellos de botella y oportunidades de automatización."
+      },
+      {
+        "id": "c",
+        "text": "Los análisis de Power Automate del centro de administración, con las ejecuciones y errores de los flujos",
+        "correct": false,
+        "explanation": "Estos análisis muestran el uso y los errores de los flujos que ya existen en un entorno. La liquidación todavía no está automatizada, así que no hay ejecuciones de flujos que analizar."
+      },
+      {
+        "id": "d",
+        "text": "Un flujo de proceso de negocio que guíe al equipo de administración por las fases de la liquidación",
+        "correct": false,
+        "explanation": "Un flujo de proceso de negocio guía a los usuarios por unas fases a partir de ahora, pero no analiza los datos históricos para descubrir dónde se atasca el proceso."
+      }
+    ],
+    "keyPoint": "Para entender el proceso real y sus cuellos de botella a partir de los datos de eventos, antes de automatizar = minería de procesos.",
+    "references": [
+      {
+        "title": "Información general de la minería de procesos",
+        "url": "https://learn.microsoft.com/es-es/power-automate/process-mining-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-8-001",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-seguridad",
+    "caseId": "caso-8",
+    "difficulty": 2,
+    "prompt": "Para cumplir el requisito 1, Nerea va a usar un equipo de grupo de Microsoft Entra en Dataverse. Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puede crear en el entorno un equipo vinculado al grupo Coordinadores de voluntariado y asignar el rol de seguridad al equipo, no a cada persona.",
+        "answer": true,
+        "explanation": "Un equipo de grupo de Microsoft Entra se asocia a un grupo de Entra (de seguridad o de Microsoft 365) y recibe roles de seguridad; sus integrantes obtienen esos privilegios sin asignarlos uno a uno."
+      },
+      {
+        "id": "s2",
+        "text": "Cuando agrega al grupo de Entra a una coordinadora nueva con licencia, esta puede acceder al entorno con los privilegios del rol del equipo sin más pasos.",
+        "answer": true,
+        "explanation": "La pertenencia al equipo se deriva dinámicamente de la del grupo de Entra: basta con agregar a la persona al grupo y que tenga licencia para que acceda de inmediato con el rol del equipo."
+      },
+      {
+        "id": "s3",
+        "text": "Si quita a un coordinador del grupo de Entra, este conserva sus privilegios hasta que Nerea lo quite también a mano del equipo de Dataverse.",
+        "answer": false,
+        "explanation": "La pertenencia se sincroniza: al quitarlo del grupo de Entra, el usuario sale del equipo y pierde los derechos de acceso la próxima vez que entra en el entorno, sin pasos manuales en Dataverse."
+      },
+      {
+        "id": "s4",
+        "text": "Un equipo de grupo de Microsoft Entra no puede ser propietario de filas; las filas siempre pertenecen a usuarios concretos.",
+        "answer": false,
+        "explanation": "Igual que un equipo de propietario, un equipo de grupo de Microsoft Entra puede poseer filas; basta con asignarle la fila. Así el trabajo no queda ligado a un coordinador que puede marcharse."
+      }
+    ],
+    "keyPoint": "Equipo de grupo de Microsoft Entra: el rol se asigna al equipo y el acceso se gana o se pierde con la pertenencia al grupo de Entra.",
+    "references": [
+      {
+        "title": "Administrar equipos de grupos",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/manage-group-teams"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-8-002",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-entornos",
+    "caseId": "caso-8",
+    "difficulty": 3,
+    "prompt": "¿Qué debe hacer Nerea para cumplir el requisito 2?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crear un único entorno de espacio aislado (*sandbox*) y pedir a todos los voluntarios del área digital que trabajen en él",
+        "correct": false,
+        "explanation": "Un espacio aislado separa el trabajo de producción, pero sería un entorno compartido: el trabajo de cada voluntario seguiría mezclado con el de los demás, que es el problema actual."
+      },
+      {
+        "id": "b",
+        "text": "Aplicar al entorno predeterminado una directiva de datos que bloquee los conectores no empresariales",
+        "correct": false,
+        "explanation": "Una directiva de datos controla qué conectores se pueden combinar, pero no saca a nadie del entorno predeterminado ni da a cada creador un espacio propio."
+      },
+      {
+        "id": "c",
+        "text": "Pedir a cada voluntario que cree un entorno de prueba (*trial*) cada vez que necesite probar algo",
+        "correct": false,
+        "explanation": "Los entornos de prueba caducan al cabo de un tiempo y obligarían a cada voluntario a crearlos a mano; no es una solución automática ni duradera."
+      },
+      {
+        "id": "d",
+        "text": "Activar el enrutamiento de entornos (*environment routing*) para que dirija a esos creadores a sus propios entornos de desarrollador",
+        "correct": true,
+        "explanation": "El enrutamiento de entornos, una función de gobernanza que se activa en el centro de administración de Power Platform, lleva automáticamente a cada creador a su propio entorno de desarrollador con Dataverse, que es un entorno administrado, en lugar del predeterminado."
+      }
+    ],
+    "keyPoint": "Para que cada creador trabaje en su propio entorno con Dataverse sin tocar el predeterminado = enrutamiento de entornos a entornos de desarrollador.",
+    "references": [
+      {
+        "title": "Enrutamiento del entorno",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/default-environment-routing"
+      },
+      {
+        "title": "Información general sobre entornos de Power Platform",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/environments-overview"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-8-003",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d4",
+    "skill": "d4-escenarios",
+    "caseId": "caso-8",
+    "difficulty": 2,
+    "prompt": "Completa el diseño del flujo de nube que cumple el requisito 3.",
+    "template": "En la acción «Iniciar y esperar una aprobación» eliges el tipo {{b1}} y defines las opciones Conceder, Conceder parcialmente y Denegar; después agregas {{b2}} que evalúa {{b3}} para enviar el correo que corresponde.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "Aprobar/Rechazar: todos deben aprobar" },
+          { "id": "o2", "text": "Respuestas personalizadas: esperar una respuesta" },
+          { "id": "o3", "text": "Aprobar/Rechazar: primero en responder" }
+        ],
+        "correctId": "o2",
+        "explanation": "Los tipos Aprobar/Rechazar solo ofrecen esas dos respuestas. Para que la directora elija entre tres opciones propias necesitas respuestas personalizadas; como decide una sola persona, basta con esperar una respuesta."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "un bucle Aplicar a cada uno" },
+          { "id": "o2", "text": "una acción Retraso (*Delay*)" },
+          { "id": "o3", "text": "un control Cambiar (*Switch*) con un caso por respuesta" }
+        ],
+        "correctId": "o3",
+        "explanation": "Un control Cambiar ejecuta un camino distinto según el valor que evalúa, con un caso para cada una de las tres respuestas. Aplicar a cada uno repite pasos sobre una lista, y Retraso solo pausa el flujo."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "el resultado (*Outcome*) de la aprobación" },
+          { "id": "o2", "text": "la fecha de creación de la solicitud" },
+          { "id": "o3", "text": "el correo de la directora que responde" }
+        ],
+        "correctId": "o1",
+        "explanation": "La salida Resultado de la aprobación contiene la opción que eligió la directora (Conceder, Conceder parcialmente o Denegar), que es lo que decide qué correo recibe la asociación."
+      }
+    ],
+    "keyPoint": "Más de dos respuestas posibles = aprobación con respuestas personalizadas; luego ramificas el flujo según el resultado.",
+    "references": [
+      {
+        "title": "Creación de opciones de respuesta personalizadas para flujos de aprobación",
+        "url": "https://learn.microsoft.com/es-es/power-automate/create-approval-response-options"
+      },
+      {
+        "title": "Comience a trabajar con las aprobaciones de Power Automate",
+        "url": "https://learn.microsoft.com/es-es/power-automate/get-started-approvals"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-8-004",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d5",
+    "skill": "d5-temas",
+    "caseId": "caso-8",
+    "difficulty": 2,
+    "prompt": "¿Qué dos acciones debes realizar para cumplir el requisito 4? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Agregar el inglés, el francés y el ucraniano como idiomas secundarios en la página Idiomas de la configuración del agente",
+        "correct": true,
+        "explanation": "Un agente multilingüe tiene un idioma principal y los idiomas secundarios que agregas en su configuración; al iniciar la sesión, el agente elige el idioma que coincide con el del navegador del usuario."
+      },
+      {
+        "id": "b",
+        "text": "Crear un agente distinto para cada idioma y publicar los cuatro en la web de la fundación",
+        "correct": false,
+        "explanation": "No hace falta duplicar el agente: un único agente multilingüe atiende en varios idiomas y evita mantener cuatro copias de los mismos temas y conocimiento."
+      },
+      {
+        "id": "c",
+        "text": "Descargar el archivo de localización de cada idioma secundario, traducir los mensajes de los temas y volver a cargarlo",
+        "correct": true,
+        "explanation": "Al agregar idiomas secundarios, tú eres responsable de traducir los mensajes de los temas que creas: descargas el archivo de localización (JSON o ResX), traduces sus cadenas y lo cargas de nuevo."
+      },
+      {
+        "id": "d",
+        "text": "Abrir cada tema en el lienzo de creación y redactar sus mensajes directamente en inglés, francés y ucraniano",
+        "correct": false,
+        "explanation": "En Copilot Studio todos los temas se editan en el idioma principal del agente; las versiones en los idiomas secundarios se gestionan con los archivos de localización."
+      },
+      {
+        "id": "e",
+        "text": "Cambiar el idioma principal del agente al inglés, porque es el idioma que más familias comparten",
+        "correct": false,
+        "explanation": "El idioma principal no se puede cambiar después de crear el agente (solo su región) y tampoco es necesario: el agente mantiene el español como principal y añade los demás como secundarios."
+      }
+    ],
+    "keyPoint": "Agente multilingüe: idiomas secundarios en la configuración y traducción de los temas mediante archivos de localización; se crea siempre en el idioma principal.",
+    "references": [
+      {
+        "title": "Configurar y crear agentes multilingües",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/multilingual"
+      },
+      {
+        "title": "Compatibilidad con idiomas",
+        "url": "https://learn.microsoft.com/es-es/microsoft-copilot-studio/authoring-language-support"
+      }
+    ]
+  },
+  {
+    "id": "pl900-caso-8-005",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d3",
+    "skill": "d3-lienzo",
+    "caseId": "caso-8",
+    "difficulty": 2,
+    "prompt": "Vas a cumplir el requisito 5 con una biblioteca de componentes. Ordena los pasos teniendo en cuenta qué necesita cada uno del anterior.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Crear una biblioteca de componentes y diseñar en ella el componente Cabecera con el logotipo y el menú",
+        "explanation": "Una biblioteca de componentes es un contenedor centralizado de componentes reutilizables; primero hay que crearla y diseñar en ella la cabecera común."
+      },
+      {
+        "id": "p2",
+        "text": "Guardar y publicar la biblioteca de componentes",
+        "explanation": "Solo las versiones publicadas de la biblioteca están disponibles para las aplicaciones; sin publicarla, Almacén, Reparto y Acogida no podrían usar la cabecera."
+      },
+      {
+        "id": "p3",
+        "text": "En cada aplicación, importar la cabecera desde Insertar > Obtener más componentes",
+        "explanation": "Una vez publicada, cada aplicación importa el componente desde la biblioteca y queda vinculada a ella, en lugar de tener una copia propia de la cabecera."
+      },
+      {
+        "id": "p4",
+        "text": "Cuando cambia la imagen corporativa, modificar la cabecera en la biblioteca y publicar la nueva versión",
+        "explanation": "Los cambios se hacen una sola vez, en la biblioteca, y deben publicarse (si quieres, con notas de versión) para que las aplicaciones que la usan puedan recibirlos."
+      },
+      {
+        "id": "p5",
+        "text": "Al editar cada aplicación, revisar el aviso de componentes actualizados y seleccionar Actualizar",
+        "explanation": "Las aplicaciones que dependen de la biblioteca avisan al creador cuando hay una versión nueva de sus componentes; al aceptar la actualización, la cabecera nueva llega a la app sin rehacerla."
+      }
+    ],
+    "keyPoint": "Biblioteca de componentes: diseñas una vez, publicas, las apps importan el componente y reciben las nuevas versiones publicadas.",
+    "references": [
+      {
+        "title": "Biblioteca de componentes",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/component-library"
+      },
+      {
+        "title": "Información general del componente de lienzo",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/create-component"
+      }
+    ]
+  }
+]
