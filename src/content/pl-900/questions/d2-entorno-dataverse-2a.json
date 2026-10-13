@@ -1,0 +1,871 @@
+[
+  {
+    "id": "pl900-d2-dataverse-101",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse",
+    "difficulty": 3,
+    "scenario": "Una empresa de distribución va a crear en Dataverse la tabla personalizada Visita comercial. Aunque de momento todos los usuarios verán todas las visitas, el próximo año quiere configurar la seguridad para que cada comercial vea solo las visitas que tiene asignadas.",
+    "prompt": "¿Qué debes tener en cuenta al crear la tabla?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Elegir el tipo de propiedad Organización, porque más adelante los roles podrán limitar las filas por usuario",
+        "correct": false,
+        "explanation": "En las tablas propiedad de la organización el acceso se controla solo en el nivel de organización; no tienen propietario por fila, así que no se puede limitar a las filas de cada comercial."
+      },
+      {
+        "id": "b",
+        "text": "Crearla como Organización y cambiarla a Usuario o equipo cuando se configure la seguridad",
+        "correct": false,
+        "explanation": "Una vez creada la tabla, su tipo de propiedad no se puede cambiar. Si te equivocas, tendrías que eliminarla y crear otra nueva."
+      },
+      {
+        "id": "c",
+        "text": "Elegir ya el tipo de propiedad Usuario o equipo, porque no se puede cambiar después",
+        "correct": true,
+        "explanation": "Con la propiedad Usuario o equipo cada fila tiene un propietario y el acceso puede controlarse en el nivel de usuario. Como el tipo de propiedad no se puede modificar tras crear la tabla, hay que decidirlo al crearla."
+      },
+      {
+        "id": "d",
+        "text": "Crearla como tabla virtual para poder cambiar su propiedad cuando haga falta",
+        "correct": false,
+        "explanation": "Una tabla virtual sirve para mostrar datos de un origen externo sin copiarlos; no es una forma de aplazar la decisión sobre la propiedad de las filas."
+      }
+    ],
+    "keyPoint": "El tipo de propiedad de una tabla (Usuario o equipo, u Organización) se elige al crearla y no se puede cambiar después.",
+    "references": [
+      {
+        "title": "Tipos de tablas",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/types-of-entities"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-dataverse-102",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse",
+    "difficulty": 1,
+    "scenario": "El servicio técnico de una empresa de climatización registra las averías en la tabla Incidencia de Dataverse. Cada incidencia nueva debe recibir automáticamente un código legible y correlativo, como INC-1000, INC-1001 o INC-1002, sin crear flujos ni escribir código.",
+    "prompt": "¿Qué tipo de columna debes agregar a la tabla?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Una columna de fórmula de Power Fx",
+        "correct": false,
+        "explanation": "Una columna de fórmula calcula su valor a partir de otras columnas cuando se recuperan los datos; no mantiene un contador que avance con cada fila nueva."
+      },
+      {
+        "id": "b",
+        "text": "Una columna de identificador único",
+        "correct": false,
+        "explanation": "El identificador único es un GUID que el sistema asigna a cada fila; es único, pero no es legible ni correlativo ni admite un prefijo como INC."
+      },
+      {
+        "id": "c",
+        "text": "Una columna de número entero con una regla de negocio",
+        "correct": false,
+        "explanation": "Una regla de negocio puede establecer valores en la fila, pero no conoce el último número usado en otras filas, así que no puede generar una secuencia."
+      },
+      {
+        "id": "d",
+        "text": "Una columna de numeración automática",
+        "correct": true,
+        "explanation": "La numeración automática genera, al crear la fila, una cadena con un número que se incrementa y un prefijo opcional, por ejemplo INC-1000, INC-1001… El valor inicial de la secuencia también se puede configurar."
+      }
+    ],
+    "keyPoint": "Numeración automática = códigos correlativos con prefijo generados por Dataverse al crear cada fila.",
+    "references": [
+      {
+        "title": "Columnas de autonumeración",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/autonumber-fields"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-dataverse-103",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse",
+    "difficulty": 2,
+    "scenario": "Una aseguradora registra las reclamaciones en la tabla Reclamación de Dataverse. Quien reclama puede ser una empresa, guardada en la tabla Cuenta, o un particular, guardado en la tabla Contacto. Quiere una sola columna para indicar quién presenta cada reclamación.",
+    "prompt": "¿Qué tipo de columna debes usar?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cliente (*Customer*)",
+        "correct": true,
+        "explanation": "La columna de tipo Cliente es una búsqueda especial que permite referenciar una fila de Cuenta o una fila de Contacto en la misma columna."
+      },
+      {
+        "id": "b",
+        "text": "Búsqueda simple a la tabla Cuenta",
+        "correct": false,
+        "explanation": "Una búsqueda simple apunta a una única tabla concreta, así que no podría guardar a los particulares de la tabla Contacto."
+      },
+      {
+        "id": "c",
+        "text": "Propietario",
+        "correct": false,
+        "explanation": "La columna Propietario es una búsqueda del sistema que apunta al usuario o al equipo al que está asignada la fila, no al cliente."
+      },
+      {
+        "id": "d",
+        "text": "Elección con los nombres de los clientes",
+        "correct": false,
+        "explanation": "Una columna de elección es para listas cortas y fijas; no se vincula con las filas de Cuenta ni de Contacto ni se actualiza al añadir clientes."
+      }
+    ],
+    "keyPoint": "La columna Cliente es una búsqueda que acepta una cuenta o un contacto.",
+    "references": [
+      {
+        "title": "Tipos de columnas",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/types-of-fields"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-dataverse-104",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse",
+    "difficulty": 3,
+    "scenario": "Una consultora tiene en Dataverse las tablas Proyecto y Empleado. Un empleado puede trabajar en varios proyectos y cada proyecto tiene varios empleados. Además, para cada empleado en cada proyecto debe guardar su rol (por ejemplo, Jefe de proyecto o Analista) y las horas asignadas.",
+    "prompt": "¿Cómo debes modelar esta relación?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Una relación varios a varios nativa, agregando Rol y Horas a su tabla de intersección",
+        "correct": false,
+        "explanation": "La tabla de intersección de una relación N:N nativa solo guarda lo necesario para asociar las filas: no admite columnas personalizadas y no se ve en la interfaz."
+      },
+      {
+        "id": "b",
+        "text": "Una columna de búsqueda a Proyecto en Empleado, más las columnas Rol y Horas",
+        "correct": false,
+        "explanation": "Con una búsqueda en Empleado cada empleado solo podría apuntar a un proyecto, lo que no cumple que trabaje en varios a la vez."
+      },
+      {
+        "id": "c",
+        "text": "Una columna de elecciones de selección múltiple en Empleado con los proyectos",
+        "correct": false,
+        "explanation": "Las elecciones son una lista fija de valores, no filas de la tabla Proyecto, y no permiten guardar el rol ni las horas de cada asignación."
+      },
+      {
+        "id": "d",
+        "text": "Una tabla Asignación con búsquedas a Proyecto y a Empleado, y las columnas Rol y Horas",
+        "correct": true,
+        "explanation": "Una tabla propia que actúa de intersección, con dos relaciones varios a uno (una a cada tabla), resuelve el varios a varios y permite añadir los datos de cada asignación."
+      }
+    ],
+    "keyPoint": "Si una relación varios a varios necesita datos propios, créala con una tabla intermedia y dos relaciones varios a uno.",
+    "references": [
+      {
+        "title": "Crear información general de relación varios a varios entre tablas",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/create-edit-nn-relationships"
+      },
+      {
+        "title": "Crear una relación entre tablas",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/create-edit-entity-relationships"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-dataverse-105",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse",
+    "difficulty": 2,
+    "prompt": "Empareja cada requisito con el tipo de datos de columna de Dataverse más adecuado. Cada opción puede usarse una vez o ninguna.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Guardar en cada fila el PDF del contrato firmado",
+        "answerId": "c1",
+        "explanation": "La columna Archivo almacena datos binarios, como un PDF, fuera del almacén relacional, lo que mejora el rendimiento y reduce el uso de capacidad de la base de datos."
+      },
+      {
+        "id": "m2",
+        "text": "Registrar el importe de cada factura en la moneda del cliente y obtener su equivalente en la moneda base de la organización",
+        "answerId": "c3",
+        "explanation": "Al agregar una columna Moneda (Divisa), Dataverse agrega la búsqueda de moneda, el tipo de cambio y una columna _Base con el valor convertido a la moneda base."
+      },
+      {
+        "id": "m3",
+        "text": "Indicar las zonas de reparto que cubre un transportista, eligiendo una o varias de una lista fija",
+        "answerId": "c4",
+        "explanation": "La columna Elecciones es una elección de selección múltiple: el usuario puede marcar uno, varios o todos los valores de la lista."
+      },
+      {
+        "id": "m4",
+        "text": "Mostrar la foto del producto en el encabezado de su formulario",
+        "answerId": "c2",
+        "explanation": "Una columna Imagen configurada como imagen principal de la tabla se puede mostrar en el encabezado del formulario de una aplicación basada en modelos."
+      },
+      {
+        "id": "m5",
+        "text": "Guardar la fecha de nacimiento de un socio, sin hora",
+        "answerId": "c5",
+        "explanation": "Solo fecha guarda únicamente el día, sin parte horaria, que es lo adecuado para fechas como un cumpleaños."
+      }
+    ],
+    "choices": [
+      { "id": "c1", "text": "Archivo" },
+      { "id": "c2", "text": "Imagen" },
+      { "id": "c3", "text": "Moneda" },
+      { "id": "c4", "text": "Elecciones (selección múltiple)" },
+      { "id": "c5", "text": "Solo fecha" },
+      { "id": "c6", "text": "Número decimal" },
+      { "id": "c7", "text": "Texto de varias líneas" }
+    ],
+    "keyPoint": "Dataverse ofrece tipos de columna específicos (Archivo, Imagen, Moneda, Elecciones, Solo fecha…) que una base de datos genérica tendría que simular.",
+    "references": [
+      {
+        "title": "Tipos de columnas",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/types-of-fields"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-dataverse-106",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse",
+    "difficulty": 2,
+    "scenario": "Una cadena de ópticas usa la misma lista corta de regiones (Norte, Sur, Este y Oeste) en las tablas Cliente, Tienda y Empleado de Dataverse. Quiere que la lista se muestre como un desplegable y mantenerla en un único sitio, sin crear tablas nuevas: si se añade una región, debe aparecer en las tres tablas.",
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crear una columna de elección local en cada tabla con los mismos valores",
+        "correct": false,
+        "explanation": "Las elecciones locales solo existen dentro de su columna; tendrías que mantener tres listas por separado y podrían dejar de coincidir."
+      },
+      {
+        "id": "b",
+        "text": "Crear una elección global y, en cada tabla, una columna de elección sincronizada con ella",
+        "correct": true,
+        "explanation": "Una elección global define el conjunto de valores una sola vez; las columnas de elección de cada tabla se sincronizan con ella y reflejan cualquier valor que se añada."
+      },
+      {
+        "id": "c",
+        "text": "Crear una tabla Región y una columna de búsqueda hacia ella en cada tabla",
+        "correct": false,
+        "explanation": "Una tabla de búsqueda también centralizaría los valores, pero el requisito excluye crear tablas nuevas; para una lista corta y fija la elección global es más sencilla."
+      },
+      {
+        "id": "d",
+        "text": "Crear una columna de texto con una regla de negocio que valide el valor",
+        "correct": false,
+        "explanation": "Una columna de texto no muestra un desplegable, y tendrías que repetir la validación en cada tabla."
+      }
+    ],
+    "keyPoint": "Elección global = una lista de valores definida una vez y reutilizada por columnas de elección de varias tablas.",
+    "references": [
+      {
+        "title": "Crear una columna de opciones",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/custom-picklists"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-dataverse-107",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse",
+    "difficulty": 2,
+    "prompt": "Indica si cada afirmación sobre las tablas de Dataverse es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Puedes agregar columnas personalizadas a la mayoría de las tablas estándar, como Cuenta.",
+        "answer": true,
+        "explanation": "La mayoría de las tablas estándar que incluye Dataverse son personalizables, así que puedes ampliarlas con tus propias columnas en lugar de crear tablas paralelas."
+      },
+      {
+        "id": "s2",
+        "text": "El nombre de esquema de una tabla personalizada incluye el prefijo del editor de la solución y no se puede cambiar una vez guardada la tabla.",
+        "answer": true,
+        "explanation": "El nombre de esquema se genera a partir del nombre para mostrar, lleva el prefijo de personalización del editor y queda fijo al guardar la tabla. El nombre para mostrar sí se puede cambiar."
+      },
+      {
+        "id": "s3",
+        "text": "Al crear una tabla de actividad personalizada eliges su columna principal, como en cualquier otra tabla.",
+        "answer": false,
+        "explanation": "En las tablas de actividad no se especifica la columna principal: todas usan Asunto y las columnas comunes de Actividad, para poder mostrarse juntas en vistas y en la escala de tiempo."
+      },
+      {
+        "id": "s4",
+        "text": "Si eliminas una tabla personalizada, sus filas quedan en una papelera desde la que puedes restaurarlas.",
+        "answer": false,
+        "explanation": "Al eliminar una tabla se eliminan también sus filas. La única forma de recuperar esos datos es restaurar la base de datos a un punto anterior a la eliminación."
+      }
+    ],
+    "keyPoint": "Amplía las tablas estándar antes de duplicarlas; y recuerda que el nombre de esquema es definitivo y que eliminar una tabla borra sus datos.",
+    "references": [
+      {
+        "title": "Crear y editar tablas con Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/create-edit-entities-portal"
+      },
+      {
+        "title": "Tipos de tablas",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/types-of-entities"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-dataverse-108",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse",
+    "difficulty": 1,
+    "prompt": "Completa la frase sobre cómo almacena Dataverse cada tipo de datos.",
+    "template": "A diferencia de una base de datos tradicional en la que todo va a las mismas tablas, Dataverse optimiza el almacenamiento según el tipo de datos: las filas de las tablas cuentan como capacidad de {{b1}}; los datos adjuntos y el contenido de las columnas Archivo e Imagen se guardan en el almacenamiento de {{b2}}; y los registros de auditoría cuentan como capacidad de {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "base de datos" },
+          { "id": "o2", "text": "archivo" },
+          { "id": "o3", "text": "registro" }
+        ],
+        "correctId": "o1",
+        "explanation": "Los datos estructurados, como las filas de las tablas y los metadatos, consumen la capacidad de base de datos de Dataverse."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "base de datos" },
+          { "id": "o2", "text": "archivo" },
+          { "id": "o3", "text": "registro" }
+        ],
+        "correctId": "o2",
+        "explanation": "Los archivos, como un PDF adjunto, y las columnas Archivo o Imagen se guardan en el almacenamiento de archivos; la base de datos solo guarda lo necesario para acceder a ellos."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "base de datos" },
+          { "id": "o2", "text": "archivo" },
+          { "id": "o3", "text": "registro" }
+        ],
+        "correctId": "o3",
+        "explanation": "Las tablas de auditoría y los registros de seguimiento de complementos cuentan en la capacidad de registro, que se controla por separado."
+      }
+    ],
+    "keyPoint": "Dataverse separa la capacidad en base de datos (filas), archivo (adjuntos, archivos e imágenes) y registro (auditoría).",
+    "references": [
+      {
+        "title": "Detalles del almacenamiento basado en la capacidad de Dataverse",
+        "url": "https://learn.microsoft.com/es-es/power-platform/admin/capacity-storage"
+      },
+      {
+        "title": "Tipos de columnas",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/types-of-fields"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-dataverse-109",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse",
+    "difficulty": 2,
+    "scenario": "Una compañía eléctrica quiere guardar en Dataverse las lecturas de miles de contadores inteligentes. Cada hora llegan millones de lecturas y, pasado un tiempo, las más antiguas deben borrarse solas. El arquitecto propone usar una tabla elástica.",
+    "prompt": "¿Qué dos características de las tablas elásticas justifican esa elección? Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Admiten reglas de negocio y flujos de proceso de negocio para validar cada lectura",
+        "correct": false,
+        "explanation": "Las reglas de negocio, los flujos de proceso de negocio y los gráficos están entre las funciones que las tablas elásticas no admiten."
+      },
+      {
+        "id": "b",
+        "text": "Se escalan horizontalmente de forma automática ante grandes volúmenes de lecturas y escrituras",
+        "correct": true,
+        "explanation": "Las tablas elásticas, basadas en Azure Cosmos DB, escalan automáticamente para admitir decenas de millones de filas cada hora sin problemas de rendimiento."
+      },
+      {
+        "id": "c",
+        "text": "Garantizan transacciones que abarcan varias filas, como en las tablas estándar",
+        "correct": false,
+        "explanation": "Es al revés: las tablas elásticas no admiten transacciones de varios registros. Si necesitas consistencia estricta y transacciones, Learn recomienda tablas estándar."
+      },
+      {
+        "id": "d",
+        "text": "Pueden borrar las filas automáticamente con una directiva de período de vida (TTL)",
+        "correct": true,
+        "explanation": "El valor de período de vida (*time to live*, TTL) de cada fila hace que se elimine sola cuando pasa ese tiempo desde su última modificación."
+      },
+      {
+        "id": "e",
+        "text": "Dejan los datos en el sistema de origen y los consultan en tiempo real sin copiarlos",
+        "correct": false,
+        "explanation": "Eso describe una tabla virtual. Una tabla elástica sí almacena los datos en Dataverse."
+      }
+    ],
+    "keyPoint": "Tabla elástica: volúmenes enormes, escalado automático y borrado por TTL; a cambio, sin transacciones de varias filas ni reglas de negocio.",
+    "references": [
+      {
+        "title": "Crear y editar tablas elásticas",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/create-edit-elastic-tables"
+      },
+      {
+        "title": "Tipos de tablas",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/types-of-entities"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-dataverse-110",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse",
+    "difficulty": 2,
+    "scenario": "Un creador agregó a la tabla Cliente la columna Código postal con el tipo Número entero y guardó la tabla. Ahora los códigos que empiezan por cero, como 08001, se guardan como 8001, y quiere que la columna sea de texto.",
+    "prompt": "¿Qué debe hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Editar la columna y cambiar su tipo de datos de Número entero a Texto",
+        "correct": false,
+        "explanation": "Una vez guardada la columna no se puede cambiar su tipo de datos; la única conversión admitida es de texto a numeración automática."
+      },
+      {
+        "id": "b",
+        "text": "Convertir la columna en una columna de numeración automática",
+        "correct": false,
+        "explanation": "Solo las columnas de texto se pueden convertir a numeración automática y, además, esta genera valores secuenciales en lugar de guardar los que escribe el usuario."
+      },
+      {
+        "id": "c",
+        "text": "Cambiar el formato de la columna de número entero a Ninguno",
+        "correct": false,
+        "explanation": "Los formatos del número entero (Ninguno, Duración, Idioma o Zona horaria) solo cambian su presentación; el valor sigue siendo un número y pierde los ceros a la izquierda."
+      },
+      {
+        "id": "d",
+        "text": "Crear una columna de tipo Texto, trasladar a ella los datos y retirar la anterior",
+        "correct": true,
+        "explanation": "Como el tipo de datos queda fijado al guardar la columna, la solución es crear otra columna con el tipo correcto y migrar los datos a ella."
+      }
+    ],
+    "keyPoint": "El tipo de datos de una columna no se puede cambiar después de guardarla (salvo de texto a numeración automática): elígelo bien desde el principio.",
+    "references": [
+      {
+        "title": "Crear y editar columnas en Dataverse usando Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/create-edit-field-portal"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-dataverse-111",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse",
+    "difficulty": 2,
+    "scenario": "Un club deportivo guarda sus socios en una hoja de Excel y ya ha creado en Dataverse la tabla Socio. Quiere cargar los datos con la opción de importar desde Excel, usando una plantilla para no olvidar ninguna columna obligatoria.",
+    "prompt": "Ordena los pasos.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Exportar los datos de la tabla Socio para obtener una plantilla con sus columnas",
+        "explanation": "Learn recomienda empezar exportando la tabla: el archivo resultante sirve de plantilla con las columnas obligatorias que debe tener el archivo de entrada."
+      },
+      {
+        "id": "p2",
+        "text": "Copiar los datos de la hoja de los socios en la plantilla exportada",
+        "explanation": "Con la plantilla preparada, se rellena con los datos que se quieren importar."
+      },
+      {
+        "id": "p3",
+        "text": "En Tablas, seleccionar Importar > Importar datos desde Excel y elegir la tabla Socio",
+        "explanation": "Desde el área Tablas de Power Apps se inicia la importación y se eligen las tablas de destino."
+      },
+      {
+        "id": "p4",
+        "text": "Cargar el archivo y comprobar que el estado de asignación indica Asignación correcta",
+        "explanation": "Tras cargar el archivo, Power Apps asigna sus columnas a las de la tabla; si hay errores de asignación, se corrigen antes de seguir."
+      },
+      {
+        "id": "p5",
+        "text": "Seleccionar Importar y revisar el número de inserciones y actualizaciones",
+        "explanation": "Cuando la asignación es correcta se lanza la importación; al terminar se muestran las filas insertadas y actualizadas."
+      }
+    ],
+    "keyPoint": "Importar desde Excel: plantilla exportada → datos → Importar datos desde Excel → asignación correcta → Importar.",
+    "references": [
+      {
+        "title": "Importar datos de Excel y exportar datos a CSV",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/data-platform-import-export"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-logica-101",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse-logica",
+    "difficulty": 2,
+    "scenario": "Un mayorista tiene en Dataverse las tablas Cuenta y Pedido, con una relación uno a varios. En el formulario de cada cuenta quiere ver el importe total de sus pedidos abiertos, sin escribir código ni crear flujos. Acepta que el valor no se actualice al instante.",
+    "prompt": "¿Qué debes crear en la tabla Cuenta?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Una columna de fórmula que sume el importe de los pedidos",
+        "correct": false,
+        "explanation": "Una columna de fórmula calcula a partir de columnas de la misma fila o de la fila a la que apunta una búsqueda; no está pensada para sumar las muchas filas relacionadas."
+      },
+      {
+        "id": "b",
+        "text": "Una regla de negocio que actualice el total al guardar la cuenta",
+        "correct": false,
+        "explanation": "Las reglas de negocio establecen o validan valores de la fila con la que trabajan; no agregan datos de otras filas."
+      },
+      {
+        "id": "c",
+        "text": "Una columna de resumen (*rollup*) que sume el importe de los pedidos abiertos",
+        "correct": true,
+        "explanation": "Una columna de resumen (o consolidada) agrega con SUM, COUNT, MIN, MAX o AVG las filas relacionadas, con filtros como Estado = Abierto. Se recalcula con trabajos del sistema en segundo plano y el usuario puede forzar el recálculo."
+      },
+      {
+        "id": "d",
+        "text": "Una vista de Pedido agrupada por cuenta",
+        "correct": false,
+        "explanation": "Una vista solo muestra una lista de filas; no guarda en la cuenta un valor que se pueda mostrar en su formulario."
+      }
+    ],
+    "keyPoint": "Columna de resumen = agregado (suma, recuento, máximo…) de las filas relacionadas, calculado de forma asíncrona.",
+    "references": [
+      {
+        "title": "Definir columnas de resumen que agregan valores",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/define-rollup-fields"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-logica-102",
+    "type": "order",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse-logica",
+    "difficulty": 2,
+    "prompt": "Vas a crear en la tabla Pedido de Dataverse una regla de negocio que muestre un mensaje de error si el descuento supera el 20 %. Ordena los pasos.",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Abrir la tabla Pedido en Power Apps, ir a Reglas de negocio y seleccionar Agregar regla de negocio",
+        "explanation": "Las reglas de negocio se crean desde la propia tabla; al agregar una, se abre el diseñador con una condición ya creada."
+      },
+      {
+        "id": "p2",
+        "text": "Establecer el ámbito de la regla y configurar la condición Descuento mayor que 20",
+        "explanation": "Cada regla empieza con una condición; también se elige el ámbito (Entidad, Todos los formularios o un formulario concreto)."
+      },
+      {
+        "id": "p3",
+        "text": "Arrastrar la acción Mostrar mensaje de error a la rama que se ejecuta cuando la condición se cumple",
+        "explanation": "Las acciones se colocan junto a la marca de verificación (se cumple) o junto a la X (no se cumple) de la condición."
+      },
+      {
+        "id": "p4",
+        "text": "Validar la regla y guardarla",
+        "explanation": "El diseñador permite validar la regla antes de guardarla para detectar errores de configuración."
+      },
+      {
+        "id": "p5",
+        "text": "Activar la regla",
+        "explanation": "Una regla guardada no se aplica hasta que se activa. Para modificarla más adelante, primero hay que desactivarla."
+      }
+    ],
+    "keyPoint": "Una regla de negocio no se aplica hasta que la activas, y para editarla hay que desactivarla antes.",
+    "references": [
+      {
+        "title": "Crear una regla de negocio para una tabla",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/data-platform-create-business-rule"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-logica-103",
+    "type": "match",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse-logica",
+    "difficulty": 1,
+    "prompt": "Empareja cada necesidad con el elemento del formulario principal de una aplicación basada en modelos que debes usar. Cada opción puede usarse una vez o ninguna.",
+    "prompts": [
+      {
+        "id": "m1",
+        "text": "Repartir la información del registro en páginas como Resumen, Detalles y Documentos",
+        "answerId": "c1",
+        "explanation": "Las pestañas dividen el formulario en páginas; solo se pueden agregar en formularios principales."
+      },
+      {
+        "id": "m2",
+        "text": "Agrupar, dentro de una página, las columnas de la dirección bajo la etiqueta Dirección",
+        "answerId": "c2",
+        "explanation": "Las secciones agrupan componentes similares dentro de una pestaña y pueden mostrar una etiqueta, como DIRECCIÓN en el formulario de cuenta."
+      },
+      {
+        "id": "m3",
+        "text": "Revisar el historial de notas, correos, citas y tareas del registro y crear actividades desde ahí",
+        "answerId": "c3",
+        "explanation": "La escala de tiempo (*timeline*) muestra las actividades y notas relacionadas con el registro y permite crear otras nuevas desde el propio control."
+      },
+      {
+        "id": "m4",
+        "text": "Tener siempre a la vista unas pocas columnas clave, como el propietario o el estado",
+        "answerId": "c4",
+        "explanation": "El encabezado del formulario muestra hasta cuatro columnas importantes, siempre visibles; el resto se ve en su panel desplegable."
+      }
+    ],
+    "choices": [
+      { "id": "c1", "text": "Pestaña" },
+      { "id": "c2", "text": "Sección" },
+      { "id": "c3", "text": "Escala de tiempo" },
+      { "id": "c4", "text": "Encabezado" },
+      { "id": "c5", "text": "Subcuadrícula" },
+      { "id": "c6", "text": "Formulario de vista rápida" }
+    ],
+    "keyPoint": "Formulario principal: encabezado (datos clave) > pestañas (páginas) > secciones (grupos de columnas), más controles como la escala de tiempo.",
+    "references": [
+      {
+        "title": "Agregar, mover o eliminar pestañas en un formulario",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/add-move-or-delete-tabs-on-form"
+      },
+      {
+        "title": "Configurar las propiedades de encabezado en el diseñador de formularios",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/form-designer-header-properties"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-logica-104",
+    "type": "single",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse-logica",
+    "difficulty": 3,
+    "scenario": "En una aplicación basada en modelos, la tabla Pedido tiene la búsqueda Cliente, que apunta a la tabla Cuenta. La columna Segmento está en Cuenta, no en Pedido. La jefa de ventas quiere que todos los comerciales tengan en el selector de vistas la lista de pedidos de clientes del segmento Premium.",
+    "prompt": "¿Qué debes hacer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Pedir a cada comercial que cree una vista personal con ese filtro",
+        "correct": false,
+        "explanation": "Las vistas personales pertenecen a quien las crea y solo las ve esa persona salvo que las comparta; no son la forma de dar una vista común a todos."
+      },
+      {
+        "id": "b",
+        "text": "Agregar Segmento a Pedido y copiar el valor con una regla de negocio",
+        "correct": false,
+        "explanation": "No hace falta duplicar datos: el filtro de una vista puede usar columnas de tablas relacionadas."
+      },
+      {
+        "id": "c",
+        "text": "Editar la vista de búsqueda rápida de Pedido para incluir Segmento",
+        "correct": false,
+        "explanation": "La vista de búsqueda rápida define en qué columnas se busca y no aparece en el selector de vistas."
+      },
+      {
+        "id": "d",
+        "text": "Crear una vista pública de Pedido con un filtro sobre la tabla relacionada Cuenta: Segmento igual a Premium",
+        "correct": true,
+        "explanation": "El generador de expresiones del diseñador de vistas permite agregar una tabla relacionada a una condición. Una vista pública está disponible para todos en el selector de vistas."
+      }
+    ],
+    "keyPoint": "Los filtros de una vista pueden usar columnas de tablas relacionadas; las vistas públicas son las que comparten todos los usuarios.",
+    "references": [
+      {
+        "title": "Edición de criterios de filtro en vistas de aplicaciones basadas en modelos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/edit-filter-criteria"
+      },
+      {
+        "title": "Crear o editar una vista de aplicación basada en modelos",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/create-edit-views"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-logica-105",
+    "type": "yesno",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse-logica",
+    "difficulty": 3,
+    "scenario": "En la tabla Línea de pedido, Cantidad es de tipo Número entero, y Precio unitario y Gastos de envío son de tipo Número decimal. Creas la columna de fórmula Total con esta expresión de Power Fx.",
+    "code": {
+      "language": "powerfx",
+      "content": "Cantidad * 'Precio unitario' + 'Gastos de envío'"
+    },
+    "prompt": "Indica si cada afirmación es verdadera.",
+    "statements": [
+      {
+        "id": "s1",
+        "text": "Si en una fila Gastos de envío está vacío, Total muestra el resultado de Cantidad × Precio unitario.",
+        "answer": true,
+        "explanation": "En las columnas de fórmula, una columna numérica vacía se trata como 0 en los cálculos intermedios. Las antiguas columnas calculadas, en cambio, devolverían un valor vacío."
+      },
+      {
+        "id": "s2",
+        "text": "Más adelante puedes cambiar la fórmula para que devuelva un texto, como «Pedido grande», sin crear otra columna.",
+        "answer": false,
+        "explanation": "La fórmula determina el tipo de la columna, y ese tipo no se puede cambiar una vez creada. Solo puedes editar la fórmula si sigue devolviendo el mismo tipo."
+      },
+      {
+        "id": "s3",
+        "text": "Puedes crear otra columna de fórmula que use Total, por ejemplo, para aplicar un descuento.",
+        "answer": true,
+        "explanation": "Una columna de fórmula puede hacer referencia a otras columnas de fórmula, siempre que no se haga referencia a sí misma ni forme cadenas cíclicas."
+      },
+      {
+        "id": "s4",
+        "text": "Puedes hacer que Total sea de tipo Moneda para que muestre el símbolo de la divisa.",
+        "answer": false,
+        "explanation": "Moneda está entre los tipos de datos que una columna de fórmula no puede generar; con esta expresión el resultado es un número decimal."
+      }
+    ],
+    "keyPoint": "En las columnas de fórmula los vacíos cuentan como 0, el tipo queda fijado por la fórmula y no pueden devolver Moneda.",
+    "references": [
+      {
+        "title": "Trabajar con columnas de fórmulas",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/formula-columns"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-logica-106",
+    "type": "dropdown",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse-logica",
+    "difficulty": 2,
+    "prompt": "Completa la frase sobre cómo editar con IA las tablas y relaciones que Copilot ha propuesto en el área de trabajo de datos de Power Apps.",
+    "template": "Para modificar una tabla que Copilot ya ha propuesto, por ejemplo cambiar una columna, lo describes en lenguaje natural en {{b1}}; para relacionar las tablas nuevas con una tabla que ya existe en el entorno, como Contacto, la agregas al área de trabajo con {{b2}}; y, al crear relaciones en el área de trabajo, ten en cuenta que {{b3}}.",
+    "blanks": [
+      {
+        "id": "b1",
+        "options": [
+          { "id": "o1", "text": "el diseñador de reglas de negocio" },
+          { "id": "o2", "text": "el panel de Copilot" },
+          { "id": "o3", "text": "el diseñador de vistas" }
+        ],
+        "correctId": "o2",
+        "explanation": "En el panel de Copilot describes los cambios, como agregar columnas o cambiar un tipo, y Copilot los aplica a las tablas propuestas."
+      },
+      {
+        "id": "b2",
+        "options": [
+          { "id": "o1", "text": "Nueva tabla" },
+          { "id": "o2", "text": "Ver datos" },
+          { "id": "o3", "text": "Tabla existente" }
+        ],
+        "correctId": "o3",
+        "explanation": "Tabla existente agrega al lienzo una tabla de Dataverse que ya existe para poder relacionarla con las nuevas. Nueva tabla crea otra tabla y Ver datos muestra las filas."
+      },
+      {
+        "id": "b3",
+        "options": [
+          { "id": "o1", "text": "no se admiten las relaciones varios a varios" },
+          { "id": "o2", "text": "no se admiten las relaciones uno a varios" },
+          { "id": "o3", "text": "solo puedes relacionar tablas que ya existían" }
+        ],
+        "correctId": "o1",
+        "explanation": "El área de trabajo de datos admite relaciones uno a varios y varios a uno con tablas nuevas, por ejemplo de Contacto a una tabla nueva, pero no relaciones varios a varios."
+      }
+    ],
+    "keyPoint": "En el área de trabajo de datos editas con Copilot en lenguaje natural, puedes incluir tablas existentes y crear relaciones 1:N, pero no N:N.",
+    "references": [
+      {
+        "title": "Creación de aplicaciones a través de una conversación con Copilot",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/canvas-apps/ai-conversations-create-app"
+      },
+      {
+        "title": "Crear y editar tablas con Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/data-platform/create-edit-entities-portal"
+      }
+    ]
+  },
+  {
+    "id": "pl900-d2-logica-107",
+    "type": "multiple",
+    "exam": "PL-900",
+    "outlineVersion": "2026-07-24",
+    "domain": "d2",
+    "skill": "d2-dataverse-logica",
+    "difficulty": 2,
+    "scenario": "El equipo de logística revisa cada mañana en una aplicación basada en modelos la vista Pedidos pendientes. Quiere corregir la fecha de entrega directamente en la lista, sin abrir cada pedido, y ver la suma de la columna Importe de los pedidos que aparecen.",
+    "prompt": "¿Qué dos acciones debes realizar? Cada respuesta correcta es parte de la solución. Selecciona dos.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crear un formulario de creación rápida para la tabla Pedido",
+        "correct": false,
+        "explanation": "El formulario de creación rápida sirve para dar de alta filas nuevas con pocas columnas, no para editar las existentes desde la lista."
+      },
+      {
+        "id": "b",
+        "text": "Agregar a la tabla Pedido el control de cuadrícula de Power Apps y establecer Permitir la edición en Sí",
+        "correct": true,
+        "explanation": "El control de cuadrícula de Power Apps permite editar en línea las filas de las vistas; por defecto es de solo lectura y hay que activar la propiedad Permitir la edición."
+      },
+      {
+        "id": "c",
+        "text": "Crear en Pedido una columna de resumen que sume los importes",
+        "correct": false,
+        "explanation": "Una columna de resumen agrega las filas relacionadas con cada fila; no calcula el total de las filas que muestra una vista."
+      },
+      {
+        "id": "d",
+        "text": "Activar en el control de cuadrícula la propiedad Habilitar agregación",
+        "correct": true,
+        "explanation": "Con la agregación habilitada, los usuarios pueden ver en las columnas numéricas el total, el mínimo, el máximo o el promedio de los valores de la cuadrícula."
+      },
+      {
+        "id": "e",
+        "text": "Crear una regla de negocio con ámbito Todos los formularios",
+        "correct": false,
+        "explanation": "Las reglas de negocio aplican lógica en formularios y en el servidor, pero no hacen editable una vista ni calculan totales."
+      }
+    ],
+    "keyPoint": "El control de cuadrícula de Power Apps hace editables las vistas (Permitir la edición) y puede mostrar totales (Habilitar agregación).",
+    "references": [
+      {
+        "title": "Control de cuadrícula de Power Apps",
+        "url": "https://learn.microsoft.com/es-es/power-apps/maker/model-driven-apps/the-power-apps-grid-control"
+      }
+    ]
+  }
+]
